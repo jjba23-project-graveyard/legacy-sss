@@ -172,7 +172,8 @@
 
  ;; (locale "en_US.utf8")
  (locale "nl_NL.utf8")
-
+ (keyboard-layout (keyboard-layout "us"))
+ 
  (bootloader (bootloader-configuration
 	      (bootloader grub-efi-bootloader)
 	      (targets '("/boot/efi"))))
