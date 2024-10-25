@@ -299,6 +299,7 @@ mind.")
    network-manager-openconnect
    network-manager-openvpn
    xxd
+   (specification->package "turbovnc")
    ))
 
 (define sss-guile-packages
