@@ -74,13 +74,13 @@
   (user-account
    (name "joe")
    (group "users")
-   (supplementary-groups '("wheel" "audio" "video" "docker" "input"))))
+   (supplementary-groups '("wheel" "netdev" "audio" "video" "docker" "input"))))
 
 (define sss-manon-user-account
   (user-account
    (name "manon")
    (group "users")
-   (supplementary-groups '("audio" "video" "docker" "input"))))
+   (supplementary-groups '("audio" "video" "netdev" "docker" "input"))))
 
 (define* (sss-desktop-services-for-system
           #:optional
