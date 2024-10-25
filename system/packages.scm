@@ -245,7 +245,7 @@ mind.")
    kitty
    arandr
    httpie
-   
+   (specification->package "remmina")
    pitivi
    shotcut
    openshot
