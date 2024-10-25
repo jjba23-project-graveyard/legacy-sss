@@ -123,6 +123,7 @@ mind.")
    font-sss-intel-one-mono
    font-intel-one-mono
    font-liberation
+   font-dejavu
    font-google-noto))
 
 (define sss-sbcl-packages
