@@ -245,12 +245,14 @@ mind.")
    kitty
    arandr
    httpie
-
+   
+   pitivi
+   shotcut
+   openshot
    inkscape
    dunst
    fzf
    vlc
-
    sqlite
    postgresql
    (specification->package "ungoogled-chromium")
