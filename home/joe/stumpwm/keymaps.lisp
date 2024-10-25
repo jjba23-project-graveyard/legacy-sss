@@ -92,6 +92,7 @@
     (sss-define-keys '("w" "C-w" ) m "exec /home/joe/.nix-profile/bin/vivaldi")
     (sss-define-keys '("f" "C-f" ) m "exec thunar")
     (sss-define-keys '("m" "C-m" ) m "exec icedove")
+    (sss-define-keys '("v" "C-v" ) m "exec remmina")     
     (sss-define-keys '("a" "C-a" ) m "exec pavucontrol")     
     (sss-define-keys '("/" "C-/" "q" "C-q" ) m "exec rofi -combi-modi drun,window -show combi")
     m))
