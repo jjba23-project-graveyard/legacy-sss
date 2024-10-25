@@ -299,7 +299,8 @@ mind.")
    network-manager-openconnect
    network-manager-openvpn
    xxd
-   (specification->package "turbovnc")
+   (specification->package "tigervnc-server")
+   (specification->package "tigervnc-client")
    ))
 
 (define sss-guile-packages
