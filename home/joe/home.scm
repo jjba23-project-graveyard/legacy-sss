@@ -118,14 +118,19 @@
   (service home-openssh-service-type
            (home-openssh-configuration
             (hosts
-             (list (openssh-host (name "personal.github.com")
-                                 (user "joe")
-                                 (host-name "github.com")
-                                 (identity-file "~/.ssh/gitlab_prive"))
-                   (openssh-host (name "work.github.com")
-                                 (user "joe")
-                                 (host-name "github.com")
-                                 (identity-file "~/.ssh/work_id"))))
+             (list
+              (openssh-host (name "wolk-jjba")
+                            (user "joe")
+                            (host-name "")
+                            (identity-file "~/.ssh/wolk-jjba"))
+              (openssh-host (name "personal.github.com")
+                            (user "joe")
+                            (host-name "github.com")
+                            (identity-file "~/.ssh/gitlab_prive"))
+              (openssh-host (name "work.github.com")
+                            (user "joe")
+                            (host-name "github.com")
+                            (identity-file "~/.ssh/work_id"))))
             (authorized-keys '()))))
 
 (display "\n>>= generating picom configuration...\n")
