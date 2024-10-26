@@ -28,28 +28,33 @@
 
 
 define sss-log-complete
-	@printf "\n>>= $(shell date) - success - target %s was completed!\n" $(1)
+	@printf "\n\033[1m>>= $(shell date) - completed work on target %s\033[0m\n" $(1)
+endef
+
+define sss-log-starting
+	@printf "\n\033[1m>>= $(shell date) - begin working on target: %s...\033[0m\n" $(1)
 endef
 
 define sss-log-info
-	@printf "\n>>= $(shell date) - info - %s \n" $(1)
+	@printf "\n\033[1m>>= $(shell date) - info - %s\033[0m\n" $(1)
 endef
 
 update:
 	@guix pull
 system-reconfigure:
-	$(call sss-log-info,"begin working on system-reconfigure target")
+	$(call sss-log-starting,"system-reconfigure")
 	@sudo guix system reconfigure config.scm
 	$(call sss-log-complete,"system-reconfigure")
 joe-reconfigure:
-	$(call sss-log-info,"begin working on joe-reconfigure target")
+	$(call sss-log-starting,"joe-reconfigure")
 	@guix home reconfigure home/joe/home.scm
 	$(call sss-log-complete,"joe-reconfigure")
 manon-reconfigure:
-	$(call sss-log-info,"begin working on manon-reconfigure target")
+	$(call sss-log-starting,"manon-reconfigure")
 	@guix home reconfigure home/manon/home.scm
 	$(call sss-log-complete,"manon-reconfigure")
 full-rebuild:
+	$(call sss-log-starting,"full-rebuild")
 	@make system-reconfigure
 	@make joe-reconfigure
 	@sudo fc-cache -r
