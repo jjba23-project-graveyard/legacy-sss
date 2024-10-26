@@ -2,7 +2,6 @@
 
 # Copyright (C) 2024 Josep Bigorra
 
-# Version: 0.9.0
 # Author: Josep Bigorra <jjbigorra@gmail.com>
 # Maintainer: Josep Bigorra <jjbigorra@gmail.com>
 # URL: https://github.com/jjba23/sss
