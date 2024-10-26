@@ -579,6 +579,9 @@ According to size, color and font family"
   :config
   (setq org-modern-star 'replace))
 
+(use-package guix
+  :ensure t)
+
 (use-package org
   :ensure nil
   :after (org-modern)
