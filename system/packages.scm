@@ -307,6 +307,10 @@ mind.")
    (specification->package "tigervnc-client")
    ))
 
+(define sss-game-packages
+  (list
+   steam))
+
 (define sss-guile-packages
   (list
    (specification->package "guile-json@4.7.3")
