@@ -312,10 +312,10 @@ mind.")
   (list
    (specification->package "steam")))
 
-(define sss-guile-packages
-  (list
-   (specification->package "guile-json@4.7.3")
-   ))
+  (define sss-guile-packages
+    (list
+     (specification->package "guile-json@4.7.3")
+     ))
 
 (define-public sss-system-packages
   (append
@@ -327,4 +327,5 @@ mind.")
    sss-guile-packages
    sss-treesitter-packages
    sss-coreutils
+   sss-game-packages
    sss-theme-packages))
