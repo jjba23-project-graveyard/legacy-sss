@@ -176,6 +176,8 @@
    "black"
    "pyright"
    "marksman"
+   "_1password-gui"
+   "_1password"
    ))
 
 
