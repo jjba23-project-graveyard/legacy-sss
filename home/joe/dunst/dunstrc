@@ -5,7 +5,7 @@
     # Display notifications on monitor with mouse focus
     follow = mouse
     # Set {width}x{height} and {x_pos}+{y_pos}
-    geometry = "300x30-5+60"
+    geometry = "450x40-5+60"
     # Show number of hidden notifications
     indicate_hidden = yes
     # Shrink window if smaller than width
@@ -23,7 +23,7 @@
     # Width of frame around window
     frame_width = 1
     # Color of frame around window
-    frame_color = "#4287f5"
+    frame_color = "#3fb83f"
     # Sort messages by urgency
     sort = yes
     # Idle seconds
@@ -32,7 +32,7 @@
     ### Text ###
     
     # Set font of notifications
-    font = Intel One Mono 11
+    font = Intel One Mono 10
     # Spacing between lines 
     line-height = 0
     # Markup parsing
@@ -116,13 +116,13 @@
 [urgency_normal]
 
     # Normal urgency notifications
-    background = "#202632"
-    foreground = "#ffffff"
+    background = "#111111"
+    foreground = "#cfdfd5"
     timeout = 8
 
 [urgency_critical]
 
     # High urgency notifications
-    background = "#ffffff"
-    foreground = "#db0101"
+    background = "#111111"
+    foreground = "#ef6560"
     timeout = 0
