@@ -80,6 +80,7 @@
   #:use-module (gnu packages web)
   #:use-module (gnu packages package-management)
   #:use-module (gnu packages base)
+
   )
 
 (define sss-theme-packages
@@ -309,7 +310,7 @@ mind.")
 
 (define sss-game-packages
   (list
-   steam))
+   (specification->package "steam")))
 
 (define sss-guile-packages
   (list
