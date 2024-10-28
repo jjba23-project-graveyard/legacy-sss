@@ -133,7 +133,7 @@
 
    ;; NetworkManager and its applet.
    (service network-manager-service-type)
-   (service wpa-supplicant-service-type)    ;needed by NetworkManager
+   (service wpa-supplicant-service-type)
    (simple-service 'network-manager-applet
                    profile-service-type
                    (list network-manager-applet))
@@ -158,6 +158,8 @@
 
    (service pulseaudio-service-type)
    (service alsa-service-type)
+
+   (service bluetooth-service-type)
 
    %base-services))
 

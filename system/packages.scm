@@ -289,6 +289,8 @@ mind.")
    xf86-input-libinput
    lxsession
    pamixer
+   blueman
+   bluez
    lxappearance
    (specification->package "conky")
    i3lock-fancy
