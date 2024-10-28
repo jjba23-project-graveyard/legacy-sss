@@ -247,7 +247,7 @@ mind.")
    arandr
    httpie
    (specification->package "remmina")
-   pitivi
+   
    shotcut
    openshot
    inkscape
