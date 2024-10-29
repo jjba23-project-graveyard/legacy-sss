@@ -195,7 +195,7 @@ mind.")
 (define sss-dev-packages
   (list
    (specification->package "openjdk@21.0.2")
-   node
+   (specification->package "node@18.19.0")
    ))
 
 (define sss-coreutils
