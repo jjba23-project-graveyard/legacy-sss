@@ -18,7 +18,8 @@
 (define-module (sss-packages)
   #:use-module (gnu)
   #:use-module (gnu packages admin)
-  #:use-module (gnu packages screen)	     
+  #:use-module (gnu packages screen)
+  #:use-module (gnu packages node)
   #:use-module (gnu packages emacs)
   #:use-module (gnu packages lxde)
   #:use-module (gnu packages vim)
@@ -194,7 +195,7 @@ mind.")
 (define sss-dev-packages
   (list
    (specification->package "openjdk@21.0.2")
-   
+   node
    ))
 
 (define sss-coreutils
@@ -299,6 +300,7 @@ mind.")
    mpv-mpris
    fyi
    qbittorrent
+   
    openvpn
    network-manager-applet
    network-manager-openconnect
