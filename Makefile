@@ -43,15 +43,15 @@ update:
 	@guix pull
 system-reconfigure:
 	$(call sss-log-starting,"system-reconfigure")
-	@sudo guix system reconfigure config.scm
+	@sudo guix system reconfigure config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")
 joe-reconfigure:
 	$(call sss-log-starting,"joe-reconfigure")
-	@guix home reconfigure home/joe/home.scm
+	@guix home reconfigure home/joe/home.scm  --fallback
 	$(call sss-log-complete,"joe-reconfigure")
 manon-reconfigure:
 	$(call sss-log-starting,"manon-reconfigure")
-	@guix home reconfigure home/manon/home.scm
+	@guix home reconfigure home/manon/home.scm  --fallback
 	$(call sss-log-complete,"manon-reconfigure")
 full-rebuild:
 	$(call sss-log-starting,"full-rebuild")
