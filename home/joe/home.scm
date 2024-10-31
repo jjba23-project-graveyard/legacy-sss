@@ -211,6 +211,8 @@
    "marksman"
    "_1password-gui"
    "_1password"
+   "stack"
+   "sbt"
    ))
 
 
