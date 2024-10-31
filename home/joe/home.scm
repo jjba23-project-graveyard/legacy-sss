@@ -143,22 +143,12 @@
     (provision '(byggsteg))
     (requirement '())
     (start #~(make-forkexec-constructor
-              '("/run/current-system/profile/bin/make" "guix-server")
+              '("make" "server")
               #:directory "/home/joe/Ontwikkeling/Persoonlijk/byggsteg"
               #:environment-variables
               (list
-               "LANG=en_US.UTF-8"
-               "BYGGSTEG_LS=/run/current-system/profile/bin/ls"
-               "BYGGSTEG_XXD=/run/current-system/profile/bin/xxd"
-               "BYGGSTEG_MKDIR=/run/current-system/profile/bin/xxd"
-               "BYGGSTEG_STACK=/run/current-system/profile/bin/stack"
-               "BYGGSTEG_CD=/run/current-system/profile/bin/cd"
-               "BYGGSTEG_GIT=/run/current-system/profile/bin/git"
-               "BYGGSTEG_ECHO=/run/current-system/profile/bin/echo"
-               "BYGGSTEG_MAKE=/run/current-system/profile/bin/make"
-               "BYGGSTEG_RM=/run/current-system/profile/bin/rm"
-               "BYGGSTEG_PYTHON=/run/current-system/profile/bin/python"
-               "GUILE_AUTO_COMPILE=0")))
+               "PATH=/home/joe/.nix-profile/bin:/home/joe/.guix-home/profile/bin:/home/joe/.guix-home/profile/sbin:/run/privileged/bin:/home/joe/.config/guix/current/bin:/home/joe/.guix-profile/bin:/run/current-system/profile/bin:/run/current-system/profile/sbin"
+               "LANG=nl_NL.UTF-8")))
     (stop #~(make-kill-destructor))
     (auto-start? #t)
     (respawn? #t)
