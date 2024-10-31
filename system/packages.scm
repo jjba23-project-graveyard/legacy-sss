@@ -42,6 +42,7 @@
   #:use-module (gnu packages openbox)
   #:use-module (gnu packages image-viewers)
   #:use-module (gnu packages gnome-xyz)
+  #:use-module (gnu packages guile-xyz)
   #:use-module (gnu packages compton)
   #:use-module (gnu packages ssh)
   #:use-module (gnu packages vpn)
@@ -237,7 +238,9 @@ mind.")
    nginx
    watchexec
    git
-   pavucontrol   
+   pavucontrol
+
+   guile-fibers
    
    ;; (if x86 tlp tlpui)
    xz

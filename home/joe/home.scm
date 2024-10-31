@@ -20,13 +20,16 @@
              (gnu home services shells)
              (gnu packages emacs)
              (gnu packages admin)
+             (gnu home services shepherd)
              (gnu services)
              (guix gexp))
 (use-modules (gnu home services ssh)
              (gnu home services gnupg)
              (gnu packages gnupg))
 (use-modules (gnu home services sound)
-             (gnu home services desktop) )
+             (gnu home services desktop))
+(use-modules (gnu services shepherd))
+
 
 (load "./proc.scm")
 
@@ -133,6 +136,31 @@
                             (identity-file "~/.ssh/work_id"))))
             (authorized-keys '()))))
 
+(define (sss-byggsteg-service config)
+  (list
+   (shepherd-service
+    (documentation "Run byggsteg as a daemon")
+    (provision '(byggsteg))
+    (requirement '())
+    (start #~(make-forkexec-constructor
+              '("/run/current-system/profile/bin/make" "server")
+              #:directory "/home/joe/Ontwikkeling/Persoonlijk/byggsteg" ))
+    (stop #~(make-kill-destructor))
+    (auto-start? #t)
+    (respawn? #t)
+    )))
+
+(define sss-byggsteg-service-type
+  (service-type
+   (name 'byggsteg)
+   (description "Run byggsteg as a daemon")
+   (extensions
+    (list (service-extension
+           home-shepherd-service-type
+           sss-byggsteg-service)))
+   (default-value '())
+   ))
+
 (display "\n>>= generating picom configuration...\n")
 (mk-conf
  sss-picom-conf-location
@@ -219,6 +247,7 @@
    sss-opengpg-conf
    (service home-dbus-service-type)
    sss-audio-service
+   (service sss-byggsteg-service-type)
    )))
 
 
