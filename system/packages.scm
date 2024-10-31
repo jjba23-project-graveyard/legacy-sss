@@ -61,6 +61,7 @@
   #:use-module (gnu packages inkscape)
   #:use-module (gnu packages gimp)
   #:use-module (gnu packages python-web)
+  #:use-module (gnu packages python)
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages imagemagick)
   #:use-module (gnu packages curl)
@@ -197,6 +198,7 @@ mind.")
   (list
    (specification->package "openjdk@21.0.2")
    (specification->package "node@18.19.0")
+   (specification->package "python")
    ))
 
 (define sss-coreutils
@@ -332,5 +334,5 @@ mind.")
    sss-guile-packages
    sss-treesitter-packages
    sss-coreutils
-   sss-game-packages
+   ;;sss-game-packages
    sss-theme-packages))
