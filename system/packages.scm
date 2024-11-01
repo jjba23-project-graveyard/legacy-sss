@@ -303,6 +303,7 @@ mind.")
    i3lock-fancy
    mpv
    mpv-mpris
+   unixodbc
    fyi
    qbittorrent
    
