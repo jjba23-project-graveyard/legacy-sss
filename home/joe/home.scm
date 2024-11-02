@@ -143,8 +143,13 @@
     (provision '(byggsteg))
     (requirement '())
     (start #~(make-forkexec-constructor
-              '("/run/current-system/profile/bin/make" "server")
-              #:directory "/home/joe/Ontwikkeling/Persoonlijk/byggsteg" ))
+              '("make" "server")
+              #:directory "/home/joe/Ontwikkeling/Persoonlijk/byggsteg"
+              #:environment-variables
+              (list
+               "PATH=/home/joe/.nix-profile/bin:/home/joe/.guix-home/profile/bin:/home/joe/.guix-home/profile/sbin:/run/privileged/bin:/home/joe/.config/guix/current/bin:/home/joe/.guix-profile/bin:/run/current-system/profile/bin:/run/current-system/profile/sbin"
+               "GIT_SSL_NO_VERIFY=1"
+               "LANG=nl_NL.UTF-8")))
     (stop #~(make-kill-destructor))
     (auto-start? #t)
     (respawn? #t)
@@ -206,6 +211,8 @@
    "marksman"
    "_1password-gui"
    "_1password"
+   "stack"
+   "sbt"
    ))
 
 
