@@ -64,6 +64,7 @@
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages imagemagick)
   #:use-module (gnu packages curl)
+  #:use-module (gnu packages cups)
   #:use-module (gnu packages terminals)
   #:use-module (gnu packages video)
   #:use-module (gnu packages image)    
@@ -296,6 +297,7 @@ mind.")
    pamixer
    blueman
    bluez
+   hplip
    lxappearance
    (specification->package "conky")
    i3lock-fancy
