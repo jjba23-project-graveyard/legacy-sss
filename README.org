@@ -7,9 +7,15 @@
 
 A Lisp machine adventure, where GNU and Lisp are celebrated, GNU is love, Emacs and StumpWM are life.
 
-gnu emacs + stumpwm + gnu guix 
+GNU Guix + GNU Emacs + Nix + StumpWM
 
-Find the divine sayings, and the destined configurations, all my Guix, Scheme, StumpWM, Common Lisp and Emacs Lisp configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
+If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
+
+Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, StumpWM, Common Lisp and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
+
+This setup enhances customization to infinity and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
+
+🇳🇱 parts of the code and settings might be in the Dutch language ( nl_NL.UTF-8 ).
 
 
 *** What lies here?
@@ -62,6 +68,7 @@ Find here a reference configuration with what is required.
            (mount-point "/boot/efi")
            (type "vfat"))))
 #+end_src
+
 *** Words of Advice
 
 Learning Lisps is really going down a rabbit hole, but trust me, you will come out with a better understanding of programming as a whole out the other end.
