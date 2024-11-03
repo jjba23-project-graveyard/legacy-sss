@@ -90,8 +90,7 @@
   (syscall "mkdir -p /home/joe/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ /home/joe/Documenten/wikimusic-backups/"))
 
 (define wikimusic-fetch-backups-job
-  ;; Run 'wikimusic-fetch-backups' at 12PM every day.
-  #~(job '(next-hour '(12))
+  #~(job '(next-hour '(2 4 6 8 10 12 14 16 18 20))
          (lambda ()
            (wikimusic-fetch-backups))
          "wikimusic-fetch-backups"
