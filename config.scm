@@ -173,7 +173,13 @@
    (service elogind-service-type)
    (service dbus-root-service-type)
 
-   (service ntp-service-type)
+   (service
+    openntpd-service-type
+    (openntpd-configuration
+     (listen-on '("127.0.0.1" "::1"))
+     (sensor '("udcf0 correction 70000"))
+     (constraint-from '("www.gnu.org"))
+     (constraints-from '("https://www.google.com/"))))
 
    (service x11-socket-directory-service-type)
 
