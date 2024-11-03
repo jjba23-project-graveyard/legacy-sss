@@ -117,6 +117,7 @@
 
 
 
+
 (define sss-ssh-service
   (service home-openssh-service-type
            (home-openssh-configuration
@@ -166,6 +167,15 @@
            sss-byggsteg-service)))
    (default-value '())
    ))
+
+
+
+
+;;
+;;
+;;
+;; start run
+;;
 
 (display "\n>>= generating picom configuration...\n")
 (mk-conf

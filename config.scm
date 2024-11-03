@@ -61,6 +61,10 @@
              
              )
 
+(use-modules (guix) (gnu) (gnu services mcron))
+(use-package-modules base idutils)
+
+(load "./home/joe/proc.scm")
 (load "./per-host.scm")
 (load "./system/packages.scm")
 
@@ -81,6 +85,24 @@
    (name "manon")
    (group "users")
    (supplementary-groups '("audio" "video" "netdev" "docker" "input"))))
+
+(define (wikimusic-fetch-backups)
+  (syscall "mkdir -p /home/joe/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ /home/joe/Documenten/wikimusic-backups/"))
+
+(define wikimusic-fetch-backups-job
+  ;; Run 'wikimusic-fetch-backups' at 12PM every day.
+  #~(job '(next-hour '(12))
+         (lambda ()
+           (wikimusic-fetch-backups))
+         "wikimusic-fetch-backups"
+         #:user "joe"))
+
+
+(define sss-cron-jobs-service
+  (simple-service 'sss-cron-jobs
+                  mcron-service-type
+                  (list wikimusic-fetch-backups-job
+                        )))
 
 (define* (sss-desktop-services-for-system
           #:optional
@@ -206,6 +228,7 @@
    (service nix-service-type)
    (service containerd-service-type)
    (service docker-service-type)
+   sss-cron-jobs-service
    sss-desktop-services
    )))
 
