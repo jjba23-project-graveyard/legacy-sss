@@ -108,16 +108,21 @@
   :init
   (setq welkomscherm-bookmarks-personal
         '((("sss" . "~/Ontwikkeling/Persoonlijk/sss/")
-           ("notes" . "~/Ontwikkeling/Persoonlijk/private-notes/")
-           ("emacs config" . "~/Ontwikkeling/Persoonlijk/sss/home/joe/emacs/init.el")
+           ("emacs cfg" . "~/Ontwikkeling/Persoonlijk/sss/home/joe/emacs/init.el")
            ("stumpwm" . "~/Ontwikkeling/Persoonlijk/sss/home/joe/stumpwm/init.lisp")
+           ("guix pkgs" . "~/Ontwikkeling/Persoonlijk/sss/system/packages.scm")
            )
-          (("wikimusic-api" . "~/Ontwikkeling/Persoonlijk/wikimusic-api/")
+          (("notes" . "~/Ontwikkeling/Persoonlijk/private-notes/")
+           ("jointhefreeworld" . "~/Ontwikkeling/Persoonlijk/jjba/")
+           )
+          (("wolk-jjba" . "~/Ontwikkeling/Persoonlijk/wolk-jjba/")
+           ("wikimusic-api" . "~/Ontwikkeling/Persoonlijk/wikimusic-api/")
            ("wikimusic-ssr" . "~/Ontwikkeling/Persoonlijk/wikimusic-ssr/")
            ("byggsteg" . "~/Ontwikkeling/Persoonlijk/byggsteg/"))))
   (setq welkomscherm-bookmarks-work
         '((("Vandebron" . "~/Ontwikkeling/Werk/Vandebron/")
-           ("hem-wiki" . "~/Ontwikkeling/Werk/hem-wiki/"))          
+           ("pyscripting" . "~/Ontwikkeling/Werk/scripting/")
+           ("engagement-wiki" . "~/Ontwikkeling/Werk/engagement-wiki/"))          
           ))
 
   (setq welkomscherm-buttons-actions
