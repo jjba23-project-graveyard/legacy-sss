@@ -315,7 +315,7 @@ mind.")
    unixodbc
    fyi
    qbittorrent
-   
+   darkhttpd
    openvpn
    network-manager-applet
    network-manager-openconnect
@@ -344,5 +344,5 @@ mind.")
    sss-guile-packages
    sss-treesitter-packages
    sss-coreutils
-   ;;sss-game-packages
+   sss-game-packages
    sss-theme-packages))
