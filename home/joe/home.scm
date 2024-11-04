@@ -224,6 +224,9 @@
    "_1password"
    "stack"
    "sbt"
+   "scala_2_13"
+   "firefox"
+   "thunderbird"
    ))
 
 

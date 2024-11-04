@@ -23,6 +23,7 @@
   #:use-module (gnu packages emacs)
   #:use-module (gnu packages lxde)
   #:use-module (gnu packages vim)
+  #:use-module (gnu packages haskell-apps)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages databases)
   #:use-module (gnu packages bittorrent)
@@ -240,8 +241,8 @@ mind.")
 
 (define sss-other-system-packages
   (list
-   icecat
-   icedove
+   ;;icecat
+   ;;icedove
    
    flatpak
    pipewire
@@ -270,7 +271,7 @@ mind.")
    vlc
    sqlite
    postgresql
-   (specification->package "ungoogled-chromium")
+   ;; (specification->package "ungoogled-chromium")
    obs
    libreoffice
    gimp
@@ -305,6 +306,7 @@ mind.")
    lxsession
    pamixer
    blueman
+   ;; ghcid
    bluez
    hplip
    lxappearance
