@@ -315,7 +315,7 @@ mind.")
    unixodbc
    fyi
    qbittorrent
-   darkhttpd
+   (specification->package "darkhttpd")
    openvpn
    network-manager-applet
    network-manager-openconnect

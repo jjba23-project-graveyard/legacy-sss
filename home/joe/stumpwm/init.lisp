@@ -187,6 +187,10 @@
       swm-gaps:*inner-gaps-size* 6
       swm-gaps:*outer-gaps-size* 16)
 
+(defun show-key-seq (key seq val)
+  (message (print-key-seq (reverse seq))))
+
+
 
 (when *initializing*
   (progn
@@ -196,6 +200,7 @@
     (sss-run-autostarts)
     (swm-gaps:toggle-gaps)              
     (mode-line)
-    (stumptray::stumptray)))
+    (stumptray::stumptray)
+    (add-hook *key-press-hook* 'show-key-seq)))
 
 
