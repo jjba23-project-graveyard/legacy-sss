@@ -48,6 +48,7 @@
   #:use-module (gnu packages vpn)
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages fonts)
+  #:use-module (nongnu packages fonts)
   #:use-module (gnu packages pulseaudio)
   #:use-module (gnu services nix)
   #:use-module (gnu packages libreoffice)
@@ -129,6 +130,12 @@ mind.")
    font-intel-one-mono
    font-liberation
    font-dejavu
+   font-microsoft-web-core-fonts
+   font-apple-sf-pro
+   font-apple-sf-compact
+   font-apple-sf-mono
+   font-apple-new-york
+   font-apple-sf-symbols
    font-google-noto))
 
 (define sss-sbcl-packages
@@ -337,5 +344,5 @@ mind.")
    sss-guile-packages
    sss-treesitter-packages
    sss-coreutils
-   sss-game-packages
+   ;;sss-game-packages
    sss-theme-packages))
