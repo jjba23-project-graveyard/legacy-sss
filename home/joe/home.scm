@@ -227,6 +227,7 @@
    "scala_2_13"
    "firefox"
    "thunderbird"
+   "postman"
    ))
 
 
