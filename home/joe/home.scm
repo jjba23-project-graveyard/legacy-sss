@@ -229,6 +229,7 @@
    "thunderbird"
    "postman"
    ))
+;; (syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")
 
 
 (define sss-home-files-service

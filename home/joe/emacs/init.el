@@ -173,7 +173,7 @@ According to size, color and font family"
 
     (set-face-attribute 'org-default nil 
 		        :height (tekengrootte-mk-font-size 1.05)
-		        :font jjba-font-sans)
+		        :font jjba-font-mono)
     (set-face-attribute 'button nil :background 'unspecified
                         :weight 'bold)
     (set-face-attribute 'org-block nil
@@ -263,7 +263,7 @@ According to size, color and font family"
   :hook ((markdown-mode . jjba-markdown-mode))
   :config
   (defun jjba-markdown-mode ()
-    (variable-pitch-mode 1)
+    (variable-pitch-mode 0)
     (auto-fill-mode 0)
     (set-face-attribute 'markdown-pre-face nil                       
 		        :font jjba-font-mono)
@@ -596,7 +596,7 @@ According to size, color and font family"
   (setq org-log-done 'time)
   :config  
   (defun jjba-org-mode ()
-    (variable-pitch-mode 1)
+    (variable-pitch-mode 0)
     (org-modern-mode)
     (org-indent-mode)
     (auto-fill-mode 0)))
