@@ -241,8 +241,8 @@ mind.")
 
 (define sss-other-system-packages
   (list
-   ;;icecat
-   ;;icedove
+   icecat
+   icedove
    
    flatpak
    pipewire
@@ -346,5 +346,5 @@ mind.")
    sss-guile-packages
    sss-treesitter-packages
    sss-coreutils
-   ;;sss-game-packages
+   sss-game-packages
    sss-theme-packages))
