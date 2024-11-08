@@ -269,6 +269,12 @@ According to size, color and font family"
 		        :font jjba-font-mono)
     (set-face-attribute 'markdown-code-face nil                       
 		        :font jjba-font-mono)
+    (set-face-attribute 'markdown-code-face nil                       
+		        :font jjba-font-mono
+                        :height (tekengrootte-mk-font-size 1.05))
+    (set-face-attribute 'markdown-pre-face nil                       
+		        :font jjba-font-mono
+                        :height (tekengrootte-mk-font-size 1.25))
     (visual-line-mode 1)))
 
 (use-package haskell-mode :ensure t :mode "\\.hs\\'")
