@@ -60,6 +60,8 @@ full-rebuild:
 	@sudo fc-cache -r
 	@fc-cache -r
 	$(call sss-log-complete,"full-rebuild")
+nix-profile-upgrade:
+	NIXPKGS_ALLOW_UNFREE=1 nix profile upgrade '.*' --impure
 
 # Aliases section
 jr:
@@ -76,3 +78,5 @@ store-gc:
 	@sudo guix gc
 shepherd-logs:
 	cat ~/.local/state/log/shepherd.log
+npu:
+	@make nix-profile-upgrade
