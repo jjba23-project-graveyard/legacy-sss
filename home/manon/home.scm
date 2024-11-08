@@ -31,6 +31,13 @@
 (define sss-audio-service
   (service home-pipewire-service-type))
 
+(define manon-home-files-service
+  (service home-files-service-type
+           `((".config/tint2/tint2rc" ,(local-file "./tint2/tint2rc"))
+             (".config/tint2/launchers/kitty.desktop" ,(local-file "./tint2/launchers/kitty.desktop"))
+             (".config/openbox/rc.xml" ,(local-file "./openbox/rc.xml"))
+             )))
+
 
 (display "configuring home environment...")
 (home-environment
