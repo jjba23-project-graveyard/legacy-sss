@@ -601,6 +601,7 @@ According to size, color and font family"
   :init
   (setq org-todo-keywords '((sequence "TODO" "WIP" "REVIEWING" "|" "DONE")))
   (setq org-log-done 'time)
+  (setq org-hide-emphasis-markers t)
   :config  
   (defun jjba-org-mode ()
     (variable-pitch-mode 0)
