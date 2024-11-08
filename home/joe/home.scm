@@ -261,6 +261,7 @@
    "firefox"
    "thunderbird"
    "postman"
+   "vscode-langservers-extracted"
    ))
 ;; (syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")
 
