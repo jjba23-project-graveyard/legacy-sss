@@ -58,15 +58,25 @@ It is *REQUIRED* to include a ~per-host.scm~ in the root of this project, which 
 Find here a reference configuration with what is required.
 
 #+begin_src  scheme
+  (use-modules (gnu)
+             (gnu packages))
+  
   (define sss-filesystems
-    (list (file-system
-           (device "/dev/nvme0n1p3")
-           (mount-point "/")
-           (type "ext4"))
-          (file-system
-           (device "/dev/nvme0n1p1")
-           (mount-point "/boot/efi")
-           (type "vfat"))))
+      (list (file-system
+             (device "/dev/nvme0n1p3")
+             (mount-point "/")
+             (type "ext4"))
+            (file-system
+             (device "/dev/nvme0n1p1")
+             (mount-point "/boot/efi")
+             (type "vfat"))))
+
+  (define sss-per-host-packages
+    (list
+     (specification->package "amd-microcode")
+     (specification->package "amdgpu-firmware")
+     )
+    )
 #+end_src
 
 *** Words of Advice

@@ -86,8 +86,9 @@
   #:use-module (gnu packages web)
   #:use-module (gnu packages package-management)
   #:use-module (gnu packages base)
-
   )
+
+(load "../per-host.scm")
 
 (define sss-theme-packages
   (list
@@ -338,6 +339,7 @@ mind.")
 
 (define-public sss-system-packages
   (append
+   sss-per-host-packages
    sss-other-system-packages
    sss-wm-packages
    sss-font-packages
