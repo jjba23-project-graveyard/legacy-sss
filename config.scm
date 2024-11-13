@@ -24,6 +24,7 @@
 (use-modules (gnu system privilege))
 (use-modules (gnu services xorg))
 (use-modules (gnu services sddm))
+(use-modules (gnu services desktop))
 (use-modules (gnu services))
 (use-modules (gnu services shepherd))
 (use-modules (gnu services base))
@@ -110,12 +111,32 @@
   ;; List of services typically useful for a "desktop" use case.
   (cons*
    ;; display manager
-   (service sddm-service-type
-            (sddm-configuration
-             (display-server "x11")
-             (theme "maya")
-             (hide-users "root")
-             (auto-login-session "stumpwm.desktop")))
+   (service slim-service-type)
+   ;; (if (string-prefix? "x86_64" system)
+   ;;     (service gdm-service-type)
+   ;;     (service sddm-service-type))
+
+   ;; (use-modules (gnu services)
+   ;;              (gnu services desktop)
+   ;;              (gnu services xorg))
+
+   ;; (operating-system
+   ;;  ;; ...
+   ;;  (services (cons* (service slim-service-type (slim-configuration
+   ;;                                               (display ":0")
+   ;;                                               (vt "vt7")))
+   ;;                   (service slim-service-type (slim-configuration
+   ;;                                               (display ":1")
+   ;;                                               (vt "vt8")))
+   ;;                   (modify-services %desktop-services
+   ;;                                    (delete gdm-service-type)))))
+   
+   ;; (service sddm-service-type
+   ;;          (sddm-configuration
+   ;;           (display-server "x11")
+   ;;           (theme "maya")
+   ;;           (hide-users "root")
+   ;;           (auto-login-session "stumpwm.desktop")))
 
    ;; Screen lockers are a pretty useful thing and these are small.
    (service screen-locker-service-type
@@ -145,7 +166,7 @@
 
    ;; This is a volatile read-write file system mounted at /var/lib/gdm,
    ;; to avoid GDM stale cache and permission issues.
-   ;; gdm-file-system-service
+   gdm-file-system-service
 
    ;; The global fontconfig cache directory can sometimes contain
    ;; stale entries, possibly referencing fonts that have been GC'd,
@@ -193,8 +214,6 @@
 (define-syntax sss-desktop-services
   (identifier-syntax (sss-desktop-services-for-system)))
 
-
-
 (operating-system
  (host-name "guixvm")
  (timezone "Europe/Amsterdam")
@@ -236,6 +255,7 @@
    sss-cron-jobs-service
    sss-desktop-services
    )))
+
 
 
 
