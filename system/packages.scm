@@ -181,6 +181,23 @@ mind.")
    
    stumpish
    (specification->package "stumpwm-with-slynk")
+   sway
+   swaybg
+   swaylock
+   swayidle
+   foot
+   waybar-experimental
+   wmenu
+   mako
+   fuzzel
+   ;; Compatibility for older Xorg applications
+   xorg-server-xwayland
+
+   ;; Flatpak and XDG utilities
+   xdg-utils ;; For xdg-open, etc
+   xdg-dbus-proxy
+   shared-mime-info
+   (list glib "bin")
    ))
 
 
@@ -348,5 +365,5 @@ mind.")
    sss-guile-packages
    sss-treesitter-packages
    sss-coreutils
-   sss-game-packages
+   ;;sss-game-packages
    sss-theme-packages))

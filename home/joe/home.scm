@@ -196,6 +196,26 @@
    "carvoeiro-water-fun"
    ))
 
+(define sss-sway-config
+  (map (lambda (str)
+         (string-append str "\n"))
+       (list
+        "set $mod Mod4"
+        ;; "include \"~/.config/sway/before-config\""
+        ;;"corner_radius 10"
+        "gaps inner 8"
+        "gaps outer 3"
+        "bindsym $mod+space exec fuzzel -w 50 -x 8 -y 8 -r 3 -b 232635ff -t A6Accdff -s A6Accdff -S 232635ff -C c792eacc -m c792eacc -f \"Intel One Mono:weight=light:size=10\" --no-fuzzy"
+        "exec mako --border-radius=2 --font=\"JetBrains Mono 8\" --max-visible=5 --outer-margin=5 --margin=3 --background=\"#1c1f26\" --border-color=\"#89AAEB\" --border-size=1 --default-timeout=7000"
+        "exec nm-applet --indicator"
+        ;;"exec emacs"
+        ;;"include \"~/.config/sway/after-config\""
+        )))
+
+;; (services (list
+;;            (service home-xdg-configuration-files-service-type
+;;                     `())))))
+
 
 ;;
 ;;
@@ -288,6 +308,8 @@
              (".config/nix/nix.conf" ,(local-file "nix/nix.conf"))
              (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
              (".config/conky/conky.conf" ,(local-file "conky/conkyrc.lua"))
+             (".config/waybar/config.jsonc" ,(local-file "waybar/config.jsonc"))
+             (".config/sway/config" ,(apply mixed-text-file (cons "sway-config" sway-config)))
              (,(emacs-conf-file "init.el") ,(local-file "emacs/init.el"))
 	     (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
 
