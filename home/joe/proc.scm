@@ -86,26 +86,6 @@
         ))
     (close file-port)))
 
-(define (write-sway-conf kv resize-kv file)
-  (let* ((file-port
-          (open-file file "a")))
-    (with-output-to-port file-port
-      (lambda ()
-        (for-each
-         (lambda(x)       
-           (display (format #f "~a\n" x)))     
-         kv)
-        ))
-    (with-output-to-port file-port
-      (lambda ()
-        (display "mode \"resize\" {\n")
-        (for-each
-         (lambda(x)       
-           (display (format #f "~a\n" x)))     
-         resize-kv)
-        (display "}\n")
-        ))
-    (close file-port)))
 
 (define (nix-profile-install x)
   (syscall (format #f "nix -L profile install --impure nixpkgs#~a" x)))

@@ -19,12 +19,14 @@
              (gnu home services)
              (gnu home services shells)
              (gnu packages emacs)
+             (gnu home services sway)
              (gnu packages admin)
              (gnu home services shepherd)
              (gnu services)
              (guix gexp))
 (use-modules (gnu home services ssh)
              (gnu home services gnupg)
+             (gnu packages wm)
              (gnu packages gnupg))
 (use-modules (gnu home services sound)
              (gnu home services desktop))
@@ -170,6 +172,19 @@
    (default-value '())
    ))
 
+(define sss-sway-service-type
+  (service home-sway-service-type
+           (sway-configuration
+            (gestures
+             '((swipe:3:down . "move to scratchpad")
+               (swipe:3:up   . "scratchpad show")))
+            (outputs
+             (list (sway-output
+                    (identifier '*)
+                    (background (file-append sway
+                                             "\
+/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png"))))))))
+
 (define sss-joe-clone-repos
   (list
    "private-notes"
@@ -198,168 +213,10 @@
    "carvoeiro-water-fun"
    ))
 
-(define sss-sway-conf-location
-  "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/sway-conf")
-
-(define sss-sway-resize-config
-  (list
-   "bindsym $left resize shrink width 10px"
-   "bindsym $down resize grow height 10px"
-   "bindsym $up resize shrink height 10px"
-   "bindsym $right resize grow width 10px"
-
-   "bindsym Left resize shrink width 10px"
-   "bindsym Down resize grow height 10px"
-   "bindsym Up resize shrink height 10px"
-   "bindsym Right resize grow width 10px"
-
-   "bindsym Return mode \"default\""
-   "bindsym Escape mode \"default\""
-   ))
-
-(define sss-sway-config
-  (list
-   "set $mod Mod4"
 
 
-   "set $left h"
-   "set $down j"
-   "set $up k"
-   "set $right l"
-
-   "set $term foot"
-
-   "set $menu fuzzel"
-
-   "output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill"
-
-   "bindsym $mod+Return exec $term"
-
-   "bindsym $mod+Shift+q kill"
-
-   "bindsym $mod+d exec $menu"
 
 
-   "floating_modifier $mod normal"
-
-
-   "bindsym $mod+Shift+c reload"
-
-   "bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'"
-
-   "bindsym $mod+$left focus left"
-   "bindsym $mod+$down focus down"
-   "bindsym $mod+$up focus up"
-   "bindsym $mod+$right focus right"
-
-   "bindsym $mod+Left focus left"
-   "bindsym $mod+Down focus down"
-   "bindsym $mod+Up focus up"
-   "bindsym $mod+Right focus right"
-
-
-   "bindsym $mod+Shift+$left move left"
-   "bindsym $mod+Shift+$down move down"
-   "bindsym $mod+Shift+$up move up"
-   "bindsym $mod+Shift+$right move right"
-
-   "gaps inner 8"
-   "gaps outer 3"
-
-   "bindsym $mod+Shift+Left move left"
-   "bindsym $mod+Shift+Down move down"
-   "bindsym $mod+Shift+Up move up"
-   "bindsym $mod+Shift+Right move right"
-
-   "bindsym $mod+1 workspace number 1"
-   "bindsym $mod+2 workspace number 2"
-   "bindsym $mod+3 workspace number 3"
-   "bindsym $mod+4 workspace number 4"
-   "bindsym $mod+5 workspace number 5"
-   "bindsym $mod+6 workspace number 6"
-   "bindsym $mod+7 workspace number 7"
-   "bindsym $mod+8 workspace number 8"
-   "bindsym $mod+9 workspace number 9"
-   "bindsym $mod+0 workspace number 10"
-
-   "bindsym $mod+Shift+1 move container to workspace number 1"
-   "bindsym $mod+Shift+2 move container to workspace number 2"
-   "bindsym $mod+Shift+3 move container to workspace number 3"
-   "bindsym $mod+Shift+4 move container to workspace number 4"
-   "bindsym $mod+Shift+5 move container to workspace number 5"
-   "bindsym $mod+Shift+6 move container to workspace number 6"
-   "bindsym $mod+Shift+7 move container to workspace number 7"
-   "bindsym $mod+Shift+8 move container to workspace number 8"
-   "bindsym $mod+Shift+9 move container to workspace number 9"
-   "bindsym $mod+Shift+0 move container to workspace number 10"
-
-   "bindsym $mod+b splith"
-   "bindsym $mod+v splitv"
-
-
-   "bindsym $mod+s layout stacking"
-   "bindsym $mod+w layout tabbed"
-   "bindsym $mod+e layout toggle split"
-
-
-   "bindsym $mod+f fullscreen"
-
-
-   "bindsym $mod+Shift+space floating toggle"
-
-
-   "bindsym $mod+space focus mode_toggle"
-
-
-   "bindsym $mod+a focus parent"
-
-   "bindsym $mod+Shift+minus move scratchpad"
-
-   "bindsym $mod+minus scratchpad show"
-
-   
-   "bindsym $mod+r mode \"resize\""
-
-   "bindsym --locked XF86AudioMute exec pactl set-sink-mute \\@DEFAULT_SINK@ toggle"
-   "bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \\@DEFAULT_SINK@ -5%"
-   "bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \\@DEFAULT_SINK@ +5%"
-   "bindsym --locked XF86AudioMicMute exec pactl set-source-mute \\@DEFAULT_SOURCE@ toggle"
-
-   "bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-"
-   "bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+"
-
-   "bindsym Print exec grim"
-
-   ;; bar {
-   ;;      position top                 
-   ;;               status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-   ;;               colors {
-   ;;                       statusline #ffffff
-   ;;                                  background #323232
-   ;;                                  inactive_workspace #32323200 #32323200 #5c5c5c
-   ;;                                  }
-   ;;               }
-
-   "include @sysconfdir@/sway/config.d/*"
-
-   ;; "include \"~/.config/sway/before-config\""
-   ;;"corner_radius 10"
-
-   ;; "bindsym $mod+space exec fuzzel -w 50 -x 8 -y 8 -r 3 -b 232635ff -t A6Accdff -s A6Accdff -S 232635ff -C c792eacc -m c792eacc -f \"Intel One Mono:weight=light:size=10\" --no-fuzzy"
-   ;; "exec mako --border-radius=2 --font=\"JetBrains Mono 8\" --max-visible=5 --outer-margin=5 --margin=3 --background=\"#1c1f26\" --border-color=\"#89AAEB\" --border-size=1 --default-timeout=7000"
-   ;; "exec nm-applet --indicator"
-   ;;"exec emacs"
-   ;;"include \"~/.config/sway/after-config\""
-   
-   ))
-
-;; (services (list
-;;            (service home-xdg-configuration-files-service-type
-;;                     `())))))
-
-
-;;
-;;
 ;;
 ;; start run
 ;;
@@ -391,14 +248,6 @@
  (lambda ()
    (write-xmodmap-conf sss-xmodmap-conf
                        sss-xmodmap-conf-location) ))
-
-(display "\n>>= generating sway configuration...\n")
-(mk-conf
- sss-sway-conf-location
- (lambda ()
-   (write-sway-conf sss-sway-config
-                    sss-sway-resize-config
-                    sss-sway-conf-location) ))
 
 (display "\n>>= generating GTK 3 configuration...\n")
 (mk-conf
@@ -458,7 +307,7 @@
              (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
              (".config/conky/conky.conf" ,(local-file "conky/conkyrc.lua"))
              (".config/waybar/config.jsonc" ,(local-file "waybar/config.jsonc"))
-             (".config/sway/config" ,(local-file  sss-sway-conf-location))
+             ;;(".config/sway/config" ,(local-file  sss-sway-conf-location))
              ;;(".config/sway/config" ,(apply mixed-text-file (cons "sway-config" sss-sway-config)))
              (,(emacs-conf-file "init.el") ,(local-file "emacs/init.el"))
 	     (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
@@ -477,6 +326,7 @@
    (service home-dbus-service-type)
    sss-audio-service
    (service sss-byggsteg-service-type)
+   sss-sway-service-type
    )))
 
 
