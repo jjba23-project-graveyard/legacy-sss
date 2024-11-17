@@ -88,6 +88,8 @@
   #:use-module (gnu packages base)
   )
 
+(use-package-modules freedesktop)
+
 (load "../per-host.scm")
 
 (define sss-theme-packages
