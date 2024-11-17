@@ -282,6 +282,7 @@
                ($mod+space . "focus mode_toggle")
                ($mod+a . "focus parent")
                ($mod+Shift+minus . "move scratchpad")
+               ($mod+Shift+m . "sway output Virtual-1 mode 1920x1200")
                ($mod+minus . "scratchpad show")
                ($mod+r . "mode \"resize\""))
              )
