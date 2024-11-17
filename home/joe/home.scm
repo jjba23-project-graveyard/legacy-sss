@@ -263,6 +263,9 @@
    "bindsym $mod+Shift+$up move up"
    "bindsym $mod+Shift+$right move right"
 
+   "gaps inner 8"
+   "gaps outer 3"
+
    "bindsym $mod+Shift+Left move left"
    "bindsym $mod+Shift+Down move down"
    "bindsym $mod+Shift+Up move up"
@@ -327,22 +330,21 @@
 
    "bindsym Print exec grim"
 
-   bar {
-        position top                 
-                 status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-                 colors {
-                         statusline #ffffff
-                                    background #323232
-                                    inactive_workspace #32323200 #32323200 #5c5c5c
-                                    }
-                 }
+   ;; bar {
+   ;;      position top                 
+   ;;               status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+   ;;               colors {
+   ;;                       statusline #ffffff
+   ;;                                  background #323232
+   ;;                                  inactive_workspace #32323200 #32323200 #5c5c5c
+   ;;                                  }
+   ;;               }
 
    "include @sysconfdir@/sway/config.d/*"
 
    ;; "include \"~/.config/sway/before-config\""
    ;;"corner_radius 10"
-   ;; "gaps inner 8"
-   ;; "gaps outer 3"
+
    ;; "bindsym $mod+space exec fuzzel -w 50 -x 8 -y 8 -r 3 -b 232635ff -t A6Accdff -s A6Accdff -S 232635ff -C c792eacc -m c792eacc -f \"Intel One Mono:weight=light:size=10\" --no-fuzzy"
    ;; "exec mako --border-radius=2 --font=\"JetBrains Mono 8\" --max-visible=5 --outer-margin=5 --margin=3 --background=\"#1c1f26\" --border-color=\"#89AAEB\" --border-size=1 --default-timeout=7000"
    ;; "exec nm-applet --indicator"
