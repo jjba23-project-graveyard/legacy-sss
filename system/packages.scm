@@ -233,7 +233,7 @@ mind.")
 (define sss-coreutils
   (list
    htop
-   emacs
+   emacs-pgtk
    openssh
    dbus
    ncurses

@@ -21,6 +21,7 @@
              (gnu packages emacs)
              (gnu home services sway)
              (gnu packages admin)
+             (gnu packages terminals)
              (gnu home services shepherd)
              (gnu services)
              (guix gexp))
@@ -176,14 +177,116 @@
   (service home-sway-service-type
            (sway-configuration
             (gestures
-             '((swipe:3:down . "move to scratchpad")
-               (swipe:3:up   . "scratchpad show")))
+             `((swipe:3:right . "workspace next_on_output")
+               (swipe:3:left  . "workspace prev_on_output")
+               (swipe:3:down  . "move to scratchpad")
+               (swipe:3:up    . "scratchpad show"))
+             )
+            (startup-programs
+             (list
+              #~(string-append
+                 #$swayidle "/bin/swayidle -w \\\n    "
+                 ;; 300: lock screen.
+                 "timeout 300 '" #$swaylock "/bin/swaylock "
+                 "--indicator-radius 75 \\\n    "
+                 "-i " #$sway
+                 "/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png \\\n    "
+                 "-f -c 000000' \\\n    "
+                 ;; 600: lock + screen off.
+                 "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
+                 ;; Resume + sleep.
+                 "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
+                 "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
+              "emacs --daemon"
+              "waybar"
+              )
+             )
             (outputs
              (list (sway-output
                     (identifier '*)
                     (background (file-append sway
                                              "\
-/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png"))))))))
+/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png")))))
+            (variables
+             `((mod   . "Mod4")
+               (left  . "Left")
+               (down  . "Down")
+               (up    . "Up")
+               (right . "Right")
+               (term  . ,(file-append foot "/bin/foot"))
+               (menu  . "fuzzel")))
+
+            (modes
+             (list
+              (sway-mode
+               (mode-name "resize")
+               (keybindings
+                '(($left  . "resize shrink width 10px")
+                  ($down  . "resize grow height 10px")
+                  ($up    . "resize shrink height 10px")
+                  ($right . "resize grow width 10px")                  
+                  (Return . "mode \"default\"")
+                  (Escape . "mode \"default\""))))))
+            
+            ;; (variables `((mod . "Mod4")
+            ;;              (term . ,(file-append foot "/bin/foot"))
+            ;;              (Term . ,#~(string-append #$foot "/bin/foot"))))
+            (keybindings
+             `(($mod+Return . "exec $term")
+               ($mod+k . "kill")
+               ($mod+slash . "exec $menu")
+               ($mod+e . "exec emacsclient -c")
+               ($mod+Shift+c . "reload")
+               ($mod+Shift+e
+                . ,#~(string-append
+                      "exec " #$sway "/bin/swaynag -t warning -m \\\n    "
+                      "'You pressed the exit shortcut.  Do you really want to exit sway?"
+                      " This will end your Wayland session.' \\\n    "
+                      "-B 'Yes, exit sway' \\\n    '"
+                      #$sway "/bin/swaymsg exit'"))
+               ($mod+$left . "focus left")
+               ($mod+$down . "focus down")
+               ($mod+$up . "focus up")
+               ($mod+$right . "focus right")
+               ($mod+Shift+$left . "move left")
+               ($mod+Shift+$down . "move down")
+               ($mod+Shift+$up . "move up")
+               ($mod+Shift+$right . "move right")
+               ($mod+1 . "workspace number 1")
+               ($mod+2 . "workspace number 2")
+               ($mod+3 . "workspace number 3")
+               ($mod+4 . "workspace number 4")
+               ($mod+5 . "workspace number 5")
+               ($mod+6 . "workspace number 6")
+               ($mod+7 . "workspace number 7")
+               ($mod+8 . "workspace number 8")
+               ($mod+9 . "workspace number 9")
+               ($mod+0 . "workspace number 10")
+               ($mod+Shift+1 . "move container to workspace number 1")
+               ($mod+Shift+2 . "move container to workspace number 2")
+               ($mod+Shift+3 . "move container to workspace number 3")
+               ($mod+Shift+4 . "move container to workspace number 4")
+               ($mod+Shift+5 . "move container to workspace number 5")
+               ($mod+Shift+6 . "move container to workspace number 6")
+               ($mod+Shift+7 . "move container to workspace number 7")
+               ($mod+Shift+8 . "move container to workspace number 8")
+               ($mod+Shift+9 . "move container to workspace number 9")
+               ($mod+Shift+0 . "move container to workspace number 10")
+               ($mod+b . "splith")
+               ($mod+v . "splitv")
+               ($mod+s . "layout stacking")
+               ($mod+w . "layout tabbed")
+               ($mod+h . "layout toggle split")
+               ($mod+f . "fullscreen")
+               ($mod+Shift+space . "floating toggle")
+               ($mod+space . "focus mode_toggle")
+               ($mod+a . "focus parent")
+               ($mod+Shift+minus . "move scratchpad")
+               ($mod+minus . "scratchpad show")
+               ($mod+r . "mode \"resize\""))
+             )
+            )
+           ))
 
 (define sss-joe-clone-repos
   (list
