@@ -57,9 +57,8 @@
 (use-modules (gnu services xorg))
 (use-modules (gnu services networking))
 (use-modules (gnu services sound))
-
+(use-modules (gnu services cups))
 (use-modules (guix packages)
-             
              )
 
 (use-modules (guix) (gnu) (gnu services mcron))
@@ -111,7 +110,7 @@
   ;; List of services typically useful for a "desktop" use case.
   (cons*
    ;; display manager
-   (service slim-service-type)
+   (service gdm-service-type)
    ;; (if (string-prefix? "x86_64" system)
    ;;     (service gdm-service-type)
    ;;     (service sddm-service-type))
@@ -138,15 +137,12 @@
    ;;           (hide-users "root")
    ;;           (auto-login-session "stumpwm.desktop")))
 
-   ;; Screen lockers are a pretty useful thing and these are small.
-   (service screen-locker-service-type
-            (screen-locker-configuration
-             (name "slock")
-             (program (file-append slock "/bin/slock"))))
-   (service screen-locker-service-type
-            (screen-locker-configuration
-             (name "xlock")
-             (program (file-append xlockmore "/bin/xlock"))))
+   ;; (service screen-locker-service-type
+   ;;          (screen-locker-configuration
+   ;;           (name "swaylock")
+   ;;           (program (file-append swaylock "/bin/swaylock"))
+   ;;           (using-pam? #t)
+   ;;           (using-setuid? #f)))
 
    ;; Add udev rules for MTP devices so that non-root users can access
    ;; them.
@@ -156,6 +152,12 @@
    ;; Add polkit rules, so that non-root users in the wheel group can
    ;; perform administrative tasks (similar to "sudo").
    polkit-wheel-service
+
+   (service cups-service-type
+            (cups-configuration
+             (web-interface? #t)
+             (default-paper-size "Letter")
+             (extensions (list cups-filters hplip-minimal))))
 
    ;; Allow desktop users to also mount NTFS and NFS file systems
    ;; without root.
