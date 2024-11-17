@@ -36,6 +36,9 @@
     (swipe:3:down  . "move to scratchpad")
     (swipe:3:up    . "scratchpad show")))
 
+(define sss-joe-sway-wallpaper
+  "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")
+
 (define sss-joe-sway-startup-programs
   (list
    #~(string-append
@@ -44,7 +47,7 @@
       "timeout 300 '" #$swaylock "/bin/swaylock "
       "--indicator-radius 75 \\\n    "
       "-i " #$sway
-      "/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png \\\n    "
+      #$sss-joe-sway-wallpaper " \\\n    "
       "-f -c 000000' \\\n    "
       ;; 600: lock + screen off.
       "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
@@ -57,9 +60,7 @@
 (define sss-joe-sway-outputs
   (list (sway-output
          (identifier '*)
-         (background (file-append sway
-                                  "\
-/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png")))))
+         (background sss-joe-sway-wallpaper))))
 
 (define sss-joe-sway-variables
   `((mod   . "Mod4")
