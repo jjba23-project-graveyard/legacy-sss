@@ -206,8 +206,8 @@
 
    (service x11-socket-directory-service-type)
 
-   (service pulseaudio-service-type)
-   (service alsa-service-type)
+   ;; (service pulseaudio-service-type)
+   ;; (service alsa-service-type)
 
    (service bluetooth-service-type)
 
