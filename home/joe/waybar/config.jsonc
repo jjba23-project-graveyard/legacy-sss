@@ -1,6 +1,6 @@
 // -*- mode: jsonc -*-
 {
-    "position": "bottom", (top|bottom|left|right)
+    "position": "bottom", // (top|bottom|left|right)
     "height": 30,
     // "width": 1280,
     "spacing": 4, 
@@ -12,8 +12,7 @@
         "custom/media",
         "sway/window"
     ],
-    "modules-center": [
-       
+    "modules-center": [     
     ],
     "modules-right": [
         "mpd",
