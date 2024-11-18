@@ -41,19 +41,20 @@
 
 (define sss-joe-sway-startup-programs
   (list
-   #~(string-append
-      #$swayidle "/bin/swayidle -w \\\n    "
-      ;; 300: lock screen.
-      "timeout 300 '" #$swaylock "/bin/swaylock "
-      "--indicator-radius 75 \\\n    "
-      "-i " #$sway
-      #$sss-joe-sway-wallpaper " \\\n    "
-      "-f -c 000000' \\\n    "
-      ;; 600: lock + screen off.
-      "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
-      ;; Resume + sleep.
-      "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
-      "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
+   ;; #~(string-append
+   ;;    #$swayidle "/bin/swayidle -w \\\n    "
+   ;;    ;; 300: lock screen.
+   ;;    "timeout 300 '" #$swaylock "/bin/swaylock "
+   ;;    "--indicator-radius 75 \\\n    "
+   ;;    "-i " #$sway
+   ;;    #$sss-joe-sway-wallpaper " \\\n    "
+   ;;    "-f -c 000000' \\\n    "
+   ;;    ;; 600: lock + screen off.
+   ;;    "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
+   ;;    ;; Resume + sleep.
+   ;;    "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
+   ;;    "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
+   "mako"
    "emacs --daemon"
    "waybar"))
 
@@ -69,7 +70,7 @@
     (up    . "Up")
     (right . "Right")
     (term  . ,(file-append foot "/bin/foot"))
-    (menu  . "fuzzel")))
+    (menu  . "wofi --show run")))
 
 (define sss-joe-sway-modes
   (list
@@ -139,6 +140,11 @@
     ($mod+minus . "scratchpad show")
     ($mod+r . "mode \"resize\"")))
 
+(define sss-joe-sway-extra-content
+  (list
+   "gaps inner 10"
+   "gaps outer 4"))
+
 (define-public sss-joe-sway-service-type
   (service home-sway-service-type
            (sway-configuration
@@ -147,4 +153,5 @@
             (outputs sss-joe-sway-outputs)
             (variables sss-joe-sway-variables)
             (modes sss-joe-sway-modes)
-            (keybindings sss-joe-sway-keybindings))))
+            (keybindings sss-joe-sway-keybindings)
+            (extra-content sss-joe-sway-extra-content))))

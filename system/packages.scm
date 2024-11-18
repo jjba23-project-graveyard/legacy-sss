@@ -190,8 +190,10 @@ mind.")
    foot
    waybar-experimental
    wmenu
+   wofi
    mako
    fuzzel
+   
    ;; Compatibility for older Xorg applications
    xorg-server-xwayland
 
@@ -261,7 +263,7 @@ mind.")
 
 (define sss-other-system-packages
   (list
-   icecat
+   (specification->package "firefox")
    icedove
    
    flatpak
