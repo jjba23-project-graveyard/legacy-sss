@@ -190,6 +190,8 @@ mind.")
    grimshot
    wl-color-picker
    qpwgraph
+   wireplumber
+   pipewire
 
    ;; Wayland portals
    xdg-desktop-portal
