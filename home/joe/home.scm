@@ -227,6 +227,3 @@
    (service sss-byggsteg-service-type)
    sss-joe-sway-service-type
    )))
-
-
-
