@@ -86,7 +86,7 @@
 (define sss-gtk3-conf
   '((gtk-icon-theme-name . "Delft-Green-Darkest")
     (gtk-theme-name . "Yaru-sage-dark")
-    (gtk-font-name . "Intel One Mono 12")
+    (gtk-font-name . "Liberation Sans 11")
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . "0")
     (gtk-cursor-theme-name . "Yaru-sage-dark")
