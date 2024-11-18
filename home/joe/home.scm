@@ -86,7 +86,7 @@
 (define sss-gtk3-conf
   '((gtk-icon-theme-name . "Delft-Green-Darkest")
     (gtk-theme-name . "Yaru-sage-dark")
-    (gtk-font-name . "Liberation Sans 12")
+    (gtk-font-name . "Intel One Mono 12")
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . "0")
     (gtk-cursor-theme-name . "Yaru-sage-dark")
@@ -106,6 +106,7 @@
                     ("WLR_NO_HARDWARE_CURSORS" . "1")
                     ("MOZ_ENABLE_WAYLAND" . "1")
                     ("QT_QPA_PLATFORM" . "wayland")
+                    ("RTC_USE_PIPEWIRE" . "true")
                     ("SDL_VIDEODRIVER" . "wayland")
                     ("QT_WAYLAND_DISABLE_WINDOWDECORATION" . "1")
                     ("_JAVA_AWT_WM_NONREPARENTING" . "1")
