@@ -233,6 +233,7 @@
              (".config/conky/conky.conf" ,(local-file "conky/conkyrc.lua"))
              (".config/waybar/config.jsonc" ,(local-file "waybar/config.jsonc"))
              (".config/waybar/style.css" ,(local-file "waybar/style.css"))
+             (".config/xdg-desktop-portal/portals.conf" ,(local-file "portals/portals.conf"))
              (".config/foot/foot.ini" ,(local-file "foot/foot.ini"))
              (".config/mako/config" ,(local-file sss-mako-conf-location))
              ;;(".config/sway/config" ,(apply mixed-text-file (cons "sway-config" sss-sway-config)))
