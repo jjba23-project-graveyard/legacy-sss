@@ -54,8 +54,10 @@
    ;;    ;; Resume + sleep.
    ;;    "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
    ;;    "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
+   "lxsession"
    "mako"
    "emacs --daemon"
+   
    "waybar"))
 
 (define sss-joe-sway-outputs

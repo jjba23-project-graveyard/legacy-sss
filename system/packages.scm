@@ -76,19 +76,15 @@
   #:use-module (gnu packages disk)
   #:use-module (gnu packages glib)
   #:use-module (gnu packages networking)
-  #:use-module (gnu packages gnuzilla)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
   #:use-module (guix licenses)
   #:use-module (guix packages)
-  #:use-module (gnu packages linux)
-  #:use-module (gnu packages web)
-  #:use-module (gnu packages package-management)
-  #:use-module (gnu packages base)
   )
 
-(use-package-modules freedesktop)
+(use-package-modules freedesktop base lxqt package-management
+                     web linux gnuzilla)
 
 (load "../per-host.scm")
 
@@ -139,6 +135,8 @@ mind.")
    font-apple-sf-compact
    font-apple-sf-mono
    font-apple-new-york
+   font-awesome
+   font-fira-code
    font-apple-sf-symbols
    font-google-noto))
 
@@ -179,10 +177,6 @@ mind.")
 (define sss-wm-packages
   (list
    cl-asdf
-   picom
-   
-   stumpish
-   (specification->package "stumpwm-with-slynk")
    sway
    swaybg
    swaylock
@@ -195,13 +189,29 @@ mind.")
    fuzzel
    grimshot
    wl-color-picker
+
+   ;; Wayland portals
    xdg-desktop-portal-wlr
+   
    
    ;; Compatibility for older Xorg applications
    xorg-server-xwayland
 
+   ;; LXQt suite
+   lxqt-policykit
+   lxqt-session
+   lxqt-config
+   lxqt-admin
+   lxqt-sudo
+   lxqt-powermanagement
+   lxqt-themes
+   qterminal
+   pcmanfm-qt
+   lxqt
+
    ;; Flatpak and XDG utilities
-   xdg-utils ;; For xdg-open, etc
+   flatpak-xdg-utils
+   xdg-utils
    xdg-dbus-proxy
    shared-mime-info
    (list glib "bin")
