@@ -192,7 +192,9 @@ mind.")
    qpwgraph
 
    ;; Wayland portals
+   xdg-desktop-portal
    xdg-desktop-portal-wlr
+   xdg-desktop-portal-gtk
    
    
    ;; Compatibility for older Xorg applications
@@ -327,6 +329,8 @@ mind.")
    exfat-utils
    fuse-exfat
    tmon
+
+   
    
    flameshot
    

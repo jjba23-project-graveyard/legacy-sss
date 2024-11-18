@@ -85,11 +85,14 @@
                   home-environment-variables-service-type
                   `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale")                  
                     ("LANG" . "nl_NL.UTF-8")
+                    ("XDG_CURRENT_DESKTOP" . "sway")
+                    ("XDG_SESSION_TYPE" . "wayland")
                     ("WLR_NO_HARDWARE_CURSORS" . "1")
+                    ("MOZ_ENABLE_WAYLAND" . "1")
+                    ("QT_QPA_PLATFORM" . "wayland")
+                    ("SDL_VIDEODRIVER" . "wayland")
+                    ("_JAVA_AWT_WM_NONREPARENTING" . "1")
                     ("LANGUAGE" . "nl_NL"))))
-
-
-
 
 (define sss-ssh-service
   (service home-openssh-service-type
