@@ -1,0 +1,10 @@
+sort=-time
+max-history=7
+on-button-left=dismiss
+on-button-right=invoke-default-action
+background-color=#00552FBB
+border-color=#00552FBB
+text-color=#FFFFFFFF
+font=Intel One Mono 11
+width=400
+icons=1
