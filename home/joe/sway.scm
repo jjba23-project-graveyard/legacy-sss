@@ -87,6 +87,8 @@
 
 (define sss-joe-sway-keybindings
   `(($mod+Return . "exec $term")
+    ($mod+t . "exec $term")
+    ($mod+period . "exec grimshot copy active")
     ($mod+k . "kill")
     ($mod+slash . "exec $menu")
     ($mod+e . "exec emacsclient -c")

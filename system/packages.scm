@@ -193,6 +193,8 @@ mind.")
    wofi
    mako
    fuzzel
+   grimshot
+   wl-color-picker
    
    ;; Compatibility for older Xorg applications
    xorg-server-xwayland

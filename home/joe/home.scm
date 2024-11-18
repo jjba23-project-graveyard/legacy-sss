@@ -37,8 +37,6 @@
 (use-modules (gnu services shepherd))
 (use-modules (sss-joe-sway))
 
-
-
 (define sss-fancy-bash-service
   (simple-service
    'sss-fancy-bash
@@ -49,36 +47,6 @@
 
 (define (emacs-conf-file file)
   (format #f ".emacs.d/~a" file ))
-
-(define sss-picom-conf-location
-  "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/picom.conf")
-
-(define sss-picom-conf
-  '((backend . "\"xrender\"")
-    (corner-radius . "14")
-    (fading . "true")
-    (fade-in-step . "0.24")
-    (fade-out-step . "0.24")
-    (shadow . "false")))
-;;(shadow-radius . "8")
-;;(shadow-opacity . "0.65")
-
-(define sss-kitty-conf-location
-  "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/kitty.conf")
-
-(define sss-kitty-conf
-  '((font_family . "Intel One Mono")
-    (font_size . 12.0)
-    (scrollback_lines . 10000000)
-    (window_padding_width . 12)
-    (background_opacity . "0.8")
-    ("map alt+w" . copy_to_clipboard)
-    ("map ctrl+y" . paste_from_clipboard)
-    ("map alt+v" . scroll_page_up)
-    ("map ctrl+v" . scroll_page_down)
-    ("map alt+<" . scroll_home)
-    ("map alt+>" . scroll_end)
-    ))
 
 (define sss-opengpg-conf
   (service home-gpg-agent-service-type
@@ -95,7 +63,6 @@
     ("keysym Caps_Lock" . "Control_L")
     ("add Control" . "Control_L")
     ))
-
 
 (define sss-gtk3-conf-location
   "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/gtk-3.0-settings.ini")
@@ -116,9 +83,7 @@
 (define sss-home-vars-service
   (simple-service 'some-useful-env-vars-service
                   home-environment-variables-service-type
-                  `(
-                    ;;("SBCL_HOME" . "$HOME/.guix-home/profile/lib/sbcl")
-                    ("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale")                  
+                  `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale")                  
                     ("LANG" . "nl_NL.UTF-8")
                     ("WLR_NO_HARDWARE_CURSORS" . "1")
                     ("LANGUAGE" . "nl_NL"))))
@@ -182,20 +147,6 @@
 ;; start run
 ;;
 
-(display "\n>>= generating picom configuration...\n")
-(mk-conf
- sss-picom-conf-location
- (lambda ()
-   (write-picom-conf sss-picom-conf
-                     sss-picom-conf-location) ))
-
-(display "\n>>= generating kitty configuration...\n")
-(mk-conf
- sss-kitty-conf-location
- (lambda ()
-   (write-kitty-conf sss-kitty-conf
-                     sss-kitty-conf-location) ))
-
 (display "\n>>= generating xmodmap configuration...\n")
 (mk-conf
  sss-xmodmap-conf-location
@@ -211,10 +162,11 @@
                     sss-gtk3-conf-location) ))
 
 
-(display "\n>>= setting up nix env...\n")
-(syscall "ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile")
+;; (display "\n>>= setting up nix env...\n")
+;; (syscall "ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile")
 
 (display "\n>>= installing nix packages\n")
+(syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")
 (for-each
  (lambda(x) (nix-profile-install x))
  '("vivaldi"
@@ -235,28 +187,20 @@
    "postman"
    "vscode-langservers-extracted"
    ))
-;; (syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")
+
 
 
 (define sss-home-files-service
   (service home-files-service-type
-	   `((".config/kitty/kitty.conf" ,(local-file  sss-kitty-conf-location))
-             (".stumpwm.d/init.lisp" ,(local-file "stumpwm/init.lisp"))
-             (".stumpwm.d/keymaps.lisp" ,(local-file "stumpwm/keymaps.lisp"))
-             (".stumpwm.d/colors.lisp" ,(local-file "stumpwm/colors.lisp"))
-             (".stumpwm.d/autostarts.lisp" ,(local-file "stumpwm/autostarts.lisp"))
-             (".config/picom.conf" ,(local-file sss-picom-conf-location))
-             (".xmodmap" ,(local-file  sss-xmodmap-conf-location))
+	   `((".xmodmap" ,(local-file  sss-xmodmap-conf-location))
              (".config/gtk-3.0/settings.ini" ,(local-file sss-gtk3-conf-location))
-             (".config/guix/channels.scm" ,(local-file "channels.scm"))
-             (".config/rofi/config.rasi" ,(local-file "rofi/config.rasi"))
+             (".config/guix/channels.scm" ,(local-file "channels.scm"))             
              (".gitconfig" ,(local-file "git/gitconfig.ini"))
              (".gitconfig-personal" ,(local-file "git/gitconfig-personal.ini"))
              (".gitconfig-work" ,(local-file "git/gitconfig-work.ini"))
              (".gitignore-global" ,(local-file "git/gitignore-global"))
              (".gitmessage-personal" ,(local-file "git/gitmessage-personal"))
              (".gitmessage-work" ,(local-file "git/gitmessage-work"))
-             (".config/dunst/dunstrc" ,(local-file "dunst/dunstrc"))
              (".config/nix/nix.conf" ,(local-file "nix/nix.conf"))
              (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
              (".config/conky/conky.conf" ,(local-file "conky/conkyrc.lua"))
