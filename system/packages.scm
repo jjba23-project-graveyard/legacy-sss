@@ -195,6 +195,7 @@ mind.")
    fuzzel
    grimshot
    wl-color-picker
+   xdg-desktop-portal-wlr
    
    ;; Compatibility for older Xorg applications
    xorg-server-xwayland
