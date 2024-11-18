@@ -150,9 +150,9 @@
    "gaps outer 8"
 
    ;; class                 border  backgr. text    indicator child_border
-   "client.focused          #3fb83f #3fb83f #cfdfd5 #2e9ef4   #3fb83f"
-   "client.focused_inactive #3fb83f #3fb83f #cfdfd5 #2e9ef4   #3fb83f"
-   "client.unfocused        #333333 #222222 #808f80 #292d2e   #222222"
+   "client.focused          #00552f #00552f #ffffff #00552f   #00552f"
+   "client.focused_inactive #00552f #00552f #ffffff #00552f   #00552f"
+   "client.unfocused        #333333 #222222 #808f80 #222222   #222222"
    "client.urgent           #b02930 #b02930 #cfdfd5 #900000   #900000"
    "client.placeholder      #000000 #0c0c0c #cfdfd5 #000000   #0c0c0c"
    "client.background       #cfdfd5"
