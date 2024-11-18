@@ -189,6 +189,7 @@ mind.")
    fuzzel
    grimshot
    wl-color-picker
+   qpwgraph
 
    ;; Wayland portals
    xdg-desktop-portal-wlr

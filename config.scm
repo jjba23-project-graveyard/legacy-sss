@@ -232,7 +232,9 @@
  (initrd microcode-initrd)
  (firmware (list linux-firmware))
  (kernel-arguments
-  (list "console=ttyS0,115200"))
+  (list "console=ttyS0,115200"
+        "noquiet"
+        "nosplash"))
  (sudoers-file (local-file "system/sudoers"))
  
  (file-systems
