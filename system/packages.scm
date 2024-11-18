@@ -280,7 +280,7 @@ mind.")
    ispell
    (specification->package "bind")
    wireshark
-   kitty
+
    arandr
    httpie
    (specification->package "remmina")
@@ -322,7 +322,7 @@ mind.")
    orage
    sqlitebrowser
    direnv
-   openbox
+
    xf86-video-fbdev
    xf86-input-libinput
    lxsession
