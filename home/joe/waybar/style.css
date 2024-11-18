@@ -16,15 +16,6 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
 window#waybar.termite {
     background-color: #3F3F3F;
 }
@@ -50,7 +41,7 @@ button:hover {
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-    background-color: #a37800;
+    background-color: #e09a0f;
 }
 
 #workspaces button {
@@ -114,7 +105,7 @@ button:hover {
 }
 
 #clock {
-    background-color: rgba(28, 28, 28, 0.5);
+    background-color: rgba(34, 34, 34, 0.5);
 }
 
 #battery {
@@ -194,7 +185,7 @@ label:focus {
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
+    background-color: #d4aa02;
     color: #000000;
 }
 
@@ -235,7 +226,7 @@ label:focus {
 }
 
 #tray {
-    background-color: #2980b9;
+    background-color: rgba(34, 34, 34, 0.5);
 }
 
 #tray > .passive {

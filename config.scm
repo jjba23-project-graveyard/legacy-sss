@@ -31,38 +31,15 @@
 (use-modules (gnu services configuration))
 (use-modules (gnu services dbus))
 (use-modules (gnu services avahi))
-(use-modules (gnu packages suckless))
 (use-modules (gnu packages glib))
-(use-modules (gnu packages admin))
 (use-modules (gnu services nix))
-(use-modules (gnu packages cups))
-(use-modules (gnu packages freedesktop))
-(use-modules (gnu packages gnome))
-(use-modules (gnu packages kde))
-(use-modules (gnu packages kde-frameworks))
-(use-modules (gnu packages kde-plasma))
-(use-modules (gnu packages pulseaudio))
-(use-modules (gnu packages xfce))
-(use-modules (gnu packages avahi))
-(use-modules (gnu packages xdisorg))
-(use-modules (gnu packages scanner))
-(use-modules (gnu packages suckless))
-(use-modules (gnu packages sugar))
-(use-modules (gnu packages linux))
-(use-modules (gnu packages libusb))
-(use-modules (gnu packages lxqt))
-(use-modules (gnu packages mate))
-(use-modules (gnu packages nfs))
-(use-modules (gnu packages enlightenment))
 (use-modules (gnu services xorg))
 (use-modules (gnu services networking))
 (use-modules (gnu services sound))
 (use-modules (gnu services cups))
-(use-modules (guix packages)
-             )
+(use-modules (guix packages))
 
 (use-modules (guix) (gnu) (gnu services mcron))
-(use-package-modules base idutils)
 
 (load "./home/joe/proc.scm")
 (load "./per-host.scm")
@@ -71,7 +48,10 @@
 (use-modules (sss-packages))
 
 (use-service-modules networking desktop docker)
-(use-package-modules certs)
+(use-package-modules certs nfs mate lxqt libusb linux
+                     sugar suckless scanner xdisorg avahi xfce
+                     pulseaudio kde-plasma kde-frameworks kde gnome
+                     freedesktop cups admin glib base idutils)
 
 
 (define sss-joe-user-account
@@ -107,42 +87,9 @@
           #:optional
           (system (or (%current-target-system)
                       (%current-system))))
-  ;; List of services typically useful for a "desktop" use case.
+
   (cons*
-   ;; display manager
    (service gdm-service-type)
-   ;; (if (string-prefix? "x86_64" system)
-   ;;     (service gdm-service-type)
-   ;;     (service sddm-service-type))
-
-   ;; (use-modules (gnu services)
-   ;;              (gnu services desktop)
-   ;;              (gnu services xorg))
-
-   ;; (operating-system
-   ;;  ;; ...
-   ;;  (services (cons* (service slim-service-type (slim-configuration
-   ;;                                               (display ":0")
-   ;;                                               (vt "vt7")))
-   ;;                   (service slim-service-type (slim-configuration
-   ;;                                               (display ":1")
-   ;;                                               (vt "vt8")))
-   ;;                   (modify-services %desktop-services
-   ;;                                    (delete gdm-service-type)))))
-   
-   ;; (service sddm-service-type
-   ;;          (sddm-configuration
-   ;;           (display-server "x11")
-   ;;           (theme "maya")
-   ;;           (hide-users "root")
-   ;;           (auto-login-session "stumpwm.desktop")))
-
-   ;; (service screen-locker-service-type
-   ;;          (screen-locker-configuration
-   ;;           (name "swaylock")
-   ;;           (program (file-append swaylock "/bin/swaylock"))
-   ;;           (using-pam? #t)
-   ;;           (using-setuid? #f)))
 
    ;; Add udev rules for MTP devices so that non-root users can access
    ;; them.
@@ -206,10 +153,10 @@
 
    (service x11-socket-directory-service-type)
 
-   ;; (service pulseaudio-service-type)
-   ;; (service alsa-service-type)
-
-   (service bluetooth-service-type)
+   (service bluetooth-service-type
+            (bluetooth-configuration
+             (experimental #t)
+             (auto-enable? #t)))
 
    %base-services))
 
@@ -220,7 +167,6 @@
  (host-name "guixvm")
  (timezone "Europe/Amsterdam")
 
- ;; (locale "en_US.utf8")
  (locale "nl_NL.utf8")
  (keyboard-layout (keyboard-layout "us"))
  
