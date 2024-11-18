@@ -57,7 +57,7 @@
    "lxsession"
    "mako"
    "emacs --daemon"
-   "wireplumber"
+   ;; "wireplumber"
    "waybar"))
 
 (define sss-joe-sway-outputs
