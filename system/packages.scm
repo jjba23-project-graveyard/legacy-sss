@@ -253,6 +253,8 @@ mind.")
    arandr
    httpie
    (specification->package "remmina")
+   libnotify
+   wdisplays
    
    shotcut
    openshot

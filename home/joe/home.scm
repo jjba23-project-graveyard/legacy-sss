@@ -64,6 +64,21 @@
     ("add Control" . "Control_L")
     ))
 
+(define sss-mako-conf-location
+  "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/mako")
+
+(define sss-mako-conf
+  '(("sort" . "-time")
+    ("max-history" . "7")
+    ("on-button-left" . "dismiss")
+    ("on-button-right" . "invoke-default-action")
+    ("background-color" . "#00552F99")
+    ("text-color" . "#FFFFFFFF")
+    ("font" . "Intel One Mono 11")
+    ("width" . "400")
+    ("icons" . "1")
+    ))
+
 (define sss-gtk3-conf-location
   "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/gtk-3.0-settings.ini")
 
@@ -156,14 +171,21 @@
  sss-xmodmap-conf-location
  (lambda ()
    (write-xmodmap-conf sss-xmodmap-conf
-                       sss-xmodmap-conf-location) ))
+                       sss-xmodmap-conf-location)))
 
 (display "\n>>= generating GTK 3 configuration...\n")
 (mk-conf
  sss-gtk3-conf-location
  (lambda ()
    (write-gtk3-conf sss-gtk3-conf
-                    sss-gtk3-conf-location) ))
+                    sss-gtk3-conf-location)))
+
+(display "\n>>= generating mako configuration...\n")
+(mk-conf
+ sss-mako-conf-location
+ (lambda ()
+   (write-mako-conf sss-mako-conf
+                    sss-mako-conf-location)))
 
 
 ;; (display "\n>>= setting up nix env...\n")
@@ -211,6 +233,7 @@
              (".config/waybar/config.jsonc" ,(local-file "waybar/config.jsonc"))
              (".config/waybar/style.css" ,(local-file "waybar/style.css"))
              (".config/foot/foot.ini" ,(local-file "foot/foot.ini"))
+             (".config/mako/config" ,(local-file sss-mako-conf-location))
              ;;(".config/sway/config" ,(apply mixed-text-file (cons "sway-config" sss-sway-config)))
              (,(emacs-conf-file "init.el") ,(local-file "emacs/init.el"))
 	     (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
