@@ -365,7 +365,7 @@ mind.")
 
 (define sss-guile-packages
   (list
-   (specification->package "guile-json@4.7.3")
+   (specification->package "guile-json")
    ))
 
 (define-public sss-system-packages
