@@ -165,28 +165,28 @@
 ;; (display "\n>>= setting up nix env...\n")
 ;; (syscall "ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile")
 
-(display "\n>>= installing nix packages\n")
-(syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")
-(for-each
- (lambda(x) (nix-profile-install x))
- '("vivaldi"
-   "prismlauncher"
-   "yaml-language-server"
-   "jdt-language-server"
-   "nil"
-   "black"
-   "pyright"
-   "marksman"
-   "_1password-gui"
-   "_1password-cli"
-   "stack"
-   "sbt"
-   "scala_2_13"
-   "firefox"
-   "thunderbird"
-   "postman"
-   "vscode-langservers-extracted"
-   ))
+;; (display "\n>>= installing nix packages\n")
+;; (syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")
+;; (for-each
+;;  (lambda(x) (nix-profile-install x))
+;;  '("vivaldi"
+;;    "prismlauncher"
+;;    "yaml-language-server"
+;;    "jdt-language-server"
+;;    "nil"
+;;    "black"
+;;    "pyright"
+;;    "marksman"
+;;    "_1password-gui"
+;;    "_1password-cli"
+;;    "stack"
+;;    "sbt"
+;;    "scala_2_13"
+;;    "firefox"
+;;    "thunderbird"
+;;    "postman"
+;;    "vscode-langservers-extracted"
+;;    ))
 
 
 
