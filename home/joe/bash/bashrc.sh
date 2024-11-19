@@ -92,6 +92,18 @@ alias dec='cal -m 12'
 alias scala-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/flakes/scala-dev/"
 alias haskell-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/flakes/haskell-dev/"
 
+# Sway screen configurations and aliases
+function work_macbook_output() {
+    swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 2
+}
+
+function work_macbook_present_output() {
+    swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 3
+}
+
+alias owm='work_macbook_output'
+alias owmp='work_macbook_present_output'
+
 function find_largest_files() {
     du -h -x -s -- * | sort -r -h | head -20;
 }
