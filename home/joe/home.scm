@@ -33,7 +33,8 @@
              (gnu packages wm)
              (gnu packages gnupg))
 (use-modules (gnu home services sound)
-             (gnu home services desktop))
+             (gnu home services desktop)
+             (gnu home services fontutils))
 (use-modules (gnu services shepherd))
 (use-modules (sss-joe-sway))
 
@@ -162,6 +163,14 @@
    (default-value '())
    ))
 
+(define sss-joe-fontconfig-service-type
+  (simple-service 'additional-fonts-service
+                  home-fontconfig-service-type
+                  (list "~/.nix-profile/share/fonts"
+                        '(alias
+                          (family "monospace")
+                          (prefer
+                           (family "Intel One Mono"))))))
 
 
 ;;
@@ -256,4 +265,5 @@
    sss-audio-service
    (service sss-byggsteg-service-type)
    sss-joe-sway-service-type
+   sss-joe-fontconfig-service-type
    )))
