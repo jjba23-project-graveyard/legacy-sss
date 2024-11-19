@@ -57,7 +57,7 @@
    "lxsession"
    "mako"
    "emacs --daemon"
-   ;; "wireplumber"
+   "dbus-update-activation-environment --all"
    "waybar"))
 
 (define sss-joe-sway-outputs
