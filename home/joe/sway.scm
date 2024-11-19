@@ -92,7 +92,8 @@
 (define sss-joe-sway-keybindings
   `(($mod+Return . "exec $term")
     ($mod+t . "exec $term")
-    ($mod+period . "exec grimshot copy active")
+    ($mod+shift+period . "exec grimshot copy")
+    ($mod+period . "exec grimshot save")
     ($mod+k . "kill")
     ($mod+slash . "exec $menu")
     ($mod+i . "exec $browser")
