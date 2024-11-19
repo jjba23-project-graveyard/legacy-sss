@@ -1,0 +1,6 @@
+#+title: bluetoothctl tips and tricks
+
+#+begin_src shell
+  bluetoothctl
+  power on
+#+end_src

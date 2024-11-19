@@ -17,76 +17,26 @@
 
 (define-module (sss-packages)
   #:use-module (gnu)
-  #:use-module (gnu packages admin)
-  #:use-module (gnu packages screen)
-  #:use-module (gnu packages node)
-  #:use-module (gnu packages emacs)
-  #:use-module (gnu packages lxde)
-  #:use-module (gnu packages vim)
-  #:use-module (gnu packages haskell-apps)
-  #:use-module (gnu packages gnome)
-  #:use-module (gnu packages databases)
-  #:use-module (gnu packages bittorrent)
-  #:use-module (gnu packages shellutils)
-  #:use-module (gnu packages xorg)
-  #:use-module (gnu packages lua)
-  #:use-module (gnu packages tree-sitter)
-  #:use-module (gnu packages file-systems)
-  #:use-module (gnu packages display-managers)
-  #:use-module (gnu packages music)
-  #:use-module (gnu packages audio)
-  #:use-module (gnu packages web-browsers) 
-  #:use-module (gnu packages docker)
-  #:use-module (gnu packages lisp-xyz)
-  #:use-module (gnu packages fontutils)
-  #:use-module (gnu packages lisp)
-  #:use-module (gnu packages openbox)
-  #:use-module (gnu packages image-viewers)
-  #:use-module (gnu packages gnome-xyz)
-  #:use-module (gnu packages guile-xyz)
-  #:use-module (gnu packages compton)
-  #:use-module (gnu packages ssh)
-  #:use-module (gnu packages vpn)
-  #:use-module (gnu packages version-control)
-  #:use-module (gnu packages fonts)
   #:use-module (nongnu packages fonts)
-  #:use-module (gnu packages pulseaudio)
   #:use-module (gnu services nix)
-  #:use-module (gnu packages libreoffice)
-  #:use-module (gnu packages wm)
-  #:use-module (gnu packages ncurses)
-  #:use-module (gnu packages xfce)
-  #:use-module (gnu packages multiprecision)
-  #:use-module (gnu packages gcc)
-  #:use-module (gnu packages aspell)
-  #:use-module (gnu packages rust-apps)
-  #:use-module (gnu packages inkscape)
-  #:use-module (gnu packages gimp)
-  #:use-module (gnu packages python-web)
-  #:use-module (gnu packages python)
-  #:use-module (gnu packages xdisorg)
-  #:use-module (gnu packages imagemagick)
-  #:use-module (gnu packages curl)
-  #:use-module (gnu packages cups)
-  #:use-module (gnu packages terminals)
-  #:use-module (gnu packages video)
-  #:use-module (gnu packages image)    
-  #:use-module (gnu packages compression)
-  #:use-module (gnu packages sqlite)
-  #:use-module (gnu packages disk)
-  #:use-module (gnu packages glib)
-  #:use-module (gnu packages networking)
-  #:use-module (gnu packages gnuzilla)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
   #:use-module (guix licenses)
   #:use-module (guix packages)
-  #:use-module (gnu packages linux)
-  #:use-module (gnu packages web)
-  #:use-module (gnu packages package-management)
-  #:use-module (gnu packages base)
   )
+
+(use-package-modules freedesktop base lxqt package-management
+                     web linux gnuzilla ncurses xfce multiprecision gcc
+                     aspell rust-apps inkscape gimp python-web
+                     python xdisorg imagemagick curl cups terminals
+                     video image compression sqlite disk glib networking
+                     fontutils lisp image-viewers gnome-xyz guile-xyz
+                     compton ssh vpn version-control fonts pulseaudio
+                     libreoffice wm docker lisp-xyz web-browsers audio
+                     music display-managers file-systems tree-sitter lua
+                     xorg admin screen node emacs lxde vim
+                     haskell-apps gnome databases bittorrent shellutils)
 
 (load "../per-host.scm")
 
@@ -137,6 +87,8 @@ mind.")
    font-apple-sf-compact
    font-apple-sf-mono
    font-apple-new-york
+   font-awesome
+   font-fira-code
    font-apple-sf-symbols
    font-google-noto))
 
@@ -177,10 +129,49 @@ mind.")
 (define sss-wm-packages
   (list
    cl-asdf
-   picom
+   sway
+   swaybg
+   swaylock
+   swayidle
+   foot
+   waybar-experimental
+   wmenu
+   wofi
+   mako
+   fuzzel
+   grimshot
+   wl-color-picker
+   qpwgraph
+   wireplumber
+   pipewire
+
+   ;; Wayland portals
+   xdg-desktop-portal
+   xdg-desktop-portal-wlr
+   xdg-desktop-portal-gtk
    
-   stumpish
-   (specification->package "stumpwm-with-slynk")
+   
+   ;; Compatibility for older Xorg applications
+   xorg-server-xwayland
+
+   ;; LXQt suite
+   lxqt-policykit
+   lxqt-session
+   lxqt-config
+   lxqt-admin
+   lxqt-sudo
+   lxqt-powermanagement
+   lxqt-themes
+   qterminal
+   pcmanfm-qt
+   lxqt
+
+   ;; Flatpak and XDG utilities
+   flatpak-xdg-utils
+   xdg-utils
+   xdg-dbus-proxy
+   shared-mime-info
+   (list glib "bin")
    ))
 
 
@@ -214,7 +205,7 @@ mind.")
 (define sss-coreutils
   (list
    htop
-   emacs
+   emacs-pgtk
    openssh
    dbus
    ncurses
@@ -242,7 +233,7 @@ mind.")
 
 (define sss-other-system-packages
   (list
-   icecat
+   (specification->package "firefox")
    icedove
    
    flatpak
@@ -254,15 +245,16 @@ mind.")
 
    guile-fibers
    
-   ;; (if x86 tlp tlpui)
    xz
    ispell
    (specification->package "bind")
    wireshark
-   kitty
+
    arandr
    httpie
    (specification->package "remmina")
+   libnotify
+   wdisplays
    
    shotcut
    openshot
@@ -272,7 +264,7 @@ mind.")
    vlc
    sqlite
    postgresql
-   ;; (specification->package "ungoogled-chromium")
+
    obs
    libreoffice
    gimp
@@ -281,7 +273,7 @@ mind.")
    feh
    containerd
    xmodmap
-   ;;nyxt
+
    docker   
    gparted
    xrandr
@@ -293,21 +285,20 @@ mind.")
    fuse-exfat
    tmon
    
-   flameshot
-   
    thunar
    xarchiver
    ristretto
    orage
    sqlitebrowser
    direnv
-   openbox
+
    xf86-video-fbdev
    xf86-input-libinput
    lxsession
    pamixer
-   blueman
+
    ;; ghcid
+   
    bluez
    hplip
    lxappearance
@@ -328,14 +319,10 @@ mind.")
    (specification->package "tigervnc-client")
    ))
 
-(define sss-game-packages
+(define sss-guile-packages
   (list
-   (specification->package "steam")))
-
-  (define sss-guile-packages
-    (list
-     (specification->package "guile-json@4.7.3")
-     ))
+   (specification->package "guile-json")
+   ))
 
 (define-public sss-system-packages
   (append
@@ -348,5 +335,4 @@ mind.")
    sss-guile-packages
    sss-treesitter-packages
    sss-coreutils
-   sss-game-packages
    sss-theme-packages))
