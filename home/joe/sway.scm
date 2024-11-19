@@ -71,6 +71,8 @@
     (down  . "Down")
     (up    . "Up")
     (right . "Right")
+    (editor . "emacsclient -c")
+    (browser . "/home/joe/.nix-profile/bin/vivaldi")
     (term  . ,(file-append foot "/bin/foot"))
     (menu  . "wofi --show run")))
 
@@ -93,7 +95,8 @@
     ($mod+period . "exec grimshot copy active")
     ($mod+k . "kill")
     ($mod+slash . "exec $menu")
-    ($mod+e . "exec emacsclient -c")
+    ($mod+i . "exec $browser")
+    ($mod+e . "exec $editor")
     ($mod+Shift+c . "reload")
     ($mod+Shift+e
      . ,#~(string-append
