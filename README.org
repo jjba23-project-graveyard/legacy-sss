@@ -5,17 +5,19 @@
 #+options: num:nil
 
 
-A Lisp machine adventure, where GNU and Lisp are celebrated, GNU is love, Emacs and Wayland are life.
+A Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are celebrated.
 
 GNU Guix + GNU Emacs + Nix + Sway
 
+Let me help you achieve /GNUrvana/.
+
 If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
 
-Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, Sway, Common Lisp and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
+Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, Sway, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
 This setup enhances customization to infinity and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
-🇳🇱 parts of the code and settings might be in the Dutch language ( nl_NL.UTF-8 ).
+🇳🇱 parts of the code and settings might be in the Dutch language ( ~nl_NL.UTF-8~ ).
 
 
 *** What lies here?
