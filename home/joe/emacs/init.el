@@ -142,6 +142,7 @@
 	 ("C-c f n" . tekengrootte-set-scale-nano)) 
   :hook ((tekengrootte-set-scale . (lambda () 
                                      (jjba-set-base-faces)))) 
+  :after (ef-themes)
   :config
   (defun jjba-set-base-faces ()
     "Adjust the base Emacs faces to my preferences.
