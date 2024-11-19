@@ -30,7 +30,7 @@ Knowledge you may find in the repo includes:
 
 Note: Screenshot below might be outdated and no longer representative of the current, everchanging state of these "dotfiles".
 #+begin_html
-<img src="./resources/screenshots/17-10-2024.png"/>
+<img src="./resources/screenshots/2024-11-20T00:04:07,441002916+01:00.png"/>
 #+end_html
 
 
