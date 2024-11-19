@@ -7,7 +7,7 @@
 
 A Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are celebrated.
 
-GNU Guix + GNU Emacs + Nix + Sway
+GNU Guix + GNU Emacs + Nix + Sway 💚
 
 Let me help you achieve /GNUrvana/.
 
