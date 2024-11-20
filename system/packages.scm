@@ -274,7 +274,8 @@ mind.")
    containerd
    xmodmap
 
-   docker   
+   docker
+   docker-compose
    gparted
    xrandr
    rofi
