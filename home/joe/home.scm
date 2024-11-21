@@ -268,4 +268,5 @@
    (service sss-byggsteg-service-type)
    sss-joe-sway-service-type
    sss-joe-fontconfig-service-type
+   
    )))

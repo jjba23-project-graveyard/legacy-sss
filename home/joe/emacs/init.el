@@ -729,8 +729,13 @@ According to size, color and font family"
    ("<XF86AudioPlay>" . emms-pause)))
 
 (use-package prodigy
-  :ensure t
-  )
+  :ensure t)
+
+(use-package libmpdel
+  :ensure t)
+
+(use-package mpdel
+  :ensure t)
 
 
 ;; Configure Emacs native features

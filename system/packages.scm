@@ -28,7 +28,7 @@
 
 (use-package-modules freedesktop base lxqt package-management
                      web linux gnuzilla ncurses xfce multiprecision gcc
-                     aspell rust-apps inkscape gimp python-web
+                     aspell rust-apps inkscape gimp python-web mpd
                      python xdisorg imagemagick curl cups terminals
                      video image compression sqlite disk glib networking
                      fontutils lisp image-viewers gnome-xyz guile-xyz
@@ -229,6 +229,9 @@ mind.")
   (list
    spotifyd
    lilypond
+   mpd
+   mpd-mpc
+   ncmpcpp
    ardour))
 
 (define sss-other-system-packages

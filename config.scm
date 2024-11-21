@@ -26,10 +26,7 @@
 (use-modules (gnu services sddm))
 (use-modules (gnu services desktop))
 (use-modules (gnu services))
-(use-modules (gnu services shepherd))
-(use-modules (gnu services base))
 (use-modules (gnu services configuration))
-(use-modules (gnu services dbus))
 (use-modules (gnu services avahi))
 (use-modules (gnu packages glib))
 (use-modules (gnu services nix))
@@ -47,7 +44,7 @@
 
 (use-modules (sss-packages))
 
-(use-service-modules networking desktop docker)
+(use-service-modules networking desktop docker audio shepherd dbus base)
 (use-package-modules certs nfs mate lxqt libusb linux
                      sugar suckless scanner xdisorg avahi xfce
                      pulseaudio kde-plasma kde-frameworks kde gnome
@@ -82,6 +79,13 @@
                   mcron-service-type
                   (list wikimusic-fetch-backups-job
                         )))
+
+(define sss-joe-mpd
+  (service mpd-service-type
+           (mpd-configuration
+            (user "joe")
+            (music-directory "/home/joe/Muziek")
+            (playlist-directory "/home/joe/Muziek/Playlists"))))
 
 (define* (sss-desktop-services-for-system
           #:optional
@@ -202,6 +206,7 @@
    (service nix-service-type)
    (service containerd-service-type)
    (service docker-service-type)
+   sss-joe-mpd
    sss-cron-jobs-service
    sss-desktop-services
    )))
