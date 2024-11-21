@@ -263,6 +263,8 @@ mind.")
    sqlitebrowser
    direnv
 
+   power-profiles-daemon
+
    transmission
    transmission-remote-gtk
 
@@ -275,14 +277,14 @@ mind.")
    
    bluez
    hplip
-   lxappearance
+
    (specification->package "conky")
    i3lock-fancy
    mpv
    mpv-mpris
    unixodbc
    fyi
-   qbittorrent
+
    (specification->package "darkhttpd")
    openvpn
    network-manager-applet
