@@ -86,12 +86,12 @@
   "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/gtk-3.0-settings.ini")
 
 (define sss-gtk3-conf
-  '((gtk-icon-theme-name . "Delft-Green-Darkest")
+  '((gtk-icon-theme-name . "Delft-Dark")
     (gtk-theme-name . "Yaru-sage-dark")
     (gtk-font-name . "Liberation Sans 11")
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . "0")
-    (gtk-cursor-theme-name . "Yaru-sage-dark")
+    (gtk-cursor-theme-name . "Yaru")
     (gtk-enable-input-feedback-sounds . "0")
     ))
 
