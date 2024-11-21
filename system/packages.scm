@@ -92,40 +92,6 @@ mind.")
    font-apple-sf-symbols
    font-google-noto))
 
-(define sss-sbcl-packages
-  (list
-   sbcl-alexandria
-   sbcl-asdf-system-connections
-   sbcl-bordeaux-threads
-   cl-asdf
-   sbcl-local-time
-   sbcl-cl-environments
-   sbcl-cl-fad
-   sbcl-cl-store
-   sbcl-cl-vectors
-   sbcl-clx-truetype
-   sbcl-clx-xembed
-   sbcl-global-vars
-   sbcl-salza2
-   sbcl-slynk
-   sbcl-stumpwm-cpu
-   sbcl-stumpwm-hostname
-   sbcl-stumpwm-mem
-   sbcl-stumpwm-net
-   sbcl-stumpwm-notify
-   sbcl-stumpwm-stumptray
-   sbcl-stumpwm-swm-gaps
-   sbcl-stumpwm-ttf-fonts
-   sbcl-stumpwm-wifi
-   sbcl-trivial-cltl2
-   sbcl-trivial-features
-   sbcl-trivial-garbage
-   sbcl-trivial-gray-streams
-   sbcl-xml-emitter
-   sbcl-zpb-ttf
-   sbcl-zpng
-   ))
-
 (define sss-wm-packages
   (list
    cl-asdf
@@ -136,7 +102,7 @@ mind.")
    foot
    waybar-experimental
    wmenu
-   wofi
+   
    mako
    fuzzel
    grimshot
@@ -338,7 +304,6 @@ mind.")
    sss-other-system-packages
    sss-wm-packages
    sss-font-packages
-   sss-sbcl-packages
    sss-dev-packages
    sss-guile-packages
    sss-treesitter-packages

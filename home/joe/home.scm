@@ -82,23 +82,6 @@
     (default-timeout . 12)
     ))
 
-(define sss-wofi-conf-location
-  "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/wofi-config")
-
-(define sss-wofi-conf
-  '(
-    (width . "600")
-    (height . "400")
-    (allow_images . "true")
-    (term . "foot")
-    (insensitive . "true")
-    ))
-;; width=600
-;; height=400
-;; mode=run
-;; colors=colors
-;; filter_rate=100
-
 (define sss-gtk3-conf-location
   "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/gtk-3.0-settings.ini")
 
@@ -216,13 +199,6 @@
    (write-equal-kv-conf sss-mako-conf
                         sss-mako-conf-location)))
 
-(display "\n>>= generating wofi configuration...\n")
-(mk-conf
- sss-wofi-conf-location
- (lambda ()
-   (write-equal-kv-conf sss-wofi-conf
-                        sss-wofi-conf-location)))
-
 
 ;; (display "\n>>= setting up nix env...\n")
 ;; (syscall "ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile")
@@ -252,7 +228,6 @@
 ;;    ))
 
 
-
 (define sss-home-files-service
   (service home-files-service-type
 	   `((".xmodmap" ,(local-file  sss-xmodmap-conf-location))
@@ -269,13 +244,10 @@
              (".config/conky/conky.conf" ,(local-file "conky/conkyrc.lua"))
              (".config/waybar/config.jsonc" ,(local-file "waybar/config.jsonc"))
              (".config/waybar/style.css" ,(local-file "waybar/style.css"))
+             (".config/fuzzel/fuzzel.ini" ,(local-file "fuzzel/fuzzel.ini"))
              (".config/xdg-desktop-portal/portals.conf" ,(local-file "portals/portals.conf"))
              (".config/foot/foot.ini" ,(local-file "foot/foot.ini"))
              (".config/mako/config" ,(local-file sss-mako-conf-location))
-             (".config/wofi/config" ,(local-file sss-wofi-conf-location))
-             (".config/wofi/style.css" ,(local-file "wofi/style.css"))
-             
-             ;;(".config/sway/config" ,(apply mixed-text-file (cons "sway-config" sss-sway-config)))
              (,(emacs-conf-file "init.el") ,(local-file "emacs/init.el"))
 	     (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
 
@@ -297,3 +269,5 @@
    sss-joe-fontconfig-service-type
    
    )))
+
+;;(".config/sway/config" ,(apply mixed-text-file (cons "sway-config" sss-sway-config)))

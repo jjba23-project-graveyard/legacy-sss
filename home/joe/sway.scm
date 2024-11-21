@@ -85,7 +85,7 @@
     (editor . "emacsclient -c")
     (browser . "/home/joe/.nix-profile/bin/vivaldi")
     (term  . ,(file-append foot "/bin/foot"))
-    (menu  . "wofi --show run")))
+    (menu  . "fuzzel")))
 
 (define sss-joe-sway-modes
   (list
