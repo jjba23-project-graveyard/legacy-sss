@@ -297,6 +297,9 @@ mind.")
    sqlitebrowser
    direnv
 
+   transmission
+   transmission-remote-gtk
+
    xf86-video-fbdev
    xf86-input-libinput
    lxsession
