@@ -205,7 +205,7 @@ mind.")
 (define sss-coreutils
   (list
    htop
-   emacs-pgtk
+   emacs-next-pgtk
    openssh
    dbus
    ncurses
