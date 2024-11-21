@@ -106,6 +106,8 @@
     },
     "clock": {
         // "timezone": "America/New_York",
+        //  (format nil "  %k:%M:%S %z - ~a @ SSS/Guix - %A, %d %B %Y   " small-user-name)
+        "format": "{:%H:%M %z - SSS/GNU - %a, %d %B %Y}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
