@@ -1,16 +1,20 @@
-.module,
-#clock.date,
-#clock.time,
-#workspaces button {
+.module {
     background: transparent;
     padding-top: 6px;
     padding-right: 12px;
     padding-left: 12px;
     padding-bottom: 6px;
     font-family: FontAwesome, Intel One Mono;
-    font-weight: 500;
-    font-size: 11pt;
+    font-weight: 500;    
     color: #cfdfd5;
+}
+
+#workspaces button {
+    font-size: 11pt;
+}
+
+#clock.date, #clock.time {
+    font-size: 9pt;
 }
 
 /* main waybar */
