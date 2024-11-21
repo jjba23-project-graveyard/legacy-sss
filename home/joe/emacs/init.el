@@ -723,7 +723,9 @@ According to size, color and font family"
   :ensure t)
 
 (use-package libmpdel
-  :ensure t)
+  :ensure t
+  :init
+  (setq libmpdel-music-directory "~/Muziek"))
 
 (use-package mpdel
   :ensure t)
