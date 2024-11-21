@@ -16,39 +16,28 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (use-modules (gnu)
-             (gnu packages display-managers))
+             (guix)
+             (gnu system privilege)
+             (gnu services)
+             (guix packages))
 
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(use-modules (gnu system privilege))
-(use-modules (gnu services xorg))
-(use-modules (gnu services sddm))
-(use-modules (gnu services desktop))
-(use-modules (gnu services))
-(use-modules (gnu services configuration))
-(use-modules (gnu services avahi))
-(use-modules (gnu packages glib))
-(use-modules (gnu services nix))
-(use-modules (gnu services xorg))
-(use-modules (gnu services networking))
-(use-modules (gnu services sound))
-(use-modules (gnu services cups))
-(use-modules (guix packages))
-
-(use-modules (guix) (gnu) (gnu services mcron))
-
-(load "./home/joe/proc.scm")
+(load "./lib/proc.scm")
 (load "./per-host.scm")
 (load "./system/packages.scm")
 
 (use-modules (sss-packages))
 
-(use-service-modules networking desktop docker audio shepherd dbus base)
-(use-package-modules certs nfs mate lxqt libusb linux
+(use-service-modules networking desktop docker audio shepherd dbus base
+                     xorg desktop configuration avahi nix xorg networking
+                     sound cups mcron)
+
+(use-package-modules certs nfs mate lxqt libusb linux glib
                      sugar suckless scanner xdisorg avahi xfce
                      pulseaudio kde-plasma kde-frameworks kde gnome
-                     freedesktop cups admin glib base idutils)
+                     freedesktop cups admin glib base idutils display-managers)
 
 
 (define sss-joe-user-account

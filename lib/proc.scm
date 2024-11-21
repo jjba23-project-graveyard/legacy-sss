@@ -15,15 +15,18 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(use-modules (ice-9 popen))
-(use-modules (ice-9 textual-ports))
-(use-modules (ice-9 time))
-(use-modules (ice-9 format))
-(use-modules (ice-9 string-fun))
-(use-modules (ice-9 iconv))
-(use-modules (ice-9 threads))
+(define-module (sss-proc)
+  #:use-module (ice-9 popen)
+  #:use-module (ice-9 textual-ports)
+  #:use-module (ice-9 time)
+  #:use-module (ice-9 format)
+  #:use-module (ice-9 string-fun)
+  #:use-module (ice-9 iconv)
+  #:use-module (ice-9 threads)
+  )
 
-(define (syscall cmd)
+
+(define-public (syscall cmd)
   (let* ((process (open-input-pipe cmd))
          (process-output (get-string-all process)))
     (close-pipe process)
@@ -36,7 +39,7 @@
   (thunk)
   )
 
-(define (write-equal-kv-conf kv file)
+(define-public (write-equal-kv-conf kv file)
   (let* ((file-port
           (open-file file "a")))
     (with-output-to-port file-port
@@ -48,7 +51,7 @@
         ))
     (close file-port)))
 
-(define (write-xmodmap-conf kv file)
+(define-public (write-xmodmap-conf kv file)
   (let* ((file-port
           (open-file file "a")))
     (with-output-to-port file-port
@@ -60,7 +63,7 @@
         ))
     (close file-port)))
 
-(define (write-gtk3-conf kv file)
+(define-public (write-gtk3-conf kv file)
   (let* ((file-port
           (open-file file "a")))
     (with-output-to-port file-port
@@ -74,7 +77,7 @@
     (close file-port)))
 
 
-(define (nix-profile-install x)
+(define-public (nix-profile-install x)
   (syscall (format #f "nix -L profile install --impure nixpkgs#~a" x)))
 
-;; mode "resize" {}
+

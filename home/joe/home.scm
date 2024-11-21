@@ -15,28 +15,27 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "./proc.scm")
+(load "../../lib/proc.scm")
 (load "./sway.scm")
 
 (use-modules (gnu home)
+             (gnu services)
+             (guix gexp)
+             (gnu packages gnupg)
+             (gnu packages admin)
              (gnu home services)
              (gnu home services shells)
-             (gnu packages emacs)
              (gnu home services sway)
-             (gnu packages admin)
-             (gnu packages terminals)
-             (gnu home services shepherd)
-             (gnu services)
-             (guix gexp))
-(use-modules (gnu home services ssh)
+             (gnu home services ssh)
              (gnu home services gnupg)
-             (gnu packages wm)
-             (gnu packages gnupg))
-(use-modules (gnu home services sound)
+             (gnu home services shepherd)
+             (gnu home services sound)
              (gnu home services desktop)
              (gnu home services fontutils))
-(use-modules (gnu services shepherd))
-(use-modules (sss-joe-sway))
+
+(use-modules (sss-joe-sway)
+             (sss-proc))
+
 
 (define sss-fancy-bash-service
   (simple-service
