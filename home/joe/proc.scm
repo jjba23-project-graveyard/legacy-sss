@@ -36,7 +36,7 @@
   (thunk)
   )
 
-(define (write-mako-conf kv file)
+(define (write-equal-kv-conf kv file)
   (let* ((file-port
           (open-file file "a")))
     (with-output-to-port file-port
