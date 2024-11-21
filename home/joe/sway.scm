@@ -64,7 +64,7 @@
 (define sss-joe-sway-startup-reload-programs
   (list
    "gsettings set $gnome-schema gtk-theme 'Yaru-sage-dark'"
-   "gsettings set $gnome-schema icon-theme 'Delft-Dark'"
+   "gsettings set $gnome-schema icon-theme 'Delft-Darkest'"
    "gsettings set $gnome-schema cursor-theme 'Yaru'"
    "gsettings set $gnome-schema font-name 'Liberation Sans'"
    ))

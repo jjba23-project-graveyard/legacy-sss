@@ -86,7 +86,7 @@
   "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/gtk-3.0-settings.ini")
 
 (define sss-gtk3-conf
-  '((gtk-icon-theme-name . "Delft-Dark")
+  '((gtk-icon-theme-name . "Delft-Darkest")
     (gtk-theme-name . "Yaru-sage-dark")
     (gtk-font-name . "Liberation Sans 11")
     (gtk-key-theme-name . "Emacs")
