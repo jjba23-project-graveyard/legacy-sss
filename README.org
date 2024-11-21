@@ -112,3 +112,12 @@ For example including ~nonguix~ in your channels (=~/.config/guix/channels.scm=)
 #+end_src
 
 
+** Project Management
+
+*** Backlog
+
+**** TODO record types (define-struct) to modularize config and translate foot configs and git configs and other easy ones to Scheme.
+
+**** TODO scheme to json for waybar config
+
+
