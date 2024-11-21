@@ -8,3 +8,4 @@ text-color=#FFFFFFFF
 font=Intel One Mono 10
 width=400
 icons=1
+default-timeout=12

@@ -69,16 +69,17 @@
   "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/mako")
 
 (define sss-mako-conf
-  '(("sort" . "-time")
-    ("max-history" . "7")
-    ("on-button-left" . "dismiss")
-    ("on-button-right" . "invoke-default-action")
-    ("background-color" . "#111111BB")
-    ("border-color" . "#00552FBB")
-    ("text-color" . "#FFFFFFFF")
-    ("font" . "Intel One Mono 10")
-    ("width" . "400")
-    ("icons" . "1")
+  '((sort . "-time")
+    (max-history . "7")
+    (on-button-left . "dismiss")
+    (on-button-right . "invoke-default-action")
+    (background-color . "#111111BB")
+    (border-color . "#00552FBB")
+    (text-color . "#FFFFFFFF")
+    (font . "Intel One Mono 10")
+    (width . "400")
+    (icons . "1")
+    (default-timeout . 12)
     ))
 
 (define sss-gtk3-conf-location
@@ -223,6 +224,7 @@
 ;;    "thunderbird"
 ;;    "postman"
 ;;    "vscode-langservers-extracted"
+;;    "nwg-look"
 ;;    ))
 
 

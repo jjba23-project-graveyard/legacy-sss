@@ -58,7 +58,16 @@
    "mako"
    "emacs --daemon"
    "dbus-update-activation-environment --all"
-   "waybar"))
+   "waybar"
+   ))
+
+(define sss-joe-sway-startup-reload-programs
+  (list
+   "gsettings set $gnome-schema gtk-theme 'Adwaita'"
+   "gsettings set $gnome-schema icon-theme 'Delft-Dark'"
+   "gsettings set $gnome-schema cursor-theme 'Yaru'"
+   "gsettings set $gnome-schema font-name 'Liberation Sans'"
+   ))
 
 (define sss-joe-sway-outputs
   (list (sway-output
@@ -71,6 +80,7 @@
     (down  . "Down")
     (up    . "Up")
     (right . "Right")
+    (gnome-schema . "org.gnome.desktop.interface")
     (editor . "emacsclient -c")
     (browser . "/home/joe/.nix-profile/bin/vivaldi")
     (term  . ,(file-append foot "/bin/foot"))
@@ -167,6 +177,7 @@
            (sway-configuration
             (gestures sss-joe-sway-gestures)
             (startup-programs sss-joe-sway-startup-programs)
+            (startup+reload-programs sss-joe-sway-startup-reload-programs)
             (outputs sss-joe-sway-outputs)
             (variables sss-joe-sway-variables)
             (modes sss-joe-sway-modes)
