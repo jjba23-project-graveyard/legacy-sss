@@ -59,6 +59,7 @@
    "emacs --daemon"
    "dbus-update-activation-environment --all"
    "waybar"
+   "transmission-daemon"
    ))
 
 (define sss-joe-sway-startup-reload-programs
