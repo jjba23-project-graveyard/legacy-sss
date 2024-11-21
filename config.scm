@@ -32,7 +32,7 @@
 
 (use-service-modules networking desktop docker audio shepherd dbus base
                      xorg desktop configuration avahi nix xorg networking
-                     sound cups mcron)
+                     sound cups mcron pm)
 
 (use-package-modules certs nfs mate lxqt libusb linux glib
                      sugar suckless scanner xdisorg avahi xfce
@@ -195,6 +195,7 @@
    (service nix-service-type)
    (service containerd-service-type)
    (service docker-service-type)
+   (service power-profiles-daemon-service-type)
    sss-joe-mpd
    sss-cron-jobs-service
    sss-desktop-services
