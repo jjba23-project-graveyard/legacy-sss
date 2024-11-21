@@ -1,4 +1,4 @@
-;;; init.el --- Custom editor configuration for JJBA -*- lexical-binding: t -*-
+;;; init.el --- Custom editor configuration for SSS -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2024 Josep Bigorra
 
@@ -69,25 +69,25 @@
 
 (elpaca elpaca-use-package (elpaca-use-package-mode))
 
-;; Declare jjba customizations
-(defgroup jjba ()
-  "JJBA customization group."
+;; Declare sss customizations
+(defgroup sss ()
+  "SSS customization group."
   :group 'tools)
 
-(defcustom jjba-font-mono "Intel One Mono"
+(defcustom sss-font-mono "Intel One Mono"
   "My personal choice for monospaced font family." 
   :type 'string)
 
-(defcustom jjba-font-sans "Liberation Sans"
+(defcustom sss-font-sans "Liberation Sans"
   "My personal choice for sans font family." 
   :type 'string)
 
-(defcustom jjba-ews-music-directory "~/Muziek"
+(defcustom sss-ews-music-directory "~/Muziek"
   "My personal main directory where to read music from."
   :type 'string)
 
 
-;; Declare jjba packages
+;; Declare sss packages
 
 (use-package git-riddance 
   :ensure (:host github :repo "jjba23/git-riddance.el" :branch "trunk"))
@@ -141,10 +141,10 @@
          ("C-c f t" . tekengrootte-set-scale-tiny)
 	 ("C-c f n" . tekengrootte-set-scale-nano)) 
   :hook ((tekengrootte-set-scale . (lambda () 
-                                     (jjba-set-base-faces)))) 
+                                     (sss-set-base-faces)))) 
   :after (ef-themes)
   :config
-  (defun jjba-set-base-faces ()
+  (defun sss-set-base-faces ()
     "Adjust the base Emacs faces to my preferences.
 According to size, color and font family"
 
@@ -154,35 +154,35 @@ According to size, color and font family"
     
     (set-face-attribute 'default nil 
 		        :height (round (tekengrootte-mk-font-size 114)) 
-		        :font jjba-font-mono)
+		        :font sss-font-mono)
     (set-face-attribute 'mode-line nil 
 		        :height (tekengrootte-mk-font-size 0.7)
-		        :font jjba-font-mono) 
+		        :font sss-font-mono) 
     (set-face-attribute 'mode-line-active nil 
 		        :height (tekengrootte-mk-font-size 0.7) 
-		        :font jjba-font-mono) 
+		        :font sss-font-mono) 
     (set-face-attribute 'mode-line-inactive nil 
 		        :height (tekengrootte-mk-font-size 0.7) 
-		        :font jjba-font-mono)
+		        :font sss-font-mono)
     (set-face-attribute 'variable-pitch nil 
-		        :font jjba-font-sans
+		        :font sss-font-sans
                         :height (tekengrootte-mk-font-size 1.05))
 
     (set-face-attribute 'org-default nil 
 		        :height (tekengrootte-mk-font-size 1.05)
-		        :font jjba-font-mono)
+		        :font sss-font-mono)
     (set-face-attribute 'button nil :background 'unspecified
                         :weight 'bold)
     (set-face-attribute 'org-block nil
-		        :font jjba-font-mono
+		        :font sss-font-mono
                         :height (tekengrootte-mk-font-size 1.05))
     (set-face-attribute 'font-lock-doc-face nil
                         :foreground (ef-themes-get-color-value 'yellow-faint))
     (set-face-attribute 'org-code nil                       
-		        :font jjba-font-mono
+		        :font sss-font-mono
                         :height (tekengrootte-mk-font-size 1.05))
     (set-face-attribute 'org-verbatim nil                       
-		        :font jjba-font-mono
+		        :font sss-font-mono
                         :height (tekengrootte-mk-font-size 1.05))
     (set-face-attribute 'org-level-1 nil 
 		        :height (tekengrootte-mk-font-size 1.2))
@@ -196,7 +196,7 @@ According to size, color and font family"
 		        :height (tekengrootte-mk-font-size 1.0))
     )
   
-  (jjba-set-base-faces))
+  (sss-set-base-faces))
 
 ;; Dev
 
@@ -258,17 +258,17 @@ According to size, color and font family"
 (use-package markdown-mode 
   :ensure t 
   :mode "\\.md\\'"
-  :hook ((markdown-mode . jjba-markdown-mode))
+  :hook ((markdown-mode . sss-markdown-mode))
   :config
-  (defun jjba-markdown-mode ()
+  (defun sss-markdown-mode ()
     (variable-pitch-mode 0)
     (auto-fill-mode 0)
     (visual-line-mode 1)
     (set-face-attribute 'markdown-code-face nil                       
-		        :font jjba-font-mono
+		        :font sss-font-mono
                         :height (tekengrootte-mk-font-size 1.05))
     (set-face-attribute 'markdown-pre-face nil                       
-		        :font jjba-font-mono
+		        :font sss-font-mono
                         :height (tekengrootte-mk-font-size 1.15))
     ))
 
@@ -392,15 +392,6 @@ According to size, color and font family"
                                          :right-fringe-width 16)) 
   (setq spacious-padding-subtle-mode-line nil) 
   :config (spacious-padding-mode))
-
-(use-package which-key 
-  :ensure t
-  :config
-  (setq which-key-sort-order 'which-key-key-order-alpha	
-	which-key-max-description-length 35)
-  (setq-default which-key-idle-delay 0.4) 
-  (which-key-setup-minibuffer)
-  (which-key-mode))
 
 (use-package rainbow-mode :ensure t)
 
@@ -591,13 +582,13 @@ According to size, color and font family"
 (use-package org
   :ensure nil
   :after (org-modern)
-  :hook ((org-mode . jjba-org-mode))
+  :hook ((org-mode . sss-org-mode))
   :init
   (setq org-todo-keywords '((sequence "TODO" "WIP" "REVIEWING" "|" "DONE")))
   (setq org-log-done 'time)
   (setq org-hide-emphasis-markers t)
   :config  
-  (defun jjba-org-mode ()
+  (defun sss-org-mode ()
     (variable-pitch-mode 0)
     (org-modern-mode)
     (org-indent-mode)
@@ -649,13 +640,13 @@ According to size, color and font family"
   (add-hook 'completion-at-point-functions #'cape-history)
   (add-hook 'completion-at-point-functions #'cape-elisp-block))
 
-(defun jjba-bookmark-emacs-config ()
-  "Visit jjba bookmark: Emacs main init.el config file."
+(defun sss-bookmark-emacs-config ()
+  "Visit sss bookmark: Emacs main init.el config file."
   (interactive) 
   (find-file "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/emacs/init.el"))
 
-(defun jjba-bookmark-stumpwm-config ()
-  "Visit jjba bookmark: StumpWM main config file."
+(defun sss-bookmark-stumpwm-config ()
+  "Visit sss bookmark: StumpWM main config file."
   (interactive) 
   (find-file "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/stumpwm/init.lisp"))
 
@@ -719,7 +710,7 @@ According to size, color and font family"
   (emms-default-players)
   (emms-mpris-enable)
   :custom
-  (emms-source-file-default-directory jjba-ews-music-directory)
+  (emms-source-file-default-directory sss-ews-music-directory)
   (emms-browser-covers #'emms-browser-cache-thumbnail-async)
   :bind
   (("<f5>"   . emms-browser)
@@ -740,12 +731,21 @@ According to size, color and font family"
 
 ;; Configure Emacs native features
 
+(use-package which-key 
+  :ensure nil
+  :config
+  (setq which-key-sort-order 'which-key-key-order-alpha	
+	which-key-max-description-length 35)
+  (setq-default which-key-idle-delay 0.4) 
+  (which-key-setup-minibuffer)
+  (which-key-mode))
+
 (use-package emacs 
   :ensure nil 
   :bind (("C-x C-b" . ibuffer) 
          ("C-c a h" . highlight-compare-buffers) 
-         ("C-c b e" . jjba-bookmark-emacs-config)
-         ("C-c b w" . jjba-bookmark-stumpwm-config)
+         ("C-c b e" . sss-bookmark-emacs-config)
+         ("C-c b w" . sss-bookmark-stumpwm-config)
          ("C-c l d" . toggle-debug-on-error)
          ("C-c l e" . eval-buffer)
          ("C-c s b" . flyspell-buffer)
