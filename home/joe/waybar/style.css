@@ -69,12 +69,34 @@ window#waybar.empty #window {
     opacity: 0;
 }
 
-/* Set up rounding to make these modules look like separate pills */
+
 #tray {
     margin-right: 4px;
 }
 
+#keyboard-state {
+    font-size: 9pt;
+}
 
+#network {
+    font-size: 9pt;
+}
+
+#mpd {
+    font-size: 9pt;
+}
+
+#pulseaudio {
+    font-size: 9pt;
+}
+
+#cpu {
+    font-size: 9pt;
+}
+
+#memory {
+    font-size: 9pt;
+}
 
 /* * { */
 /*     /\* `otf-font-awesome` is required to be installed for icons *\/ */
