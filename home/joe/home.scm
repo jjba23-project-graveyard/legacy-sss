@@ -182,34 +182,20 @@
 ;; TODO list additional things and docs separately
 ;; for now here
 ;; (mpd) - (format .  "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ")
+;; (clock) - (format-alt . "{:%Y-%m-%d}")
 ;;
 (define sss-joe-waybar-conf
-  `(
-    (position . bottom)
+  `((position . bottom)
     (height . 40)
     (spacing . 4)
-    (modules-left . #(clock
-                      sway/workspaces
-                      sway/mode
-                      sway/scratchpad
-                      custom/media
-                      sway/window))
+    (modules-left . #(clock sway/workspaces sway/mode
+                            sway/scratchpad custom/media sway/window))
     (modules-center . ())
-    (modules-right . #(mpd
-                       idle_inhibitor
-                       pulseaudio
-                       network
-                       power-profiles-daemon
-                       cpu
-                       memory
-                       temperature
-                       backlight
-                       keyboard-state
-                       sway/language
-                       battery
-                       battery#bat2
-                       tray
-                       custom/power))
+    (modules-right . #(mpd idle_inhibitor pulseaudio
+                           network power-profiles-daemon cpu
+                           memory temperature backlight
+                           keyboard-state sway/language battery
+                           battery#bat2 tray custom/power))
     (sway/workspaces . ((disable-scroll . #t)
                         (all-outputs . #t)
                         (warp-on-scroll . #f)
@@ -224,17 +210,17 @@
                        (capslock . #t)
                        (format . "{name} {icon} ")
                        (format-icons . ((locked . "")
-                                        (unlocked . "")
-                                        ))))
+                                        (unlocked . "")))))
     (sway/mode . ((format . "<span style=\"italic\">{}</span>")))
     (sway/scratchpad . ((format . "{icon} {count}")
                         (show-empty . #f)
                         (format-icons . #("" ""))
                         (tooltip . #t)
                         (tooltip-format . "{app}: {title}")))
-    (mpd . ((format . ,(string-append "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}"
-                                      "{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) "
-                                      "⸨{songPosition}|{queueLength}⸩ "))
+    (mpd . ((format . ,(string-append
+                        "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}"
+                        "{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) "
+                        "⸨{songPosition}|{queueLength}⸩ "))
             (format-disconnected . "Disconnected ")
             (format-stopped . "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ")
             (unknown-tag . "N/A")
@@ -247,11 +233,16 @@
             (state-icons . ((paused . "")
                             (playing . "")))
             (tooltip-format . "MPD (connected)")
-            (tooltip-format-disconnected . "MPD (disconnected)")
-            ))
+            (tooltip-format-disconnected . "MPD (disconnected)")))
     (idle_inhibitor . ((format . "{icon}")
                        (format-icons . ((activated . "")
                                         (deactivated . "")))))
+    (tray . ((spacing . 10)))    
+    (clock . ((format . "{:%H:%M %z - SSS/GNU - %a, %d %B %Y}")
+              (tooltip-format . "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>")))
+    (cpu . ((format . "{usage}% ")
+            (tooltip . #f)))
+    (memory . ((format . "{}% ")))
     ))
 
 
