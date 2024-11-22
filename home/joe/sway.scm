@@ -60,6 +60,7 @@
    "dbus-update-activation-environment --all"
    "waybar"
    "transmission-daemon"
+   "foot -s"
    ))
 
 (define sss-joe-sway-startup-reload-programs
@@ -84,7 +85,7 @@
     (gnome-schema . "org.gnome.desktop.interface")
     (editor . "emacsclient -c")
     (browser . "/home/joe/.nix-profile/bin/vivaldi")
-    (term  . ,(file-append foot "/bin/foot"))
+    (term  . "footclient")
     (menu  . "fuzzel")))
 
 (define sss-joe-sway-modes
