@@ -55,19 +55,13 @@
              (file-append pinentry-emacs "/bin/pinentry-emacs"))
             (ssh-support? #t))))
 
-(define sss-xmodmap-conf-location
-  "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/xmodmap")
-
-(define sss-xmodmap-conf
+(define sss-xmodmap-config
   '(("remove Lock" . "Caps_Lock")
     ("keysym Caps_Lock" . "Control_L")
     ("add Control" . "Control_L")
     ))
 
-(define sss-mako-conf-location
-  "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/mako")
-
-(define sss-mako-conf
+(define sss-mako-config
   '((sort . "-time")
     (max-history . "7")
     (on-button-left . "dismiss")
@@ -80,6 +74,11 @@
     (icons . "1")
     (default-timeout . 12)
     ))
+
+(define sss-portals-config
+  '(("default" . "gtk")
+    ("org.freedesktop.impl.portal.Screenshot" . "wlr")
+    ("org.freedesktop.impl.portal.ScreenCast" . "wlr")))
 
 (define sss-gtk3-conf-location
   "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/gtk-3.0-settings.ini")
@@ -172,31 +171,12 @@
                           (prefer
                            (family "Intel One Mono"))))))
 
-
-;;
-;; start run
-;;
-
-(display "\n>>= generating xmodmap configuration...\n")
-(mk-conf
- sss-xmodmap-conf-location
- (lambda ()
-   (write-xmodmap-conf sss-xmodmap-conf
-                       sss-xmodmap-conf-location)))
-
 (display "\n>>= generating GTK 3 configuration...\n")
 (mk-conf
  sss-gtk3-conf-location
  (lambda ()
    (write-gtk3-conf sss-gtk3-conf
                     sss-gtk3-conf-location)))
-
-(display "\n>>= generating mako configuration...\n")
-(mk-conf
- sss-mako-conf-location
- (lambda ()
-   (write-equal-kv-conf sss-mako-conf
-                        sss-mako-conf-location)))
 
 
 ;; (display "\n>>= setting up nix env...\n")
@@ -229,7 +209,7 @@
 
 (define sss-home-files-service
   (service home-files-service-type
-	   `((".xmodmap" ,(local-file  sss-xmodmap-conf-location))
+	   `((".xmodmap" ,(plain-file "xmodmap" (mk-string-equal-spaced-kv-conf sss-xmodmap-config)))
              (".config/gtk-3.0/settings.ini" ,(local-file sss-gtk3-conf-location))
              (".config/guix/channels.scm" ,(local-file "channels.scm"))             
              (".gitconfig" ,(local-file "git/gitconfig.ini"))
@@ -240,13 +220,13 @@
              (".gitmessage-work" ,(local-file "git/gitmessage-work"))
              (".config/nix/nix.conf" ,(local-file "nix/nix.conf"))
              (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
-             (".config/conky/conky.conf" ,(local-file "conky/conkyrc.lua"))
              (".config/waybar/config.jsonc" ,(local-file "waybar/config.jsonc"))
              (".config/waybar/style.css" ,(local-file "waybar/style.css"))
              (".config/fuzzel/fuzzel.ini" ,(local-file "fuzzel/fuzzel.ini"))
-             (".config/xdg-desktop-portal/portals.conf" ,(local-file "portals/portals.conf"))
+             (".config/xdg-desktop-portal/portals.conf"
+              ,(plain-file "portals.conf" (string-append "[preferred]\n" (mk-string-equal-kv-conf sss-portals-config))))
              (".config/foot/foot.ini" ,(local-file "foot/foot.ini"))
-             (".config/mako/config" ,(local-file sss-mako-conf-location))
+             (".config/mako/config" ,(plain-file "config" (mk-string-equal-kv-conf sss-mako-config)))
              (,(emacs-conf-file "init.el") ,(local-file "emacs/init.el"))
 	     (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
 

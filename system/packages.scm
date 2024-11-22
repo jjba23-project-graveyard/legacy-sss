@@ -278,7 +278,6 @@ mind.")
    bluez
    hplip
 
-   (specification->package "conky")
    i3lock-fancy
    mpv
    mpv-mpris

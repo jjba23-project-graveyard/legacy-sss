@@ -39,29 +39,21 @@
   (thunk)
   )
 
-(define-public (write-equal-kv-conf kv file)
-  (let* ((file-port
-          (open-file file "a")))
-    (with-output-to-port file-port
-      (lambda ()
-        (for-each
-         (lambda(x)       
-           (display (format #f "~a=~a\n" (car x) (cdr x))))     
-         kv)
-        ))
-    (close file-port)))
+(define-public (mk-string-equal-kv-conf kv)
+  (with-output-to-string
+    (lambda ()
+      (for-each
+       (lambda(x)       
+         (display (format #f "~a=~a\n" (car x) (cdr x))))     
+       kv))))
 
-(define-public (write-xmodmap-conf kv file)
-  (let* ((file-port
-          (open-file file "a")))
-    (with-output-to-port file-port
-      (lambda ()
-        (for-each
-         (lambda(x)       
-           (display (format #f "~a = ~a\n" (car x) (cdr x))))     
-         kv)
-        ))
-    (close file-port)))
+(define-public (mk-string-equal-spaced-kv-conf kv)
+  (with-output-to-string
+    (lambda ()
+      (for-each
+       (lambda(x)
+         (display (format #f "~a = ~a\n" (car x) (cdr x))))     
+       kv))))
 
 (define-public (write-gtk3-conf kv file)
   (let* ((file-port
