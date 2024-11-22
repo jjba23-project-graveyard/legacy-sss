@@ -37,6 +37,7 @@
              (sss-proc))
 
 (use-modules (json))
+(use-modules (sxml simple))
 
 (define sss-fancy-bash-service
   (simple-service
@@ -176,6 +177,23 @@
 ;; sometimes when the commit is meaningful, otherwise I use it
 (define sss-joe-gitmessage-personal "🥷🏼")
 (define sss-joe-gitmessage-work "🥷🏼")
+
+;; Waybar power menu
+(define sss-joe-waybar-power-menu
+  '(*TOP*
+    (*PI* xml "version=\"1.0\" encoding=\"UTF-8\"")
+    (interface
+     (object (@(class "GtkMenu") (id "menu"))
+             (child (object (@(class "GtkMenuItem") (id "suspend"))
+                            (property (@(name "label")) "Suspend")))
+             (child (object (@(class "GtkMenuItem") (id "hibernate"))
+                            (property (@(name "label")) "Hibernate")))
+             (child (object (@(class "GtkSeparatorMenuItem") (id "delimiter1"))))
+             (child (object (@(class "GtkMenuItem") (id "shutdown"))
+                            (property (@(name "label")) "Shutdown")))
+             (child (object (@(class "GtkMenuItem") (id "reboot"))
+                            (property (@(name "label")) "Reboot")))
+             ))))
 
 ;; My WayBar configurations, defined in Guile Scheme
 ;;
@@ -320,7 +338,12 @@
              (".config/waybar/config.jsonc"
               ,(plain-file "config.jsonc" (scm->json-string sss-joe-waybar-conf #:pretty #t)))
              (".config/waybar/style.css" ,(local-file "waybar/style.css"))
-             (".config/waybar/power_menu.xml" ,(local-file "waybar/power_menu.xml"))
+             (".config/waybar/power_menu.xml"
+              ,(plain-file "power_menu.xml"
+                           (with-output-to-string
+                             (lambda() (sxml->xml sss-joe-waybar-power-menu))
+                             )
+                           ))
              (".config/fuzzel/fuzzel.ini" ,(local-file "fuzzel/fuzzel.ini"))
              (".config/xdg-desktop-portal/portals.conf"
               ,(plain-file "portals.conf"
