@@ -199,7 +199,11 @@
 ;;
 ;; TODO list additional things and docs separately
 ;; for now here
-;; (mpd) - (format .  "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ")
+;; 
+;; (mpd) - (format .  "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} -
+;; {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})
+;; ⸨{songPosition}|{queueLength}⸩ {volume}% ")
+;; 
 ;; (clock) - (format-alt . "{:%Y-%m-%d}")
 ;;
 (define sss-joe-waybar-conf
