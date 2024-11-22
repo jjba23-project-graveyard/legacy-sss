@@ -198,9 +198,14 @@
 
 (define sss-home-files-service
   (service home-files-service-type
-	   `((".xmodmap" ,(plain-file "xmodmap" (mk-string-equal-spaced-kv-conf sss-xmodmap-config)))
+	   `((".xmodmap"
+              ,(plain-file "xmodmap"
+                           (mk-kv-conf-lines sss-xmodmap-config
+                                             #:template "~a = ~a\n")))
              (".config/gtk-3.0/settings.ini"
-              ,(plain-file "portals.conf" (string-append "[Settings]\n" (mk-string-equal-kv-conf sss-gtk3-config))))
+              ,(plain-file "settings.ini"
+                           (string-append "[Settings]\n"
+                                          (mk-kv-conf-lines sss-gtk3-config))))
              (".config/guix/channels.scm" ,(local-file "channels.scm"))             
              (".gitconfig" ,(local-file "git/gitconfig.ini"))
              (".gitconfig-personal" ,(local-file "git/gitconfig-personal.ini"))
@@ -214,9 +219,13 @@
              (".config/waybar/style.css" ,(local-file "waybar/style.css"))
              (".config/fuzzel/fuzzel.ini" ,(local-file "fuzzel/fuzzel.ini"))
              (".config/xdg-desktop-portal/portals.conf"
-              ,(plain-file "portals.conf" (string-append "[preferred]\n" (mk-string-equal-kv-conf sss-portals-config))))
+              ,(plain-file "portals.conf"
+                           (string-append "[preferred]\n"
+                                          (mk-kv-conf-lines sss-portals-config))))
              (".config/foot/foot.ini" ,(local-file "foot/foot.ini"))
-             (".config/mako/config" ,(plain-file "config" (mk-string-equal-kv-conf sss-mako-config)))
+             (".config/mako/config"
+              ,(plain-file "config"
+                           (mk-kv-conf-lines sss-mako-config)))
              (,(emacs-conf-file "init.el") ,(local-file "emacs/init.el"))
 	     (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
 

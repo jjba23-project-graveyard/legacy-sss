@@ -33,40 +33,17 @@
     (display process-output)
     process-output))
 
-(define-public (mk-conf file thunk) 
-  (syscall (format #f "rm -rf ~a" file ))
-  (syscall (format #f "touch ~a" file ))
-  (thunk)
-  )
-
-(define-public (mk-string-equal-kv-conf kv)
-  (with-output-to-string
-    (lambda ()
-      (for-each
-       (lambda(x)       
-         (display (format #f "~a=~a\n" (car x) (cdr x))))     
-       kv))))
-
-(define-public (mk-string-equal-spaced-kv-conf kv)
-  (with-output-to-string
-    (lambda ()
-      (for-each
-       (lambda(x)
-         (display (format #f "~a = ~a\n" (car x) (cdr x))))     
-       kv))))
-
-(define-public (write-gtk3-conf kv file)
-  (let* ((file-port
-          (open-file file "a")))
-    (with-output-to-port file-port
+(begin
+  (define* (mk-kv-conf-lines pairs
+                             #:key
+                             (template "~a=~a\n"))
+    (with-output-to-string
       (lambda ()
-        (display "[Settings]\n")
         (for-each
          (lambda(x)       
-           (display (format #f "~a = ~a\n" (car x) (cdr x))))     
-         kv)
-        ))
-    (close file-port)))
+           (display (format #f template (car x) (cdr x))))     
+         pairs))))
+  (export mk-kv-conf-lines))
 
 
 (define-public (nix-profile-install x)
