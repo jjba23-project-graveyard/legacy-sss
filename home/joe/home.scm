@@ -36,6 +36,8 @@
 (use-modules (sss-joe-sway)
              (sss-proc))
 
+(use-modules (json))
+
 (define sss-fancy-bash-service
   (simple-service
    'sss-fancy-bash
@@ -175,6 +177,83 @@
 (define sss-joe-gitmessage-personal "🥷🏼")
 (define sss-joe-gitmessage-work "🥷🏼")
 
+;; My WayBar configurations, defined in Guile Scheme
+;;
+;; TODO list additional things and docs separately
+;; for now here
+;; (mpd) - (format .  "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ")
+;;
+(define sss-joe-waybar-conf
+  `(
+    (position . bottom)
+    (height . 40)
+    (spacing . 4)
+    (modules-left . #(clock
+                      sway/workspaces
+                      sway/mode
+                      sway/scratchpad
+                      custom/media
+                      sway/window))
+    (modules-center . ())
+    (modules-right . #(mpd
+                       idle_inhibitor
+                       pulseaudio
+                       network
+                       power-profiles-daemon
+                       cpu
+                       memory
+                       temperature
+                       backlight
+                       keyboard-state
+                       sway/language
+                       battery
+                       battery#bat2
+                       tray
+                       custom/power))
+    (sway/workspaces . ((disable-scroll . #t)
+                        (all-outputs . #t)
+                        (warp-on-scroll . #f)
+                        (format . "{icon}")
+                        (format-icons . (("1" . "I") ("2" . "II") ("3" . "III")
+                                         ("4" . "IV") ("5" . "V") ("6" . "VI")
+                                         ("7" . "VII") ("8" . "VIII") ("9" . "IX")
+                                         ("10" . "X") ("default" . "")
+                                         ;; ("urgent" . "") ("focused" . "")
+                                         ))))
+    (keyboard-state . ((numlock . #t)
+                       (capslock . #t)
+                       (format . "{name} {icon} ")
+                       (format-icons . ((locked . "")
+                                        (unlocked . "")
+                                        ))))
+    (sway/mode . ((format . "<span style=\"italic\">{}</span>")))
+    (sway/scratchpad . ((format . "{icon} {count}")
+                        (show-empty . #f)
+                        (format-icons . #("" ""))
+                        (tooltip . #t)
+                        (tooltip-format . "{app}: {title}")))
+    (mpd . ((format . ,(string-append "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}"
+                                      "{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) "
+                                      "⸨{songPosition}|{queueLength}⸩ "))
+            (format-disconnected . "Disconnected ")
+            (format-stopped . "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ")
+            (unknown-tag . "N/A")
+            (interval . 5)
+            (consume-icons . ((on . " ")))
+            (random-icons . ((off . "<span color=\"#f53c3c\"></span> ")
+                             (on . " ")))
+            (repeat-icons . ((on . " ")))
+            (single-icons . ((on . "1 ")))
+            (state-icons . ((paused . "")
+                            (playing . "")))
+            (tooltip-format . "MPD (connected)")
+            (tooltip-format-disconnected . "MPD (disconnected)")
+            ))
+    (idle_inhibitor . ((format . "{icon}")
+                       (format-icons . ((activated . "")
+                                        (deactivated . "")))))
+    ))
+
 
 (define sss-home-files-service
   (service home-files-service-type
@@ -197,7 +276,8 @@
               ,(plain-file "gitmessage-work" sss-joe-gitmessage-work))
              (".config/nix/nix.conf" ,(local-file "nix/nix.conf"))
              (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
-             (".config/waybar/config.jsonc" ,(local-file "waybar/config.jsonc"))
+             (".config/waybar/config.jsonc"
+              ,(plain-file "config.jsonc" (scm->json-string sss-joe-waybar-conf #:pretty #t)))
              (".config/waybar/style.css" ,(local-file "waybar/style.css"))
              (".config/fuzzel/fuzzel.ini" ,(local-file "fuzzel/fuzzel.ini"))
              (".config/xdg-desktop-portal/portals.conf"
