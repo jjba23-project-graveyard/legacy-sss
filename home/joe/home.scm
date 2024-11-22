@@ -80,10 +80,7 @@
     ("org.freedesktop.impl.portal.Screenshot" . "wlr")
     ("org.freedesktop.impl.portal.ScreenCast" . "wlr")))
 
-(define sss-gtk3-conf-location
-  "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/generated/gtk-3.0-settings.ini")
-
-(define sss-gtk3-conf
+(define sss-gtk3-config
   '((gtk-icon-theme-name . "Delft-Darkest")
     (gtk-theme-name . "Yaru-sage-dark")
     (gtk-font-name . "Liberation Sans 11")
@@ -171,14 +168,6 @@
                           (prefer
                            (family "Intel One Mono"))))))
 
-(display "\n>>= generating GTK 3 configuration...\n")
-(mk-conf
- sss-gtk3-conf-location
- (lambda ()
-   (write-gtk3-conf sss-gtk3-conf
-                    sss-gtk3-conf-location)))
-
-
 ;; (display "\n>>= setting up nix env...\n")
 ;; (syscall "ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile")
 
@@ -210,7 +199,8 @@
 (define sss-home-files-service
   (service home-files-service-type
 	   `((".xmodmap" ,(plain-file "xmodmap" (mk-string-equal-spaced-kv-conf sss-xmodmap-config)))
-             (".config/gtk-3.0/settings.ini" ,(local-file sss-gtk3-conf-location))
+             (".config/gtk-3.0/settings.ini"
+              ,(plain-file "portals.conf" (string-append "[Settings]\n" (mk-string-equal-kv-conf sss-gtk3-config))))
              (".config/guix/channels.scm" ,(local-file "channels.scm"))             
              (".gitconfig" ,(local-file "git/gitconfig.ini"))
              (".gitconfig-personal" ,(local-file "git/gitconfig-personal.ini"))
