@@ -111,13 +111,66 @@ For example including ~nonguix~ in your channels (=~/.config/guix/channels.scm=)
 
 #+end_src
 
+*** Updates
+
+You should every now and then do a ~guix pull~ from your regular user, and then rebuild this system. See the Makefile for more information.
+
+*** Nix profile
+
+Nixpkgs contains a lot of software which we can leverage and manage from Guix.
+SSS will automatically install and provide the Nix package manager for you.
+
+SSS also provides some facilities to manage Nix from the comfort of your Guile Scheme.
+
+You might need to activate and link the profile in order to be able to use, for the first time.
+
+#+begin_src sh
+  ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile
+#+end_src
+
+You can switch your install to use nixpkgs-unstable with:
+
+#+begin_src sh
+  nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+  nix-channel --update
+#+end_src
+
+You can install Nix packages by running:
+
+#+begin_src sh
+  nix -L profile install --impure nixpkgs#firefox
+#+end_src
+
+You can keep your Nix packages updated by running:
+
+#+begin_src sh
+  NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
+#+end_src
+
+The installed software will be available, for example at: ~/home/joe/.nix-profile/bin/~
+
+-----
+
 
 ** Project Management
 
 *** Backlog
 
-**** TODO record types (define-struct) to modularize config and translate foot configs and git configs and other easy ones to Scheme.
+**** TODO record types (define-configuration) to modularize config and translate foot configs and git configs and other complex ones to Scheme.
 
 **** TODO scheme to json for waybar config
 
+**** TODO make it easier to manage Nix packages from Guile scheme
+
+**** TODO create simple bootstrap script to help adoption
+
+**** TODO create project banners, logos, marketing
+
+**** TODO create a user factory which is by default configured to joe's settings but is easily tweaked and with no duplication it creates new users.
+
+
+*** Work done
+
+**** DONE manage all simple key-value configs from Scheme code
+CLOSED: [2024-11-22 vr 13:17]
 

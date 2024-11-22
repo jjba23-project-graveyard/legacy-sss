@@ -168,8 +168,6 @@
                           (prefer
                            (family "Intel One Mono"))))))
 
-;; (display "\n>>= setting up nix env...\n")
-;; (syscall "ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile")
 
 ;; (display "\n>>= installing nix packages\n")
 ;; (syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")
@@ -245,7 +243,5 @@
    (service sss-byggsteg-service-type)
    sss-joe-sway-service-type
    sss-joe-fontconfig-service-type
-   
    )))
 
-;;(".config/sway/config" ,(apply mixed-text-file (cons "sway-config" sss-sway-config)))
