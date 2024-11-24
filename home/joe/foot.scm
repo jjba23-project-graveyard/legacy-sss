@@ -1,44 +1,40 @@
-;; WIP defining foot config in Scheme
+;;; foot.scm
+
+;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+
+;; sss is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; sss is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss-joe-foot)
   #:use-module (gnu)
-  #:use-module (gnu services configuration)
-  #:use-module (gnu services)
-  #:use-module (guix gexp)
-  #:use-module (gnu services configuration)
-  #:use-module (srfi srfi-26)
-  #:use-module (srfi srfi-1)
   )
 
-(define (serialize-string field-name value)
-  #~(string-append #$(uglify-field-name field-name) " = " #$value "\n"))
-
-(define (serialize-sss-foot-bell field-name value)
-  #~(string-append 
-     #$(serialize-configuration
-        configuration sss-foot-bell-fields))
-  )
-
-;; Turn field names, which are Scheme symbols into strings
-(define (uglify-field-name field-name)
-  (let ((str (symbol->string field-name)))
-    ;; field? -> is-field
-    (if (string-suffix? "?" str)
-        (string-append "is-" (string-drop-right str 1))
-        str)))
-
-(define-configuration sss-foot-bell
-  (urgent (string "no") "")
-  (notify (string "no") "")
-  (visual (string "no") "")
-  )
-
-(define-configuration sss-foot
-  (font (string "Intel One Mono:size=10") "")
-  (dpi-aware (string "yes") "")
-  (pad (string "12x12") "" )
-  (bell (sss-foot-bell) "")
-  )
-
-(define my-foot
-  (sss-foot))
+(define-public sss-joe-foot-config
+  `((font . "Intel One Mono:size=10")
+    (dpi-aware . "yes")
+    (pad . "12x12")
+    (bell . ((urgent . "no")
+             (notify . "no")
+             (visual . "no")))
+    (scrollback . ((lines . "1000000")))
+    (colors . ((alpha . "0.9")
+               (background . "111111")
+               (foreground . "cfdfd5")))
+    (search-bindings . ((cancel . "Control+g Control+Shift+c Escape")))
+    (url-bindings . ((cancel . "Control+g Control+Shift+c Escape")))
+    (key-bindings . ((scrollback-up-page . "Mod1+v")
+                     (scrollback-down-page . "Control+v")
+                     (scrollback-home . "Mod1+less")
+                     (scrollback-end . "Mod1+greater")
+                     (clipboard-copy . "Mod1+w")
+                     (clipboard-paste . "Control+y")))))

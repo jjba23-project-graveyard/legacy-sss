@@ -23,6 +23,7 @@
   #:use-module (ice-9 string-fun)
   #:use-module (ice-9 iconv)
   #:use-module (ice-9 threads)
+  #:use-module (gnu services configuration)
   )
 
 
@@ -44,6 +45,24 @@
            (display (format #f template (car x) (cdr x))))     
          pairs))))
   (export mk-kv-conf-lines))
+
+(begin
+  (define* (mk-rec-kv-conf-lines pairs
+                                 #:key
+                                 (template "~a=~a\n"))
+    (with-output-to-string
+      (lambda ()
+        (for-each
+         (lambda(x)
+           (cond
+            ((alist? (cdr x))
+             (display (string-append "\n[" (symbol->string (car x)) "]\n"))
+             (display (mk-rec-kv-conf-lines (cdr x))))
+            (else (display (format #f template (car x) (cdr x)))))
+           )
+         
+         pairs))))
+  (export mk-rec-kv-conf-lines))
 
 
 (define-public (nix-profile-install x)

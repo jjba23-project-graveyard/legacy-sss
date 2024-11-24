@@ -17,6 +17,7 @@
 
 (load "../../lib/proc.scm")
 (load "./sway.scm")
+(load "./foot.scm")
 
 (use-modules (gnu home)
              (gnu services)
@@ -34,7 +35,8 @@
              (gnu home services fontutils))
 
 (use-modules (sss-joe-sway)
-             (sss-proc))
+             (sss-proc)
+             (sss-joe-foot))
 
 (use-modules (json))
 (use-modules (sxml simple))
@@ -353,12 +355,15 @@
               ,(plain-file "portals.conf"
                            (string-append "[preferred]\n"
                                           (mk-kv-conf-lines sss-portals-config))))
-             (".config/foot/foot.ini" ,(local-file "foot/foot.ini"))
+             (".config/foot/foot.ini"
+              ,(plain-file "foot.ini"
+                           (mk-rec-kv-conf-lines sss-joe-foot-config)))
              (".config/mako/config"
               ,(plain-file "config"
                            (mk-kv-conf-lines sss-mako-config)))
              (,(emacs-conf-file "init.el") ,(local-file "emacs/init.el"))
 	     (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
+
 
 (display "\n>>= configuring home environment...\n")
 (home-environment
