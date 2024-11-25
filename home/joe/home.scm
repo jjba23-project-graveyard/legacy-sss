@@ -16,10 +16,9 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (load "../../lib/proc.scm")
-(load "./sway.scm")
-(load "./foot.scm")
-(load "./fuzzel.scm")
-(load "./git.scm")
+(load "./sway.scm") (load "./foot.scm")
+(load "./fuzzel.scm") (load "./git.scm")
+(load "./waybar.scm")
 
 (use-modules (gnu home)
              (gnu services)
@@ -40,7 +39,8 @@
              (sss-proc)
              (sss-joe-foot)
              (sss-fuzzel)
-             (sss-git))
+             (sss-git)
+             (sss-waybar))
 
 (use-modules (json))
 (use-modules (sxml simple))
@@ -180,202 +180,65 @@
                            (family "Intel One Mono"))))))
 
 
-;; Waybar power menu
-(define sss-joe-waybar-power-menu
-  '(*TOP*
-    (*PI* xml "version=\"1.0\" encoding=\"UTF-8\"")
-    (interface
-     (object (@(class "GtkMenu") (id "menu"))
-             (child (object (@(class "GtkMenuItem") (id "suspend"))
-                            (property (@(name "label")) "Suspend")))
-             (child (object (@(class "GtkMenuItem") (id "hibernate"))
-                            (property (@(name "label")) "Hibernate")))
-             (child (object (@(class "GtkSeparatorMenuItem") (id "delimiter1"))))
-             (child (object (@(class "GtkMenuItem") (id "shutdown"))
-                            (property (@(name "label")) "Shutdown")))
-             (child (object (@(class "GtkMenuItem") (id "reboot"))
-                            (property (@(name "label")) "Reboot")))
-             ))))
-
-;; My WayBar configurations, defined in Guile Scheme
-;;
-;; TODO list additional things and docs separately
-;; for now here
-;; 
-;; (mpd) - (format .  "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} -
-;; {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})
-;; ⸨{songPosition}|{queueLength}⸩ {volume}% ")
-;; 
-;; (clock) - (format-alt . "{:%Y-%m-%d}")
-;;
-(define sss-joe-waybar-conf
-  `((position . bottom)
-    (height . 40)
-    (spacing . 4)
-    (modules-left . #(clock sway/workspaces sway/mode
-                            sway/scratchpad custom/media sway/window))
-    (modules-center . ())
-    (modules-right . #(mpd idle_inhibitor pulseaudio
-                           network power-profiles-daemon cpu
-                           memory temperature backlight
-                           keyboard-state sway/language battery
-                           battery#bat2 tray custom/power))
-    (sway/workspaces . ((disable-scroll . #t)
-                        (all-outputs . #t)
-                        (warp-on-scroll . #f)
-                        (format . "{icon}")
-                        (format-icons . (("1" . "I") ("2" . "II") ("3" . "III")
-                                         ("4" . "IV") ("5" . "V") ("6" . "VI")
-                                         ("7" . "VII") ("8" . "VIII") ("9" . "IX")
-                                         ("10" . "X") ("default" . "")
-                                         ;; ("urgent" . "") ("focused" . "")
-                                         ))))
-    (keyboard-state . ((numlock . #t)
-                       (capslock . #t)
-                       (format . "{name} {icon} ")
-                       (format-icons . ((locked . "")
-                                        (unlocked . "")))))
-    (sway/mode . ((format . "<span style=\"italic\">{}</span>")))
-    (sway/scratchpad . ((format . "{icon} {count}")
-                        (show-empty . #f)
-                        (format-icons . #("" ""))
-                        (tooltip . #t)
-                        (tooltip-format . "{app}: {title}")))
-    (mpd . ((format . ,(string-append
-                        "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}"
-                        "{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) "
-                        "⸨{songPosition}|{queueLength}⸩ "))
-            (format-disconnected . "Disconnected ")
-            (format-stopped . "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ")
-            (unknown-tag . "N/A")
-            (interval . 5)
-            (consume-icons . ((on . " ")))
-            (random-icons . ((off . "<span color=\"#f53c3c\"></span> ")
-                             (on . " ")))
-            (repeat-icons . ((on . " ")))
-            (single-icons . ((on . "1 ")))
-            (state-icons . ((paused . "")
-                            (playing . "")))
-            (tooltip-format . "MPD (connected)")
-            (tooltip-format-disconnected . "MPD (disconnected)")))
-    (idle_inhibitor . ((format . "{icon}")
-                       (format-icons . ((activated . "")
-                                        (deactivated . "")))))
-    (tray . ((spacing . 10)))    
-    (clock . ((format . "{:%H:%M %z - SSS/GNU - %a, %d %B %Y}")
-              (tooltip-format . "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>")))
-    (cpu . ((format . "{usage}% ")
-            (tooltip . #f)))
-    (memory . ((format . "{}% ")))
-    (temperature . ((critical-threshold . 80)
-                    (format . "{temperatureC}°C {icon}")
-                    (format-icons . #(""))))
-    (backlight . ((format . "{percent}% {icon}")
-                  (format-icons . #("" "" "" "" "" "" "" "" ""))))
-    (battery . ((states . ((warning . 30)
-                           (critical . 15)))
-                (format . "{capacity}% {icon}")
-                (format-full . "{capacity}% {icon}")
-                (format-charging . "{capacity}% ")
-                (format-plugged . "{capacity}% ")
-                (format-alt . "{time} {icon}")
-                (format-icons . #("" "" "" "" ""))))
-    (battery#bat2 . ((bat . "BAT2")))
-    (power-profiles-daemon . ((format . "{icon}")
-                              (tooltip-format . "Power profile: {profile}\nDriver: {driver}")
-                              (tooltip . #t)
-                              (format-icons . ((default . "")
-                                               (performance . "")
-                                               (balanced . "")
-                                               (power-saver . "")))))
-    (network . ((format-wifi . "{essid} ({signalStrength}%) ")
-                (format-ethernet . "{ipaddr}/{cidr} ")
-                (tooltip-format . "{ifname} via {gwaddr} ")
-                (format-linked . "{ifname} (No IP) ")
-                (format-disconnected . "Disconnected ⚠")
-                (format-alt . "{ifname}: {ipaddr}/{cidr}")))
-    (pulseaudio . ((format . "{volume}% {icon} {format_source}")
-                   (format-bluetooth . "{volume}% {icon} {format_source}")
-                   (format-bluetooth-muted . " {icon} {format_source}")
-                   (format-muted . " {format_source}")
-                   (format-source . "{volume}% ")
-                   (format-source-muted . "")
-                   (format-icons . ((headphone . "")
-                                    (hands-free . "")
-                                    (headset . "")
-                                    (phone . "")
-                                    (portable . "")
-                                    (car . "")
-                                    (default . #("" "" ""))
-                                    ))
-                   (on-click . "pavucontrol")))
-    (custom/power . ((format . "⏻ ")
-                     (tooltip . #f)
-                     (menu . "on-click")
-                     (menu-file . "$HOME/.config/waybar/power_menu.xml")
-                     (menu-actions . ((shutdown . "sudo halt")
-                                      (reboot . "sudo reboot")
-                                      (suspend . "sudo loginctl suspend")
-                                      (hibernate . "sudo loginctl hibernate")))))
-    ))
-
 
 (define sss-home-files-service
-  (service home-files-service-type
-	   `((".xmodmap"
-              ,(plain-file "xmodmap"
-                           (mk-kv-conf-lines sss-xmodmap-config
-                                             #:template "~a = ~a\n")))
-             (".config/gtk-3.0/settings.ini"
-              ,(plain-file "settings.ini"
-                           (string-append "[Settings]\n"
-                                          (mk-kv-conf-lines sss-gtk3-config))))
-             (".config/guix/channels.scm" ,(local-file "channels.scm"))             
-             (".gitconfig"
-              ,(plain-file "gitconfig.ini"
-                           (mk-rec-kv-conf-lines sss-gitconfig
-                                                 #:template "~a = ~a\n")))
-             (".gitconfig-personal"
-              ,(plain-file "gitconfig-personal.ini"
-                           (mk-rec-kv-conf-lines sss-gitconfig-personal
-                                                 #:template "~a = ~a\n")))
-             (".gitconfig-work"
-              ,(plain-file "gitconfig-work.ini"
-                           (mk-rec-kv-conf-lines sss-gitconfig-work
-                                                 #:template "~a = ~a\n")))
-             (".gitignore-global"
-              ,(plain-file "gitignore-global"
-                           (mk-lines sss-gitignore-global)))
-             (".gitmessage-personal"
-              ,(plain-file "gitmessage-personal" sss-gitmessage-personal))
-             (".gitmessage-work"
-              ,(plain-file "gitmessage-work" sss-gitmessage-work))
-             (".config/nix/nix.conf" ,(local-file "nix/nix.conf"))
-             (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
-             (".config/waybar/config.jsonc"
-              ,(plain-file "config.jsonc" (scm->json-string sss-joe-waybar-conf #:pretty #t)))
-             (".config/waybar/style.css" ,(local-file "waybar/style.css"))
-             (".config/waybar/power_menu.xml"
-              ,(plain-file "power_menu.xml"
-                           (with-output-to-string
-                             (lambda() (sxml->xml sss-joe-waybar-power-menu))
-                             )
-                           ))
-             (".config/fuzzel/fuzzel.ini"
-              ,(plain-file "fuzzel.ini"
-                           (mk-rec-kv-conf-lines sss-fuzzel-config)))
-             (".config/xdg-desktop-portal/portals.conf"
-              ,(plain-file "portals.conf"
-                           (string-append "[preferred]\n"
-                                          (mk-kv-conf-lines sss-portals-config))))
-             (".config/foot/foot.ini"
-              ,(plain-file "foot.ini"
-                           (mk-rec-kv-conf-lines sss-joe-foot-config)))
-             (".config/mako/config"
-              ,(plain-file "config"
-                           (mk-kv-conf-lines sss-mako-config)))
-             (,(emacs-conf-file "init.el") ,(local-file "emacs/init.el"))
-	     (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
+  (service
+   home-files-service-type
+   `((".xmodmap"
+      ,(plain-file "xmodmap"
+                   (mk-kv-conf-lines sss-xmodmap-config
+                                     #:template "~a = ~a\n")))
+     (".config/gtk-3.0/settings.ini"
+      ,(plain-file "settings.ini"
+                   (string-append "[Settings]\n"
+                                  (mk-kv-conf-lines sss-gtk3-config))))
+     (".config/guix/channels.scm" ,(local-file "channels.scm"))             
+     (".gitconfig"
+      ,(plain-file "gitconfig.ini"
+                   (mk-rec-kv-conf-lines sss-gitconfig
+                                         #:template "~a = ~a\n")))
+     (".gitconfig-personal"
+      ,(plain-file "gitconfig-personal.ini"
+                   (mk-rec-kv-conf-lines sss-gitconfig-personal
+                                         #:template "~a = ~a\n")))
+     (".gitconfig-work"
+      ,(plain-file "gitconfig-work.ini"
+                   (mk-rec-kv-conf-lines sss-gitconfig-work
+                                         #:template "~a = ~a\n")))
+     (".gitignore-global"
+      ,(plain-file "gitignore-global"
+                   (mk-lines sss-gitignore-global)))
+     (".gitmessage-personal"
+      ,(plain-file "gitmessage-personal" sss-gitmessage-personal))
+     (".gitmessage-work"
+      ,(plain-file "gitmessage-work" sss-gitmessage-work))
+     (".config/nix/nix.conf" ,(local-file "nix/nix.conf"))
+     (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
+     (".config/waybar/config.jsonc"
+      ,(plain-file "config.jsonc"
+                   (scm->json-string sss-waybar-conf #:pretty #t)))
+     (".config/waybar/style.css" ,(local-file "waybar/style.css"))
+     (".config/waybar/power_menu.xml"
+      ,(plain-file "power_menu.xml"
+                   (with-output-to-string
+                     (lambda() (sxml->xml sss-waybar-power-menu))
+                     )
+                   ))
+     (".config/fuzzel/fuzzel.ini"
+      ,(plain-file "fuzzel.ini"
+                   (mk-rec-kv-conf-lines sss-fuzzel-config)))
+     (".config/xdg-desktop-portal/portals.conf"
+      ,(plain-file "portals.conf"
+                   (string-append "[preferred]\n"
+                                  (mk-kv-conf-lines sss-portals-config))))
+     (".config/foot/foot.ini"
+      ,(plain-file "foot.ini"
+                   (mk-rec-kv-conf-lines sss-joe-foot-config)))
+     (".config/mako/config"
+      ,(plain-file "config"
+                   (mk-kv-conf-lines sss-mako-config)))
+     (,(emacs-conf-file "init.el") ,(local-file "emacs/init.el"))
+     (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
 
 
 (display "\n>>= configuring home environment...\n")
