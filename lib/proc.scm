@@ -23,6 +23,9 @@
   #:use-module (ice-9 string-fun)
   #:use-module (ice-9 iconv)
   #:use-module (ice-9 threads)
+  #:use-module (ice-9 rdelim)
+  #:use-module ((ice-9 binary-ports) #:prefix i9:)
+  #:use-module ((ice-9 textual-ports) #:prefix i9:)
   #:use-module (gnu services configuration)
   )
 
@@ -80,3 +83,31 @@
   (syscall (format #f "nix -L profile install --impure nixpkgs#~a" x)))
 
 
+(define-public (read-text path)
+  (let* ((file (open-file path "r"))
+         (text (i9:get-string-all file)))
+    (close-port file)
+    text))
+
+(define-public (read-line path)
+  (let* ((file (open-file path "r"))
+         (line (i-read-line file)))
+    (close-port file)
+    line))
+
+(define-public (read-lines path)
+  (let* ((file (open-file path "r"))
+         (lines (i-read-lines file)))
+    (close-port file)
+    lines))
+
+
+(define (i-read-line port)
+  (i9:get-line port))
+
+(define (i-read-lines port)
+  (letrec ((loop (lambda (l ls)
+                   (if (eof-object? l)
+                       ls
+                       (loop (i9:get-line port) (cons l ls))))))
+    (reverse (loop (i9:get-line port) '()))))

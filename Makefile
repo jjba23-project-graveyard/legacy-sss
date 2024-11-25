@@ -62,6 +62,8 @@ full-rebuild:
 	$(call sss-log-complete,"full-rebuild")
 nix-profile-upgrade:
 	NIXPKGS_ALLOW_UNFREE=1 nix profile upgrade '.*' --impure
+	echo -e "$(shell date +%s)" | cat - resources/sss-state/nixpkgs-updated-at | tee resources/sss-state/nixpkgs-updated-at
+
 
 # Aliases section
 jr:

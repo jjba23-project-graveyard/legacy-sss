@@ -241,6 +241,8 @@
      (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
 
 
+
+
 (display "\n>>= configuring home environment...\n")
 (home-environment
  (packages
@@ -261,6 +263,10 @@
 
 
 ;; TODO improve Nix package management
+
+;; (define nixpkgs-updated-at
+;;   (read-line "resources/sss-state/nixpkgs-updated-at"))
+
 
 ;; (display "\n>>= installing nix packages\n")
 ;; (syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")
