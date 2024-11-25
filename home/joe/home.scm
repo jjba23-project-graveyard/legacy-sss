@@ -19,6 +19,7 @@
 (load "./sway.scm")
 (load "./foot.scm")
 (load "./fuzzel.scm")
+(load "./git.scm")
 
 (use-modules (gnu home)
              (gnu services)
@@ -38,7 +39,8 @@
 (use-modules (sss-joe-sway)
              (sss-proc)
              (sss-joe-foot)
-             (sss-fuzzel))
+             (sss-fuzzel)
+             (sss-git))
 
 (use-modules (json))
 (use-modules (sxml simple))
@@ -177,10 +179,6 @@
                           (prefer
                            (family "Intel One Mono"))))))
 
-;; I enjoy having a default commit message, and I overwrite it
-;; sometimes when the commit is meaningful, otherwise I use it
-(define sss-joe-gitmessage-personal "🥷🏼")
-(define sss-joe-gitmessage-work "🥷🏼")
 
 ;; Waybar power menu
 (define sss-joe-waybar-power-menu
@@ -336,11 +334,13 @@
              (".gitconfig" ,(local-file "git/gitconfig.ini"))
              (".gitconfig-personal" ,(local-file "git/gitconfig-personal.ini"))
              (".gitconfig-work" ,(local-file "git/gitconfig-work.ini"))
-             (".gitignore-global" ,(local-file "git/gitignore-global"))
+             (".gitignore-global"
+              ,(plain-file "gitignore-global"
+                           (mk-lines sss-gitignore-global)))
              (".gitmessage-personal"
-              ,(plain-file "gitmessage-personal" sss-joe-gitmessage-personal))
+              ,(plain-file "gitmessage-personal" sss-gitmessage-personal))
              (".gitmessage-work"
-              ,(plain-file "gitmessage-work" sss-joe-gitmessage-work))
+              ,(plain-file "gitmessage-work" sss-gitmessage-work))
              (".config/nix/nix.conf" ,(local-file "nix/nix.conf"))
              (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
              (".config/waybar/config.jsonc"

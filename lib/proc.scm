@@ -34,6 +34,14 @@
     (display process-output)
     process-output))
 
+(define-public (mk-lines items)
+  (with-output-to-string
+    (lambda ()
+      (for-each
+       (lambda(x)       
+         (display (format #f "~a\n" x)))     
+       items))))
+
 (begin
   (define* (mk-kv-conf-lines pairs
                              #:key
