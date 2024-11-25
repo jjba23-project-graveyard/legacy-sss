@@ -262,32 +262,3 @@
    )))
 
 
-;; TODO improve Nix package management
-
-;; (define nixpkgs-updated-at
-;;   (read-line "resources/sss-state/nixpkgs-updated-at"))
-
-
-;; (display "\n>>= installing nix packages\n")
-;; (syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")
-;; (for-each
-;;  (lambda(x) (nix-profile-install x))
-;;  '("vivaldi"
-;;    "prismlauncher"
-;;    "yaml-language-server"
-;;    "jdt-language-server"
-;;    "nil"
-;;    "black"
-;;    "pyright"
-;;    "marksman"
-;;    "_1password-gui"
-;;    "_1password-cli"
-;;    "stack"
-;;    "sbt"
-;;    "scala_2_13"
-;;    "firefox"
-;;    "thunderbird"
-;;    "postman"
-;;    "vscode-langservers-extracted"
-;;    "nwg-look"
-;;    ))

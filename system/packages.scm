@@ -283,6 +283,7 @@ mind.")
    mpv
    mpv-mpris
    unixodbc
+   tree
    fyi
 
    (specification->package "darkhttpd")

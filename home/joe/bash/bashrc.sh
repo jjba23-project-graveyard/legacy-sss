@@ -46,13 +46,8 @@ export HISTFILESIZE=200000
 # set history to append
 shopt -s histappend
 
-# Move to the parent folder.
 alias ..='cd ..;pwd'
-
-# Move up two parent folders.
 alias ...='cd ../..;pwd'
-
-# Move up three parent folders.
 alias ....='cd ../../..;pwd'
 
 # Press c to clear the terminal screen.
@@ -74,23 +69,8 @@ alias fr="cd ~/Ontwikkeling/Persoonlijk/sss && make fr"
 alias sr="cd ~/Ontwikkeling/Persoonlijk/sss && make sr"
 alias jr="cd ~/Ontwikkeling/Persoonlijk/sss && make jr"
 
-# View the calender by typing the first three letters of the month.
-
-alias jan='cal -m 01'
-alias feb='cal -m 02'
-alias mar='cal -m 03'
-alias apr='cal -m 04'
-alias may='cal -m 05'
-alias jun='cal -m 06'
-alias jul='cal -m 07'
-alias aug='cal -m 08'
-alias sep='cal -m 09'
-alias oct='cal -m 10'
-alias nov='cal -m 11'
-alias dec='cal -m 12'
-
-alias scala-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/flakes/scala-dev/"
-alias haskell-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/flakes/haskell-dev/"
+alias scala-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/scala-dev/"
+alias haskell-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/haskell-dev/"
 
 # Sway screen configurations and aliases
 function work_macbook_output() {
