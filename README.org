@@ -168,6 +168,10 @@ The installed software will be available, for example at: ~/home/joe/.nix-profil
 
 **** TODO create a user factory which is by default configured to joe's settings but is easily tweaked and with no duplication it creates new users.
 
+**** TODO create "bridge" between Scheme world and others, like Bash, Emacs and if needed Nix
+
+**** TODO dynamic theming based on Guix user config
+
 
 *** Work done
 
