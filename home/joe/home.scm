@@ -331,9 +331,18 @@
                            (string-append "[Settings]\n"
                                           (mk-kv-conf-lines sss-gtk3-config))))
              (".config/guix/channels.scm" ,(local-file "channels.scm"))             
-             (".gitconfig" ,(local-file "git/gitconfig.ini"))
-             (".gitconfig-personal" ,(local-file "git/gitconfig-personal.ini"))
-             (".gitconfig-work" ,(local-file "git/gitconfig-work.ini"))
+             (".gitconfig"
+              ,(plain-file "gitconfig.ini"
+                           (mk-rec-kv-conf-lines sss-gitconfig
+                                                 #:template "~a = ~a\n")))
+             (".gitconfig-personal"
+              ,(plain-file "gitconfig-personal.ini"
+                           (mk-rec-kv-conf-lines sss-gitconfig-personal
+                                                 #:template "~a = ~a\n")))
+             (".gitconfig-work"
+              ,(plain-file "gitconfig-work.ini"
+                           (mk-rec-kv-conf-lines sss-gitconfig-work
+                                                 #:template "~a = ~a\n")))
              (".gitignore-global"
               ,(plain-file "gitignore-global"
                            (mk-lines sss-gitignore-global)))

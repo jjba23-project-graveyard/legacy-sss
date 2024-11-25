@@ -64,8 +64,11 @@
          (lambda(x)
            (cond
             ((alist? (cdr x))
-             (display (string-append "\n[" (symbol->string (car x)) "]\n"))
-             (display (mk-rec-kv-conf-lines (cdr x))))
+             (cond
+              ((string? (car x)) (display (string-append "\n[" (car x) "]\n")))
+              (else (display (string-append "\n[" (symbol->string (car x)) "]\n")))
+              )
+             (display (mk-rec-kv-conf-lines (cdr x) #:template template)))
             (else (display (format #f template (car x) (cdr x)))))
            )
          

@@ -32,5 +32,25 @@
     "target"
     "metals.sbt"
     ".direnv"
-    "dist-newstyle"
+    "dist-newstyle"))
+
+(define-public sss-gitconfig-personal
+  `((user . ((name . "Josep Bigorra")
+             (email . "jjbigorra@gmail.com")
+             (signingkey . "24F46738CE114AF6")))
+    (commit . ((template . "~/.gitmessage-personal")))))
+
+(define-public sss-gitconfig-work
+  `((user . ((name . "Josep Bigorra")
+             (email . "josepbigorraalgaba@vandebron.nl")
+             (signingkey . "3B6D20502E380697")))
+    (commit . ((template . "~/.gitmessage-work")))))
+
+(define-public sss-gitconfig
+  `((core . ((editor . "emacsclient")
+             (excludesfile . "~/.gitignore-global")))
+    (commit . ((gpgsign . "true")))
+    (pull . ((rebase . "false")))
+    ("includeIf \"gitdir:~/Ontwikkeling/Werk/\"" . (("  path" . "~/.gitconfig-work")))
+    ("includeIf \"gitdir:~/Ontwikkeling/Persoonlijk/\"" . (("  path" . "~/.gitconfig-personal")))
     ))
