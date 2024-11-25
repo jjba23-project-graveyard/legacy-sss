@@ -172,6 +172,8 @@ The installed software will be available, for example at: ~/home/joe/.nix-profil
 
 **** TODO dynamic theming based on Guix user config
 
+**** TODO generate manual, documentation and cheatsheet for SSS easily
+
 
 *** Work done
 

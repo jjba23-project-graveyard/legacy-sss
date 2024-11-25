@@ -198,6 +198,7 @@ mind.")
    mpd
    mpd-mpc
    ncmpcpp
+   cava
    ardour))
 
 (define sss-other-system-packages
