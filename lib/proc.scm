@@ -78,9 +78,12 @@
          pairs))))
   (export mk-rec-kv-conf-lines))
 
+(define-public spaced-equal-conf-pair "~a = ~a\n")
+(define-public equal-conf-pair "~a=~a\n")
 
 (define-public (nix-profile-install x)
   (syscall (format #f "nix -L profile install --impure nixpkgs#~a" x)))
+
 
 
 (define-public (read-text path)
@@ -111,3 +114,4 @@
                        ls
                        (loop (i9:get-line port) (cons l ls))))))
     (reverse (loop (i9:get-line port) '()))))
+

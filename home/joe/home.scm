@@ -187,7 +187,7 @@
    `((".xmodmap"
       ,(plain-file "xmodmap"
                    (mk-kv-conf-lines sss-xmodmap-config
-                                     #:template "~a = ~a\n")))
+                                     #:template spaced-equal-conf-pair)))
      (".config/gtk-3.0/settings.ini"
       ,(plain-file "settings.ini"
                    (string-append "[Settings]\n"
@@ -196,15 +196,15 @@
      (".gitconfig"
       ,(plain-file "gitconfig.ini"
                    (mk-rec-kv-conf-lines sss-gitconfig
-                                         #:template "~a = ~a\n")))
+                                         #:template spaced-equal-conf-pair)))
      (".gitconfig-personal"
       ,(plain-file "gitconfig-personal.ini"
                    (mk-rec-kv-conf-lines sss-gitconfig-personal
-                                         #:template "~a = ~a\n")))
+                                         #:template spaced-equal-conf-pair)))
      (".gitconfig-work"
       ,(plain-file "gitconfig-work.ini"
                    (mk-rec-kv-conf-lines sss-gitconfig-work
-                                         #:template "~a = ~a\n")))
+                                         #:template spaced-equal-conf-pair)))
      (".gitignore-global"
       ,(plain-file "gitignore-global"
                    (mk-lines sss-gitignore-global)))
@@ -212,12 +212,16 @@
       ,(plain-file "gitmessage-personal" sss-gitmessage-personal))
      (".gitmessage-work"
       ,(plain-file "gitmessage-work" sss-gitmessage-work))
-     (".config/nix/nix.conf" ,(local-file "nix/nix.conf"))
+     (".config/nix/nix.conf"
+      ,(plain-file "nix.conf"
+                   (mk-rec-kv-conf-lines
+                    `((experimental-features . "nix-command flakes"))
+                    #:template spaced-equal-conf-pair)))
      (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
      (".config/waybar/config.jsonc"
       ,(plain-file "config.jsonc"
                    (scm->json-string sss-waybar-conf #:pretty #t)))
-     (".config/waybar/style.css" ,(local-file "waybar/style.css"))
+     (".config/waybar/style.css" ,(local-file "../../resources/css/waybar/style.css"))
      (".config/waybar/power_menu.xml"
       ,(plain-file "power_menu.xml"
                    (with-output-to-string
