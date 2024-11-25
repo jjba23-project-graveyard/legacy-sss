@@ -46,6 +46,19 @@
        items))))
 
 (begin
+  (define* (mk-css-conf-lines pairs)
+    (with-output-to-string
+      (lambda ()
+        (for-each
+         (lambda(x)
+           (display (format #f "~a {\n" (car x)))
+           (display (mk-kv-conf-lines (cdr x) #:template "  ~a: ~a;\n"))
+           (display "}\n\n")
+           )     
+         pairs))))
+  (export mk-css-conf-lines))
+
+(begin
   (define* (mk-kv-conf-lines pairs
                              #:key
                              (template "~a=~a\n"))
@@ -56,6 +69,7 @@
            (display (format #f template (car x) (cdr x))))     
          pairs))))
   (export mk-kv-conf-lines))
+
 
 (begin
   (define* (mk-rec-kv-conf-lines pairs

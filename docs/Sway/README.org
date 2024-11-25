@@ -1,5 +1,9 @@
 #+title: Sway
 
+** Sway
+
+
+
 ** Screen configurations in Sway
 
 #+begin_src  sh

@@ -221,7 +221,9 @@
      (".config/waybar/config.jsonc"
       ,(plain-file "config.jsonc"
                    (scm->json-string sss-waybar-conf #:pretty #t)))
-     (".config/waybar/style.css" ,(local-file "../../resources/css/waybar/style.css"))
+     (".config/waybar/style.css"
+      ,(plain-file "waybar.css"
+                   (mk-css-conf-lines sss-waybar-css)))
      (".config/waybar/power_menu.xml"
       ,(plain-file "power_menu.xml"
                    (with-output-to-string

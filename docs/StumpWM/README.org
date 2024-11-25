@@ -1,5 +1,14 @@
+#+title: StumpWM
 
-* Fonts
+** See this repo's stumpwm-2024-11-18
+
+I have now for a while moved on from StumpWM to Sway and to a Wayland setup, so I keep this branch for archival. You can learn there how to use StumpWM on Guix.
+
+** After updating StumpWM
+
+You might face some issues with loading Quicklisp and (external) libraries upon having updated StumpWM. You may need to run this manually for the first time and debug.
+
+** Fonts
 
 This gave me quite the headache when I tried to set this up: in order to use TTF fonts (note: it is not possible to use OTF fonts, see below), we need to use the ttf-fonts module which relies on the clx-truetype library. 
 
