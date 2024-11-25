@@ -18,6 +18,7 @@
 (load "../../lib/proc.scm")
 (load "./sway.scm")
 (load "./foot.scm")
+(load "./fuzzel.scm")
 
 (use-modules (gnu home)
              (gnu services)
@@ -36,7 +37,8 @@
 
 (use-modules (sss-joe-sway)
              (sss-proc)
-             (sss-joe-foot))
+             (sss-joe-foot)
+             (sss-fuzzel))
 
 (use-modules (json))
 (use-modules (sxml simple))
@@ -350,7 +352,9 @@
                              (lambda() (sxml->xml sss-joe-waybar-power-menu))
                              )
                            ))
-             (".config/fuzzel/fuzzel.ini" ,(local-file "fuzzel/fuzzel.ini"))
+             (".config/fuzzel/fuzzel.ini"
+              ,(plain-file "fuzzel.ini"
+                           (mk-rec-kv-conf-lines sss-fuzzel-config)))
              (".config/xdg-desktop-portal/portals.conf"
               ,(plain-file "portals.conf"
                            (string-append "[preferred]\n"
