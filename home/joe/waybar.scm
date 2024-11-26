@@ -50,8 +50,8 @@
 ;;
 (define-public sss-waybar-conf
   `((position . bottom)
-    (height . 40)
-    (spacing . 4)
+    (height . 42)
+    (spacing . 16)
     (modules-left . #(clock sway/workspaces sway/mode
                             sway/scratchpad custom/media sway/window))
     (modules-center . ())
@@ -103,7 +103,8 @@
                                         (deactivated . "")))))
     (tray . ((spacing . 10)))    
     (clock . ((format . "{:%H:%M %z - SSS/GNU - %a, %d %B %Y}")
-              (tooltip-format . "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>")))
+              (tooltip-format . "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>")
+              (interval . 60)))
     (cpu . ((format . "{usage}% ")
             (tooltip . #f)))
     (memory . ((format . "{}% ")))
