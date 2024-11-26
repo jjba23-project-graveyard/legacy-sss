@@ -25,7 +25,7 @@ Knowledge you may find in the repo includes:
 - Foot terminal emulator (Guile Scheme)
 - Waybar configuration and style (Guile Scheme)
 - Mako configuration and style (Guile Scheme)
-- dual Git configuration setup (work/personal)
+- multi-user Git configuration setup (work/personal)
 
 Note: Screenshot below might be outdated and no longer representative of the current, everchanging state of these "dotfiles".
 #+begin_html
