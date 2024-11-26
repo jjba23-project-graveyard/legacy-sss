@@ -173,6 +173,7 @@
     ("#workspaces button" . ((font-size . "11pt")))
     ("#clock.date, #clock.time" . ((font-size . "9pt")))
     ("window#waybar" . ((background . "rgba(14, 14, 14, 0.75)")
+                        (font-family .  "FontAwesome, Intel One Mono")
                         (border . "2px solid #0a4425")))
     (tooltip . ((background . "#1e1e2e")
                 (border-radius . 0)))
@@ -199,4 +200,6 @@
     ("#cpu" . ((font-size . "9pt")))
     ("#memory" . ((font-size . "9pt")))
     ))
+
+
 
