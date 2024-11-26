@@ -22,11 +22,12 @@
 (load "./ssh.scm") (load "./mako.scm")
 (load "./byggsteg.scm") (load "./fontconfig.scm")
 (load "./bash.scm") (load "./gtk.scm")
+(load "./openpgp.scm")
+(load "./portals.scm") (load "./xmodmap.scm")
 
 (use-modules (gnu home)
              (gnu services)
-             (guix gexp)
-             (gnu packages gnupg)
+             (guix gexp)             
              (gnu packages admin)
              (gnu home services)
              (gnu home services shells)             
@@ -40,30 +41,12 @@
              (sss-git) (sss-vars)
              (sss-mako) (sss-byggsteg)
              (sss-fontconfig) (sss-bash)
-             (sss-gtk)
+             (sss-gtk) (sss-portals)
+             (sss-xmodmap) (sss-openpgp)
              (sss-waybar) (sss-ssh))
 
 (use-modules (json))
 (use-modules (sxml simple))
-
-(define sss-opengpg-conf
-  (service home-gpg-agent-service-type
-           (home-gpg-agent-configuration
-            (pinentry-program
-             (file-append pinentry-emacs "/bin/pinentry-emacs"))
-            (ssh-support? #t))))
-
-(define sss-xmodmap-config
-  '(("remove Lock" . "Caps_Lock")
-    ("keysym Caps_Lock" . "Control_L")
-    ("add Control" . "Control_L")
-    ))
-
-(define sss-portals-config
-  '(("default" . "gtk")
-    ("org.freedesktop.impl.portal.Screenshot" . "wlr")
-    ("org.freedesktop.impl.portal.ScreenCast" . "wlr")))
-
 
 (define sss-home-files-service
   (service
@@ -112,8 +95,7 @@
       ,(plain-file "power_menu.xml"
                    (with-output-to-string
                      (lambda() (sxml->xml sss-waybar-power-menu))
-                     )
-                   ))
+                     )))
      (".config/fuzzel/fuzzel.ini"
       ,(plain-file "fuzzel.ini"
                    (mk-rec-kv-conf-lines sss-fuzzel-config)))
@@ -141,7 +123,7 @@
    sss-ssh-service
    sss-home-vars-service
    sss-bash-service
-   sss-opengpg-conf
+   sss-openpgp-conf
    (service home-dbus-service-type)
    (service home-pipewire-service-type)
    (service sss-byggsteg-service-type)
