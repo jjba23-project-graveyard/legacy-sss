@@ -171,21 +171,21 @@
 
     ;; class                 border  backgr. text    indicator child_border
     ,(format #f "client.focused ~a ~a ~a ~a ~a"
-             (sss-get-color 'bg-green-medium)
-             (sss-get-color 'bg-green-medium)
-             (sss-get-color 'fg-main)
-             (sss-get-color 'bg-green-medium)
-             (sss-get-color 'bg-green-medium))
+             (sss-get-color 'primary)
+             (sss-get-color 'primary)
+             (sss-get-color 'text)
+             (sss-get-color 'primary)
+             (sss-get-color 'primary))
     ,(format #f "client.focused_inactive ~a ~a ~a ~a ~a"
-             (sss-get-color 'bg-green-medium)
-             (sss-get-color 'bg-green-medium)
-             (sss-get-color 'fg-main)
-             (sss-get-color 'bg-green-medium)
-             (sss-get-color 'bg-green-medium))
+             (sss-get-color 'primary)
+             (sss-get-color 'primary)
+             (sss-get-color 'text)
+             (sss-get-color 'primary)
+             (sss-get-color 'primary))
     "client.unfocused        #333333 #222222 #808f80 #222222   #222222"
     "client.urgent           #b02930 #b02930 #cfdfd5 #900000   #900000"
     "client.placeholder      #000000 #0c0c0c #cfdfd5 #000000   #0c0c0c"
-    ,(format #f "client.background ~a" (sss-get-color 'fg-main))
+    ,(format #f "client.background ~a" (sss-get-color 'text))
     ))
 
 (define-public sss-sway-service-type

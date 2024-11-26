@@ -87,6 +87,9 @@
     (bg-blue-subtle . "#1a3863")
     (bg-magenta-subtle . "#572853")
     (bg-cyan-subtle . "#113e57")
+;;; Named colors
+    (primary . "#00552f")
+    (text . "#cfdfd5")
     ))
 
 (define sss-palette-ef-cyprus
@@ -137,6 +140,9 @@
     (bg-blue-subtle . "#ccdfff")
     (bg-magenta-subtle . "#fad3ff")
     (bg-cyan-subtle . "#bfefff")
+    ;;; Named colors
+    (primary . "#b3d19d")
+    (text . "#242521")
     ))
 
 
