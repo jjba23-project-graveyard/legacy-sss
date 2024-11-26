@@ -170,8 +170,18 @@
     "gaps outer 8"
 
     ;; class                 border  backgr. text    indicator child_border
-    "client.focused          #00552f #00552f #ffffff #00552f   #00552f"
-    "client.focused_inactive #00552f #00552f #ffffff #00552f   #00552f"
+    ,(format #f "client.focused ~a ~a ~a ~a ~a"
+             (sss-get-color 'bg-green-medium)
+             (sss-get-color 'bg-green-medium)
+             (sss-get-color 'fg-main)
+             (sss-get-color 'bg-green-medium)
+             (sss-get-color 'bg-green-medium))
+    ,(format #f "client.focused_inactive ~a ~a ~a ~a ~a"
+             (sss-get-color 'bg-green-medium)
+             (sss-get-color 'bg-green-medium)
+             (sss-get-color 'fg-main)
+             (sss-get-color 'bg-green-medium)
+             (sss-get-color 'bg-green-medium))
     "client.unfocused        #333333 #222222 #808f80 #222222   #222222"
     "client.urgent           #b02930 #b02930 #cfdfd5 #900000   #900000"
     "client.placeholder      #000000 #0c0c0c #cfdfd5 #000000   #0c0c0c"
