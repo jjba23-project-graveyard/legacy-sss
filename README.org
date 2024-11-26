@@ -13,25 +13,28 @@ Let me help you achieve /GNUrvana/.
 
 If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
 
-Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, Sway, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
-
-This setup enhances customization to infinity and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
-
-🇳🇱 parts of the code and settings might be in the Dutch language ( ~nl_NL.UTF-8~ ).
+This custom GNU/Linux setup enhances customization to infinity and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
 
 *** What lies here?
 
 Knowledge you may find in the repo includes:
-- Emacs configurations with Emacs Lisp + Elpaca
-- GNU Guix system configurations with Guile Scheme
-- Sway WM configurations in Guile Scheme with GNU Home
-- foot terminal emulator
+- Advanced Emacs configurations with Emacs Lisp + Elpaca
+- GNU Guix system configurations (Guile Scheme)
+- Sway WM configurations (Guile Scheme)
+- Foot terminal emulator (Guile Scheme)
+- Waybar configuration and style (Guile Scheme)
+- Mako configuration and style (Guile Scheme)
+- dual Git configuration setup (work/personal)
 
 Note: Screenshot below might be outdated and no longer representative of the current, everchanging state of these "dotfiles".
 #+begin_html
 <img src="./resources/screenshots/2024-11-20T00:04:07,441002916+01:00.png"/>
 #+end_html
+
+Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, Sway, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
+
+🇳🇱 parts of the code and settings might be in the Dutch language ( ~nl_NL.UTF-8~ ).
 
 
 *** Introduction
