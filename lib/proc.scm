@@ -98,8 +98,6 @@
 (define-public (nix-profile-install x)
   (syscall (format #f "nix -L profile install --impure nixpkgs#~a" x)))
 
-
-
 (define-public (read-text path)
   (let* ((file (open-file path "r"))
          (text (i9:get-string-all file)))
@@ -128,4 +126,3 @@
                        ls
                        (loop (i9:get-line port) (cons l ls))))))
     (reverse (loop (i9:get-line port) '()))))
-
