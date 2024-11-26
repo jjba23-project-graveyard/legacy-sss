@@ -43,7 +43,9 @@ This is the set of files that powers my day-to-day computing experience, so do n
 
 #+begin_html
 <div>
+<img src="https://img.shields.io/badge/Guile-D4AA02?logo=gnu&logoColor=000&style=plastic" alt="Guile"/>
 <img src="https://img.shields.io/badge/GNU%20Emacs-7F5AB6?logo=gnuemacs&logoColor=fff&style=plastic" alt="GNU Emacs"/>
+
 </div>
 #+end_html
 
