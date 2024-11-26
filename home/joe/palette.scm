@@ -27,7 +27,7 @@
 (begin
   (define (hex-to-decimal n)
     (string->number(string-append "#x" n)))
-  (define* (sss-hex-to-rgba hex #:key (alpha "1.0"))
+  (define* (sss-hex-to-rgba hex #:key (alpha 1))
     (let* ((digits (string-drop hex 1))
            (red (hex-to-decimal (string-take digits 2)))
            (green (hex-to-decimal (string-take (string-drop digits 2) 2)))
@@ -89,7 +89,11 @@
     (bg-cyan-subtle . "#113e57")
 ;;; Named colors
     (primary . "#00552f")
+    (primary-l . "#3fb83f")
+    (primary-d . "#0a4425")
     (text . "#cfdfd5")
+    (background . "#111111")
+    (background-l . "#222522")
     ))
 
 (define sss-palette-ef-cyprus
@@ -142,7 +146,11 @@
     (bg-cyan-subtle . "#bfefff")
     ;;; Named colors
     (primary . "#b3d19d")
+    (primary-l . "#c4f2af")
+    (primary-d . "#557400")
     (text . "#242521")
+    (background . "#fcf7ef")
+    (background-l . "#f0ece0")
     ))
 
 
