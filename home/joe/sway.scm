@@ -15,7 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss-joe-sway)
+(define-module (sss-sway)
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services shells)
@@ -30,16 +30,16 @@
   #:use-module (gnu home services desktop)
   )
 
-(define sss-joe-sway-gestures
+(define sss-sway-gestures
   `((swipe:3:right . "workspace next_on_output")
     (swipe:3:left  . "workspace prev_on_output")
     (swipe:3:down  . "move to scratchpad")
     (swipe:3:up    . "scratchpad show")))
 
-(define sss-joe-sway-wallpaper
+(define sss-sway-wallpaper
   "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")
 
-(define sss-joe-sway-startup-programs
+(define sss-sway-startup-programs
   (list
    ;; #~(string-append
    ;;    #$swayidle "/bin/swayidle -w \\\n    "
@@ -47,7 +47,7 @@
    ;;    "timeout 300 '" #$swaylock "/bin/swaylock "
    ;;    "--indicator-radius 75 \\\n    "
    ;;    "-i " #$sway
-   ;;    #$sss-joe-sway-wallpaper " \\\n    "
+   ;;    #$sss-sway-wallpaper " \\\n    "
    ;;    "-f -c 000000' \\\n    "
    ;;    ;; 600: lock + screen off.
    ;;    "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
@@ -63,7 +63,7 @@
    "foot -s"
    ))
 
-(define sss-joe-sway-startup-reload-programs
+(define sss-sway-startup-reload-programs
   (list
    "gsettings set $gnome-schema gtk-theme 'Yaru-sage-dark'"
    "gsettings set $gnome-schema icon-theme 'Delft-Darkest'"
@@ -71,12 +71,12 @@
    "gsettings set $gnome-schema font-name 'Liberation Sans'"
    ))
 
-(define sss-joe-sway-outputs
+(define sss-sway-outputs
   (list (sway-output
          (identifier '*)
-         (background sss-joe-sway-wallpaper))))
+         (background sss-sway-wallpaper))))
 
-(define sss-joe-sway-variables
+(define sss-sway-variables
   `((mod   . "Mod4")
     (left  . "Left")
     (down  . "Down")
@@ -88,7 +88,7 @@
     (term  . "footclient")
     (menu  . "fuzzel")))
 
-(define sss-joe-sway-modes
+(define sss-sway-modes
   (list
    (sway-mode
     (mode-name "resize")
@@ -101,7 +101,7 @@
        (Escape . "mode \"default\""))))))
 
 
-(define sss-joe-sway-keybindings
+(define sss-sway-keybindings
   `(($mod+Return . "exec $term")
     ($mod+t . "exec $term")
     ($mod+shift+period . "exec grimshot copy")
@@ -160,7 +160,7 @@
     ($mod+minus . "scratchpad show")
     ($mod+r . "mode \"resize\"")))
 
-(define sss-joe-sway-extra-content
+(define sss-sway-extra-content
   (list
    "gaps inner 12"
    "gaps outer 8"
@@ -174,14 +174,14 @@
    "client.background       #cfdfd5"
    ))
 
-(define-public sss-joe-sway-service-type
+(define-public sss-sway-service-type
   (service home-sway-service-type
            (sway-configuration
-            (gestures sss-joe-sway-gestures)
-            (startup-programs sss-joe-sway-startup-programs)
-            (startup+reload-programs sss-joe-sway-startup-reload-programs)
-            (outputs sss-joe-sway-outputs)
-            (variables sss-joe-sway-variables)
-            (modes sss-joe-sway-modes)
-            (keybindings sss-joe-sway-keybindings)
-            (extra-content sss-joe-sway-extra-content))))
+            (gestures sss-sway-gestures)
+            (startup-programs sss-sway-startup-programs)
+            (startup+reload-programs sss-sway-startup-reload-programs)
+            (outputs sss-sway-outputs)
+            (variables sss-sway-variables)
+            (modes sss-sway-modes)
+            (keybindings sss-sway-keybindings)
+            (extra-content sss-sway-extra-content))))

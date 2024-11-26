@@ -15,11 +15,11 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss-joe-foot)
+(define-module (sss-foot)
   #:use-module (gnu)
   )
 
-(define-public sss-joe-foot-config
+(define-public sss-foot-config
   `((font . "Intel One Mono:size=10")
     (dpi-aware . "yes")
     (pad . "12x12")

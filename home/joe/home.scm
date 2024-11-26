@@ -18,7 +18,7 @@
 (load "../../lib/proc.scm")
 (load "./sway.scm") (load "./foot.scm")
 (load "./fuzzel.scm") (load "./git.scm")
-(load "./waybar.scm")
+(load "./waybar.scm") (load "./vars.scm")
 
 (use-modules (gnu home)
              (gnu services)
@@ -35,11 +35,12 @@
              (gnu home services desktop)
              (gnu home services fontutils))
 
-(use-modules (sss-joe-sway)
+(use-modules (sss-sway)
              (sss-proc)
-             (sss-joe-foot)
+             (sss-foot)
              (sss-fuzzel)
              (sss-git)
+             (sss-vars)
              (sss-waybar))
 
 (use-modules (json))
@@ -101,24 +102,6 @@
 (define sss-audio-service
   (service home-pipewire-service-type))
 
-(define sss-home-vars
-  `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale")                  
-    ("LANG" . "nl_NL.UTF-8")
-    ("XDG_CURRENT_DESKTOP" . "sway")
-    ("XDG_SESSION_TYPE" . "wayland")
-    ("WLR_NO_HARDWARE_CURSORS" . "1")
-    ("MOZ_ENABLE_WAYLAND" . "1")
-    ("QT_QPA_PLATFORM" . "wayland")
-    ("RTC_USE_PIPEWIRE" . "true")
-    ("SDL_VIDEODRIVER" . "wayland")
-    ("QT_WAYLAND_DISABLE_WINDOWDECORATION" . "1")
-    ("_JAVA_AWT_WM_NONREPARENTING" . "1")
-    ("LANGUAGE" . "nl_NL")))
-
-(define sss-home-vars-service
-  (simple-service 'some-useful-env-vars-service
-                  home-environment-variables-service-type
-                  sss-home-vars))
 
 (define sss-ssh-service
   (service home-openssh-service-type
@@ -170,7 +153,7 @@
    (default-value '())
    ))
 
-(define sss-joe-fontconfig-service-type
+(define sss-fontconfig-service-type
   (simple-service 'additional-fonts-service
                   home-fontconfig-service-type
                   (list "~/.nix-profile/share/fonts"
@@ -239,7 +222,7 @@
                                   (mk-kv-conf-lines sss-portals-config))))
      (".config/foot/foot.ini"
       ,(plain-file "foot.ini"
-                   (mk-rec-kv-conf-lines sss-joe-foot-config)))
+                   (mk-rec-kv-conf-lines sss-foot-config)))
      (".config/mako/config"
       ,(plain-file "config"
                    (mk-kv-conf-lines sss-mako-config)))
@@ -263,8 +246,8 @@
    (service home-dbus-service-type)
    sss-audio-service
    (service sss-byggsteg-service-type)
-   sss-joe-sway-service-type
-   sss-joe-fontconfig-service-type
+   sss-sway-service-type
+   sss-fontconfig-service-type
    )))
 
 
