@@ -1,4 +1,4 @@
-;;; varrs.scm
+;;; vars.scm
 
 ;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
 

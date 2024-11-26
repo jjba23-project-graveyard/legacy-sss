@@ -26,7 +26,7 @@
 
 (begin
   (define (hex-to-decimal n)
-    (string->number(string-append "#x" n)))
+    (string->number (string-append "#x" n)))
   (define* (sss-hex-to-rgba hex #:key (alpha 1))
     (let* ((digits (string-drop hex 1))
            (red (hex-to-decimal (string-take digits 2)))

@@ -19,6 +19,9 @@
 (load "./sway.scm") (load "./foot.scm")
 (load "./fuzzel.scm") (load "./git.scm")
 (load "./waybar.scm") (load "./vars.scm")
+(load "./ssh.scm") (load "./mako.scm")
+(load "./byggsteg.scm") (load "./fontconfig.scm")
+(load "./bash.scm") (load "./gtk.scm")
 
 (use-modules (gnu home)
              (gnu services)
@@ -26,36 +29,22 @@
              (gnu packages gnupg)
              (gnu packages admin)
              (gnu home services)
-             (gnu home services shells)
-             (gnu home services sway)
-             (gnu home services ssh)
+             (gnu home services shells)             
              (gnu home services gnupg)
              (gnu home services shepherd)
              (gnu home services sound)
-             (gnu home services desktop)
-             (gnu home services fontutils))
+             (gnu home services desktop))
 
-(use-modules (sss-sway)
-             (sss-proc)
-             (sss-foot)
-             (sss-fuzzel)
-             (sss-git)
-             (sss-vars)
-             (sss-waybar))
+(use-modules (sss-sway) (sss-proc)
+             (sss-foot) (sss-fuzzel)
+             (sss-git) (sss-vars)
+             (sss-mako) (sss-byggsteg)
+             (sss-fontconfig) (sss-bash)
+             (sss-gtk)
+             (sss-waybar) (sss-ssh))
 
 (use-modules (json))
 (use-modules (sxml simple))
-
-(define sss-fancy-bash-service
-  (simple-service
-   'sss-fancy-bash
-   home-bash-service-type
-   (home-bash-extension
-    (environment-variables '())
-    (bashrc `(,(local-file "bash/bashrc.sh"))))))
-
-(define (emacs-conf-file file)
-  (format #f ".emacs.d/~a" file ))
 
 (define sss-opengpg-conf
   (service home-gpg-agent-service-type
@@ -70,98 +59,10 @@
     ("add Control" . "Control_L")
     ))
 
-(define sss-mako-config
-  '((sort . "-time")
-    (max-history . "7")
-    (on-button-left . "dismiss")
-    (on-button-right . "invoke-default-action")
-    (background-color . "#111111BB")
-    (border-color . "#00552FBB")
-    (text-color . "#FFFFFFFF")
-    (font . "Intel One Mono 10")
-    (width . "400")
-    (icons . "1")
-    (default-timeout . 12)
-    ))
-
 (define sss-portals-config
   '(("default" . "gtk")
     ("org.freedesktop.impl.portal.Screenshot" . "wlr")
     ("org.freedesktop.impl.portal.ScreenCast" . "wlr")))
-
-(define sss-gtk3-config
-  '((gtk-icon-theme-name . "Delft-Darkest")
-    (gtk-theme-name . "Yaru-sage-dark")
-    (gtk-font-name . "Liberation Sans 11")
-    (gtk-key-theme-name . "Emacs")
-    (gtk-enable-event-sounds . "0")
-    (gtk-cursor-theme-name . "Yaru")
-    (gtk-enable-input-feedback-sounds . "0")
-    ))
-
-(define sss-audio-service
-  (service home-pipewire-service-type))
-
-
-(define sss-ssh-service
-  (service home-openssh-service-type
-           (home-openssh-configuration
-            (hosts
-             (list
-              (openssh-host (name "wolk-jjba")
-                            (user "joe")
-                            (host-name "37.60.232.48")
-                            (port 2323)
-                            (identity-file "~/.ssh/wolk-jjba"))
-              (openssh-host (name "personal.github.com")
-                            (user "joe")
-                            (host-name "github.com")
-                            (identity-file "~/.ssh/gitlab_prive"))
-              (openssh-host (name "work.github.com")
-                            (user "joe")
-                            (host-name "github.com")
-                            (identity-file "~/.ssh/work_id"))))
-            (authorized-keys '()))))
-
-(define (sss-byggsteg-service config)
-  (list
-   (shepherd-service
-    (documentation "Run byggsteg as a daemon")
-    (provision '(byggsteg))
-    (requirement '())
-    (start #~(make-forkexec-constructor
-              '("make" "server")
-              #:directory "/home/joe/Ontwikkeling/Persoonlijk/byggsteg"
-              #:environment-variables
-              (list
-               "PATH=/home/joe/.nix-profile/bin:/home/joe/.guix-home/profile/bin:/home/joe/.guix-home/profile/sbin:/run/privileged/bin:/home/joe/.config/guix/current/bin:/home/joe/.guix-profile/bin:/run/current-system/profile/bin:/run/current-system/profile/sbin"
-               "GIT_SSL_NO_VERIFY=1"
-               "LANG=nl_NL.UTF-8")))
-    (stop #~(make-kill-destructor))
-    (auto-start? #t)
-    (respawn? #t)
-    )))
-
-(define sss-byggsteg-service-type
-  (service-type
-   (name 'byggsteg)
-   (description "Run byggsteg as a daemon")
-   (extensions
-    (list (service-extension
-           home-shepherd-service-type
-           sss-byggsteg-service)))
-   (default-value '())
-   ))
-
-(define sss-fontconfig-service-type
-  (simple-service 'additional-fonts-service
-                  home-fontconfig-service-type
-                  (list "~/.nix-profile/share/fonts"
-                        '(alias
-                          (family "monospace")
-                          (prefer
-                           (family "Intel One Mono"))))))
-
 
 
 (define sss-home-files-service
@@ -174,7 +75,7 @@
      (".config/gtk-3.0/settings.ini"
       ,(plain-file "settings.ini"
                    (string-append "[Settings]\n"
-                                  (mk-kv-conf-lines sss-gtk3-config))))
+                                  (mk-kv-conf-lines sss-gtk-config))))
      (".config/guix/channels.scm" ,(local-file "channels.scm"))             
      (".gitconfig"
       ,(plain-file "gitconfig.ini"
@@ -226,10 +127,8 @@
      (".config/mako/config"
       ,(plain-file "config"
                    (mk-kv-conf-lines sss-mako-config)))
-     (,(emacs-conf-file "init.el") ,(local-file "emacs/init.el"))
-     (,(emacs-conf-file "early-init.el") ,(local-file "emacs/early-init.el")))))
-
-
+     (".emacs.d/init.el" ,(local-file "emacs/init.el"))
+     (".emacs.d/early-init.el" ,(local-file "emacs/early-init.el")))))
 
 
 (display "\n>>= configuring home environment...\n")
@@ -241,10 +140,10 @@
    sss-home-files-service
    sss-ssh-service
    sss-home-vars-service
-   sss-fancy-bash-service
+   sss-bash-service
    sss-opengpg-conf
    (service home-dbus-service-type)
-   sss-audio-service
+   (service home-pipewire-service-type)
    (service sss-byggsteg-service-type)
    sss-sway-service-type
    sss-fontconfig-service-type
