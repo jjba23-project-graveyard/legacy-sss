@@ -15,6 +15,8 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(load "./palette.scm")
+
 (define-module (sss-sway)
   #:use-module (gnu home)
   #:use-module (gnu home services)
@@ -28,7 +30,9 @@
   #:use-module (gnu home services sway)
   #:use-module (gnu home services sound)
   #:use-module (gnu home services desktop)
+  #:use-module (sss-palette)
   )
+
 
 (define sss-sway-gestures
   `((swipe:3:right . "workspace next_on_output")
@@ -161,18 +165,18 @@
     ($mod+r . "mode \"resize\"")))
 
 (define sss-sway-extra-content
-  (list
-   "gaps inner 12"
-   "gaps outer 8"
+  `(
+    "gaps inner 12"
+    "gaps outer 8"
 
-   ;; class                 border  backgr. text    indicator child_border
-   "client.focused          #00552f #00552f #ffffff #00552f   #00552f"
-   "client.focused_inactive #00552f #00552f #ffffff #00552f   #00552f"
-   "client.unfocused        #333333 #222222 #808f80 #222222   #222222"
-   "client.urgent           #b02930 #b02930 #cfdfd5 #900000   #900000"
-   "client.placeholder      #000000 #0c0c0c #cfdfd5 #000000   #0c0c0c"
-   "client.background       #cfdfd5"
-   ))
+    ;; class                 border  backgr. text    indicator child_border
+    "client.focused          #00552f #00552f #ffffff #00552f   #00552f"
+    "client.focused_inactive #00552f #00552f #ffffff #00552f   #00552f"
+    "client.unfocused        #333333 #222222 #808f80 #222222   #222222"
+    "client.urgent           #b02930 #b02930 #cfdfd5 #900000   #900000"
+    "client.placeholder      #000000 #0c0c0c #cfdfd5 #000000   #0c0c0c"
+    ,(format #f "client.background ~a" (sss-get-color 'fg-main))
+    ))
 
 (define-public sss-sway-service-type
   (service home-sway-service-type

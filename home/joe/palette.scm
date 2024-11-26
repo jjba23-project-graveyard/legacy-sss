@@ -19,6 +19,11 @@
   #:use-module (gnu)
   )
 
+;; (sss-hex-to-rgba (sss-get-color 'bg-main))
+
+(define-public (sss-get-color sym)
+  (cdr (assoc sym sss-active-palette)))
+
 (begin
   (define (hex-to-decimal n)
     (string->number(string-append "#x" n)))
@@ -33,11 +38,6 @@
     )
   (export sss-hex-to-rgba)
   )
-
-(define (sss-get-color sym)
-  (cdr (assoc sym sss-palette)))
-
-(define sss-palette sss-palette-ef-bio)
 
 (define sss-palette-ef-bio
   `((bg-main . "#111111")
@@ -138,3 +138,4 @@
     ))
 
 
+(define sss-active-palette sss-palette-ef-bio)
