@@ -183,6 +183,9 @@
     "corner_radius 12"
     "shadows enable"
     "blur enable"
+    "default_dim_inactive 0.2"
+    "dim_inactive_colors.unfocused #000000FF"
+    "dim_inactive_colors.urgent #900000FF"
 
     ;; class                 border  backgr. text    indicator child_border
     ,(format #f "client.focused ~a ~a ~a ~a ~a"
