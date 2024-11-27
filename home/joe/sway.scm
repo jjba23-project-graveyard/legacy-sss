@@ -115,7 +115,7 @@
        (Escape . "mode \"default\""))))))
 
 
-(define sss-sway-keybindings
+(define-public sss-sway-keybindings
   `(($mod+Return . "exec $term")
     ($mod+t . "exec $term")
     ($mod+shift+period . "exec grimshot copy")
@@ -125,13 +125,6 @@
     ($mod+i . "exec $browser")
     ($mod+e . "exec $editor")
     ($mod+Shift+c . "reload")
-    ($mod+Shift+e
-     . ,#~(string-append
-           "exec " #$sway "/bin/swaynag -t warning -m \\\n    "
-           "'You pressed the exit shortcut.  Do you really want to exit sway?"
-           " This will end your Wayland session.' \\\n    "
-           "-B 'Yes, exit sway' \\\n    '"
-           #$sway "/bin/swaymsg exit'"))
     ($mod+$left . "focus left")
     ($mod+$down . "focus down")
     ($mod+$up . "focus up")
@@ -172,6 +165,13 @@
     ($mod+Shift+minus . "move scratchpad")
     ($mod+Shift+m . "sway output Virtual-1 mode 1920x1200")
     ($mod+minus . "scratchpad show")
+    ($mod+Shift+e
+     . ,#~(string-append
+           "exec " #$sway "/bin/swaynag -t warning -m \\\n    "
+           "'You pressed the exit shortcut.  Do you really want to exit sway?"
+           " This will end your Wayland session.' \\\n    "
+           "-B 'Yes, exit sway' \\\n    '"
+           #$sway "/bin/swaymsg exit'"))
     ($mod+r . "mode \"resize\"")))
 
 (define sss-sway-extra-content
