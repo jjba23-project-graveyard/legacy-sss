@@ -55,6 +55,9 @@
   `((position . bottom)
     (height . 42)
     (spacing . 16)
+    (margin-bottom . 10)
+    (margin-right . 12)
+    (margin-left . 12)
     (modules-left . #(clock sway/workspaces sway/mode
                             sway/scratchpad custom/media sway/window))
     (modules-center . ())
