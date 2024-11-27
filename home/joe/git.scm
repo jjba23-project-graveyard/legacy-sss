@@ -50,6 +50,8 @@
   `((core . ((editor . "emacsclient")
              (excludesfile . "~/.gitignore-global")))
     (commit . ((gpgsign . "true")))
+    (format . ((thread . "shallow")))
+    (sendemail . ((thread . "no")))
     (pull . ((rebase . "false")))
     ("includeIf \"gitdir:~/Ontwikkeling/Werk/\"" . (("  path" . "~/.gitconfig-work")))
     ("includeIf \"gitdir:~/Ontwikkeling/Persoonlijk/\"" . (("  path" . "~/.gitconfig-personal")))
