@@ -155,6 +155,6 @@
     ))
 
 
-;; (define sss-active-palette sss-palette-ef-bio)
-
 (define-public sss-active-palette sss-palette-ef-bio)
+
+;; (define-public sss-active-palette sss-palette-ef-cyprus)
