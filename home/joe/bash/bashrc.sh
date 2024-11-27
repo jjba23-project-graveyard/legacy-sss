@@ -72,6 +72,10 @@ alias jr="cd ~/Ontwikkeling/Persoonlijk/sss && make jr"
 alias scala-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/scala-dev/"
 alias haskell-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/haskell-dev/"
 
+function glog() {
+    sudo gzip -d "$1.gz" && cat "$1"
+}
+
 # Sway screen configurations and aliases
 function work_macbook_output() {
     swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 2

@@ -75,6 +75,43 @@ family that's built with clarity, legibility, and the needs of developers in
 mind.")
    (license silofl1.1)))
 
+(define-public scenefx
+  (package
+   (name "scenefx")
+   (version "0.1")
+   (source (origin
+            (method git-fetch)
+            (uri (git-reference
+                  (url "https://github.com/wlrfx/scenefx.git")
+                  (commit version)))
+            (file-name (git-file-name name version))
+            (sha256
+             (base32
+              "1r7f8bprsn0mwlkmc8d14nr3iibljfyxypb4i06v66ghlngaw6dw"))))
+   (build-system meson-build-system)
+   (inputs (map (lambda (x) (specification->package x))
+                `("basu"
+                  "cairo"
+                  "gdk-pixbuf"
+                  "json-c"
+                  "libevdev"
+                  "libinput-minimal"
+                  "pkg-config"
+                  "cmake"
+                  "libxkbcommon"
+                  "pango"
+                  "pcre2"
+                  "wayland"
+                  "wayland-protocols"
+                  "wlr-protocols"
+                  "libdrm"
+                  "wlroots@0.17.4")))
+   (home-page "https://github.com/wlrfx/scenefx.git")
+   (synopsis "SceneFX")
+   (description
+    "SceneFX")
+   (license license:expat)))
+
 (define sss-font-packages
   (list
    fontconfig
@@ -269,6 +306,8 @@ mind.")
 
    power-profiles-daemon
 
+   scenefx
+   
    transmission
    transmission-remote-gtk
 
