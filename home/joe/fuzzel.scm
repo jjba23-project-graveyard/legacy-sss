@@ -25,7 +25,11 @@
 (define-public sss-fuzzel-config
   `((font . "Intel One Mono:size=18")
     (terminal . "foot")
-    (border . ((radius . 16)))
+    (icon-theme . "Yaru-sage")
+    (fuzzy . "yes")
+    (lines . 15)
+    (inner-pad . 4)
+    (border . ((radius . 24)))
     (colors . ((background . ,(string-drop (format #f "~add" (sss-get-color 'background)) 1))
                (text . ,(string-drop (format #f "~aff" (sss-get-color 'text)) 1))
                (prompt . "bac2deff")

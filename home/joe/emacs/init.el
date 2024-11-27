@@ -799,8 +799,8 @@ According to size, color and font family"
   (delete-selection-mode +1)
 
   ;; when in wayland this can be nice:
-  (set-frame-parameter nil 'alpha-background 93) 
-  (add-to-list 'default-frame-alist '(alpha-background . 93))
+  (set-frame-parameter nil 'alpha-background 90) 
+  (add-to-list 'default-frame-alist '(alpha-background . 90))
   
   (when (fboundp 'windmove-default-keybindings) 
     (windmove-default-keybindings))
