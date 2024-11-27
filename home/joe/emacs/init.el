@@ -401,6 +401,8 @@ According to size, color and font family"
 
 (use-package mermaid-mode
   :ensure t
+  :init
+  (setq mermaid-mmdc-location "/home/joe/.nix-profile/bin/mmdc")
   :config
   (setq mermaid-mode-map
         (let ((map mermaid-mode-map))
