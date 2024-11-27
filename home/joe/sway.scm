@@ -68,12 +68,22 @@
    ))
 
 (define sss-sway-startup-reload-programs
-  (list
-   "gsettings set $gnome-schema gtk-theme 'Yaru-sage-dark'"
-   "gsettings set $gnome-schema icon-theme 'Delft-Darkest'"
-   "gsettings set $gnome-schema cursor-theme 'Yaru'"
-   "gsettings set $gnome-schema font-name 'Liberation Sans'"
-   ))
+  (let
+      ((gtk-theme-name (cond
+                        ((equal? sss-palette-ef-cyprus sss-active-palette)
+                         "Yaru-sage"
+                         )
+                        (else "Yaru-sage-dark")
+                        )))
+
+    `(
+      ,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name)
+      "gsettings set $gnome-schema icon-theme 'Delft-Darkest'"
+      "gsettings set $gnome-schema cursor-theme 'Yaru'"
+      "gsettings set $gnome-schema font-name 'Liberation Sans'"
+      ))
+  )
+
 
 (define sss-sway-outputs
   (list (sway-output
