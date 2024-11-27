@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (load "./palette.scm")
+(load "../../system/packages.scm")
 
 (define-module (sss-sway)
   #:use-module (gnu home)
@@ -27,6 +28,7 @@
   #:use-module (gnu packages admin)
   #:use-module (gnu home services shepherd)
   #:use-module (guix gexp)
+  #:use-module (sss-packages)
   #:use-module (gnu home services sway)
   #:use-module (gnu home services sound)
   #:use-module (gnu home services desktop)
@@ -209,7 +211,7 @@
 (define-public sss-sway-service-type
   (service home-sway-service-type
            (sway-configuration
-            (packages (list swayfx))
+            (packages (list sss-swayfx))
             (gestures sss-sway-gestures)
             (startup-programs sss-sway-startup-programs)
             (startup+reload-programs sss-sway-startup-reload-programs)

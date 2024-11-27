@@ -23,6 +23,7 @@
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
   #:use-module (guix licenses)
+  #:use-module (gnu packages gtk)
   #:use-module (guix packages)
   #:use-module (gnu packages wm)
   #:use-module (guix build-system meson)
@@ -94,12 +95,14 @@ mind.")
                   "cairo"
                   "gdk-pixbuf"
                   "json-c"
+                  "cmake"
+                  "pango"
                   "libevdev"
                   "libinput-minimal"
-                  "pkg-config"
-                  "cmake"
                   "libxkbcommon"
                   "pango"
+                  "pcre2"
+                  "pkg-config"
                   "pcre2"
                   "wayland"
                   "wayland-protocols"
@@ -110,6 +113,51 @@ mind.")
    (synopsis "SceneFX")
    (description
     "SceneFX")
+   (license license:expat)))
+
+(define-public sss-swayfx
+  (package
+   (inherit sway)
+   (name "swayfx")
+   (version "0.4")
+   (source (origin
+            (method git-fetch)
+            (uri (git-reference
+                  (url "https://github.com/WillPower3309/swayfx")
+                  (commit version)))
+            (file-name (git-file-name name version))
+            (sha256
+             (base32
+              "0651gbkszc8wwkiiw983m3815cfyk4c9v4mpd1nqf27a0f6qjgsm"))))
+   (build-system meson-build-system)
+   (inputs (append
+            (map (lambda(x) (specification->package x))
+                 `("basu"
+                   "cairo"
+                   "gdk-pixbuf"
+                   "json-c"
+                   "cmake"
+                   "pango"
+                   "libevdev"
+                   "libinput-minimal"
+                   "libxkbcommon"
+                   "pcre2"
+                   "pkg-config"
+                   "swaybg"
+                   "wayland"
+                   "wayland-protocols"
+                   "wlr-protocols"
+                   "libdrm"
+                   "wlroots@0.17.4"
+                   ))
+            (list scenefx pango)
+            ))
+   (home-page "https://github.com/WillPower3309/swayfx")
+   (synopsis "Sway Fork with extra options and effects")
+   (description
+    "Fork of Sway, a Wayland compositor compatible with i3.  SwayFX
+adds extra options and effects to the original Sway, such as blur, rounded
+corners, shadows, inactive window dimming, etc.")
    (license license:expat)))
 
 (define sss-font-packages
@@ -135,7 +183,7 @@ mind.")
 (define sss-wm-packages
   (list
    cl-asdf
-   swayfx
+
    swaybg
    swaylock
    swayidle
@@ -228,6 +276,8 @@ mind.")
    nix
    coreutils
    xinit
+   pango
+   cairo
    xorg-server
    ))
 
@@ -307,6 +357,7 @@ mind.")
    power-profiles-daemon
 
    scenefx
+   sss-swayfx
    
    transmission
    transmission-remote-gtk
