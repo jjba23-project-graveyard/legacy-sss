@@ -33,4 +33,5 @@
     (icons . 1)
     (default-timeout . 12000)
     (ignore-timeout . 1)
+    (border-radius . 10)
     ))

@@ -178,6 +178,9 @@
   `(
     "gaps inner 12"
     "gaps outer 8"
+    "corner_radius 12"
+    "shadows enable"
+    "blur enable"
 
     ;; class                 border  backgr. text    indicator child_border
     ,(format #f "client.focused ~a ~a ~a ~a ~a"
@@ -206,6 +209,7 @@
 (define-public sss-sway-service-type
   (service home-sway-service-type
            (sway-configuration
+            (packages (list swayfx))
             (gestures sss-sway-gestures)
             (startup-programs sss-sway-startup-programs)
             (startup+reload-programs sss-sway-startup-reload-programs)

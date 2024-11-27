@@ -177,6 +177,8 @@
     ("#workspaces button" . ((font-size . "11pt")))
     ("#clock.date, #clock.time" . ((font-size . "9pt")))
     ("window#waybar" . ((background . ,(sss-hex-to-rgba (sss-get-color 'background) #:alpha 0.75))
+                        (padding . "12px")
+                        (border-radius . "10px")
                         (font-family .  "FontAwesome, Intel One Mono")
                         (color . ,(sss-get-color 'text))
                         (border . ,(format #f "2px solid ~a" (sss-get-color 'primary-d)))))

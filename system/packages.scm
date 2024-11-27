@@ -24,6 +24,10 @@
   #:use-module (guix build-system copy)
   #:use-module (guix licenses)
   #:use-module (guix packages)
+  #:use-module (gnu packages wm)
+  #:use-module (guix build-system meson)
+  #:use-module ((guix licenses) #:prefix license:)
+
   )
 
 (use-package-modules freedesktop base lxqt package-management
@@ -71,7 +75,6 @@ family that's built with clarity, legibility, and the needs of developers in
 mind.")
    (license silofl1.1)))
 
-
 (define sss-font-packages
   (list
    fontconfig
@@ -95,7 +98,7 @@ mind.")
 (define sss-wm-packages
   (list
    cl-asdf
-   sway
+   swayfx
    swaybg
    swaylock
    swayidle
