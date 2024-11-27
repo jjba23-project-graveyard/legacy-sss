@@ -24,6 +24,7 @@
 (define-public (sss-get-color sym)
   (cdr (assoc sym sss-active-palette)))
 
+
 (begin
   (define (hex-to-decimal n)
     (string->number (string-append "#x" n)))
@@ -39,7 +40,7 @@
   (export sss-hex-to-rgba)
   )
 
-(define sss-palette-ef-bio
+(define-public sss-palette-ef-bio
   `((bg-main . "#111111")
     (fg-main . "#cfdfd5")
     (bg-dim . "#222522")
@@ -96,7 +97,7 @@
     (background-l . "#222522")
     ))
 
-(define sss-palette-ef-cyprus
+(define-public sss-palette-ef-cyprus
   `((bg-main . "#fcf7ef")
     (fg-main . "#242521")
     (bg-dim . "#f0ece0")
@@ -154,4 +155,6 @@
     ))
 
 
-(define sss-active-palette sss-palette-ef-bio)
+;; (define sss-active-palette sss-palette-ef-bio)
+
+(define-public sss-active-palette sss-palette-ef-cyprus)

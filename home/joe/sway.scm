@@ -182,7 +182,12 @@
              (sss-get-color 'text)
              (sss-get-color 'primary)
              (sss-get-color 'primary))
-    "client.unfocused        #333333 #222222 #808f80 #222222   #222222"
+    ,(format #f "client.unfocused ~a ~a #808f80 ~a ~a"
+             (sss-get-color 'background-l)
+             (sss-get-color 'background-l)
+             (sss-get-color 'background-l)
+             (sss-get-color 'background-l)
+             )
     "client.urgent           #b02930 #b02930 #cfdfd5 #900000   #900000"
     "client.placeholder      #000000 #0c0c0c #cfdfd5 #000000   #0c0c0c"
     ,(format #f "client.background ~a" (sss-get-color 'text))

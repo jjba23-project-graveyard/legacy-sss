@@ -15,21 +15,24 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(load "./palette.scm")
+
 (define-module (sss-foot)
   #:use-module (gnu)
+  #:use-module (sss-palette)
   )
 
 (define-public sss-foot-config
-  `((font . "Intel One Mono:size=10")
+  `((font . "Intel One Mono:size=9")
     (dpi-aware . "yes")
-    (pad . "12x12")
+    (pad . "14x14")
     (bell . ((urgent . "no")
              (notify . "no")
              (visual . "no")))
     (scrollback . ((lines . "1000000")))
     (colors . ((alpha . "0.9")
-               (background . "111111")
-               (foreground . "cfdfd5")))
+               (background . ,(string-drop (sss-get-color 'background) 1))
+               (foreground . ,(string-drop (sss-get-color 'text) 1))))
     (search-bindings . ((cancel . "Control+g Control+Shift+c Escape")))
     (url-bindings . ((cancel . "Control+g Control+Shift+c Escape")))
     (key-bindings . ((scrollback-up-page . "Mod1+v")

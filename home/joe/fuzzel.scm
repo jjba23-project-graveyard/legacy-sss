@@ -15,18 +15,21 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(load "./palette.scm")
+
 (define-module (sss-fuzzel)
   #:use-module (gnu)
+  #:use-module (sss-palette)
   )
 
 (define-public sss-fuzzel-config
-  `((font . "Intel One Mono:size=13")
+  `((font . "Intel One Mono:size=18")
     (terminal . "foot")
-    (colors . ((background . "111111dd")
-               (text . "cdd6f4ff")
+    (colors . ((background . (format #f "~add" (sss-get-color 'background)))
+               (text . (format #f "~aff" (sss-get-color 'text)))
                (prompt . "bac2deff")
                (placeholder . "7f849cff")
-               (input . "cdd6f4ff")
+               (input . (format #f "~aff" (sss-get-color 'text)))
                ("match" . "a6e3a1ff")
                (selection . "585b70ff")
                (selection-text . "cdd6f4ff")

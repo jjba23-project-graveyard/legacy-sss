@@ -15,13 +15,22 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(load "./palette.scm")
+
 (define-module (sss-gtk)
   #:use-module (gnu)
+  #:use-module (sss-palette)
   )
 
+(display (equal? sss-palette-ef-cyprus sss-active-palette))
 (define-public sss-gtk-config
-  '((gtk-icon-theme-name . "Delft-Darkest")
-    (gtk-theme-name . "Yaru-sage-dark")
+  `((gtk-icon-theme-name . "Delft-Darkest")
+    (gtk-theme-name . ,(cond
+                        ((equal? sss-palette-ef-cyprus sss-active-palette)
+                         "Yaru-sage"
+                         )
+                        (else "Yaru-sage-dark")
+                        ))
     (gtk-font-name . "Liberation Sans 11")
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . 0)

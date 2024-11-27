@@ -17,18 +17,20 @@
 
 (define-module (sss-mako)
   #:use-module (gnu)
+  #:use-module (sss-palette)
   )
 
 (define-public sss-mako-config
-  '((sort . "-time")
+  `((sort . "-time")
     (max-history . 7)
     (on-button-left . dismiss)
     (on-button-right . invoke-default-action)
-    (background-color . "#111111BB")
-    (border-color . "#00552FBB")
-    (text-color . "#FFFFFFFF")
+    (background-color . ,(string-upcase (format #f "~abb" (sss-get-color 'background)) ))
+    (border-color . ,(string-upcase (format #f "~abb" (sss-get-color 'primary))))
+    (text-color . ,(string-upcase (format #f "~abb" (sss-get-color 'text))))
     (font . "Intel One Mono 10")
     (width . 420)
     (icons . 1)
     (default-timeout . 12)
+
     ))
