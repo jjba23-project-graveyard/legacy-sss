@@ -53,4 +53,5 @@
     (pull . ((rebase . "false")))
     ("includeIf \"gitdir:~/Ontwikkeling/Werk/\"" . (("  path" . "~/.gitconfig-work")))
     ("includeIf \"gitdir:~/Ontwikkeling/Persoonlijk/\"" . (("  path" . "~/.gitconfig-personal")))
+    ("includeIf \"gitdir:~/Ontwikkeling/Scratch/\"" . (("  path" . "~/.gitconfig-personal")))
     ))
