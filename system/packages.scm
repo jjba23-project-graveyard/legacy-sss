@@ -26,6 +26,8 @@
   #:use-module (gnu packages gtk)
   #:use-module (guix packages)
   #:use-module (gnu packages wm)
+  #:use-module (gnu packages kde-frameworks)
+  #:use-module (gnu packages kde-plasma)
   #:use-module (guix build-system meson)
   #:use-module ((guix licenses) #:prefix license:)
 
@@ -48,6 +50,9 @@
 (define sss-theme-packages
   (list
    yaru-theme
+   breeze-icons
+   breeze
+   breeze-gtk
    delft-icon-theme
    ))
 
@@ -202,7 +207,6 @@ corners, shadows, inactive window dimming, etc.")
 
    ;; LXQt suite
    lxqt-policykit
-   lxqt-session
    lxqt-config
    lxqt-admin
    lxqt-sudo
@@ -210,7 +214,6 @@ corners, shadows, inactive window dimming, etc.")
    lxqt-themes
    qterminal
    pcmanfm-qt
-   lxqt
 
    ;; Flatpak and XDG utilities
    flatpak-xdg-utils
