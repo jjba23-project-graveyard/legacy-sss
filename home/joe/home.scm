@@ -22,7 +22,7 @@
 (load "./ssh.scm") (load "./mako.scm")
 (load "./byggsteg.scm") (load "./fontconfig.scm")
 (load "./bash.scm") (load "./gtk.scm")
-(load "./openpgp.scm")
+(load "./openpgp.scm") (load "../../doc.scm")
 (load "./portals.scm") (load "./xmodmap.scm")
 
 (use-modules (gnu home)
@@ -40,13 +40,15 @@
              (sss-foot) (sss-fuzzel)
              (sss-git) (sss-vars)
              (sss-mako) (sss-byggsteg)
+             (sss-doc)
              (sss-fontconfig) (sss-bash)
              (sss-gtk) (sss-portals)
-             (sss-xmodmap) (sss-openpgp)
+             (sss-xmodmap) (sss-openpgp)             
              (sss-waybar) (sss-ssh))
 
 (use-modules (json))
 (use-modules (sxml simple))
+
 
 (define sss-home-files-service
   (service
@@ -112,6 +114,8 @@
      (".emacs.d/init.el" ,(local-file "emacs/init.el"))
      (".emacs.d/early-init.el" ,(local-file "emacs/early-init.el")))))
 
+(display "\n>>= generating manual...\n")
+(sss-write-manual)
 
 (display "\n>>= configuring home environment...\n")
 (home-environment

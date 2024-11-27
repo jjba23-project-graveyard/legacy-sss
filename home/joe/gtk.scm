@@ -22,7 +22,7 @@
   #:use-module (sss-palette)
   )
 
-(display (equal? sss-palette-ef-cyprus sss-active-palette))
+
 (define-public sss-gtk-config
   `((gtk-icon-theme-name . "Delft-Darkest")
     (gtk-theme-name . ,(cond

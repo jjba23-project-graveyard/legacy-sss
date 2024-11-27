@@ -64,10 +64,7 @@
             (sha256
              (base32
               "1snwxpcdxl62z1mcax19bmsmbw0hi6m0cqkxqz79ydynfch95sd0"))))
-   ;;(outputs '("out" "ttf" "woff"))
    (build-system font-build-system)
-   ;; (arguments
-   ;;  `(#:phases %standard-phases))
    (home-page "https://github.com/intel/intel-one-mono")
    (synopsis "Expressive monospaced font family")
    (description
@@ -96,17 +93,13 @@ mind.")
                   "gdk-pixbuf"
                   "json-c"
                   "cmake"
-                  "pango"
                   "libevdev"
                   "libinput-minimal"
                   "libxkbcommon"
-                  "pango"
                   "pcre2"
                   "pkg-config"
                   "pcre2"
                   "wayland"
-                  "wayland-protocols"
-                  "wlr-protocols"
                   "libdrm"
                   "wlroots@0.17.4")))
    (home-page "https://github.com/wlrfx/scenefx.git")
@@ -137,7 +130,6 @@ mind.")
                    "gdk-pixbuf"
                    "json-c"
                    "cmake"
-                   "pango"
                    "libevdev"
                    "libinput-minimal"
                    "libxkbcommon"

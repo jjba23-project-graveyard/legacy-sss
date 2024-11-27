@@ -47,6 +47,8 @@ system-reconfigure:
 	$(call sss-log-complete,"system-reconfigure")
 joe-reconfigure:
 	$(call sss-log-starting,"joe-reconfigure")
+	@rm -rf docs/Manual/README.org
+	@touch docs/Manual/README.org
 	@guix home reconfigure home/joe/home.scm  --fallback
 	$(call sss-log-complete,"joe-reconfigure")
 manon-reconfigure:
@@ -65,8 +67,6 @@ nix-profile-upgrade:
 	echo -e "$(shell date +%s)" | cat - \
 		resources/sss-state/nixpkgs-updated-at | tee \
 		resources/sss-state/nixpkgs-updated-at
-document:
-	GUILE_AUTO_COMPILE=0 guile doc.scm
 
 
 # Aliases section

@@ -1,13 +1,45 @@
 (load "./home/joe/palette.scm")
 (load "./home/joe/sway.scm")
 
-(use-modules (gnu))
-(use-modules (sss-sway)
-             (sss-palette))
+(define-module (sss-doc)
+  #:use-module (gnu)
+  #:use-module (sss-sway)
+  #:use-module (sss-palette)
+  )
 
-(for-each
- (lambda(x)
-   (display (format #f "~a: ~a\n"  (car x) (cdr x)))
-   )
- sss-sway-keybindings)
+
+(define-public sss-manual-lines
+  `("#+title: SSS/GNU system - Manual & Documentation\n\n"
+    "This manual documents the SSS/GNU system and its functionalities.\n\n"
+    "** Sway\n\n"
+    "*** Keybindings\n\n"
+    ,(with-output-to-string
+       (lambda()
+         (display "| keybind | command |\n")
+         (display "|------|------|\n")
+         (for-each
+          (lambda(x)
+            (display (format #f "| ~a | ~a |\n"
+                             (car x)
+                             (cond
+                              ((and (string? (cdr x))
+                                    (>= (string-length (cdr x)) 32))
+                               (string-take (cdr x) 32))
+                              ((not (string? (cdr x))) "")
+                              (else (cdr x))
+                              )
+                             ))
+            )
+          sss-sway-keybindings)
+         (display "|------|------|\n")))
+    ))
+
+(define-public (sss-write-manual)
+  (with-output-to-file "./docs/Manual/README.org"
+    (lambda()
+      (for-each (lambda(x) (display x))
+                sss-manual-lines)
+      )))
+
+
 
