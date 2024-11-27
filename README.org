@@ -29,7 +29,7 @@ Knowledge you may find in the repo includes:
 
 Note: Screenshot below might be outdated and no longer representative of the current, everchanging state of these "dotfiles".
 #+begin_html
-<img src="./resources/screenshots/2024-11-20T00:04:07,441002916+01:00.png"/>
+<img src="./resources/screenshots/2024-11-27T23:29:41,961360421+01:00.png"/>
 #+end_html
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
