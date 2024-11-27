@@ -21,7 +21,7 @@
           (lambda(x)
             (display
              (format #f
-                     "| ~a | ~a |\n"
+                     "| ~a | =~a= |\n"
                      (car x)
                      (cond
                       ((and (string? (cdr x))
@@ -43,7 +43,7 @@
           (lambda(x)
             (display
              (format #f
-                     "| ~a | ~a |\n"
+                     "| ~a | =~a= |\n"
                      (car x)
                      (cond
                       ((and (string? (cdr x))
