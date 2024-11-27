@@ -1,4 +1,4 @@
-;;; sway.scm
+;;; SSS - Supreme Sexp System
 
 ;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
 
@@ -81,7 +81,7 @@
     `(
       ,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name)
       "gsettings set $gnome-schema icon-theme 'Delft-Darkest'"
-      "gsettings set $gnome-schema cursor-theme 'Yaru'"
+      "gsettings set $gnome-schema cursor-theme 'Breeze'"
       "gsettings set $gnome-schema font-name 'Liberation Sans'"
       ))
   )

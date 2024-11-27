@@ -1,3 +1,5 @@
+;;; SSS - Supreme Sexp System
+
 (load "./home/joe/palette.scm")
 (load "./home/joe/sway.scm")
 

@@ -1,4 +1,4 @@
-;;; packages.scm
+;;; SSS - Supreme Sexp System
 
 ;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
 
@@ -23,11 +23,10 @@
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
   #:use-module (guix licenses)
+  #:use-module (gnu packages games)
   #:use-module (guix packages)
   #:use-module (guix build-system meson)
-  #:use-module ((guix licenses) #:prefix license:)
-
-  )
+  #:use-module ((guix licenses) #:prefix license:))
 
 (use-package-modules freedesktop base lxqt package-management
                      web linux gnuzilla ncurses xfce multiprecision gcc
@@ -243,6 +242,9 @@ corners, shadows, inactive window dimming, etc.")
    (specification->package "make")
    nix
    coreutils
+   seatd
+   libseat
+   elogind   
    xinit
    pango
    cairo
@@ -321,6 +323,8 @@ corners, shadows, inactive window dimming, etc.")
    orage
    sqlitebrowser
    direnv
+
+   bsd-games
 
    power-profiles-daemon
 

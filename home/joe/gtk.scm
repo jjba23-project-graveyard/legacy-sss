@@ -1,4 +1,4 @@
-;;; gtk.scm
+;;; SSS - Supreme Sexp System
 
 ;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
 
@@ -34,6 +34,6 @@
     (gtk-font-name . "Liberation Sans 11")
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . 0)
-    (gtk-cursor-theme-name . "Yaru")
+    (gtk-cursor-theme-name . "Breeze")
     (gtk-enable-input-feedback-sounds . 0)
     ))

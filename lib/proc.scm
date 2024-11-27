@@ -1,4 +1,4 @@
-;;; proc.scm
+;;; SSS - Supreme Sexp System
 
 ;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
 
@@ -29,6 +29,7 @@
   #:use-module (gnu services configuration)
   )
 
+;;; Code:
 
 (define-public (syscall cmd)
   (let* ((process (open-input-pipe cmd))
@@ -47,6 +48,7 @@
 
 (begin
   (define* (mk-css-conf-lines pairs)
+    "Create a CSS configuration from PAIRS, a selector to values alist."
     (with-output-to-string
       (lambda ()
         (for-each

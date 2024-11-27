@@ -1,4 +1,4 @@
-;;; ssh.scm
+;;; SSS - Supreme Sexp System
 
 ;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
 
