@@ -7,7 +7,7 @@
 
 A Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are celebrated.
 
-GNU Guix + GNU Emacs + Nix + Sway 💚
+GNU Guix + GNU Emacs + Nix + SwayFX 💚
 
 Let me help you achieve /GNUrvana/.
 
@@ -21,7 +21,7 @@ This custom GNU/Linux setup enhances customization to infinity and offers a supe
 Knowledge you may find in the repo includes:
 - Advanced Emacs configurations with Emacs Lisp + Elpaca
 - GNU Guix system configurations (Guile Scheme)
-- Sway WM configurations (Guile Scheme)
+- SwayFX configurations (Guile Scheme)
 - Foot terminal emulator (Guile Scheme)
 - Waybar configuration and style (Guile Scheme)
 - Mako configuration and style (Guile Scheme)
@@ -32,13 +32,15 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 <img src="./resources/screenshots/2024-11-20T00:04:07,441002916+01:00.png"/>
 #+end_html
 
-Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, Sway, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
+Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
 🇳🇱 parts of the code and settings might be in the Dutch language ( ~nl_NL.UTF-8~ ).
 
 
 *** Introduction
 These are my configuration files, which also explain a lot about the tooling I use and enjoy, and can teach you a thing or two.
+
+Find the [[file:docs/Manual/README.org][manual for SSS here]].
 
 If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
 
