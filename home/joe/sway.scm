@@ -87,12 +87,12 @@
   )
 
 
-(define sss-sway-outputs
+(define-public sss-sway-outputs
   (list (sway-output
          (identifier '*)
          (background sss-sway-wallpaper))))
 
-(define sss-sway-variables
+(define-public sss-sway-variables
   `((mod   . "Mod4")
     (left  . "Left")
     (down  . "Down")

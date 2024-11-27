@@ -33,7 +33,29 @@
                      ))
             )
           sss-sway-keybindings)
-         (display "|------|------|\n")))
+         (display "|------|------|\n\n\n")))
+    "*** Variables\n\n"
+    ,(with-output-to-string
+       (lambda()
+         (display "| variable | value |\n")
+         (display "|------|------|\n")
+         (for-each
+          (lambda(x)
+            (display
+             (format #f
+                     "| ~a | ~a |\n"
+                     (car x)
+                     (cond
+                      ((and (string? (cdr x))
+                            (>= (string-length (cdr x)) 44))
+                       (string-take (cdr x) 44))
+                      ((not (string? (cdr x))) "")
+                      (else (cdr x))
+                      )
+                     ))
+            )
+          sss-sway-variables)
+         (display "|------|------|\n\n\n")))    
     ))
 
 (define-public (sss-write-manual)

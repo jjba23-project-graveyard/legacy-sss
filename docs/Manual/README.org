@@ -60,3 +60,22 @@ This manual documents the SSS/GNU system and its functionalities.
 | $mod+Shift+e |  |
 | $mod+r | mode "resize" |
 |------|------|
+
+
+*** Variables
+
+| variable | value |
+|------|------|
+| mod | Mod4 |
+| left | Left |
+| down | Down |
+| up | Up |
+| right | Right |
+| gnome-schema | org.gnome.desktop.interface |
+| editor | emacsclient -c |
+| browser | /home/joe/.nix-profile/bin/vivaldi |
+| term | footclient |
+| menu | fuzzel |
+|------|------|
+
+
