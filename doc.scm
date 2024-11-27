@@ -19,16 +19,18 @@
          (display "|------|------|\n")
          (for-each
           (lambda(x)
-            (display (format #f "| ~a | ~a |\n"
-                             (car x)
-                             (cond
-                              ((and (string? (cdr x))
-                                    (>= (string-length (cdr x)) 32))
-                               (string-take (cdr x) 32))
-                              ((not (string? (cdr x))) "")
-                              (else (cdr x))
-                              )
-                             ))
+            (display
+             (format #f
+                     "| ~a | ~a |\n"
+                     (car x)
+                     (cond
+                      ((and (string? (cdr x))
+                            (>= (string-length (cdr x)) 32))
+                       (string-take (cdr x) 32))
+                      ((not (string? (cdr x))) "")
+                      (else (cdr x))
+                      )
+                     ))
             )
           sss-sway-keybindings)
          (display "|------|------|\n")))

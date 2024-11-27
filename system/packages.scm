@@ -23,11 +23,7 @@
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
   #:use-module (guix licenses)
-  #:use-module (gnu packages gtk)
   #:use-module (guix packages)
-  #:use-module (gnu packages wm)
-  #:use-module (gnu packages kde-frameworks)
-  #:use-module (gnu packages kde-plasma)
   #:use-module (guix build-system meson)
   #:use-module ((guix licenses) #:prefix license:)
 
@@ -39,6 +35,7 @@
                      python xdisorg imagemagick curl cups terminals
                      video image compression sqlite disk glib networking
                      fontutils lisp image-viewers gnome-xyz guile-xyz
+                     polkit gtk kde-plasma kde-frameworks wm
                      compton ssh vpn version-control fonts pulseaudio
                      libreoffice wm docker lisp-xyz web-browsers audio
                      music display-managers file-systems tree-sitter lua
@@ -55,28 +52,6 @@
    breeze-gtk
    delft-icon-theme
    ))
-
-(define font-sss-intel-one-mono
-  (package
-   (name "font-sss-intel-one-mono")
-   (version "1.4.0")
-   (source (origin
-            (method git-fetch)
-            (uri (git-reference
-                  (url "https://github.com/intel/intel-one-mono")
-                  (commit (string-append "V" version))))
-            (file-name (git-file-name name version))
-            (sha256
-             (base32
-              "1snwxpcdxl62z1mcax19bmsmbw0hi6m0cqkxqz79ydynfch95sd0"))))
-   (build-system font-build-system)
-   (home-page "https://github.com/intel/intel-one-mono")
-   (synopsis "Expressive monospaced font family")
-   (description
-    "This package provides Intel One Mono, an expressive monospaced font
-family that's built with clarity, legibility, and the needs of developers in
-mind.")
-   (license silofl1.1)))
 
 (define-public scenefx
   (package
@@ -162,8 +137,7 @@ corners, shadows, inactive window dimming, etc.")
    fontconfig
    font-google-roboto
    font-google-noto-emoji
-   font-jetbrains-mono
-   font-sss-intel-one-mono
+   font-jetbrains-mono   
    font-intel-one-mono
    font-liberation
    font-dejavu
@@ -205,13 +179,12 @@ corners, shadows, inactive window dimming, etc.")
    ;; Compatibility for older Xorg applications
    xorg-server-xwayland
 
+   polkit-gnome
+   
    ;; LXQt suite
-   lxqt-policykit
    lxqt-config
    lxqt-admin
    lxqt-sudo
-   lxqt-powermanagement
-   lxqt-themes
    qterminal
    pcmanfm-qt
 
