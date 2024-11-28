@@ -37,7 +37,7 @@
     ))
 
 (define-public sss-fuzzel-config
-  `((font . "Intel One Mono:size=18")
+  `((font . "Intel One Mono:size=16")
     (terminal . "foot")
     (icon-theme . "Delft-Darkest")
     (fuzzy . "yes")
