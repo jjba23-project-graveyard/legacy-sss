@@ -280,6 +280,7 @@ corners, shadows, inactive window dimming, etc.")
    (specification->package "bind")
    wireshark
 
+   gnome-tweaks
    arandr
    httpie
    (specification->package "remmina")
