@@ -24,3 +24,9 @@
 #+begin_src sh
   swaymsg -- output Virtual-1 mode --custom 3840x2160 scale 2
 #+end_src
+
+*** 1080p screen
+
+#+begin_src sh
+  swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
+#+end_src
