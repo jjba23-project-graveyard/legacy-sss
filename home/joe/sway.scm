@@ -81,7 +81,7 @@
     `(
       ,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name)
       "gsettings set $gnome-schema icon-theme 'Delft-Darkest'"
-      "gsettings set $gnome-schema cursor-theme 'Breeze'"
+      "gsettings set $gnome-schema cursor-theme 'Breeze_cursors'"
       "gsettings set $gnome-schema cursor-size 32"
       "gsettings set $gnome-schema font-name 'Liberation Sans'"
       ))
