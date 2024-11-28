@@ -35,5 +35,6 @@
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . 0)
     (gtk-cursor-theme-name . "Breeze")
+    (gtk-cursor-theme-size . 32)
     (gtk-enable-input-feedback-sounds . 0)
     ))
