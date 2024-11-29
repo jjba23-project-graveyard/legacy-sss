@@ -90,15 +90,15 @@
 ;; Declare sss packages
 
 (use-package git-riddance 
-  :ensure (:host github :repo "jjba23/git-riddance.el" :branch "trunk"))
+  :ensure (:host codeberg :repo "jjba23/git-riddance.el" :branch "trunk"))
 
 (use-package modusregel
-  :ensure (:host github :repo "jjba23/modusregel" :branch "trunk")
+  :ensure (:host codeberg :repo "jjba23/modusregel" :branch "trunk")
   :config
   (setq-default mode-line-format modusregel-format))
 
 (use-package welkomscherm
-  :ensure (:host github :repo "jjba23/welkomscherm.el" :branch "trunk")
+  :ensure (:host codeberg :repo "jjba23/welkomscherm.el" :branch "trunk")
   :bind (("C-c SPC SPC" . welkomscherm)
          )
   :init
@@ -131,7 +131,7 @@
 
 
 (use-package tekengrootte 
-  :ensure (:host github :repo "jjba23/tekengrootte.el" :branch "trunk") 
+  :ensure (:host codeberg :repo "jjba23/tekengrootte.el" :branch "trunk") 
   :bind (("C-c f c" . tekengrootte-set-scale-colossal) 
          ("C-c f j" . tekengrootte-set-scale-jumbo) 
          ("C-c f x" . tekengrootte-set-scale-larger) 
