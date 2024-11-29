@@ -5,7 +5,7 @@
 ;; Version: 0.6.0
 ;; Author: Josep Bigorra <jjbigorra@gmail.com>
 ;; Maintainer: Josep Bigorra <jjbigorra@gmail.com>
-;; URL: https://github.com/jjba23/sss
+;; URL: https://codeberg.org/jjba23/sss
 ;; Package: emacs
 ;; Package-Requires: ((emacs "29.1"))
 

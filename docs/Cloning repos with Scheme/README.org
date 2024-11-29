@@ -34,6 +34,6 @@
   (for-each
    (lambda(x)
      (syscall
-      (format #f "[ -d $HOME/Ontwikkeling/Persoonlijk/~a ] || git clone git@personal.github.com:jjba23/~a.git $HOME/Ontwikkeling/Persoonlijk/~a" x x x)))
+      (format #f "[ -d $HOME/Ontwikkeling/Persoonlijk/~a ] || git clone git@codeberg.org:jjba23/~a.git $HOME/Ontwikkeling/Persoonlijk/~a" x x x)))
    sss-joe-clone-repos)
 #+end_src
