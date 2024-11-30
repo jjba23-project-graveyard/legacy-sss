@@ -167,7 +167,7 @@ corners, shadows, inactive window dimming, etc.")
    wl-color-picker
    qpwgraph
    wireplumber
-   pipewire
+   pipewire   
 
    ;; Wayland portals
    xdg-desktop-portal
