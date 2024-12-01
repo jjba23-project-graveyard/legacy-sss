@@ -9,11 +9,17 @@ A Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are cel
 
 GNU Guix + GNU Emacs + Nix + SwayFX 💚
 
+[[https://img.shields.io/badge/Guile%20Scheme-B08940?logo=gnu&logoColor=000&style=plastic]]
+[[https://img.shields.io/badge/Guix-B08940?logo=gnu&logoColor=000&style=plastic]]
+[[https://img.shields.io/badge/GNU%20Emacs-7F5AB6?logo=gnuemacs&logoColor=fff&style=plastic]]
+
 Let me help you achieve /GNUrvana/.
 
 If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
 
 This custom GNU/Linux setup enhances customization to infinity and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
+
+Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
 [[file:./resources/screenshots/2024-11-28T11:39:39,081581954+01:00.png]]
 
@@ -27,8 +33,6 @@ Knowledge you may find in the repo includes:
 - Waybar configuration and style (Guile Scheme)
 - Mako configuration and style (Guile Scheme)
 - multi-user Git configuration setup (work/personal)
-
-Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
@@ -44,15 +48,6 @@ Find the [[file:docs/Manual/README.org][manual for SSS here]].
 If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
 
 This is the set of files that powers my day-to-day computing experience, so do not track my dotfiles (rolling, unstable, and untested), but feel free to use them and take inspiration from them or fork and work under the terms of the GNU GPL v3 or newer.
-
-#+begin_html
-<div>
-<img src="https://img.shields.io/badge/Guile%20Scheme-B08940?logo=gnu&logoColor=000&style=plastic" alt="Guile Scheme"/>
-<img src="https://img.shields.io/badge/Guix-B08940?logo=gnu&logoColor=000&style=plastic" alt="Guix"/>
-<img src="https://img.shields.io/badge/GNU%20Emacs-7F5AB6?logo=gnuemacs&logoColor=fff&style=plastic" alt="GNU Emacs"/>
-
-</div>
-#+end_html
 
 In some ways this is a laboratory of experimentation for my computing environment. What I do with any other program that forms part of sss is only meant to work for me. As such, I may introduce breaking changes without prior notice.
 
