@@ -15,6 +15,7 @@ If you like my work, please support me by [[https://bmc.link/jjbigorra][buying m
 
 This custom GNU/Linux setup enhances customization to infinity and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
+[[file:./resources/screenshots/2024-11-28T11:39:39,081581954+01:00.png]]
 
 *** What lies here?
 
@@ -27,10 +28,8 @@ Knowledge you may find in the repo includes:
 - Mako configuration and style (Guile Scheme)
 - multi-user Git configuration setup (work/personal)
 
-Note: Screenshot below might be outdated and no longer representative of the current, everchanging state of these "dotfiles".
-#+begin_html
-<img src="./resources/screenshots/2024-11-28T11:39:39,081581954+01:00.png"/>
-#+end_html
+Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
+
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
