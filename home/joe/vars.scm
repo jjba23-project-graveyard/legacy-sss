@@ -33,7 +33,7 @@
     ("QT_QPA_PLATFORM" . "wayland")
     ("RTC_USE_PIPEWIRE" . "true")
     ("XCURSOR_SIZE" . "32")
-    ("XCURSOR_THEME" . "Breeze")
+    ("XCURSOR_THEME" . "Breeze_cursors")
     ("SDL_VIDEODRIVER" . "wayland")
     ("QT_WAYLAND_DISABLE_WINDOWDECORATION" . "1")
     ("_JAVA_AWT_WM_NONREPARENTING" . "1")
