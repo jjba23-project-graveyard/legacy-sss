@@ -159,6 +159,13 @@ The installed software will be available, for example at: ~/home/joe/.nix-profil
 
 -----
 
+** More stuff to install
+
+#+begin_src sh
+  guix install artanis
+#+end_src
+
+------
 
 ** Project Management
 
