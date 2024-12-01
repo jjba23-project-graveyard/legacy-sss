@@ -318,7 +318,7 @@ corners, shadows, inactive window dimming, etc.")
    tree
    fyi
 
-   element-desktop
+   ;; element-desktop
 
    (specification->package "darkhttpd")
    openvpn

@@ -19,6 +19,7 @@
              (guix)
              (gnu system privilege)
              (gnu services)
+             (gnu services sddm)
              (guix packages))
 
 (use-modules (nongnu packages linux)
@@ -82,8 +83,6 @@
                       (%current-system))))
 
   (cons*
-   (service gdm-service-type)
-
    ;; Add udev rules for MTP devices so that non-root users can access
    ;; them.
    (simple-service 'mtp udev-service-type (list libmtp))
@@ -108,7 +107,9 @@
 
    ;; This is a volatile read-write file system mounted at /var/lib/gdm,
    ;; to avoid GDM stale cache and permission issues.
-   gdm-file-system-service
+   ;; gdm-file-system-service
+   ;;(service gdm-service-type)
+   (service sddm-service-type)
 
    ;; The global fontconfig cache directory can sometimes contain
    ;; stale entries, possibly referencing fonts that have been GC'd,
