@@ -9,10 +9,6 @@ A Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are cel
 
 GNU Guix + GNU Emacs + Nix + SwayFX 💚
 
-[[https://img.shields.io/badge/Guile%20Scheme-B08940?logo=gnu&logoColor=000&style=plastic]]
-[[https://img.shields.io/badge/Guix-B08940?logo=gnu&logoColor=000&style=plastic]]
-[[https://img.shields.io/badge/GNU%20Emacs-7F5AB6?logo=gnuemacs&logoColor=fff&style=plastic]]
-
 Let me help you achieve /GNUrvana/.
 
 If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
