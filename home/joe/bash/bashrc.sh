@@ -98,6 +98,14 @@ function hg() {
     history | grep "$1";
 }
 
+function man () { 
+    if [ "$TERM" == "eterm-color" ]; then
+        emacsclient -e "(man \"$1\")";
+    else
+        command man "$@";
+    fi
+}
+
 eval "$(fzf --bash)"
 
 # Load Nix profile 

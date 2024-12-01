@@ -18,6 +18,7 @@
 (define-module (sss-packages)
   #:use-module (gnu)
   #:use-module (nongnu packages fonts)
+  #:use-module (nongnu packages messaging)
   #:use-module (gnu services nix)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
@@ -351,6 +352,8 @@ corners, shadows, inactive window dimming, etc.")
    unixodbc
    tree
    fyi
+
+   element-desktop
 
    (specification->package "darkhttpd")
    openvpn
