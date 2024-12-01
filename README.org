@@ -2,7 +2,7 @@
 #+title: Supreme Sexp System - SSS
 #+author: Josep Bigorra
 #+email: jjbigorra@gmail.com
-#+options: num:nil
+#+options: num:nil toc:nil
 
 
 A Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are celebrated.
