@@ -36,12 +36,13 @@
                      python xdisorg imagemagick curl cups terminals
                      video image compression sqlite disk glib networking
                      fontutils lisp image-viewers gnome-xyz guile-xyz
-                     guile bash nss pkg-config games
+                     guile bash nss pkg-config games qt
                      polkit gtk kde-plasma kde-frameworks kde-utils wm
                      compton ssh vpn version-control fonts pulseaudio
                      libreoffice wm docker lisp-xyz web-browsers audio
                      music display-managers file-systems tree-sitter lua
-                     xorg admin screen node emacs lxde vim
+                     xorg admin screen node emacs lxde vim astronomy
+                     text-editors
                      haskell-apps gnome databases bittorrent shellutils)
 
 (load "../per-host.scm")
@@ -374,6 +375,16 @@ more.")
    git
    pavucontrol
 
+   kcalc
+
+   slurp
+   stellarium
+   kate
+   geany
+   gnome-font-viewer
+   gnome-characters
+   qtwayland
+
    guile-fibers
    
    xz
@@ -396,6 +407,11 @@ more.")
    vlc
    sqlite
    postgresql
+
+   gnome-calculator
+   cheese
+   gnome-system-monitor
+   evince
 
    obs
    libreoffice

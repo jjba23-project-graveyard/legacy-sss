@@ -73,7 +73,6 @@
 (define sss-joe-mpd
   (service mpd-service-type
            (mpd-configuration
-            (user "joe")
             (music-directory "/home/joe/Muziek")
             (playlist-directory "/home/joe/Muziek/Playlists"))))
 

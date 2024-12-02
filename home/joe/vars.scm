@@ -31,6 +31,7 @@
     ("WLR_NO_HARDWARE_CURSORS" . "1")
     ("MOZ_ENABLE_WAYLAND" . "1")
     ("QT_QPA_PLATFORM" . "wayland")
+    ("QT_QPT_PLATFORM" . "wayland")
     ("RTC_USE_PIPEWIRE" . "true")
     ("XCURSOR_SIZE" . "32")
     ("XCURSOR_THEME" . "Breeze_cursors")
