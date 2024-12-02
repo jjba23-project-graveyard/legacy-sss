@@ -109,7 +109,9 @@
    ;; to avoid GDM stale cache and permission issues.
    ;; gdm-file-system-service
    ;;(service gdm-service-type)
-   (service sddm-service-type)
+   (service sddm-service-type
+            (sddm-configuration
+             (theme "maya")))
 
    ;; The global fontconfig cache directory can sometimes contain
    ;; stale entries, possibly referencing fonts that have been GC'd,

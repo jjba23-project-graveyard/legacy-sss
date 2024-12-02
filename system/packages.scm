@@ -24,13 +24,7 @@
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
   #:use-module (guix licenses)
-  #:use-module (gnu packages games)
   #:use-module (guix packages)
-  #:use-module (gnu packages guile-xyz)
-  #:use-module (gnu packages guile)
-  #:use-module (gnu packages bash)
-  #:use-module (gnu packages nss)
-  #:use-module (gnu packages pkg-config)
   #:use-module (guix build-system meson)
   #:use-module (guix download)
   #:use-module (guix build-system gnu)
@@ -42,7 +36,8 @@
                      python xdisorg imagemagick curl cups terminals
                      video image compression sqlite disk glib networking
                      fontutils lisp image-viewers gnome-xyz guile-xyz
-                     polkit gtk kde-plasma kde-frameworks wm
+                     guile bash nss pkg-config games
+                     polkit gtk kde-plasma kde-frameworks kde-utils wm
                      compton ssh vpn version-control fonts pulseaudio
                      libreoffice wm docker lisp-xyz web-browsers audio
                      music display-managers file-systems tree-sitter lua
