@@ -304,13 +304,17 @@ According to size, color and font family"
 
 
 
-
 (use-package vertico 
   :ensure t 
   :init
   (setq vertico-cycle t
-        vertico-resize t) 
-  :config (vertico-mode))
+        vertico-resize t)
+  :config
+  (require 'vertico-multiform)
+  (add-to-list 'vertico-multiform-categories
+               '(jinx grid (vertico-grid-annotate . 20)))
+  (vertico-mode)
+  (vertico-multiform-mode 1))
 
 (use-package marginalia 
   :ensure t 
