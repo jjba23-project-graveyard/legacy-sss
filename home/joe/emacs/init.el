@@ -706,6 +706,21 @@ According to size, color and font family"
          (org-mode . (lambda () (flymake-mode)(flymake-proselint-setup))))
   )
 
+(use-package jinx
+  :ensure t
+  :config
+  (dolist (hook '(text-mode-hook
+                  prog-mode-hook
+                  conf-mode-hook
+                  org-mode-hook
+                  markdown-mode-hook))
+    (add-hook hook #'jinx-mode))
+  ;; or globally
+  ;;(add-hook 'emacs-startup-hook #'global-jinx-mode)
+  (keymap-global-set "M-$" #'jinx-correct)
+  (keymap-global-set "C-M-$" #'jinx-languages)
+  )
+
 
 ;; Emacs Multimedia System
 (use-package emms
@@ -757,19 +772,20 @@ According to size, color and font family"
          ("C-c b w" . sss-bookmark-stumpwm-config)
          ("C-c l d" . toggle-debug-on-error)
          ("C-c l e" . eval-buffer)
-         ("C-c s b" . flyspell-buffer)
-         ("C-c s r" . flyspell-region)
+         ;; ("C-c s b" . flyspell-buffer)
+         ;; ("C-c s r" . flyspell-region)
+         ;; ("C-c s p" . flyspell-prog-mode)
          ("C-c # j" . sss-joe-reconfigure)
          ("C-c # s" . sss-sys-reconfigure)
          ("C-c # u" . sss-sys-update)
-         ("C-c # f" . sss-full-reconfigure)
-         ("C-c s p" . flyspell-prog-mode))
+         ("C-c # f" . sss-full-reconfigure))
   :hook ((text-mode . visual-line-mode)
          (after-make-frame-functions . new-frame-setup)
-         (org-mode . flyspell-mode)
-         (markdown-mode . flyspell-mode)
-         (org-mode . flyspell-buffer)
-         (markdown-mode . flyspell-mode))
+         ;; (org-mode . flyspell-mode)
+         ;; (markdown-mode . flyspell-mode)
+         ;; (org-mode . flyspell-buffer)
+         ;; (markdown-mode . flyspell-buffer)
+         )
   :config
   (setq-default user-personal-name "Joe"
 		user-personal-full-name "Josep Jesus Bigorra Algaba"

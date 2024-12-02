@@ -42,7 +42,7 @@
                      libreoffice wm docker lisp-xyz web-browsers audio
                      music display-managers file-systems tree-sitter lua
                      xorg admin screen node emacs lxde vim astronomy
-                     text-editors
+                     text-editors enchant
                      haskell-apps gnome databases bittorrent shellutils)
 
 (load "../per-host.scm")
@@ -421,7 +421,8 @@ more.")
    feh
    containerd
    xmodmap
-   
+
+   enchant
 
    docker
    docker-compose
