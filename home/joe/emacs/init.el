@@ -708,6 +708,8 @@ According to size, color and font family"
 
 (use-package jinx
   :ensure t
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages))
   :config
   (dolist (hook '(text-mode-hook
                   prog-mode-hook
@@ -717,8 +719,6 @@ According to size, color and font family"
     (add-hook hook #'jinx-mode))
   ;; or globally
   ;;(add-hook 'emacs-startup-hook #'global-jinx-mode)
-  (keymap-global-set "M-$" #'jinx-correct)
-  (keymap-global-set "C-M-$" #'jinx-languages)
   )
 
 
