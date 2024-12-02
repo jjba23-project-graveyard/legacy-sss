@@ -184,6 +184,8 @@ According to size, color and font family"
     (set-face-attribute 'org-verbatim nil                       
 		        :font sss-font-mono
                         :height (tekengrootte-mk-font-size 1.05))
+    (set-face-attribute 'org-document-title nil 
+		        :height (tekengrootte-mk-font-size 1.2))
     (set-face-attribute 'org-level-1 nil 
 		        :height (tekengrootte-mk-font-size 1.2))
     (set-face-attribute 'org-level-2 nil 
