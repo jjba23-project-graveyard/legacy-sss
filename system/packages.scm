@@ -74,21 +74,18 @@
                    "cairo"
                    "gdk-pixbuf"
                    "json-c"
-                   "cmake"
                    "libevdev"
                    "libinput-minimal"
                    "libxkbcommon"
                    "pcre2"
-                   "pkg-config"
+                   "scenefx"
                    "swaybg"
                    "wayland"
-                   "wayland-protocols"
-                   "wlr-protocols"
-                   "libdrm"
                    "wlroots@0.17.4"
-                   ))
-            (list scenefx pango)
-            ))
+                   )            
+                 )
+            (list pango))
+           )
    (home-page "https://github.com/WillPower3309/swayfx")
    (synopsis "Sway Fork with extra options and effects")
    (description
@@ -96,6 +93,7 @@
 adds extra options and effects to the original Sway, such as blur, rounded
 corners, shadows, inactive window dimming, etc.")
    (license license:expat)))
+
 
 (define sss-font-packages
   (list
