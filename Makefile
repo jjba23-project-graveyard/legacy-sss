@@ -89,6 +89,12 @@ gc:
 	@sudo guix system delete-generations 3d
 store-gc:
 	@sudo guix gc
+full-gc:
+	@-sudo guix system delete-generations 3d
+	@-sudo guix gc
+	@-nix-store --gc
+	@-nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)"
+
 shepherd-logs:
 	cat ~/.local/state/log/shepherd.log
 npu:
