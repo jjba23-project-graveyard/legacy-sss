@@ -42,6 +42,12 @@
     (swipe:3:down  . "move to scratchpad")
     (swipe:3:up    . "scratchpad show")))
 
+(define sss-sway-floating-windows
+  `("org.kde.kcalc"
+    "org.gnome.Calculator"
+    "pavucontrol"
+    ))
+
 (define sss-sway-wallpaper
   "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")
 
@@ -177,16 +183,20 @@
            #$sway "/bin/swaymsg exit'"))
     ($mod+r . "mode \"resize\"")))
 
-(define sss-sway-extra-content
+(define sss-swayfx-config
   `(
-    "gaps inner 12"
-    "gaps outer 8"
     "corner_radius 12"
     "shadows enable"
     "blur enable"
     "default_dim_inactive 0.2"
     "dim_inactive_colors.unfocused #000000FF"
     "dim_inactive_colors.urgent #900000FF"
+    ))
+
+(define sss-sway-extra-content
+  `(
+    "gaps inner 12"
+    "gaps outer 8"
 
     ;; class                 border  backgr. text    indicator child_border
     ,(format #f "client.focused ~a ~a ~a ~a ~a"
@@ -223,4 +233,8 @@
             (variables sss-sway-variables)
             (modes sss-sway-modes)
             (keybindings sss-sway-keybindings)
-            (extra-content sss-sway-extra-content))))
+            (extra-content
+             (append sss-swayfx-config
+                     (map (lambda(w) (format #f "for_window [name=\"~a\"] floating enable" w))
+                          sss-sway-floating-windows)
+                     sss-sway-extra-content)))))
