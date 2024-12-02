@@ -235,6 +235,6 @@
             (keybindings sss-sway-keybindings)
             (extra-content
              (append sss-swayfx-config
-                     (map (lambda(w) (format #f "for_window [name=\"~a\"] floating enable" w))
+                     (map (lambda(w) (format #f "for_window [app_id=\"~a\"] floating enable" w))
                           sss-sway-floating-windows)
                      sss-sway-extra-content)))))
