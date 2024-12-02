@@ -378,7 +378,7 @@ more.")
    kcalc
 
    slurp
-   stellarium
+   ;; stellarium
    kate
    geany
    gnome-font-viewer
