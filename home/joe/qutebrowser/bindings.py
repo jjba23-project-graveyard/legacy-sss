@@ -37,12 +37,12 @@ c.bindings.commands['normal'] = {
 
 
     # Commands
-    '<alt-x>': 'set-cmd-text :',
+    '<alt-x>': 'cmd-set-text :',
     '<ctrl-x><ctrl-c>': 'quit',
 
     # searching
-    '<ctrl-s>': 'set-cmd-text /',
-    '<ctrl-r>': 'set-cmd-text ?',
+    '<ctrl-s>': 'cmd-set-text /',
+    '<ctrl-r>': 'cmd-set-text ?',
 
     # hinting
     '<f>': 'hint all',
@@ -72,7 +72,7 @@ c.bindings.commands['normal'] = {
     '<shift-alt-n>': 'tab-move +',
     '<alt-p>': 'tab-prev',
     '<shift-alt-p>': 'tab-move -',
-    '<ctrl-x><b>': 'set-cmd-text -s :buffer',
+    '<ctrl-x><b>': 'cmd-set-text -s :buffer',
     '<ctrl-x><k>': 'tab-close',
     '<ctrl-c><p>': 'tab-pin',
     '<ctrl-c><m>': 'tab-mute',
@@ -91,13 +91,13 @@ c.bindings.commands['normal'] = {
     # frames
     '<ctrl-x><5><0>': 'close',
     '<ctrl-x><5><1>': 'window-only',
-    '<ctrl-x><5><2>': 'set-cmd-text -s :open -w',
-    '<ctrl-u><ctrl-x><5><2>': 'set-cmd-text -s :open -p',
+    '<ctrl-x><5><2>': 'cmd-set-text -s :open -w',
+    '<ctrl-u><ctrl-x><5><2>': 'cmd-set-text -s :open -p',
 
 
     # open links
-    '<g>': 'set-cmd-text -s :open',
-    '<shift-g>': 'set-cmd-text -s :open -t',
+    '<g>': 'cmd-set-text -s :open',
+    '<shift-g>': 'cmd-set-text -s :open -t',
 
     # editing
     '<ctrl-f>': 'fake-key <Right>',
@@ -133,7 +133,7 @@ c.bindings.commands['normal'] = {
 
     # Help
     '<ctrl-h><b>': 'open qute://bindings',
-    '<ctrl-h><h>': 'set-cmd-text -s :help',
+    '<ctrl-h><h>': 'cmd-set-text -s :help',
     # escape hatch
     '<ctrl-g>': ESC_BIND,
 }

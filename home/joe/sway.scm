@@ -107,7 +107,8 @@
     (right . "Right")
     (gnome-schema . "org.gnome.desktop.interface")
     (editor . "emacsclient -c")
-    (browser . "/home/joe/.nix-profile/bin/vivaldi")
+    (bloated-browser . "/home/joe/.nix-profile/bin/vivaldi")
+    (browser . "qutebrowser")
     (term  . "footclient")
     (menu  . "fuzzel")))
 
@@ -132,6 +133,7 @@
     ($mod+k . "kill")
     ($mod+slash . "exec $menu")
     ($mod+i . "exec $browser")
+    ($mod+Shift+i . "exec $bloated-browser")
     ($mod+e . "exec $editor")
     ($mod+Shift+c . "reload")
     ($mod+$left . "focus left")
