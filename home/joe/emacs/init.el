@@ -711,8 +711,9 @@ According to size, color and font family"
   )
 
 (use-package jinx
-  :ensure t
+  :ensure nil
   :bind (("M-$" . jinx-correct)
+         ([remap ispell-word] . #'jinx-correct)
          ("C-M-$" . jinx-languages))
   :config
   (dolist (hook '(text-mode-hook

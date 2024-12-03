@@ -42,7 +42,7 @@
                      libreoffice wm docker lisp-xyz web-browsers audio
                      music display-managers file-systems tree-sitter lua
                      xorg admin screen node emacs lxde vim astronomy
-                     text-editors enchant
+                     text-editors enchant emacs-xyz
                      haskell-apps gnome databases bittorrent shellutils)
 
 (load "../per-host.scm")
@@ -469,6 +469,8 @@ more.")
    unixodbc
    tree
    fyi
+
+   emacs-jinx
 
    ;; element-desktop
 

@@ -1,4 +1,3 @@
-
 #+title: Supreme Sexp System - SSS
 #+author: Josep Bigorra
 #+email: jjbigorra@gmail.com
