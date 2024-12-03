@@ -24,6 +24,7 @@
 (load "./bash.scm") (load "./gtk.scm")
 (load "./openpgp.scm") (load "../../doc.scm")
 (load "./portals.scm") (load "./xmodmap.scm")
+(load "./enchant.scm")
 
 (use-modules (gnu home)
              (gnu services)
@@ -40,7 +41,7 @@
              (sss-foot) (sss-fuzzel)
              (sss-git) (sss-vars)
              (sss-mako) (sss-byggsteg)
-             (sss-doc)
+             (sss-doc) (sss-enchant)
              (sss-fontconfig) (sss-bash)
              (sss-gtk) (sss-portals)
              (sss-xmodmap) (sss-openpgp)             
@@ -111,6 +112,8 @@
      (".config/mako/config"
       ,(plain-file "config"
                    (mk-kv-conf-lines sss-mako-config)))
+     (".enchant" ,(plain-file "enchant"
+                              (mk-lines sss-enchant-ordering)))
      (".emacs.d/init.el" ,(local-file "emacs/init.el"))
      (".emacs.d/early-init.el" ,(local-file "emacs/early-init.el")))))
 

@@ -471,6 +471,12 @@ more.")
    fyi
 
    emacs-jinx
+   aspell
+   aspell-dict-nl
+   aspell-dict-pt-pt
+   aspell-dict-es
+   aspell-dict-en
+   aspell-dict-ca
 
    ;; element-desktop
 

@@ -19,8 +19,7 @@
 
 (define-module (sss-gtk)
   #:use-module (gnu)
-  #:use-module (sss-palette)
-  )
+  #:use-module (sss-palette))
 
 
 (define-public sss-gtk-config
