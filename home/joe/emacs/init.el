@@ -226,18 +226,30 @@ According to size, color and font family"
 
   (setq-default eglot-workspace-configuration
                 '(
-                  :metals (
-                           :autoImportBuild t
-                           :superMethodLensesEnabled t
-                           :showInferredType t
-                           :enableSemanticHighlighting t
-                           :inlayHints (:inferredTypes (:enable t )
-                                                       :implicitArguments (:enable nil)
-                                                       :implicitConversions (:enable nil )
-                                                       :typeParameters (:enable t )
-                                                       :hintsInPatternMatch (:enable nil )))
+                  :metals ( :autoImportBuild t
+                            :superMethodLensesEnabled t
+                            :showInferredType t
+                            :enableSemanticHighlighting t
+                            :inlayHints ( :inferredTypes (:enable t )
+                                          :implicitArguments (:enable nil)
+                                          :implicitConversions (:enable nil )
+                                          :typeParameters (:enable t )
+                                          :hintsInPatternMatch (:enable nil )))
                   :haskell (:formattingProvider "ormolu")
+                  :yaml ( :format (:enable t)
+                          :validate t
+                          :hover t
+                          :completion t
+                          :schemas (
+                                    ;;/home/joe/Downloads/project.schema.json ["project.yml"]
+                                    https://json.schemastore.org/yamllint.json ["/*.yml"]
+                                    )
+                          :schemaStore (:enable t))
                   :nil (:formatting (:command ["nixfmt"]))))
+
+  ;; (add-to-list 'eglot-workspace-configuration
+  ;;              '(:yaml . (schemas .
+  ;;                                 ((https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json "/*")))))
 
   (setq eglot-autoshutdown t
         eglot-confirm-server-edits nil
