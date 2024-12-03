@@ -115,7 +115,9 @@
      (".enchant" ,(plain-file "enchant"
                               (mk-lines sss-enchant-ordering)))
      (".config/enchant/en_US.dic" ,(plain-file "en_US.dic"
-                                                (mk-lines sss-enchant-dict-en)))
+                                               (mk-lines sss-enchant-dict-en)))
+     (".config/qutebrowser/bindings.py" ,(local-file "qutebrowser/bindings.py"))
+     (".config/qutebrowser/config.py" ,(local-file "qutebrowser/config.py"))
      (".emacs.d/init.el" ,(local-file "emacs/init.el"))
      (".emacs.d/early-init.el" ,(local-file "emacs/early-init.el")))))
 

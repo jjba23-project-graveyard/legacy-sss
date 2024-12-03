@@ -408,6 +408,8 @@ more.")
    sqlite
    postgresql
 
+   qutebrowser
+
    gnome-calculator
    cheese
    gnome-system-monitor
