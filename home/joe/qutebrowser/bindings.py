@@ -54,10 +54,8 @@ c.bindings.commands['normal'] = {
     '<d>': 'yank all download',
 
     # history
-    '<shift-f>': 'forward',
-    '<shift-b>': 'back',
-    '<ctrl-c><ctrl-f>': 'forward',
-    '<ctrl-c><ctrl-b>': 'back',
+    '<ctrl-x><Right>': 'forward',
+    '<ctrl-x><Left>': 'back',
     'shift-h>': 'history',
 
     # bookmarks
