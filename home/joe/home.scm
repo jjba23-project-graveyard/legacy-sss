@@ -114,6 +114,8 @@
                    (mk-kv-conf-lines sss-mako-config)))
      (".enchant" ,(plain-file "enchant"
                               (mk-lines sss-enchant-ordering)))
+     (".config/enchant/en_US.dic" ,(plain-file "en_US.dic"
+                                                (mk-lines sss-enchant-dict-en)))
      (".emacs.d/init.el" ,(local-file "emacs/init.el"))
      (".emacs.d/early-init.el" ,(local-file "emacs/early-init.el")))))
 

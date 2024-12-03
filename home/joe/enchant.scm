@@ -27,3 +27,9 @@
 (define-public sss-enchant-ordering
   `("*:aspell,hunspell,nuspell"))
 
+;; Custom dictionary for English
+(define-public sss-enchant-dict-en
+  `("Guix" "SwayFX" "aspell" "hunspell" "nuspell"
+    "sss" "Josep" "Bigorra" "Algaba"
+    ))
+
