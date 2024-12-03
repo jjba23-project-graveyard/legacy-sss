@@ -33,7 +33,7 @@
 
 (use-service-modules networking desktop docker audio shepherd dbus base
                      xorg desktop configuration avahi nix xorg networking
-                     sound cups mcron pm)
+                     sound cups mcron pm lightdm)
 
 (use-package-modules certs nfs mate lxqt libusb linux glib
                      sugar suckless scanner xdisorg avahi xfce
@@ -108,9 +108,19 @@
    ;; to avoid GDM stale cache and permission issues.
    ;; gdm-file-system-service
    ;;(service gdm-service-type)
-   (service sddm-service-type
-            (sddm-configuration
-             (theme "maya")))
+   ;; (service sddm-service-type
+   ;;          (sddm-configuration
+   ;;           (theme "maya")))
+   (service lightdm-service-type
+            (lightdm-configuration
+             (allow-empty-passwords? #t)
+             (xdmcp? #t)
+             (vnc-server? #f)
+             (debug? #t)
+             (seats
+              (list (lightdm-seat-configuration
+                     (name "*")
+                     (user-session "sway"))))))
 
    ;; The global fontconfig cache directory can sometimes contain
    ;; stale entries, possibly referencing fonts that have been GC'd,
