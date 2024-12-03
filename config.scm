@@ -135,8 +135,10 @@
    (service colord-service-type)
    (service geoclue-service-type)
    (service polkit-service-type)
-   (service elogind-service-type)
    (service dbus-root-service-type)
+   (service elogind-service-type
+            (elogind-configuration
+             (kill-user-processes? #t)))
 
    (service
     openntpd-service-type
