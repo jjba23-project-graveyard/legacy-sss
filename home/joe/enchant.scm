@@ -18,13 +18,12 @@
 (define-module (sss-enchant)
   #:use-module (gnu))
 
-
+;; Enchant uses global and per-user ordering files named enchant.ordering to decide
+;; which spelling provider to use for particular languages. The per-user file takes precedence.
+;;
+;; The ordering file takes the form language_tag:<comma-separated list of spelling providers>.
+;; To see what dictionaries are available, run enchant-lsmod-2.
+;; ’*’ is used to mean use this ordering for all languages, unless instructed otherwise.
 (define-public sss-enchant-ordering
-  "Enchant uses global and per-user ordering files named enchant.ordering to decide
-which spelling provider to use for particular languages. The per-user file takes precedence.
-
-The ordering file takes the form language_tag:<comma-separated list of spelling providers>.
-To see what dictionaries are available, run enchant-lsmod-2.
-’*’ is used to mean use this ordering for all languages, unless instructed otherwise."
   `("*:aspell,hunspell,nuspell"))
 
