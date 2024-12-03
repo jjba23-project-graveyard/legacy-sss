@@ -247,10 +247,6 @@ According to size, color and font family"
                           :schemaStore (:enable t))
                   :nil (:formatting (:command ["nixfmt"]))))
 
-  ;; (add-to-list 'eglot-workspace-configuration
-  ;;              '(:yaml . (schemas .
-  ;;                                 ((https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json "/*")))))
-
   (setq eglot-autoshutdown t
         eglot-confirm-server-edits nil
         eglot-report-progress t
