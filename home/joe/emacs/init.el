@@ -241,7 +241,7 @@ According to size, color and font family"
                           :hover t
                           :completion t
                           :schemas (
-                                    ;;/home/joe/Downloads/project.schema.json ["project.yml"]
+                                    https://raw.githubusercontent.com/Vandebron/gh-mpyl/refs/heads/main/src/mpyl/schema/project.schema.yml ["project.yml"]
                                     https://json.schemastore.org/yamllint.json ["/*.yml"]
                                     )
                           :schemaStore (:enable t))
