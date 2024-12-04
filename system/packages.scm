@@ -30,7 +30,7 @@
   #:use-module (guix build-system gnu)
   #:use-module ((guix licenses) #:prefix license:))
 
-(use-package-modules freedesktop base lxqt package-management
+(use-package-modules freedesktop base lxqt package-management parallel
                      web linux gnuzilla ncurses xfce multiprecision gcc
                      aspell rust-apps inkscape gimp python-web mpd
                      python xdisorg imagemagick curl cups terminals
