@@ -437,6 +437,8 @@ more.")
    exfat-utils
    fuse-exfat
    tmon
+
+   parallel
    
    thunar
    xarchiver
