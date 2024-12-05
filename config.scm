@@ -104,23 +104,20 @@
                         (list (file-append nfs-utils "/sbin/mount.nfs")
                               (file-append ntfs-3g "/sbin/mount.ntfs-3g"))))
 
-   ;; This is a volatile read-write file system mounted at /var/lib/gdm,
-   ;; to avoid GDM stale cache and permission issues.
-   ;; gdm-file-system-service
-   ;;(service gdm-service-type)
-   ;; (service sddm-service-type
-   ;;          (sddm-configuration
-   ;;           (theme "maya")))
-   (service lightdm-service-type
-            (lightdm-configuration
-             (allow-empty-passwords? #t)
-             (xdmcp? #t)
-             (vnc-server? #f)
-             (debug? #t)
-             (seats
-              (list (lightdm-seat-configuration
-                     (name "*")
-                     (user-session "sway"))))))
+
+   (service sddm-service-type
+            (sddm-configuration
+             (theme "maya")))
+   ;; (service lightdm-service-type
+   ;;          (lightdm-configuration
+   ;;           (allow-empty-passwords? #t)
+   ;;           (xdmcp? #t)
+   ;;           (vnc-server? #f)
+   ;;           (debug? #t)
+   ;;           (seats
+   ;;            (list (lightdm-seat-configuration
+   ;;                   (name "*")
+   ;;                   (user-session "sway"))))))
 
    ;; The global fontconfig cache directory can sometimes contain
    ;; stale entries, possibly referencing fonts that have been GC'd,
