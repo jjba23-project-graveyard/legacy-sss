@@ -1,6 +1,6 @@
 #+title: SSS/GNU system - Manual & Documentation
 
-This manual documents the SSS/GNU system and its functionalities.
+You are reading the auto-generated manual for SSS. This manual documents the SSS/GNU system and its functionalities.
 
 ** Sway
 
