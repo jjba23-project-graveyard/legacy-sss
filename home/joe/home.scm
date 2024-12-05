@@ -62,6 +62,10 @@
       ,(plain-file "settings.ini"
                    (string-append "[Settings]\n"
                                   (mk-kv-conf-lines sss-gtk-config))))
+     (".config/gtk-4.0/settings.ini"
+      ,(plain-file "settings.ini"
+                   (string-append "[Settings]\n"
+                                  (mk-kv-conf-lines sss-gtk-config))))
      (".config/guix/channels.scm" ,(local-file "channels.scm"))             
      (".gitconfig"
       ,(plain-file "gitconfig.ini"

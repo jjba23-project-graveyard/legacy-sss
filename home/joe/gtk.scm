@@ -24,16 +24,24 @@
 
 (define-public sss-gtk-config
   `((gtk-icon-theme-name . "Delft-Darkest")
-    (gtk-theme-name . ,(cond
-                        ((equal? sss-palette-ef-cyprus sss-active-palette)
-                         "Yaru-sage"
-                         )
-                        (else "Yaru-sage-dark")
-                        ))
+    (gtk-theme-name .
+                    ,(cond
+                      ((equal? sss-palette-ef-cyprus sss-active-palette)
+                       "Yaru-sage"
+                       )
+                      (else "Yaru-sage-dark")
+                      ))
     (gtk-font-name . "Liberation Sans 11")
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . 0)
     (gtk-cursor-theme-name . "Breeze_cursors")
     (gtk-cursor-theme-size . 32)
     (gtk-enable-input-feedback-sounds . 0)
+    (gtk-application-prefer-dark-theme .
+                                       ,(cond
+                                         ((equal? sss-palette-ef-cyprus sss-active-palette)
+                                          0
+                                          )
+                                         (else 1)
+                                         ))
     ))
