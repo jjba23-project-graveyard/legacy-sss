@@ -12,7 +12,7 @@
 
 (define-public sss-manual-lines
   `("#+title: SSS/GNU system - Manual & Documentation\n\n"
-    "This manual documents the SSS/GNU system and its functionalities.\n\n"
+    "You are reading the auto-generated manual for SSS. This manual documents the SSS/GNU system and its functionalities.\n\n"
     "** Sway\n\n"
     "*** Keybindings\n\n"
     ,(with-output-to-string
