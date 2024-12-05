@@ -26,14 +26,14 @@
 # Code:
 
 # bash colors
-blk='\[\033[01;30m\]'   # Black
-red='\[\033[01;31m\]'   # Red
+# blk='\[\033[01;30m\]'   # Black
+# red='\[\033[01;31m\]'   # Red
 grn='\[\033[01;32m\]'   # Green
-ylw='\[\033[01;33m\]'   # Yellow
-blu='\[\033[01;34m\]'   # Blue
-pur='\[\033[01;35m\]'   # Purple
-cyn='\[\033[01;36m\]'   # Cyan
-wht='\[\033[01;37m\]'   # White
+# ylw='\[\033[01;33m\]'   # Yellow
+# blu='\[\033[01;34m\]'   # Blue
+# pur='\[\033[01;35m\]'   # Purple
+# cyn='\[\033[01;36m\]'   # Cyan
+# wht='\[\033[01;37m\]'   # White
 clr='\[\033[00m\]'      # Reset
 
 
@@ -46,11 +46,12 @@ export HISTFILESIZE=200000
 # set history to append
 shopt -s histappend
 
+# useful navigation shortcuts
 alias ..='cd ..;pwd'
 alias ...='cd ../..;pwd'
 alias ....='cd ../../..;pwd'
 
-# Press c to clear the terminal screen.
+# c to clear the terminal screen.
 alias c='clear'
 
 # Press h to view the bash history.
@@ -72,29 +73,39 @@ alias jr="cd ~/Ontwikkeling/Persoonlijk/sss && make jr"
 alias scala-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/scala-dev/"
 alias haskell-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/haskell-dev/"
 
+# 
 function glog() {
     sudo gzip -d "$1.gz" && cat "$1"
 }
 
 # Sway screen configurations and aliases
-function work_macbook_output() {
+function output_work_macbook_screen() {
     swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 2
 }
 
-function work_macbook_present_output() {
+function output_work_macbook_present_screen() {
     swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 3
 }
 
-alias owm='work_macbook_output'
-alias owmp='work_macbook_present_output'
+function output_4k_screen() {
+    swaymsg -- output Virtual-1 mode --custom 3840x2160 scale 2
+}
+
+function output_1080_screen() {
+    swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
+}
+
+alias owm='output_work_macbook_screen'
+alias owmp='output_work_macbook_present_screen'
+alias o1080='output_1080_screen'
+alias o4k='output_4k_screen'
 
 function find_largest_files() {
     du -h -x -s -- * | sort -r -h | head -20;
 }
 
 # Grep (search) through your history for previous run commands:
-
-function hg() {
+function hgrep() {
     history | grep "$1";
 }
 
@@ -106,6 +117,7 @@ function man () {
     fi
 }
 
+# Integrate fzf into bash, specially useful for C-r search
 eval "$(fzf --bash)"
 
 # Load Nix profile 
