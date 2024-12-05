@@ -103,7 +103,6 @@ corners, shadows, inactive window dimming, etc.")
    (version "1.0.0")
    (source (origin
             (method url-fetch)
-            ;;(uri (string-append "https://ftp.gnu.org/gnu/artanis/artanis-1.0.0.tar.gz"))
             (uri (string-append "mirror://gnu/artanis/artanis-"
                                 version ".tar.gz"))
             (sha256
@@ -112,11 +111,6 @@ corners, shadows, inactive window dimming, etc.")
             (modules '((guix build utils)))
             (snippet
              '(begin
-                ;; Unbundle guile-redis and guile-json
-                ;; (delete-file-recursively "artanis/third-party/json.scm")
-                ;; (delete-file-recursively "artanis/third-party/json")
-                ;; (delete-file-recursively "artanis/third-party/redis.scm")
-                ;; (delete-file-recursively "artanis/third-party/redis")
                 (substitute* '("artanis/artanis.scm"
                                "artanis/lpc.scm"
                                "artanis/oht.scm"
@@ -140,12 +134,6 @@ corners, shadows, inactive window dimming, etc.")
                               ""))
                 #t))))
    (build-system gnu-build-system)
-   ;; guile-3.0.9
-   ;; guile-dbi-2.1.8
-   ;; guile-dbd-mysql-2.1.8
-   ;; guile-curl-0.9
-   ;; guile-redis-2.2.0
-   ;; guile-json-4.7.3
    (inputs
     (list bash-minimal guile-3.0 nspr nss))
    ;; FIXME the bundled csv contains one more exported procedure
@@ -243,13 +231,8 @@ more.")
    font-liberation
    font-dejavu
    font-microsoft-web-core-fonts
-   font-apple-sf-pro
-   font-apple-sf-compact
-   font-apple-sf-mono
-   font-apple-new-york
    font-awesome
    font-fira-code
-   font-apple-sf-symbols
    font-google-noto))
 
 (define sss-wm-packages
@@ -276,18 +259,10 @@ more.")
    xdg-desktop-portal-wlr
    xdg-desktop-portal-gtk
    
-   
    ;; Compatibility for older Xorg applications
    xorg-server-xwayland
 
    polkit-gnome
-   
-   ;; LXQt suite
-   lxqt-config
-   lxqt-admin
-   lxqt-sudo
-   qterminal
-   pcmanfm-qt
 
    ;; Flatpak and XDG utilities
    flatpak-xdg-utils
@@ -314,7 +289,6 @@ more.")
    tree-sitter-scheme
    tree-sitter-java
    tree-sitter-javascript
-   
    ))
 
 
@@ -346,8 +320,7 @@ more.")
    coreutils
    seatd
    libseat
-   elogind   
-   xinit
+   elogind
    pango
    cairo
    xorg-server
@@ -359,8 +332,6 @@ more.")
    lilypond
    mpd
    mpd-mpc
-   ncmpcpp
-   cava
    ardour))
 
 (define sss-other-system-packages
@@ -424,14 +395,11 @@ more.")
    containerd
    xmodmap
 
-   enchant
-
    docker
    docker-compose
+   
    gparted
-   xrandr
-   rofi
-   slim
+   
    lm-sensors
    exfatprogs
    exfat-utils
@@ -444,6 +412,7 @@ more.")
    xarchiver
    ristretto
    orage
+   
    sqlitebrowser
    direnv
 
@@ -463,17 +432,18 @@ more.")
    pamixer
 
    ;; ghcid
+   neofetch
    
    bluez
    hplip
 
-   i3lock-fancy
    mpv
    mpv-mpris
    unixodbc
    tree
    fyi
 
+   enchant
    emacs-jinx
    aspell
    aspell-dict-nl
@@ -485,13 +455,13 @@ more.")
    ;; element-desktop
 
    (specification->package "darkhttpd")
+   
    openvpn
    network-manager-applet
    network-manager-openconnect
    network-manager-openvpn
+   
    xxd
-   (specification->package "tigervnc-server")
-   (specification->package "tigervnc-client")
    ))
 
 (define sss-guile-packages
