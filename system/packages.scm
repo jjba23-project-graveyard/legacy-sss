@@ -252,7 +252,9 @@ more.")
    wl-color-picker
    qpwgraph
    wireplumber
-   pipewire   
+   pipewire
+
+   wl-clipboard
 
    ;; Wayland portals
    xdg-desktop-portal
