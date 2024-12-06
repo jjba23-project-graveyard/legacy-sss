@@ -39,10 +39,10 @@
                      guile bash nss pkg-config games qt
                      polkit gtk kde-plasma kde-frameworks kde-utils wm
                      compton ssh vpn version-control fonts pulseaudio
-                     libreoffice wm docker lisp-xyz web-browsers audio
+                     libreoffice wm lisp-xyz web-browsers audio
                      music display-managers file-systems tree-sitter lua
                      xorg admin screen node emacs lxde vim astronomy
-                     text-editors enchant emacs-xyz
+                     text-editors enchant emacs-xyz containers
                      haskell-apps gnome databases bittorrent shellutils)
 
 (load "../per-host.scm")
@@ -392,11 +392,8 @@ more.")
    imagemagick
    libwebp
    feh
-   containerd
-   xmodmap
 
-   docker
-   docker-compose
+   xmodmap
    
    gparted
    
@@ -464,6 +461,12 @@ more.")
    xxd
    ))
 
+(define sss-container-packages
+  (list
+   podman podman-compose
+   passt
+   ))
+
 (define sss-guile-packages
   (list
    (specification->package "guile-json")
@@ -478,6 +481,7 @@ more.")
    sss-font-packages
    sss-dev-packages
    sss-guile-packages
+   sss-container-packages
    sss-treesitter-packages
    sss-coreutils
    sss-theme-packages))

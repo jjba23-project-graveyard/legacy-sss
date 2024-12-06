@@ -17,6 +17,7 @@ You are reading the auto-generated manual for SSS. This manual documents the SSS
 | $mod+i | =exec $browser= |
 | $mod+Shift+i | =exec $bloated-browser= |
 | $mod+e | =exec $editor= |
+| $mod+minus | =exec $password-manager= |
 | $mod+Shift+c | =reload= |
 | $mod+$left | =focus left= |
 | $mod+$down | =focus down= |
@@ -57,7 +58,7 @@ You are reading the auto-generated manual for SSS. This manual documents the SSS
 | $mod+a | =focus parent= |
 | $mod+Shift+minus | =move scratchpad= |
 | $mod+Shift+m | =sway output Virtual-1 mode 1920x= |
-| $mod+minus | =scratchpad show= |
+| $mod+Shift+s | =scratchpad show= |
 | $mod+Shift+e | == |
 | $mod+r | =mode "resize"= |
 |------|------|
@@ -77,6 +78,7 @@ You are reading the auto-generated manual for SSS. This manual documents the SSS
 | bloated-browser | =/home/joe/.nix-profile/bin/vivaldi= |
 | browser | =qutebrowser= |
 | term | =footclient= |
+| password-manager | =/home/joe/.nix-profile/bin/1password= |
 | menu | =fuzzel= |
 |------|------|
 

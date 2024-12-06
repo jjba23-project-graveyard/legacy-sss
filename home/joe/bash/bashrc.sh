@@ -73,6 +73,9 @@ alias jr="cd ~/Ontwikkeling/Persoonlijk/sss && make jr"
 alias scala-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/scala-dev/"
 alias haskell-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/haskell-dev/"
 
+alias docker="sudo podman"
+alias docker-compose="sudo podman-compose"
+
 # 
 function glog() {
     sudo gzip -d "$1.gz" && cat "$1"

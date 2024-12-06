@@ -45,13 +45,13 @@
   (user-account
    (name "joe")
    (group "users")
-   (supplementary-groups '("wheel" "netdev" "audio" "video" "docker" "input"))))
+   (supplementary-groups '("wheel" "netdev" "audio" "video" "input"))))
 
 (define sss-manon-user-account
   (user-account
    (name "manon")
    (group "users")
-   (supplementary-groups '("audio" "video" "netdev" "docker" "input"))))
+   (supplementary-groups '("audio" "video" "netdev" "input"))))
 
 (define (wikimusic-fetch-backups)
   (syscall "mkdir -p /home/joe/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ /home/joe/Documenten/wikimusic-backups/"))
@@ -205,7 +205,6 @@
   (cons* 
    (service nix-service-type)
    (service containerd-service-type)
-   (service docker-service-type)
    (service power-profiles-daemon-service-type)
    sss-joe-mpd
    sss-cron-jobs-service

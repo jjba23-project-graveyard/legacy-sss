@@ -110,6 +110,7 @@
     (bloated-browser . "/home/joe/.nix-profile/bin/vivaldi")
     (browser . "qutebrowser")
     (term  . "footclient")
+    (password-manager . "/home/joe/.nix-profile/bin/1password")
     (menu  . "fuzzel")))
 
 (define sss-sway-modes
@@ -135,6 +136,7 @@
     ($mod+i . "exec $browser")
     ($mod+Shift+i . "exec $bloated-browser")
     ($mod+e . "exec $editor")
+    ($mod+minus . "exec $password-manager")
     ($mod+Shift+c . "reload")
     ($mod+$left . "focus left")
     ($mod+$down . "focus down")
@@ -175,7 +177,7 @@
     ($mod+a . "focus parent")
     ($mod+Shift+minus . "move scratchpad")
     ($mod+Shift+m . "sway output Virtual-1 mode 1920x1200")
-    ($mod+minus . "scratchpad show")
+    ($mod+Shift+s . "scratchpad show")
     ($mod+Shift+e
      . ,#~(string-append
            "exec " #$sway "/bin/swaynag -t warning -m \\\n    "
