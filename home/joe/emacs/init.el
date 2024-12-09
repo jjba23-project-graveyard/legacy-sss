@@ -74,11 +74,11 @@
   "SSS customization group."
   :group 'tools)
 
-(defcustom sss-font-mono "Intel One Mono"
+(defcustom sss-font-mono "Monaspace Neon"
   "My personal choice for monospaced font family." 
   :type 'string)
 
-(defcustom sss-font-sans "Liberation Sans"
+(defcustom sss-font-sans "Monaspace Neon"
   "My personal choice for sans font family." 
   :type 'string)
 

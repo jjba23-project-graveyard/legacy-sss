@@ -23,7 +23,7 @@
   )
 
 (define-public sss-foot-config
-  `((font . "Intel One Mono:size=9")
+  `((font . "Monaspace Neon:size=9")
     (dpi-aware . "yes")
     (pad . "14x14")
     (bell . ((urgent . "no")

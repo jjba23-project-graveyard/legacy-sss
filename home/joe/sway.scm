@@ -79,9 +79,9 @@
   (let
       ((gtk-theme-name (cond
                         ((equal? sss-palette-ef-cyprus sss-active-palette)
-                         "Yaru-sage"
+                         "Adwaita"
                          )
-                        (else "Yaru-sage-dark")
+                        (else "Adwaita")
                         )))
 
     `(
@@ -89,7 +89,7 @@
       "gsettings set $gnome-schema icon-theme 'Delft-Darkest'"
       "gsettings set $gnome-schema cursor-theme 'Breeze_cursors'"
       "gsettings set $gnome-schema cursor-size 32"
-      "gsettings set $gnome-schema font-name 'Liberation Sans'"
+      "gsettings set $gnome-schema font-name 'Monaspace Neon'"
       ))
   )
 

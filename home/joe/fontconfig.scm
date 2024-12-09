@@ -27,5 +27,5 @@
                         '(alias
                           (family "monospace")
                           (prefer
-                           (family "Intel One Mono"))))))
+                           (family "Monaspace Neon"))))))
 

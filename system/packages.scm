@@ -220,12 +220,34 @@ more.")
    (home-page "https://www.gnu.org/software/artanis/")
    (license (list license:gpl3+ license:lgpl3+)))) ;dual license
 
+(define-public font-monaspace
+  (package
+   (name "font-monaspace")
+   (version "1.101")
+   (source
+    (origin
+     (method url-fetch)
+     (uri
+      "https://github.com/githubnext/monaspace/archive/refs/tags/v1.101.tar.gz")
+     (sha256
+      (base32 "076gx85and4xb262y0rbqvy7f6w732krzlh236xr7v3zbsw1h872"))))
+   (build-system font-build-system)
+   (home-page "https://monaspace.githubnext.com")
+   (synopsis "An innovative superfamily of fonts for code")
+   (description
+    "The Monaspace type system is a monospaced type superfamily with some modern tricks up its sleeve.
+     It consists of five variable axis typefaces. Each one has a distinct voice, but they are all metrics-compatible with one another,
+     allowing you to mix and match them for a more expressive typographical palette.")
+   (license license:silofl1.1)))
 
 (define sss-font-packages
   (list
    fontconfig
    font-google-roboto
    font-google-noto-emoji
+   font-recursive
+   font-microsoft-cascadia
+   font-victor-mono
    font-jetbrains-mono   
    font-intel-one-mono
    font-liberation
@@ -233,6 +255,7 @@ more.")
    font-microsoft-web-core-fonts
    font-awesome
    font-fira-code
+   font-monaspace
    font-google-noto))
 
 (define sss-wm-packages

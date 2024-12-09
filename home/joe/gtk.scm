@@ -27,11 +27,11 @@
     (gtk-theme-name .
                     ,(cond
                       ((equal? sss-palette-ef-cyprus sss-active-palette)
-                       "Yaru-sage"
+                       "Adwaita"
                        )
-                      (else "Yaru-sage-dark")
+                      (else "Adwaita")
                       ))
-    (gtk-font-name . "Liberation Sans 11")
+    (gtk-font-name . "Monaspace Neon 11")
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . 0)
     (gtk-cursor-theme-name . "Breeze_cursors")

@@ -28,7 +28,7 @@
     (background-color . ,(string-upcase (format #f "~abb" (sss-get-color 'background))))
     (border-color . ,(string-upcase (format #f "~abb" (sss-get-color 'primary))))
     (text-color . ,(string-upcase (format #f "~abb" (sss-get-color 'text))))
-    (font . "Intel One Mono 10")
+    (font . "Monaspace Neon 10")
     (width . 420)
     (icons . 1)
     (default-timeout . 12000)
