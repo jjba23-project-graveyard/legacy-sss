@@ -1,0 +1,31 @@
+
+#+begin_src
+  /root/.config/containers/registries.conf
+  ~/.config/containers/registries.conf
+
+unqualified-search-registries = ["registry.fedoraproject.org", "registry.access.redhat.com", "quay.io", "registry.redhat.io", "docker.io"]
+
+
+    /root/.config/containers/policy.json
+  ~/.config/containers/policy.json
+
+{
+    "default": [
+        {
+            "type": "insecureAcceptAnything"
+        }
+    ]
+}
+#+end_src
+
+
+
+#+begin_src
+  ~/.testcontainers.properties
+
+  #Modified by Testcontainers
+#Thu Nov 28 21:52:15 GMT 2024
+docker.client.strategy=org.testcontainers.dockerclient.UnixSocketClientProviderStrategy
+ryuk.container.privileged=true
+
+#+end_src

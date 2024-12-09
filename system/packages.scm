@@ -36,7 +36,7 @@
                      python xdisorg imagemagick curl cups terminals
                      video image compression sqlite disk glib networking
                      fontutils lisp image-viewers gnome-xyz guile-xyz
-                     guile bash nss pkg-config games qt
+                     guile bash nss pkg-config games qt virtualization
                      polkit gtk kde-plasma kde-frameworks kde-utils wm
                      compton ssh vpn version-control fonts pulseaudio
                      libreoffice wm lisp-xyz web-browsers audio
@@ -411,6 +411,8 @@ more.")
    gnome-system-monitor
    evince
 
+   qemu
+   
    obs
    libreoffice
    gimp
