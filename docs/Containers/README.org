@@ -44,7 +44,6 @@ https://opensource.com/article/19/2/how-does-rootless-podman-work
 - Using OCI containers for Guix Home/System Services.
 
 
-
 * Containers
 
 For now using Docker
