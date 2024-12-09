@@ -45,7 +45,7 @@
   (user-account
    (name "joe")
    (group "users")
-   (supplementary-groups '("wheel" "netdev" "audio" "video" "input"))))
+   (supplementary-groups '("wheel" "docker" "netdev" "audio" "video" "input"))))
 
 (define sss-manon-user-account
   (user-account
@@ -206,6 +206,7 @@
    (service nix-service-type)
    (service containerd-service-type)
    (service power-profiles-daemon-service-type)
+   (service docker-service-type)
    sss-joe-mpd
    sss-cron-jobs-service
    sss-desktop-services

@@ -1,4 +1,15 @@
 
+* Containers
+
+For now using Docker
+
+** Docker
+
+** Podman
+
+podman system service --time=0 unix:///tmp/podman.sock
+
+
 #+begin_src
   /root/.config/containers/registries.conf
   ~/.config/containers/registries.conf
