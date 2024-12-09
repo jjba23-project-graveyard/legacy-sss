@@ -73,8 +73,8 @@ alias jr="cd ~/Ontwikkeling/Persoonlijk/sss && make jr"
 alias scala-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/scala-dev/"
 alias haskell-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/haskell-dev/"
 
-#alias docker="sudo podman"
-#alias docker-compose="sudo podman-compose"
+alias docker="podman"
+alias docker-compose="podman-compose"
 
 # 
 function glog() {
@@ -102,6 +102,8 @@ alias owm='output_work_macbook_screen'
 alias owmp='output_work_macbook_present_screen'
 alias o1080='output_1080_screen'
 alias o4k='output_4k_screen'
+
+alias podman-unix-socket='podman system service --time=0 unix:///tmp/podman.sock'
 
 function find_largest_files() {
     du -h -x -s -- * | sort -r -h | head -20;

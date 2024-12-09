@@ -32,7 +32,7 @@
 
 (use-package-modules freedesktop base lxqt package-management parallel
                      web linux gnuzilla ncurses xfce multiprecision gcc
-                     aspell rust-apps inkscape gimp python-web mpd docker
+                     aspell rust-apps inkscape gimp python-web mpd
                      python xdisorg imagemagick curl cups terminals
                      video image compression sqlite disk glib networking
                      fontutils lisp image-viewers gnome-xyz guile-xyz
@@ -420,6 +420,8 @@ more.")
    libwebp
    feh
 
+   slirp4netns
+   
    xmodmap
    
    gparted
@@ -490,7 +492,7 @@ more.")
 
 (define sss-container-packages
   (list
-   docker docker-cli docker-compose
+   podman-compose podman
    passt
    ))
 

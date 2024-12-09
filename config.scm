@@ -19,7 +19,6 @@
              (guix)
              (gnu system privilege)
              (gnu services)
-             (gnu services sddm)
              (guix packages))
 
 (use-modules (nongnu packages linux)
@@ -31,9 +30,9 @@
 
 (use-modules (sss-packages))
 
-(use-service-modules networking desktop docker audio shepherd dbus base
+(use-service-modules networking desktop audio shepherd dbus base
                      xorg desktop configuration avahi nix xorg networking
-                     sound cups mcron pm lightdm)
+                     sound cups mcron pm sddm)
 
 (use-package-modules certs nfs mate lxqt libusb linux glib
                      sugar suckless scanner xdisorg avahi xfce
@@ -45,7 +44,7 @@
   (user-account
    (name "joe")
    (group "users")
-   (supplementary-groups '("wheel" "docker" "netdev" "audio" "video" "input"))))
+   (supplementary-groups '("wheel" "netdev" "audio" "video" "input"))))
 
 (define sss-manon-user-account
   (user-account
@@ -75,6 +74,25 @@
            (mpd-configuration
             (music-directory "/home/joe/Muziek")
             (playlist-directory "/home/joe/Muziek/Playlists"))))
+
+(define sss-joe-subuid
+  (simple-service
+   'podman-subuid-subgid
+   ;; If subuid/subgid will be needed somewhere else, the service must be
+   ;; created to handle it.
+   etc-service-type
+   `(("subuid"
+      ,(plain-file
+        "subuid"
+        (string-append "joe" ":100000:65536\n")))
+     ("subgid"
+      ,(plain-file
+        "subgid"
+        (string-append "joe" ":100000:65536\n"))))))
+
+(define sss-iptables
+  (service iptables-service-type
+           (iptables-configuration)))
 
 (define* (sss-desktop-services-for-system
           #:optional
@@ -204,9 +222,9 @@
  (services
   (cons* 
    (service nix-service-type)
-   (service containerd-service-type)
    (service power-profiles-daemon-service-type)
-   (service docker-service-type)
+   sss-iptables
+   sss-joe-subuid
    sss-joe-mpd
    sss-cron-jobs-service
    sss-desktop-services
