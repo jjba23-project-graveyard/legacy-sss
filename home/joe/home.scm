@@ -50,7 +50,7 @@
 (use-modules (json))
 (use-modules (sxml simple))
 
-`()
+
 
 (define sss-home-files-service
   (service
