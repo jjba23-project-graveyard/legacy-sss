@@ -16,6 +16,8 @@
    '("vivaldi"
      "prismlauncher"
      "yaml-language-server"
+     "bash-language-server"
+     "monaspace"
      "jdt-language-server"
      "nil"
      "black"
