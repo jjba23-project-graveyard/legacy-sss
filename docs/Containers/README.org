@@ -1,10 +1,7 @@
-:PROPERTIES:
-:ID:       c671ba76-0bf7-40e0-a798-474320dc45a1
-:END:
 #+title: Rootless Podman instead of Docker on Guix
-#+filetags: :Video:
 
 * Introduction
+
 - Environment isolation
 - Quick deployment
 - Low hardware footprint
@@ -13,6 +10,7 @@ To quickly setup needed app consisting of a few services.  Check
 something on a different distribution/environment.
 
 * Why not Docker?
+
 - Security
 - Simplicity
 - Modularity
@@ -23,6 +21,7 @@ Basically all the functionality of the docker, but a bit cleaner
 implementation and organization wise.
 
 * How?
+
 https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md
 https://github.com/containers/podman/blob/main/rootless.md
 - Add subuid/subgid.
@@ -31,12 +30,26 @@ https://github.com/containers/podman/blob/main/rootless.md
 https://opensource.com/article/19/2/how-does-rootless-podman-work
 
 * Testing
+
+Make sure you reboot and have cleaned any previous trace of Docker.
 - ~podman run --rm alpine ls / -lia~
 - ~podman images~
 - ~podman ps -a~
 - ~podman run -dt -p 8080:80/tcp httpd~
 - ~podman stop -l~
 - ~podman rm -l~
+
+  For running with Testcontainers, one should use the Unix socket.
+
+  ~podman system service --time=0 unix:///tmp/podman.sock~
+
+  Then :
+  #+begin_src sh
+    joe@guixvm ~ λ  echo $DOCKER_HOST 
+    unix:///tmp/podman.sock
+  #+end_src
+
+and you should be set to run testcontainers, even with Ryuk.
 
 * What next?
 - Building containers with Guix. (Without Buildah, Container or
@@ -52,7 +65,7 @@ For now using Docker
 
 ** Podman
 
-podman system service --time=0 unix:///tmp/podman.sock
+
 
 
 #+begin_src
