@@ -807,7 +807,7 @@ According to size, color and font family"
 		user-personal-email "jjbigorra@gmail.com"
 		user-personal-initials "JJBA")
   
-  (setq-default line-spacing 2
+  (setq-default line-spacing 6
                 pgtk-wait-for-event-timeout 0
                 electric-indent-inhibit t)
 
