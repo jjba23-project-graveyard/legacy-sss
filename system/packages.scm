@@ -420,7 +420,7 @@ more.")
    libwebp
    feh
 
-   slirp4netns
+   
    
    xmodmap
    
@@ -493,7 +493,7 @@ more.")
 (define sss-container-packages
   (list
    podman-compose podman
-   passt
+   passt slirp4netns
    ))
 
 (define sss-guile-packages
