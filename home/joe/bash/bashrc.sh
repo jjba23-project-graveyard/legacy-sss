@@ -73,8 +73,8 @@ alias jr="cd ~/Ontwikkeling/Persoonlijk/sss && make jr"
 alias scala-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/scala-dev/"
 alias haskell-dev="nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/haskell-dev/"
 
-#alias docker="sudo podman"
-#alias docker-compose="sudo podman-compose"
+alias docker="podman"
+alias docker-compose="podman-compose"
 
 # 
 function glog() {

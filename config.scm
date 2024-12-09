@@ -31,7 +31,7 @@
 
 (use-modules (sss-packages))
 
-(use-service-modules networking desktop docker audio shepherd dbus base
+(use-service-modules networking desktop audio shepherd dbus base
                      xorg desktop configuration avahi nix xorg networking
                      sound cups mcron pm lightdm)
 
@@ -45,7 +45,7 @@
   (user-account
    (name "joe")
    (group "users")
-   (supplementary-groups '("wheel" "docker" "netdev" "audio" "video" "input"))))
+   (supplementary-groups '("wheel" "netdev" "audio" "video" "input"))))
 
 (define sss-manon-user-account
   (user-account
@@ -75,6 +75,21 @@
            (mpd-configuration
             (music-directory "/home/joe/Muziek")
             (playlist-directory "/home/joe/Muziek/Playlists"))))
+
+(define sss-joe-subuid
+  (simple-service
+   'podman-subuid-subgid
+   ;; If subuid/subgid will be needed somewhere else, the service must be
+   ;; created to handle it.
+   etc-service-type
+   `(("subuid"
+      ,(plain-file
+        "subuid"
+        (string-append "joe" ":100000:65536\n")))
+     ("subgid"
+      ,(plain-file
+        "subgid"
+        (string-append "joe" ":100000:65536\n"))))))
 
 (define* (sss-desktop-services-for-system
           #:optional
@@ -204,9 +219,8 @@
  (services
   (cons* 
    (service nix-service-type)
-   (service containerd-service-type)
    (service power-profiles-daemon-service-type)
-   (service docker-service-type)
+   sss-joe-subuid
    sss-joe-mpd
    sss-cron-jobs-service
    sss-desktop-services

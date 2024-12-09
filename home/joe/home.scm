@@ -50,6 +50,7 @@
 (use-modules (json))
 (use-modules (sxml simple))
 
+`()
 
 (define sss-home-files-service
   (service
@@ -122,6 +123,18 @@
                                                (mk-lines sss-enchant-dict-en)))
      (".config/qutebrowser/bindings.py" ,(local-file "qutebrowser/bindings.py"))
      (".config/qutebrowser/config.py" ,(local-file "qutebrowser/config.py"))
+     ("containers/registries.conf"
+      ,(plain-file
+        "registries.conf"
+        "unqualified-search-registries = ['docker.io', \
+'registry.fedoraproject.org', \
+'registry.access.redhat.com', \
+'registry.centos.org']"))
+     ("containers/policy.json"
+      ,(plain-file
+        "policy.json"
+        "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
+     ()
      (".emacs.d/init.el" ,(local-file "emacs/init.el"))
      (".emacs.d/early-init.el" ,(local-file "emacs/early-init.el")))))
 
