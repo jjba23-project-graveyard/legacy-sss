@@ -39,6 +39,7 @@
     ("SDL_VIDEODRIVER" . "wayland")
     ("QT_WAYLAND_DISABLE_WINDOWDECORATION" . "1")
     ("_JAVA_AWT_WM_NONREPARENTING" . "1")
+    ("DOCKER_HOST" . "unix:///tmp/podman.sock")
     ))
 
 (define-public sss-home-vars-service

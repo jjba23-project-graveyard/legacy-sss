@@ -133,8 +133,7 @@
      ("containers/policy.json"
       ,(plain-file
         "policy.json"
-        "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
-     ()
+        "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))     
      (".emacs.d/init.el" ,(local-file "emacs/init.el"))
      (".emacs.d/early-init.el" ,(local-file "emacs/early-init.el")))))
 

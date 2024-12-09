@@ -19,7 +19,6 @@
              (guix)
              (gnu system privilege)
              (gnu services)
-             (gnu services sddm)
              (guix packages))
 
 (use-modules (nongnu packages linux)
@@ -33,7 +32,7 @@
 
 (use-service-modules networking desktop audio shepherd dbus base
                      xorg desktop configuration avahi nix xorg networking
-                     sound cups mcron pm lightdm)
+                     sound cups mcron pm sddm)
 
 (use-package-modules certs nfs mate lxqt libusb linux glib
                      sugar suckless scanner xdisorg avahi xfce
@@ -90,6 +89,28 @@
       ,(plain-file
         "subgid"
         (string-append "joe" ":100000:65536\n"))))))
+
+(define sss-iptables
+  (service iptables-service-type
+           (iptables-configuration
+            (ipv4-rules (plain-file "iptables.rules" "*filter
+:INPUT ACCEPT
+:FORWARD ACCEPT
+:OUTPUT ACCEPT
+-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp-port-unreachable
+COMMIT
+"))
+            (ipv6-rules (plain-file "ip6tables.rules" "*filter
+:INPUT ACCEPT
+:FORWARD ACCEPT
+:OUTPUT ACCEPT
+-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp6-port-unreachable
+COMMIT
+")))))
 
 (define* (sss-desktop-services-for-system
           #:optional
@@ -220,6 +241,7 @@
   (cons* 
    (service nix-service-type)
    (service power-profiles-daemon-service-type)
+   sss-iptables
    sss-joe-subuid
    sss-joe-mpd
    sss-cron-jobs-service
