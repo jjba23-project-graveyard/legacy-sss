@@ -420,6 +420,8 @@ more.")
    libwebp
    feh
 
+   slirp4netns
+   
    xmodmap
    
    gparted
