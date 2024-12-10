@@ -130,3 +130,6 @@ source /run/current-system/profile/etc/profile.d/nix.sh
 
 # Set the prompt.
 export PS1=${grn}"\\u@\\h \\w${GUIX_ENVIRONMENT:+ [env]} λ"${clr}"  "
+
+# Additions to PATH
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"

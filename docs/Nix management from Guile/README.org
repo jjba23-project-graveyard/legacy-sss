@@ -33,6 +33,7 @@
      "postman"
      "vscode-langservers-extracted"
      "nwg-look"
+     "krew"
      "mermaid-cli"
      ))
 
