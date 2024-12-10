@@ -459,6 +459,7 @@ more.")
 
    ;; ghcid
    neofetch
+   cmatrix
    
    bluez
    hplip
