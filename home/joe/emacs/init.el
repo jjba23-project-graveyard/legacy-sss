@@ -123,8 +123,9 @@
   (setq welkomscherm-buttons-actions
         '((("*scratch*" . (lambda(btn) (switch-to-buffer "*scratch*")))
            ("*Messages*" . (lambda(btn) (switch-to-buffer "*Messages*")))
-           ("re-render me" . (lambda(btn) (welkomscherm)))
-           )
+           ("re-render me" . (lambda(btn) (welkomscherm))))
+          (("system-rebuild  (sr)" . (lambda(btn) (sss-sys-reconfigure)))
+           ("joe-rebuild (jr)" . (lambda(btn) (sss-joe-reconfigure))))
           ))
   )
 
