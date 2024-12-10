@@ -123,14 +123,14 @@
                                                (mk-lines sss-enchant-dict-en)))
      (".config/qutebrowser/bindings.py" ,(local-file "qutebrowser/bindings.py"))
      (".config/qutebrowser/config.py" ,(local-file "qutebrowser/config.py"))
-     ("containers/registries.conf"
+     (".config/containers/registries.conf"
       ,(plain-file
         "registries.conf"
         "unqualified-search-registries = ['docker.io', \
 'registry.fedoraproject.org', \
 'registry.access.redhat.com', \
 'registry.centos.org']"))
-     ("containers/policy.json"
+     (".config/containers/policy.json"
       ,(plain-file
         "policy.json"
         "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))     
