@@ -615,6 +615,13 @@ According to size, color and font family"
 
 (use-package pandoc-mode :ensure t)
 
+(use-package dockerfile-ts-mode
+  :ensure nil
+  :mode (("\\Dockerfile\\'" . dockerfile-ts-mode)
+         ("\\.dockerignore\\'" . dockerfile-ts-mode))
+  :config
+  (setq dockerfile-mode-command "podman"))
+
 (use-package docker
   :ensure t
   :bind ("C-c d c" . docker))
