@@ -1,0 +1,17 @@
+#+title: Pip management from Guile
+
+** TODO improve Pip package management
+
+#+begin_src scheme
+
+  (define pippkgs-updated-at
+    (read-line "resources/sss-state/pippkgs-updated-at"))
+
+
+  (display "\n>>= installing pip packages\n")
+
+  (for-each
+   (lambda(x) (pip-install x))
+   '("pyright" "flake8" ))
+
+#+end_src
