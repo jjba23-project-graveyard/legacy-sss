@@ -209,6 +209,7 @@ According to size, color and font family"
 	 (haskell-mode . eglot-ensure)
 	 (markdown-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
+         (python-mode . eglot-ensure)
          (before-save . eglot-format-buffer))
   :bind (("C-c i i" . eglot-find-implementation)
 	 ("C-c i e" . eglot)
