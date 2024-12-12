@@ -202,16 +202,6 @@ According to size, color and font family"
 
 ;; Dev
 
-(defun sss/eglot-python-setup ()
-  (unless (consult--preview-p)
-    (eglot-ensure)
-    ;; eglot wipes out the flymake functions; re-add
-    (setq-local python-flymake-command '("flake8" "--max-line-length=100" "-"))
-    (add-hook 'eglot-managed-mode-hook
-	      (lambda ()
-	        (add-hook 'flymake-diagnostic-functions #'python-flymake t t))
-	      nil t)))
-
 (use-package eglot
   :ensure nil
   :hook ((scala-ts-mode . eglot-ensure)
@@ -219,7 +209,7 @@ According to size, color and font family"
 	 (haskell-mode . eglot-ensure)
 	 (markdown-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
-         (python-mode . sss/eglot-python-setup)
+         (python-mode . eglot-ensure)
          (before-save . eglot-format-buffer))
   :bind (("C-c i i" . eglot-find-implementation)
 	 ("C-c i e" . eglot)
@@ -271,7 +261,18 @@ According to size, color and font family"
                     (cons #'flymake-eldoc-function
                           (remove #'flymake-eldoc-function eldoc-documentation-functions)))
               ;; Show all eldoc feedback.
-              (setq eldoc-documentation-strategy #'eldoc-documentation-compose))))
+              (setq eldoc-documentation-strategy #'eldoc-documentation-compose)))
+
+  (setq python-flymake-command '("/home/joe/.local/bin/flake8" "-") )           
+  (add-hook 'eglot-managed-mode-hook
+            (lambda ()
+              (when (or (derived-mode-p 'python-mode)
+                        (derived-mode-p 'python-ts-mode))
+                (add-hook 'flymake-diagnostic-functions 
+                          'python-flymake nil t)
+                (flymake-start))))
+
+  )
 
 
 (use-package package-lint :ensure t)
