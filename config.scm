@@ -32,12 +32,12 @@
 
 (use-service-modules networking desktop audio shepherd dbus base
                      xorg desktop configuration avahi nix xorg networking
-                     sound cups mcron pm sddm)
+                     sound cups mcron pm)
 
 (use-package-modules certs nfs mate lxqt libusb linux glib
                      sugar suckless scanner xdisorg avahi xfce
                      pulseaudio kde-plasma kde-frameworks kde gnome
-                     freedesktop cups admin glib base idutils display-managers)
+                     freedesktop cups admin glib base idutils)
 
 
 (define sss-joe-user-account
@@ -121,21 +121,6 @@
                    (map file-like->setuid-program
                         (list (file-append nfs-utils "/sbin/mount.nfs")
                               (file-append ntfs-3g "/sbin/mount.ntfs-3g"))))
-
-
-   (service sddm-service-type
-            (sddm-configuration
-             (theme "maya")))
-   ;; (service lightdm-service-type
-   ;;          (lightdm-configuration
-   ;;           (allow-empty-passwords? #t)
-   ;;           (xdmcp? #t)
-   ;;           (vnc-server? #f)
-   ;;           (debug? #t)
-   ;;           (seats
-   ;;            (list (lightdm-seat-configuration
-   ;;                   (name "*")
-   ;;                   (user-session "sway"))))))
 
    ;; The global fontconfig cache directory can sometimes contain
    ;; stale entries, possibly referencing fonts that have been GC'd,

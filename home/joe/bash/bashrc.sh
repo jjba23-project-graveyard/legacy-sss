@@ -104,6 +104,7 @@ alias o1080='output_1080_screen'
 alias o4k='output_4k_screen'
 
 alias podman-unix-socket='podman system service --time=0 unix:///tmp/podman.sock'
+alias gui="sway"
 
 function find_largest_files() {
     du -h -x -s -- * | sort -r -h | head -20;
