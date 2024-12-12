@@ -134,6 +134,11 @@ c.bindings.commands['normal'] = {
     '<ctrl-h><h>': 'cmd-set-text -s :help',
     # escape hatch
     '<ctrl-g>': ESC_BIND,
+    #
+    '<ctrl-x><g>': 'reload',
+    '<f5>': 'reload',
+    '<f12>': 'devtools',
+    '<ctrl-c><i>': 'devtools',
 }
 
 c.bindings.commands['command'] = {
@@ -176,6 +181,10 @@ c.bindings.commands['insert'] = {
     '<alt-backspace>': 'fake-key <Ctrl-Backspace>',
     '<ctrl-w>': 'fake-key <Ctrl-backspace>',
     '<ctrl-y>': 'insert-text {primary}',
-    '<ctrl-g>': 'leave-mode'
-
+    '<ctrl-g>': 'leave-mode',
+    '<alt-x>': 'cmd-set-text :',
+    '<ctrl-x><g>': 'reload',
+    '<f5>': 'reload',
+    '<f12>': 'devtools',
+    '<ctrl-c><i>': 'devtools',
 }
