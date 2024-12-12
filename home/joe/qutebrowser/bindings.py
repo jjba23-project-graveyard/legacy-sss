@@ -139,7 +139,7 @@ c.bindings.commands['normal'] = {
     '<f5>': 'reload',
     '<f12>': 'devtools',
     '<ctrl-c><i>': 'devtools',
-    '<alt-w>': 'yank',
+    '<alt-w>': 'yank selection',
 }
 
 c.bindings.commands['command'] = {
@@ -153,18 +153,18 @@ c.bindings.commands['command'] = {
     '<alt-n>': 'command-history-next',
 
     # escape hatch
-    '<ctrl-g>': 'leave-mode',
+    '<ctrl-g>': 'mode-leave',
 }
 
 c.bindings.commands['hint'] = {
     # escape hatch
-    '<ctrl-g>': 'leave-mode',
+    '<ctrl-g>': 'mode-leave',
 }
 
 
 c.bindings.commands['caret'] = {
     # escape hatch
-    '<ctrl-g>': 'leave-mode',
+    '<ctrl-g>': 'mode-leave',
 }
 
 c.bindings.commands['insert'] = {
@@ -182,11 +182,11 @@ c.bindings.commands['insert'] = {
     '<alt-backspace>': 'fake-key <Ctrl-Backspace>',
     '<ctrl-w>': 'fake-key <Ctrl-backspace>',
     '<ctrl-y>': 'insert-text {primary}',
-    '<ctrl-g>': 'leave-mode',
+    '<ctrl-g>': 'mode-leave',
     '<alt-x>': 'cmd-set-text :',
     '<ctrl-x><g>': 'reload',
     '<f5>': 'reload',
     '<f12>': 'devtools',
     '<ctrl-c><i>': 'devtools',
-    '<alt-w>': 'yank',
+    '<alt-w>': 'yank selection',
 }
