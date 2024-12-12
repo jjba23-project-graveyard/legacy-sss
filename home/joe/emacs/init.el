@@ -202,6 +202,16 @@ According to size, color and font family"
 
 ;; Dev
 
+(defun sss/eglot-python-setup ()
+  (unless (consult--preview-p)
+    (eglot-ensure)
+    ;; eglot wipes out the flymake functions; re-add
+    (setq-local python-flymake-command '("flake8" "--max-line-length=100" "-"))
+    (add-hook 'eglot-managed-mode-hook
+	      (lambda ()
+	        (add-hook 'flymake-diagnostic-functions #'python-flymake t t))
+	      nil t)))
+
 (use-package eglot
   :ensure nil
   :hook ((scala-ts-mode . eglot-ensure)
@@ -209,7 +219,7 @@ According to size, color and font family"
 	 (haskell-mode . eglot-ensure)
 	 (markdown-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
-         (python-mode . eglot-ensure)
+         (python-mode . sss/eglot-python-setup)
          (before-save . eglot-format-buffer))
   :bind (("C-c i i" . eglot-find-implementation)
 	 ("C-c i e" . eglot)
