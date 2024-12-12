@@ -139,6 +139,7 @@ c.bindings.commands['normal'] = {
     '<f5>': 'reload',
     '<f12>': 'devtools',
     '<ctrl-c><i>': 'devtools',
+    '<alt-w>': 'yank',
 }
 
 c.bindings.commands['command'] = {
@@ -187,4 +188,5 @@ c.bindings.commands['insert'] = {
     '<f5>': 'reload',
     '<f12>': 'devtools',
     '<ctrl-c><i>': 'devtools',
+    '<alt-w>': 'yank',
 }
