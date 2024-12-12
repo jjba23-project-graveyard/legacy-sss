@@ -400,6 +400,17 @@ According to size, color and font family"
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 
+
+(use-package gptel
+  :ensure t
+  :after (f)
+  :config
+  (setq
+   gptel-model 'gemini-pro
+   gptel-backend (gptel-make-gemini "Gemini"
+                   :key (lambda() (f-read-text "~/.secrets/gemini"))
+                   :stream t)))
+
 (use-package super-save 
   :ensure t  
   :init (setq super-save-auto-save-when-idle t auto-save-default nil make-backup-files nil) 
