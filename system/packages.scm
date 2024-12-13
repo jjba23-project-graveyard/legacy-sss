@@ -247,11 +247,13 @@ more.")
    (version "0.9")
    (source
     (origin
-     (method url-fetch)
+     (method git-fetch)
      (uri
-      "https://github.com/trialuser02/qt6ct/archive/refs/tags/0.9.tar.gz")
+      (git-reference
+       (url "https://github.com/trialuser02/qt6ct")
+       (commit version)))
      (sha256
-      (base32 "0vl2x3livyik5mf8qg4zpkxx9zd1nglxxj6rgjadcbd8a7xw8jda"))))
+      (base32 "0dknk4qqzqc5wa763nclb1k6jkmvjh8kzz8kfp4iggy9jy0vnzgb"))))
    (build-system qt-build-system)
    (arguments
     (list
