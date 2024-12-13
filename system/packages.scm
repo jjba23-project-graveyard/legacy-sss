@@ -376,6 +376,8 @@ more.")
 
    slurp
    ;; stellarium
+   kvantum
+   qt5ct
    kate
    geany
    gnome-font-viewer
