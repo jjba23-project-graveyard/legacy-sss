@@ -24,7 +24,7 @@
 (load "./bash.scm") (load "./gtk.scm")
 (load "./openpgp.scm") (load "../../doc.scm")
 (load "./portals.scm") (load "./xmodmap.scm")
-(load "./enchant.scm")
+(load "./enchant.scm") (load "./qt.scm")
 
 (use-modules (gnu home)
              (gnu services)
@@ -43,7 +43,7 @@
              (sss-mako) (sss-byggsteg)
              (sss-doc) (sss-enchant)
              (sss-fontconfig) (sss-bash)
-             (sss-gtk) (sss-portals)
+             (sss-gtk) (sss-portals) (sss-qt)
              (sss-xmodmap) (sss-openpgp)             
              (sss-waybar) (sss-ssh))
 
@@ -117,6 +117,9 @@
      (".config/Kvantum/kvantum.kvconfig"
       ,(plain-file "kvantum.kvconfig"
                    (string-join (list "[General]" "theme=KvGnomeDark") "\n")))
+     (".config/qt6ct/qt6ct.conf"
+      ,(plain-file "qt6ct.conf"
+                   sss-qt6ct-config))
      (".config/mako/config"
       ,(plain-file "config"
                    (mk-kv-conf-lines sss-mako-config)))

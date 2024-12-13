@@ -32,7 +32,7 @@
     ("MOZ_ENABLE_WAYLAND" . "1")
     ("QT_QPA_PLATFORM" . "wayland")
     ("QT_QPT_PLATFORM" . "wayland")
-    ("QT_QPA_PLATFORMTHEME" . "kvantum")
+    ("QT_QPA_PLATFORMTHEME" . "qt6ct")
     ("QT_STYLE_OVERRIDE" . "kvantum")
     ("QT_WAYLAND_DISABLE_WINDOWDECORATION" . "1")
     ("QT_AUTO_SCREEN_SCALE_FACTOR" . "1")

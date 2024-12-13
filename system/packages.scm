@@ -23,6 +23,7 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
+  #:use-module (guix build-system qt)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix build-system meson)
@@ -239,6 +240,42 @@ more.")
      It consists of five variable axis typefaces. Each one has a distinct voice, but they are all metrics-compatible with one another,
      allowing you to mix and match them for a more expressive typographical palette.")
    (license license:silofl1.1)))
+
+(define-public qt6ct
+  (package
+   (name "qt6ct")
+   (version "0.9")
+   (source
+    (origin
+     (method url-fetch)
+     (uri
+      "https://github.com/trialuser02/qt6ct/archive/refs/tags/0.9.tar.gz")
+     (sha256
+      (base32 "0vl2x3livyik5mf8qg4zpkxx9zd1nglxxj6rgjadcbd8a7xw8jda"))))
+   (build-system qt-build-system)
+   (arguments
+    (list
+     #:qtbase qtbase
+     #:tests? #f                      ; No target
+     #:phases
+     #~(modify-phases %standard-phases
+                      (add-after 'unpack 'patch
+                                 (lambda _
+                                   (substitute* '("src/qt6ct-qtplugin/CMakeLists.txt"
+                                                  "src/qt6ct-style/CMakeLists.txt")
+                                                (("\\$\\{PLUGINDIR\\}")
+                                                 (string-append #$output "/lib/qt6/plugins"))))))))
+   (native-inputs
+    (list qttools))
+   (inputs
+    (list qtsvg
+          libxkbcommon))
+   (synopsis "Qt6 Configuration Tool")
+   (description "Qt6CT is a program that allows users to configure Qt6
+settings (such as icons, themes, and fonts) in desktop environments or
+window managers, that don't provide Qt integration by themselves.")
+   (home-page "https://github.com/trialuser02/qt6ct")
+   (license license:bsd-2)))
 
 (define sss-font-packages
   (list
@@ -494,6 +531,7 @@ more.")
    network-manager-openvpn
    
    xxd
+   qt6ct
    ))
 
 (define sss-container-packages
