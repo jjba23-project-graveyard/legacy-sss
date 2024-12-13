@@ -39,7 +39,8 @@
                      guile bash nss pkg-config games qt virtualization
                      polkit gtk kde-plasma kde-frameworks kde-utils wm
                      compton ssh vpn version-control fonts pulseaudio
-                     libreoffice wm lisp-xyz web-browsers audio
+                     libreoffice wm lisp-xyz web-browsers audio kde-systemtools
+                     kde-multimedia
                      music display-managers file-systems tree-sitter lua
                      xorg admin screen node emacs lxde vim astronomy
                      text-editors enchant emacs-xyz containers
@@ -435,6 +436,8 @@ more.")
    parallel
    
    thunar
+   dolphin dolphin-plugins
+   ffmpegthumbs
    xarchiver
    ristretto
    orage
