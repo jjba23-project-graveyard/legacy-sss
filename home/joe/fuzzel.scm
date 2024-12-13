@@ -39,7 +39,7 @@
 (define-public sss-fuzzel-config
   `((font . "Monaspace Neon:size=16")
     (terminal . "foot")
-    (icon-theme . "Delft-Darkest")
+    (icon-theme . "Breeze-dark")
     (fuzzy . "yes")
     (lines . 15)
     (inner-pad . 8)

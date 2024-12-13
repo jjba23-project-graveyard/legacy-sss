@@ -23,7 +23,7 @@
 
 
 (define-public sss-gtk-config
-  `((gtk-icon-theme-name . "Delft-Darkest")
+  `((gtk-icon-theme-name . "Breeze-dark")
     (gtk-theme-name .
                     ,(cond
                       ((equal? sss-palette-ef-cyprus sss-active-palette)

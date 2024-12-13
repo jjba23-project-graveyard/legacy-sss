@@ -50,11 +50,9 @@
 
 (define sss-theme-packages
   (list
-   yaru-theme
    breeze-icons
    breeze
-   breeze-gtk
-   delft-icon-theme
+   breeze-gtk   
    ))
 
 (define-public sss-swayfx
