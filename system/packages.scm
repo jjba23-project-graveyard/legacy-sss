@@ -376,6 +376,7 @@ more.")
    ;; stellarium
    kvantum
    qt5ct
+   qtsvg
    kate
    geany
    gnome-font-viewer
