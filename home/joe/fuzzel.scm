@@ -39,8 +39,8 @@
 (define-public sss-fuzzel-config
   `((font . "Monaspace Neon:size=16")
     (terminal . "foot")
-    (icon-theme . "Breeze-Dark")
-    (fuzzy . "yes")
+    (icon-theme . "breeze-dark")
+    (list-executables-in-path . "yes")
     (lines . 15)
     (inner-pad . 8)
     (border . ((radius . 24)))
