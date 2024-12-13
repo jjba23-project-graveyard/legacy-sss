@@ -35,8 +35,8 @@
       ))
    "\n[Fonts]\n"
    (mk-kv-conf-lines
-    `((fixed . "Monaspace Neon,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular")
-      (general . "Monaspace Neon,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular")
+    `((fixed . "\"Monaspace Neon,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
+      (general . "\"Monaspace Neon,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
       ))
    "\n[Interface]\n"
    (mk-kv-conf-lines
