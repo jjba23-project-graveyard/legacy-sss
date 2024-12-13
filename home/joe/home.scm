@@ -114,6 +114,9 @@
      (".config/foot/foot.ini"
       ,(plain-file "foot.ini"
                    (mk-rec-kv-conf-lines sss-foot-config)))
+     (".config/Kvantum/kvantum.kvconfig"
+      ,(plain-file "kvantum.kvconfig"
+                   (string-join (list "[General]" "theme=KvMojave") "\n")))
      (".config/mako/config"
       ,(plain-file "config"
                    (mk-kv-conf-lines sss-mako-config)))
