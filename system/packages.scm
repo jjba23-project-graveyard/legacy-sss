@@ -52,6 +52,7 @@
   (list
    breeze-icons
    breeze
+   papirus-icon-theme
    breeze-gtk   
    ))
 
