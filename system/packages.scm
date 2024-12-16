@@ -51,10 +51,10 @@
 
 (define sss-theme-packages
   (list
-   breeze-icons
-   breeze
    papirus-icon-theme
-   breeze-gtk   
+   gnome-themes-standard
+   gnome-themes-extra
+   adwaita-icon-theme
    ))
 
 (define-public sss-swayfx

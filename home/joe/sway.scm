@@ -49,7 +49,7 @@
     ))
 
 (define sss-sway-wallpaper
-  "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")
+  "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/wp9425889.png")
 
 (define sss-sway-startup-programs
   (list
@@ -87,7 +87,7 @@
     `(
       ,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name)
       "gsettings set $gnome-schema icon-theme 'Papirus-Dark'"
-      "gsettings set $gnome-schema cursor-theme 'Breeze_cursors'"
+      "gsettings set $gnome-schema cursor-theme 'Adwaita'"
       "gsettings set $gnome-schema cursor-size 32"
       "gsettings set $gnome-schema font-name 'Monaspace Neon'"
       ))
@@ -146,6 +146,8 @@
     ($mod+Shift+$down . "move down")
     ($mod+Shift+$up . "move up")
     ($mod+Shift+$right . "move right")
+    ($mod+p . "workspace prev_on_output")
+    ($mod+n . "workspace next_on_output")
     ($mod+1 . "workspace number 1")
     ($mod+2 . "workspace number 2")
     ($mod+3 . "workspace number 3")
