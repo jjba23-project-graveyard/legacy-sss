@@ -1,24 +1,25 @@
-
-bg_default = "#282c34"        
+bg_default = "#282c34"
 bg_lighter = "#353b45"
 bg_selection = "#3e4451"
 # "#545862"
 fg_disabled = "#565c64"
 fg_default = "#abb2bf"
 # "#b6bdca"
-bg_lightest = "#c8ccd4"         
-fg_error = "#e06c75"          
-# "#d19a66"                    
-bg_hint = "#e5c07b"            
-fg_matched_text = "#98c379"     
-bg_passthrough_mode = "#56b6c2" 
-bg_insert_mode = "#98c379"      
-bg_warning = "#d19a66"          
-# "#be5046"                    
+bg_lightest = "#c8ccd4"
+fg_error = "#e06c75"
+# "#d19a66"
+bg_hint = "#e5c07b"
+fg_matched_text = "#98c379"
+bg_passthrough_mode = "#56b6c2"
+bg_insert_mode = "#98c379"
+bg_warning = "#d19a66"
+# "#be5046"
 
+# type: ConfigAPI # noqa: F821 pylint: disable=E0602,C0103
+config = config # noqa:
 
-config = config  # type: ConfigAPI # noqa: F821 pylint: disable=E0602,C0103
-c = c  # type: ConfigContainer # noqa: F821 pylint: disable=E0602,C0103
+# type: ConfigContainer # noqa: F821 pylint: disable=E0602,C0103
+c = c # noqa:
 
 
 ############
@@ -81,12 +82,12 @@ c.colors.contextmenu.disabled.fg = fg_disabled
 c.colors.contextmenu.menu.bg = bg_default
 
 # Foreground color of the context menu. If set to null, the Qt default is used.
-c.colors.contextmenu.menu.fg =  fg_default
+c.colors.contextmenu.menu.fg = fg_default
 
 # Background color of the context menu’s selected item. If set to null, the Qt default is used.
 c.colors.contextmenu.selected.bg = bg_selection
 
-#Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
+# Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
 c.colors.contextmenu.selected.fg = fg_default
 
 # Background color for the download bar.
