@@ -39,7 +39,7 @@
 (define-public sss-fuzzel-config
   `((font . "Monaspace Neon:size=16")
     (terminal . "foot")
-    (icon-theme . "Papirus-Dark")
+    (icon-theme . "Yaru-sage-dark")
     (list-executables-in-path . "yes")
     (lines . 15)
     (inner-pad . 8)

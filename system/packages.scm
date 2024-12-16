@@ -52,6 +52,7 @@
 (define sss-theme-packages
   (list
    papirus-icon-theme
+   yaru-theme
    gnome-themes-standard
    gnome-themes-extra
    adwaita-icon-theme

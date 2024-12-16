@@ -23,7 +23,7 @@
 
 
 (define-public sss-gtk-config
-  `((gtk-icon-theme-name . "Papirus-Dark")
+  `((gtk-icon-theme-name . "Yaru-sage-dark")
     (gtk-theme-name .
                     ,(cond
                       ((equal? sss-palette-ef-cyprus sss-active-palette)

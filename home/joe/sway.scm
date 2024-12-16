@@ -49,7 +49,7 @@
     ))
 
 (define sss-sway-wallpaper
-  "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/wp9425889.png")
+  "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")
 
 (define sss-sway-startup-programs
   (list
@@ -86,7 +86,7 @@
 
     `(
       ,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name)
-      "gsettings set $gnome-schema icon-theme 'Papirus-Dark'"
+      "gsettings set $gnome-schema icon-theme 'Yaru-sage-dark'"
       "gsettings set $gnome-schema cursor-theme 'Adwaita'"
       "gsettings set $gnome-schema cursor-size 32"
       "gsettings set $gnome-schema font-name 'Monaspace Neon'"

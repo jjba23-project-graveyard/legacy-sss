@@ -29,7 +29,7 @@
    (mk-kv-conf-lines
     `((color_scheme_path . "/run/current-system/profile/share/qt6ct/colors/airy.conf")
       (custom_palette . false)
-      (icon_theme . "Papirus-Dark")
+      (icon_theme . "Yaru-sage-dark")
       (standard_dialogs . default)
       (style . kvantum)
       ))
