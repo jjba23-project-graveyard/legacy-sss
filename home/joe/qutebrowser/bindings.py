@@ -34,7 +34,12 @@ c.bindings.commands['normal'] = {
     # '<Space>': 'scroll-page 0 0.9',
     '<alt-shift-.': 'scroll-to-perc',
     '<alt-shift-.>': 'scroll-to-perc 0',
-
+    '<ctrl-=>': 'zoom-in',
+    '<ctrl-x>=': 'zoom-in',
+    '<ctrl-x><ctrl-=>': 'zoom-in',
+    '<ctrl-->': 'zoom-out',
+    '<ctrl-x>-': 'zoom-out',
+    '<ctrl-x><ctrl-->': 'zoom-out',
 
     # Commands
     '<alt-x>': 'cmd-set-text :',
@@ -154,6 +159,9 @@ c.bindings.commands['command'] = {
 
     # escape hatch
     '<ctrl-g>': 'mode-leave',
+
+    '<ctrl-c><ctrl-r>': 'undo --window',
+    '<ctrl-shift+_>': 'undo',
 }
 
 c.bindings.commands['hint'] = {
@@ -189,4 +197,12 @@ c.bindings.commands['insert'] = {
     '<f12>': 'devtools',
     '<ctrl-c><i>': 'devtools',
     '<alt-w>': 'yank selection',
+    '<ctrl-=>': 'zoom-in',
+    '<ctrl-x>=': 'zoom-in',
+    '<ctrl-x><ctrl-=>': 'zoom-in',
+    '<ctrl-->': 'zoom-out',
+    '<ctrl-x>-': 'zoom-out',
+    '<ctrl-x><ctrl-->': 'zoom-out',
+
+
 }
