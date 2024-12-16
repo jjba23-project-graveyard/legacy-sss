@@ -300,12 +300,10 @@ window managers, that don't provide Qt integration by themselves.")
 
 (define sss-wm-packages
   (list
-   cl-asdf
-
    swaybg
    swaylock
    swayidle
-   foot
+   
    waybar-experimental
    wmenu
    
@@ -356,18 +354,23 @@ window managers, that don't provide Qt integration by themselves.")
    tree-sitter-javascript
    ))
 
+(define sss-terminal-emulator-packages
+  (list
+   foot))
 
 (define sss-dev-packages
   (list
    (specification->package "openjdk@21.0.2")
    (specification->package "node@18.19.0")
    (specification->package "python")
+   cl-asdf
    ))
 
 (define sss-coreutils
   (list
    htop
    emacs-next-pgtk
+   vim
    openssh
    dbus
    ncurses
@@ -399,10 +402,14 @@ window managers, that don't provide Qt integration by themselves.")
    mpd-mpc
    ardour))
 
+(define sss-browser-packages
+  (list
+   icecat
+   icedove
+   ))
+
 (define sss-other-system-packages
   (list
-   (specification->package "firefox")
-   icedove
    
    flatpak
    pipewire
@@ -479,7 +486,7 @@ window managers, that don't provide Qt integration by themselves.")
    parallel
    
    thunar
-   dolphin dolphin-plugins
+   
    ffmpegthumbs
    xarchiver
    ristretto
@@ -550,6 +557,9 @@ window managers, that don't provide Qt integration by themselves.")
    sss-artanis
    ))
 
+;; SYSTEM PACKAGES
+;;
+;; Add packages here to install them system wide
 (define-public sss-system-packages
   (append
    sss-per-host-packages
@@ -561,4 +571,6 @@ window managers, that don't provide Qt integration by themselves.")
    sss-container-packages
    sss-treesitter-packages
    sss-coreutils
+   sss-terminal-emulator-packages
+   sss-browser-packages
    sss-theme-packages))
