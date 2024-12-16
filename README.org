@@ -158,15 +158,24 @@ The installed software will be available, for example at: ~/home/joe/.nix-profil
 
 ** Project Management
 
+*** Work in Progress
+
+**** WIP generate manual, documentation and cheatsheet for SSS easily
+
+**** WIP dynamic theming based on Guix user config
+
+
 *** Backlog
 
-**** TODO record types (define-configuration) to modularize config and translate foot configs and git configs and other complex ones to Scheme.
+**** TODO org tasks move from WIP to backlog more easily and so on with less kill and yank
 
-**** TODO scheme to json for waybar config
+**** TODO record types (define-configuration) to modularize config and translate foot configs and git configs and other complex ones to Scheme, and extract to a Guile library factory pattern for users
+
+**** TODO Qutebrowser dasshboard welcome screen / welkomscherm
 
 **** TODO make it easier to manage Nix packages from Guile scheme
 
-**** TODO create simple bootstrap script to help adoption
+**** TODO create simple bootstrap script for first-setup to help adoption of sss
 
 **** TODO create project banners, logos, marketing
 
@@ -174,9 +183,6 @@ The installed software will be available, for example at: ~/home/joe/.nix-profil
 
 **** TODO create "bridge" between Scheme world and others, like Bash, Emacs and if needed Nix
 
-**** TODO dynamic theming based on Guix user config
-
-**** TODO generate manual, documentation and cheatsheet for SSS easily
 
 
 *** Work done
@@ -184,3 +190,5 @@ The installed software will be available, for example at: ~/home/joe/.nix-profil
 **** DONE manage all simple key-value configs from Scheme code
 CLOSED: [2024-11-22 vr 13:17]
 
+**** DONE scheme to json for waybar config
+CLOSED: [2024-12-16 ma 23:18]
