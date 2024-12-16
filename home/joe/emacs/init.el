@@ -277,6 +277,12 @@ According to size, color and font family"
 
 (use-package package-lint :ensure t)
 
+(use-package python-black
+  :ensure t
+  :after python
+  ;;:bind (("C-M-/" . python-black-buffer))
+  :hook (python-mode . python-black-on-save-mode-enable-dwim))
+
 (use-package markdown-mode 
   :ensure t 
   :mode "\\.md\\'"

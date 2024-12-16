@@ -425,6 +425,7 @@ window managers, that don't provide Qt integration by themselves.")
    qtwayland
 
    guile-fibers
+   guile-g-golf
    
    xz
    ispell
