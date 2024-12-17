@@ -46,6 +46,7 @@
   `("org.kde.kcalc"
     "org.gnome.Calculator"
     "pavucontrol"
+    "org.jointhefreeworld.metakeys"
     ))
 
 (define sss-sway-wallpaper
