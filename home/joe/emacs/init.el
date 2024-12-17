@@ -849,6 +849,9 @@ According to size, color and font family"
 
   (setq read-extended-command-predicate #'command-completion-default-include-p
         backward-delete-char-untabify-method 'hungry)
+
+  (setq compilation-always-kill t)
+
   
   (setq treesit-font-lock-level 4
 	ring-bell-function #'ignore
