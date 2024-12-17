@@ -27,9 +27,9 @@
     (gtk-theme-name .
                     ,(cond
                       ((equal? sss-palette-ef-cyprus sss-active-palette)
-                       "Adwaita"
+                       "Yaru-sage-dark"
                        )
-                      (else "Adwaita")
+                      (else "Yaru-sage-dark")
                       ))
     (gtk-font-name . "Monaspace Neon 11")
     (gtk-key-theme-name . "Emacs")

@@ -80,14 +80,20 @@
   (let
       ((gtk-theme-name (cond
                         ((equal? sss-palette-ef-cyprus sss-active-palette)
-                         "Adwaita"
+                         "Yaru-sage"
                          )
-                        (else "Adwaita")
-                        )))
+                        (else "Yaru-sage-dark")
+                        ))
+       (icon-theme-name (cond
+                         ((equal? sss-palette-ef-cyprus sss-active-palette)
+                          "Yaru-sage"
+                          )
+                         (else "Yaru-sage-dark")
+                         )))
 
     `(
       ,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name)
-      "gsettings set $gnome-schema icon-theme 'Yaru-sage-dark'"
+      ,(format #f "gsettings set $gnome-schema icon-theme '~a'" icon-theme-name)
       "gsettings set $gnome-schema cursor-theme 'Adwaita'"
       "gsettings set $gnome-schema cursor-size 32"
       "gsettings set $gnome-schema font-name 'Monaspace Neon'"
