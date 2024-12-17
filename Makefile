@@ -86,7 +86,7 @@ sr:
 fr:
 	@make full-rebuild
 gc:
-	@sudo guix system delete-generations 3d
+	@sudo guix system delete-generations 1d
 store-gc:
 	@sudo guix gc
 full-gc:

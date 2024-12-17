@@ -49,15 +49,6 @@
 
 (load "../per-host.scm")
 
-(define sss-theme-packages
-  (list
-   papirus-icon-theme
-   yaru-theme
-   gnome-themes-standard
-   gnome-themes-extra
-   adwaita-icon-theme
-   ))
-
 (define-public sss-swayfx
   (package
    (inherit sway)
@@ -280,6 +271,28 @@ window managers, that don't provide Qt integration by themselves.")
    (home-page "https://github.com/trialuser02/qt6ct")
    (license license:bsd-2)))
 
+
+(define-public sss-kv-yaru-colors
+  (package
+   (name "kvantum-yaru-colors")
+   (version "21.04")
+   (source
+    (origin
+     (method git-fetch)
+     (uri
+      (git-reference
+       (url "https://github.com/GabePoel/KvYaru-Colors.git")
+       (commit "7df1a89610618e6d3a145ff44ed47f0aafdb4ae5")))
+     (sha256
+      (base32 "1d7ys8jyk8k34dbq807vvxj9xpq9jgi8yx3xkn1ypswx5mabl9ls"))))
+   (build-system copy-build-system)
+   (arguments
+    (list #:install-plan #~'(("./src/" "/usr/share/Kvantum"))))
+   (synopsis "Kvantum theme to match the Yaru colors theme!")
+   (description "Kvantum themes to match the Yaru Colors and Yaru Remix themes! Check releases for latest stable version.")
+   (home-page "https://github.com/GabePoel/KvYaru-Colors.git")
+   (license license:gpl3+)))
+
 (define sss-font-packages
   (list
    fontconfig
@@ -393,6 +406,17 @@ window managers, that don't provide Qt integration by themselves.")
    cairo
    xorg-server
    ))
+
+(define sss-theme-packages
+  (list
+   papirus-icon-theme
+   yaru-theme
+   gnome-themes-standard
+   gnome-themes-extra
+   adwaita-icon-theme
+   sss-kv-yaru-colors
+   ))
+
 
 (define sss-music-packages
   (list
