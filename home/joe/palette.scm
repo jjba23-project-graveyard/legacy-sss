@@ -16,40 +16,39 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss-palette)
-  #:use-module (gnu)
-  )
+  #:use-module (gnu))
 
 ;; (sss-hex-to-rgba (sss-get-color 'bg-main))
 
 (define-public (sss-get-color sym)
   (cdr (assoc sym sss-active-palette)))
 
-
 (begin
   (define (hex-to-decimal n)
     (string->number (string-append "#x" n)))
-  (define* (sss-hex-to-rgba hex #:key (alpha 1))
+  (define* (sss-hex-to-rgba hex
+                            #:key (alpha 1))
     (let* ((digits (string-drop hex 1))
            (red (hex-to-decimal (string-take digits 2)))
            (green (hex-to-decimal (string-take (string-drop digits 2) 2)))
-           (blue (hex-to-decimal (string-drop digits 4)))
-           )
-      (format #f "rgba(~a, ~a, ~a, ~a)" red green blue alpha)
-      )
-    )
-  (export sss-hex-to-rgba)
-  )
+           (blue (hex-to-decimal (string-drop digits 4))))
+      (format #f
+              "rgba(~a, ~a, ~a, ~a)"
+              red
+              green
+              blue
+              alpha)))
+  (export sss-hex-to-rgba))
 
 (define-public sss-palette-ef-bio
-  `((bg-main . "#111111")
-    (fg-main . "#cfdfd5")
+  `((bg-main . "#111111") (fg-main . "#cfdfd5")
     (bg-dim . "#222522")
     (fg-dim . "#808f80")
     (bg-alt . "#303230")
     (fg-alt . "#8fcfaf")
     (bg-active . "#505250")
     (bg-inactive . "#161916")
-;;; Basic hues for foreground values
+    ;; Basic hues for foreground values
     (red . "#ef6560")
     (red-warmer . "#f47360")
     (red-cooler . "#ff778f")
@@ -74,11 +73,11 @@
     (cyan-warmer . "#7fcfdf")
     (cyan-cooler . "#5dc0aa")
     (cyan-faint . "#7fb4cf")
-;;; Basic hues for background values
-    (bg-red-intense  .   "#b02930")
-    (bg-green-intense  . "#407430")
+    ;; Basic hues for background values
+    (bg-red-intense . "#b02930")
+    (bg-green-intense . "#407430")
     (bg-yellow-intense . "#8f5040")
-    (bg-blue-intense  . "#4648d0")
+    (bg-blue-intense . "#4648d0")
     (bg-magenta-intense . "#a04fc5")
     (bg-cyan-intense . "#2270be")
     (bg-red-subtle . "#65201a")
@@ -88,25 +87,23 @@
     (bg-blue-subtle . "#1a3863")
     (bg-magenta-subtle . "#572853")
     (bg-cyan-subtle . "#113e57")
-;;; Named colors
+    ;; Named colors
     (primary . "#00552f")
     (primary-l . "#3fb83f")
     (primary-d . "#0a4425")
     (text . "#cfdfd5")
     (background . "#111111")
-    (background-l . "#222522")
-    ))
+    (background-l . "#222522")))
 
 (define-public sss-palette-ef-cyprus
-  `((bg-main . "#fcf7ef")
-    (fg-main . "#242521")
+  `((bg-main . "#fcf7ef") (fg-main . "#242521")
     (bg-dim . "#f0ece0")
     (fg-dim . "#59786f")
     (bg-alt . "#e5e3d8")
     (fg-alt . "#7f475a")
     (bg-active . "#c5c3b8")
     (bg-inactive . "#f8f3ea")
-;;; Basic hues for foreground values
+    ;; Basic hues for foreground values
     (red . "#9f0d0f")
     (red-warmer . "#dd0020")
     (red-cooler . "#ca3400")
@@ -131,7 +128,7 @@
     (cyan-warmer . "#3f6faf")
     (cyan-cooler . "#007a9f")
     (cyan-faint . "#4f677f")
-;;; Basic hues for background values
+    ;; Basic hues for background values
     (bg-red-intense . "#ff8f88")
     (bg-green-intense . "#96df80")
     (bg-yellow-intense . "#efbf00")
@@ -145,16 +142,15 @@
     (bg-blue-subtle . "#ccdfff")
     (bg-magenta-subtle . "#fad3ff")
     (bg-cyan-subtle . "#bfefff")
-    ;;; Named colors
+    ;; Named colors
     (primary . "#b3d19d")
     (primary-l . "#c4f2af")
     (primary-d . "#557400")
     (text . "#242521")
     (background . "#fcf7ef")
-    (background-l . "#f0ece0")
-    ))
+    (background-l . "#f0ece0")))
 
-
-(define-public sss-active-palette sss-palette-ef-bio)
+(define-public sss-active-palette
+  sss-palette-ef-bio)
 
 ;; (define-public sss-active-palette sss-palette-ef-cyprus)

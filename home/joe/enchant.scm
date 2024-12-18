@@ -29,7 +29,12 @@
 
 ;; Custom dictionary for English
 (define-public sss-enchant-dict-en
-  `("Guix" "SwayFX" "aspell" "hunspell" "nuspell"
-    "sss" "Josep" "Bigorra" "Algaba"
-    ))
+  `("Guix" "SwayFX"
+    "aspell"
+    "hunspell"
+    "nuspell"
+    "sss"
+    "Josep"
+    "Bigorra"
+    "Algaba"))
 

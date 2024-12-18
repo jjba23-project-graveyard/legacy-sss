@@ -21,27 +21,24 @@
   #:use-module (gnu)
   #:use-module (sss-palette))
 
-
 (define-public sss-gtk-config
-  `((gtk-icon-theme-name . "Yaru-sage-dark")
-    (gtk-theme-name .
-                    ,(cond
-                      ((equal? sss-palette-ef-cyprus sss-active-palette)
-                       "Yaru-sage-dark"
-                       )
-                      (else "Yaru-sage-dark")
-                      ))
+  `((gtk-icon-theme-name . "Yaru-sage-dark") (gtk-theme-name unquote
+                                                             (cond
+                                                               ((equal?
+                                                                 sss-palette-ef-cyprus
+                                                                 sss-active-palette)
+                                                                "Yaru-sage-dark")
+                                                               (else
+                                                                "Yaru-sage-dark")))
     (gtk-font-name . "Monaspace Neon 11")
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . 0)
     (gtk-cursor-theme-name . "Adwaita")
     (gtk-cursor-theme-size . 32)
     (gtk-enable-input-feedback-sounds . 0)
-    (gtk-application-prefer-dark-theme .
-                                       ,(cond
-                                         ((equal? sss-palette-ef-cyprus sss-active-palette)
-                                          0
-                                          )
-                                         (else 1)
-                                         ))
-    ))
+    (gtk-application-prefer-dark-theme unquote
+                                       (cond
+                                         ((equal? sss-palette-ef-cyprus
+                                                  sss-active-palette)
+                                          0)
+                                         (else 1)))))

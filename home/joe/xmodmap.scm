@@ -16,10 +16,8 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss-xmodmap)
-  #:use-module (gnu)
-  )
+  #:use-module (gnu))
 
 (define-public sss-xmodmap-config
-  '(("remove Lock" . "Caps_Lock")
-    ("keysym Caps_Lock" . "Control_L")
+  '(("remove Lock" . "Caps_Lock") ("keysym Caps_Lock" . "Control_L")
     ("add Control" . "Control_L")))

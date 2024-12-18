@@ -32,22 +32,17 @@
   #:use-module (gnu home services sway)
   #:use-module (gnu home services sound)
   #:use-module (gnu home services desktop)
-  #:use-module (sss-palette)
-  )
-
+  #:use-module (sss-palette))
 
 (define sss-sway-gestures
   `((swipe:3:right . "workspace next_on_output")
-    (swipe:3:left  . "workspace prev_on_output")
-    (swipe:3:down  . "move to scratchpad")
-    (swipe:3:up    . "scratchpad show")))
+    (swipe:3:left . "workspace prev_on_output")
+    (swipe:3:down . "move to scratchpad")
+    (swipe:3:up . "scratchpad show")))
 
 (define sss-sway-floating-windows
-  `("org.kde.kcalc"
-    "org.gnome.Calculator"
-    "pavucontrol"
-    "org.jointhefreeworld.metainfog"
-    ))
+  `("org.kde.kcalc" "org.gnome.Calculator" "pavucontrol"
+    "org.jointhefreeworld.metainfog"))
 
 (define sss-sway-wallpaper
   "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")
@@ -55,87 +50,70 @@
 (define sss-sway-startup-programs
   (list
    ;; #~(string-append
-   ;;    #$swayidle "/bin/swayidle -w \\\n    "
-   ;;    ;; 300: lock screen.
-   ;;    "timeout 300 '" #$swaylock "/bin/swaylock "
-   ;;    "--indicator-radius 75 \\\n    "
-   ;;    "-i " #$sway
-   ;;    #$sss-sway-wallpaper " \\\n    "
-   ;;    "-f -c 000000' \\\n    "
-   ;;    ;; 600: lock + screen off.
-   ;;    "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
-   ;;    ;; Resume + sleep.
-   ;;    "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
-   ;;    "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
+   ;; #$swayidle "/bin/swayidle -w \\\n    "
+   ;; ;; 300: lock screen.
+   ;; "timeout 300 '" #$swaylock "/bin/swaylock "
+   ;; "--indicator-radius 75 \\\n    "
+   ;; "-i " #$sway
+   ;; #$sss-sway-wallpaper " \\\n    "
+   ;; "-f -c 000000' \\\n    "
+   ;; ;; 600: lock + screen off.
+   ;; "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
+   ;; ;; Resume + sleep.
+   ;; "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
+   ;; "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
    "lxsession"
    "mako"
    "emacs --daemon"
    "dbus-update-activation-environment --all"
    "waybar"
    "transmission-daemon"
-   "foot -s"
-   ))
+   "foot -s"))
 
 (define sss-sway-startup-reload-programs
-  (let
-      ((gtk-theme-name (cond
-                        ((equal? sss-palette-ef-cyprus sss-active-palette)
-                         "Yaru-sage"
-                         )
-                        (else "Yaru-sage-dark")
-                        ))
-       (icon-theme-name (cond
-                         ((equal? sss-palette-ef-cyprus sss-active-palette)
-                          "Yaru-sage"
-                          )
-                         (else "Yaru-sage-dark")
-                         )))
-
-    `(
-      ,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name)
-      ,(format #f "gsettings set $gnome-schema icon-theme '~a'" icon-theme-name)
+  (let ((gtk-theme-name (cond
+                          ((equal? sss-palette-ef-cyprus sss-active-palette)
+                           "Yaru-sage")
+                          (else "Yaru-sage-dark")))
+        (icon-theme-name (cond
+                           ((equal? sss-palette-ef-cyprus sss-active-palette)
+                            "Yaru-sage")
+                           (else "Yaru-sage-dark"))))
+    
+    `(,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name) ,
+      (format #f "gsettings set $gnome-schema icon-theme '~a'" icon-theme-name)
       "gsettings set $gnome-schema cursor-theme 'Adwaita'"
       "gsettings set $gnome-schema cursor-size 32"
-      "gsettings set $gnome-schema font-name 'Monaspace Neon'"
-      ))
-  )
-
+      "gsettings set $gnome-schema font-name 'Monaspace Neon'")))
 
 (define-public sss-sway-outputs
-  (list (sway-output
-         (identifier '*)
-         (background sss-sway-wallpaper))))
+  (list (sway-output (identifier '*)
+                     (background sss-sway-wallpaper))))
 
 (define-public sss-sway-variables
-  `((mod   . "Mod4")
-    (left  . "Left")
-    (down  . "Down")
-    (up    . "Up")
+  `((mod . "Mod4") (left . "Left")
+    (down . "Down")
+    (up . "Up")
     (right . "Right")
     (gnome-schema . "org.gnome.desktop.interface")
     (editor . "emacsclient -c")
     (bloated-browser . "/home/joe/.nix-profile/bin/vivaldi")
     (browser . "qutebrowser")
-    (term  . "footclient")
+    (term . "footclient")
     (password-manager . "/home/joe/.nix-profile/bin/1password")
-    (menu  . "fuzzel")))
+    (menu . "fuzzel")))
 
 (define sss-sway-modes
-  (list
-   (sway-mode
-    (mode-name "resize")
-    (keybindings
-     '(($left  . "resize shrink width 10px")
-       ($down  . "resize grow height 10px")
-       ($up    . "resize shrink height 10px")
-       ($right . "resize grow width 10px")                  
-       (Return . "mode \"default\"")
-       (Escape . "mode \"default\""))))))
-
+  (list (sway-mode (mode-name "resize")
+                   (keybindings '(($left . "resize shrink width 10px")
+                                  ($down . "resize grow height 10px")
+                                  ($up . "resize shrink height 10px")
+                                  ($right . "resize grow width 10px")
+                                  (Return . "mode \"default\"")
+                                  (Escape . "mode \"default\""))))))
 
 (define-public sss-sway-keybindings
-  `(($mod+Return . "exec $term")
-    ($mod+t . "exec $term")
+  `(($mod+Return . "exec $term") ($mod+t . "exec $term")
     ($mod+shift+period . "exec grimshot copy")
     ($mod+period . "exec grimshot save")
     ($mod+k . "kill")
@@ -187,67 +165,67 @@
     ($mod+Shift+minus . "move scratchpad")
     ($mod+Shift+m . "sway output Virtual-1 mode 1920x1200")
     ($mod+Shift+s . "scratchpad show")
-    ($mod+Shift+e
-     . ,#~(string-append
-           "exec " #$sway "/bin/swaynag -t warning -m \\\n    "
-           "'You pressed the exit shortcut.  Do you really want to exit sway?"
-           " This will end your Wayland session.' \\\n    "
-           "-B 'Yes, exit sway' \\\n    '"
-           #$sway "/bin/swaymsg exit'"))
+    ($mod+Shift+e unquote
+                  #~(string-append "exec "
+                     #$sway
+                     "/bin/swaynag -t warning -m \\\n    "
+                     "'You pressed the exit shortcut.  Do you really want to exit sway?"
+                     " This will end your Wayland session.' \\
+    "
+                     "-B 'Yes, exit sway' \\\n    '"
+                     #$sway
+                     "/bin/swaymsg exit'"))
     ($mod+r . "mode \"resize\"")))
 
 (define sss-swayfx-config
-  `(
-    "corner_radius 12"
-    "shadows enable"
-    "blur enable"
-    "default_dim_inactive 0.2"
-    "dim_inactive_colors.unfocused #000000FF"
-    "dim_inactive_colors.urgent #900000FF"
-    ))
+  `("corner_radius 12" "shadows enable" "blur enable"
+    "default_dim_inactive 0.2" "dim_inactive_colors.unfocused #000000FF"
+    "dim_inactive_colors.urgent #900000FF"))
 
 (define sss-sway-extra-content
-  `(
-    "gaps inner 12"
-    "gaps outer 8"
+  `("gaps inner 12" "gaps outer 8"
 
     ;; class                 border  backgr. text    indicator child_border
-    ,(format #f "client.focused ~a ~a ~a ~a ~a"
+    ,(format #f
+             "client.focused ~a ~a ~a ~a ~a"
              (sss-get-color 'primary)
              (sss-get-color 'primary)
              (sss-get-color 'text)
              (sss-get-color 'primary)
              (sss-get-color 'primary))
-    ,(format #f "client.focused_inactive ~a ~a ~a ~a ~a"
+    ,(format #f
+             "client.focused_inactive ~a ~a ~a ~a ~a"
              (sss-get-color 'primary)
              (sss-get-color 'primary)
              (sss-get-color 'text)
              (sss-get-color 'primary)
              (sss-get-color 'primary))
-    ,(format #f "client.unfocused ~a ~a #808f80 ~a ~a"
+    ,(format #f
+             "client.unfocused ~a ~a #808f80 ~a ~a"
              (sss-get-color 'background-l)
              (sss-get-color 'background-l)
              (sss-get-color 'background-l)
-             (sss-get-color 'background-l)
-             )
+             (sss-get-color 'background-l))
     "client.urgent           #b02930 #b02930 #cfdfd5 #900000   #900000"
     "client.placeholder      #000000 #0c0c0c #cfdfd5 #000000   #0c0c0c"
-    ,(format #f "client.background ~a" (sss-get-color 'text))
-    ))
+    ,(format #f "client.background ~a"
+             (sss-get-color 'text))))
 
 (define-public sss-sway-service-type
   (service home-sway-service-type
-           (sway-configuration
-            (packages (list sss-swayfx))
-            (gestures sss-sway-gestures)
-            (startup-programs sss-sway-startup-programs)
-            (startup+reload-programs sss-sway-startup-reload-programs)
-            (outputs sss-sway-outputs)
-            (variables sss-sway-variables)
-            (modes sss-sway-modes)
-            (keybindings sss-sway-keybindings)
-            (extra-content
-             (append sss-swayfx-config
-                     (map (lambda(w) (format #f "for_window [app_id=\"~a\"] floating enable" w))
-                          sss-sway-floating-windows)
-                     sss-sway-extra-content)))))
+           (sway-configuration (packages (list sss-swayfx))
+                               (gestures sss-sway-gestures)
+                               (startup-programs sss-sway-startup-programs)
+                               (startup+reload-programs
+                                sss-sway-startup-reload-programs)
+                               (outputs sss-sway-outputs)
+                               (variables sss-sway-variables)
+                               (modes sss-sway-modes)
+                               (keybindings sss-sway-keybindings)
+                               (extra-content (append sss-swayfx-config
+                                                      (map (lambda (w)
+                                                             (format #f
+                                                              "for_window [app_id=\"~a\"] floating enable"
+                                                              w))
+                                                       sss-sway-floating-windows)
+                                                      sss-sway-extra-content)))))

@@ -30,79 +30,112 @@
 
 (use-modules (sss-packages))
 
-(use-service-modules networking desktop audio shepherd dbus base
-                     xorg desktop configuration avahi nix xorg networking
-                     sound cups mcron pm)
+(use-service-modules networking
+                     desktop
+                     audio
+                     shepherd
+                     dbus
+                     base
+                     xorg
+                     desktop
+                     configuration
+                     avahi
+                     nix
+                     xorg
+                     networking
+                     sound
+                     cups
+                     mcron
+                     pm)
 
-(use-package-modules certs nfs mate lxqt libusb linux glib
-                     sugar suckless scanner xdisorg avahi xfce
-                     pulseaudio kde-plasma kde-frameworks kde gnome
-                     freedesktop cups admin glib base idutils)
-
+(use-package-modules certs
+                     nfs
+                     mate
+                     lxqt
+                     libusb
+                     linux
+                     glib
+                     sugar
+                     suckless
+                     scanner
+                     xdisorg
+                     avahi
+                     xfce
+                     pulseaudio
+                     kde-plasma
+                     kde-frameworks
+                     kde
+                     gnome
+                     freedesktop
+                     cups
+                     admin
+                     glib
+                     base
+                     idutils)
 
 (define sss-joe-user-account
   (user-account
-   (name "joe")
-   (group "users")
-   (supplementary-groups '("wheel" "netdev" "audio" "video" "input"))))
+    (name "joe")
+    (group "users")
+    (supplementary-groups '("wheel" "netdev" "audio" "video" "input"))))
 
 (define sss-manon-user-account
   (user-account
-   (name "manon")
-   (group "users")
-   (supplementary-groups '("audio" "video" "netdev" "input"))))
+    (name "manon")
+    (group "users")
+    (supplementary-groups '("audio" "video" "netdev" "input"))))
 
 (define (wikimusic-fetch-backups)
-  (syscall "mkdir -p /home/joe/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ /home/joe/Documenten/wikimusic-backups/"))
+  (syscall
+   "mkdir -p /home/joe/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ /home/joe/Documenten/wikimusic-backups/"))
 
 (define wikimusic-fetch-backups-job
-  #~(job '(next-hour '(2 4 6 8 10 12 14 16 18 20))
+  #~(job '(next-hour '(2 4
+                       6
+                       8
+                       10
+                       12
+                       14
+                       16
+                       18
+                       20))
          (lambda ()
-           (wikimusic-fetch-backups))
-         "wikimusic-fetch-backups"
+           (wikimusic-fetch-backups)) "wikimusic-fetch-backups"
          #:user "joe"))
 
-
 (define sss-cron-jobs-service
-  (simple-service 'sss-cron-jobs
-                  mcron-service-type
-                  (list wikimusic-fetch-backups-job
-                        )))
+  (simple-service 'sss-cron-jobs mcron-service-type
+                  (list wikimusic-fetch-backups-job)))
 
 (define sss-joe-mpd
   (service mpd-service-type
-           (mpd-configuration
-            (music-directory "/home/joe/Muziek")
-            (playlist-directory "/home/joe/Muziek/Playlists"))))
+           (mpd-configuration (music-directory "/home/joe/Muziek")
+                              (playlist-directory "/home/joe/Muziek/Playlists"))))
 
 (define sss-joe-subuid
-  (simple-service
-   'podman-subuid-subgid
-   ;; If subuid/subgid will be needed somewhere else, the service must be
-   ;; created to handle it.
-   etc-service-type
-   `(("subuid"
-      ,(plain-file
-        "subuid"
-        (string-append "joe" ":100000:65536\n")))
-     ("subgid"
-      ,(plain-file
-        "subgid"
-        (string-append "joe" ":100000:65536\n"))))))
+  (simple-service 'podman-subuid-subgid
+                  ;; If subuid/subgid will be needed somewhere else, the service must be
+                  ;; created to handle it.
+                  etc-service-type
+                  `(("subuid" ,(plain-file "subuid"
+                                           (string-append "joe"
+                                                          ":100000:65536\n")))
+                    ("subgid" ,(plain-file "subgid"
+                                           (string-append "joe"
+                                                          ":100000:65536\n"))))))
 
 (define sss-iptables
   (service iptables-service-type
            (iptables-configuration)))
 
-(define* (sss-desktop-services-for-system
-          #:optional
-          (system (or (%current-target-system)
-                      (%current-system))))
-
+(define* (sss-desktop-services-for-system #:optional (system (or (%current-target-system)
+                                                                 (%current-system))))
+  
   (cons*
    ;; Add udev rules for MTP devices so that non-root users can access
    ;; them.
-   (simple-service 'mtp udev-service-type (list libmtp))
+   (simple-service 'mtp udev-service-type
+                   (list libmtp))
    ;; Add udev rules for scanners.
    (service sane-service-type)
    ;; Add polkit rules, so that non-root users in the wheel group can
@@ -110,10 +143,9 @@
    polkit-wheel-service
 
    (service cups-service-type
-            (cups-configuration
-             (web-interface? #t)
-             (default-paper-size "Letter")
-             (extensions (list cups-filters hplip-minimal))))
+            (cups-configuration (web-interface? #t)
+                                (default-paper-size "Letter")
+                                (extensions (list cups-filters hplip-minimal))))
 
    ;; Allow desktop users to also mount NTFS and NFS file systems
    ;; without root.
@@ -130,8 +162,7 @@
    ;; NetworkManager and its applet.
    (service network-manager-service-type)
    (service wpa-supplicant-service-type)
-   (simple-service 'network-manager-applet
-                   profile-service-type
+   (simple-service 'network-manager-applet profile-service-type
                    (list network-manager-applet))
    (service modem-manager-service-type)
    (service usb-modeswitch-service-type)
@@ -147,23 +178,19 @@
    (service polkit-service-type)
    (service dbus-root-service-type)
    (service elogind-service-type
-            (elogind-configuration
-             (kill-user-processes? #t)))
+            (elogind-configuration (kill-user-processes? #t)))
 
-   (service
-    openntpd-service-type
-    (openntpd-configuration
-     (listen-on '("127.0.0.1" "::1"))
-     (sensor '("udcf0 correction 70000"))
-     (constraint-from '("www.gnu.org"))
-     (constraints-from '("https://www.google.com/"))))
+   (service openntpd-service-type
+            (openntpd-configuration (listen-on '("127.0.0.1" "::1"))
+                                    (sensor '("udcf0 correction 70000"))
+                                    (constraint-from '("www.gnu.org"))
+                                    (constraints-from '("https://www.google.com/"))))
 
    (service x11-socket-directory-service-type)
 
    (service bluetooth-service-type
-            (bluetooth-configuration
-             (experimental #t)
-             (auto-enable? #t)))
+            (bluetooth-configuration (experimental #t)
+                                     (auto-enable? #t)))
 
    %base-services))
 
@@ -171,48 +198,35 @@
   (identifier-syntax (sss-desktop-services-for-system)))
 
 (operating-system
- (host-name "guixvm")
- (timezone "Europe/Amsterdam")
+  (host-name "guixvm")
+  (timezone "Europe/Amsterdam")
 
- (locale "nl_NL.utf8")
- (keyboard-layout (keyboard-layout "us"))
- 
- (bootloader (bootloader-configuration
-	      (bootloader grub-efi-bootloader)
-	      (targets '("/boot/efi"))))
- 
- (kernel linux)
- (initrd microcode-initrd)
- (firmware (list linux-firmware))
- (kernel-arguments
-  (list "console=ttyS0,115200"))
- (sudoers-file (local-file "system/sudoers"))
- 
- (file-systems
-  (append
-   sss-filesystems
-   %base-file-systems))
- 
- (users
-  (cons* sss-joe-user-account
-         sss-manon-user-account
-         %base-user-accounts))
- 
- (packages
-  (append sss-system-packages
-          %base-packages))
- 
- (services
-  (cons* 
-   (service nix-service-type)
-   (service power-profiles-daemon-service-type)
-   sss-iptables
-   sss-joe-subuid
-   sss-joe-mpd
-   sss-cron-jobs-service
-   sss-desktop-services
-   )))
+  (locale "nl_NL.utf8")
+  (keyboard-layout (keyboard-layout "us"))
 
+  (bootloader (bootloader-configuration
+                (bootloader grub-efi-bootloader)
+                (targets '("/boot/efi"))))
 
+  (kernel linux)
+  (initrd microcode-initrd)
+  (firmware (list linux-firmware))
+  (kernel-arguments (list "console=ttyS0,115200"))
+  (sudoers-file (local-file "system/sudoers"))
 
+  (file-systems (append sss-filesystems %base-file-systems))
+
+  (users (cons* sss-joe-user-account sss-manon-user-account
+                %base-user-accounts))
+
+  (packages (append sss-system-packages %base-packages))
+
+  (services
+   (cons* (service nix-service-type)
+          (service power-profiles-daemon-service-type)
+          sss-iptables
+          sss-joe-subuid
+          sss-joe-mpd
+          sss-cron-jobs-service
+          sss-desktop-services)))
 

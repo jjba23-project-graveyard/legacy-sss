@@ -16,17 +16,17 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss-git)
-  #:use-module (gnu)
-  )
+  #:use-module (gnu))
 
 ;; I enjoy having a default commit message, and I overwrite it
 ;; sometimes when the commit is meaningful, otherwise I use it
-(define-public sss-gitmessage-personal "🥷🏼")
-(define-public sss-gitmessage-work "🥷🏼")
+(define-public sss-gitmessage-personal
+  "🥷🏼")
+(define-public sss-gitmessage-work
+  "🥷🏼")
 
 (define-public sss-gitignore-global
-  `("bloop"
-    ".bloop"
+  `("bloop" ".bloop"
     ".metals"
     ".stack-work"
     "target"
@@ -35,25 +35,27 @@
     "dist-newstyle"))
 
 (define-public sss-gitconfig-personal
-  `((user . ((name . "Josep Bigorra")
-             (email . "jjbigorra@gmail.com")
-             (signingkey . "24F46738CE114AF6")))
-    (commit . ((template . "~/.gitmessage-personal")))))
+  `((user (name . "Josep Bigorra")
+          (email . "jjbigorra@gmail.com")
+          (signingkey . "24F46738CE114AF6"))
+    (commit (template . "~/.gitmessage-personal"))))
 
 (define-public sss-gitconfig-work
-  `((user . ((name . "Josep Bigorra")
-             (email . "josepbigorraalgaba@vandebron.nl")
-             (signingkey . "3B6D20502E380697")))
-    (commit . ((template . "~/.gitmessage-work")))))
+  `((user (name . "Josep Bigorra")
+          (email . "josepbigorraalgaba@vandebron.nl")
+          (signingkey . "3B6D20502E380697"))
+    (commit (template . "~/.gitmessage-work"))))
 
 (define-public sss-gitconfig
-  `((core . ((editor . "emacsclient")
-             (excludesfile . "~/.gitignore-global")))
-    (commit . ((gpgsign . "true")))
-    (format . ((thread . "shallow")))
-    (sendemail . ((thread . "no")))
-    (pull . ((rebase . "false")))
-    ("includeIf \"gitdir:~/Ontwikkeling/Werk/\"" . (("  path" . "~/.gitconfig-work")))
-    ("includeIf \"gitdir:~/Ontwikkeling/Persoonlijk/\"" . (("  path" . "~/.gitconfig-personal")))
-    ("includeIf \"gitdir:~/Ontwikkeling/Scratch/\"" . (("  path" . "~/.gitconfig-personal")))
-    ))
+  `((core (editor . "emacsclient")
+          (excludesfile . "~/.gitignore-global"))
+    (commit (gpgsign . "true"))
+    (format (thread . "shallow"))
+    (sendemail (thread . "no"))
+    (pull (rebase . "false"))
+    ("includeIf \"gitdir:~/Ontwikkeling/Werk/\""
+     ("  path" . "~/.gitconfig-work"))
+    ("includeIf \"gitdir:~/Ontwikkeling/Persoonlijk/\""
+     ("  path" . "~/.gitconfig-personal"))
+    ("includeIf \"gitdir:~/Ontwikkeling/Scratch/\""
+     ("  path" . "~/.gitconfig-personal"))))

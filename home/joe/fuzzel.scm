@@ -19,29 +19,32 @@
 
 (define-module (sss-fuzzel)
   #:use-module (gnu)
-  #:use-module (sss-palette)
-  )
+  #:use-module (sss-palette))
 
 (define-public sss-fuzzel-colors
-  `((background . ,(string-drop (format #f "~add" (sss-get-color 'background)) 1))
-    (text . ,(string-drop (format #f "~aff" (sss-get-color 'text)) 1))
+  `((background unquote
+                (string-drop (format #f "~add"
+                                     (sss-get-color 'background)) 1))
+    (text unquote
+          (string-drop (format #f "~aff"
+                               (sss-get-color 'text)) 1))
     (prompt . "bac2deff")
     (placeholder . "7f849cff")
-    (input . ,(string-drop (format #f "~aff" (sss-get-color 'text)) 1))
+    (input unquote
+           (string-drop (format #f "~aff"
+                                (sss-get-color 'text)) 1))
     ("match" . "a6e3a1ff")
     (selection . "585b70ff")
     (selection-text . "cdd6f4ff")
     (selection-match . "a6e3a1ff")
     (counter . "7f849cff")
-    (border . "a6e3a1ff")
-    ))
+    (border . "a6e3a1ff")))
 
 (define-public sss-fuzzel-config
-  `((font . "Monaspace Neon:size=16")
-    (terminal . "foot")
+  `((font . "Monaspace Neon:size=16") (terminal . "foot")
     (icon-theme . "Yaru-sage-dark")
     (list-executables-in-path . "yes")
     (lines . 15)
     (inner-pad . 8)
-    (border . ((radius . 24)))
-    (colors . ,sss-fuzzel-colors)))
+    (border (radius . 24))
+    (colors unquote sss-fuzzel-colors)))

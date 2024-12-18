@@ -16,10 +16,8 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss-portals)
-  #:use-module (gnu)
-  )
+  #:use-module (gnu))
 
 (define-public sss-portals-config
-  '(("default" . "gtk")
-    ("org.freedesktop.impl.portal.Screenshot" . "wlr")
+  '(("default" . "gtk") ("org.freedesktop.impl.portal.Screenshot" . "wlr")
     ("org.freedesktop.impl.portal.ScreenCast" . "wlr")))

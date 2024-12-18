@@ -17,15 +17,11 @@
 
 (define-module (sss-fontconfig)
   #:use-module (gnu)
-  #:use-module (gnu home services fontutils)
-  )
+  #:use-module (gnu home services fontutils))
 
 (define-public sss-fontconfig-service-type
-  (simple-service 'additional-fonts-service
-                  home-fontconfig-service-type
+  (simple-service 'additional-fonts-service home-fontconfig-service-type
                   (list "~/.nix-profile/share/fonts"
-                        '(alias
-                          (family "monospace")
-                          (prefer
-                           (family "Monaspace Neon"))))))
+                        '(alias (family "monospace")
+                                (prefer (family "Monaspace Neon"))))))
 

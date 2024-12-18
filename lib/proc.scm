@@ -24,10 +24,11 @@
   #:use-module (ice-9 iconv)
   #:use-module (ice-9 threads)
   #:use-module (ice-9 rdelim)
-  #:use-module ((ice-9 binary-ports) #:prefix i9:)
-  #:use-module ((ice-9 textual-ports) #:prefix i9:)
-  #:use-module (gnu services configuration)
-  )
+  #:use-module ((ice-9 binary-ports)
+                #:prefix i9:)
+  #:use-module ((ice-9 textual-ports)
+                #:prefix i9:)
+  #:use-module (gnu services configuration))
 
 ;;; Code:
 
@@ -35,67 +36,66 @@
   (let* ((process (open-input-pipe cmd))
          (process-output (get-string-all process)))
     (close-pipe process)
-    (display process-output)
-    process-output))
+    (display process-output) process-output))
 
 (define-public (mk-lines items)
-  (with-output-to-string
-    (lambda ()
-      (for-each
-       (lambda(x)       
-         (display (format #f "~a\n" x)))     
-       items))))
+  (with-output-to-string (lambda ()
+                           (for-each (lambda (x)
+                                       (display (format #f "~a\n" x))) items))))
 
 (begin
   (define* (mk-css-conf-lines pairs)
     "Create a CSS configuration from PAIRS, a selector to values alist."
-    (with-output-to-string
-      (lambda ()
-        (for-each
-         (lambda(x)
-           (display (format #f "~a {\n" (car x)))
-           (display (mk-kv-conf-lines (cdr x) #:template "  ~a: ~a;\n"))
-           (display "}\n\n")
-           )     
-         pairs))))
+    (with-output-to-string (lambda ()
+                             (for-each (lambda (x)
+                                         (display (format #f "~a {\n"
+                                                          (car x)))
+                                         (display (mk-kv-conf-lines (cdr x)
+                                                   #:template "  ~a: ~a;\n"))
+                                         (display "}\n\n")) pairs))))
   (export mk-css-conf-lines))
 
 (begin
   (define* (mk-kv-conf-lines pairs
-                             #:key
-                             (template "~a=~a\n"))
-    (with-output-to-string
-      (lambda ()
-        (for-each
-         (lambda(x)       
-           (display (format #f template (car x) (cdr x))))     
-         pairs))))
+                             #:key (template "~a=~a\n"))
+    (with-output-to-string (lambda ()
+                             (for-each (lambda (x)
+                                         (display (format #f template
+                                                          (car x)
+                                                          (cdr x)))) pairs))))
   (export mk-kv-conf-lines))
-
 
 (begin
   (define* (mk-rec-kv-conf-lines pairs
-                                 #:key
-                                 (template "~a=~a\n"))
-    (with-output-to-string
-      (lambda ()
-        (for-each
-         (lambda(x)
-           (cond
-            ((alist? (cdr x))
-             (cond
-              ((string? (car x)) (display (string-append "\n[" (car x) "]\n")))
-              (else (display (string-append "\n[" (symbol->string (car x)) "]\n")))
-              )
-             (display (mk-rec-kv-conf-lines (cdr x) #:template template)))
-            (else (display (format #f template (car x) (cdr x)))))
-           )
-         
-         pairs))))
+                                 #:key (template "~a=~a\n"))
+    (with-output-to-string (lambda ()
+                             (for-each (lambda (x)
+                                         (cond
+                                           ((alist? (cdr x))
+                                            (cond
+                                              ((string? (car x))
+                                               (display (string-append "\n["
+                                                                       (car x)
+                                                                       "]\n")))
+                                              (else (display (string-append
+                                                              "\n["
+                                                              (symbol->string (car
+                                                                               x))
+                                                              "]\n"))))
+                                            (display (mk-rec-kv-conf-lines (cdr
+                                                                            x)
+                                                      #:template template)))
+                                           (else (display (format #f template
+                                                                  (car x)
+                                                                  (cdr x))))))
+
+                                       pairs))))
   (export mk-rec-kv-conf-lines))
 
-(define-public spaced-equal-conf-pair "~a = ~a\n")
-(define-public equal-conf-pair "~a=~a\n")
+(define-public spaced-equal-conf-pair
+  "~a = ~a\n")
+(define-public equal-conf-pair
+  "~a=~a\n")
 
 (define-public (nix-profile-install x)
   (syscall (format #f "nix -L profile install --impure nixpkgs#~a" x)))
@@ -103,28 +103,25 @@
 (define-public (read-text path)
   (let* ((file (open-file path "r"))
          (text (i9:get-string-all file)))
-    (close-port file)
-    text))
+    (close-port file) text))
 
 (define-public (read-line path)
   (let* ((file (open-file path "r"))
          (line (i-read-line file)))
-    (close-port file)
-    line))
+    (close-port file) line))
 
 (define-public (read-lines path)
   (let* ((file (open-file path "r"))
          (lines (i-read-lines file)))
-    (close-port file)
-    lines))
-
+    (close-port file) lines))
 
 (define (i-read-line port)
   (i9:get-line port))
 
 (define (i-read-lines port)
   (letrec ((loop (lambda (l ls)
-                   (if (eof-object? l)
-                       ls
-                       (loop (i9:get-line port) (cons l ls))))))
-    (reverse (loop (i9:get-line port) '()))))
+                   (if (eof-object? l) ls
+                       (loop (i9:get-line port)
+                             (cons l ls))))))
+    (reverse (loop (i9:get-line port)
+                   '()))))

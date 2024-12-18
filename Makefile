@@ -99,3 +99,5 @@ shepherd-logs:
 	cat ~/.local/state/log/shepherd.log
 npu:
 	@make nix-profile-upgrade
+fmt:
+	-find . -maxdepth 6 -name "*.scm" -type f -exec guix style -f {} \;

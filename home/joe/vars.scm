@@ -19,11 +19,10 @@
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services shells)
-  #:use-module (gnu services)
-  )
+  #:use-module (gnu services))
 
-(define-public  sss-home-vars
-  `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale")                  
+(define-public sss-home-vars
+  `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale")
     ("LANG" . "nl_NL.UTF-8")
     ("LANGUAGE" . "nl_NL")
     ("XDG_CURRENT_DESKTOP" . "sway")
@@ -31,7 +30,7 @@
     ("WLR_NO_HARDWARE_CURSORS" . "1")
     ;; TODO figure out why Firefox + Thunderbird on Wayland has issues (in Qemu slow mouse)
     ;; then set to 1
-    ("MOZ_ENABLE_WAYLAND" . "0") 
+    ("MOZ_ENABLE_WAYLAND" . "0")
     ("QT_QPA_PLATFORM" . "wayland")
     ("QT_QPT_PLATFORM" . "wayland")
     ("QT_QPA_PLATFORMTHEME" . "qt6ct")
@@ -43,10 +42,8 @@
     ("XCURSOR_THEME" . "Adwaita")
     ("SDL_VIDEODRIVER" . "wayland")
     ("_JAVA_AWT_WM_NONREPARENTING" . "1")
-    ("DOCKER_HOST" . "unix:///tmp/podman.sock")
-    ))
+    ("DOCKER_HOST" . "unix:///tmp/podman.sock")))
 
 (define-public sss-home-vars-service
   (simple-service 'some-useful-env-vars-service
-                  home-environment-variables-service-type
-                  sss-home-vars))
+                  home-environment-variables-service-type sss-home-vars))

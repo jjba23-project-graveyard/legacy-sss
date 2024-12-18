@@ -17,13 +17,9 @@
 
 (define-module (sss-bash)
   #:use-module (gnu)
-  #:use-module (gnu home services shells)
-  )
+  #:use-module (gnu home services shells))
 
 (define-public sss-bash-service
-  (simple-service
-   'sss-fancy-bash
-   home-bash-service-type
-   (home-bash-extension
-    (environment-variables '())
-    (bashrc `(,(local-file "bash/bashrc.sh"))))))
+  (simple-service 'sss-fancy-bash home-bash-service-type
+                  (home-bash-extension (environment-variables '())
+                                       (bashrc `(,(local-file "bash/bashrc.sh"))))))
