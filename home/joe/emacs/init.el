@@ -888,6 +888,30 @@ According to size, color and font family"
   (recentf-mode 1)
   (setq recentf-max-menu-items 100
         recentf-max-saved-items 100)
+
+  (defgroup dagboek ()
+    "Dagboek customization group"
+    :group 'tools)
+
+  (defcustom dagboek-entry-format "%d-%m-%Y"
+    "Date-time format to be used for dagboek entry files."
+    :type 'string
+    :group 'dagboek)
+
+  (defcustom dagboek-entry-location "~/Ontwikkeling/Persoonlijk/private-notes/Dagboek"
+    "Location for dagboek entry files."
+    :type 'string
+    :group 'dagboek)
+
+  (defun dagboek-today-entry ()
+    "Find today's dagboek entry."
+    (interactive)
+    (find-file (string-join
+                (list dagboek-entry-location
+                      (string-join (list (format-time-string dagboek-entry-format) ".org")))
+                "/"))
+    )
+  
   )
 
 
