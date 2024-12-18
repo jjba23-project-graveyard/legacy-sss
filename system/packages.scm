@@ -271,7 +271,7 @@ window managers, that don't provide Qt integration by themselves.")
    (home-page "https://github.com/trialuser02/qt6ct")
    (license license:bsd-2)))
 
-
+;; TODO install to right location where Kvantum can see it?
 (define-public sss-kv-yaru-colors
   (package
    (name "kvantum-yaru-colors")

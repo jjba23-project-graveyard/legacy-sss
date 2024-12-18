@@ -147,7 +147,7 @@
      ;; Kvantum theme configuration
      (".config/Kvantum/kvantum.kvconfig"
       ,(plain-file "kvantum.kvconfig"
-                   (string-join (list "[General]" "theme=KvGnomeDark") "\n"))) 
+                   (string-join (list "[General]" "theme=KvYaru-GreenDark") "\n"))) 
 
      ;; Qt6 configuration
      (".config/qt6ct/qt6ct.conf"
