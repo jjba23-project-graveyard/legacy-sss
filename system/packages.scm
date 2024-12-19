@@ -426,7 +426,7 @@ window managers, that don't provide Qt integration by themselves.")
 
 (define sss-dev-packages
   (list (specification->package "openjdk@21.0.2")
-        (specification->package "node@18.19.0")
+        (specification->package "node@20.18.1")
         (specification->package "python") cl-asdf))
 
 (define sss-coreutils
