@@ -193,6 +193,9 @@
              ;; Qutebrowser configurations (web browser)
              (".config/qutebrowser/config.py" ,(plain-file "config.py"
                                                            sss-qutebrowser-config))
+             (".config/qutebrowser/bookmarks/urls" ,(plain-file "urls"
+                                                                (serialize-qutebrowser-urls sss-qutebrowser-bookmarks)
+                                                                ))
 
              ;; Containers configuration (for Docker, Podman, etc.)
              ;; Specifies container registries

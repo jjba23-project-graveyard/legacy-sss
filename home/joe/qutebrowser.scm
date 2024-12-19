@@ -369,6 +369,20 @@
     ("<ctrl-c><i>" . "devtools")
     ("<alt-w>" . "yank selection")))
 
+(define-public sss-qutebrowser-bookmarks
+  `(("Jointhefreeworld" . "https://jointhefreeworld.org/")
+    ("BoxIcons" . "https://github.com/atisawd/boxicons")
+    ("Byggsteg" . "https://byggsteg.jointhefreeworld.org/")
+    ("Guix Packages" . "https://packages.guix.gnu.org")
+    ("Reddit" . "https://reddit.com")
+    ("GNU G-Golf reference" . "https://www.gnu.org/software/g-golf/manual/g-golf.html")
+    ("Slack Vandebron" . "https://app.slack.com/client/T1XNW2SF5/C081CULEKV3")
+    ("Coding Standards Vandebron" . "https://vandebron.atlassian.net/wiki/spaces/DIG/pages/edit-v2/95582126047266")
+    ))
+
+(define-public (serialize-qutebrowser-urls alist)
+  (string-join (map (lambda(e) (format #f "~a - ~a" (cdr e) (car e))) alist) "\n"))
+
 (define (sss-qutebrowser-apply-color key color)
   (format #f "c.colors.~a = ~s\n" key
           (assq-ref sss-qutebrowser-palette color)))
@@ -390,20 +404,23 @@
                          "c.input.insert_mode.plugins = True"
                          "c.input.insert_mode.auto_load = True"
                          "c.input.forward_unbound_keys = 'all'"
+                         "config.set('content.notifications.enabled', True, '*://app.slack.com/')"
                          "ESC_BIND = 'clear-keychain ;; search ;; fullscreen --leave'"
                          "c.bindings.default['normal'] = {}")
                        `(,(sss-qutebrowser-commands-bindings 'command
-                           sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
-                                                               sss-qutebrowser-normal-bindings)
+                                                             sss-qutebrowser-command-bindings)
+                         ,(sss-qutebrowser-commands-bindings 'normal
+                                                             sss-qutebrowser-normal-bindings)
                          ,(sss-qutebrowser-commands-bindings 'insert
-                           sss-qutebrowser-insert-bindings)
+                                                             sss-qutebrowser-insert-bindings)
                          ,(sss-qutebrowser-commands-bindings 'caret
-                           sss-qutebrowser-caret-bindings)
+                                                             sss-qutebrowser-caret-bindings)
                          ,(sss-qutebrowser-commands-bindings 'hint
-                           sss-qutebrowser-hint-bindings))
+                                                             sss-qutebrowser-hint-bindings))
                        (map (lambda (e)
                               (sss-qutebrowser-apply-color (car e)
                                                            (car (cdr e))))
                             sss-qutebrowser-theme)) "\n"))
+
 
 
