@@ -15,20 +15,24 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(load "./palette.scm")
+
 (define-module (sss-qutebrowser)
-  #:use-module (gnu))
+  #:use-module (gnu)
+  #:use-module (sss-palette))
 
 (define sss-qutebrowser-palette
-  `((bg-default . "#282c34") (bg-lighter . "#353b45")
+  `((bg-default . ,(sss-get-color 'background))
+    (bg-lighter . ,(sss-get-color 'background-l))
     (bg-selection . "#3e4451")
-    (fg-disabled . "#565c64")
-    (fg-default . "#abb2bf")
+    (fg-disabled . ,(sss-get-color 'fg-dim))
+    (fg-default . ,(sss-get-color 'text))
     (bg-lightest . "#c8ccd4")
     (fg-error . "#e06c75")
     (bg-hint . "#e5c07b")
     (fg-matched-text . "#98c379")
     (bg-passthrough-mode . "#56b6c2")
-    (bg-insert-mode . "#98c379")
+    (bg-insert-mode . ,(sss-get-color 'primary))
     (bg-warning . "#d19a66")))
 
 (define sss-qutebrowser-theme
