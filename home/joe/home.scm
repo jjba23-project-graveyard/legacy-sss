@@ -171,8 +171,10 @@
                                                    "kvantum.kvconfig"
                                                    (string-join (list
                                                                  "[General]"
-                                                                 "theme=KvYaru-GreenDark")
+                                                                 "theme=KvYaru-MATEDark")
                                                                 "\n")))
+             (".config/Kvantum/KvYaru-Green" ,(local-file "/run/current-system/profile/usr/share/Kvantum/KvYaru-Green" #:recursive? #t))
+             (".config/Kvantum/KvYaru-MATE" ,(local-file "/run/current-system/profile/usr/share/Kvantum/KvYaru-MATE" #:recursive? #t))
 
              ;; Qt6 configuration
              (".config/qt6ct/qt6ct.conf" ,(plain-file "qt6ct.conf"
