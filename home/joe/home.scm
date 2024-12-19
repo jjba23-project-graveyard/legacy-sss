@@ -34,6 +34,7 @@
 (load "./xmodmap.scm")
 (load "./enchant.scm")
 (load "./qt.scm")
+(load "./qutebrowser.scm")
 
 (use-modules (gnu home)
              (gnu services)
@@ -64,7 +65,8 @@
              (sss-xmodmap)
              (sss-openpgp)
              (sss-waybar)
-             (sss-ssh))
+             (sss-ssh)
+             (sss-qutebrowser))
 
 (use-modules (json))
 (use-modules (sxml simple))
@@ -72,9 +74,9 @@
 (define sss-home-files-service
   (service home-files-service-type
            `( ;XModmap configuration file for example for Caps to Lock
-              (".xmodmap" ,(plain-file "xmodmap"
-                                       (mk-kv-conf-lines sss-xmodmap-config
-                                        #:template spaced-equal-conf-pair)))
+             (".xmodmap" ,(plain-file "xmodmap"
+                                      (mk-kv-conf-lines sss-xmodmap-config
+                                                        #:template spaced-equal-conf-pair)))
 
              ;; GTK 3 settings
              (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
@@ -97,7 +99,7 @@
              ;; Global Git configuration
              (".gitconfig" ,(plain-file "gitconfig.ini"
                                         (mk-rec-kv-conf-lines sss-gitconfig
-                                         #:template spaced-equal-conf-pair)))
+                                                              #:template spaced-equal-conf-pair)))
              ;; Personal Git configuration
              (".gitconfig-personal" ,(plain-file "gitconfig-personal.ini"
                                                  (mk-rec-kv-conf-lines
@@ -125,8 +127,8 @@
              ;; Nix configuration with experimental features
              (".config/nix/nix.conf" ,(plain-file "nix.conf"
                                                   (mk-rec-kv-conf-lines `((experimental-features . "nix-command flakes"))
-                                                   #:template
-                                                   spaced-equal-conf-pair)))
+                                                                        #:template
+                                                                        spaced-equal-conf-pair)))
              ;; Loads Nixpkgs configuration locally
              (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
 
@@ -192,12 +194,9 @@
              ;; Keybindings for Qutebrowser
              (".config/qutebrowser/bindings.py" ,(local-file
                                                   "qutebrowser/bindings.py"))
-             ;; Theme configuration for Qutebrowser
-             (".config/qutebrowser/theme.py" ,(local-file
-                                               "qutebrowser/theme.py"))
-             ;; Main Qutebrowser config
-             (".config/qutebrowser/config.py" ,(local-file
-                                                "qutebrowser/config.py"))
+             ;; Qutebrowser config
+             (".config/qutebrowser/config.py" ,(plain-file "config.py"
+                                                           sss-qutebrowser-config))
 
              ;; Containers configuration (for Docker, Podman, etc.)
              ;; Specifies container registries
@@ -206,7 +205,7 @@
                                                      "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
-                                                 "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
+                                                            "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
              ;; Emacs configuration files
              ;; Emacs initialization file
              (".emacs.d/init.el" ,(local-file "emacs/init.el"))
