@@ -191,10 +191,6 @@
                                                        (mk-lines
                                                         sss-enchant-dict-en)))
              ;; Qutebrowser configurations (web browser)
-             ;; Keybindings for Qutebrowser
-             (".config/qutebrowser/bindings.py" ,(local-file
-                                                  "qutebrowser/bindings.py"))
-             ;; Qutebrowser config
              (".config/qutebrowser/config.py" ,(plain-file "config.py"
                                                            sss-qutebrowser-config))
 

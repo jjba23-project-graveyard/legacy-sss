@@ -19,8 +19,7 @@
   #:use-module (gnu))
 
 (define sss-qutebrowser-palette
-  `((bg-default . "#282c34")
-    (bg-lighter . "#353b45")
+  `((bg-default . "#282c34") (bg-lighter . "#353b45")
     (bg-selection . "#3e4451")
     (fg-disabled . "#565c64")
     (fg-default . "#abb2bf")
@@ -30,12 +29,10 @@
     (fg-matched-text . "#98c379")
     (bg-passthrough-mode . "#56b6c2")
     (bg-insert-mode . "#98c379")
-    (bg-warning . "#d19a66")
-    ))
+    (bg-warning . "#d19a66")))
 
 (define sss-qutebrowser-theme
-  `(
-    ;; Text color of the completion widget. May be a single color to use for
+  `(;; Text color of the completion widget. May be a single color to use for
     ;; all columns or a list of three colors, one for each column.
     (completion.fg fg-default)
     ;; Background color of the completion widget for odd rows.
@@ -49,197 +46,364 @@
     ;; Top border color of the completion widget category headers.
     (completion.category.border.top bg-default)
     ;; Bottom border color of the completion widget category headers.
-    (completion.category.border-bottom bg-default)
+    (completion.category.border.bottom bg-default)
     ;; Foreground color of the selected completion item.
     (completion.item.selected.fg fg-default)
     ;; Background color of the selected completion item.
-    (completion.item.selected.bg  bg-selection)
+    (completion.item.selected.bg bg-selection)
     ;; Top border color of the selected completion item.
-    (completion.item.selected.border.top  bg-selection)
+    (completion.item.selected.border.top bg-selection)
     ;; Bottom border color of the selected completion item.
-    (completion.item.selected.border.bottom  bg-selection)
+    (completion.item.selected.border.bottom bg-selection)
     ;; Foreground color of the matched text in the selected completion item.
-    (completion.item.selected.match.fg  fg-matched-text)
+    (completion.item.selected.match.fg fg-matched-text)
     ;; Foreground color of the matched text in the completion.
-    (completion.match.fg  fg-matched-text)
+    (completion.match.fg fg-matched-text)
     ;; Color of the scrollbar handle in the completion view.
-    (completion.scrollbar.fg  fg-default)
+    (completion.scrollbar.fg fg-default)
     ;; Color of the scrollbar in the completion view.
-    (completion.scrollbar.bg  bg-default)
+    (completion.scrollbar.bg bg-default)
     ;; Background color of disabled items in the context menu.
-    (contextmenu.disabled.bg  bg-lighter)
+    (contextmenu.disabled.bg bg-lighter)
     ;; Foreground color of disabled items in the context menu.
-    (contextmenu.disabled.fg  fg-disabled)
+    (contextmenu.disabled.fg fg-disabled)
     ;; Background color of the context menu. If set to null, the Qt default is used.
-    (contextmenu.menu.bg  bg-default)
+    (contextmenu.menu.bg bg-default)
     ;; Foreground color of the context menu. If set to null, the Qt default is used.
-    (contextmenu.menu.fg  fg-default)
+    (contextmenu.menu.fg fg-default)
     ;; Background color of the context menu’s selected item. If set to null, the Qt default is used.
-    (contextmenu.selected.bg  bg-selection)
+    (contextmenu.selected.bg bg-selection)
     ;; Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
-    (contextmenu.selected.fg  fg-default)
+    (contextmenu.selected.fg fg-default)
     ;; Background color for the download bar.
-    (downloads.bar.bg  bg-default)
+    (downloads.bar.bg bg-default)
     ;; Color gradient start for download text.
-    (downloads.start.fg  bg-default)
+    (downloads.start.fg bg-default)
     ;; Color gradient start for download backgrounds.
-    (downloads.start.bg  bg-insert-mode)
+    (downloads.start.bg bg-insert-mode)
     ;; Color gradient end for download text.
-    (downloads.stop.fg  bg-default)
+    (downloads.stop.fg bg-default)
     ;; Color gradient stop for download backgrounds.
-    (downloads.stop.bg  bg-passthrough-mode)
+    (downloads.stop.bg bg-passthrough-mode)
     ;; Foreground color for downloads with errors.
-    (downloads.error.fg  fg-error)
+    (downloads.error.fg fg-error)
     ;; Font color for hints.
-    (hints.fg  bg-default)
+    (hints.fg bg-default)
     ;; Background color for hints. Note that you can use a `rgba(...)` value
     ;; for transparency.
-    (hints.bg  bg-hint)
+    (hints.bg bg-hint)
     ;; Font color for the matched part of hints.
-    (hints.match.fg  fg-default)
+    (hints.match.fg fg-default)
     ;; Text color for the keyhint widget.
-    (keyhint.fg  fg-default)
+    (keyhint.fg fg-default)
     ;; Highlight color for keys to complete the current keychain.
-    (keyhint.suffix.fg  fg-default)
+    (keyhint.suffix.fg fg-default)
     ;; Background color of the keyhint widget.
-    (keyhint.bg  bg-default)
+    (keyhint.bg bg-default)
     ;; Foreground color of an error message.
-    (messages.error.fg  bg-default)
+    (messages.error.fg bg-default)
     ;; Background color of an error message.
-    (messages.error.bg  fg-error)
+    (messages.error.bg fg-error)
     ;; Border color of an error message.
-    (messages.error.border  fg-error)
+    (messages.error.border fg-error)
     ;; Foreground color of a warning message.
-    (messages.warning.fg  bg-default)
+    (messages.warning.fg bg-default)
     ;; Background color of a warning message.
-    (messages.warning.bg  bg-warning)
+    (messages.warning.bg bg-warning)
     ;; Border color of a warning message.
-    (messages.warning.border  bg-warning)
+    (messages.warning.border bg-warning)
     ;; Foreground color of an info message.
-    (messages.info.fg  fg-default)
+    (messages.info.fg fg-default)
     ;; Background color of an info message.
-    (messages.info.bg  bg-default)
+    (messages.info.bg bg-default)
     ;; Border color of an info message.
-    (messages.info.border  bg-default)
+    (messages.info.border bg-default)
     ;; Foreground color for prompts.
-    (prompts.fg  fg-default)
+    (prompts.fg fg-default)
     ;; Border used around UI elements in prompts.
-    (prompts.border  bg-default)
+    (prompts.border bg-default)
     ;; Background color for prompts.
-    (prompts.bg  bg-default)
+    (prompts.bg bg-default)
     ;; Background color for the selected item in filename prompts.
-    (prompts.selected.bg  bg-selection)
+    (prompts.selected.bg bg-selection)
     ;; Foreground color for the selected item in filename prompts.
-    (prompts.selected.fg  fg-default)
+    (prompts.selected.fg fg-default)
     ;; Foreground color of the statusbar.
-    (statusbar.normal.fg  fg-matched-text)
+    (statusbar.normal.fg fg-matched-text)
     ;; Background color of the statusbar.
-    (statusbar.normal.bg  bg-default)
+    (statusbar.normal.bg bg-default)
     ;; Foreground color of the statusbar in insert mode.
-    (statusbar.insert.fg  bg-default)
+    (statusbar.insert.fg bg-default)
     ;; Background color of the statusbar in insert mode.
-    (statusbar.insert.bg  bg-insert-mode)
+    (statusbar.insert.bg bg-insert-mode)
     ;; Foreground color of the statusbar in passthrough mode.
-    (statusbar.passthrough.fg  bg-default)
+    (statusbar.passthrough.fg bg-default)
     ;; Background color of the statusbar in passthrough mode.
-    (statusbar.passthrough.bg  bg-passthrough-mode)
+    (statusbar.passthrough.bg bg-passthrough-mode)
     ;; Foreground color of the statusbar in private browsing mode.
-    (statusbar.private.fg  bg-default)
+    (statusbar.private.fg bg-default)
     ;; Background color of the statusbar in private browsing mode.
-    (statusbar.private.bg  bg-lighter)
+    (statusbar.private.bg bg-lighter)
     ;; Foreground color of the statusbar in command mode.
-    (statusbar.command.fg  fg-default)
+    (statusbar.command.fg fg-default)
     ;; Background color of the statusbar in command mode.
-    (statusbar.command.bg  bg-default)
+    (statusbar.command.bg bg-default)
     ;; Foreground color of the statusbar in private browsing + command mode.
-    (statusbar.command.private.fg  fg-default)
+    (statusbar.command.private.fg fg-default)
     ;; Background color of the statusbar in private browsing + command mode.
-    (statusbar.command.private.bg  bg-default)
+    (statusbar.command.private.bg bg-default)
     ;; Foreground color of the statusbar in caret mode.
-    (statusbar.caret.fg  bg-default)
+    (statusbar.caret.fg bg-default)
     ;; Background color of the statusbar in caret mode.
-    (statusbar.caret.bg  bg-warning)
+    (statusbar.caret.bg bg-warning)
     ;; Foreground color of the statusbar in caret mode with a selection.
-    (statusbar.caret.selection.fg  bg-default)
+    (statusbar.caret.selection.fg bg-default)
     ;; Background color of the statusbar in caret mode with a selection.
-    (statusbar.caret.selection.bg  bg-insert-mode)
+    (statusbar.caret.selection.bg bg-insert-mode)
     ;; Background color of the progress bar.
-    (statusbar.progress.bg  bg-insert-mode)
+    (statusbar.progress.bg bg-insert-mode)
     ;; Default foreground color of the URL in the statusbar.
-    (statusbar.url.fg  fg-default)
+    (statusbar.url.fg fg-default)
     ;; Foreground color of the URL in the statusbar on error.
-    (statusbar.url.error.fg  fg-error)
+    (statusbar.url.error.fg fg-error)
     ;; Foreground color of the URL in the statusbar for hovered links.
-    (statusbar.url.hover.fg  fg-default)
+    (statusbar.url.hover.fg fg-default)
     ;; Foreground color of the URL in the statusbar on successful load
     ;; (http).
-    (statusbar.url.success.http.fg  bg-passthrough-mode)
+    (statusbar.url.success.http.fg bg-passthrough-mode)
     ;; Foreground color of the URL in the statusbar on successful load
     ;; (https).
-    (statusbar.url.success.https.fg  fg-matched-text)
+    (statusbar.url.success.https.fg fg-matched-text)
     ;; Foreground color of the URL in the statusbar when there's a warning.
-    (statusbar.url.warn.fg  bg-warning)
+    (statusbar.url.warn.fg bg-warning)
     ;; Background color of the tab bar.
-    (tabs.bar.bg  bg-default)
+    (tabs.bar.bg bg-default)
     ;; Color gradient start for the tab indicator.
-    (tabs.indicator.start  bg-insert-mode)
+    (tabs.indicator.start bg-insert-mode)
     ;; Color gradient end for the tab indicator.
-    (tabs.indicator.stop  bg-passthrough-mode)
+    (tabs.indicator.stop bg-passthrough-mode)
     ;; Color for the tab indicator on errors.
-    (tabs.indicator.error  fg-error)
+    (tabs.indicator.error fg-error)
     ;; Foreground color of unselected odd tabs.
-    (tabs.odd.fg  fg-default)
+    (tabs.odd.fg fg-default)
     ;; Background color of unselected odd tabs.
-    (tabs.odd.bg  bg-lighter)
+    (tabs.odd.bg bg-lighter)
     ;; Foreground color of unselected even tabs.
-    (tabs.even.fg  fg-default)
+    (tabs.even.fg fg-default)
     ;; Background color of unselected even tabs.
-    (tabs.even.bg  bg-default)
+    (tabs.even.bg bg-default)
     ;; Background color of pinned unselected even tabs.
-    (tabs.pinned.even.bg  bg-passthrough-mode)
+    (tabs.pinned.even.bg bg-passthrough-mode)
     ;; Foreground color of pinned unselected even tabs.
-    (tabs.pinned.even.fg  bg-lightest)
+    (tabs.pinned.even.fg bg-lightest)
     ;; Background color of pinned unselected odd tabs.
-    (tabs.pinned.odd.bg  fg-matched-text)
+    (tabs.pinned.odd.bg fg-matched-text)
     ;; Foreground color of pinned unselected odd tabs.
-    (tabs.pinned.odd.fg  bg-lightest)
+    (tabs.pinned.odd.fg bg-lightest)
     ;; Background color of pinned selected even tabs.
-    (tabs.pinned.selected.even.bg  bg-selection)
+    (tabs.pinned.selected.even.bg bg-selection)
     ;; Foreground color of pinned selected even tabs.
-    (tabs.pinned.selected.even.fg  fg-default)
+    (tabs.pinned.selected.even.fg fg-default)
     ;; Background color of pinned selected odd tabs.
-    (tabs.pinned.selected.odd.bg  bg-selection)
+    (tabs.pinned.selected.odd.bg bg-selection)
     ;; Foreground color of pinned selected odd tabs.
-    (tabs.pinned.selected.odd.fg  fg-default)
+    (tabs.pinned.selected.odd.fg fg-default)
     ;; Foreground color of selected odd tabs.
-    (tabs.selected.odd.fg  fg-default)
+    (tabs.selected.odd.fg fg-default)
     ;; Background color of selected odd tabs.
-    (tabs.selected.odd.bg  bg-selection)
+    (tabs.selected.odd.bg bg-selection)
     ;; Foreground color of selected even tabs.
-    (tabs.selected.even.fg  fg-default)
+    (tabs.selected.even.fg fg-default)
     ;; Background color of selected even tabs.
-    (tabs.selected.even.bg  bg-selection)
+    (tabs.selected.even.bg bg-selection)
     ;; Background color for webpages if unset (or empty to use the theme's
     ;; color).
     ;; webpage.bg  bg-default
     ))
 
+(define sss-qutebrowser-command-bindings
+  `(("<ctrl-s>" . "search-next") ("<ctrl-r>" . "search-prev")
+    ("<ctrl-p>" . "completion-item-focus prev")
+    ("<ctrl-n>" . "completion-item-focus next")
+    ("<alt-p>" . "command-history-prev")
+    ("<alt-n>" . "command-history-next")
+    ("<ctrl-g>" . "mode-leave")
+    ("<ctrl-c><ctrl-r>" . "undo --window")
+    ("<ctrl-shift+_>" . "undo")))
 
+(define sss-qutebrowser-hint-bindings
+  `(("<ctrl-g>" . "mode-leave")))
 
+(define sss-qutebrowser-insert-bindings
+  `(("<ctrl-f>" . "fake-key <Right>") ("<ctrl-b>" . "fake-key <Left>")
+    ("<ctrl-a>" . "fake-key <Home>")
+    ("<ctrl-e>" . "fake-key <End>")
+    ("<ctrl-n>" . "fake-key <Down>")
+    ("<ctrl-p>" . "fake-key <Up>")
+    ("<alt-f>" . "fake-key <Ctrl-Right>")
+    ("<alt-b>" . "fake-key <Ctrl-Left>")
+    ("<ctrl-d>" . "fake-key <Delete>")
+    ("<alt-d>" . "fake-key <Ctrl-Delete>")
+    ("<alt-backspace>" . "fake-key <Ctrl-Backspace>")
+    ("<ctrl-w>" . "fake-key <Ctrl-backspace>")
+    ("<ctrl-y>" . "insert-text {primary}")
+    ("<ctrl-g>" . "mode-leave")
+    ("<alt-x>" . "cmd-set-text :")
+    ("<ctrl-x><g>" . "reload")
+    ("<f5>" . "reload")
+    ("<f12>" . "devtools")
+    ("<ctrl-c><i>" . "devtools")
+    ("<alt-w>" . "yank selection")
+    ("<ctrl-=>" . "zoom-in")
+    ("<ctrl-x>=" . "zoom-in")
+    ("<ctrl-x><ctrl-=>" . "zoom-in")
+    ("<ctrl-->" . "zoom-out")
+    ("<ctrl-x>-" . "zoom-out")
+    ("<ctrl-x><ctrl-->" . "zoom-out")))
+
+(define sss-qutebrowser-caret-bindings
+  `(("<ctrl-g>" . "mode-leave")))
+
+(define sss-qutebrowser-normal-bindings
+  `(;; Navigation
+     ("<ctrl-v>" . "scroll-page 0 0.9")
+    ("<alt-v>" . "scroll-page 0 -0.9")
+    ("<Backspace>" . "scroll-page 0 -0.9")
+    ;; '<Space>' . 'scroll-page 0 0.9'
+    ("<alt-shift-." . "scroll-to-perc")
+    ("<alt-shift-.>" . "scroll-to-perc 0")
+    ("<ctrl-=>" . "zoom-in")
+    ("<ctrl-x>=" . "zoom-in")
+    ("<ctrl-x><ctrl-=>" . "zoom-in")
+    ("<ctrl-->" . "zoom-out")
+    ("<ctrl-x>-" . "zoom-out")
+    ("<ctrl-x><ctrl-->" . "zoom-out")
+    ;; Commands
+    ("<alt-x>" . "cmd-set-text :")
+    ("<ctrl-x><ctrl-c>" . "quit")
+    ;; searching
+    ("<ctrl-s>" . "cmd-set-text /")
+    ("<ctrl-r>" . "cmd-set-text ?")
+    ;; hinting
+    ("<f>" . "hint all")
+    ("<ctrl-u><f>" . "hint all hover")
+    ("<shift-f>" . "hint all tab-bg")
+    ("<ctrl-u><shift-e>" . "hint all tab-fg")
+    ("<w><l>" . "hint all yank-primary")
+    ("<w><w>" . "yank url")
+    ("<d>" . "yank all download")
+    ;; history
+    ("<ctrl-x><Right>" . "forward")
+    ("<ctrl-x><Left>" . "back")
+    ("shift-h>" . "history")
+    ;; bookmarks
+    ("m" . "bookmark-add")
+    ("M" . "open qute://bookmarks")
+    ;; tabs
+    ("<ctrl-tab>" . "tab-next")
+    ("<ctrl-shift-tab>" . "tab-prev")
+    ("<alt-n>" . "tab-next")
+    ("<shift-alt-n>" . "tab-move +")
+    ("<alt-p>" . "tab-prev")
+    ("<shift-alt-p>" . "tab-move -")
+    ("<ctrl-x><b>" . "cmd-set-text -s :buffer")
+    ("<ctrl-x><k>" . "tab-close")
+    ("<ctrl-c><p>" . "tab-pin")
+    ("<ctrl-c><m>" . "tab-mute")
+    ("<ctrl-x><0>" . "tab-close")
+    ("<ctrl-x><1>" . "tab-only")
+    ("<Alt-1>" . "tab-focus 1")
+    ("<Alt-2>" . "tab-focus 2")
+    ("<Alt-3>" . "tab-focus 3")
+    ("<Alt-4>" . "tab-focus 4")
+    ("<Alt-5>" . "tab-focus 5")
+    ("<Alt-6>" . "tab-focus 6")
+    ("<Alt-7>" . "tab-focus 7")
+    ("<Alt-8>" . "tab-focus 8")
+    ("<Alt-9>" . "tab-focus -1")
+    ;; frames
+    ("<ctrl-x><5><0>" . "close")
+    ("<ctrl-x><5><1>" . "window-only")
+    ("<ctrl-x><5><2>" . "cmd-set-text -s  :open -w")
+    ("<ctrl-u><ctrl-x><5><2>" . "cmd-set-text -s :open -p")
+    ;; open links
+    ("<g>" . "cmd-set-text -s :open")
+    ("<shift-g>" . "cmd-set-text -s :open -t")
+    ;; editing
+    ("<ctrl-f>" . "fake-key <Right>")
+    ("<ctrl-b>" . "fake-key <Left>")
+    ("<ctrl-a>" . "fake-key <Home>")
+    ("<ctrl-e>" . "fake-key <End>")
+    ("<ctrl-n>" . "fake-key <Down>")
+    ("<ctrl-p>" . "fake-key <Up>")
+    ("<alt-f>" . "fake-key <Ctrl-Right>")
+    ("<alt-b>" . "fake-key <Ctrl-Left>")
+    ("<ctrl-d>" . "fake-key <Delete>")
+    ("<alt-d>" . "fake-key <Ctrl-Delete>")
+    ("<alt-backspace>" . "fake-key <Ctrl-Backspace>")
+    ("<ctrl-w>" . "fake-key <Ctrl-backspace>")
+    ("<ctrl-y>" . "insert-text {primary}")
+    ;; Numbers
+    ;; https://github.com/qutebrowser/qutebrowser/issues/4213
+    ("1" . "fake-key 1")
+    ("2" . "fake-key 2")
+    ("3" . "fake-key 3")
+    ("4" . "fake-key 4")
+    ("5" . "fake-key 5")
+    ("6" . "fake-key 6")
+    ("7" . "fake-key 7")
+    ("8" . "fake-key 8")
+    ("9" . "fake-key 9")
+    ("0" . "fake-key 0")
+    ;; misc
+    ("<ctrl-c><v>" . "spawn --userscript ~/.bin/open_in_mpv.sh")
+    ;; Help
+    ("<ctrl-h><b>" . "open qute://bindings")
+    ("<ctrl-h><h>" . "cmd-set-text -s :help")
+    ;; escape hatch
+    ("<ctrl-g>" . "ESC_BIND")
+    ;;
+    ("<ctrl-x><g>" . "reload")
+    ("<f5>" . "reload")
+    ("<f12>" . "devtools")
+    ("<ctrl-c><i>" . "devtools")
+    ("<alt-w>" . "yank selection")))
 
 (define (sss-qutebrowser-apply-color key color)
-  (format #f "c.colors.~a = ~s\n" key (assq-ref sss-qutebrowser-palette color)))
+  (format #f "c.colors.~a = ~s\n" key
+          (assq-ref sss-qutebrowser-palette color)))
 
+(define (serialize-qutebrowser-bindings alist)
+  (map (lambda (e)
+         (format #f "'~a': '~a',\n"
+                 (car e)
+                 (cdr e))) alist))
 
+(define (sss-qutebrowser-commands-bindings key alist)
+  (format #f "c.bindings.commands['~a'] = {\n~a\n}" key
+          (string-join (serialize-qutebrowser-bindings alist) "")))
 
 (define-public sss-qutebrowser-config
-  (string-join
-   (append
-    `("config = config"
-      "c = c"
-      "config.load_autoconfig(False)"
-      "config.set('completion.use_best_match', True)"
-      )
-    (map (lambda(e) (sss-qutebrowser-apply-color (car e) (car (cdr e)))) sss-qutebrowser-theme)
-    )
-   "\n"))
+  (string-join (append `("config = config" "c = c"
+                         "config.load_autoconfig(False)"
+                         "config.set('completion.use_best_match', True)"
+                         "c.input.insert_mode.plugins = True"
+                         "c.input.insert_mode.auto_load = True"
+                         "c.input.forward_unbound_keys = 'all'"
+                         "ESC_BIND = 'clear-keychain ;; search ;; fullscreen --leave'"
+                         "c.bindings.default['normal'] = {}")
+                       `(,(sss-qutebrowser-commands-bindings 'command
+                           sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
+                                                               sss-qutebrowser-normal-bindings)
+                         ,(sss-qutebrowser-commands-bindings 'insert
+                           sss-qutebrowser-insert-bindings)
+                         ,(sss-qutebrowser-commands-bindings 'caret
+                           sss-qutebrowser-caret-bindings)
+                         ,(sss-qutebrowser-commands-bindings 'hint
+                           sss-qutebrowser-hint-bindings))
+                       (map (lambda (e)
+                              (sss-qutebrowser-apply-color (car e)
+                                                           (car (cdr e))))
+                            sss-qutebrowser-theme)) "\n"))
+
+
