@@ -401,6 +401,7 @@
   (string-join (append `("config = config" "c = c"
                          "config.load_autoconfig(False)"
                          "config.set('completion.use_best_match', True)"
+                         "config.set('auto_save.interval', 0)"
                          "c.input.insert_mode.plugins = True"
                          "c.input.insert_mode.auto_load = True"
                          "c.input.forward_unbound_keys = 'all'"
