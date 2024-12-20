@@ -100,6 +100,13 @@
 (use-package dagboek 
   :ensure (:host codeberg :repo "jjba23/dagboek.el" :branch "trunk"))
 
+(use-package gif-screencast
+  :ensure (:host gitlab :repo "ambrevar/emacs-gif-screencast" :branch "master")
+  :bind (("<f9>" . gif-screencast-start-or-stop))
+  :init
+  (setq gif-screencast-program "convert")
+  )
+
 (use-package welkomscherm
   :ensure (:host codeberg :repo "jjba23/welkomscherm.el" :branch "trunk")
   :bind (("C-c SPC SPC" . welkomscherm)
