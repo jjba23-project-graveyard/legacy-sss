@@ -94,6 +94,7 @@
 
 (use-package modusregel
   :ensure (:host codeberg :repo "jjba23/modusregel" :branch "trunk")
+  :demand t
   :after (keycast)
   :config
   (add-to-list 'modusregel-format '("" keycast-mode-line))
@@ -114,6 +115,7 @@
 
 (use-package keycast
   :ensure t
+  :demand t
   :after (tekengrootte)
   :hook (after-init . keycast-mode)
   :config
