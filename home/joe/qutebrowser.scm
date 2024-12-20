@@ -43,6 +43,7 @@
 (define sss-qutebrowser-theme
   `( ;Text color of the completion widget. May be a single color to use for
     
+
     ;; all columns or a list of three colors, one for each column.
     (completion.fg fg-default)
     ;; Background color of the completion widget for odd rows.
@@ -422,14 +423,14 @@
                          "ESC_BIND = 'clear-keychain ;; search ;; fullscreen --leave'"
                          "c.bindings.default['normal'] = {}")
                        `(,(sss-qutebrowser-commands-bindings 'command
-                                                             sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
-                                                                                                                                   sss-qutebrowser-normal-bindings)
-                                                             ,(sss-qutebrowser-commands-bindings 'insert
-                                                                                                 sss-qutebrowser-insert-bindings)
-                                                             ,(sss-qutebrowser-commands-bindings 'caret
-                                                                                                 sss-qutebrowser-caret-bindings)
-                                                             ,(sss-qutebrowser-commands-bindings 'hint
-                                                                                                 sss-qutebrowser-hint-bindings))
+                           sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
+                                                               sss-qutebrowser-normal-bindings)
+                         ,(sss-qutebrowser-commands-bindings 'insert
+                           sss-qutebrowser-insert-bindings)
+                         ,(sss-qutebrowser-commands-bindings 'caret
+                           sss-qutebrowser-caret-bindings)
+                         ,(sss-qutebrowser-commands-bindings 'hint
+                           sss-qutebrowser-hint-bindings))
                        (map (lambda (e)
                               (sss-qutebrowser-apply-color (car e)
                                                            (car (cdr e))))

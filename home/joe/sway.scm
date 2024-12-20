@@ -213,7 +213,7 @@
 
 (define-public sss-sway-service-type
   (service home-sway-service-type
-           (sway-configuration (packages (list sss-swayfx))
+           (sway-configuration (packages (list swayfx))
                                (gestures sss-sway-gestures)
                                (startup-programs sss-sway-startup-programs)
                                (startup+reload-programs

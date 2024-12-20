@@ -119,43 +119,6 @@
 
 (load "../per-host.scm")
 
-(define-public sss-swayfx
-  (package
-    (inherit sway)
-    (name "swayfx")
-    (version "0.4")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/WillPower3309/swayfx")
-             (commit version)))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0651gbkszc8wwkiiw983m3815cfyk4c9v4mpd1nqf27a0f6qjgsm"))))
-    (build-system meson-build-system)
-    (inputs (append (map (lambda (x)
-                           (specification->package x))
-                         `("basu" "cairo"
-                           "gdk-pixbuf"
-                           "json-c"
-                           "libevdev"
-                           "libinput-minimal"
-                           "libxkbcommon"
-                           "pcre2"
-                           "scenefx"
-                           "swaybg"
-                           "wayland"
-                           "wlroots@0.17.4"))
-                    (list pango)))
-    (home-page "https://github.com/WillPower3309/swayfx")
-    (synopsis "Sway Fork with extra options and effects")
-    (description
-     "Fork of Sway, a Wayland compositor compatible with i3.  SwayFX
-adds extra options and effects to the original Sway, such as blur, rounded
-corners, shadows, inactive window dimming, etc.")
-    (license license:expat)))
-
 (define-public sss-artanis
   (package
     (name "artanis")
@@ -295,40 +258,6 @@ more.")
      It consists of five variable axis typefaces. Each one has a distinct voice, but they are all metrics-compatible with one another,
      allowing you to mix and match them for a more expressive typographical palette.")
     (license license:silofl1.1)))
-
-(define-public qt6ct
-  (package
-    (name "qt6ct")
-    (version "0.9")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/trialuser02/qt6ct")
-             (commit version)))
-       (sha256
-        (base32 "0dknk4qqzqc5wa763nclb1k6jkmvjh8kzz8kfp4iggy9jy0vnzgb"))))
-    (build-system qt-build-system)
-    (arguments
-     (list
-      #:qtbase qtbase
-      #:tests? #f ;No target
-      #:phases #~(modify-phases %standard-phases
-                   (add-after 'unpack 'patch
-                     (lambda _
-                       (substitute* '("src/qt6ct-qtplugin/CMakeLists.txt"
-                                      "src/qt6ct-style/CMakeLists.txt")
-                         (("\\$\\{PLUGINDIR\\}")
-                          (string-append #$output "/lib/qt6/plugins"))))))))
-    (native-inputs (list qttools))
-    (inputs (list qtsvg libxkbcommon))
-    (synopsis "Qt6 Configuration Tool")
-    (description
-     "Qt6CT is a program that allows users to configure Qt6
-settings (such as icons, themes, and fonts) in desktop environments or
-window managers, that don't provide Qt integration by themselves.")
-    (home-page "https://github.com/trialuser02/qt6ct")
-    (license license:bsd-2)))
 
 ;; TODO install to right location where Kvantum can see it?
 (define-public sss-kv-yaru-colors
@@ -474,137 +403,137 @@ window managers, that don't provide Qt integration by themselves.")
 (define sss-other-system-packages
   (list
 
-   flatpak
-   pipewire
-   nginx
-   watchexec
-   git
-   pavucontrol
+        flatpak
+        pipewire
+        nginx
+        watchexec
+        git
+        pavucontrol
 
-   kcalc
+        kcalc
 
-   slurp
-   ;; stellarium
-   kvantum
-   qt5ct
-   qtsvg
-   kate
-   geany
-   gnome-font-viewer
-   gnome-characters
-   qtwayland
+        slurp
+        ;; stellarium
+        kvantum
+        qt5ct
+        qtsvg
+        kate
+        geany
+        gnome-font-viewer
+        gnome-characters
+        qtwayland
 
-   guile-fibers
-   guile-g-golf
+        guile-fibers
+        guile-g-golf
 
-   xz
-   ispell
-   (specification->package "bind")
-   wireshark
+        xz
+        ispell
+        (specification->package "bind")
+        wireshark
 
-   gnome-tweaks
-   arandr
-   httpie
-   (specification->package "remmina")
-   libnotify
-   wdisplays
+        gnome-tweaks
+        arandr
+        httpie
+        (specification->package "remmina")
+        libnotify
+        wdisplays
 
-   shotcut
-   openshot
-   inkscape
-   dunst
-   fzf
-   vlc
-   sqlite
-   postgresql
+        shotcut
+        openshot
+        inkscape
+        dunst
+        fzf
+        vlc
+        sqlite
+        postgresql
 
-   qutebrowser
+        qutebrowser
 
-   gnome-calculator
-   cheese
-   gnome-system-monitor
-   evince
+        gnome-calculator
+        cheese
+        gnome-system-monitor
+        evince
 
-   qemu
+        qemu
 
-   obs
-   libreoffice
-   gimp
-   imagemagick
-   libwebp
-   feh
+        obs
+        libreoffice
+        gimp
+        imagemagick
+        libwebp
+        feh
 
-   xmodmap
+        xmodmap
 
-   gparted
+        gparted
 
-   lm-sensors
-   exfatprogs
-   exfat-utils
-   fuse-exfat
-   tmon
-   flameshot
+        lm-sensors
+        exfatprogs
+        exfat-utils
+        fuse-exfat
+        tmon
+        flameshot
 
-   parallel
+        parallel
 
-   thunar
+        thunar
 
-   ffmpegthumbs
-   xarchiver
-   ristretto
-   orage
+        ffmpegthumbs
+        xarchiver
+        ristretto
+        orage
 
-   sqlitebrowser
-   direnv
+        sqlitebrowser
+        direnv
 
-   bsd-games
+        bsd-games
 
-   power-profiles-daemon
+        power-profiles-daemon
 
-   scenefx
-   sss-swayfx
+        scenefx
+        swayfx
 
-   transmission
-   transmission-remote-gtk
+        transmission
+        transmission-remote-gtk
 
-   xf86-video-fbdev
-   xf86-input-libinput
-   lxsession
-   pamixer
+        xf86-video-fbdev
+        xf86-input-libinput
+        lxsession
+        pamixer
 
-   ;; ghcid
-   neofetch
-   cmatrix
+        ;; ghcid
+        neofetch
+        cmatrix
 
-   bluez
-   hplip
+        bluez
+        hplip
 
-   mpv
-   mpv-mpris
-   unixodbc
-   tree
-   fyi
+        mpv
+        mpv-mpris
+        unixodbc
+        tree
+        fyi
 
-   enchant
-   emacs-jinx
-   aspell
-   aspell-dict-nl
-   aspell-dict-pt-pt
-   aspell-dict-es
-   aspell-dict-en
-   aspell-dict-ca
+        enchant
+        emacs-jinx
+        aspell
+        aspell-dict-nl
+        aspell-dict-pt-pt
+        aspell-dict-es
+        aspell-dict-en
+        aspell-dict-ca
 
-   ;; element-desktop
-   
-   (specification->package "darkhttpd")
+        ;; element-desktop
+        
+        (specification->package "darkhttpd")
 
-   openvpn
-   network-manager-applet
-   network-manager-openconnect
-   network-manager-openvpn
+        openvpn
+        network-manager-applet
+        network-manager-openconnect
+        network-manager-openvpn
 
-   xxd
-   qt6ct))
+        xxd
+        qt6ct))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
