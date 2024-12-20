@@ -265,6 +265,8 @@
     ("<f12>" . "devtools")
     ("<ctrl-c><i>" . "devtools")
     ("<alt-w>" . "yank selection")
+    ("<ctrl-x><Right>" . "forward")
+    ("<ctrl-x><Left>" . "back")
     ("<ctrl-=>" . "zoom-in")
     ("<ctrl-x>=" . "zoom-in")
     ("<ctrl-x><ctrl-=>" . "zoom-in")
