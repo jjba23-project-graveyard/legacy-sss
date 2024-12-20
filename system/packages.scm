@@ -360,7 +360,7 @@ more.")
 
 (define sss-coreutils
   (list htop
-        emacs-next-pgtk
+        emacs-pgtk
         vim
         openssh
         dbus

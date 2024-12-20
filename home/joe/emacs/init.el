@@ -224,14 +224,16 @@ According to size, color and font family"
 		        :height (tekengrootte-mk-font-size 1.1))
     (set-face-attribute 'org-level-5 nil 
 		        :height (tekengrootte-mk-font-size 1.0))
-    (set-face-attribute 'keycast-key nil                       
-		        :font sss-font-mono
-                        :background nil
-                        :box nil
-                        :height (tekengrootte-mk-font-size 0.9))
-    (set-face-attribute 'keycast-command nil                       
-		        :font sss-font-mono
-                        :height (tekengrootte-mk-font-size 0.8))
+    (ignore-errors
+      (set-face-attribute 'keycast-key nil                       
+		          :font sss-font-mono
+                          :background nil
+                          :box nil
+                          :height (tekengrootte-mk-font-size 0.9)))
+    (ignore-errors
+      (set-face-attribute 'keycast-command nil                       
+		          :font sss-font-mono
+                          :height (tekengrootte-mk-font-size 0.8)))
     )
   
   (sss-set-base-faces))
@@ -843,7 +845,7 @@ According to size, color and font family"
 ;; Configure Emacs native features
 
 (use-package which-key 
-  :ensure nil
+  :ensure t
   :config
   (setq which-key-sort-order 'which-key-key-order-alpha	
 	which-key-max-description-length 35)
