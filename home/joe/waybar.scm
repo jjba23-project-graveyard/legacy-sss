@@ -59,9 +59,9 @@
 (define-public sss-waybar-conf
   `((position . bottom) (height . 42)
     (spacing . 16)
-    (margin-bottom . 10)
-    (margin-right . 12)
-    (margin-left . 12)
+    ;; (margin-bottom . 10)
+    ;; (margin-right . 12)
+    ;; (margin-left . 12)
     (modules-left . #(clock sway/workspaces sway/mode sway/scratchpad custom/media sway/window))
     (modules-center)
     (modules-right . #(mpd idle_inhibitor pulseaudio network power-profiles-daemon cpu memory temperature backlight keyboard-state sway/language battery #{battery#bat2}# tray custom/power))
@@ -175,8 +175,8 @@
   `((module (background . transparent)
             (padding-top . "6px")
             (padding-top . "6px")
-            (padding-right . "12px")
-            (padding-left . "12px")
+            (padding-right . "14px")
+            (padding-left . "14px")
             (padding-bottom . "6px")
             (font-family . "FontAwesome, Monaspace Neon")
             (font-weight . 500)
@@ -188,13 +188,13 @@
                                  (sss-hex-to-rgba (sss-get-color 'background)
                                                   #:alpha 0.75))
      (padding . "12px")
-     (border-radius . "10px")
      (font-family . "FontAwesome, Monaspace Neon")
+     ;; (border-radius . "10px")
+     ;; (border unquote
+     ;;         (format #f "2px solid ~a"
+     ;;                 (sss-get-color 'primary-d)))
      (color unquote
-            (sss-get-color 'text))
-     (border unquote
-             (format #f "2px solid ~a"
-                     (sss-get-color 'primary-d))))
+            (sss-get-color 'text)))
     (tooltip (background unquote
                          (sss-get-color 'background-l))
              (border-radius . 0))
