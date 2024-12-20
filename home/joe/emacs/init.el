@@ -110,7 +110,7 @@
   :ensure (:host gitlab :repo "ambrevar/emacs-gif-screencast" :branch "master")
   :bind (("<f9>" . gif-screencast-start-or-stop))
   :init
-  (setq gif-screencast-program "flameshot full -r>\"$1\"")
+  (setq gif-screencast-program "flameshot-bash")
   (setq gif-screencast-args '())
   )
 
@@ -872,8 +872,7 @@ According to size, color and font family"
          ("C-c # s" . sss-sys-reconfigure)
          ("C-c # u" . sss-sys-update)
          ("C-c # f" . sss-full-reconfigure))
-  :hook ((text-mode . visual-line-mode)
-         (after-make-frame-functions . new-frame-setup)
+  :hook ((text-mode . visual-line-mode)         
          ;; (org-mode . flyspell-mode)
          ;; (markdown-mode . flyspell-mode)
          ;; (org-mode . flyspell-buffer)
@@ -931,6 +930,7 @@ According to size, color and font family"
   (setq recentf-max-menu-items 100
         recentf-max-saved-items 100)
 
+  (add-to-list 'after-make-frame-functions 'new-frame-setup t)
   
   )
 

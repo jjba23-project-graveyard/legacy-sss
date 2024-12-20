@@ -59,7 +59,8 @@
 
 (define sss-bash-functions
   `((glog . "sudo gzip -d \"$1.gz\" && cat \"$1\"")
-    (hgrep . "history | grep \"$1\"")))
+    (hgrep . "history | grep \"$1\"")
+    (flameshot-bash . "flameshot full -r>\"$1\"")))
 
 (define-public sss-bash-postlude
   `("shopt -s histappend" "eval \"$(fzf --bash)\""
