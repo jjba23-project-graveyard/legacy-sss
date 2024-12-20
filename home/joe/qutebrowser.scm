@@ -410,11 +410,16 @@
   (format #f "c.bindings.commands['~a'] = {\n~a\n}" key
           (string-join (serialize-qutebrowser-bindings alist) "")))
 
+(define (sss-qutebrowser-set-config-opt opt val)
+  (format #f "config.set('~a', ~a)" opt val)
+  )
+
 (define-public sss-qutebrowser-config
   (string-join (append `("config = config" "c = c"
                          "config.load_autoconfig(False)"
-                         "config.set('completion.use_best_match', True)"
-                         "config.set('auto_save.interval', 0)"
+                         ,(sss-qutebrowser-set-config-opt "completion.use_best_match" True)
+                         ,(sss-qutebrowser-set-config-opt "auto_save.interval" 0)
+                         ;;,(sss-qutebrowser-set-config-opt "colors.webpage.darkmode.enabled" True)
                          "c.input.insert_mode.plugins = True"
                          "c.input.insert_mode.auto_load = True"
                          "c.input.forward_unbound_keys = 'all'"
@@ -423,14 +428,14 @@
                          "ESC_BIND = 'clear-keychain ;; search ;; fullscreen --leave'"
                          "c.bindings.default['normal'] = {}")
                        `(,(sss-qutebrowser-commands-bindings 'command
-                           sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
-                                                               sss-qutebrowser-normal-bindings)
-                         ,(sss-qutebrowser-commands-bindings 'insert
-                           sss-qutebrowser-insert-bindings)
-                         ,(sss-qutebrowser-commands-bindings 'caret
-                           sss-qutebrowser-caret-bindings)
-                         ,(sss-qutebrowser-commands-bindings 'hint
-                           sss-qutebrowser-hint-bindings))
+                                                             sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
+                                                                                                                                   sss-qutebrowser-normal-bindings)
+                                                             ,(sss-qutebrowser-commands-bindings 'insert
+                                                                                                 sss-qutebrowser-insert-bindings)
+                                                             ,(sss-qutebrowser-commands-bindings 'caret
+                                                                                                 sss-qutebrowser-caret-bindings)
+                                                             ,(sss-qutebrowser-commands-bindings 'hint
+                                                                                                 sss-qutebrowser-hint-bindings))
                        (map (lambda (e)
                               (sss-qutebrowser-apply-color (car e)
                                                            (car (cdr e))))
