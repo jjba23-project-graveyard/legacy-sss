@@ -239,11 +239,11 @@ corners, shadows, inactive window dimming, etc.")
                     (lambda* (#:key outputs #:allow-other-keys)
                       (let ((out (assoc-ref outputs "out")))
                         (substitute* "Makefile"
-                           ;ignore the execution of bash.bashrc
+                          ;; ignore the execution of bash.bashrc
                           ((" /etc/bash.bashrc")
                            " /dev/null"))
                         (substitute* "Makefile"
-                           ;set the root of config files to OUT
+                          ;; set the root of config files to OUT
                           ((" /etc")
                            (string-append " " out "/etc")))
                         (mkdir-p (string-append out "/bin")))))
@@ -274,7 +274,7 @@ frameworks, session management, URL-remapping for RESTful, page caching, and
 more.")
     (home-page "https://www.gnu.org/software/artanis/")
     (license (list license:gpl3+ license:lgpl3+))))
- ;dual license
+;dual license
 
 (define-public font-monaspace
   (package

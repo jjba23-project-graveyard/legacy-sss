@@ -22,21 +22,27 @@
   #:use-module (sss-palette))
 
 (define sss-qutebrowser-palette
-  `((bg-default . ,(sss-get-color 'background))
-    (bg-lighter . ,(sss-get-color 'background-l))
+  `((bg-default unquote
+                (sss-get-color 'background))
+    (bg-lighter unquote
+                (sss-get-color 'background-l))
     (bg-selection . "#3e4451")
-    (fg-disabled . ,(sss-get-color 'fg-dim))
-    (fg-default . ,(sss-get-color 'text))
+    (fg-disabled unquote
+                 (sss-get-color 'fg-dim))
+    (fg-default unquote
+                (sss-get-color 'text))
     (bg-lightest . "#c8ccd4")
     (fg-error . "#e06c75")
     (bg-hint . "#e5c07b")
     (fg-matched-text . "#98c379")
     (bg-passthrough-mode . "#56b6c2")
-    (bg-insert-mode . ,(sss-get-color 'primary))
+    (bg-insert-mode unquote
+                    (sss-get-color 'primary))
     (bg-warning . "#d19a66")))
 
 (define sss-qutebrowser-theme
-  `(;; Text color of the completion widget. May be a single color to use for
+  `( ;Text color of the completion widget. May be a single color to use for
+    
     ;; all columns or a list of three colors, one for each column.
     (completion.fg fg-default)
     ;; Background color of the completion widget for odd rows.
@@ -269,7 +275,7 @@
   `(("<ctrl-g>" . "mode-leave")))
 
 (define sss-qutebrowser-normal-bindings
-  `(;; Navigation
+  `( ;Navigation
      ("<ctrl-v>" . "scroll-page 0 0.9")
     ("<alt-v>" . "scroll-page 0 -0.9")
     ("<Backspace>" . "scroll-page 0 -0.9")
@@ -381,11 +387,13 @@
     ("Reddit" . "https://reddit.com")
     ("GNU G-Golf reference" . "https://www.gnu.org/software/g-golf/manual/g-golf.html")
     ("Slack Vandebron" . "https://app.slack.com/client/T1XNW2SF5/C081CULEKV3")
-    ("Coding Standards Vandebron" . "https://vandebron.atlassian.net/wiki/spaces/DIG/pages/edit-v2/95582126047266")
-    ))
+    ("Coding Standards Vandebron" . "https://vandebron.atlassian.net/wiki/spaces/DIG/pages/edit-v2/95582126047266")))
 
 (define-public (serialize-qutebrowser-urls alist)
-  (string-join (map (lambda(e) (format #f "~a - ~a" (cdr e) (car e))) alist) "\n"))
+  (string-join (map (lambda (e)
+                      (format #f "~a - ~a"
+                              (cdr e)
+                              (car e))) alist) "\n"))
 
 (define (sss-qutebrowser-apply-color key color)
   (format #f "c.colors.~a = ~s\n" key
@@ -413,19 +421,16 @@
                          "ESC_BIND = 'clear-keychain ;; search ;; fullscreen --leave'"
                          "c.bindings.default['normal'] = {}")
                        `(,(sss-qutebrowser-commands-bindings 'command
-                                                             sss-qutebrowser-command-bindings)
-                         ,(sss-qutebrowser-commands-bindings 'normal
-                                                             sss-qutebrowser-normal-bindings)
+                           sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
+                                                               sss-qutebrowser-normal-bindings)
                          ,(sss-qutebrowser-commands-bindings 'insert
-                                                             sss-qutebrowser-insert-bindings)
+                           sss-qutebrowser-insert-bindings)
                          ,(sss-qutebrowser-commands-bindings 'caret
-                                                             sss-qutebrowser-caret-bindings)
+                           sss-qutebrowser-caret-bindings)
                          ,(sss-qutebrowser-commands-bindings 'hint
-                                                             sss-qutebrowser-hint-bindings))
+                           sss-qutebrowser-hint-bindings))
                        (map (lambda (e)
                               (sss-qutebrowser-apply-color (car e)
                                                            (car (cdr e))))
                             sss-qutebrowser-theme)) "\n"))
-
-
 
