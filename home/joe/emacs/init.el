@@ -161,7 +161,8 @@
 
 
 (use-package tekengrootte 
-  :ensure (:host codeberg :repo "jjba23/tekengrootte.el" :branch "trunk") 
+  :ensure (:host codeberg :repo "jjba23/tekengrootte.el" :branch "trunk")
+  :demand t
   :bind (("C-c f c" . tekengrootte-set-scale-colossal) 
          ("C-c f j" . tekengrootte-set-scale-jumbo) 
          ("C-c f x" . tekengrootte-set-scale-larger) 
