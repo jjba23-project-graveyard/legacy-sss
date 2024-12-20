@@ -277,7 +277,7 @@
 
 (define sss-qutebrowser-normal-bindings
   `( ;Navigation
-     ("<ctrl-v>" . "scroll-page 0 0.9")
+    ("<ctrl-v>" . "scroll-page 0 0.9")
     ("<alt-v>" . "scroll-page 0 -0.9")
     ("<Backspace>" . "scroll-page 0 -0.9")
     ;; '<Space>' . 'scroll-page 0 0.9'
@@ -311,6 +311,9 @@
     ("m" . "bookmark-add")
     ("M" . "open qute://bookmarks")
     ;; tabs
+    ("<ctrl-x><t><c>" . "tab-clone")
+    ("<ctrl-x><t><k>" . "tab-close")
+    ("<ctrl-x><t><n>" . "open -t jointhefreeworld.org/joe-web-welkomscherm/")    
     ("<ctrl-tab>" . "tab-next")
     ("<ctrl-shift-tab>" . "tab-prev")
     ("<alt-n>" . "tab-next")
