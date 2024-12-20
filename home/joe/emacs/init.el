@@ -112,6 +112,7 @@
 
 (use-package keycast
   :ensure t
+  :after (tekengrootte)
   :hook (after-init . keycast-mode)
   :config
   (define-minor-mode keycast-mode
@@ -119,7 +120,8 @@
     :global t
     (if keycast-mode
 	(add-hook 'pre-command-hook 'keycast--update t)
-      (remove-hook 'pre-command-hook 'keycast--update))))
+      (remove-hook 'pre-command-hook 'keycast--update)))
+  )
 
 (use-package welkomscherm
   :ensure (:host codeberg :repo "jjba23/welkomscherm.el" :branch "trunk")
@@ -220,6 +222,14 @@ According to size, color and font family"
 		        :height (tekengrootte-mk-font-size 1.1))
     (set-face-attribute 'org-level-5 nil 
 		        :height (tekengrootte-mk-font-size 1.0))
+    (set-face-attribute 'keycast-key nil                       
+		        :font sss-font-mono
+                        :background "#004400"
+                        :box nil
+                        :height (tekengrootte-mk-font-size 0.9))
+    (set-face-attribute 'keycast-command nil                       
+		        :font sss-font-mono
+                        :height (tekengrootte-mk-font-size 0.9))
     )
   
   (sss-set-base-faces))
