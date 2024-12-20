@@ -417,9 +417,9 @@
 (define-public sss-qutebrowser-config
   (string-join (append `("config = config" "c = c"
                          "config.load_autoconfig(False)"
-                         ,(sss-qutebrowser-set-config-opt "completion.use_best_match" True)
+                         ,(sss-qutebrowser-set-config-opt "completion.use_best_match" 'True)
                          ,(sss-qutebrowser-set-config-opt "auto_save.interval" 0)
-                         ;;,(sss-qutebrowser-set-config-opt "colors.webpage.darkmode.enabled" True)
+                         ;;,(sss-qutebrowser-set-config-opt "colors.webpage.darkmode.enabled" 'True)
                          "c.input.insert_mode.plugins = True"
                          "c.input.insert_mode.auto_load = True"
                          "c.input.forward_unbound_keys = 'all'"
