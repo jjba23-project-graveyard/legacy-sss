@@ -97,6 +97,9 @@
   :config
   (setq-default mode-line-format modusregel-format))
 
+(use-package dagboek 
+  :ensure (:host codeberg :repo "jjba23/dagboek.el" :branch "trunk"))
+
 (use-package welkomscherm
   :ensure (:host codeberg :repo "jjba23/welkomscherm.el" :branch "trunk")
   :bind (("C-c SPC SPC" . welkomscherm)
