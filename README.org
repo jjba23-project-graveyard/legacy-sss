@@ -6,13 +6,13 @@
 
 A Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are celebrated.
 
-GNU Guix + GNU Emacs + Nix + SwayFX 💚
+GNU Guix + GNU Emacs + Nix + SwayFX + Wayland + Qutebrowser 💚
 
 Let me help you achieve /GNUrvana/.
 
 If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
 
-This custom GNU/Linux setup enhances customization to infinity and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
+This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
@@ -28,7 +28,7 @@ Knowledge you may find in the repo includes:
 - Waybar configuration and style (Guile Scheme)
 - Mako configuration and style (Guile Scheme)
 - multi-user Git configuration setup (work/personal)
-
+- Qutebrowser configurations (Guile Scheme)
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
@@ -110,7 +110,7 @@ For example including ~nonguix~ in your channels (=~/.config/guix/channels.scm=)
 
 *** Updates
 
-You should every now and then do a ~guix pull~ from your regular user, and then rebuild this system. See the Makefile for more information.
+You should every now and then do a ~guix pull~ from your regular user, and then rebuild this system with the root user. See the Makefile for more information.
 
 *** Nix profile
 
