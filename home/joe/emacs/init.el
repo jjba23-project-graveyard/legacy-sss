@@ -99,8 +99,10 @@
   (add-to-list 'modusregel-format '("" keycast-mode-line))
   (setq-default mode-line-format modusregel-format))
 
-(use-package dagboek 
-  :ensure (:host codeberg :repo "jjba23/dagboek.el" :branch "trunk"))
+(use-package dagboek
+  :ensure (:host codeberg :repo "jjba23/dagboek.el" :branch "trunk")
+  :bind (("C-c ; v" . dagboek-today-entry)
+         ("C-c ; g" . dagboek-yesterday-entry)))
 
 (use-package gif-screencast
   :ensure (:host gitlab :repo "ambrevar/emacs-gif-screencast" :branch "master")
