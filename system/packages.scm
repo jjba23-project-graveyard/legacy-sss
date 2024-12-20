@@ -403,137 +403,139 @@ more.")
 (define sss-other-system-packages
   (list
 
-        flatpak
-        pipewire
-        nginx
-        watchexec
-        git
-        pavucontrol
+   flatpak
+   pipewire
+   nginx
+   watchexec
+   git
+   pavucontrol
 
-        kcalc
+   kcalc
 
-        slurp
-        ;; stellarium
-        kvantum
-        qt5ct
-        qtsvg
-        kate
-        geany
-        gnome-font-viewer
-        gnome-characters
-        qtwayland
+   slurp
+   ;; stellarium
+   kvantum
+   qt5ct
+   qtsvg
+   kate
+   geany
+   gnome-font-viewer
+   gnome-characters
+   qtwayland
 
-        guile-fibers
-        guile-g-golf
+   guile-fibers
+   guile-g-golf
 
-        xz
-        ispell
-        (specification->package "bind")
-        wireshark
+   rofi-wayland
 
-        gnome-tweaks
-        arandr
-        httpie
-        (specification->package "remmina")
-        libnotify
-        wdisplays
+   xz
+   ispell
+   (specification->package "bind")
+   wireshark
 
-        shotcut
-        openshot
-        inkscape
-        dunst
-        fzf
-        vlc
-        sqlite
-        postgresql
+   gnome-tweaks
+   arandr
+   httpie
+   (specification->package "remmina")
+   libnotify
+   wdisplays
 
-        qutebrowser
+   shotcut
+   openshot
+   inkscape
+   dunst
+   fzf
+   vlc
+   sqlite
+   postgresql
 
-        gnome-calculator
-        cheese
-        gnome-system-monitor
-        evince
+   qutebrowser
 
-        qemu
+   gnome-calculator
+   cheese
+   gnome-system-monitor
+   evince
 
-        obs
-        libreoffice
-        gimp
-        imagemagick
-        libwebp
-        feh
+   qemu
 
-        xmodmap
+   obs
+   libreoffice
+   gimp
+   imagemagick
+   libwebp
+   feh
 
-        gparted
+   xmodmap
 
-        lm-sensors
-        exfatprogs
-        exfat-utils
-        fuse-exfat
-        tmon
-        flameshot
+   gparted
 
-        parallel
+   lm-sensors
+   exfatprogs
+   exfat-utils
+   fuse-exfat
+   tmon
+   flameshot
 
-        thunar
+   parallel
 
-        ffmpegthumbs
-        xarchiver
-        ristretto
-        orage
+   thunar
 
-        sqlitebrowser
-        direnv
+   ffmpegthumbs
+   xarchiver
+   ristretto
+   orage
 
-        bsd-games
+   sqlitebrowser
+   direnv
 
-        power-profiles-daemon
+   bsd-games
 
-        scenefx
-        swayfx
+   power-profiles-daemon
 
-        transmission
-        transmission-remote-gtk
+   scenefx
+   swayfx
 
-        xf86-video-fbdev
-        xf86-input-libinput
-        lxsession
-        pamixer
+   transmission
+   transmission-remote-gtk
 
-        ;; ghcid
-        neofetch
-        cmatrix
+   xf86-video-fbdev
+   xf86-input-libinput
+   lxsession
+   pamixer
 
-        bluez
-        hplip
+   ;; ghcid
+   neofetch
+   cmatrix
 
-        mpv
-        mpv-mpris
-        unixodbc
-        tree
-        fyi
+   bluez
+   hplip
 
-        enchant
-        emacs-jinx
-        aspell
-        aspell-dict-nl
-        aspell-dict-pt-pt
-        aspell-dict-es
-        aspell-dict-en
-        aspell-dict-ca
+   mpv
+   mpv-mpris
+   unixodbc
+   tree
+   fyi
 
-        ;; element-desktop
-        
-        (specification->package "darkhttpd")
+   enchant
+   emacs-jinx
+   aspell
+   aspell-dict-nl
+   aspell-dict-pt-pt
+   aspell-dict-es
+   aspell-dict-en
+   aspell-dict-ca
 
-        openvpn
-        network-manager-applet
-        network-manager-openconnect
-        network-manager-openvpn
+   ;; element-desktop
+   
+   (specification->package "darkhttpd")
 
-        xxd
-        qt6ct))
+   openvpn
+   network-manager-applet
+   network-manager-openconnect
+   network-manager-openvpn
+
+   xxd
+   qt6ct))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
