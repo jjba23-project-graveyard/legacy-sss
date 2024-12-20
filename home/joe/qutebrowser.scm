@@ -313,7 +313,7 @@
     ;; tabs
     ("<ctrl-x><t><c>" . "tab-clone")
     ("<ctrl-x><t><k>" . "tab-close")
-    ("<ctrl-x><t><n>" . "open -t jointhefreeworld.org/joe-web-welkomscherm/")    
+    ("<ctrl-x><t><n>" . "open -t https://jointhefreeworld.org/joe-web-welkomscherm/")    
     ("<ctrl-tab>" . "tab-next")
     ("<ctrl-shift-tab>" . "tab-prev")
     ("<alt-n>" . "tab-next")
