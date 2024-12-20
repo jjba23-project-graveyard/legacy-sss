@@ -417,14 +417,12 @@ more.")
    kvantum
    qt5ct
    qtsvg
-   kate
-   geany
-   gnome-font-viewer
-   gnome-characters
    qtwayland
 
-   guile-fibers
-   guile-g-golf
+   geany
+   
+   gnome-font-viewer
+   gnome-characters
 
    rofi-wayland
 
@@ -534,6 +532,8 @@ more.")
    network-manager-openconnect
    network-manager-openvpn
 
+   nautilus
+
    xxd
    qt6ct))
 
@@ -541,7 +541,10 @@ more.")
   (list podman-compose podman passt slirp4netns))
 
 (define sss-guile-packages
-  (list (specification->package "guile-json") sss-artanis))
+  (list (specification->package "guile-json")
+        sss-artanis
+        guile-fibers
+        guile-g-golf))
 
 ;; SYSTEM PACKAGES
 ;;
