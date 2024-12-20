@@ -417,18 +417,19 @@
                          "c.input.insert_mode.plugins = True"
                          "c.input.insert_mode.auto_load = True"
                          "c.input.forward_unbound_keys = 'all'"
+                         "c.url.start_pages = ['https://jointhefreeworld.org/joe-web-welkomscherm/']"
                          "config.set('content.notifications.enabled', True, '*://app.slack.com/')"
                          "ESC_BIND = 'clear-keychain ;; search ;; fullscreen --leave'"
                          "c.bindings.default['normal'] = {}")
                        `(,(sss-qutebrowser-commands-bindings 'command
-                           sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
-                                                               sss-qutebrowser-normal-bindings)
-                         ,(sss-qutebrowser-commands-bindings 'insert
-                           sss-qutebrowser-insert-bindings)
-                         ,(sss-qutebrowser-commands-bindings 'caret
-                           sss-qutebrowser-caret-bindings)
-                         ,(sss-qutebrowser-commands-bindings 'hint
-                           sss-qutebrowser-hint-bindings))
+                                                             sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
+                                                                                                                                   sss-qutebrowser-normal-bindings)
+                                                             ,(sss-qutebrowser-commands-bindings 'insert
+                                                                                                 sss-qutebrowser-insert-bindings)
+                                                             ,(sss-qutebrowser-commands-bindings 'caret
+                                                                                                 sss-qutebrowser-caret-bindings)
+                                                             ,(sss-qutebrowser-commands-bindings 'hint
+                                                                                                 sss-qutebrowser-hint-bindings))
                        (map (lambda (e)
                               (sss-qutebrowser-apply-color (car e)
                                                            (car (cdr e))))
