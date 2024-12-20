@@ -97,7 +97,7 @@
   :demand t
   :after (keycast)
   :config
-  (add-to-list 'modusregel-format '("" keycast-mode-line))
+  (add-to-list 'modusregel-format '("" keycast-mode-line) t)
   (setq-default mode-line-format modusregel-format))
 
 (use-package dagboek
