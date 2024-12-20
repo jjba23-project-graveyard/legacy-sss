@@ -94,7 +94,9 @@
 
 (use-package modusregel
   :ensure (:host codeberg :repo "jjba23/modusregel" :branch "trunk")
+  :after (keycast)
   :config
+  (add-to-list 'modusregel-format '("" keycast-mode-line))
   (setq-default mode-line-format modusregel-format))
 
 (use-package dagboek 
@@ -104,8 +106,20 @@
   :ensure (:host gitlab :repo "ambrevar/emacs-gif-screencast" :branch "master")
   :bind (("<f9>" . gif-screencast-start-or-stop))
   :init
-  (setq gif-screencast-program "convert")
+  (setq gif-screencast-program "flameshot full -r>\"$1\"")
+  (setq gif-screencast-args '())
   )
+
+(use-package keycast
+  :ensure t
+  :hook (after-init . keycast-mode)
+  :config
+  (define-minor-mode keycast-mode
+    "Show current command and its key binding in the mode line (fix for use with doom-modeline)."
+    :global t
+    (if keycast-mode
+	(add-hook 'pre-command-hook 'keycast--update t)
+      (remove-hook 'pre-command-hook 'keycast--update))))
 
 (use-package welkomscherm
   :ensure (:host codeberg :repo "jjba23/welkomscherm.el" :branch "trunk")
