@@ -224,12 +224,12 @@ According to size, color and font family"
 		        :height (tekengrootte-mk-font-size 1.0))
     (set-face-attribute 'keycast-key nil                       
 		        :font sss-font-mono
-                        :background "#004400"
+                        :background nil
                         :box nil
                         :height (tekengrootte-mk-font-size 0.9))
     (set-face-attribute 'keycast-command nil                       
 		        :font sss-font-mono
-                        :height (tekengrootte-mk-font-size 0.9))
+                        :height (tekengrootte-mk-font-size 0.8))
     )
   
   (sss-set-base-faces))
