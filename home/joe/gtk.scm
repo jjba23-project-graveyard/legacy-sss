@@ -21,15 +21,15 @@
   #:use-module (gnu)
   #:use-module (sss-palette))
 
-(define-public sss-gtk-config
+(define-public sss-gtk3-config
   `((gtk-icon-theme-name . "Yaru-sage-dark") (gtk-theme-name unquote
                                                              (cond
-                                                               ((equal?
-                                                                 sss-palette-ef-cyprus
-                                                                 sss-active-palette)
-                                                                "Yaru-sage-dark")
-                                                               (else
-                                                                "Yaru-sage-dark")))
+                                                              ((equal?
+                                                                sss-palette-ef-cyprus
+                                                                sss-active-palette)
+                                                               "Yaru-sage-dark")
+                                                              (else
+                                                               "Yaru-sage-dark")))
     (gtk-font-name . "Monaspace Neon 11")
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . 0)
@@ -38,7 +38,28 @@
     (gtk-enable-input-feedback-sounds . 0)
     (gtk-application-prefer-dark-theme unquote
                                        (cond
-                                         ((equal? sss-palette-ef-cyprus
-                                                  sss-active-palette)
-                                          0)
-                                         (else 1)))))
+                                        ((equal? sss-palette-ef-cyprus
+                                                 sss-active-palette)
+                                         0)
+                                        (else 1)))))
+
+(define-public sss-gtk4-config
+  `((gtk-icon-theme-name . "Yaru-sage-dark") (gtk-theme-name unquote
+                                                             (cond
+                                                              ((equal?
+                                                                sss-palette-ef-cyprus
+                                                                sss-active-palette)
+                                                               "Yaru-sage-dark")
+                                                              (else
+                                                               "Yaru-sage-dark")))
+    (gtk-font-name . "Monaspace Neon 11")
+    (gtk-enable-event-sounds . 0)
+    (gtk-cursor-theme-name . "Adwaita")
+    (gtk-cursor-theme-size . 32)
+    (gtk-enable-input-feedback-sounds . 0)
+    (gtk-application-prefer-dark-theme unquote
+                                       (cond
+                                        ((equal? sss-palette-ef-cyprus
+                                                 sss-active-palette)
+                                         0)
+                                        (else 1)))))
