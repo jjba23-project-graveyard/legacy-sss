@@ -45,6 +45,7 @@
                      multiprecision
                      gcc
                      aspell
+                     gdb
                      rust-apps
                      inkscape
                      gimp
@@ -492,6 +493,8 @@ more.")
 
    scenefx
    swayfx
+
+   gdb
 
    transmission
    transmission-remote-gtk
