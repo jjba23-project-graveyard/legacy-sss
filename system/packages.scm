@@ -448,6 +448,9 @@ more.")
    sqlite
    postgresql
 
+   gdk-pixbuf
+   gtk
+
    qutebrowser
 
    gnome-calculator
