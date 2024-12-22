@@ -46,7 +46,7 @@
     ("XCURSOR_THEME" . "Adwaita")
     ("SDL_VIDEODRIVER" . "wayland")
     ("_JAVA_AWT_WM_NONREPARENTING" . "1")
-    ("INFOPATH" . "/home/joe/Ontwikkeling/Persoonlijk/sss/docs/Manual:$INFOPATH")
+    ("INFOPATH" . "$INFOPATH:/home/joe/Ontwikkeling/Persoonlijk/sss/docs/Manual")
     ("DOCKER_HOST" . "unix:///tmp/podman.sock")))
 
 (define-public sss-home-vars-service
