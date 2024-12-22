@@ -1,18 +1,9 @@
 This is the file .../info/dir, which contains the
 topmost node of the Info hierarchy, called (dir)Top.
 The first time you invoke Info you start off looking at this node.
+
+File: dir,	Node: Top	This is the top of the INFO tree
 
-File: dir,      Node: Top       This is the top of the INFO tree
 
-  This (the Directory node) gives a menu of major topics.
-  Typing "q" exits, "?" lists all Info commands, "d" returns here,
-  "h" gives a primer for first-timers,
-  "mEmacs<Return>" visits the Emacs manual, etc.
-
-  In Emacs, you can click mouse button 2 on a menu item or cross reference
-  to select it.
-
-* Menu:
-
-System software
+SSS
 * SSS - Supreme Sexp System: (/home/joe/Ontwikkeling/Persoonlijk/sss/docs/Manual/README.info).  Supreme Sexp System (SSS) represents a Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are celebrated.
