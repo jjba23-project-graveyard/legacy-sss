@@ -26,10 +26,7 @@
   `("${KREW_ROOT:-$HOME/.krew}/bin" "$HOME/.local/bin"))
 
 (define sss-bash-exports
-  `((HISTTIMEFORMAT . "\"%F %T  | \"") (HISTSIZE . 200000)
-    (HISTCONTROL . "\"ignoreboth:erasedups\"")
-    (HISTFILESIZE . 200000)
-    (PS1 . "${grn}\"\\u@\\h \\w${GUIX_ENVIRONMENT:+ [env]} λ\"${clr}\"  \"")))
+  `((PS1 . "${grn}\"\\u@\\h \\w${GUIX_ENVIRONMENT:+ [env]} λ\"${clr}\"  \"")))
 
 (define-public sss-bash-aliases
   `((".." . "cd ..;pwd") ("..." . "cd ../..;pwd")

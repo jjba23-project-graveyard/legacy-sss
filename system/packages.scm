@@ -38,6 +38,7 @@
                      package-management
                      parallel
                      web
+                     texinfo
                      linux
                      gnuzilla
                      ncurses
@@ -315,6 +316,8 @@ more.")
         qpwgraph
         wireplumber
         pipewire
+
+        texinfo
 
         wl-clipboard
 

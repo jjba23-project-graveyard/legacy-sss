@@ -865,19 +865,11 @@ According to size, color and font family"
          ("C-c b w" . sss-bookmark-stumpwm-config)
          ("C-c l d" . toggle-debug-on-error)
          ("C-c l e" . eval-buffer)
-         ;; ("C-c s b" . flyspell-buffer)
-         ;; ("C-c s r" . flyspell-region)
-         ;; ("C-c s p" . flyspell-prog-mode)
          ("C-c # j" . sss-joe-reconfigure)
          ("C-c # s" . sss-sys-reconfigure)
          ("C-c # u" . sss-sys-update)
          ("C-c # f" . sss-full-reconfigure))
-  :hook ((text-mode . visual-line-mode)         
-         ;; (org-mode . flyspell-mode)
-         ;; (markdown-mode . flyspell-mode)
-         ;; (org-mode . flyspell-buffer)
-         ;; (markdown-mode . flyspell-buffer)
-         )
+  :hook ((text-mode . visual-line-mode))
   :config
   (setq-default user-personal-name "Joe"
 		user-personal-full-name "Josep Jesus Bigorra Algaba"

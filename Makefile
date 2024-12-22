@@ -53,6 +53,8 @@ system-reconfigure:
 joe-reconfigure:
 	$(call sss-log-starting,"joe-reconfigure")
 	@rm -rf docs/Manual/README.org
+	@rm -rf docs/Manual/README.texi
+	@rm -rf docs/Manual/README.info
 	@touch docs/Manual/README.org
 	@guix home reconfigure home/joe/home.scm  --fallback
 	$(call sss-log-complete,"joe-reconfigure")

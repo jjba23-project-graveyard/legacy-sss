@@ -1,4 +1,8 @@
+
 #+title: SSS/GNU system - Manual & Documentation
+#+TEXINFO_DIR_CATEGORY: System software
+#+TEXINFO_DIR_NAME: SSS - Supreme Sexp System
+#+TEXINFO_DIR_DESC: Supreme Sexp System (SSS) represents a Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are celebrated.
 
 You are reading the auto-generated manual for SSS. This manual documents the SSS/GNU system and its functionalities.
 

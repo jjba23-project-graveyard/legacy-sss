@@ -38,10 +38,15 @@
     ("QT_WAYLAND_DISABLE_WINDOWDECORATION" . "1")
     ("QT_AUTO_SCREEN_SCALE_FACTOR" . "1")
     ("RTC_USE_PIPEWIRE" . "true")
+    ("HISTTIMEFORMAT" . "%F %T  | ")
+    ("HISTSIZE" . "200000")
+    ("HISTCONTROL" . "ignoreboth:erasedups")
+    ("HISTFILESIZE" . "200000")
     ("XCURSOR_SIZE" . "32")
     ("XCURSOR_THEME" . "Adwaita")
     ("SDL_VIDEODRIVER" . "wayland")
     ("_JAVA_AWT_WM_NONREPARENTING" . "1")
+    ("INFOPATH" . "/home/joe/Ontwikkeling/Persoonlijk/sss/docs/Manual:$INFOPATH")
     ("DOCKER_HOST" . "unix:///tmp/podman.sock")))
 
 (define-public sss-home-vars-service
