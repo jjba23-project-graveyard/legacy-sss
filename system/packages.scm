@@ -43,6 +43,7 @@
                      gnuzilla
                      ncurses
                      xfce
+                     rust
                      multiprecision
                      gcc
                      aspell
@@ -360,7 +361,11 @@ more.")
 (define sss-dev-packages
   (list (specification->package "openjdk@21.0.2")
         (specification->package "node@20.18.1")
-        (specification->package "python") cl-asdf))
+        (specification->package "python")
+        cl-asdf
+        rust
+        rust-analyzer
+        ))
 
 (define sss-coreutils
   (list htop

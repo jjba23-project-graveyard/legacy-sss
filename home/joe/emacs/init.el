@@ -244,6 +244,9 @@ According to size, color and font family"
 
 ;; Dev
 
+(use-package rust-mode
+  :ensure t)
+
 (use-package eglot
   :ensure nil
   :hook ((scala-ts-mode . eglot-ensure)
@@ -252,6 +255,7 @@ According to size, color and font family"
 	 (markdown-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
          (python-mode . eglot-ensure)
+         (rust-mode . eglot-ensure)
          (before-save . eglot-format-buffer))
   :bind (("C-c i i" . eglot-find-implementation)
 	 ("C-c i e" . eglot)
