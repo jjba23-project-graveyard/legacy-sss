@@ -559,7 +559,7 @@ more.")
         sss-artanis
         guile-fibers
         guile-g-golf
-        guile-dbd-sqlite
+        guile-dbd-sqlite3
         guile-dbi
         ))
 
