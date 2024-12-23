@@ -558,7 +558,11 @@ more.")
   (list (specification->package "guile-json")
         sss-artanis
         guile-fibers
-        guile-g-golf))
+        guile-g-golf
+        guile-sqlite
+        guile-dbd-sqlite
+        guile-dbi
+        ))
 
 ;; SYSTEM PACKAGES
 ;;
