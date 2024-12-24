@@ -26,6 +26,7 @@
   #:use-module (guix build-system qt)
   #:use-module (guix licenses)
   #:use-module (guix packages)
+  #:use-module (guix utils)
   #:use-module (guix build-system meson)
   #:use-module (guix download)
   #:use-module (guix build-system gnu)
@@ -39,6 +40,8 @@
                      parallel
                      web
                      texinfo
+                     autotools
+                     perl
                      linux
                      gnuzilla
                      ncurses
@@ -165,7 +168,7 @@
    (native-inputs
     (list autoconf automake libtool perl texinfo))
    (propagated-inputs
-    (list guile))
+    (list (specification->package "guile@3.0.9")))
    (synopsis "Guile database abstraction layer")
    (home-page "https://github.com/opencog/guile-dbi")
    (description
@@ -603,6 +606,10 @@ more.")
 
    bluez
    hplip
+
+   autoconf
+   automake
+   perl
 
    mpv
    mpv-mpris
