@@ -565,7 +565,7 @@ more.")
   (list
    sss-artanis
    guile-fibers
-   guile-json
+   guile-json-4
    guile-sqlite3
    ))
 
