@@ -562,10 +562,12 @@ more.")
   (list podman-compose podman passt slirp4netns))
 
 (define sss-guile-packages
-  (list (specification->package "guile-json")
-        sss-artanis
-        guile-fibers
-        ))
+  (list
+   sss-artanis
+   guile-fibers
+   guile-json
+   guile-sqlite3
+   ))
 
 ;; SYSTEM PACKAGES
 ;;
