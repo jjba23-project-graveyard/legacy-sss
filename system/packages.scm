@@ -137,7 +137,7 @@
             (file-name (git-file-name name version))
             (sha256
              (base32
-              "123m4j82bi60s1v95pjh4djb7bh6zdwmljbpyg7zq8ni2gyal7lw"))))
+              "1i0vsg173499jsvimzqb81lqrw6r8l77qkjmsdha442r933nq473"))))
    (build-system gnu-build-system)
    (arguments
     `(#:modules (((guix build guile-build-system)
