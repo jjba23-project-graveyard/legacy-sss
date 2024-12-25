@@ -125,88 +125,6 @@
 
 (load "../per-host.scm")
 
-(define-public sss-guile-dbi
-  (package
-   (name "guile-dbi")
-   (version "2.1.9")
-   (source (origin
-            (method git-fetch)
-            (uri (git-reference
-                  (url "https://github.com/opencog/guile-dbi")
-                  (commit (string-append "guile-dbi-" version))))
-            (file-name (git-file-name name version))
-            (sha256
-             (base32
-              "1i0vsg173499jsvimzqb81lqrw6r8l77qkjmsdha442r933nq473"))))
-   (build-system gnu-build-system)
-   (arguments
-    `(#:modules (((guix build guile-build-system)
-                  #:select (target-guile-effective-version))
-                 ,@%default-gnu-modules)
-      #:imported-modules ((guix build guile-build-system)
-                          ,@%default-gnu-imported-modules)
-      #:configure-flags
-      (list (string-append
-             "--with-guile-site-dir=" %output "/share/guile/site/"
-             (target-guile-effective-version (assoc-ref %build-inputs "guile"))))
-      #:phases
-      (modify-phases %standard-phases
-                     (add-after 'unpack 'chdir
-                                (lambda _
-                                  ;; The upstream Git repository contains all the code, so change
-                                  ;; to the directory specific to guile-dbi.
-                                  (chdir "guile-dbi")))
-                     (add-after 'install 'patch-extension-path
-                                (lambda* (#:key inputs outputs #:allow-other-keys)
-                                  (let* ((out (assoc-ref outputs "out"))
-                                         (dbi.scm (string-append out "/share/guile/site/"
-                                                                 (target-guile-effective-version
-                                                                  (assoc-ref inputs "guile"))
-                                                                 "/dbi/dbi.scm"))
-                                         (ext (string-append out "/lib/libguile-dbi")))
-                                    (substitute* dbi.scm (("libguile-dbi") ext))))))))
-   (native-inputs
-    (list autoconf automake libtool perl texinfo))
-   (propagated-inputs
-    (list (specification->package "guile@3.0.9")))
-   (synopsis "Guile database abstraction layer")
-   (home-page "https://github.com/opencog/guile-dbi")
-   (description
-    "guile-dbi is a library for Guile that provides a convenient interface to
-SQL databases.  Database programming with guile-dbi is generic in that the same
-programming interface is presented regardless of which database system is used.
-It currently supports MySQL, Postgres and SQLite3.")
-   (license license:gpl2+)
-   (native-search-paths
-    (list (search-path-specification
-           (variable "GUILE_DBD_PATH")
-           (files '("lib")))))))
-
-(define-public sss-guile-dbd-sqlite3
-  (package
-   (inherit sss-guile-dbi)
-   (name "guile-dbd-sqlite3")
-   (arguments
-    (substitute-keyword-arguments (package-arguments guile-dbi)
-                                  ((#:phases phases)
-                                   `(modify-phases ,phases
-                                                   (replace 'chdir
-                                                            (lambda _
-                                                              ;; The upstream Git repository contains all the code, so change
-                                                              ;; to the directory specific to guile-dbd-sqlite3.
-                                                              (chdir "guile-dbd-sqlite3")))
-                                                   (delete 'patch-extension-path)))))
-   (inputs
-    (list sqlite zlib))
-   (native-inputs
-    (modify-inputs (package-native-inputs sss-guile-dbi)
-                   (prepend sss-guile-dbi ; only required for headers
-                            pkg-config)))
-   (synopsis "Guile DBI driver for SQLite")
-   (description
-    "guile-dbi is a library for Guile that provides a convenient interface to
-SQL databases.  This package implements the interface for SQLite.")))
-
 (define-public sss-artanis
   (package
    (name "artanis")
@@ -647,8 +565,6 @@ more.")
   (list (specification->package "guile-json")
         sss-artanis
         guile-fibers
-        sss-guile-dbi
-        sss-guile-dbd-sqlite3
         ))
 
 ;; SYSTEM PACKAGES
