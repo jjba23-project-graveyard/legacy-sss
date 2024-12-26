@@ -430,7 +430,7 @@ more.")
    qt5ct
    qtsvg
    qtwayland
-   qtwayland-5
+   ;; qtwayland-5
 
    geany
    
