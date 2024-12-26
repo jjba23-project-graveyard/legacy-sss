@@ -54,7 +54,6 @@
              (sss-vars)
              (sss-mako)
              (sss-byggsteg)
-             (sss-doc)
              (sss-enchant)
              (sss-fontconfig)
              (sss-bash)
