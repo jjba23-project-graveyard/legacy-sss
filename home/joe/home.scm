@@ -29,7 +29,6 @@
 (load "./bash.scm")
 (load "./gtk.scm")
 (load "./openpgp.scm")
-(load "../../doc.scm")
 (load "./portals.scm")
 (load "./xmodmap.scm")
 (load "./enchant.scm")
@@ -217,9 +216,6 @@
              (".emacs.d/init.el" ,(local-file "emacs/init.el"))
              ;; Emacs early initialization file
              (".emacs.d/early-init.el" ,(local-file "emacs/early-init.el")))))
-
-(display "\n>>= generating manual...\n")
-(sss-write-manual)
 
 (display "\n>>= configuring home environment...\n")
 (home-environment

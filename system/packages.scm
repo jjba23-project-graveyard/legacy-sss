@@ -430,6 +430,7 @@ more.")
    qt5ct
    qtsvg
    qtwayland
+   (specification->package "qtwayland@5.15.15")
 
    geany
    
