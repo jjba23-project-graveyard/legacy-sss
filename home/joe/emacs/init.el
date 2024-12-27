@@ -879,6 +879,7 @@ According to size, color and font family"
 		user-personal-full-name "Josep Jesus Bigorra Algaba"
 		user-personal-email "jjbigorra@gmail.com"
 		user-personal-initials "JJBA")
+  (setq erc-nick "jjba23")
   
   (setq-default line-spacing 6
                 pgtk-wait-for-event-timeout 0
@@ -888,7 +889,6 @@ According to size, color and font family"
         backward-delete-char-untabify-method 'hungry)
 
   (setq compilation-always-kill t)
-
   
   (setq treesit-font-lock-level 4
 	ring-bell-function #'ignore
