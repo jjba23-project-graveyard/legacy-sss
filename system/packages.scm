@@ -24,7 +24,6 @@
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
   #:use-module (guix build-system qt)
-  #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix utils)
   #:use-module (guix build-system meson)
