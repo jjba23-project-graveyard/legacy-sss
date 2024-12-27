@@ -849,9 +849,7 @@ According to size, color and font family"
 (use-package mpdel
   :ensure t)
 
-
-;; Configure Emacs native features
-
+;; TODO when upgrading to Emacs 30 which-key will be built-in
 (use-package which-key 
   :ensure t
   :config
@@ -860,6 +858,32 @@ According to size, color and font family"
   (setq-default which-key-idle-delay 0.4) 
   (which-key-setup-minibuffer)
   (which-key-mode))
+
+;;
+;; Configure Emacs native features
+;;
+
+(use-package erc
+  :ensure nil
+  :custom
+  (erc-nick "jjba23")
+  (erc-autojoin-channels-alist '(("freenode.net" "#guix" "#emacs" "#org-mode")))
+  (erc-autojoin-timing 'ident)
+  (erc-fill-function 'erc-fill-static)
+  (erc-fill-static-center 22)
+  (erc-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-lurker-threshold-time 43200)
+  (erc-prompt-for-nickserv-password nil)
+  (erc-server-reconnect-attempts 5)
+  (erc-server-reconnect-timeout 3)
+  (erc-track-exclude-types '("JOIN" "MODE" "NICK" "PART" "QUIT"
+                             "324" "329" "332" "333" "353" "477"))
+  :config
+  (add-to-list 'erc-modules 'notifications)
+  (add-to-list 'erc-modules 'spelling)
+  (erc-services-mode 1)
+  (erc-update-modules))
 
 (use-package emacs 
   :ensure nil 
@@ -879,7 +903,6 @@ According to size, color and font family"
 		user-personal-full-name "Josep Jesus Bigorra Algaba"
 		user-personal-email "jjbigorra@gmail.com"
 		user-personal-initials "JJBA")
-  (setq erc-nick "jjba23")
   
   (setq-default line-spacing 6
                 pgtk-wait-for-event-timeout 0
