@@ -504,7 +504,7 @@ more.")
    bsd-games
 
    power-profiles-daemon
-
+   libltdl
    scenefx
    swayfx
 
@@ -577,7 +577,6 @@ more.")
    (build-system gnu-build-system)
    (arguments
     `(#:make-flags '("LDFLAGS=\"-Wl,-allow-multiple-definition\"")
-      ;; #:tests? #f
       #:modules (((guix build guile-build-system)
                   #:select (target-guile-effective-version))
                  ,@%default-gnu-modules)
@@ -604,7 +603,7 @@ more.")
                                          (ext (string-append out "/lib/libguile-dbi")))
                                     (substitute* dbi.scm (("libguile-dbi") ext))))))))
    (native-inputs
-    (list autoconf automake libtool perl texinfo))
+    (list autoconf automake libtool perl texinfo libltdl))
    (propagated-inputs
     (list guile-3.0))
    (synopsis "Guile database abstraction layer")
@@ -652,7 +651,7 @@ SQL databases.  This package implements the interface for SQLite.")))
    guile-json-4
    guile-sqlite3
    sss-guile-dbi
-   ;;sss-guile-dbd-sqlite3
+   sss-guile-dbd-sqlite3
    ))
 
 ;; SYSTEM PACKAGES
