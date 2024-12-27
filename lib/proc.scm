@@ -66,34 +66,32 @@
   (export mk-kv-conf-lines))
 
 (begin
+  (define (serialize-rec-conf-item template item)
+    (cond
+      ((alist? (cdr item))
+       (cond
+         ((string? (car item))
+          (display (string-append "\n["
+                                  (car item) "]\n")))
+         (else (display (string-append "\n["
+                                       (symbol->string (car item)) "]\n"))))
+       (display (mk-rec-kv-conf-lines (cdr item)
+                                      #:template template)))
+      (else (display (format #f template
+                             (car item)
+                             (cdr item))))))
+
   (define* (mk-rec-kv-conf-lines pairs
                                  #:key (template "~a=~a\n"))
     (with-output-to-string (lambda ()
-                             (for-each (lambda (x)
-                                         (cond
-                                           ((alist? (cdr x))
-                                            (cond
-                                              ((string? (car x))
-                                               (display (string-append "\n["
-                                                                       (car x)
-                                                                       "]\n")))
-                                              (else (display (string-append
-                                                              "\n["
-                                                              (symbol->string (car
-                                                                               x))
-                                                              "]\n"))))
-                                            (display (mk-rec-kv-conf-lines (cdr
-                                                                            x)
-                                                      #:template template)))
-                                           (else (display (format #f template
-                                                                  (car x)
-                                                                  (cdr x))))))
-
-                                       pairs))))
+                             (for-each (lambda (item)
+                                         (serialize-rec-conf-item template
+                                                                  item)) pairs))))
   (export mk-rec-kv-conf-lines))
 
 (define-public spaced-equal-conf-pair
   "~a = ~a\n")
+
 (define-public equal-conf-pair
   "~a=~a\n")
 

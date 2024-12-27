@@ -191,8 +191,8 @@
      (font-family . "FontAwesome, Monaspace Neon")
      ;; (border-radius . "10px")
      ;; (border unquote
-     ;;         (format #f "2px solid ~a"
-     ;;                 (sss-get-color 'primary-d)))
+     ;; (format #f "2px solid ~a"
+     ;; (sss-get-color 'primary-d)))
      (color unquote
             (sss-get-color 'text)))
     (tooltip (background unquote
