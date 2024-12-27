@@ -564,7 +564,7 @@ more.")
 (define-public sss-guile-dbi
   (package
    (name "guile-dbi")
-   (version "2.1.9")
+   (version "2.1.8")
    (source (origin
             (method git-fetch)
             (uri (git-reference
@@ -573,10 +573,12 @@ more.")
             (file-name (git-file-name name version))
             (sha256
              (base32
-              "1i0vsg173499jsvimzqb81lqrw6r8l77qkjmsdha442r933nq473"))))
+              "123m4j82bi60s1v95pjh4djb7bh6zdwmljbpyg7zq8ni2gyal7lw"))))
    (build-system gnu-build-system)
    (arguments
-    `(#:modules (((guix build guile-build-system)
+    `(#:make-flags '("LDFLAGS=\"-Wl,-allow-multiple-definition\"")
+      ;; #:tests? #f
+      #:modules (((guix build guile-build-system)
                   #:select (target-guile-effective-version))
                  ,@%default-gnu-modules)
       #:imported-modules ((guix build guile-build-system)
@@ -618,30 +620,30 @@ It currently supports MySQL, Postgres and SQLite3.")
            (variable "GUILE_DBD_PATH")
            (files '("lib")))))))
 
-;; (define-public sss-guile-dbd-sqlite3
-;;   (package
-;;    (inherit sss-guile-dbi)
-;;    (name "guile-dbd-sqlite3")
-;;    (arguments
-;;     (substitute-keyword-arguments (package-arguments sss-guile-dbi)
-;;                                   ((#:phases phases)
-;;                                    `(modify-phases ,phases
-;;                                                    (replace 'chdir
-;;                                                             (lambda _
-;;                                                               ;; The upstream Git repository contains all the code, so change
-;;                                                               ;; to the directory specific to guile-dbd-sqlite3.
-;;                                                               (chdir "guile-dbd-sqlite3")))
-;;                                                    (delete 'patch-extension-path)))))
-;;    (inputs
-;;     (list sqlite zlib))
-;;    (native-inputs
-;;     (modify-inputs (package-native-inputs sss-guile-dbi)
-;;                    (prepend sss-guile-dbi ; only required for headers
-;;                             pkg-config)))
-;;    (synopsis "Guile DBI driver for SQLite")
-;;    (description
-;;     "guile-dbi is a library for Guile that provides a convenient interface to
-;; SQL databases.  This package implements the interface for SQLite.")))
+(define-public sss-guile-dbd-sqlite3
+  (package
+   (inherit sss-guile-dbi)
+   (name "guile-dbd-sqlite3")
+   (arguments
+    (substitute-keyword-arguments (package-arguments sss-guile-dbi)
+                                  ((#:phases phases)
+                                   `(modify-phases ,phases
+                                                   (replace 'chdir
+                                                            (lambda _
+                                                              ;; The upstream Git repository contains all the code, so change
+                                                              ;; to the directory specific to guile-dbd-sqlite3.
+                                                              (chdir "guile-dbd-sqlite3")))
+                                                   (delete 'patch-extension-path)))))
+   (inputs
+    (list sqlite zlib))
+   (native-inputs
+    (modify-inputs (package-native-inputs sss-guile-dbi)
+                   (prepend sss-guile-dbi ; only required for headers
+                            pkg-config)))
+   (synopsis "Guile DBI driver for SQLite")
+   (description
+    "guile-dbi is a library for Guile that provides a convenient interface to
+SQL databases.  This package implements the interface for SQLite.")))
 
 (define sss-guile-packages
   (list
@@ -650,7 +652,7 @@ It currently supports MySQL, Postgres and SQLite3.")
    guile-json-4
    guile-sqlite3
    sss-guile-dbi
-   ;; sss-guile-dbd-sqlite3
+   ;;sss-guile-dbd-sqlite3
    ))
 
 ;; SYSTEM PACKAGES
