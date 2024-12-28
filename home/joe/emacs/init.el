@@ -69,6 +69,8 @@
 
 (elpaca elpaca-use-package (elpaca-use-package-mode))
 
+(load "~/.emacs.d/sss-bridge.el")
+
 ;; Declare sss customizations
 (defgroup sss ()
   "SSS customization group."
@@ -370,8 +372,7 @@ According to size, color and font family"
   (setq ef-cyprus-palette-overrides '((variable fg-main)
                                       (bg-main bg-dim)
                                       (string green-faint)))
-  (load-theme 'ef-bio t)
-  ;;(load-theme 'ef-cyprus t)
+  (load-theme sss-emacs-theme t)
   )
 
 

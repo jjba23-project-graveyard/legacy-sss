@@ -34,6 +34,7 @@
 (load "./enchant.scm")
 (load "./qt.scm")
 (load "./qutebrowser.scm")
+(load "./bridge/emacs.scm")
 
 (use-modules (gnu home)
              (gnu services)
@@ -64,6 +65,7 @@
              (sss-openpgp)
              (sss-waybar)
              (sss-ssh)
+             (sss bridge emacs)
              (sss-qutebrowser))
 
 (use-modules (json))
@@ -210,9 +212,11 @@
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
                                                  "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
-             ;; Emacs configuration files
              ;; Emacs initialization file
              (".emacs.d/init.el" ,(local-file "emacs/init.el"))
+             ;; Emacs bridge with SSS
+             (".emacs.d/sss-bridge.el" ,(plain-file "sss-bridge.el"
+                                                    sss-bridge-emacs))
              ;; Emacs early initialization file
              (".emacs.d/early-init.el" ,(local-file "emacs/early-init.el")))))
 
