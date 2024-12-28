@@ -150,7 +150,82 @@
     (background . "#fcf7ef")
     (background-l . "#f0ece0")))
 
+(define sss-palette-ef-dream
+  `(
+;;; Basic values
+    (bg-main     "#232025")
+    (fg-main     "#efd5c5")
+    (bg-dim      "#322f34")
+    (fg-dim      "#8f8886")
+    (bg-alt      "#3b393e")
+    (fg-alt      "#b0a0cf")
+
+    (bg-active   "#5b595e")
+    (bg-inactive "#2a272c")
+
+;;; Basic hues for foreground values
+
+    (red             "#ff6f6f")
+    (red-warmer      "#ff7a5f")
+    (red-cooler      "#e47980")
+    (red-faint       "#f3a0a0")
+    (green           "#51b04f")
+    (green-warmer    "#7fce5f")
+    (green-cooler    "#3fc489")
+    (green-faint     "#a9c99f")
+    (yellow          "#c0b24f")
+    (yellow-warmer   "#d09950")
+    (yellow-cooler   "#deb07a")
+    (yellow-faint    "#caa89f")
+    (blue            "#57b0ff")
+    (blue-warmer     "#80aadf")
+    (blue-cooler     "#12b4ff")
+    (blue-faint      "#a0a0cf")
+    (magenta         "#ffaacf")
+    (magenta-warmer  "#f498c0")
+    (magenta-cooler  "#d0b0ff")
+    (magenta-faint   "#e3b0c0")
+    (cyan            "#6fb3c0")
+    (cyan-warmer     "#8fcfd0")
+    (cyan-cooler     "#65c5a8")
+    (cyan-faint      "#99bfcf")
+
+    ;; Basic hues for background values
+
+    (bg-red-intense     "#a02f50")
+    (bg-green-intense   "#30682f")
+    (bg-yellow-intense  "#8f665f")
+    (bg-blue-intense    "#4f509f")
+    (bg-magenta-intense "#885997")
+    (bg-cyan-intense    "#0280b9")
+
+    (bg-red-subtle      "#6f202a")
+    (bg-green-subtle    "#2a532f")
+    (bg-yellow-subtle   "#62432a")
+    (bg-blue-subtle     "#3a3e73")
+    (bg-magenta-subtle  "#66345a")
+    (bg-cyan-subtle     "#334d69")
+    
+    ;; Named colors
+    (primary . "#b0a0cf")
+    (primary-l . "#d0b0ff")
+    (primary-d . "#a0a0cf")
+    (text . "#efd5c5")
+    (background . "#232025")
+    (background-l . "#322f34")
+    ))
+
+;;
+;; Define the active palette for Joe's account
+;; You should reconfigure and ideally restart the system
+;; for all changes to take effect
+;;
+;; Possible values are:
+;;   - sss-palette-ef-bio
+;;   - sss-palette-ef-cyprus
+;;   - sss-palette-ef-dream
+;; 
 (define-public sss-active-palette
-  sss-palette-ef-bio)
+  sss-palette-ef-dream)
 
 ;; (define-public sss-active-palette sss-palette-ef-cyprus)
