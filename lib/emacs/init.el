@@ -100,8 +100,7 @@
   :after (keycast)
   :config
   (add-to-list 'modusregel-format '("" keycast-mode-line) t)
-  (setq-default mode-line-format modusregel-format)
-  (ignore-errors (keycast-mode)))
+  (setq-default mode-line-format modusregel-format))
 
 (use-package dagboek
   :ensure (:host codeberg :repo "jjba23/dagboek.el" :branch "trunk")
@@ -120,14 +119,14 @@
   :ensure t
   :demand t
   :after (tekengrootte)
-  :hook (after-init . keycast-mode)
   :config
   (define-minor-mode keycast-mode
-    "Show current command and its key binding in the mode line (fix for use with doom-modeline)."
+    "Show current command and its key binding in the mode line."
     :global t
     (if keycast-mode
 	(add-hook 'pre-command-hook 'keycast--update t)
       (remove-hook 'pre-command-hook 'keycast--update)))
+  (ignore-errors (keycast-mode))
   )
 
 (use-package welkomscherm
