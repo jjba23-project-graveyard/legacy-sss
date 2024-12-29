@@ -26,6 +26,7 @@
 
 # Code:
 
+.PHONY: update system-reconfigure joe-reconfigure manon-reconfigure format jr fr sr mr fmt
 
 define sss-log-complete
 	@printf "\n\033[1m>>= $(shell date) - completed work on target %s\033[0m\n" $(1)
@@ -72,6 +73,11 @@ nix-profile-upgrade:
 	@echo -e "$(shell date +%s)" | cat - \
 		resources/sss-state/nixpkgs-updated-at | tee \
 		resources/sss-state/nixpkgs-updated-at
+format:
+	$(call sss-log-starting,"format")
+	-find ~+. -maxdepth 8 -name "*.scm" -type f -exec guix style -f {} \;
+	-find ~+ -maxdepth 8 -name "*.el" -type f -exec emacs -Q --batch {} -l $(shell realpath ./lib/emacs/batch-indent.el) -f indent-file \;
+	$(call sss-log-complete,"format")
 
 
 # Aliases section
@@ -98,4 +104,4 @@ shepherd-logs:
 npu:
 	@make nix-profile-upgrade
 fmt:
-	-find . -maxdepth 6 -name "*.scm" -type f -exec guix style -f {} \;
+	@make format

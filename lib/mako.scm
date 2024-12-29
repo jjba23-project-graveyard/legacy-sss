@@ -15,7 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss-mako)
+(define-module (sss mako)
   #:use-module (gnu)
   #:use-module (sss-palette))
 

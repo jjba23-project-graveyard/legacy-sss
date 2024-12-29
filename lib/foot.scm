@@ -17,7 +17,7 @@
 
 (load "./palette.scm")
 
-(define-module (sss-foot)
+(define-module (sss foot)
   #:use-module (gnu)
   #:use-module (sss-palette))
 

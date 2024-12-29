@@ -1,6 +1,10 @@
-;;; SSS - Supreme Sexp System
+;;; batch-indent.el --- Custom editor configuration for SSS -*- lexical-binding: t -*-
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2024 Josep Bigorra
+
+;; Author: Josep Bigorra <jjbigorra@gmail.com>
+;; Maintainer: Josep Bigorra <jjbigorra@gmail.com>
+;; URL: https://codeberg.org/jjba23/sss
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -15,13 +19,22 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss-fontconfig)
-  #:use-module (gnu)
-  #:use-module (gnu home services fontutils))
+;;; Commentary:
 
-(define-public sss-fontconfig-service-type
-  (simple-service 'additional-fonts-service home-fontconfig-service-type
-                  (list "~/.nix-profile/share/fonts"
-                        '(alias (family "monospace")
-                                (prefer (family "Monaspace Neon"))))))
+;; TODO
 
+;;; Code:
+
+(defun indent-file (&optional save)
+  "Format the whole buffer."
+  ;; (setq indent-tabs-mode nil)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max))
+  (delete-trailing-whitespace)
+  (when save
+    (save-buffer))
+  ;; (princ (buffer-string))
+  )
+
+(defun indent-and-save ()
+  (indent-file t))

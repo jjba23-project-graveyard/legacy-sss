@@ -17,13 +17,19 @@
 
 ;; Code:
 
-;; Autoload all Scheme modules in home/<user> and subdirectories
-;; Some special modules and files are skipped, such as `home.scm'
-;; and all modules should have the `.scm' extension
 (load "../../lib/path.scm")
 (use-modules (sss path))
+
+;; Autoload all Scheme modules in lib and subdirectories
+;; All modules should have the `.scm' extension
+(load-lib-modules)
+
+;; Autoload all Scheme modules in home/<user> and subdirectories
+;; Some special modules and files are skipped, such as `home.scm'
+;; All modules should have the `.scm' extension
 (load-home-modules "joe")
 
+;; Load Guile modules
 (use-modules (gnu home)
              (gnu services)
              (guix gexp)
@@ -37,33 +43,35 @@
              (json)
              (sxml simple))
 
-(use-modules (sss-sway)
-             (sss lib process)
-             (sss-foot)
-             (sss-fuzzel)
-             (sss-git)
-             (sss-vars)
-             (sss-mako)
-             (sss-byggsteg)
-             (sss-enchant)
-             (sss-fontconfig)
-             (sss-bash)
-             (sss-gtk)
-             (sss-portals)
-             (sss-qt)
-             (sss-xmodmap)
-             (sss-openpgp)
-             (sss-waybar)
-             (sss-ssh)
+;; Load SSS modules
+(use-modules (sss sway)
+             (sss process)
+             (sss foot)
+             (sss fuzzel)
+             (sss git)
+             (sss vars)
+             (sss mako)
+             (sss byggsteg)
+             (sss enchant)
+             (sss fontconfig)
+             (sss bash)
+             (sss gtk)
+             (sss portals)
+             (sss qt)
+             (sss xmodmap)
+             (sss openpgp)
+             (sss waybar)
+             (sss ssh)
              (sss bridge emacs)
-             (sss-qutebrowser))
+             (sss qutebrowser))
 
+;; Define user's home files (a.k.a. dotfiles)
 (define sss-home-files-service
   (service home-files-service-type
            `( ;XModmap configuration file for example for Caps to Lock
-             (".xmodmap" ,(plain-file "xmodmap"
-                                      (mk-kv-conf-lines sss-xmodmap-config
-                                                        #:template spaced-equal-conf-pair)))
+              (".xmodmap" ,(plain-file "xmodmap"
+                                       (mk-kv-conf-lines sss-xmodmap-config
+                                        #:template spaced-equal-conf-pair)))
 
              ;; GTK 3 settings
              (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
@@ -86,7 +94,7 @@
              ;; Global Git configuration
              (".gitconfig" ,(plain-file "gitconfig.ini"
                                         (mk-rec-kv-conf-lines sss-gitconfig
-                                                              #:template spaced-equal-conf-pair)))
+                                         #:template spaced-equal-conf-pair)))
              ;; Personal Git configuration
              (".gitconfig-personal" ,(plain-file "gitconfig-personal.ini"
                                                  (mk-rec-kv-conf-lines
@@ -114,10 +122,11 @@
              ;; Nix configuration with experimental features
              (".config/nix/nix.conf" ,(plain-file "nix.conf"
                                                   (mk-rec-kv-conf-lines `((experimental-features . "nix-command flakes"))
-                                                                        #:template
-                                                                        spaced-equal-conf-pair)))
+                                                   #:template
+                                                   spaced-equal-conf-pair)))
              ;; Loads Nixpkgs configuration locally
-             (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
+             (".config/nixpkgs/config.nix" ,(local-file
+                                             "../lib/nix/nixpkgs.nix"))
 
              ;; Waybar configuration (for status bar)
              (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
@@ -186,7 +195,7 @@
                                                         sss-enchant-dict-en)))
              ;; Qutebrowser configurations (web browser)
              (".config/qutebrowser/config.py" ,(plain-file "config.py"
-                                                           sss-qutebrowser-config))
+                                                sss-qutebrowser-config))
              (".config/qutebrowser/bookmarks/urls" ,(plain-file "urls"
                                                                 (serialize-qutebrowser-urls
                                                                  sss-qutebrowser-bookmarks)))
@@ -198,15 +207,17 @@
                                                      "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
-                                                            "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
+                                                 "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
              ;; Emacs initialization file
-             (".emacs.d/init.el" ,(local-file "emacs/init.el"))
+             (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))
              ;; Emacs bridge with SSS
              (".emacs.d/sss-bridge.el" ,(plain-file "sss-bridge.el"
                                                     sss-bridge-emacs))
              ;; Emacs early initialization file
-             (".emacs.d/early-init.el" ,(local-file "emacs/early-init.el")))))
+             (".emacs.d/early-init.el" ,(local-file
+                                         "../lib/emacs/early-init.el")))))
 
+;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")
 (home-environment
   (packages (list pfetch))

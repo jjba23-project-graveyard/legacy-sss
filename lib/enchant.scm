@@ -15,9 +15,26 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss-portals)
+(define-module (sss enchant)
   #:use-module (gnu))
 
-(define-public sss-portals-config
-  '(("default" . "gtk") ("org.freedesktop.impl.portal.Screenshot" . "wlr")
-    ("org.freedesktop.impl.portal.ScreenCast" . "wlr")))
+;; Enchant uses global and per-user ordering files named enchant.ordering to decide
+;; which spelling provider to use for particular languages. The per-user file takes precedence.
+;;
+;; The ordering file takes the form language_tag:<comma-separated list of spelling providers>.
+;; To see what dictionaries are available, run enchant-lsmod-2.
+;; ’*’ is used to mean use this ordering for all languages, unless instructed otherwise.
+(define-public sss-enchant-ordering
+  `("*:aspell,hunspell,nuspell"))
+
+;; Custom dictionary for English
+(define-public sss-enchant-dict-en
+  `("Guix" "SwayFX"
+    "aspell"
+    "hunspell"
+    "nuspell"
+    "sss"
+    "Josep"
+    "Bigorra"
+    "Algaba"))
+

@@ -17,7 +17,7 @@
 
 (load "./palette.scm")
 
-(define-module (sss-fuzzel)
+(define-module (sss fuzzel)
   #:use-module (gnu)
   #:use-module (sss-palette))
 

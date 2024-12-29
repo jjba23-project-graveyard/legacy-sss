@@ -18,59 +18,66 @@
 (define-module (sss path)
   #:use-module (ice-9 ftw))
 
-(define *sss-makefile* "Makefile")
+(define *sss-makefile*
+  "Makefile")
 
-(define %current-toplevel (make-parameter #f))
+(define %current-toplevel
+  (make-parameter #f))
 
-(define* (find-MAKEFILE-path proc #:optional (check-only? #f))
+(define* (find-MAKEFILE-path proc
+                             #:optional (check-only? #f))
   (define (-> p)
     (let ((ff (string-append p "/" *sss-makefile*)))
       (and (file-exists? ff) p)))
   (define (last-path pwd)
-    (and=> (string-match "(.*)/.*$" pwd) (lambda (m) (match:substring m 1))))
+    (and=> (string-match "(.*)/.*$" pwd)
+           (lambda (m)
+             (match:substring m 1))))
   ;; FIXME: Maybe we should generate relative path?
-  (let lp((pwd (getcwd)))
+  (let lp
+    ((pwd (getcwd)))
     (cond
-     ((not (string? pwd)) (error find-MAKEFILE-path "BUG: please report it!" pwd))
-     ((string-null? pwd)
-      (if check-only?
-          #f
-          (error find-MAKEFILE-path
-                 "No MAKEFILE! Are you in a legal SSS dir? Or maybe you need to create a new app?")))
-     ((-> pwd) => proc)
-     (else (lp (last-path pwd))))))
+      ((not (string? pwd))
+       (error find-MAKEFILE-path "BUG: please report it!" pwd))
+      ((string-null? pwd)
+       (if check-only? #f
+           (error find-MAKEFILE-path
+            "No MAKEFILE! Are you in a legal SSS dir? Or maybe you need to create a new app?")))
+      ((-> pwd)
+       => proc)
+      (else (lp (last-path pwd))))))
 
 (define (current-toplevel)
   (or (%current-toplevel)
       (find-MAKEFILE-path identity #t)))
 
-(define* (scan-home-components p #:optional (sym? #t))
+(define* (scan-home-components p
+                               #:optional (sym? #t))
   (define-syntax-rule (-> x)
-    (if sym? (string->symbol x) x))
+    (if sym?
+        (string->symbol x) x))
   (let* ((toplevel (current-toplevel))
          (cpath (format #f "~a/~a/" toplevel p)))
     (cond
-     ((file-exists? cpath)
-      (display (format #f "starting to load modules in ~a\n" cpath))
-      (map (lambda (f)
-             (format #f "~a/~a/~a" toplevel p f)
-             )
-           (scandir cpath
-                    (lambda (f)
-                      (not (or (string=? f ".")
-                               (string=? f "..")
-                               (string=? f ".gitkeep")
-                               (< (string-length f) 4)
-                               (string<> (string-take-right f 4) ".scm")
-                               (string=? f "home.scm")
-                               ))))))
-     (else '()))))
-
+      ((file-exists? cpath)
+       (display (format #f "starting to load modules in ~a\n" cpath))
+       (map (lambda (f)
+              (format #f "~a/~a/~a" toplevel p f))
+            (scandir cpath
+                     (lambda (f)
+                       (not (or (string=? f ".")
+                                (string=? f "..")
+                                (string=? f ".gitkeep")
+                                (< (string-length f) 4)
+                                (string<> (string-take-right f 4) ".scm")
+                                (string=? f "home.scm")))))))
+      (else '()))))
 
 (define-public (load-home-modules user)
   (display "Loading home modules...\n")
   (let ((cs (scan-home-components (format #f "home/~a" user)))
         (cs-bridge (scan-home-components (format #f "home/~a/bridge" user))))
-    (for-each (lambda (s) (load s)) (append cs cs-bridge))
-    ))
+    (for-each (lambda (s)
+                (load s))
+              (append cs cs-bridge))))
 

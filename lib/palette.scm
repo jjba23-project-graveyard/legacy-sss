@@ -15,7 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss-palette)
+(define-module (sss palette)
   #:use-module (gnu))
 
 ;; (sss-hex-to-rgba (sss-get-color 'bg-main))
