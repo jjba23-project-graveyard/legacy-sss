@@ -413,149 +413,151 @@ more.")
 (define sss-other-system-packages
   (list
 
-        flatpak
-        pipewire
-        nginx
-        watchexec
-        git
-        pavucontrol
+   flatpak
+   pipewire
+   nginx
+   watchexec
+   git
+   pavucontrol
 
-        kcalc
+   kcalc
 
-        slurp
-        ;; stellarium
-        kvantum
-        qt5ct
-        qtsvg
-        qtwayland
-        ;; qtwayland-5
-        
-        geany
+   slurp
+   ;; stellarium
+   kvantum
+   qt5ct
+   qtsvg
+   ;; seems like qt wayland 6 and 5 are not yet compatible
+   ;; this causes crashes in qt 5 and 6 apps
+   ;; qtwayland
+   qtwayland-5
 
-        gnome-font-viewer
-        gnome-characters
+   geany
 
-        rofi-wayland
+   gnome-font-viewer
+   gnome-characters
 
-        xz
-        ispell
-        (specification->package "bind")
-        wireshark
+   rofi-wayland
 
-        gnome-tweaks
-        arandr
-        httpie
-        (specification->package "remmina")
-        libnotify
-        wdisplays
+   xz
+   ispell
+   (specification->package "bind")
+   wireshark
 
-        shotcut
-        openshot
-        inkscape
-        dunst
-        fzf
-        vlc
-        sqlite
-        postgresql
+   gnome-tweaks
+   arandr
+   httpie
+   (specification->package "remmina")
+   libnotify
+   wdisplays
 
-        gdk-pixbuf
-        gtk
+   shotcut
+   openshot
+   inkscape
+   dunst
+   fzf
+   vlc
+   sqlite
+   postgresql
 
-        qutebrowser
+   gdk-pixbuf
+   gtk
 
-        gnome-calculator
-        cheese
-        gnome-system-monitor
-        evince
+   qutebrowser
 
-        qemu
+   gnome-calculator
+   cheese
+   gnome-system-monitor
+   evince
 
-        obs
-        libreoffice
-        gimp
-        imagemagick
-        libwebp
-        feh
+   qemu
 
-        xmodmap
+   obs
+   libreoffice
+   gimp
+   imagemagick
+   libwebp
+   feh
 
-        gparted
+   xmodmap
 
-        lm-sensors
-        exfatprogs
-        exfat-utils
-        fuse-exfat
-        tmon
-        flameshot
+   gparted
 
-        parallel
+   lm-sensors
+   exfatprogs
+   exfat-utils
+   fuse-exfat
+   tmon
+   flameshot
 
-        thunar
+   parallel
 
-        ffmpegthumbs
-        xarchiver
-        ristretto
-        orage
+   thunar
 
-        sqlitebrowser
-        direnv
+   ffmpegthumbs
+   xarchiver
+   ristretto
+   orage
 
-        bsd-games
+   sqlitebrowser
+   direnv
 
-        power-profiles-daemon
-        libltdl
-        scenefx
-        swayfx
+   bsd-games
 
-        gdb
+   power-profiles-daemon
+   libltdl
+   scenefx
+   swayfx
 
-        transmission
-        transmission-remote-gtk
+   gdb
 
-        xf86-video-fbdev
-        xf86-input-libinput
-        lxsession
-        pamixer
+   transmission
+   transmission-remote-gtk
 
-        ;; ghcid
-        neofetch
-        cmatrix
+   xf86-video-fbdev
+   xf86-input-libinput
+   lxsession
+   pamixer
 
-        bluez
-        hplip
+   ;; ghcid
+   neofetch
+   cmatrix
 
-        autoconf
-        automake
-        perl
+   bluez
+   hplip
 
-        mpv
-        mpv-mpris
-        unixodbc
-        tree
-        fyi
+   autoconf
+   automake
+   perl
 
-        enchant
-        emacs-jinx
-        aspell
-        aspell-dict-nl
-        aspell-dict-pt-pt
-        aspell-dict-es
-        aspell-dict-en
-        aspell-dict-ca
+   mpv
+   mpv-mpris
+   unixodbc
+   tree
+   fyi
 
-        ;; element-desktop
-        
-        (specification->package "darkhttpd")
+   enchant
+   emacs-jinx
+   aspell
+   aspell-dict-nl
+   aspell-dict-pt-pt
+   aspell-dict-es
+   aspell-dict-en
+   aspell-dict-ca
 
-        openvpn
-        network-manager-applet
-        network-manager-openconnect
-        network-manager-openvpn
+   ;; element-desktop
+   
+   (specification->package "darkhttpd")
 
-        nautilus
+   openvpn
+   network-manager-applet
+   network-manager-openconnect
+   network-manager-openvpn
 
-        xxd
-        qt6ct))
+   nautilus
+
+   xxd
+   qt6ct))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
