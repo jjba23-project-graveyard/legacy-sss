@@ -103,8 +103,11 @@ Find here a reference configuration with what is required.
   ;; or (define sss-per-host-packages '())
   (define sss-per-host-packages
     (list
+     ;; AMD non-free drivers
      (specification->package "amd-microcode")
      (specification->package "amdgpu-firmware")
+     ;; Games
+     (specification->package "prismlauncher")
      (specification->package "steam")))
 
 #+end_src
