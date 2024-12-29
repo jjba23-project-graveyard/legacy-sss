@@ -41,8 +41,6 @@ SSS is my system, my workflow, my configuration files, and a big insight in the 
 
 Find the [[file:docs/Manual/README.org][manual for SSS here]].
 
-If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
-
 I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
 
 I also refer to SSS lovingly as the modern Lisp machine. With this one obtains a computing style and programming environment that can be referred to as Lisp user space. This is a modern iteration of the Lisp machines of yore.
