@@ -1,0 +1,105 @@
+\input texinfo    @c -*- texinfo -*-
+@c %**start of header
+@setfilename README.info
+@settitle SSS/GNU system - Manual & Documentation
+@documentencoding UTF-8
+@documentlanguage en
+@c %**end of header
+
+@finalout
+@titlepage
+@title SSS/GNU system - Manual & Documentation
+@author Music Player Daemon (MPD) user
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top SSS/GNU system - Manual & Documentation
+
+You are reading the manual for SSS@. This manual documents the SSS/GNU system and its functionalities.
+@end ifnottex
+
+@menu
+* Terminology::
+* Sway::
+
+@detailmenu
+--- The Detailed Node Listing ---
+
+Sway
+
+* Screenshot keybindings::
+* Application keybindings::
+
+@end detailmenu
+@end menu
+
+@node Terminology
+@chapter Terminology
+
+When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
+
+@multitable {aaaa} {aaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem term
+@tab meaning
+@item @code{s}
+@tab Super / Windows / CMD key
+@item @code{S}
+@tab Shift key
+@item @code{M}
+@tab Meta / Alt / Option key
+@item @code{C}
+@tab Control key
+@end multitable
+
+@node Sway
+@chapter Sway
+
+@menu
+* Screenshot keybindings::
+* Application keybindings::
+@end menu
+
+@node Screenshot keybindings
+@section Screenshot keybindings
+
+@multitable {aaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem keybind
+@tab command
+@item @code{s-S-.}
+@tab @strong{Copy} screenshot of entire screen
+@item @code{s-.}
+@tab @strong{Save} screenshot of entire screen
+@item @code{s-k}
+@tab Kill/Close a window or application
+@item @code{s-S-c}
+@tab Reload Sway configuration
+@end multitable
+
+@node Application keybindings
+@section Application keybindings
+
+@multitable {aaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem keybind
+@tab command
+@item @code{s-/}
+@tab Launch application fuzzy finder menu
+@item @code{s-i}
+@tab Open a Web Browser (Qutebrowser)
+@item @code{s-S-i}
+@tab Open a bloated Web Browser (Vivaldi)
+@item @code{s-RET}
+@tab Open a terminal emulator (Foot)
+@item @code{s-t}
+@tab @emph{idem}
+@item @code{s-e}
+@tab Open text editor (Emacs)
+@item @code{s--}
+@tab Open password manager (1password)
+@item 
+@tab 
+@end multitable
+
+@bye

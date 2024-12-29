@@ -18,22 +18,28 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 | ~C~    | Control key               |
 
 
-
 ** Sway
 
 *** Screenshot keybindings
 
-| keybind | command                          |
-|---------+----------------------------------|
-| ~s-S-.~   | Copy screenshot of entire screen |
-| ~s-.~     | Save screenshot of entire screen |
-|---------+----------------------------------|
+| keybind | command                            |
+|---------+------------------------------------|
+| ~s-S-.~   | *Copy* screenshot of entire screen   |
+| ~s-.~     | *Save* screenshot of entire screen   |
+| ~s-k~     | Kill/Close a window or application |
+| ~s-S-c~   | Reload Sway configuration         |
+|---------+------------------------------------|
 *** Application keybindings
 
 
 | keybind | command                              |
 |---------+--------------------------------------|
 | ~s-/~     | Launch application fuzzy finder menu |
-| ~s-i~     | Launch Web Browser                   |
-|         |                                      |
+| ~s-i~     | Open a Web Browser (Qutebrowser)     |
+| ~s-S-i~   | Open a bloated Web Browser (Vivaldi) |
+| ~s-RET~   | Open a terminal emulator (Foot)      |
+| ~s-t~     | /idem/                                 |
+| ~s-e~     | Open text editor (Emacs)             |
+| ~s--~     | Open password manager (1password)    |
+|        |                                      |
 |---------+--------------------------------------|

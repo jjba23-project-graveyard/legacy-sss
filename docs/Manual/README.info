@@ -1,0 +1,95 @@
+This is README.info, produced by makeinfo version 6.8 from README.texi.
+
+
+File: README.info,  Node: Top,  Next: Terminology,  Up: (dir)
+
+SSS/GNU system - Manual & Documentation
+***************************************
+
+You are reading the manual for SSS.  This manual documents the SSS/GNU
+system and its functionalities.
+
+* Menu:
+
+* Terminology::
+* Sway::
+
+— The Detailed Node Listing —
+
+Sway
+
+* Screenshot keybindings::
+* Application keybindings::
+
+
+
+File: README.info,  Node: Terminology,  Next: Sway,  Prev: Top,  Up: Top
+
+1 Terminology
+*************
+
+When keybindings (shortcurts) are defined, the following legend applies
+(a la Emacs):
+
+term   meaning
+-----------------------------------
+‘s’    Super / Windows / CMD key
+‘S’    Shift key
+‘M’    Meta / Alt / Option key
+‘C’    Control key
+
+
+File: README.info,  Node: Sway,  Prev: Terminology,  Up: Top
+
+2 Sway
+******
+
+* Menu:
+
+* Screenshot keybindings::
+* Application keybindings::
+
+
+File: README.info,  Node: Screenshot keybindings,  Next: Application keybindings,  Up: Sway
+
+2.1 Screenshot keybindings
+==========================
+
+keybind   command
+-----------------------------------------------
+‘s-S-.’   *Copy* screenshot of entire screen
+‘s-.’     *Save* screenshot of entire screen
+‘s-k’     Kill/Close a window or application
+‘s-S-c’   Reload Sway configuration
+
+
+File: README.info,  Node: Application keybindings,  Prev: Screenshot keybindings,  Up: Sway
+
+2.2 Application keybindings
+===========================
+
+keybind   command
+-------------------------------------------------
+‘s-/’     Launch application fuzzy finder menu
+‘s-i’     Open a Web Browser (Qutebrowser)
+‘s-S-i’   Open a bloated Web Browser (Vivaldi)
+‘s-RET’   Open a terminal emulator (Foot)
+‘s-t’     _idem_
+‘s-e’     Open text editor (Emacs)
+‘s--’     Open password manager (1password)
+
+
+
+Tag Table:
+Node: Top73
+Node: Terminology456
+Node: Sway816
+Node: Screenshot keybindings960
+Node: Application keybindings1364
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:
