@@ -214,7 +214,7 @@
     (background-l . "#322f34")))
 
 ;;
-;; Define the active palette for Joe's account
+;; Define the active palette for all users accounts
 ;; You should reconfigure and ideally restart the system
 ;; for all changes to take effect
 ;;

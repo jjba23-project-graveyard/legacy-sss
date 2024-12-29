@@ -16,7 +16,7 @@ This custom GNU + Linux setup enhances customization to infinity, encourages the
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
-[[file:./resources/screenshots/2024-11-28T11:39:39,081581954+01:00.png]]
+[[file:./resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png]]
 
 *** What lies here?
 
@@ -36,11 +36,40 @@ Find the divine sayings, and the destined computer configurations, all my Guix, 
 
 
 *** Introduction
-These are my configuration files, which also explain a lot about the tooling I use and enjoy, and can teach you a thing or two.
+
+SSS is my system, my workflow, my configuration files, and a big insight in the tooling I use and enjoy, and can teach you a thing or two.
 
 Find the [[file:docs/Manual/README.org][manual for SSS here]].
 
 If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
+
+I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
+
+I also refer to SSS lovingly as the modern Lisp machine. With this one obtains a computing style and programming environment that can be referred to as Lisp user space. This is a modern iteration of the Lisp machines of yore.
+
+Staying as libre as possible, any of the system's application code can be made available to you at any time.
+
+You can be aware of all the code that is running on your machine, which puts GNU among the most secure operating systems on Earth.
+
+**** Trustless full-source bootstrap
+
+Secure yourself against malevolent state actors and never trust someone else's unverified binaries again, as you can build from the source all the way down.
+
+**** Hack your operating system live
+
+Lisp user space provides an introspective, hackable, and transactionable operating system that can be modified live in a REPL.
+
+The lines between data and code fade, allowing insane flexibility and power.
+
+**** Text-based and keyboard-driven
+
+Lisp user space is centered on text-based user interfaces instead of graphical user interfaces, and can be mostly used without a mouse, which makes it easier to use for people living with disabilities as well as power users.
+
+
+**** Respects your freedom
+The operating system is mostly defined declaratively in Scheme Lisp and the applications are mostly coded imperatively in Emacs Lisp. Both can be inspected and hacked live in a REPL, making it a pure expression of the libre software ethic, and an incredibly versatile tool for a skilled programmer.
+
+**** Heed my warning
 
 This is the set of files that powers my day-to-day computing experience, so do not track my dotfiles (rolling, unstable, and untested), but feel free to use them and take inspiration from them or fork and work under the terms of the GNU GPL v3 or newer.
 
@@ -112,6 +141,16 @@ For example including ~nonguix~ in your channels (=~/.config/guix/channels.scm=)
        %default-channels)
 
 #+end_src
+
+
+Getting started is easy:
+
+- Install the Guix GNU/Linux distribution
+- Only install nonguix if you truly require additional hardware support
+- Do a guix pull from your regular user to get a recent commiut of Guix
+- Clone this repository after having temporarily installed Git and Make (e.g. in a guix shell)
+- Contact me for any doubts <jjbigorra@gmail.com>
+
 
 *** Updates
 

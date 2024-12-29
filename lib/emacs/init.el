@@ -136,8 +136,8 @@
   :init
   (setq welkomscherm-bookmarks-personal
         '((("sss" . "~/Ontwikkeling/Persoonlijk/sss/")
-           ("emacs cfg" . "~/Ontwikkeling/Persoonlijk/sss/home/joe/emacs/init.el")
-           ("sway" . "~/Ontwikkeling/Persoonlijk/sss/home/joe/sway.scm")
+           ("emacs cfg" . "~/Ontwikkeling/Persoonlijk/sss/lib/emacs/init.el")
+           ("sway" . "~/Ontwikkeling/Persoonlijk/sss/lib/sway.scm")
            ("guix pkgs" . "~/Ontwikkeling/Persoonlijk/sss/system/packages.scm")
            )
           (("notes" . "~/Ontwikkeling/Persoonlijk/private-notes/")
@@ -310,7 +310,7 @@ According to size, color and font family"
               ;; Show all eldoc feedback.
               (setq eldoc-documentation-strategy #'eldoc-documentation-compose)))
 
-  (setq python-flymake-command '("/home/joe/.local/bin/flake8" "-") )           
+  (setq python-flymake-command '("~/.local/bin/flake8" "-") )           
   (add-hook 'eglot-managed-mode-hook
             (lambda ()
               (when (or (derived-mode-p 'python-mode)
@@ -494,7 +494,7 @@ According to size, color and font family"
 (use-package mermaid-mode
   :ensure t
   :init
-  (setq mermaid-mmdc-location "/home/joe/.nix-profile/bin/mmdc")
+  (setq mermaid-mmdc-location "~/.nix-profile/bin/mmdc")
   :config
   (setq mermaid-mode-map
         (let ((map mermaid-mode-map))
@@ -744,12 +744,7 @@ According to size, color and font family"
 (defun sss-bookmark-emacs-config ()
   "Visit sss bookmark: Emacs main init.el config file."
   (interactive) 
-  (find-file "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/emacs/init.el"))
-
-(defun sss-bookmark-stumpwm-config ()
-  "Visit sss bookmark: StumpWM main config file."
-  (interactive) 
-  (find-file "/home/joe/Ontwikkeling/Persoonlijk/sss/home/joe/stumpwm/init.lisp"))
+  (find-file "~/Ontwikkeling/Persoonlijk/sss/lib/emacs/init.el"))
 
 (defun new-frame-setup (frame)
   (if (display-graphic-p frame)
@@ -890,7 +885,6 @@ According to size, color and font family"
   :bind (("C-x C-b" . ibuffer) 
          ("C-c a h" . highlight-compare-buffers) 
          ("C-c b e" . sss-bookmark-emacs-config)
-         ("C-c b w" . sss-bookmark-stumpwm-config)
          ("C-c l d" . toggle-debug-on-error)
          ("C-c l e" . eval-buffer)
          ("C-c # j" . sss-joe-reconfigure)
