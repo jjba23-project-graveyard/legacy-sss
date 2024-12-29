@@ -44,21 +44,17 @@
   (or (%current-toplevel)
       (find-MAKEFILE-path identity #t)))
 
-(define (remove-ext str)
-  (let ((i (string-contains str ".")))
-    (substring str 0 i)))
-
-(define* (scan-home-components #:optional (sym? #t))
+(define* (scan-home-components p #:optional (sym? #t))
   (define-syntax-rule (-> x)
     (if sym? (string->symbol x) x))
   (let* ((toplevel (current-toplevel))
-         (cpath (format #f "~a/home/joe/" toplevel)))
+         (cpath (format #f "~a/~a/" toplevel p)))
     (cond
      ((file-exists? cpath)
       (display (format #f "starting to load modules in ~a\n" cpath))
       (map (lambda (f)
-             (newline)(display f)(newline)
-             (-> (remove-ext f)))
+             (format #f "~a/~a/~a" toplevel p f)
+             )
            (scandir cpath
                     (lambda (f)
                       (not (or (string=? f ".")
@@ -66,14 +62,15 @@
                                (string=? f ".gitkeep")
                                (< (string-length f) 4)
                                (string<> (string-take-right f 4) ".scm")
+                               (string=? f "home.scm")
                                ))))))
      (else '()))))
 
 
 (define-public (load-home-modules)
   (display "Loading home modules...\n")
-  (let ((cs (scan-home-components)))
-    (for-each (lambda (s)
-                (load (format #f "~a/home/joe/~a.scm" (current-toplevel) s)))
-              cs)))
+  (let ((cs (scan-home-components "home/joe"))
+        (cs-bridge (scan-home-components "home/joe/bridge")))
+    (for-each (lambda (s) (load s)) (append cs cs-bridge))
+    ))
 
