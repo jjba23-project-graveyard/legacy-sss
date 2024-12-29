@@ -15,7 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss-ssh)
+(define-module (sss ssh)
   #:use-module (gnu)
   #:use-module (gnu home services ssh))
 

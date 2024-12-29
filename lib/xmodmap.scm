@@ -15,7 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss-xmodmap)
+(define-module (sss xmodmap)
   #:use-module (gnu))
 
 (define-public sss-xmodmap-config

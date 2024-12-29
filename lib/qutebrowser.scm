@@ -17,9 +17,9 @@
 
 (load "./palette.scm")
 
-(define-module (sss-qutebrowser)
+(define-module (sss qutebrowser)
   #:use-module (gnu)
-  #:use-module (sss-palette))
+  #:use-module (sss palette))
 
 (define sss-qutebrowser-palette
   `((bg-default unquote

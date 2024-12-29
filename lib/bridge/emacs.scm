@@ -19,7 +19,7 @@
 
 (define-module (sss bridge emacs)
   #:use-module (gnu)
-  #:use-module (sss-palette))
+  #:use-module (sss palette))
 
 (define-public sss-bridge-emacs-vars
   `((sss-emacs-theme unquote

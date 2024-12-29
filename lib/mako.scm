@@ -17,7 +17,7 @@
 
 (define-module (sss mako)
   #:use-module (gnu)
-  #:use-module (sss-palette))
+  #:use-module (sss palette))
 
 (define-public sss-mako-config
   `((sort . "-time") (max-history . 7)

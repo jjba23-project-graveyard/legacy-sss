@@ -16,9 +16,9 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (load "./palette.scm")
-(load "../../system/packages.scm")
+(load "../system/packages.scm")
 
-(define-module (sss-sway)
+(define-module (sss sway)
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services shells)
@@ -32,7 +32,7 @@
   #:use-module (gnu home services sway)
   #:use-module (gnu home services sound)
   #:use-module (gnu home services desktop)
-  #:use-module (sss-palette))
+  #:use-module (sss palette))
 
 (define sss-sway-gestures
   `((swipe:3:right . "workspace next_on_output")

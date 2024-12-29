@@ -17,7 +17,7 @@
 
 (define-module (sss qt)
   #:use-module (gnu)
-  #:use-module (sss-palette)
+  #:use-module (sss palette)
   #:use-module (sss process))
 
 (define-public sss-qt6ct-config

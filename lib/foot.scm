@@ -19,7 +19,7 @@
 
 (define-module (sss foot)
   #:use-module (gnu)
-  #:use-module (sss-palette))
+  #:use-module (sss palette))
 
 (define-public sss-foot-config
   `((font . "Monaspace Neon:size=9") (dpi-aware . "yes")

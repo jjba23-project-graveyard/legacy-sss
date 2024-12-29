@@ -19,7 +19,7 @@
 
 (define-module (sss fuzzel)
   #:use-module (gnu)
-  #:use-module (sss-palette))
+  #:use-module (sss palette))
 
 (define-public sss-fuzzel-colors
   `((background unquote

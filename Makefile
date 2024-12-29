@@ -53,12 +53,12 @@ system-reconfigure:
 	$(call sss-notify,"SSS system-reconfigure was succesful!")
 joe-reconfigure: format
 	$(call sss-log-starting,"joe-reconfigure")
-	@guix home reconfigure home/joe.scm  --fallback
+	@guix home reconfigure ./home/joe.scm  --fallback
 	$(call sss-log-complete,"joe-reconfigure")
 	$(call sss-notify,"SSS joe-reconfigure was succesful!")
 manon-reconfigure: format
 	$(call sss-log-starting,"manon-reconfigure")
-	@guix home reconfigure home/manon.scm  --fallback
+	@guix home reconfigure ./home/manon.scm  --fallback
 	$(call sss-log-complete,"manon-reconfigure")
 	$(call sss-notify,"SSS manon-reconfigure was succesful!")
 full-rebuild: format

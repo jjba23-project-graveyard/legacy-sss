@@ -17,9 +17,9 @@
 
 (load "./palette.scm")
 
-(define-module (sss-waybar)
+(define-module (sss waybar)
   #:use-module (gnu)
-  #:use-module (sss-palette))
+  #:use-module (sss palette))
 
 ;; Waybar power menu
 (define-public sss-waybar-power-menu
