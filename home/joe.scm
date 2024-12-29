@@ -69,9 +69,9 @@
 (define sss-home-files-service
   (service home-files-service-type
            `( ;XModmap configuration file for example for Caps to Lock
-             (".xmodmap" ,(plain-file "xmodmap"
-                                      (mk-kv-conf-lines sss-xmodmap-config
-                                                        #:template spaced-equal-conf-pair)))
+              (".xmodmap" ,(plain-file "xmodmap"
+                                       (mk-kv-conf-lines sss-xmodmap-config
+                                        #:template spaced-equal-conf-pair)))
 
              ;; GTK 3 settings
              (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
@@ -94,7 +94,7 @@
              ;; Global Git configuration
              (".gitconfig" ,(plain-file "gitconfig.ini"
                                         (mk-rec-kv-conf-lines sss-gitconfig
-                                                              #:template spaced-equal-conf-pair)))
+                                         #:template spaced-equal-conf-pair)))
              ;; Personal Git configuration
              (".gitconfig-personal" ,(plain-file "gitconfig-personal.ini"
                                                  (mk-rec-kv-conf-lines
@@ -122,8 +122,8 @@
              ;; Nix configuration with experimental features
              (".config/nix/nix.conf" ,(plain-file "nix.conf"
                                                   (mk-rec-kv-conf-lines `((experimental-features . "nix-command flakes"))
-                                                                        #:template
-                                                                        spaced-equal-conf-pair)))
+                                                   #:template
+                                                   spaced-equal-conf-pair)))
              ;; Loads Nixpkgs configuration locally
              (".config/nixpkgs/config.nix" ,(local-file
                                              "../lib/nix/nixpkgs.nix"))
@@ -195,7 +195,7 @@
                                                         sss-enchant-dict-en)))
              ;; Qutebrowser configurations (web browser)
              (".config/qutebrowser/config.py" ,(plain-file "config.py"
-                                                           sss-qutebrowser-config))
+                                                sss-qutebrowser-config))
              (".config/qutebrowser/bookmarks/urls" ,(plain-file "urls"
                                                                 (serialize-qutebrowser-urls
                                                                  sss-qutebrowser-bookmarks)))
@@ -207,7 +207,7 @@
                                                      "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
-                                                            "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
+                                                 "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
              ;; Emacs initialization file
              (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))
              ;; Emacs bridge with SSS

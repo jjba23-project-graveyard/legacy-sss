@@ -120,7 +120,7 @@
   :ensure t
   :demand t
   :after (tekengrootte)
-  ;;:hook (after-init . keycast-mode)
+  :hook (after-init . keycast-mode)
   :config
   (define-minor-mode keycast-mode
     "Show current command and its key binding in the mode line (fix for use with doom-modeline)."
