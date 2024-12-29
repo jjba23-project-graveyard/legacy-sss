@@ -16,7 +16,7 @@ machine imap.gmail.com login you@gmail.com port imaps password mypassword
 machine smtp.gmail.com login you@gmail.com password mypassword port 587
 #+end_src
 
-Then configure GNUS to use Gmail:
+Then configure GNUS to use Gmail (tweak ~~/.gnus.el~):
 #+begin_src elisp
 (setq user-mail-address "you@gmail.com")
 (setq user-full-name "Your Name")
