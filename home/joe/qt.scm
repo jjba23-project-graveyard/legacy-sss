@@ -26,17 +26,17 @@
   (string-append "[Appearance]\n"
                  (mk-kv-conf-lines `((color_scheme_path . "/run/current-system/profile/share/qt6ct/colors/airy.conf")
                                      (custom_palette . false)
-                                     (icon_theme unquote (cond
-                                                          ((equal?
-                                                            sss-palette-ef-cyprus
-                                                            sss-active-palette)
-                                                           "Yaru-sage")
-                                                          ((equal?
-                                                            sss-palette-ef-dream
-                                                            sss-active-palette)
-                                                           "Yaru-purple-dark")
-                                                          (else
-                                                           "Yaru-sage-dark")))
+                                     (icon_theme unquote
+                                                 (cond
+                                                   ((equal?
+                                                     sss-palette-ef-cyprus
+                                                     sss-active-palette)
+                                                    "Yaru-sage")
+                                                   ((equal?
+                                                     sss-palette-ef-dream
+                                                     sss-active-palette)
+                                                    "Yaru-purple-dark")
+                                                   (else "Yaru-sage-dark")))
                                      (standard_dialogs . default)
                                      (style . kvantum)))
                  "\n[Fonts]\n"

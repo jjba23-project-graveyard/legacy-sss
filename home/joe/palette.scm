@@ -151,8 +151,8 @@
     (background-l . "#f0ece0")))
 
 (define-public sss-palette-ef-dream
-  `(;; Basic values
-    (bg-main . "#232025")
+  `( ;Basic values
+     (bg-main . "#232025")
     (fg-main . "#efd5c5")
     (bg-dim . "#322f34")
     (fg-dim . "#8f8886")

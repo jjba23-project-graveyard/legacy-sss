@@ -45,39 +45,35 @@
     "org.jointhefreeworld.metainfog"))
 
 (define sss-sway-wallpaper
-  "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")
+  (cond
+    ((equal? sss-palette-ef-cyprus sss-active-palette)
+     "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")
+    ((equal? sss-palette-ef-dream sss-active-palette)
+     "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/392048-raiden-shogun-genshin-impact-game-4k-pc-wallpaper.jpg")
+    (else
+     "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")))
 
 (define sss-sway-startup-programs
-  (list
-   ;; #~(string-append
-   ;; #$swayidle "/bin/swayidle -w \\\n    "
-   ;; ;; 300: lock screen.
-   ;; "timeout 300 '" #$swaylock "/bin/swaylock "
-   ;; "--indicator-radius 75 \\\n    "
-   ;; "-i " #$sway
-   ;; #$sss-sway-wallpaper " \\\n    "
-   ;; "-f -c 000000' \\\n    "
-   ;; ;; 600: lock + screen off.
-   ;; "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
-   ;; ;; Resume + sleep.
-   ;; "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
-   ;; "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
-   "lxsession"
-   "mako"
-   "emacs --daemon"
-   "dbus-update-activation-environment --all"
-   "waybar"
-   "transmission-daemon"
-   "foot -s"))
+  (list "lxsession"
+        "mako"
+        "emacs --daemon"
+        "dbus-update-activation-environment --all"
+        "waybar"
+        "transmission-daemon"
+        "foot -s"))
 
 (define sss-sway-startup-reload-programs
   (let ((gtk-theme-name (cond
                           ((equal? sss-palette-ef-cyprus sss-active-palette)
                            "Yaru-sage")
+                          ((equal? sss-palette-ef-dream sss-active-palette)
+                           "Yaru-purple-dark")
                           (else "Yaru-sage-dark")))
         (icon-theme-name (cond
                            ((equal? sss-palette-ef-cyprus sss-active-palette)
                             "Yaru-sage")
+                           ((equal? sss-palette-ef-dream sss-active-palette)
+                            "Yaru-purple-dark")
                            (else "Yaru-sage-dark"))))
     
     `(,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name) ,
@@ -229,3 +225,17 @@
                                                               w))
                                                        sss-sway-floating-windows)
                                                       sss-sway-extra-content)))))
+
+;; #~(string-append
+;; #$swayidle "/bin/swayidle -w \\\n    "
+;; ;; 300: lock screen.
+;; "timeout 300 '" #$swaylock "/bin/swaylock "
+;; "--indicator-radius 75 \\\n    "
+;; "-i " #$sway
+;; #$sss-sway-wallpaper " \\\n    "
+;; "-f -c 000000' \\\n    "
+;; ;; 600: lock + screen off.
+;; "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
+;; ;; Resume + sleep.
+;; "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
+;; "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
