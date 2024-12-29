@@ -165,26 +165,24 @@ The installed software will be available, for example at: ~/home/joe/.nix-profil
 
 *** Work in Progress
 
-**** WIP generate manual, documentation and cheatsheet for SSS easily
+**** WIP write good manual, documentation and cheatsheet for SSS easily
 
 **** WIP dynamic theming based on Guix user config
 
 
 *** Backlog
 
-**** TODO org tasks move from WIP to backlog more easily and so on with less kill and yank
-
 **** TODO record types (define-configuration) to modularize config and translate foot configs and git configs and other complex ones to Scheme, and extract to a Guile library factory pattern for users
 
 **** TODO make it easier to manage Nix packages from Guile scheme
 
-**** TODO create simple bootstrap script for first-setup to help adoption of sss
+**** TODO create simple bootstrap script for first-setup to help adoption of SSS
 
 **** TODO create project banners, logos, marketing
 
 **** TODO create a user factory which is by default configured to joe's settings but is easily tweaked and with no duplication it creates new users.
 
-**** TODO create "bridge" between Scheme world and others, like Bash, Emacs and if needed Nix
+**** TODO test code in lib
 
 
 
@@ -197,3 +195,6 @@ CLOSED: [2024-11-22 vr 13:17]
 CLOSED: [2024-12-16 ma 23:18]
 **** DONE Qutebrowser dasshboard welcome screen / welkomscherm
 CLOSED: [2024-12-20 vr 23:11]
+
+**** DONE create "bridge" between Scheme world and others, like Bash, Emacs and if needed Nix
+CLOSED: [2024-12-29 zo 10:08]
