@@ -15,31 +15,14 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+;; Code:
 
+;; Autoload all Scheme modules in home/<user> and subdirectories
+;; Some special modules and files are skipped, such as `home.scm'
+;; and all modules should have the `.scm' extension
 (load "../../lib/path.scm")
 (use-modules (sss path))
-
-(load-home-modules)
-
-;; (load "./sway.scm")
-;; (load "./foot.scm")
-;; (load "./fuzzel.scm")
-;; (load "./git.scm")
-;; (load "./waybar.scm")
-;; (load "./vars.scm")
-;; (load "./ssh.scm")
-;; (load "./mako.scm")
-;; (load "./byggsteg.scm")
-;; (load "./fontconfig.scm")
-;; (load "./bash.scm")
-;; (load "./gtk.scm")
-;; (load "./openpgp.scm")
-;; (load "./portals.scm")
-;; (load "./xmodmap.scm")
-;; (load "./enchant.scm")
-;; (load "./qt.scm")
-;; (load "./qutebrowser.scm")
-;; (load "./bridge/emacs.scm")
+(load-home-modules "joe")
 
 (use-modules (gnu home)
              (gnu services)
@@ -50,7 +33,9 @@
              (gnu home services gnupg)
              (gnu home services shepherd)
              (gnu home services sound)
-             (gnu home services desktop))
+             (gnu home services desktop)
+             (json)
+             (sxml simple))
 
 (use-modules (sss-sway)
              (sss lib process)
@@ -73,15 +58,12 @@
              (sss bridge emacs)
              (sss-qutebrowser))
 
-(use-modules (json))
-(use-modules (sxml simple))
-
 (define sss-home-files-service
   (service home-files-service-type
            `( ;XModmap configuration file for example for Caps to Lock
-              (".xmodmap" ,(plain-file "xmodmap"
-                                       (mk-kv-conf-lines sss-xmodmap-config
-                                        #:template spaced-equal-conf-pair)))
+             (".xmodmap" ,(plain-file "xmodmap"
+                                      (mk-kv-conf-lines sss-xmodmap-config
+                                                        #:template spaced-equal-conf-pair)))
 
              ;; GTK 3 settings
              (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
@@ -104,7 +86,7 @@
              ;; Global Git configuration
              (".gitconfig" ,(plain-file "gitconfig.ini"
                                         (mk-rec-kv-conf-lines sss-gitconfig
-                                         #:template spaced-equal-conf-pair)))
+                                                              #:template spaced-equal-conf-pair)))
              ;; Personal Git configuration
              (".gitconfig-personal" ,(plain-file "gitconfig-personal.ini"
                                                  (mk-rec-kv-conf-lines
@@ -132,8 +114,8 @@
              ;; Nix configuration with experimental features
              (".config/nix/nix.conf" ,(plain-file "nix.conf"
                                                   (mk-rec-kv-conf-lines `((experimental-features . "nix-command flakes"))
-                                                   #:template
-                                                   spaced-equal-conf-pair)))
+                                                                        #:template
+                                                                        spaced-equal-conf-pair)))
              ;; Loads Nixpkgs configuration locally
              (".config/nixpkgs/config.nix" ,(local-file "nix/nixpkgs.nix"))
 
@@ -204,7 +186,7 @@
                                                         sss-enchant-dict-en)))
              ;; Qutebrowser configurations (web browser)
              (".config/qutebrowser/config.py" ,(plain-file "config.py"
-                                                sss-qutebrowser-config))
+                                                           sss-qutebrowser-config))
              (".config/qutebrowser/bookmarks/urls" ,(plain-file "urls"
                                                                 (serialize-qutebrowser-urls
                                                                  sss-qutebrowser-bookmarks)))
@@ -216,7 +198,7 @@
                                                      "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
-                                                 "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
+                                                            "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
              ;; Emacs initialization file
              (".emacs.d/init.el" ,(local-file "emacs/init.el"))
              ;; Emacs bridge with SSS

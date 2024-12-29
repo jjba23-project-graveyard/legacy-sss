@@ -67,10 +67,10 @@
      (else '()))))
 
 
-(define-public (load-home-modules)
+(define-public (load-home-modules user)
   (display "Loading home modules...\n")
-  (let ((cs (scan-home-components "home/joe"))
-        (cs-bridge (scan-home-components "home/joe/bridge")))
+  (let ((cs (scan-home-components (format #f "home/~a" user)))
+        (cs-bridge (scan-home-components (format #f "home/~a/bridge" user))))
     (for-each (lambda (s) (load s)) (append cs cs-bridge))
     ))
 
