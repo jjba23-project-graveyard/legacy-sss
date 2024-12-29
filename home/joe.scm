@@ -181,6 +181,10 @@
              (".config/qt6ct/qt6ct.conf" ,(plain-file "qt6ct.conf"
                                                       sss-qt6ct-config))
 
+             ;; Qt5 configuration
+             (".config/qt5ct/qt5ct.conf" ,(plain-file "qt5ct.conf"
+                                                      sss-qt5ct-config))
+
              ;; Mako (notification daemon) configuration
              (".config/mako/config" ,(plain-file "config"
                                                  (mk-kv-conf-lines
