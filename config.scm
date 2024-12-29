@@ -24,7 +24,7 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(load "./lib/proc.scm")
+(load "./lib/process.scm")
 (load "./per-host.scm")
 (load "./system/packages.scm")
 

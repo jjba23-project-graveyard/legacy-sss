@@ -15,12 +15,12 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "../../lib/proc.scm")
+(load "../../lib/process.scm")
 
 (define-module (sss-qt)
   #:use-module (gnu)
   #:use-module (sss-palette)
-  #:use-module (sss-proc))
+  #:use-module (sss lib process))
 
 (define-public sss-qt6ct-config
   (string-append "[Appearance]\n"

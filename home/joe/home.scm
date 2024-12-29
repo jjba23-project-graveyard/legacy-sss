@@ -15,7 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "../../lib/proc.scm")
+(load "../../lib/process.scm")
 (load "./sway.scm")
 (load "./foot.scm")
 (load "./fuzzel.scm")
@@ -48,7 +48,7 @@
              (gnu home services desktop))
 
 (use-modules (sss-sway)
-             (sss-proc)
+             (sss lib process)
              (sss-foot)
              (sss-fuzzel)
              (sss-git)
