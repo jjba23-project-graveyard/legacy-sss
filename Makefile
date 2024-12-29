@@ -51,17 +51,17 @@ system-reconfigure:
 	@sudo guix system reconfigure config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")
 	$(call sss-notify,"SSS system-reconfigure was succesful!")
-joe-reconfigure:
+joe-reconfigure: format
 	$(call sss-log-starting,"joe-reconfigure")
-	@guix home reconfigure home/joe/home.scm  --fallback
+	@guix home reconfigure home/joe.scm  --fallback
 	$(call sss-log-complete,"joe-reconfigure")
 	$(call sss-notify,"SSS joe-reconfigure was succesful!")
-manon-reconfigure:
+manon-reconfigure: format
 	$(call sss-log-starting,"manon-reconfigure")
-	@guix home reconfigure home/manon/home.scm  --fallback
+	@guix home reconfigure home/manon.scm  --fallback
 	$(call sss-log-complete,"manon-reconfigure")
 	$(call sss-notify,"SSS manon-reconfigure was succesful!")
-full-rebuild:
+full-rebuild: format
 	$(call sss-log-starting,"full-rebuild")
 	@make system-reconfigure
 	@make joe-reconfigure
