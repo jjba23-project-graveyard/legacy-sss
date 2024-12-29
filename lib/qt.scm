@@ -33,7 +33,7 @@
                                                    ((equal?
                                                      sss-palette-ef-dream
                                                      sss-active-palette)
-                                                    "Yaru-purple-dark")
+                                                    "Yaru-magenta-dark")
                                                    (else "Yaru-sage-dark")))
                                      (standard_dialogs . default)
                                      (style . kvantum)))

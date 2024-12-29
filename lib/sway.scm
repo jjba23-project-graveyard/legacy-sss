@@ -49,7 +49,7 @@
     ((equal? sss-palette-ef-cyprus sss-active-palette)
      "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")
     ((equal? sss-palette-ef-dream sss-active-palette)
-     "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/392048-raiden-shogun-genshin-impact-game-4k-pc-wallpaper.jpg")
+     "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/1362745.png")
     (else
      "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")))
 
@@ -67,13 +67,13 @@
                           ((equal? sss-palette-ef-cyprus sss-active-palette)
                            "Yaru-sage")
                           ((equal? sss-palette-ef-dream sss-active-palette)
-                           "Yaru-purple-dark")
+                           "Yaru-magenta-dark")
                           (else "Yaru-sage-dark")))
         (icon-theme-name (cond
                            ((equal? sss-palette-ef-cyprus sss-active-palette)
                             "Yaru-sage")
                            ((equal? sss-palette-ef-dream sss-active-palette)
-                            "Yaru-purple-dark")
+                            "Yaru-magenta-dark")
                            (else "Yaru-sage-dark"))))
     
     `(,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name) ,

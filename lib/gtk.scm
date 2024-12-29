@@ -27,14 +27,14 @@
                            ((equal? sss-palette-ef-cyprus sss-active-palette)
                             "Yaru-sage")
                            ((equal? sss-palette-ef-dream sss-active-palette)
-                            "Yaru-purple-dark")
+                            "Yaru-magenta-dark")
                            (else "Yaru-sage-dark")))
     (gtk-theme-name unquote
                     (cond
                       ((equal? sss-palette-ef-cyprus sss-active-palette)
                        "Yaru-sage")
                       ((equal? sss-palette-ef-dream sss-active-palette)
-                       "Yaru-purple-dark")
+                       "Yaru-magenta-dark")
                       (else "Yaru-sage-dark")))
     (gtk-font-name . "Monaspace Neon 11")
     (gtk-key-theme-name . "Emacs")
@@ -58,14 +58,14 @@
                            ((equal? sss-palette-ef-cyprus sss-active-palette)
                             "Yaru-sage")
                            ((equal? sss-palette-ef-dream sss-active-palette)
-                            "Yaru-purple-dark")
+                            "Yaru-magenta-dark")
                            (else "Yaru-sage-dark")))
     (gtk-theme-name unquote
                     (cond
                       ((equal? sss-palette-ef-cyprus sss-active-palette)
                        "Yaru-sage")
                       ((equal? sss-palette-ef-dream sss-active-palette)
-                       "Yaru-purple-dark")
+                       "Yaru-magenta-dark")
                       (else "Yaru-sage-dark")))
     (gtk-font-name . "Monaspace Neon 11")
     (gtk-enable-event-sounds . 0)
