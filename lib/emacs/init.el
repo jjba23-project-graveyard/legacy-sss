@@ -950,10 +950,7 @@ According to size, color and font family"
   (setq recentf-max-menu-items 100
         recentf-max-saved-items 100)
 
-  (add-to-list 'after-make-frame-functions 'new-frame-setup t)
-  
-  )
+  (add-to-list 'after-make-frame-functions 'new-frame-setup t))
 
 
 ;;; init.el ends here
-
