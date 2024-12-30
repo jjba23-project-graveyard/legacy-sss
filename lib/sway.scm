@@ -94,7 +94,7 @@
     (gnome-schema . "org.gnome.desktop.interface")
     (editor . "emacsclient -c")
     (bloated-browser . "/home/joe/.nix-profile/bin/vivaldi")
-    (browser . "qutebrowser")
+    (browser . "QT_QPA_PLATFORM=xcb qutebrowser")
     (term . "footclient")
     (password-manager . "/home/joe/.nix-profile/bin/1password")
     (menu . "fuzzel")))

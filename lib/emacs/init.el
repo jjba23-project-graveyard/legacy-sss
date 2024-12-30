@@ -797,6 +797,7 @@ According to size, color and font family"
 
 (use-package jinx
   :ensure nil
+  :demand t
   :bind (("M-$" . jinx-correct)
          ([remap ispell-word] . #'jinx-correct)
          ("C-M-$" . jinx-languages))
@@ -860,6 +861,7 @@ According to size, color and font family"
 
 (use-package erc
   :ensure nil
+  :demand t
   :custom
   (erc-nick "jjba23")
   (erc-autojoin-channels-alist '(("freenode.net" "#guix" "#emacs" "#org-mode")))
@@ -887,6 +889,7 @@ According to size, color and font family"
          ("C-c b e" . sss-bookmark-emacs-config)
          ("C-c l d" . toggle-debug-on-error)
          ("C-c l e" . eval-buffer)
+         ("C-c C-m C-s" . gnus-group-read-ephemeral-group)
          ("C-c # j" . sss-joe-reconfigure)
          ("C-c # s" . sss-sys-reconfigure)
          ("C-c # u" . sss-sys-update)
