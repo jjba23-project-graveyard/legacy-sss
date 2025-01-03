@@ -39,8 +39,8 @@
     (gtk-font-name . "Monaspace Neon 11")
     (gtk-key-theme-name . "Emacs")
     (gtk-enable-event-sounds . 0)
-    (gtk-cursor-theme-name . "Adwaita")
-    (gtk-cursor-theme-size . 32)
+    (gtk-cursor-theme-name . "Yaru")
+    (gtk-cursor-theme-size . 24)
     (gtk-enable-input-feedback-sounds . 0)
     (gtk-application-prefer-dark-theme unquote
                                        (cond
@@ -69,8 +69,8 @@
                       (else "Yaru-sage-dark")))
     (gtk-font-name . "Monaspace Neon 11")
     (gtk-enable-event-sounds . 0)
-    (gtk-cursor-theme-name . "Adwaita")
-    (gtk-cursor-theme-size . 32)
+    (gtk-cursor-theme-name . "Yaru")
+    (gtk-cursor-theme-size . 24)
     (gtk-enable-input-feedback-sounds . 0)
     (gtk-application-prefer-dark-theme unquote
                                        (cond

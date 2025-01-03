@@ -78,8 +78,8 @@
     
     `(,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name) ,
       (format #f "gsettings set $gnome-schema icon-theme '~a'" icon-theme-name)
-      "gsettings set $gnome-schema cursor-theme 'Adwaita'"
-      "gsettings set $gnome-schema cursor-size 32"
+      "gsettings set $gnome-schema cursor-theme 'Yaru'"
+      "gsettings set $gnome-schema cursor-size 24"
       "gsettings set $gnome-schema font-name 'Monaspace Neon'")))
 
 (define-public sss-sway-outputs
