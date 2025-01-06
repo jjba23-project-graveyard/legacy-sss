@@ -890,6 +890,7 @@ According to size, color and font family"
          ("C-c l d" . toggle-debug-on-error)
          ("C-c l e" . eval-buffer)
          ("C-c C-m C-s" . gnus-group-read-ephemeral-group)
+         ("C-c u u" . sss-uuidgen)
          ("C-c # j" . sss-joe-reconfigure)
          ("C-c # s" . sss-sys-reconfigure)
          ("C-c # u" . sss-sys-update)
@@ -926,6 +927,13 @@ According to size, color and font family"
   (scroll-bar-mode -1) 
   (menu-bar-mode -1) 
   (delete-selection-mode +1)
+
+  (defun sss-uuidgen ()
+    (interactive)
+    (let ((uid (string-replace "\n" "" (shell-command-to-string "uuidgen"))))
+      (message (format "generated UUID: %s" uid))
+      (kill-new uid)
+      ))
 
   ;; when in wayland this can be nice:
   (set-frame-parameter nil 'alpha-background 90) 
