@@ -93,7 +93,7 @@
     (right . "Right")
     (gnome-schema . "org.gnome.desktop.interface")
     (editor . "emacsclient -c")
-    (bloated-browser . "/home/joe/.nix-profile/bin/vivaldi")
+    (bloated-browser . "google-chrome")
     (browser . "QT_QPA_PLATFORM=xcb qutebrowser")
     (term . "footclient")
     (password-manager . "/home/joe/.nix-profile/bin/1password")

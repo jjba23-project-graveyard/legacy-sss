@@ -13,7 +13,7 @@
 
   (for-each
    (lambda(x) (nix-profile-install x))
-   '("vivaldi"
+   '(
      "prismlauncher"
      "yaml-language-server"
      "bash-language-server"

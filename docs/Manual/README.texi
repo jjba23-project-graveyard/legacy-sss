@@ -89,7 +89,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 @item @code{s-i}
 @tab Open a Web Browser (Qutebrowser)
 @item @code{s-S-i}
-@tab Open a bloated Web Browser (Vivaldi)
+@tab Open a bloated Web Browser (Chrome)
 @item @code{s-RET}
 @tab Open a terminal emulator (Foot)
 @item @code{s-t}

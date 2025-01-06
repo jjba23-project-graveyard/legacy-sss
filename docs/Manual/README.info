@@ -72,7 +72,7 @@ keybind   command
 -------------------------------------------------
 ‘s-/’     Launch application fuzzy finder menu
 ‘s-i’     Open a Web Browser (Qutebrowser)
-‘s-S-i’   Open a bloated Web Browser (Vivaldi)
+‘s-S-i’   Open a bloated Web Browser (Chrome)
 ‘s-RET’   Open a terminal emulator (Foot)
 ‘s-t’     _idem_
 ‘s-e’     Open text editor (Emacs)
