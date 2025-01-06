@@ -21,7 +21,6 @@
   #:use-module (nongnu packages messaging)
   #:use-module (nongnu packages chrome)
   #:use-module (nongnu packages music)
-  #:use-module (nongnu packages anydesk)
   #:use-module (gnu services nix)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
@@ -550,7 +549,6 @@ more.")
 
    ;; element-desktop
    google-chrome-stable
-   anydesk
    reaper
    
    (specification->package "darkhttpd")
