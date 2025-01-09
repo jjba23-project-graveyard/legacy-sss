@@ -1,4 +1,5 @@
 #+title: SSS - Project Management
+#+options: toc:nil num:nil
 
 ** Work in Progress
 
