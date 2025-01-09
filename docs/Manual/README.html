@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-09 do 10:26 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SSS/GNU system - Manual &amp; Documentation</title>
+<meta name="author" content="Music Player Daemon (MPD) user" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">SSS/GNU system - Manual &amp; Documentation</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd759fa4">1. What lies here?</a></li>
+<li><a href="#org94485f5">2. Why ?</a></li>
+<li><a href="#org619fc39">3. How this manual works</a></li>
+<li><a href="#org163e43f">4. Customizations</a></li>
+<li><a href="#org23f6eb7">5. Per host - per-host.scm</a></li>
+<li><a href="#orgd593678">6. Bootstrapping</a></li>
+<li><a href="#org1e2c845">7. Updating your system</a></li>
+<li><a href="#org642a1bf">8. Nix profile</a></li>
+<li><a href="#org93f758f">9. Keyboard Terminology</a></li>
+<li><a href="#orgba05549">10. Sway</a>
+<ul>
+<li><a href="#org080ba2c">10.1. Screenshot keybindings</a></li>
+<li><a href="#orgf9689ac">10.2. Application keybindings</a></li>
+</ul>
+</li>
+<li><a href="#orgc0a978d">11. Emacs</a>
+<ul>
+<li><a href="#orgb2d8ddf">11.1. General non-vanilla bindings</a></li>
+<li><a href="#org4522f33">11.2. SSS specific keybindings</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+You are reading the manual for the Supreme Sexp System (SSS).
+</p>
+
+<p>
+This manual documents the SSS/GNU system and its functionalities.
+</p>
+
+<p>
+This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
+</p>
+
+<p>
+SSS is not intended for beginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
+</p>
+
+<p>
+SSS is my system, my workflow, my configuration files, and a big insight in the tooling I use and enjoy, and can teach you a thing or two.
+</p>
+
+<div id="outline-container-orgd759fa4" class="outline-2">
+<h2 id="orgd759fa4"><span class="section-number-2">1.</span> What lies here?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Knowledge you may find in the repo includes:
+</p>
+<ul class="org-ul">
+<li>GNU Guix system configurations (Guile Scheme)</li>
+<li>Advanced Emacs configurations with Emacs Lisp + Elpaca</li>
+<li>SwayFX configurations (Guile Scheme)</li>
+<li>Foot terminal emulator (Guile Scheme)</li>
+<li>Waybar configuration and style (Guile Scheme)</li>
+<li>Mako configuration and style (Guile Scheme)</li>
+<li>multi-user Git configuration setup (work/personal)</li>
+<li>Qutebrowser configurations (Guile Scheme)</li>
+</ul>
+
+<p>
+Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
+</p>
+
+<p>
+Warning: parts of the code and settings might default to the Dutch language ( <code>nl_NL.UTF-8</code> ).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org94485f5" class="outline-2">
+<h2 id="org94485f5"><span class="section-number-2">2.</span> Why ?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
+</p>
+
+<p>
+I refer to SSS lovingly as the modern Lisp machine. With this one obtains a computing style and programming environment that can be referred to as Lisp user space. This is a modern iteration of the Lisp machines of yore.
+</p>
+
+<p>
+Staying as libre as possible, any of the system's application code can be made available to you at any time.
+</p>
+
+<p>
+You can be aware of all the code that is running on your machine, which puts GNU among the most secure operating systems on Earth.
+</p>
+
+<p>
+Learning Lisps is really going down a rabbit hole, but trust me, you will come out with a better understanding of programming as a whole out the other end.
+</p>
+
+<p>
+Secure yourself against malevolent state actors and never trust someone else's unverified binaries again, as you can build from the source all the way down.
+</p>
+
+<p>
+Lisp user space provides an introspective, hackable, and transactionable operating system that can be modified live in a REPL.
+</p>
+
+<p>
+The lines between data and code fade, allowing insane flexibility and power.
+</p>
+
+<p>
+Lisp user space is centered on text-based user interfaces instead of graphical user interfaces, and can be mostly used without a mouse, which makes it easier to use for people living with disabilities as well as power users.
+</p>
+
+<p>
+All of the system can be inspected and most of it can be hacked live in a REPL, making it a pure expression of the libre software ethic, and an incredibly versatile tool for a skilled programmer.
+</p>
+
+<p>
+<b>Heed my warning</b>
+</p>
+
+<p>
+This is the set of files that powers my day-to-day computing experience, so do not track my dotfiles (rolling, unstable, and untested), but feel free to use them and take inspiration from them or fork and work under the terms of the GNU GPL v3 or newer.
+</p>
+
+<p>
+In some ways this is a laboratory of experimentation for my computing environment. What I do with any other program that forms part of sss is only meant to work for me. As such, I may introduce breaking changes without prior notice.
+</p>
+
+<p>
+This is all to say that you understand the risks associated with tracking an ever-changing project that does not enjoy widespread testing and whose target audience is only me. If you are fine with that and are willing to assume responsibility for any possible breakage, then please feel welcome to follow along. You can always open an issue here or contribute any fixes, if you will.
+</p>
+
+<p>
+This configuration is somehwat biased towards containing a <code>joe</code> user who also acts as administrator for most of the time. Your mileage may vary (YMMV).
+</p>
+
+<p>
+Some commands in the <code>Makefile</code> are more geared towards <code>joe</code> since we assume a device is most frequently only tended to by one system administration most of the time. Some examples are <code>make fr</code> or <code>make jr</code>.
+</p>
+
+<p>
+The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org619fc39" class="outline-2">
+<h2 id="org619fc39"><span class="section-number-2">3.</span> How this manual works</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+This manual is written by hand with care and attention for detail.
+</p>
+
+<p>
+I write my documents in Org format from Emacs and export them for your convenience to several other formats. A usual release of the manual happens as follows:
+</p>
+
+<ul class="org-ul">
+<li>Edit the SSS manual</li>
+<li>Export to texi and info via <code>org-texinfo-export-to-info</code></li>
+<li>Export to HTML via <code>org-html-export-to-html</code></li>
+<li>Export to LaTEX PDF via <code>org-latex-export-to-pdf</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org163e43f" class="outline-2">
+<h2 id="org163e43f"><span class="section-number-2">4.</span> Customizations</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+SSS supports several user customizations, more specifically:
+</p>
+
+<p>
+Several color palettes, inspired by the great `ef-themes` by Protesilaos Stavrou, including <code>ef-bio</code>, <code>ef-cyprus</code> and <code>ef-dream</code>.
+</p>
+
+<p>
+Find Prot's themes here: <a href="https://github.com/protesilaos/ef-themes">https://github.com/protesilaos/ef-themes</a>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org23f6eb7" class="outline-2">
+<h2 id="org23f6eb7"><span class="section-number-2">5.</span> Per host - per-host.scm</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+It is <b>REQUIRED</b> to include a <code>per-host.scm</code> in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
+Find here a reference configuration with what is required.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-scheme">(use-modules (gnu)
+           (gnu packages))
+
+(define sss-filesystems
+    (list (file-system
+           (device "/dev/nvme0n1p3")
+           (mount-point "/")
+           (type "ext4"))
+          (file-system
+           (device "/dev/nvme0n1p1")
+           (mount-point "/boot/efi")
+           (type "vfat"))))
+
+;; or (define sss-per-host-packages '())
+(define sss-per-host-packages
+  (list
+   ;; AMD non-free drivers
+   (specification-&gt;package "amd-microcode")
+   (specification-&gt;package "amdgpu-firmware")
+   ;; Games
+   (specification-&gt;package "prismlauncher")
+   (specification-&gt;package "steam")))
+
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgd593678" class="outline-2">
+<h2 id="orgd593678"><span class="section-number-2">6.</span> Bootstrapping</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+It's possible you need to some manual installations, and temporary workarounds, in order to install <code>sss</code> on a brand-new Guix installation.
+</p>
+
+<p>
+Some aspects will be dependent on the manner of installation and hardware.
+</p>
+
+<p>
+For example including <code>nonguix</code> in your channels (<code>~/.config/guix/channels.scm</code>). You might also need to install tools like Git and GNU make temporarily.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-scheme">(cons* (channel
+      (name 'nonguix)
+      (url "https://gitlab.com/nonguix/nonguix")
+      (introduction
+       (make-channel-introduction
+        "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
+        (openpgp-fingerprint
+         "2A39 3FFF 68F4 EF7A 3D29 12AF 6F51 20A0 22FB B2D5"))))
+     %default-channels)
+
+</pre>
+</div>
+
+
+<p>
+Getting started is easy:
+</p>
+
+<ul class="org-ul">
+<li>Install the Guix GNU/Linux distribution</li>
+<li>Only install nonguix if you truly require additional hardware support</li>
+<li>Do a guix pull from your regular user to get a recent commit of Guix</li>
+<li>Clone this repository after having temporarily installed Git and Make (e.g. in a guix shell)</li>
+<li>Write an appropriate <code>per-host.scm</code> for your setup</li>
+<li>Contact me for any doubts &lt;jjbigorra@gmail.com&gt;</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org1e2c845" class="outline-2">
+<h2 id="org1e2c845"><span class="section-number-2">7.</span> Updating your system</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+You should every now and then do a <code>guix pull</code> from your regular user, and then rebuild this system with the root user. See the Makefile for more information.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org642a1bf" class="outline-2">
+<h2 id="org642a1bf"><span class="section-number-2">8.</span> Nix profile</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Nixpkgs contains a lot of software which we can leverage and manage from Guix.
+</p>
+
+<p>
+SSS will automatically install and provide the Nix package manager for you.
+</p>
+
+<p>
+SSS also provides some facilities to manage Nix from the comfort of your Guile Scheme.
+</p>
+
+<p>
+You might need to activate and link the profile in order to be able to use, for the first time.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile
+</pre>
+</div>
+
+<p>
+You can switch your install to use nixpkgs-unstable with:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+nix-channel --update
+</pre>
+</div>
+
+<p>
+You can install Nix packages by running:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix -L profile install --impure nixpkgs#firefox
+</pre>
+</div>
+
+<p>
+You can keep your Nix packages updated by running:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
+</pre>
+</div>
+
+<p>
+The installed software will be available, for example at: <code>/home/joe/.nix-profile/bin/</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org93f758f" class="outline-2">
+<h2 id="org93f758f"><span class="section-number-2">9.</span> Keyboard Terminology</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">term</th>
+<th scope="col" class="org-left">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>s</code></td>
+<td class="org-left">Super / Windows / CMD key</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S</code></td>
+<td class="org-left">Shift key</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M</code></td>
+<td class="org-left">Meta / Alt / Option key</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C</code></td>
+<td class="org-left">Control key</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgba05549" class="outline-2">
+<h2 id="orgba05549"><span class="section-number-2">10.</span> Sway</h2>
+<div class="outline-text-2" id="text-10">
+</div>
+<div id="outline-container-org080ba2c" class="outline-3">
+<h3 id="org080ba2c"><span class="section-number-3">10.1.</span> Screenshot keybindings</h3>
+<div class="outline-text-3" id="text-10-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">keybind</th>
+<th scope="col" class="org-left">command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>s-S-.</code></td>
+<td class="org-left"><b>Copy</b> screenshot of entire screen</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s-.</code></td>
+<td class="org-left"><b>Save</b> screenshot of entire screen</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s-k</code></td>
+<td class="org-left">Kill/Close a window or application</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s-S-c</code></td>
+<td class="org-left">Reload Sway configuration</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgf9689ac" class="outline-3">
+<h3 id="orgf9689ac"><span class="section-number-3">10.2.</span> Application keybindings</h3>
+<div class="outline-text-3" id="text-10-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">keybind</th>
+<th scope="col" class="org-left">command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>s-/</code></td>
+<td class="org-left">Launch application fuzzy finder menu</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s-i</code></td>
+<td class="org-left">Open a Web Browser (Qutebrowser)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s-S-i</code></td>
+<td class="org-left">Open a bloated Web Browser (Chrome)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s-RET</code></td>
+<td class="org-left">Open a terminal emulator (Foot)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s-t</code></td>
+<td class="org-left"><i>idem</i></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s-e</code></td>
+<td class="org-left">Open text editor (Emacs)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s--</code></td>
+<td class="org-left">Open password manager (1password)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc0a978d" class="outline-2">
+<h2 id="orgc0a978d"><span class="section-number-2">11.</span> Emacs</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-orgb2d8ddf" class="outline-3">
+<h3 id="orgb2d8ddf"><span class="section-number-3">11.1.</span> General non-vanilla bindings</h3>
+<div class="outline-text-3" id="text-11-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">keybind</th>
+<th scope="col" class="org-left">command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>M-s r</code></td>
+<td class="org-left">consult-ripgrep</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-s o</code></td>
+<td class="org-left">consult-occur</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org4522f33" class="outline-3">
+<h3 id="org4522f33"><span class="section-number-3">11.2.</span> SSS specific keybindings</h3>
+<div class="outline-text-3" id="text-11-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">keybind</th>
+<th scope="col" class="org-left">command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c # s</code></td>
+<td class="org-left">Perform a system rebuild</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c # j</code></td>
+<td class="org-left">Perform a joe rebuild</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c # f</code></td>
+<td class="org-left">Perform a system + joe rebuild</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Music Player Daemon (MPD) user</p>
+<p class="date">Created: 2025-01-09 do 10:26</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

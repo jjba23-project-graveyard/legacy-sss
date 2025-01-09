@@ -54,6 +54,7 @@
                      gdb
                      rust-apps
                      inkscape
+                     texlive
                      gimp
                      python-web
                      mpd
@@ -322,7 +323,7 @@ more.")
         wireplumber
         pipewire
 
-        texinfo
+
 
         wl-clipboard
 
@@ -415,153 +416,156 @@ more.")
 (define sss-other-system-packages
   (list
 
-        flatpak
-        pipewire
-        nginx
-        watchexec
-        git
-        pavucontrol
+   flatpak
+   pipewire
+   nginx
+   watchexec
+   git
+   pavucontrol
 
-        kcalc
+   kcalc
 
-        slurp
-        ;; stellarium
-        kvantum
-        qt5ct
-        qtsvg
-        ;; seems like qt wayland 6 and 5 are not yet compatible
-        ;; this causes crashes in qt 5 and 6 apps
-        ;; qtwayland
-        qtwayland-5
+   slurp
+   ;; stellarium
+   kvantum
+   qt5ct
+   qtsvg
+   ;; seems like qt wayland 6 and 5 are not yet compatible
+   ;; this causes crashes in qt 5 and 6 apps
+   ;; qtwayland
+   qtwayland-5
 
-        geany
+   geany
 
-        gnome-font-viewer
-        gnome-characters
+   gnome-font-viewer
+   gnome-characters
 
-        rofi-wayland
+   rofi-wayland
 
-        xz
-        ispell
-        (specification->package "bind")
-        wireshark
+   xz
+   ispell
+   (specification->package "bind")
+   wireshark
 
-        gnome-tweaks
-        arandr
-        httpie
-        (specification->package "remmina")
-        libnotify
-        wdisplays
+   gnome-tweaks
+   arandr
+   httpie
+   (specification->package "remmina")
+   libnotify
+   wdisplays
 
-        shotcut
-        openshot
-        inkscape
-        dunst
-        fzf
-        vlc
-        sqlite
-        postgresql
+   shotcut
+   openshot
+   inkscape
+   dunst
+   fzf
+   vlc
+   sqlite
+   postgresql
 
-        gdk-pixbuf
-        gtk
+   gdk-pixbuf
+   gtk
 
-        qutebrowser
+   qutebrowser
 
-        gnome-calculator
-        cheese
-        gnome-system-monitor
-        evince
+   gnome-calculator
+   cheese
+   gnome-system-monitor
+   evince
 
-        qemu
+   qemu
 
-        obs
-        libreoffice
-        gimp
-        imagemagick
-        libwebp
-        feh
+   obs
+   libreoffice
+   gimp
+   imagemagick
+   libwebp
+   feh
 
-        xmodmap
+   xmodmap
 
-        gparted
+   gparted
 
-        lm-sensors
-        exfatprogs
-        exfat-utils
-        fuse-exfat
-        tmon
-        flameshot
+   lm-sensors
+   exfatprogs
+   exfat-utils
+   fuse-exfat
+   tmon
+   flameshot
 
-        parallel
+   parallel
 
-        thunar
+   thunar
 
-        ffmpegthumbs
-        xarchiver
-        ristretto
-        orage
+   ffmpegthumbs
+   xarchiver
+   ristretto
+   orage
 
-        sqlitebrowser
-        direnv
+   sqlitebrowser
+   direnv
 
-        bsd-games
+   bsd-games
 
-        power-profiles-daemon
-        libltdl
-        scenefx
-        swayfx
+   power-profiles-daemon
+   libltdl
+   scenefx
+   swayfx
 
-        gdb
+   gdb
 
-        transmission
-        transmission-remote-gtk
+   transmission
+   transmission-remote-gtk
 
-        xf86-video-fbdev
-        xf86-input-libinput
-        lxsession
-        pamixer
+   xf86-video-fbdev
+   xf86-input-libinput
+   lxsession
+   pamixer
 
-        ;; ghcid
-        neofetch
-        cmatrix
+   texinfo
+   texlive
 
-        bluez
-        hplip
+   ;; ghcid
+   neofetch
+   cmatrix
 
-        autoconf
-        automake
-        perl
+   bluez
+   hplip
 
-        mpv
-        mpv-mpris
-        unixodbc
-        tree
-        fyi
+   autoconf
+   automake
+   perl
 
-        enchant
-        emacs-jinx
-        aspell
-        aspell-dict-nl
-        aspell-dict-pt-pt
-        aspell-dict-es
-        aspell-dict-en
-        aspell-dict-ca
+   mpv
+   mpv-mpris
+   unixodbc
+   tree
+   fyi
 
-        ;; element-desktop
-        google-chrome-stable
-        reaper
+   enchant
+   emacs-jinx
+   aspell
+   aspell-dict-nl
+   aspell-dict-pt-pt
+   aspell-dict-es
+   aspell-dict-en
+   aspell-dict-ca
 
-        (specification->package "darkhttpd")
+   ;; element-desktop
+   google-chrome-stable
+   reaper
 
-        openvpn
-        network-manager-applet
-        network-manager-openconnect
-        network-manager-openvpn
+   (specification->package "darkhttpd")
 
-        nautilus
+   openvpn
+   network-manager-applet
+   network-manager-openconnect
+   network-manager-openvpn
 
-        xxd
-        qt6ct))
+   nautilus
+
+   xxd
+   qt6ct))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))

@@ -9,7 +9,7 @@ This manual documents the SSS/GNU system and its functionalities.
 
 This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
-SSS is not intended for begginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
+SSS is not intended for beginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
 
 SSS is my system, my workflow, my configuration files, and a big insight in the tooling I use and enjoy, and can teach you a thing or two.
 
@@ -27,13 +27,13 @@ Knowledge you may find in the repo includes:
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
-🇳🇱 parts of the code and settings might be in the Dutch language ( ~nl_NL.UTF-8~ ).
+Warning: parts of the code and settings might default to the Dutch language ( ~nl_NL.UTF-8~ ).
 
 ** Why ?
 
 I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
 
-I also refer to SSS lovingly as the modern Lisp machine. With this one obtains a computing style and programming environment that can be referred to as Lisp user space. This is a modern iteration of the Lisp machines of yore.
+I refer to SSS lovingly as the modern Lisp machine. With this one obtains a computing style and programming environment that can be referred to as Lisp user space. This is a modern iteration of the Lisp machines of yore.
 
 Staying as libre as possible, any of the system's application code can be made available to you at any time.
 
@@ -65,11 +65,24 @@ Some commands in the ~Makefile~ are more geared towards ~joe~ since we assume a 
 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
+** How this manual works
+
+This manual is written by hand with care and attention for detail.
+
+I write my documents in Org format from Emacs and export them for your convenience to several other formats. A usual release of the manual happens as follows:
+
+- Edit the SSS manual
+- Export to texi and info via ~org-texinfo-export-to-info~
+- Export to HTML via ~org-html-export-to-html~
+- Export to LaTEX PDF via ~org-latex-export-to-pdf~
+
 ** Customizations
 
 SSS supports several user customizations, more specifically:
 
-Several color palettes, inspired by the great `ef-themes` by Protesilaos Stavrou, including `ef-bio`, `ef-cyprus` and `ef-dream`.
+Several color palettes, inspired by the great `ef-themes` by Protesilaos Stavrou, including ~ef-bio~, ~ef-cyprus~ and ~ef-dream~.
+
+Find Prot's themes here: https://github.com/protesilaos/ef-themes
 
 
 ** Per host - per-host.scm
@@ -105,8 +118,6 @@ Find here a reference configuration with what is required.
 
 
 
-
-
 ** Bootstrapping
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install ~sss~ on a brand-new Guix installation.
@@ -133,18 +144,20 @@ Getting started is easy:
 
 - Install the Guix GNU/Linux distribution
 - Only install nonguix if you truly require additional hardware support
-- Do a guix pull from your regular user to get a recent commiut of Guix
+- Do a guix pull from your regular user to get a recent commit of Guix
 - Clone this repository after having temporarily installed Git and Make (e.g. in a guix shell)
+- Write an appropriate ~per-host.scm~ for your setup
 - Contact me for any doubts <jjbigorra@gmail.com>
 
 
-** Updates
+** Updating your system
 
 You should every now and then do a ~guix pull~ from your regular user, and then rebuild this system with the root user. See the Makefile for more information.
 
 ** Nix profile
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
+
 SSS will automatically install and provide the Nix package manager for you.
 
 SSS also provides some facilities to manage Nix from the comfort of your Guile Scheme.
@@ -213,3 +226,21 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 | ~s--~     | Open password manager (1password)    |
 |        |                                      |
 |---------+--------------------------------------|
+** Emacs
+
+*** General non-vanilla bindings
+
+| keybind | command         |
+|---------+-----------------|
+| ~M-s r~   | consult-ripgrep |
+| ~M-s o~   | consult-occur   |
+|         |                 |
+
+*** SSS specific keybindings
+
+| keybind | command                        |
+|---------+--------------------------------|
+| ~C-c # s~ | Perform a system rebuild       |
+| ~C-c # j~ | Perform a joe rebuild          |
+| ~C-c # f~ | Perform a system + joe rebuild |
+|         |                                |

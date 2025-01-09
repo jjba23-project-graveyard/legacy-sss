@@ -1,0 +1,312 @@
+% Created 2025-01-09 do 10:26
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Music Player Daemon (MPD) user}
+\date{\today}
+\title{SSS/GNU system - Manual \& Documentation}
+\hypersetup{
+ pdfauthor={Music Player Daemon (MPD) user},
+ pdftitle={SSS/GNU system - Manual \& Documentation},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.4 (Org mode 9.6.15)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+You are reading the manual for the Supreme Sexp System (SSS).
+
+This manual documents the SSS/GNU system and its functionalities.
+
+This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
+
+SSS is not intended for beginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
+
+SSS is my system, my workflow, my configuration files, and a big insight in the tooling I use and enjoy, and can teach you a thing or two.
+
+\section{What lies here?}
+\label{sec:orgaafda05}
+
+Knowledge you may find in the repo includes:
+\begin{itemize}
+\item GNU Guix system configurations (Guile Scheme)
+\item Advanced Emacs configurations with Emacs Lisp + Elpaca
+\item SwayFX configurations (Guile Scheme)
+\item Foot terminal emulator (Guile Scheme)
+\item Waybar configuration and style (Guile Scheme)
+\item Mako configuration and style (Guile Scheme)
+\item multi-user Git configuration setup (work/personal)
+\item Qutebrowser configurations (Guile Scheme)
+\end{itemize}
+
+Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
+
+Warning: parts of the code and settings might default to the Dutch language ( \texttt{nl\_NL.UTF-8} ).
+
+\section{Why ?}
+\label{sec:org0a1ee45}
+
+I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
+
+I refer to SSS lovingly as the modern Lisp machine. With this one obtains a computing style and programming environment that can be referred to as Lisp user space. This is a modern iteration of the Lisp machines of yore.
+
+Staying as libre as possible, any of the system's application code can be made available to you at any time.
+
+You can be aware of all the code that is running on your machine, which puts GNU among the most secure operating systems on Earth.
+
+Learning Lisps is really going down a rabbit hole, but trust me, you will come out with a better understanding of programming as a whole out the other end.
+
+Secure yourself against malevolent state actors and never trust someone else's unverified binaries again, as you can build from the source all the way down.
+
+Lisp user space provides an introspective, hackable, and transactionable operating system that can be modified live in a REPL.
+
+The lines between data and code fade, allowing insane flexibility and power.
+
+Lisp user space is centered on text-based user interfaces instead of graphical user interfaces, and can be mostly used without a mouse, which makes it easier to use for people living with disabilities as well as power users.
+
+All of the system can be inspected and most of it can be hacked live in a REPL, making it a pure expression of the libre software ethic, and an incredibly versatile tool for a skilled programmer.
+
+\textbf{Heed my warning}
+
+This is the set of files that powers my day-to-day computing experience, so do not track my dotfiles (rolling, unstable, and untested), but feel free to use them and take inspiration from them or fork and work under the terms of the GNU GPL v3 or newer.
+
+In some ways this is a laboratory of experimentation for my computing environment. What I do with any other program that forms part of sss is only meant to work for me. As such, I may introduce breaking changes without prior notice.
+
+This is all to say that you understand the risks associated with tracking an ever-changing project that does not enjoy widespread testing and whose target audience is only me. If you are fine with that and are willing to assume responsibility for any possible breakage, then please feel welcome to follow along. You can always open an issue here or contribute any fixes, if you will.
+
+This configuration is somehwat biased towards containing a \texttt{joe} user who also acts as administrator for most of the time. Your mileage may vary (YMMV).
+
+Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} since we assume a device is most frequently only tended to by one system administration most of the time. Some examples are \texttt{make fr} or \texttt{make jr}.
+
+The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
+
+\section{How this manual works}
+\label{sec:org485c9be}
+
+This manual is written by hand with care and attention for detail.
+
+I write my documents in Org format from Emacs and export them for your convenience to several other formats. A usual release of the manual happens as follows:
+
+\begin{itemize}
+\item Edit the SSS manual
+\item Export to texi and info via \texttt{org-texinfo-export-to-info}
+\item Export to HTML via \texttt{org-html-export-to-html}
+\item Export to LaTEX PDF via \texttt{org-latex-export-to-pdf}
+\end{itemize}
+
+\section{Customizations}
+\label{sec:orge506b7e}
+
+SSS supports several user customizations, more specifically:
+
+Several color palettes, inspired by the great `ef-themes` by Protesilaos Stavrou, including \texttt{ef-bio}, \texttt{ef-cyprus} and \texttt{ef-dream}.
+
+Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
+
+
+\section{Per host - per-host.scm}
+\label{sec:orgb7a1447}
+
+It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
+Find here a reference configuration with what is required.
+
+\begin{verbatim}
+(use-modules (gnu)
+           (gnu packages))
+
+(define sss-filesystems
+    (list (file-system
+           (device "/dev/nvme0n1p3")
+           (mount-point "/")
+           (type "ext4"))
+          (file-system
+           (device "/dev/nvme0n1p1")
+           (mount-point "/boot/efi")
+           (type "vfat"))))
+
+;; or (define sss-per-host-packages '())
+(define sss-per-host-packages
+  (list
+   ;; AMD non-free drivers
+   (specification->package "amd-microcode")
+   (specification->package "amdgpu-firmware")
+   ;; Games
+   (specification->package "prismlauncher")
+   (specification->package "steam")))
+
+\end{verbatim}
+
+
+
+\section{Bootstrapping}
+\label{sec:org4c11a82}
+
+It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
+
+Some aspects will be dependent on the manner of installation and hardware.
+
+For example including \texttt{nonguix} in your channels (\texttt{\textasciitilde{}/.config/guix/channels.scm}). You might also need to install tools like Git and GNU make temporarily.
+
+\begin{verbatim}
+(cons* (channel
+      (name 'nonguix)
+      (url "https://gitlab.com/nonguix/nonguix")
+      (introduction
+       (make-channel-introduction
+        "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
+        (openpgp-fingerprint
+         "2A39 3FFF 68F4 EF7A 3D29 12AF 6F51 20A0 22FB B2D5"))))
+     %default-channels)
+
+\end{verbatim}
+
+
+Getting started is easy:
+
+\begin{itemize}
+\item Install the Guix GNU/Linux distribution
+\item Only install nonguix if you truly require additional hardware support
+\item Do a guix pull from your regular user to get a recent commit of Guix
+\item Clone this repository after having temporarily installed Git and Make (e.g. in a guix shell)
+\item Write an appropriate \texttt{per-host.scm} for your setup
+\item Contact me for any doubts <jjbigorra@gmail.com>
+\end{itemize}
+
+
+\section{Updating your system}
+\label{sec:org70e86e7}
+
+You should every now and then do a \texttt{guix pull} from your regular user, and then rebuild this system with the root user. See the Makefile for more information.
+
+\section{Nix profile}
+\label{sec:org68262ed}
+
+Nixpkgs contains a lot of software which we can leverage and manage from Guix.
+
+SSS will automatically install and provide the Nix package manager for you.
+
+SSS also provides some facilities to manage Nix from the comfort of your Guile Scheme.
+
+You might need to activate and link the profile in order to be able to use, for the first time.
+
+\begin{verbatim}
+ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile
+\end{verbatim}
+
+You can switch your install to use nixpkgs-unstable with:
+
+\begin{verbatim}
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+nix-channel --update
+\end{verbatim}
+
+You can install Nix packages by running:
+
+\begin{verbatim}
+nix -L profile install --impure nixpkgs#firefox
+\end{verbatim}
+
+You can keep your Nix packages updated by running:
+
+\begin{verbatim}
+NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
+\end{verbatim}
+
+The installed software will be available, for example at: \texttt{/home/joe/.nix-profile/bin/}
+
+\section{Keyboard Terminology}
+\label{sec:org9afb010}
+
+When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
+
+\begin{center}
+\begin{tabular}{ll}
+term & meaning\\[0pt]
+\hline
+\texttt{s} & Super / Windows / CMD key\\[0pt]
+\texttt{S} & Shift key\\[0pt]
+\texttt{M} & Meta / Alt / Option key\\[0pt]
+\texttt{C} & Control key\\[0pt]
+\end{tabular}
+\end{center}
+
+
+\section{Sway}
+\label{sec:orgdd74acd}
+
+\subsection{Screenshot keybindings}
+\label{sec:org45127f7}
+
+\begin{center}
+\begin{tabular}{ll}
+keybind & command\\[0pt]
+\hline
+\texttt{s-S-.} & \textbf{Copy} screenshot of entire screen\\[0pt]
+\texttt{s-.} & \textbf{Save} screenshot of entire screen\\[0pt]
+\texttt{s-k} & Kill/Close a window or application\\[0pt]
+\texttt{s-S-c} & Reload Sway configuration\\[0pt]
+\hline
+\end{tabular}
+\end{center}
+\subsection{Application keybindings}
+\label{sec:org383121a}
+
+
+\begin{center}
+\begin{tabular}{ll}
+keybind & command\\[0pt]
+\hline
+\texttt{s-/} & Launch application fuzzy finder menu\\[0pt]
+\texttt{s-i} & Open a Web Browser (Qutebrowser)\\[0pt]
+\texttt{s-S-i} & Open a bloated Web Browser (Chrome)\\[0pt]
+\texttt{s-RET} & Open a terminal emulator (Foot)\\[0pt]
+\texttt{s-t} & \emph{idem}\\[0pt]
+\texttt{s-e} & Open text editor (Emacs)\\[0pt]
+\texttt{s-{}-{}} & Open password manager (1password)\\[0pt]
+ & \\[0pt]
+\hline
+\end{tabular}
+\end{center}
+\section{Emacs}
+\label{sec:org6ec40ac}
+
+\subsection{General non-vanilla bindings}
+\label{sec:org0d6abd6}
+
+\begin{center}
+\begin{tabular}{ll}
+keybind & command\\[0pt]
+\hline
+\texttt{M-s r} & consult-ripgrep\\[0pt]
+\texttt{M-s o} & consult-occur\\[0pt]
+ & \\[0pt]
+\end{tabular}
+\end{center}
+
+\subsection{SSS specific keybindings}
+\label{sec:org996095b}
+
+\begin{center}
+\begin{tabular}{ll}
+keybind & command\\[0pt]
+\hline
+\texttt{C-c \# s} & Perform a system rebuild\\[0pt]
+\texttt{C-c \# j} & Perform a joe rebuild\\[0pt]
+\texttt{C-c \# f} & Perform a system + joe rebuild\\[0pt]
+ & \\[0pt]
+\end{tabular}
+\end{center}
+\end{document}
