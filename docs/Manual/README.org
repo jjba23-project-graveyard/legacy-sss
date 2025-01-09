@@ -75,6 +75,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 - Export to texi and info via ~org-texinfo-export-to-info~
 - Export to HTML via ~org-html-export-to-html~
 - Export to LaTEX PDF via ~org-latex-export-to-pdf~
+- Export to Markdown via ~org-md-export-to-markdown~
 
 ** Customizations
 

@@ -21,10 +21,11 @@ SSS is not intended for begginners to GNU/Linux systems, and requires some prior
 I strive to provide proper and extensive documentation on the Supreme Sexp System (SSS), in several formats, available at your convenience.
 
 - Org format [[file:docs/Manual/README.org]]
-- texi format [[file:docs/Manual/README.texi]]
-- info format [[file:docs/Manual/README.info]]  
+- PDF format [[file:docs/Manual/README.pdf]]  
 - HTML format [[file:docs/Manual/README.html]]
-- PDF format [[file:docs/Manual/README.pdf]]    
+- Markdown format [[file:docs/Manual/README.md]]  
+- texi format [[file:docs/Manual/README.texi]]
+- info format [[file:docs/Manual/README.info]]    
 
 ** Find the [[file:docs/Project management/README.org][project management of SSS here]].
 
