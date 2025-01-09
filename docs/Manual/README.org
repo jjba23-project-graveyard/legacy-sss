@@ -1,12 +1,182 @@
-
 #+title: SSS/GNU system - Manual & Documentation
 #+TEXINFO_DIR_CATEGORY: System software
 #+TEXINFO_DIR_NAME: SSS - Supreme Sexp System
 #+TEXINFO_DIR_DESC: Supreme Sexp System (SSS) represents a Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are celebrated.
 
-You are reading the manual for SSS. This manual documents the SSS/GNU system and its functionalities.
+You are reading the manual for the Supreme Sexp System (SSS).
 
-** Terminology
+This manual documents the SSS/GNU system and its functionalities.
+
+This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
+
+SSS is not intended for begginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
+
+SSS is my system, my workflow, my configuration files, and a big insight in the tooling I use and enjoy, and can teach you a thing or two.
+
+** What lies here?
+
+Knowledge you may find in the repo includes:
+- GNU Guix system configurations (Guile Scheme)
+- Advanced Emacs configurations with Emacs Lisp + Elpaca
+- SwayFX configurations (Guile Scheme)
+- Foot terminal emulator (Guile Scheme)
+- Waybar configuration and style (Guile Scheme)
+- Mako configuration and style (Guile Scheme)
+- multi-user Git configuration setup (work/personal)
+- Qutebrowser configurations (Guile Scheme)
+
+Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
+
+🇳🇱 parts of the code and settings might be in the Dutch language ( ~nl_NL.UTF-8~ ).
+
+** Why ?
+
+I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
+
+I also refer to SSS lovingly as the modern Lisp machine. With this one obtains a computing style and programming environment that can be referred to as Lisp user space. This is a modern iteration of the Lisp machines of yore.
+
+Staying as libre as possible, any of the system's application code can be made available to you at any time.
+
+You can be aware of all the code that is running on your machine, which puts GNU among the most secure operating systems on Earth.
+
+Learning Lisps is really going down a rabbit hole, but trust me, you will come out with a better understanding of programming as a whole out the other end.
+
+Secure yourself against malevolent state actors and never trust someone else's unverified binaries again, as you can build from the source all the way down.
+
+Lisp user space provides an introspective, hackable, and transactionable operating system that can be modified live in a REPL.
+
+The lines between data and code fade, allowing insane flexibility and power.
+
+Lisp user space is centered on text-based user interfaces instead of graphical user interfaces, and can be mostly used without a mouse, which makes it easier to use for people living with disabilities as well as power users.
+
+All of the system can be inspected and most of it can be hacked live in a REPL, making it a pure expression of the libre software ethic, and an incredibly versatile tool for a skilled programmer.
+
+*Heed my warning*
+
+This is the set of files that powers my day-to-day computing experience, so do not track my dotfiles (rolling, unstable, and untested), but feel free to use them and take inspiration from them or fork and work under the terms of the GNU GPL v3 or newer.
+
+In some ways this is a laboratory of experimentation for my computing environment. What I do with any other program that forms part of sss is only meant to work for me. As such, I may introduce breaking changes without prior notice.
+
+This is all to say that you understand the risks associated with tracking an ever-changing project that does not enjoy widespread testing and whose target audience is only me. If you are fine with that and are willing to assume responsibility for any possible breakage, then please feel welcome to follow along. You can always open an issue here or contribute any fixes, if you will.
+
+This configuration is somehwat biased towards containing a ~joe~ user who also acts as administrator for most of the time. Your mileage may vary (YMMV).
+
+Some commands in the ~Makefile~ are more geared towards ~joe~ since we assume a device is most frequently only tended to by one system administration most of the time. Some examples are ~make fr~ or ~make jr~.
+
+The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
+
+** Customizations
+
+SSS supports several user customizations, more specifically:
+
+Several color palettes, inspired by the great `ef-themes` by Protesilaos Stavrou, including `ef-bio`, `ef-cyprus` and `ef-dream`.
+
+
+** Per host - per-host.scm
+
+It is *REQUIRED* to include a ~per-host.scm~ in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
+Find here a reference configuration with what is required.
+
+#+begin_src  scheme
+  (use-modules (gnu)
+             (gnu packages))
+
+  (define sss-filesystems
+      (list (file-system
+             (device "/dev/nvme0n1p3")
+             (mount-point "/")
+             (type "ext4"))
+            (file-system
+             (device "/dev/nvme0n1p1")
+             (mount-point "/boot/efi")
+             (type "vfat"))))
+
+  ;; or (define sss-per-host-packages '())
+  (define sss-per-host-packages
+    (list
+     ;; AMD non-free drivers
+     (specification->package "amd-microcode")
+     (specification->package "amdgpu-firmware")
+     ;; Games
+     (specification->package "prismlauncher")
+     (specification->package "steam")))
+
+#+end_src
+
+
+
+
+
+** Bootstrapping
+
+It's possible you need to some manual installations, and temporary workarounds, in order to install ~sss~ on a brand-new Guix installation.
+
+Some aspects will be dependent on the manner of installation and hardware.
+
+For example including ~nonguix~ in your channels (=~/.config/guix/channels.scm=). You might also need to install tools like Git and GNU make temporarily.
+
+#+begin_src  scheme
+  (cons* (channel
+        (name 'nonguix)
+        (url "https://gitlab.com/nonguix/nonguix")
+        (introduction
+         (make-channel-introduction
+          "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
+          (openpgp-fingerprint
+           "2A39 3FFF 68F4 EF7A 3D29 12AF 6F51 20A0 22FB B2D5"))))
+       %default-channels)
+
+#+end_src
+
+
+Getting started is easy:
+
+- Install the Guix GNU/Linux distribution
+- Only install nonguix if you truly require additional hardware support
+- Do a guix pull from your regular user to get a recent commiut of Guix
+- Clone this repository after having temporarily installed Git and Make (e.g. in a guix shell)
+- Contact me for any doubts <jjbigorra@gmail.com>
+
+
+** Updates
+
+You should every now and then do a ~guix pull~ from your regular user, and then rebuild this system with the root user. See the Makefile for more information.
+
+** Nix profile
+
+Nixpkgs contains a lot of software which we can leverage and manage from Guix.
+SSS will automatically install and provide the Nix package manager for you.
+
+SSS also provides some facilities to manage Nix from the comfort of your Guile Scheme.
+
+You might need to activate and link the profile in order to be able to use, for the first time.
+
+#+begin_src sh
+  ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile
+#+end_src
+
+You can switch your install to use nixpkgs-unstable with:
+
+#+begin_src sh
+  nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+  nix-channel --update
+#+end_src
+
+You can install Nix packages by running:
+
+#+begin_src sh
+  nix -L profile install --impure nixpkgs#firefox
+#+end_src
+
+You can keep your Nix packages updated by running:
+
+#+begin_src sh
+  NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
+#+end_src
+
+The installed software will be available, for example at: ~/home/joe/.nix-profile/bin/~
+
+** Keyboard Terminology
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
