@@ -18,7 +18,6 @@ SSS is not intended for begginners to GNU/Linux systems, and requires some prior
 
 SSS strives to have all things configured via Lisp dialects when possible and convenient, which allows for magical things to happen.
 
-
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
 [[file:./resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png]]

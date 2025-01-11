@@ -1,54 +1,62 @@
 
 # Table of Contents
 
-1.  [What lies here?](#org5f168e4)
-2.  [Why ?](#org6d71af1)
-3.  [How this manual works](#orgb3f16b0)
-4.  [Customizations](#org7b7e680)
-5.  [Per host - per-host.scm](#orgdd055a8)
-6.  [Bootstrapping](#orga8e0b34)
-7.  [Updating your system](#org03a113e)
-8.  [Nix profile](#org28482f4)
-9.  [Keyboard Terminology](#org245dbb9)
-10. [Sway](#org5d993c6)
-    1.  [Screenshot keybindings](#orgf607607)
-    2.  [Application keybindings](#org63537f1)
-11. [Emacs](#org6e1eb26)
-    1.  [General non-vanilla bindings](#org3baaab5)
-    2.  [SSS specific keybindings](#org3d70604)
+1.  [What lies here?](#orga0340d1)
+2.  [Why ?](#orgf77e5e7)
+3.  [How this manual works](#orgc327dbb)
+4.  [Customizations](#org9fa0df9)
+5.  [Per host - per-host.scm](#org55c3599)
+6.  [Non-free software](#org9ec5c56)
+7.  [Bootstrapping](#orgbcaf5da)
+8.  [Nix profile](#orgcafe429)
+9.  [Keyboard Terminology](#org49bb3ae)
+10. [Sway](#orgb89c5ea)
+    1.  [Screenshot keybindings](#org079ba55)
+    2.  [Application keybindings](#orgf8ec150)
+11. [Emacs](#org855921b)
+    1.  [General non-vanilla bindings](#orgf0b16d5)
+    2.  [SSS specific keybindings](#orge9564df)
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
 This manual documents the SSS/GNU system and its functionalities.
 
+SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me help you achieve *GNUrvana*.
+
+If you like my work, please support me by [buying me a cup of coffee ☕](https://bmc.link/jjbigorra) so I can continue with a lot of motivation.
+
 This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
 SSS is not intended for beginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
 
-SSS is my system, my workflow, my configuration files, and a big insight in the tooling I use and enjoy, and can teach you a thing or two.
+SSS strives to have all things configured via Lisp dialects when possible and convenient, which allows for magical things to happen.
+
+Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
+
+![img](../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png)
 
 
-<a id="org5f168e4"></a>
+<a id="orga0340d1"></a>
 
 # What lies here?
 
-Knowledge you may find in the repo includes:
+Knowledge you may find in the project includes:
 
--   GNU Guix system configurations (Guile Scheme)
+-   GNU Guix system configurations
 -   Advanced Emacs configurations with Emacs Lisp + Elpaca
--   SwayFX configurations (Guile Scheme)
--   Foot terminal emulator (Guile Scheme)
--   Waybar configuration and style (Guile Scheme)
--   Mako configuration and style (Guile Scheme)
+-   SwayFX configurations
+-   Foot terminal emulator
+-   Waybar configuration and style
+-   Mako configuration and style
 -   multi-user Git configuration setup (work/personal)
--   Qutebrowser configurations (Guile Scheme)
+-   Qutebrowser configurations
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
 Warning: parts of the code and settings might default to the Dutch language ( `nl_NL.UTF-8` ).
 
 
-<a id="org6d71af1"></a>
+<a id="orgf77e5e7"></a>
 
 # Why ?
 
@@ -72,22 +80,18 @@ Lisp user space is centered on text-based user interfaces instead of graphical u
 
 All of the system can be inspected and most of it can be hacked live in a REPL, making it a pure expression of the libre software ethic, and an incredibly versatile tool for a skilled programmer.
 
-**Heed my warning**
+In some ways this is a laboratory of experimentation for my computing environment. What I do with any other program that forms part of SSS is only meant to work for me. As such, I will try to maintain backwards compatibility and consistency, but I may introduce breaking changes without prior notice.
 
-This is the set of files that powers my day-to-day computing experience, so do not track my dotfiles (rolling, unstable, and untested), but feel free to use them and take inspiration from them or fork and work under the terms of the GNU GPL v3 or newer.
+This is all to say that you understand the risks associated with tracking an ever-changing project that does not enjoy widespread testing and whose target audience is only me. If you are fine with that and are willing to assume responsibility for any possible breakage, then please feel welcome to follow along. You can always open an issue here, contact me, or contribute any fixes, if you will.
 
-In some ways this is a laboratory of experimentation for my computing environment. What I do with any other program that forms part of sss is only meant to work for me. As such, I may introduce breaking changes without prior notice.
+This configuration is somewhat biased towards containing a `joe` user who also acts as administrator for most of the time. This is trivial to change and should be easy to adapt to your needs. Your mileage may vary (YMMV).
 
-This is all to say that you understand the risks associated with tracking an ever-changing project that does not enjoy widespread testing and whose target audience is only me. If you are fine with that and are willing to assume responsibility for any possible breakage, then please feel welcome to follow along. You can always open an issue here or contribute any fixes, if you will.
-
-This configuration is somehwat biased towards containing a `joe` user who also acts as administrator for most of the time. Your mileage may vary (YMMV).
-
-Some commands in the `Makefile` are more geared towards `joe` since we assume a device is most frequently only tended to by one system administration most of the time. Some examples are `make fr` or `make jr`.
+Some commands in the `Makefile` are more geared towards `joe` since we assume a device is most frequently only tended to by one system administration most of the time. Some examples are `make fr` or `make jr`. Feel free to change this or contribute improvements to make this modular.
 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="orgb3f16b0"></a>
+<a id="orgc327dbb"></a>
 
 # How this manual works
 
@@ -99,9 +103,10 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Export to texi and info via `org-texinfo-export-to-info`
 -   Export to HTML via `org-html-export-to-html`
 -   Export to LaTEX PDF via `org-latex-export-to-pdf`
+-   Export to Markdown via `org-md-export-to-markdown`
 
 
-<a id="org7b7e680"></a>
+<a id="org9fa0df9"></a>
 
 # Customizations
 
@@ -112,7 +117,7 @@ Several color palettes, inspired by the great \`ef-themes\` by Protesilaos Stavr
 Find Prot's themes here: <https://github.com/protesilaos/ef-themes>
 
 
-<a id="orgdd055a8"></a>
+<a id="org55c3599"></a>
 
 # Per host - per-host.scm
 
@@ -143,15 +148,39 @@ Find here a reference configuration with what is required.
        (specification->package "steam")))
 
 
-<a id="orga8e0b34"></a>
+<a id="org9ec5c56"></a>
+
+# Non-free software
+
+SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
+
+-   includes the OG Linux kernel (with proprietary blobs) so as to be more compatible with modern hardware
+-   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
+
+
+<a id="orgbcaf5da"></a>
 
 # Bootstrapping
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install `sss` on a brand-new Guix installation.
 
-Some aspects will be dependent on the manner of installation and hardware.
+Some aspects will be dependent on the manner of installation and hardware. Below follows a simple startup guide.
 
-For example including `nonguix` in your channels (`~/.config/guix/channels.scm`). You might also need to install tools like Git and GNU make temporarily.
+Download and the Guix GNU/Linux distribution from the official Guix page: <https://guix.gnu.org/download/> and make a bootable installation medium convenient for your use case.
+
+If you are not familiar with the `dd` command which is present in all GNU/Linux distributions and in macOS, you can always feel free to use something like Rufus on Windows, or balenaEtcher, to flash this image into a USB, with which you can then boot your computer.
+
+It is highly recommended to first become familiar with SSS and Guix via a *throw-away* virtual machine where you can experiment and do mistakes. After familiarity is acquired then a bare metal installation is the best.
+
+SSS strives to be completely cross-architecture and should work well there. That being said, as of the latest manual, x86-64 is the preferred architecture.
+
+If you are on aarch64/arm64, then you might need to put in some more work to get it working, and generate an ISO image yourself to install Guix.
+
+When installing Guix, make sure you take note of the Scheme code that gets generated by it, specially for the disk partitioning. This will later need to be added to the `per-host.scm`.
+
+After having installed things using the guided Guix installer, or via the command line for advanced users, boot into your new system.
+
+I would recommend to then add `nonguix` in your channels file (`$HOME/.config/guix/channels.scm`).
 
     (cons* (channel
           (name 'nonguix)
@@ -163,24 +192,36 @@ For example including `nonguix` in your channels (`~/.config/guix/channels.scm`)
              "2A39 3FFF 68F4 EF7A 3D29 12AF 6F51 20A0 22FB B2D5"))))
          %default-channels)
 
-Getting started is easy:
+After adding the channel, it is then highly recommended to perform a `guix pull` from your user account (**no sudo or root**) and let all channels get updated.
 
--   Install the Guix GNU/Linux distribution
--   Only install nonguix if you truly require additional hardware support
--   Do a guix pull from your regular user to get a recent commit of Guix
--   Clone this repository after having temporarily installed Git and Make (e.g. in a guix shell)
--   Write an appropriate `per-host.scm` for your setup
--   Contact me for any doubts <jjbigorra@gmail.com>
+You should every now and then do a `guix pull` from your regular user, and then rebuild this system with the root user (`make sr`). Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
+
+Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
+
+You can do this with `guix shell make git`.
+
+Then proceed to clone SSS with `git clone https://codeberg.org/jjba23/sss.git`.
+
+You should have by now written an appropriate `per-host.scm` for your setup. See the above section on this topic.
+
+Enter the directory of SSS: `cd sss`.
+
+Make sure you place your `per-host.scm` in the root of this directory. Then you can do a `make sr`.
+
+This translates to `sudo guix system reconfigure config.scm --fallback`.
+
+For more commands take a look at the SSS Makefile: <file:///home/joe/Ontwikkeling/Persoonlijk/sss/Makefile>.
+
+The `fallback` option is optional, and simply helps when upstream substitute (cache) servers are less available.
+
+Once the system reconfigure is complete, you can also bootstrap your user with something like: `guix home reconfigure ./home/joe.scm  --fallback`
+
+You can then reboot and you should be greeted by a simple TTY. SSS uses no login managers like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to `gui`, or sometimes I directly run `sway` from the TTY.
+
+Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
-<a id="org03a113e"></a>
-
-# Updating your system
-
-You should every now and then do a `guix pull` from your regular user, and then rebuild this system with the root user. See the Makefile for more information.
-
-
-<a id="org28482f4"></a>
+<a id="orgcafe429"></a>
 
 # Nix profile
 
@@ -210,7 +251,7 @@ You can keep your Nix packages updated by running:
 The installed software will be available, for example at: `/home/joe/.nix-profile/bin/`
 
 
-<a id="org245dbb9"></a>
+<a id="org49bb3ae"></a>
 
 # Keyboard Terminology
 
@@ -258,12 +299,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org5d993c6"></a>
+<a id="orgb89c5ea"></a>
 
 # Sway
 
 
-<a id="orgf607607"></a>
+<a id="org079ba55"></a>
 
 ## Screenshot keybindings
 
@@ -309,7 +350,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org63537f1"></a>
+<a id="orgf8ec150"></a>
 
 ## Application keybindings
 
@@ -379,12 +420,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org6e1eb26"></a>
+<a id="org855921b"></a>
 
 # Emacs
 
 
-<a id="org3baaab5"></a>
+<a id="orgf0b16d5"></a>
 
 ## General non-vanilla bindings
 
@@ -424,7 +465,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org3d70604"></a>
+<a id="orge9564df"></a>
 
 ## SSS specific keybindings
 
