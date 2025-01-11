@@ -14,7 +14,7 @@ If you like my work, please support me by [[https://bmc.link/jjbigorra][buying m
 
 This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
-SSS is not intended for begginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
+SSS is not intended for beginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
 
 SSS strives to have all things configured via Lisp dialects when possible and convenient, which allows for magical things to happen.
 
