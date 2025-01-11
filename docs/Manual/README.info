@@ -13,7 +13,7 @@ You are reading the manual for the Supreme Sexp System (SSS).
    SSS is a Lisp machine adventure, where the hacking culture is
 celebrated.  Let me help you achieve _GNUrvana_.
 
-   If you like my work, please support me by buying me a cup of coffee ☕
+   If you like my work, please support me by buying me a cup of coffee
 (https://bmc.link/jjbigorra) so I can continue with a lot of motivation.
 
    This custom GNU + Linux setup enhances customization to infinity,
@@ -165,6 +165,7 @@ your convenience to several other formats.  A usual release of the
 manual happens as follows:
 
    • Edit the SSS manual
+   • Export LaTEX format via ‘org-latex-export-to-latex’
    • Export to texi and info via ‘org-texinfo-export-to-info’
    • Export to HTML via ‘org-html-export-to-html’
    • Export to LaTEX PDF via ‘org-latex-export-to-pdf’
@@ -466,21 +467,21 @@ keybind     command
 
 Tag Table:
 Node: Top73
-Node: What lies here?1694
-Node: Why ?2504
-Node: How this manual works5530
-Node: Customizations6184
-Node: Per host - per-hostscm6620
-Node: Non-free software7713
-Node: Bootstrapping8262
-Node: Nix profile12467
-Node: Keyboard Terminology13497
-Node: Sway13892
-Node: Screenshot keybindings14061
-Node: Application keybindings14467
-Node: Emacs14992
-Node: General non-vanilla bindings15141
-Node: SSS specific keybindings15419
+Node: What lies here?1690
+Node: Why ?2500
+Node: How this manual works5526
+Node: Customizations6243
+Node: Per host - per-hostscm6679
+Node: Non-free software7772
+Node: Bootstrapping8321
+Node: Nix profile12526
+Node: Keyboard Terminology13556
+Node: Sway13951
+Node: Screenshot keybindings14120
+Node: Application keybindings14526
+Node: Emacs15051
+Node: General non-vanilla bindings15200
+Node: SSS specific keybindings15478
 
 End Tag Table
 

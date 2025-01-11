@@ -1,4 +1,4 @@
-% Created 2025-01-09 do 10:26
+% Created 2025-01-11 za 12:47
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -31,25 +31,35 @@ You are reading the manual for the Supreme Sexp System (SSS).
 
 This manual documents the SSS/GNU system and its functionalities.
 
+SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me help you achieve \emph{GNUrvana}.
+
+If you like my work, please support me by \href{https://bmc.link/jjbigorra}{buying me a cup of coffee} so I can continue with a lot of motivation.
+
 This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
 SSS is not intended for beginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
 
-SSS is my system, my workflow, my configuration files, and a big insight in the tooling I use and enjoy, and can teach you a thing or two.
+SSS strives to have all things configured via Lisp dialects when possible and convenient, which allows for magical things to happen.
+
+Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png}
+\end{center}
 
 \section{What lies here?}
-\label{sec:orgaafda05}
+\label{sec:org848e48a}
 
-Knowledge you may find in the repo includes:
+Knowledge you may find in the project includes:
 \begin{itemize}
-\item GNU Guix system configurations (Guile Scheme)
+\item GNU Guix system configurations
 \item Advanced Emacs configurations with Emacs Lisp + Elpaca
-\item SwayFX configurations (Guile Scheme)
-\item Foot terminal emulator (Guile Scheme)
-\item Waybar configuration and style (Guile Scheme)
-\item Mako configuration and style (Guile Scheme)
+\item SwayFX configurations
+\item Foot terminal emulator
+\item Waybar configuration and style
+\item Mako configuration and style
 \item multi-user Git configuration setup (work/personal)
-\item Qutebrowser configurations (Guile Scheme)
+\item Qutebrowser configurations
 \end{itemize}
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
@@ -57,7 +67,7 @@ Find the divine sayings, and the destined computer configurations, all my Guix, 
 Warning: parts of the code and settings might default to the Dutch language ( \texttt{nl\_NL.UTF-8} ).
 
 \section{Why ?}
-\label{sec:org0a1ee45}
+\label{sec:org2dfc6f5}
 
 I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
 
@@ -79,22 +89,18 @@ Lisp user space is centered on text-based user interfaces instead of graphical u
 
 All of the system can be inspected and most of it can be hacked live in a REPL, making it a pure expression of the libre software ethic, and an incredibly versatile tool for a skilled programmer.
 
-\textbf{Heed my warning}
+In some ways this is a laboratory of experimentation for my computing environment. What I do with any other program that forms part of SSS is only meant to work for me. As such, I will try to maintain backwards compatibility and consistency, but I may introduce breaking changes without prior notice.
 
-This is the set of files that powers my day-to-day computing experience, so do not track my dotfiles (rolling, unstable, and untested), but feel free to use them and take inspiration from them or fork and work under the terms of the GNU GPL v3 or newer.
+This is all to say that you understand the risks associated with tracking an ever-changing project that does not enjoy widespread testing and whose target audience is only me. If you are fine with that and are willing to assume responsibility for any possible breakage, then please feel welcome to follow along. You can always open an issue here, contact me, or contribute any fixes, if you will.
 
-In some ways this is a laboratory of experimentation for my computing environment. What I do with any other program that forms part of sss is only meant to work for me. As such, I may introduce breaking changes without prior notice.
+This configuration is somewhat biased towards containing a \texttt{joe} user who also acts as administrator for most of the time. This is trivial to change and should be easy to adapt to your needs. Your mileage may vary (YMMV).
 
-This is all to say that you understand the risks associated with tracking an ever-changing project that does not enjoy widespread testing and whose target audience is only me. If you are fine with that and are willing to assume responsibility for any possible breakage, then please feel welcome to follow along. You can always open an issue here or contribute any fixes, if you will.
-
-This configuration is somehwat biased towards containing a \texttt{joe} user who also acts as administrator for most of the time. Your mileage may vary (YMMV).
-
-Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} since we assume a device is most frequently only tended to by one system administration most of the time. Some examples are \texttt{make fr} or \texttt{make jr}.
+Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} since we assume a device is most frequently only tended to by one system administration most of the time. Some examples are \texttt{make fr} or \texttt{make jr}. Feel free to change this or contribute improvements to make this modular.
 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 \section{How this manual works}
-\label{sec:org485c9be}
+\label{sec:org9a6cb93}
 
 This manual is written by hand with care and attention for detail.
 
@@ -102,13 +108,15 @@ I write my documents in Org format from Emacs and export them for your convenien
 
 \begin{itemize}
 \item Edit the SSS manual
+\item Export LaTEX format via \texttt{org-latex-export-to-latex}
 \item Export to texi and info via \texttt{org-texinfo-export-to-info}
 \item Export to HTML via \texttt{org-html-export-to-html}
 \item Export to LaTEX PDF via \texttt{org-latex-export-to-pdf}
+\item Export to Markdown via \texttt{org-md-export-to-markdown}
 \end{itemize}
 
 \section{Customizations}
-\label{sec:orge506b7e}
+\label{sec:org0ed9408}
 
 SSS supports several user customizations, more specifically:
 
@@ -118,7 +126,7 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:orgb7a1447}
+\label{sec:org3913970}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -149,16 +157,41 @@ Find here a reference configuration with what is required.
 
 \end{verbatim}
 
+\section{Non-free software}
+\label{sec:org95b33bf}
+
+SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
+\begin{itemize}
+\item includes the OG Linux kernel (with proprietary blobs) so as to be more compatible with modern hardware
+\item includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
+\end{itemize}
 
 
 \section{Bootstrapping}
-\label{sec:org4c11a82}
+\label{sec:orga302e54}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
-Some aspects will be dependent on the manner of installation and hardware.
+Some aspects will be dependent on the manner of installation and hardware. Below follows a simple startup guide.
 
-For example including \texttt{nonguix} in your channels (\texttt{\textasciitilde{}/.config/guix/channels.scm}). You might also need to install tools like Git and GNU make temporarily.
+Download and the Guix GNU/Linux distribution from the official Guix page: \url{https://guix.gnu.org/download/} and make a bootable installation medium convenient for your use case.
+
+If you are not familiar with the \texttt{dd} command which is present in all GNU/Linux distributions and in macOS, you can always feel free to use something like Rufus on Windows, or balenaEtcher, to flash this image into a USB, with which you can then boot your computer.
+
+It is highly recommended to first become familiar with SSS and Guix via a \emph{throw-away} virtual machine where you can experiment and do mistakes. After familiarity is acquired then a bare metal installation is the best.
+
+SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
+
+If you are on aarch64/arm64, or other more niche architectures, then you might need to put in some more work to get an installer image, and to get it working, likely having to generate an ISO image yourself to install Guix or a qcow2 virtual machine.
+
+The following articles may be of help:
+\url{https://jointhefreeworld.org/blog/articles/gnu-linux/gnu-guix-virtual-machine-image-aarch64/}
+
+When installing Guix, make sure you take note of the Scheme code that gets generated by it, specially for the disk partitioning. This will later need to be added to the \texttt{per-host.scm}.
+
+After having installed things using the guided Guix installer, or via the command line for advanced users, boot into your new system.
+
+I would recommend to then add \texttt{nonguix} in your channels file (\texttt{\$HOME/.config/guix/channels.scm}).
 
 \begin{verbatim}
 (cons* (channel
@@ -173,26 +206,37 @@ For example including \texttt{nonguix} in your channels (\texttt{\textasciitilde
 
 \end{verbatim}
 
+After adding the channel, it is then highly recommended to perform a \texttt{guix pull} from your user account (\textbf{no sudo or root}) and let all channels get updated.
 
-Getting started is easy:
+You should every now and then do a \texttt{guix pull} from your regular user, and then rebuild this system with the root user (\texttt{make sr}). Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
 
-\begin{itemize}
-\item Install the Guix GNU/Linux distribution
-\item Only install nonguix if you truly require additional hardware support
-\item Do a guix pull from your regular user to get a recent commit of Guix
-\item Clone this repository after having temporarily installed Git and Make (e.g. in a guix shell)
-\item Write an appropriate \texttt{per-host.scm} for your setup
-\item Contact me for any doubts <jjbigorra@gmail.com>
-\end{itemize}
+Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
 
+You can do this with \texttt{guix shell make git}.
 
-\section{Updating your system}
-\label{sec:org70e86e7}
+Then proceed to clone SSS with \texttt{git clone https://codeberg.org/jjba23/sss.git}.
 
-You should every now and then do a \texttt{guix pull} from your regular user, and then rebuild this system with the root user. See the Makefile for more information.
+You should have by now written an appropriate \texttt{per-host.scm} for your setup. See the above section on this topic.
+
+Enter the directory of SSS: \texttt{cd sss}.
+
+Make sure you place your \texttt{per-host.scm} in the root of this directory. Then you can do a \texttt{make sr}.
+
+This translates to \texttt{sudo guix system reconfigure config.scm -{}-{}fallback}.
+
+For more commands take a look at the SSS Makefile: \url{file:///home/joe/Ontwikkeling/Persoonlijk/sss/Makefile}.
+
+The \texttt{fallback} option is optional, and simply helps when upstream substitute (cache) servers are less available.
+
+Once the system reconfigure is complete, you can also bootstrap your user with something like: \texttt{guix home reconfigure ./home/joe.scm  -{}-{}fallback}
+
+You can then reboot and you should be greeted by a simple TTY. SSS uses no login managers like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to \texttt{gui}, or sometimes I directly run \texttt{sway} from the TTY.
+
+Feel free to contact me for any doubts at jjbigorra@gmail.com.
+
 
 \section{Nix profile}
-\label{sec:org68262ed}
+\label{sec:org41e92c3}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -228,7 +272,7 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 The installed software will be available, for example at: \texttt{/home/joe/.nix-profile/bin/}
 
 \section{Keyboard Terminology}
-\label{sec:org9afb010}
+\label{sec:orge3cfbd1}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -245,10 +289,10 @@ term & meaning\\[0pt]
 
 
 \section{Sway}
-\label{sec:orgdd74acd}
+\label{sec:org519d31d}
 
 \subsection{Screenshot keybindings}
-\label{sec:org45127f7}
+\label{sec:orgb9f5c15}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -262,7 +306,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{Application keybindings}
-\label{sec:org383121a}
+\label{sec:orge6c3491}
 
 
 \begin{center}
@@ -281,10 +325,10 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \section{Emacs}
-\label{sec:org6ec40ac}
+\label{sec:orgf1cfc6a}
 
 \subsection{General non-vanilla bindings}
-\label{sec:org0d6abd6}
+\label{sec:org5cfc34b}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -297,7 +341,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:org996095b}
+\label{sec:orgb2cebf6}
 
 \begin{center}
 \begin{tabular}{ll}

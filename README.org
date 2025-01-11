@@ -35,6 +35,7 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 - info format [[file:docs/Manual/README.info]]    
 
 ** SSS Project
+
 Find the [[file:docs/Project management/README.org][project management of SSS here]]
 
 

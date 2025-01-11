@@ -1,21 +1,21 @@
 
 # Table of Contents
 
-1.  [What lies here?](#orgb604241)
-2.  [Why ?](#orgdd16e58)
-3.  [How this manual works](#orgcea1e3d)
-4.  [Customizations](#org7f8bf88)
-5.  [Per host - per-host.scm](#orgadaac93)
-6.  [Non-free software](#orge33af96)
-7.  [Bootstrapping](#orgbfeb9c6)
-8.  [Nix profile](#org59043d0)
-9.  [Keyboard Terminology](#orgb97fbf2)
-10. [Sway](#org367c048)
-    1.  [Screenshot keybindings](#orgcf0d941)
-    2.  [Application keybindings](#org5b00192)
-11. [Emacs](#org7bcaa31)
-    1.  [General non-vanilla bindings](#org7841434)
-    2.  [SSS specific keybindings](#org78eb2f3)
+1.  [What lies here?](#org5bf0250)
+2.  [Why ?](#org85eb905)
+3.  [How this manual works](#org67ef257)
+4.  [Customizations](#org4260681)
+5.  [Per host - per-host.scm](#orgc6baba0)
+6.  [Non-free software](#orgb02e43c)
+7.  [Bootstrapping](#orgf1557e9)
+8.  [Nix profile](#orgfabdb5a)
+9.  [Keyboard Terminology](#org416701c)
+10. [Sway](#org04ebc58)
+    1.  [Screenshot keybindings](#orgf4f5edf)
+    2.  [Application keybindings](#orgea82166)
+11. [Emacs](#org6e829e0)
+    1.  [General non-vanilla bindings](#orgbe0e5f8)
+    2.  [SSS specific keybindings](#orgb824a95)
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
@@ -23,7 +23,7 @@ This manual documents the SSS/GNU system and its functionalities.
 
 SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me help you achieve *GNUrvana*.
 
-If you like my work, please support me by [buying me a cup of coffee ☕](https://bmc.link/jjbigorra) so I can continue with a lot of motivation.
+If you like my work, please support me by [buying me a cup of coffee](https://bmc.link/jjbigorra) so I can continue with a lot of motivation.
 
 This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
@@ -36,7 +36,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 ![img](../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png)
 
 
-<a id="orgb604241"></a>
+<a id="org5bf0250"></a>
 
 # What lies here?
 
@@ -56,7 +56,7 @@ Find the divine sayings, and the destined computer configurations, all my Guix, 
 Warning: parts of the code and settings might default to the Dutch language ( `nl_NL.UTF-8` ).
 
 
-<a id="orgdd16e58"></a>
+<a id="org85eb905"></a>
 
 # Why ?
 
@@ -91,7 +91,7 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="orgcea1e3d"></a>
+<a id="org67ef257"></a>
 
 # How this manual works
 
@@ -100,13 +100,14 @@ This manual is written by hand with care and attention for detail.
 I write my documents in Org format from Emacs and export them for your convenience to several other formats. A usual release of the manual happens as follows:
 
 -   Edit the SSS manual
+-   Export LaTEX format via `org-latex-export-to-latex`
 -   Export to texi and info via `org-texinfo-export-to-info`
 -   Export to HTML via `org-html-export-to-html`
 -   Export to LaTEX PDF via `org-latex-export-to-pdf`
 -   Export to Markdown via `org-md-export-to-markdown`
 
 
-<a id="org7f8bf88"></a>
+<a id="org4260681"></a>
 
 # Customizations
 
@@ -117,7 +118,7 @@ Several color palettes, inspired by the great \`ef-themes\` by Protesilaos Stavr
 Find Prot's themes here: <https://github.com/protesilaos/ef-themes>
 
 
-<a id="orgadaac93"></a>
+<a id="orgc6baba0"></a>
 
 # Per host - per-host.scm
 
@@ -148,7 +149,7 @@ Find here a reference configuration with what is required.
        (specification->package "steam")))
 
 
-<a id="orge33af96"></a>
+<a id="orgb02e43c"></a>
 
 # Non-free software
 
@@ -158,7 +159,7 @@ SSS attempts to stay as libre as possible, while also respecting your convenienc
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="orgbfeb9c6"></a>
+<a id="orgf1557e9"></a>
 
 # Bootstrapping
 
@@ -224,7 +225,7 @@ You can then reboot and you should be greeted by a simple TTY. SSS uses no login
 Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
-<a id="org59043d0"></a>
+<a id="orgfabdb5a"></a>
 
 # Nix profile
 
@@ -254,7 +255,7 @@ You can keep your Nix packages updated by running:
 The installed software will be available, for example at: `/home/joe/.nix-profile/bin/`
 
 
-<a id="orgb97fbf2"></a>
+<a id="org416701c"></a>
 
 # Keyboard Terminology
 
@@ -302,12 +303,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org367c048"></a>
+<a id="org04ebc58"></a>
 
 # Sway
 
 
-<a id="orgcf0d941"></a>
+<a id="orgf4f5edf"></a>
 
 ## Screenshot keybindings
 
@@ -353,7 +354,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org5b00192"></a>
+<a id="orgea82166"></a>
 
 ## Application keybindings
 
@@ -423,12 +424,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org7bcaa31"></a>
+<a id="org6e829e0"></a>
 
 # Emacs
 
 
-<a id="org7841434"></a>
+<a id="orgbe0e5f8"></a>
 
 ## General non-vanilla bindings
 
@@ -468,7 +469,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org78eb2f3"></a>
+<a id="orgb824a95"></a>
 
 ## SSS specific keybindings
 

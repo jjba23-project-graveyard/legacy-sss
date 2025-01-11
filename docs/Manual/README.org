@@ -9,7 +9,7 @@ This manual documents the SSS/GNU system and its functionalities.
 
 SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me help you achieve /GNUrvana/.
 
-If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
+If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee]] so I can continue with a lot of motivation.
 
 This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
@@ -76,6 +76,7 @@ This manual is written by hand with care and attention for detail.
 I write my documents in Org format from Emacs and export them for your convenience to several other formats. A usual release of the manual happens as follows:
 
 - Edit the SSS manual
+- Export LaTEX format via ~org-latex-export-to-latex~  
 - Export to texi and info via ~org-texinfo-export-to-info~
 - Export to HTML via ~org-html-export-to-html~
 - Export to LaTEX PDF via ~org-latex-export-to-pdf~
