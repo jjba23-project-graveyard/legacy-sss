@@ -245,7 +245,7 @@
    (list sss-home-files-service
          sss-ssh-service
          (sss-home-vars-service #:sss-repo-clone-path sss-repo-clone-path)
-         sss-bash-service
+         (sss-bash-service #:sss-repo-clone-path sss-repo-clone-path)
          sss-openpgp-conf
          (service home-dbus-service-type)
          (service home-pipewire-service-type)

@@ -28,31 +28,42 @@
 (define sss-bash-exports
   `((PS1 . "${grn}\"\\u@\\h \\w${GUIX_ENVIRONMENT:+ [env]} λ\"${clr}\"  \"")))
 
-(define-public sss-bash-aliases
-  `((".." . "cd ..;pwd") ("..." . "cd ../..;pwd")
-    ("...." . "cd ../../..;pwd")
-    (c . "clear")
-    (h . "history")
-    (tree . "tree --dirsfirst -F")
-    (mkdir . "mkdir -p -v")
-    (ll . "ls -lAh --group-directories-first")
-    (l . "ls -lAh --group-directories-first")
-    (e . "emacsclient -t")
-    (vanilla-emacs . "emacs -Q")
-    (fr . "cd ~/Ontwikkeling/Persoonlijk/sss && make fr")
-    (sr . "cd ~/Ontwikkeling/Persoonlijk/sss && make sr")
-    (jr . "cd ~/Ontwikkeling/Persoonlijk/sss && make jr")
-    (scala-dev . "nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/scala-dev/")
-    (haskell-dev . "nix develop /home/joe/Ontwikkeling/Persoonlijk/sss/resources/flakes/haskell-dev/")
-    (docker . "podman")
-    (docker-compose . "podman-compose")
-    (owm . "swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 2")
-    (owmp . "swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 3")
-    (o1080 . "swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1")
-    (o4k . "swaymsg -- output Virtual-1 mode --custom 3840x2160 scale 2")
-    (podman-unix-socket . "podman system service --time=0 unix:///tmp/podman.sock")
-    (gui . "sway")
-    (find-largest-files . "du -h -x -s -- * | sort -r -h | head -20")))
+(begin
+  (define* (sss-bash-aliases #:key sss-repo-clone-path)
+    `((".." . "cd ..;pwd") ("..." . "cd ../..;pwd")
+      ("...." . "cd ../../..;pwd")
+      (c . "clear")
+      (h . "history")
+      (tree . "tree --dirsfirst -F")
+      (mkdir . "mkdir -p -v")
+      (ll . "ls -lAh --group-directories-first")
+      (l . "ls -lAh --group-directories-first")
+      (e . "emacsclient -t")
+      (vanilla-emacs . "emacs -Q")
+      (fr unquote
+          (format #f "cd ~a && make fr" sss-repo-clone-path))
+      (sr unquote
+          (format #f "cd ~a && make sr" sss-repo-clone-path))
+      (jr unquote
+          (format #f "cd ~a && make jr" sss-repo-clone-path))
+      (pm unquote
+          (format #f "cd ~a && make publish-manual" sss-repo-clone-path))
+      (scala-dev unquote
+                 (format #f "nix develop ~a/resources/flakes/scala-dev/"
+                         sss-repo-clone-path))
+      (haskell-dev unquote
+                   (format #f "nix develop ~a/resources/flakes/haskell-dev/"
+                           sss-repo-clone-path))
+      (docker . "podman")
+      (docker-compose . "podman-compose")
+      (owm . "swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 2")
+      (owmp . "swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 3")
+      (o1080 . "swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1")
+      (o4k . "swaymsg -- output Virtual-1 mode --custom 3840x2160 scale 2")
+      (podman-unix-socket . "podman system service --time=0 unix:///tmp/podman.sock")
+      (gui . "sway")
+      (find-largest-files . "du -h -x -s -- * | sort -r -h | head -20")))
+  (export sss-bash-aliases))
 
 (define sss-bash-functions
   `((glog . "sudo gzip -d \"$1.gz\" && cat \"$1\"")
@@ -89,23 +100,24 @@
              (string-join (cdr f) "\n\t"))
             (else (cdr f)))))
 
-(define-public sss-bash-config
-  (append (map (lambda (v)
-                 (serialize-bash-vars v)) sss-bash-vars)
-          (map (lambda (e)
-                 (serialize-bash-exports e)) sss-bash-exports)
-          (map (lambda (f)
-                 (serialize-bash-function f)) sss-bash-functions)
-          (map (lambda (a)
-                 (serialize-bash-alias a)) sss-bash-aliases)
-          (map (lambda (a)
-                 (serialize-bash-path-appends a)) sss-bash-path-appends)
-          sss-bash-postlude))
+(begin
+  (define* (sss-bash-config #:key sss-repo-clone-path)
+    (append (map serialize-bash-vars sss-bash-vars)
+            (map serialize-bash-exports sss-bash-exports)
+            (map serialize-bash-function sss-bash-functions)
+            (map serialize-bash-alias
+                 (sss-bash-aliases #:sss-repo-clone-path sss-repo-clone-path))
+            (map serialize-bash-path-appends sss-bash-path-appends)
+            sss-bash-postlude))
+  (export sss-bash-config))
 
-(define-public sss-bash-service
-  (simple-service 'sss-fancy-bash home-bash-service-type
-                  (home-bash-extension (environment-variables '())
-                                       (bashrc `(,(plain-file "bashrc.sh"
-                                                              (string-join
-                                                               sss-bash-config
-                                                               "\n")))))))
+(begin
+  (define* (sss-bash-service #:key sss-repo-clone-path)
+    (simple-service 'sss-fancy-bash home-bash-service-type
+                    (home-bash-extension (environment-variables '())
+                                         (bashrc `(,(plain-file "bashrc.sh"
+                                                                (string-join (sss-bash-config
+                                                                              #:sss-repo-clone-path
+                                                                              sss-repo-clone-path)
+                                                                 "\n")))))))
+  (export sss-bash-service))
