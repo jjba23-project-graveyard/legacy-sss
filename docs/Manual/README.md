@@ -1,21 +1,21 @@
 
 # Table of Contents
 
-1.  [What lies here?](#orgeb98c8d)
-2.  [Why ?](#org8fa8d1d)
-3.  [How this manual works](#orga956e10)
-4.  [Customizations](#org84a0de2)
-5.  [Per host - per-host.scm](#org8f2b905)
-6.  [Non-free software](#org695fb5b)
-7.  [Bootstrapping](#org2b37a22)
-8.  [Nix profile](#org444c44c)
-9.  [Keyboard Terminology](#org656be38)
-10. [Sway](#org99729dd)
-    1.  [Screenshot keybindings](#org68f206b)
-    2.  [Application keybindings](#orgc53e5d8)
-11. [Emacs](#org8b214bb)
-    1.  [General non-vanilla bindings](#org0e8a61e)
-    2.  [SSS specific keybindings](#org48e6318)
+1.  [What lies here?](#org84adc6e)
+2.  [Why ?](#orgf0d22ee)
+3.  [How this manual works](#org4b71b93)
+4.  [Customizations](#org7e3c5bc)
+5.  [Per host - per-host.scm](#org149311d)
+6.  [Non-free software](#org8f10850)
+7.  [Bootstrapping](#org5273663)
+8.  [Nix profile](#orge37c3cb)
+9.  [Keyboard Terminology](#org3ff9f1e)
+10. [Sway](#org03d9240)
+    1.  [Screenshot keybindings](#orgea25084)
+    2.  [Application keybindings](#org81ffb57)
+11. [Emacs](#org9c9b0f0)
+    1.  [General non-vanilla bindings](#orgcc04e5b)
+    2.  [SSS specific keybindings](#org2653e14)
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
@@ -36,7 +36,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 ![img](../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png)
 
 
-<a id="orgeb98c8d"></a>
+<a id="org84adc6e"></a>
 
 # What lies here?
 
@@ -56,7 +56,7 @@ Find the divine sayings, and the destined computer configurations, all my Guix, 
 Warning: parts of the code and settings might default to the Dutch language ( `nl_NL.UTF-8` ).
 
 
-<a id="org8fa8d1d"></a>
+<a id="orgf0d22ee"></a>
 
 # Why ?
 
@@ -91,7 +91,7 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="orga956e10"></a>
+<a id="org4b71b93"></a>
 
 # How this manual works
 
@@ -107,7 +107,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Export to Markdown via `org-md-export-to-markdown`
 
 
-<a id="org84a0de2"></a>
+<a id="org7e3c5bc"></a>
 
 # Customizations
 
@@ -118,7 +118,7 @@ Several color palettes, inspired by the great \`ef-themes\` by Protesilaos Stavr
 Find Prot's themes here: <https://github.com/protesilaos/ef-themes>
 
 
-<a id="org8f2b905"></a>
+<a id="org149311d"></a>
 
 # Per host - per-host.scm
 
@@ -154,7 +154,7 @@ Find here a reference configuration with what is required.
       "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
 
-<a id="org695fb5b"></a>
+<a id="org8f10850"></a>
 
 # Non-free software
 
@@ -164,7 +164,7 @@ SSS attempts to stay as libre as possible, while also respecting your convenienc
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="org2b37a22"></a>
+<a id="org5273663"></a>
 
 # Bootstrapping
 
@@ -230,7 +230,7 @@ You can then reboot and you should be greeted by a simple TTY. SSS uses no login
 Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
-<a id="org444c44c"></a>
+<a id="orge37c3cb"></a>
 
 # Nix profile
 
@@ -260,7 +260,7 @@ You can keep your Nix packages updated by running:
 The installed software will be available, for example at: `/home/joe/.nix-profile/bin/`
 
 
-<a id="org656be38"></a>
+<a id="org3ff9f1e"></a>
 
 # Keyboard Terminology
 
@@ -308,12 +308,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org99729dd"></a>
+<a id="org03d9240"></a>
 
 # Sway
 
 
-<a id="org68f206b"></a>
+<a id="orgea25084"></a>
 
 ## Screenshot keybindings
 
@@ -359,7 +359,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgc53e5d8"></a>
+<a id="org81ffb57"></a>
 
 ## Application keybindings
 
@@ -429,12 +429,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org8b214bb"></a>
+<a id="org9c9b0f0"></a>
 
 # Emacs
 
 
-<a id="org0e8a61e"></a>
+<a id="orgcc04e5b"></a>
 
 ## General non-vanilla bindings
 
@@ -474,7 +474,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org48e6318"></a>
+<a id="org2653e14"></a>
 
 ## SSS specific keybindings
 
