@@ -28,7 +28,7 @@
 ;; which can be overriden on a host-per-host basis
 
 ;; location where you cloned SSS Git repository
-(define sss-repo-clone-path
+(define sss-clone-dir
   "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
 ;; packages that should only be installed in the current host

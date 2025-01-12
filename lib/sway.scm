@@ -45,15 +45,13 @@
     "org.jointhefreeworld.metainfog"))
 
 (begin
-  (define* (sss-sway-wallpaper #:key sss-repo-clone-path)
+  (define* (sss-sway-wallpaper #:key sss-clone-dir)
     (cond
       ((equal? sss-palette-ef-cyprus sss-active-palette)
-       (format #f "~a/resources/wallpapers/some-forest.jpg"
-               sss-repo-clone-path))
+       (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
       ((equal? sss-palette-ef-dream sss-active-palette)
-       (format #f "~a/resources/wallpapers/1362745.png" sss-repo-clone-path))
-      (else (format #f "~a/resources/wallpapers/some-forest.jpg"
-                    sss-repo-clone-path))))
+       (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
+      (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
 
 (define sss-sway-startup-programs
@@ -86,10 +84,10 @@
       "gsettings set $gnome-schema font-name 'Monaspace Neon'")))
 
 (begin
-  (define* (sss-sway-outputs #:key sss-repo-clone-path)
+  (define* (sss-sway-outputs #:key sss-clone-dir)
     (list (sway-output (identifier '*)
-                       (background (sss-sway-wallpaper #:sss-repo-clone-path
-                                                       sss-repo-clone-path)))))
+                       (background (sss-sway-wallpaper #:sss-clone-dir
+                                                       sss-clone-dir)))))
   (export sss-sway-outputs))
 
 (define-public sss-sway-variables
@@ -214,16 +212,15 @@
              (sss-get-color 'text))))
 
 (begin
-  (define* (sss-sway-service-type #:key sss-repo-clone-path)
+  (define* (sss-sway-service-type #:key sss-clone-dir)
     (service home-sway-service-type
              (sway-configuration (packages (list swayfx))
                                  (gestures sss-sway-gestures)
                                  (startup-programs sss-sway-startup-programs)
                                  (startup+reload-programs
                                   sss-sway-startup-reload-programs)
-                                 (outputs (sss-sway-outputs
-                                           #:sss-repo-clone-path
-                                           sss-repo-clone-path))
+                                 (outputs (sss-sway-outputs #:sss-clone-dir
+                                                            sss-clone-dir))
                                  (variables sss-sway-variables)
                                  (modes sss-sway-modes)
                                  (keybindings sss-sway-keybindings)

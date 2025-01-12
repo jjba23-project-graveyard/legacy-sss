@@ -416,158 +416,158 @@ more.")
 (define* (sss-other-system-packages #:key architecture)
   (list
 
-   flatpak
-   pipewire
-   nginx
-   watchexec
-   git
-   pavucontrol
+        flatpak
+        pipewire
+        nginx
+        watchexec
+        git
+        pavucontrol
 
-   kcalc
+        kcalc
 
-   slurp
-   ;; stellarium
-   kvantum
-   qt5ct
-   qtsvg
-   ;; seems like qt wayland 6 and 5 are not yet compatible
-   ;; this causes crashes in qt 5 and 6 apps
-   ;; qtwayland
-   qtwayland-5
+        slurp
+        ;; stellarium
+        kvantum
+        qt5ct
+        qtsvg
+        ;; seems like qt wayland 6 and 5 are not yet compatible
+        ;; this causes crashes in qt 5 and 6 apps
+        ;; qtwayland
+        qtwayland-5
 
-   geany
+        geany
 
-   gnome-font-viewer
-   gnome-characters
+        gnome-font-viewer
+        gnome-characters
 
-   rofi-wayland
+        rofi-wayland
 
-   xz
-   ispell
-   (specification->package "bind")
-   wireshark
+        xz
+        ispell
+        (specification->package "bind")
+        wireshark
 
-   gnome-tweaks
-   arandr
-   httpie
-   (specification->package "remmina")
-   libnotify
-   wdisplays
+        gnome-tweaks
+        arandr
+        httpie
+        (specification->package "remmina")
+        libnotify
+        wdisplays
 
-   shotcut
-   openshot
-   inkscape
-   dunst
-   fzf
-   vlc
-   sqlite
-   postgresql
+        shotcut
+        openshot
+        inkscape
+        dunst
+        fzf
+        vlc
+        sqlite
+        postgresql
 
-   gdk-pixbuf
-   gtk
+        gdk-pixbuf
+        gtk
 
-   qutebrowser
+        qutebrowser
 
-   gnome-calculator
-   cheese
-   gnome-system-monitor
-   evince
+        gnome-calculator
+        cheese
+        gnome-system-monitor
+        evince
 
-   qemu
+        qemu
 
-   obs
-   libreoffice
-   gimp
-   imagemagick
-   libwebp
-   feh
+        obs
+        libreoffice
+        gimp
+        imagemagick
+        libwebp
+        feh
 
-   xmodmap
+        xmodmap
 
-   gparted
+        gparted
 
-   lm-sensors
-   exfatprogs
-   exfat-utils
-   fuse-exfat
-   tmon
-   flameshot
+        lm-sensors
+        exfatprogs
+        exfat-utils
+        fuse-exfat
+        tmon
+        flameshot
 
-   parallel
+        parallel
 
-   thunar
+        thunar
 
-   ffmpegthumbs
-   xarchiver
-   ristretto
-   orage
+        ffmpegthumbs
+        xarchiver
+        ristretto
+        orage
 
-   sqlitebrowser
-   direnv
+        sqlitebrowser
+        direnv
 
-   bsd-games
+        bsd-games
 
-   power-profiles-daemon
-   libltdl
-   scenefx
-   swayfx
+        power-profiles-daemon
+        libltdl
+        scenefx
+        swayfx
 
-   gdb
+        gdb
 
-   transmission
-   transmission-remote-gtk
+        transmission
+        transmission-remote-gtk
 
-   xf86-video-fbdev
-   xf86-input-libinput
-   lxsession
-   pamixer
+        xf86-video-fbdev
+        xf86-input-libinput
+        lxsession
+        pamixer
 
-   texinfo
-   texlive
+        texinfo
+        texlive
 
-   ;; ghcid
-   neofetch
-   cmatrix
+        ;; ghcid
+        neofetch
+        cmatrix
 
-   bluez
-   hplip
+        bluez
+        hplip
 
-   autoconf
-   automake
-   perl
+        autoconf
+        automake
+        perl
 
-   mpv
-   mpv-mpris
-   unixodbc
-   tree
-   fyi
+        mpv
+        mpv-mpris
+        unixodbc
+        tree
+        fyi
 
-   enchant
-   emacs-jinx
-   aspell
-   aspell-dict-nl
-   aspell-dict-pt-pt
-   aspell-dict-es
-   aspell-dict-en
-   aspell-dict-ca
+        enchant
+        emacs-jinx
+        aspell
+        aspell-dict-nl
+        aspell-dict-pt-pt
+        aspell-dict-es
+        aspell-dict-en
+        aspell-dict-ca
 
-   ;; element-desktop
-   
-   ;; TODO find better way to not install certain stuff for arm64/aarch64
-   (if (string-prefix? "x86_64" architecture) google-chrome-stable curl)
-   (if (string-prefix? "x86_64" architecture) reaper curl)
+        ;; element-desktop
+        
+        ;; TODO find better way to not install certain stuff for arm64/aarch64
+        (if (string-prefix? "x86_64" architecture) google-chrome-stable curl)
+        (if (string-prefix? "x86_64" architecture) reaper curl)
 
-   (specification->package "darkhttpd")
+        (specification->package "darkhttpd")
 
-   openvpn
-   network-manager-applet
-   network-manager-openconnect
-   network-manager-openvpn
+        openvpn
+        network-manager-applet
+        network-manager-openconnect
+        network-manager-openvpn
 
-   nautilus
+        nautilus
 
-   xxd
-   qt6ct))
+        xxd
+        qt6ct))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))

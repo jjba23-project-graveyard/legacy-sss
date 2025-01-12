@@ -22,7 +22,7 @@
   #:use-module (gnu services))
 
 (begin
-  (define* (sss-home-vars #:key sss-repo-clone-path)
+  (define* (sss-home-vars #:key sss-clone-dir)
     `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale")
       ("LANG" . "nl_NL.UTF-8")
       ("LANGUAGE" . "nl_NL")
@@ -48,13 +48,13 @@
       ("SDL_VIDEODRIVER" . "wayland")
       ("_JAVA_AWT_WM_NONREPARENTING" . "1")
       ("INFOPATH" unquote
-       (format #f "$INFOPATH:~a/docs/Manual" sss-repo-clone-path))
+       (format #f "$INFOPATH:~a/docs/Manual" sss-clone-dir))
       ("DOCKER_HOST" . "unix:///tmp/podman.sock")))
   (export sss-home-vars))
 
 (begin
-  (define* (sss-home-vars-service #:key sss-repo-clone-path)
+  (define* (sss-home-vars-service #:key sss-clone-dir)
     (simple-service 'some-useful-env-vars-service
                     home-environment-variables-service-type
-                    (sss-home-vars #:sss-repo-clone-path sss-repo-clone-path)))
+                    (sss-home-vars #:sss-clone-dir sss-clone-dir)))
   (export sss-home-vars-service))

@@ -23,7 +23,7 @@
 ;; which can be overriden on a host-per-host basis
 
 ;; location where you cloned SSS Git repository
-(define sss-repo-clone-path
+(define sss-clone-dir
   "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
 ;; packages that should only be installed in the current host
@@ -244,12 +244,12 @@
   (services
    (list sss-home-files-service
          sss-ssh-service
-         (sss-home-vars-service #:sss-repo-clone-path sss-repo-clone-path)
-         (sss-bash-service #:sss-repo-clone-path sss-repo-clone-path)
+         (sss-home-vars-service #:sss-clone-dir sss-clone-dir)
+         (sss-bash-service #:sss-clone-dir sss-clone-dir)
          sss-openpgp-conf
          (service home-dbus-service-type)
          (service home-pipewire-service-type)
          (service sss-byggsteg-service-type)
-         (sss-sway-service-type #:sss-repo-clone-path sss-repo-clone-path)
+         (sss-sway-service-type #:sss-clone-dir sss-clone-dir)
          sss-fontconfig-service-type)))
 

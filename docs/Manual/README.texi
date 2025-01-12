@@ -189,7 +189,7 @@ Find here a reference configuration with what is required.
    (specification->package "steam")))
 
 ;; location where you cloned SSS Git repository
-(define sss-repo-clone-path
+(define sss-clone-dir
   "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
 @end example

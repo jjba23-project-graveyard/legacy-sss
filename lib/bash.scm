@@ -29,7 +29,7 @@
   `((PS1 . "${grn}\"\\u@\\h \\w${GUIX_ENVIRONMENT:+ [env]} λ\"${clr}\"  \"")))
 
 (begin
-  (define* (sss-bash-aliases #:key sss-repo-clone-path)
+  (define* (sss-bash-aliases #:key sss-clone-dir)
     `((".." . "cd ..;pwd") ("..." . "cd ../..;pwd")
       ("...." . "cd ../../..;pwd")
       (c . "clear")
@@ -41,19 +41,19 @@
       (e . "emacsclient -t")
       (vanilla-emacs . "emacs -Q")
       (fr unquote
-          (format #f "cd ~a && make fr" sss-repo-clone-path))
+          (format #f "cd ~a && make fr" sss-clone-dir))
       (sr unquote
-          (format #f "cd ~a && make sr" sss-repo-clone-path))
+          (format #f "cd ~a && make sr" sss-clone-dir))
       (jr unquote
-          (format #f "cd ~a && make jr" sss-repo-clone-path))
+          (format #f "cd ~a && make jr" sss-clone-dir))
       (pm unquote
-          (format #f "cd ~a && make publish-manual" sss-repo-clone-path))
+          (format #f "cd ~a && make publish-manual" sss-clone-dir))
       (scala-dev unquote
                  (format #f "nix develop ~a/resources/flakes/scala-dev/"
-                         sss-repo-clone-path))
+                         sss-clone-dir))
       (haskell-dev unquote
                    (format #f "nix develop ~a/resources/flakes/haskell-dev/"
-                           sss-repo-clone-path))
+                           sss-clone-dir))
       (docker . "podman")
       (docker-compose . "podman-compose")
       (owm . "swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 2")
@@ -101,23 +101,23 @@
             (else (cdr f)))))
 
 (begin
-  (define* (sss-bash-config #:key sss-repo-clone-path)
+  (define* (sss-bash-config #:key sss-clone-dir)
     (append (map serialize-bash-vars sss-bash-vars)
             (map serialize-bash-exports sss-bash-exports)
             (map serialize-bash-function sss-bash-functions)
             (map serialize-bash-alias
-                 (sss-bash-aliases #:sss-repo-clone-path sss-repo-clone-path))
+                 (sss-bash-aliases #:sss-clone-dir sss-clone-dir))
             (map serialize-bash-path-appends sss-bash-path-appends)
             sss-bash-postlude))
   (export sss-bash-config))
 
 (begin
-  (define* (sss-bash-service #:key sss-repo-clone-path)
+  (define* (sss-bash-service #:key sss-clone-dir)
     (simple-service 'sss-fancy-bash home-bash-service-type
                     (home-bash-extension (environment-variables '())
                                          (bashrc `(,(plain-file "bashrc.sh"
                                                                 (string-join (sss-bash-config
-                                                                              #:sss-repo-clone-path
-                                                                              sss-repo-clone-path)
+                                                                              #:sss-clone-dir
+                                                                              sss-clone-dir)
                                                                  "\n")))))))
   (export sss-bash-service))
