@@ -132,13 +132,13 @@
 (define-public sss-artanis
   (package
     (name "artanis")
-    (version "1.0.0")
+    (version "1.1.0")
     (source
      (origin
        (method url-fetch)
        (uri (string-append "mirror://gnu/artanis/artanis-" version ".tar.gz"))
        (sha256
-        (base32 "05sigqvm04x0r1gwpwrxjffb3i13bss3ff24frr477zqm54wv5d8"))
+        (base32 "1b7mab8izvli4152hzv4n2z67kw0kwm7pvh0m960whr77rdxwid4"))
        (modules '((guix build utils)))
        (snippet '(begin
                    (substitute* '("artanis/artanis.scm" "artanis/lpc.scm"
@@ -413,159 +413,161 @@ more.")
 (define sss-browser-packages
   (list icecat icedove))
 
-(define sss-other-system-packages
+(define* (sss-other-system-packages #:key architecture)
   (list
 
-        flatpak
-        pipewire
-        nginx
-        watchexec
-        git
-        pavucontrol
+   flatpak
+   pipewire
+   nginx
+   watchexec
+   git
+   pavucontrol
 
-        kcalc
+   kcalc
 
-        slurp
-        ;; stellarium
-        kvantum
-        qt5ct
-        qtsvg
-        ;; seems like qt wayland 6 and 5 are not yet compatible
-        ;; this causes crashes in qt 5 and 6 apps
-        ;; qtwayland
-        qtwayland-5
+   slurp
+   ;; stellarium
+   kvantum
+   qt5ct
+   qtsvg
+   ;; seems like qt wayland 6 and 5 are not yet compatible
+   ;; this causes crashes in qt 5 and 6 apps
+   ;; qtwayland
+   qtwayland-5
 
-        geany
+   geany
 
-        gnome-font-viewer
-        gnome-characters
+   gnome-font-viewer
+   gnome-characters
 
-        rofi-wayland
+   rofi-wayland
 
-        xz
-        ispell
-        (specification->package "bind")
-        wireshark
+   xz
+   ispell
+   (specification->package "bind")
+   wireshark
 
-        gnome-tweaks
-        arandr
-        httpie
-        (specification->package "remmina")
-        libnotify
-        wdisplays
+   gnome-tweaks
+   arandr
+   httpie
+   (specification->package "remmina")
+   libnotify
+   wdisplays
 
-        shotcut
-        openshot
-        inkscape
-        dunst
-        fzf
-        vlc
-        sqlite
-        postgresql
+   shotcut
+   openshot
+   inkscape
+   dunst
+   fzf
+   vlc
+   sqlite
+   postgresql
 
-        gdk-pixbuf
-        gtk
+   gdk-pixbuf
+   gtk
 
-        qutebrowser
+   qutebrowser
 
-        gnome-calculator
-        cheese
-        gnome-system-monitor
-        evince
+   gnome-calculator
+   cheese
+   gnome-system-monitor
+   evince
 
-        qemu
+   qemu
 
-        obs
-        libreoffice
-        gimp
-        imagemagick
-        libwebp
-        feh
+   obs
+   libreoffice
+   gimp
+   imagemagick
+   libwebp
+   feh
 
-        xmodmap
+   xmodmap
 
-        gparted
+   gparted
 
-        lm-sensors
-        exfatprogs
-        exfat-utils
-        fuse-exfat
-        tmon
-        flameshot
+   lm-sensors
+   exfatprogs
+   exfat-utils
+   fuse-exfat
+   tmon
+   flameshot
 
-        parallel
+   parallel
 
-        thunar
+   thunar
 
-        ffmpegthumbs
-        xarchiver
-        ristretto
-        orage
+   ffmpegthumbs
+   xarchiver
+   ristretto
+   orage
 
-        sqlitebrowser
-        direnv
+   sqlitebrowser
+   direnv
 
-        bsd-games
+   bsd-games
 
-        power-profiles-daemon
-        libltdl
-        scenefx
-        swayfx
+   power-profiles-daemon
+   libltdl
+   scenefx
+   swayfx
 
-        gdb
+   gdb
 
-        transmission
-        transmission-remote-gtk
+   transmission
+   transmission-remote-gtk
 
-        xf86-video-fbdev
-        xf86-input-libinput
-        lxsession
-        pamixer
+   xf86-video-fbdev
+   xf86-input-libinput
+   lxsession
+   pamixer
 
-        texinfo
-        texlive
+   texinfo
+   texlive
 
-        ;; ghcid
-        neofetch
-        cmatrix
+   ;; ghcid
+   neofetch
+   cmatrix
 
-        bluez
-        hplip
+   bluez
+   hplip
 
-        autoconf
-        automake
-        perl
+   autoconf
+   automake
+   perl
 
-        mpv
-        mpv-mpris
-        unixodbc
-        tree
-        fyi
+   mpv
+   mpv-mpris
+   unixodbc
+   tree
+   fyi
 
-        enchant
-        emacs-jinx
-        aspell
-        aspell-dict-nl
-        aspell-dict-pt-pt
-        aspell-dict-es
-        aspell-dict-en
-        aspell-dict-ca
+   enchant
+   emacs-jinx
+   aspell
+   aspell-dict-nl
+   aspell-dict-pt-pt
+   aspell-dict-es
+   aspell-dict-en
+   aspell-dict-ca
 
-        ;; element-desktop
-        google-chrome-stable
-        reaper
+   ;; element-desktop
+   
+   ;; TODO find better way to not install certain stuff for arm64/aarch64
+   (if (string-prefix? "x86_64" architecture) google-chrome-stable curl)
+   (if (string-prefix? "x86_64" architecture) reaper curl)
 
-        (specification->package "darkhttpd")
+   (specification->package "darkhttpd")
 
-        openvpn
-        network-manager-applet
-        network-manager-openconnect
-        network-manager-openvpn
+   openvpn
+   network-manager-applet
+   network-manager-openconnect
+   network-manager-openvpn
 
-        nautilus
+   nautilus
 
-        xxd
-        qt6ct))
+   xxd
+   qt6ct))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
@@ -697,9 +699,11 @@ SQL databases.  This package implements the interface for SQLite.")))
 ;;
 ;; Add packages here to install them system wide
 (begin
-  (define* (sss-system-packages #:key (per-host-packages '()))
+  (define* (sss-system-packages #:key (per-host-packages '())
+                                (architecture (or (%current-target-system)
+                                                  (%current-system))))
     (append per-host-packages
-            sss-other-system-packages
+            (sss-other-system-packages #:architecture architecture)
             sss-wm-packages
             sss-font-packages
             sss-dev-packages
