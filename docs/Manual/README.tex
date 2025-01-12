@@ -1,4 +1,4 @@
-% Created 2025-01-11 za 12:47
+% Created 2025-01-12 zo 09:18
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -48,7 +48,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{center}
 
 \section{What lies here?}
-\label{sec:org848e48a}
+\label{sec:org7aff47d}
 
 Knowledge you may find in the project includes:
 \begin{itemize}
@@ -67,7 +67,7 @@ Find the divine sayings, and the destined computer configurations, all my Guix, 
 Warning: parts of the code and settings might default to the Dutch language ( \texttt{nl\_NL.UTF-8} ).
 
 \section{Why ?}
-\label{sec:org2dfc6f5}
+\label{sec:org7f316de}
 
 I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
 
@@ -100,7 +100,7 @@ Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} sinc
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 \section{How this manual works}
-\label{sec:org9a6cb93}
+\label{sec:org530e225}
 
 This manual is written by hand with care and attention for detail.
 
@@ -116,7 +116,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 \end{itemize}
 
 \section{Customizations}
-\label{sec:org0ed9408}
+\label{sec:orgb5ffc4a}
 
 SSS supports several user customizations, more specifically:
 
@@ -126,25 +126,26 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:org3913970}
+\label{sec:orgf71b407}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
 
 \begin{verbatim}
 (use-modules (gnu)
-           (gnu packages))
+             (gnu packages))
 
 (define sss-filesystems
-    (list (file-system
-           (device "/dev/nvme0n1p3")
-           (mount-point "/")
-           (type "ext4"))
-          (file-system
-           (device "/dev/nvme0n1p1")
-           (mount-point "/boot/efi")
-           (type "vfat"))))
+  (list (file-system
+         (device "/dev/nvme0n1p3")
+         (mount-point "/")
+         (type "ext4"))
+        (file-system
+         (device "/dev/nvme0n1p1")
+         (mount-point "/boot/efi")
+         (type "vfat"))))
 
+;; packages that should only be installed in the current host
 ;; or (define sss-per-host-packages '())
 (define sss-per-host-packages
   (list
@@ -155,10 +156,14 @@ Find here a reference configuration with what is required.
    (specification->package "prismlauncher")
    (specification->package "steam")))
 
+;; location where you cloned SSS Git repository
+(define sss-repo-clone-path
+  "/home/joe/Ontwikkeling/Persoonlijk/sss")
+
 \end{verbatim}
 
 \section{Non-free software}
-\label{sec:org95b33bf}
+\label{sec:orgbe0b4ee}
 
 SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
 \begin{itemize}
@@ -168,7 +173,7 @@ SSS attempts to stay as libre as possible, while also respecting your convenienc
 
 
 \section{Bootstrapping}
-\label{sec:orga302e54}
+\label{sec:org67594e9}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
@@ -224,11 +229,11 @@ Make sure you place your \texttt{per-host.scm} in the root of this directory. Th
 
 This translates to \texttt{sudo guix system reconfigure config.scm -{}-{}fallback}.
 
-For more commands take a look at the SSS Makefile: \url{file:///home/joe/Ontwikkeling/Persoonlijk/sss/Makefile}.
+For more commands take a look at the SSS Makefile: \url{../../Makefile}.
 
 The \texttt{fallback} option is optional, and simply helps when upstream substitute (cache) servers are less available.
 
-Once the system reconfigure is complete, you can also bootstrap your user with something like: \texttt{guix home reconfigure ./home/joe.scm  -{}-{}fallback}
+Once the system reconfigure is complete, you should also bootstrap your user's GNU home with something like: \texttt{guix home reconfigure ./home/joe.scm  -{}-{}fallback}
 
 You can then reboot and you should be greeted by a simple TTY. SSS uses no login managers like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to \texttt{gui}, or sometimes I directly run \texttt{sway} from the TTY.
 
@@ -236,7 +241,7 @@ Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
 \section{Nix profile}
-\label{sec:org41e92c3}
+\label{sec:org4a74f3e}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -272,7 +277,7 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 The installed software will be available, for example at: \texttt{/home/joe/.nix-profile/bin/}
 
 \section{Keyboard Terminology}
-\label{sec:orge3cfbd1}
+\label{sec:org01e40e5}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -289,10 +294,10 @@ term & meaning\\[0pt]
 
 
 \section{Sway}
-\label{sec:org519d31d}
+\label{sec:org4979195}
 
 \subsection{Screenshot keybindings}
-\label{sec:orgb9f5c15}
+\label{sec:orge5b2ee3}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -306,7 +311,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{Application keybindings}
-\label{sec:orge6c3491}
+\label{sec:orga321c00}
 
 
 \begin{center}
@@ -325,10 +330,10 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \section{Emacs}
-\label{sec:orgf1cfc6a}
+\label{sec:org0fb1a01}
 
 \subsection{General non-vanilla bindings}
-\label{sec:org5cfc34b}
+\label{sec:org3809b22}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -341,7 +346,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:orgb2cebf6}
+\label{sec:org995fde8}
 
 \begin{center}
 \begin{tabular}{ll}

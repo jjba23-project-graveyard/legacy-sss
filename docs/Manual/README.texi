@@ -165,18 +165,19 @@ Find here a reference configuration with what is required.
 
 @example
 (use-modules (gnu)
-           (gnu packages))
+             (gnu packages))
 
 (define sss-filesystems
-    (list (file-system
-           (device "/dev/nvme0n1p3")
-           (mount-point "/")
-           (type "ext4"))
-          (file-system
-           (device "/dev/nvme0n1p1")
-           (mount-point "/boot/efi")
-           (type "vfat"))))
+  (list (file-system
+         (device "/dev/nvme0n1p3")
+         (mount-point "/")
+         (type "ext4"))
+        (file-system
+         (device "/dev/nvme0n1p1")
+         (mount-point "/boot/efi")
+         (type "vfat"))))
 
+;; packages that should only be installed in the current host
 ;; or (define sss-per-host-packages '())
 (define sss-per-host-packages
   (list
@@ -186,6 +187,10 @@ Find here a reference configuration with what is required.
    ;; Games
    (specification->package "prismlauncher")
    (specification->package "steam")))
+
+;; location where you cloned SSS Git repository
+(define sss-repo-clone-path
+  "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
 @end example
 
@@ -257,11 +262,11 @@ Make sure you place your @code{per-host.scm} in the root of this directory. Then
 
 This translates to @code{sudo guix system reconfigure config.scm --fallback}.
 
-For more commands take a look at the SSS Makefile: @uref{file:///home/joe/Ontwikkeling/Persoonlijk/sss/Makefile}.
+For more commands take a look at the SSS Makefile: @uref{../../Makefile}.
 
 The @code{fallback} option is optional, and simply helps when upstream substitute (cache) servers are less available.
 
-Once the system reconfigure is complete, you can also bootstrap your user with something like: @code{guix home reconfigure ./home/joe.scm  --fallback}
+Once the system reconfigure is complete, you should also bootstrap your user's GNU home with something like: @code{guix home reconfigure ./home/joe.scm  --fallback}
 
 You can then reboot and you should be greeted by a simple TTY@. SSS uses no login managers like GDM or SDDM@. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to @code{gui}, or sometimes I directly run @code{sway} from the TTY@.
 

@@ -44,14 +44,17 @@
   `("org.kde.kcalc" "org.gnome.Calculator" "pavucontrol"
     "org.jointhefreeworld.metainfog"))
 
-(define sss-sway-wallpaper
-  (cond
-    ((equal? sss-palette-ef-cyprus sss-active-palette)
-     "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")
-    ((equal? sss-palette-ef-dream sss-active-palette)
-     "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/1362745.png")
-    (else
-     "/home/joe/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/some-forest.jpg")))
+(begin
+  (define* (sss-sway-wallpaper #:key sss-repo-clone-path)
+    (cond
+      ((equal? sss-palette-ef-cyprus sss-active-palette)
+       (format #f "~a/resources/wallpapers/some-forest.jpg"
+               sss-repo-clone-path))
+      ((equal? sss-palette-ef-dream sss-active-palette)
+       (format #f "~a/resources/wallpapers/1362745.png" sss-repo-clone-path))
+      (else (format #f "~a/resources/wallpapers/some-forest.jpg"
+                    sss-repo-clone-path))))
+  (export sss-sway-wallpaper))
 
 (define sss-sway-startup-programs
   (list "lxsession"
@@ -82,9 +85,12 @@
       "gsettings set $gnome-schema cursor-size 24"
       "gsettings set $gnome-schema font-name 'Monaspace Neon'")))
 
-(define-public sss-sway-outputs
-  (list (sway-output (identifier '*)
-                     (background sss-sway-wallpaper))))
+(begin
+  (define* (sss-sway-outputs #:key sss-repo-clone-path)
+    (list (sway-output (identifier '*)
+                       (background (sss-sway-wallpaper #:sss-repo-clone-path
+                                                       sss-repo-clone-path)))))
+  (export sss-sway-outputs))
 
 (define-public sss-sway-variables
   `((mod . "Mod4") (left . "Left")
@@ -207,24 +213,28 @@
     ,(format #f "client.background ~a"
              (sss-get-color 'text))))
 
-(define-public sss-sway-service-type
-  (service home-sway-service-type
-           (sway-configuration (packages (list swayfx))
-                               (gestures sss-sway-gestures)
-                               (startup-programs sss-sway-startup-programs)
-                               (startup+reload-programs
-                                sss-sway-startup-reload-programs)
-                               (outputs sss-sway-outputs)
-                               (variables sss-sway-variables)
-                               (modes sss-sway-modes)
-                               (keybindings sss-sway-keybindings)
-                               (extra-content (append sss-swayfx-config
-                                                      (map (lambda (w)
-                                                             (format #f
-                                                              "for_window [app_id=\"~a\"] floating enable"
-                                                              w))
-                                                       sss-sway-floating-windows)
-                                                      sss-sway-extra-content)))))
+(begin
+  (define* (sss-sway-service-type #:key sss-repo-clone-path)
+    (service home-sway-service-type
+             (sway-configuration (packages (list swayfx))
+                                 (gestures sss-sway-gestures)
+                                 (startup-programs sss-sway-startup-programs)
+                                 (startup+reload-programs
+                                  sss-sway-startup-reload-programs)
+                                 (outputs (sss-sway-outputs
+                                           #:sss-repo-clone-path
+                                           sss-repo-clone-path))
+                                 (variables sss-sway-variables)
+                                 (modes sss-sway-modes)
+                                 (keybindings sss-sway-keybindings)
+                                 (extra-content (append sss-swayfx-config
+                                                 (map (lambda (w)
+                                                        (format #f
+                                                         "for_window [app_id=\"~a\"] floating enable"
+                                                         w))
+                                                  sss-sway-floating-windows)
+                                                 sss-sway-extra-content)))))
+  (export sss-sway-service-type))
 
 ;; #~(string-append
 ;; #$swayidle "/bin/swayidle -w \\\n    "

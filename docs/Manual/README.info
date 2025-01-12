@@ -196,18 +196,19 @@ for your own machine.  Find here a reference configuration with what is
 required.
 
      (use-modules (gnu)
-                (gnu packages))
+                  (gnu packages))
 
      (define sss-filesystems
-         (list (file-system
-                (device "/dev/nvme0n1p3")
-                (mount-point "/")
-                (type "ext4"))
-               (file-system
-                (device "/dev/nvme0n1p1")
-                (mount-point "/boot/efi")
-                (type "vfat"))))
+       (list (file-system
+              (device "/dev/nvme0n1p3")
+              (mount-point "/")
+              (type "ext4"))
+             (file-system
+              (device "/dev/nvme0n1p1")
+              (mount-point "/boot/efi")
+              (type "vfat"))))
 
+     ;; packages that should only be installed in the current host
      ;; or (define sss-per-host-packages '())
      (define sss-per-host-packages
        (list
@@ -217,6 +218,10 @@ required.
         ;; Games
         (specification->package "prismlauncher")
         (specification->package "steam")))
+
+     ;; location where you cloned SSS Git repository
+     (define sss-repo-clone-path
+       "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
 
 
@@ -320,15 +325,14 @@ directory.  Then you can do a ‘make sr’.
    This translates to ‘sudo guix system reconfigure config.scm
 --fallback’.
 
-   For more commands take a look at the SSS Makefile:
-<file:///home/joe/Ontwikkeling/Persoonlijk/sss/Makefile>.
+   For more commands take a look at the SSS Makefile: <../../Makefile>.
 
    The ‘fallback’ option is optional, and simply helps when upstream
 substitute (cache) servers are less available.
 
-   Once the system reconfigure is complete, you can also bootstrap your
-user with something like: ‘guix home reconfigure ./home/joe.scm
---fallback’
+   Once the system reconfigure is complete, you should also bootstrap
+your user’s GNU home with something like: ‘guix home reconfigure
+./home/joe.scm --fallback’
 
    You can then reboot and you should be greeted by a simple TTY.  SSS
 uses no login managers like GDM or SDDM.  Simply login to the TTY and
@@ -472,16 +476,16 @@ Node: Why ?2500
 Node: How this manual works5526
 Node: Customizations6243
 Node: Per host - per-hostscm6679
-Node: Non-free software7772
-Node: Bootstrapping8321
-Node: Nix profile12526
-Node: Keyboard Terminology13556
-Node: Sway13951
-Node: Screenshot keybindings14120
-Node: Application keybindings14526
-Node: Emacs15051
-Node: General non-vanilla bindings15200
-Node: SSS specific keybindings15478
+Node: Non-free software7961
+Node: Bootstrapping8510
+Node: Nix profile12691
+Node: Keyboard Terminology13721
+Node: Sway14116
+Node: Screenshot keybindings14285
+Node: Application keybindings14691
+Node: Emacs15216
+Node: General non-vanilla bindings15365
+Node: SSS specific keybindings15643
 
 End Tag Table
 

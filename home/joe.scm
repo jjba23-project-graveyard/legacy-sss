@@ -17,6 +17,22 @@
 
 ;; Code:
 
+(use-modules (gnu system file-systems))
+
+;; set default values for optional `per-host.scm' values
+;; which can be overriden on a host-per-host basis
+
+;; location where you cloned SSS Git repository
+(define sss-repo-clone-path
+  "/home/joe/Ontwikkeling/Persoonlijk/sss")
+
+;; packages that should only be installed in the current host
+(define sss-per-host-packages
+  '())
+
+;; load user preferences per-host
+(load "../per-host.scm")
+
 (load "../lib/path.scm")
 (use-modules (sss path))
 
@@ -228,12 +244,12 @@
   (services
    (list sss-home-files-service
          sss-ssh-service
-         sss-home-vars-service
+         (sss-home-vars-service #:sss-repo-clone-path sss-repo-clone-path)
          sss-bash-service
          sss-openpgp-conf
          (service home-dbus-service-type)
          (service home-pipewire-service-type)
          (service sss-byggsteg-service-type)
-         sss-sway-service-type
+         (sss-sway-service-type #:sss-repo-clone-path sss-repo-clone-path)
          sss-fontconfig-service-type)))
 

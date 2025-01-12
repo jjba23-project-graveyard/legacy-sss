@@ -24,8 +24,23 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(load "./lib/process.scm")
+;; set default values for optional `per-host.scm' values
+;; which can be overriden on a host-per-host basis
+
+;; location where you cloned SSS Git repository
+(define sss-repo-clone-path
+  "/home/joe/Ontwikkeling/Persoonlijk/sss")
+
+;; packages that should only be installed in the current host
+(define sss-per-host-packages
+  '())
+
+;; load user preferences per-host
 (load "./per-host.scm")
+
+(load "./lib/process.scm")
+
+;; load system packages and definitions
 (load "./system/packages.scm")
 
 (use-modules (sss-packages))
@@ -219,7 +234,8 @@
   (users (cons* sss-joe-user-account sss-manon-user-account
                 %base-user-accounts))
 
-  (packages (append sss-system-packages %base-packages))
+  (packages (append (sss-system-packages #:per-host-packages
+                                         sss-per-host-packages) %base-packages))
 
   (services
    (cons* (service nix-service-type)

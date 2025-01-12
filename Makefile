@@ -79,6 +79,9 @@ format:
 	-find ~+ -maxdepth 8 -name "*.el" -type f -exec emacs -Q --batch {} -l $(shell realpath ./lib/emacs/batch-indent.el) -f indent-file \;
 	$(call sss-log-complete,"format")
 
+publish-manual:
+	cd docs/Manual/ && emacs -Q --batch -l $(shell realpath ./lib/sss-manual.el) --funcall sss/publish-manual && cd ../../
+
 
 # Aliases section
 jr:

@@ -325,8 +325,6 @@ more.")
         wireplumber
         pipewire
 
-
-
         wl-clipboard
 
         ;; Wayland portals
@@ -418,156 +416,156 @@ more.")
 (define sss-other-system-packages
   (list
 
-   flatpak
-   pipewire
-   nginx
-   watchexec
-   git
-   pavucontrol
+        flatpak
+        pipewire
+        nginx
+        watchexec
+        git
+        pavucontrol
 
-   kcalc
+        kcalc
 
-   slurp
-   ;; stellarium
-   kvantum
-   qt5ct
-   qtsvg
-   ;; seems like qt wayland 6 and 5 are not yet compatible
-   ;; this causes crashes in qt 5 and 6 apps
-   ;; qtwayland
-   qtwayland-5
+        slurp
+        ;; stellarium
+        kvantum
+        qt5ct
+        qtsvg
+        ;; seems like qt wayland 6 and 5 are not yet compatible
+        ;; this causes crashes in qt 5 and 6 apps
+        ;; qtwayland
+        qtwayland-5
 
-   geany
+        geany
 
-   gnome-font-viewer
-   gnome-characters
+        gnome-font-viewer
+        gnome-characters
 
-   rofi-wayland
+        rofi-wayland
 
-   xz
-   ispell
-   (specification->package "bind")
-   wireshark
+        xz
+        ispell
+        (specification->package "bind")
+        wireshark
 
-   gnome-tweaks
-   arandr
-   httpie
-   (specification->package "remmina")
-   libnotify
-   wdisplays
+        gnome-tweaks
+        arandr
+        httpie
+        (specification->package "remmina")
+        libnotify
+        wdisplays
 
-   shotcut
-   openshot
-   inkscape
-   dunst
-   fzf
-   vlc
-   sqlite
-   postgresql
+        shotcut
+        openshot
+        inkscape
+        dunst
+        fzf
+        vlc
+        sqlite
+        postgresql
 
-   gdk-pixbuf
-   gtk
+        gdk-pixbuf
+        gtk
 
-   qutebrowser
+        qutebrowser
 
-   gnome-calculator
-   cheese
-   gnome-system-monitor
-   evince
+        gnome-calculator
+        cheese
+        gnome-system-monitor
+        evince
 
-   qemu
+        qemu
 
-   obs
-   libreoffice
-   gimp
-   imagemagick
-   libwebp
-   feh
+        obs
+        libreoffice
+        gimp
+        imagemagick
+        libwebp
+        feh
 
-   xmodmap
+        xmodmap
 
-   gparted
+        gparted
 
-   lm-sensors
-   exfatprogs
-   exfat-utils
-   fuse-exfat
-   tmon
-   flameshot
+        lm-sensors
+        exfatprogs
+        exfat-utils
+        fuse-exfat
+        tmon
+        flameshot
 
-   parallel
+        parallel
 
-   thunar
+        thunar
 
-   ffmpegthumbs
-   xarchiver
-   ristretto
-   orage
+        ffmpegthumbs
+        xarchiver
+        ristretto
+        orage
 
-   sqlitebrowser
-   direnv
+        sqlitebrowser
+        direnv
 
-   bsd-games
+        bsd-games
 
-   power-profiles-daemon
-   libltdl
-   scenefx
-   swayfx
+        power-profiles-daemon
+        libltdl
+        scenefx
+        swayfx
 
-   gdb
+        gdb
 
-   transmission
-   transmission-remote-gtk
+        transmission
+        transmission-remote-gtk
 
-   xf86-video-fbdev
-   xf86-input-libinput
-   lxsession
-   pamixer
+        xf86-video-fbdev
+        xf86-input-libinput
+        lxsession
+        pamixer
 
-   texinfo
-   texlive
+        texinfo
+        texlive
 
-   ;; ghcid
-   neofetch
-   cmatrix
+        ;; ghcid
+        neofetch
+        cmatrix
 
-   bluez
-   hplip
+        bluez
+        hplip
 
-   autoconf
-   automake
-   perl
+        autoconf
+        automake
+        perl
 
-   mpv
-   mpv-mpris
-   unixodbc
-   tree
-   fyi
+        mpv
+        mpv-mpris
+        unixodbc
+        tree
+        fyi
 
-   enchant
-   emacs-jinx
-   aspell
-   aspell-dict-nl
-   aspell-dict-pt-pt
-   aspell-dict-es
-   aspell-dict-en
-   aspell-dict-ca
+        enchant
+        emacs-jinx
+        aspell
+        aspell-dict-nl
+        aspell-dict-pt-pt
+        aspell-dict-es
+        aspell-dict-en
+        aspell-dict-ca
 
-   ;; element-desktop
-   google-chrome-stable
-   reaper
+        ;; element-desktop
+        google-chrome-stable
+        reaper
 
-   (specification->package "darkhttpd")
+        (specification->package "darkhttpd")
 
-   openvpn
-   network-manager-applet
-   network-manager-openconnect
-   network-manager-openvpn
+        openvpn
+        network-manager-applet
+        network-manager-openconnect
+        network-manager-openvpn
 
-   nautilus
+        nautilus
 
-   xxd
-   qt6ct))
+        xxd
+        qt6ct))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
@@ -663,28 +661,28 @@ SQL databases.  This package implements the interface for SQLite.")))
   (let ((commit "64002d74025f577e1eeea7bc51218a2c7929631f")
         (revision "0"))
     (package
-     (name "guile-uuid")
-     (version (git-version "0.0.0" revision commit))
-     (source
-      (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://codeberg.org/elb/guile-uuid.git")
-             (commit commit)))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1q6dqm2hzq75aa5mrrwgqdml864pdrxc98j7pyj1y0827phnzjfj"))))
-     (build-system guile-build-system)
-     (native-inputs (list guile-3.0 guile-gcrypt))
-     (home-page "https://codeberg.org/elb/guile-uuid")
-     (synopsis
-      "Guile-UUID is a UUID generation and manipulation module for GNU Guile.")
-     (description
-      "This package implements RFC 9562 UUIDs, and can generate versions 1 and 3–8 from that specification.
+      (name "guile-uuid")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://codeberg.org/elb/guile-uuid.git")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1q6dqm2hzq75aa5mrrwgqdml864pdrxc98j7pyj1y0827phnzjfj"))))
+      (build-system guile-build-system)
+      (native-inputs (list guile-3.0 guile-gcrypt))
+      (home-page "https://codeberg.org/elb/guile-uuid")
+      (synopsis
+       "Guile-UUID is a UUID generation and manipulation module for GNU Guile.")
+      (description
+       "This package implements RFC 9562 UUIDs, and can generate versions 1 and 3–8 from that specification.
         It provides parsing for UUIDs in standard hex-and-dash format of any variant and version.
         It can also query the variant and version of UUIDs from the RFC.
         Simple routines for converting between binary and hex-and-dash string UUIDs are included.")
-     (license license:gpl3+))))
+      (license license:gpl3+))))
 
 (define sss-guile-packages
   (list sss-artanis
@@ -698,16 +696,18 @@ SQL databases.  This package implements the interface for SQLite.")))
 ;; SYSTEM PACKAGES
 ;;
 ;; Add packages here to install them system wide
-(define-public sss-system-packages
-  (append sss-per-host-packages
-          sss-other-system-packages
-          sss-wm-packages
-          sss-font-packages
-          sss-dev-packages
-          sss-guile-packages
-          sss-container-packages
-          sss-treesitter-packages
-          sss-coreutils
-          sss-terminal-emulator-packages
-          sss-browser-packages
-          sss-theme-packages))
+(begin
+  (define* (sss-system-packages #:key (per-host-packages '()))
+    (append per-host-packages
+            sss-other-system-packages
+            sss-wm-packages
+            sss-font-packages
+            sss-dev-packages
+            sss-guile-packages
+            sss-container-packages
+            sss-treesitter-packages
+            sss-coreutils
+            sss-terminal-emulator-packages
+            sss-browser-packages
+            sss-theme-packages))
+  (export sss-system-packages))
