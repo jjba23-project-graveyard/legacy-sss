@@ -91,9 +91,9 @@
 
 (define sss-joe-user-account
   (user-account
-    (name "joe")
-    (group "users")
-    (supplementary-groups '("wheel" "netdev" "audio" "video" "input"))))
+   (name "joe")
+   (group "users")
+   (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))))
 
 (define sss-manon-user-account
   (user-account
@@ -229,7 +229,10 @@
          sss-iptables
          sss-joe-subuid
          sss-joe-mpd
-         (service libvirt-service-type)
+         (service libvirt-service-type
+                  (libvirt-configuration
+                   (unix-sock-group "libvirt")
+                   (tls-port "16555")))
          sss-cron-jobs-service
          sss-desktop-services)))
 
