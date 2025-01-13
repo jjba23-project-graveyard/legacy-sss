@@ -19,35 +19,10 @@
   #:use-module (gnu)
   #:use-module (gnu home services ssh))
 
-(define-public sss-ssh-service
-  (service home-openssh-service-type
-           (home-openssh-configuration (hosts (list (openssh-host (name
-                                                                   "wolk-jjba")
-                                                                  (user "joe")
-                                                                  (host-name
-                                                                   "37.60.232.48")
-                                                                  (port 2323)
-                                                                  (identity-file
-                                                                   "~/.ssh/wolk-jjba"))
-                                                    (openssh-host (name
-                                                                   "personal.github.com")
-                                                                  (user "joe")
-                                                                  (host-name
-                                                                   "github.com")
-                                                                  (identity-file
-                                                                   "~/.ssh/gitlab_prive"))
-                                                    (openssh-host (name
-                                                                   "codeberg.org")
-                                                                  (user "joe")
-                                                                  (host-name
-                                                                   "codeberg.org")
-                                                                  (identity-file
-                                                                   "~/.ssh/gitlab_prive"))
-                                                    (openssh-host (name
-                                                                   "work.github.com")
-                                                                  (user "joe")
-                                                                  (host-name
-                                                                   "github.com")
-                                                                  (identity-file
-                                                                   "~/.ssh/work_id"))))
-                                       (authorized-keys '()))))
+(begin
+  (define* (sss-ssh-service #:key (ssh-hosts '())
+                            (ssh-authorized-keys '()))
+    (service home-openssh-service-type
+             (home-openssh-configuration (hosts ssh-hosts)
+                                         (authorized-keys ssh-authorized-keys))))
+  (export sss-ssh-service))

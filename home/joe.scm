@@ -52,6 +52,7 @@
              (gnu packages admin)
              (gnu home services)
              (gnu home services shells)
+             (gnu home services ssh)
              (gnu home services gnupg)
              (gnu home services shepherd)
              (gnu home services sound)
@@ -80,6 +81,29 @@
              (sss ssh)
              (sss bridge emacs)
              (sss qutebrowser))
+
+(define joe-ssh-hosts
+  (list (openssh-host (name "wolk-jjba")
+                      (user "joe")
+                      (host-name "37.60.232.48")
+                      (port 2323)
+                      (identity-file "~/.ssh/wolk-jjba"))
+        (openssh-host (name "personal.github.com")
+                      (user "joe")
+                      (host-name "github.com")
+                      (identity-file "~/.ssh/gitlab_prive"))
+        (openssh-host (name "gitlab.com")
+                      (user "joe")
+                      (host-name "gitlab.com")
+                      (identity-file "~/.ssh/gitlab_prive"))
+        (openssh-host (name "codeberg.org")
+                      (user "joe")
+                      (host-name "codeberg.org")
+                      (identity-file "~/.ssh/gitlab_prive"))
+        (openssh-host (name "work.github.com")
+                      (user "joe")
+                      (host-name "github.com")
+                      (identity-file "~/.ssh/work_id"))))
 
 ;; Define user's home files (a.k.a. dotfiles)
 (define sss-home-files-service
@@ -243,7 +267,7 @@
   (packages (list pfetch))
   (services
    (list sss-home-files-service
-         sss-ssh-service
+         (sss-ssh-service #:ssh-hosts joe-ssh-hosts)
          (sss-home-vars-service #:sss-clone-dir sss-clone-dir)
          (sss-bash-service #:sss-clone-dir sss-clone-dir)
          sss-openpgp-conf
