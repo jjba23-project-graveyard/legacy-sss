@@ -141,8 +141,11 @@
         (base32 "1b7mab8izvli4152hzv4n2z67kw0kwm7pvh0m960whr77rdxwid4"))
        (modules '((guix build utils)))
        (snippet '(begin
+                   (delete-file-recursively "artanis/third-party/json.scm")
+                   (delete-file-recursively "artanis/third-party/redis.scm")
                    (substitute* '("artanis/artanis.scm" "artanis/lpc.scm"
-                                  "artanis/oht.scm" "artanis/tpl/parser.scm")
+                                  "artanis/i18n/json.scm" "artanis/oht.scm"
+                                  "artanis/tpl/parser.scm")
                      (("(#:use-module \\()artanis third-party (json\\))" _
                        use-module json)
                       (string-append use-module json)))
@@ -156,7 +159,8 @@
                       (string-append pre "scm" json-string post)))
                    (substitute* "artanis/artanis.scm"
                      (("[[:punct:][:space:]]+->json-string[[:punct:][:space:]]+")
-                      "")) #t))))
+                      ""))
+                   #t))))
     (build-system gnu-build-system)
     (inputs (list bash-minimal guile-3.0 nspr nss))
     ;; FIXME the bundled csv contains one more exported procedure
@@ -212,11 +216,11 @@
                     (lambda* (#:key outputs #:allow-other-keys)
                       (let ((out (assoc-ref outputs "out")))
                         (substitute* "Makefile"
-                          ;; ignore the execution of bash.bashrc
+                           ;ignore the execution of bash.bashrc
                           ((" /etc/bash.bashrc")
                            " /dev/null"))
                         (substitute* "Makefile"
-                          ;; set the root of config files to OUT
+                           ;set the root of config files to OUT
                           ((" /etc")
                            (string-append " " out "/etc")))
                         (mkdir-p (string-append out "/bin")))))
@@ -247,7 +251,7 @@ frameworks, session management, URL-remapping for RESTful, page caching, and
 more.")
     (home-page "https://www.gnu.org/software/artanis/")
     (license (list license:gpl3+ license:lgpl3+))))
-;dual license
+ ;dual license
 
 (define-public font-monaspace
   (package
