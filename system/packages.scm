@@ -129,6 +129,11 @@
 
 (load "../per-host.scm")
 
+(define (sss/x86-only-pkg architecture pkg)
+  (if (string-prefix? "x86_64" architecture)
+      (specification->package pkg)
+      '()))
+
 (define-public sss-artanis
   (package
     (name "artanis")
@@ -216,11 +221,11 @@
                     (lambda* (#:key outputs #:allow-other-keys)
                       (let ((out (assoc-ref outputs "out")))
                         (substitute* "Makefile"
-                           ;ignore the execution of bash.bashrc
+                          ;; ignore the execution of bash.bashrc
                           ((" /etc/bash.bashrc")
                            " /dev/null"))
                         (substitute* "Makefile"
-                           ;set the root of config files to OUT
+                          ;; set the root of config files to OUT
                           ((" /etc")
                            (string-append " " out "/etc")))
                         (mkdir-p (string-append out "/bin")))))
@@ -251,7 +256,7 @@ frameworks, session management, URL-remapping for RESTful, page caching, and
 more.")
     (home-page "https://www.gnu.org/software/artanis/")
     (license (list license:gpl3+ license:lgpl3+))))
- ;dual license
+;dual license
 
 (define-public font-monaspace
   (package
@@ -430,7 +435,7 @@ more.")
         kcalc
 
         slurp
-        ;; stellarium
+
         kvantum
         qt5ct
         qtsvg
@@ -438,6 +443,7 @@ more.")
         ;; this causes crashes in qt 5 and 6 apps
         ;; qtwayland
         qtwayland-5
+        qt6ct
 
         geany
 
@@ -529,7 +535,8 @@ more.")
         texinfo
         texlive
 
-        ;; ghcid
+        (sss/x86-only-pkg architecture "ghcid")
+
         neofetch
         cmatrix
 
@@ -555,11 +562,10 @@ more.")
         aspell-dict-en
         aspell-dict-ca
 
-        ;; element-desktop
-        
-        ;; TODO find better way to not install certain stuff for arm64/aarch64
-        (if (string-prefix? "x86_64" architecture) google-chrome-stable curl)
-        (if (string-prefix? "x86_64" architecture) reaper curl)
+        (sss/x86-only-pkg architecture "google-chrome-stable")
+        (sss/x86-only-pkg architecture "reaper")
+        (sss/x86-only-pkg architecture "stellarium")
+        (sss/x86-only-pkg architecture "virt-manager")
 
         (specification->package "darkhttpd")
 
@@ -570,8 +576,7 @@ more.")
 
         nautilus
 
-        xxd
-        qt6ct))
+        xxd))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
