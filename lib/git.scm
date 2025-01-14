@@ -21,9 +21,9 @@
 ;; I enjoy having a default commit message, and I overwrite it
 ;; sometimes when the commit is meaningful, otherwise I use it
 (define-public sss-gitmessage-personal
-  "🥷🏼")
+  "🐂")
 (define-public sss-gitmessage-work
-  "🥷🏼")
+  "🐂")
 
 (define-public sss-gitignore-global
   `("bloop" ".bloop"
