@@ -21,7 +21,7 @@
   #:use-module (gnu)
   #:use-module (sss palette))
 
-;; Waybar power menu
+;; Waybar power menu, encoding XML as Scheme - SXML - s-expressions
 (define-public sss-waybar-power-menu
   '(*TOP* (*PI* xml "version=\"1.0\" encoding=\"UTF-8\"")
           (interface (object (@ (class "GtkMenu")
@@ -45,11 +45,21 @@
                                             (property (@ (name "label"))
                                                       "Reboot")))))))
 
-;; My WayBar configurations, defined in Guile Scheme
+;; My WayBar configurations, defined in Guile Scheme, a status bar with a detailed, modular setup.
 ;;
-;; TODO list additional things and docs separately
-;; for now here
+;; TODO list additional things and docs separately, modularize
 ;; 
+;;   - Includes essential and custom modules such as clock, battery, network, and custom power actions.
+;;   - Workspaces: Custom icons for workspace numbers with scroll disabled and all outputs enabled.
+;;   - MPD: Displays the current song, playback state, and queue length with detailed formatting for connected and disconnected states.
+;;   - Clock: Includes date, time, and timezone with customizable tooltips and refresh interval.
+;;   - Battery: Dynamically updates based on charging, plugged-in, and critical states, with custom icons and thresholds.
+;;   - Network: Distinguishes between WiFi, Ethernet, and disconnected states, with formatted tooltips for connection details.
+;;   - Power Profiles: Displays and provides tooltips for performance and power-saver modes.
+;;   - Pulseaudio: Customizes audio output with volume percentage, mute states, and clickable integration with `pavucontrol`.
+;;   - Many configurations utilize icons and colors, aligning with themes for visual consistency.
+;;   - Supports dynamic tooltips and real-time updates for responsive UX.
+;;
 ;; (mpd) - (format .  "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} -
 ;; {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})
 ;; ⸨{songPosition}|{queueLength}⸩ {volume}% ")
@@ -171,6 +181,21 @@
                                 (suspend . "sudo loginctl suspend")
                                 (hibernate . "sudo loginctl hibernate")))))
 
+;; Defines a CSS configuration for SSS Waybar using Scheme.
+;; This configuration customizes various UI elements, such as background color,
+;; padding, font styles, and colors, with dynamic values derived from functions
+;; like `sss-get-color` and `sss-hex-to-rgba`.
+;;
+;; Key Features:
+;; - Transparent background for the Waybar module with consistent padding.
+;; - Specific styles for workspace buttons, clocks, and tooltips.
+;; - Dynamic colors fetched from `sss-get-color` for consistency with theme settings.
+;; - Use of transition effects and alpha blending to enhance UI responsiveness.
+;; - Multiple font families and aesthetic coherence.
+;;
+;; Note:
+;; - Some styles, such as borders and border-radius, are commented out but ready
+;;   for activation if needed.
 (define-public sss-waybar-css
   `((module (background . transparent)
             (padding-top . "6px")
@@ -182,11 +207,11 @@
             (font-weight . 500)
             (color unquote
                    (sss-get-color 'text)))
-    ("#workspaces button" (font-size . "11pt"))
-    ("#clock.date, #clock.time" (font-size . "9pt"))
+    ("#workspaces button" (font-size . "12pt"))
+    ("#clock.date, #clock.time" (font-size . "10pt"))
     ("window#waybar" (background unquote
                                  (sss-hex-to-rgba (sss-get-color 'background)
-                                                  #:alpha 0.75))
+                                                  #:alpha 0.80))
      (padding . "12px")
      (font-family . "FontAwesome, Monaspace Neon")
      ;; (border-radius . "10px")

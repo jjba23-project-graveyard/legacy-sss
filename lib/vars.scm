@@ -21,6 +21,7 @@
   #:use-module (gnu home services shells)
   #:use-module (gnu services))
 
+;; Environment variables for a user, plug into SSS
 (begin
   (define* (sss-home-vars #:key sss-clone-dir)
     `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale")
@@ -52,6 +53,7 @@
       ("DOCKER_HOST" . "unix:///tmp/podman.sock")))
   (export sss-home-vars))
 
+;; Environment variables Guix service for a user, plug into SSS
 (begin
   (define* (sss-home-vars-service #:key sss-clone-dir)
     (simple-service 'some-useful-env-vars-service

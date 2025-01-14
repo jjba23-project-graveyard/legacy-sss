@@ -19,6 +19,7 @@
   #:use-module (gnu)
   #:use-module (gnu home services ssh))
 
+;; Define a SSH configuration service for a SSS user
 (begin
   (define* (sss-ssh-service #:key (ssh-hosts '())
                             (ssh-authorized-keys '()))

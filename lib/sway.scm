@@ -40,18 +40,23 @@
     (swipe:3:down . "move to scratchpad")
     (swipe:3:up . "scratchpad show")))
 
+;; Defines a list of application identifiers for floating windows in Sway.
+;; These applications are specified to open as floating windows, 
+;; ensuring they don't tile with other windows and maintain a distinct 
+;; appearance for usability.
 (define sss-sway-floating-windows
   `("org.kde.kcalc" "org.gnome.Calculator" "pavucontrol"
     "org.jointhefreeworld.metainfog"))
 
+;; Define diverse wallpapers based on the active color scheme. 
 (begin
   (define* (sss-sway-wallpaper #:key sss-clone-dir)
     (cond
-      ((equal? sss-palette-ef-cyprus sss-active-palette)
-       (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
-      ((equal? sss-palette-ef-dream sss-active-palette)
-       (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
-      (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
+     ((equal? sss-palette-ef-cyprus sss-active-palette)
+      (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
+     ((equal? sss-palette-ef-dream sss-active-palette)
+      (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
+     (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
 
 (define sss-sway-startup-programs

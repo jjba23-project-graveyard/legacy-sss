@@ -32,6 +32,9 @@
 
 ;;; Code:
 
+;; Executes a system command and returns its output as a string.
+;;
+;; Be cautious with input: Passing untrusted or unsanitized strings can lead to security vulnerabilities (e.g. shell injection attacks).
 (define-public (syscall cmd)
   (let* ((process (open-input-pipe cmd))
          (process-output (get-string-all process)))
@@ -43,15 +46,15 @@
                            (for-each (lambda (x)
                                        (display (format #f "~a\n" x))) items))))
 
+;; Create a CSS configuration from PAIRS, a selector to values alist.
 (begin
   (define* (mk-css-conf-lines pairs)
-    "Create a CSS configuration from PAIRS, a selector to values alist."
     (with-output-to-string (lambda ()
                              (for-each (lambda (x)
                                          (display (format #f "~a {\n"
                                                           (car x)))
                                          (display (mk-kv-conf-lines (cdr x)
-                                                   #:template "  ~a: ~a;\n"))
+                                                                    #:template "  ~a: ~a;\n"))
                                          (display "}\n\n")) pairs))))
   (export mk-css-conf-lines))
 
