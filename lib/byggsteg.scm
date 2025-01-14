@@ -19,23 +19,24 @@
   #:use-module (gnu)
   #:use-module (gnu home services shepherd))
 
+;; Run byggsteg as a GNU Shepherd service (daemon)
 (define-public (sss-byggsteg-service config)
   (list (shepherd-service (documentation "Run byggsteg as a daemon")
                           (provision '(byggsteg))
                           (requirement '())
                           (start #~(make-forkexec-constructor '("make"
                                                                 "server")
-                                    #:directory
-                                    "/home/joe/Ontwikkeling/Persoonlijk/byggsteg"
-                                    #:environment-variables (list
-                                                             "GUILE_LOAD_PATH=/run/current-system/profile/share/guile/site/3.0"
-                                                             "GUILE_DBD_PATH=/run/current-system/profile/lib"
-                                                             "C_INCLUDE_PATH=/run/current-system/profile/include"
-                                                             "GUILE_LOAD_COMPILED_PATH=/run/current-system/profile/lib/guile/3.0/site-ccache:/run/current-system/profile/share/guile/site/3.0"
-                                                             "LIBRARY_PATH=/run/current-system/profile/lib"
-                                                             "PATH=/home/joe/.nix-profile/bin:/home/joe/.guix-home/profile/bin:/home/joe/.guix-home/profile/sbin:/run/privileged/bin:/home/joe/.config/guix/current/bin:/home/joe/.guix-profile/bin:/run/current-system/profile/bin:/run/current-system/profile/sbin"
-                                                             "GIT_SSL_NO_VERIFY=1"
-                                                             "LANG=nl_NL.UTF-8")))
+                                                              #:directory
+                                                              "/home/joe/Ontwikkeling/Persoonlijk/byggsteg"
+                                                              #:environment-variables (list
+                                                                                       "GUILE_LOAD_PATH=/run/current-system/profile/share/guile/site/3.0"
+                                                                                       "GUILE_DBD_PATH=/run/current-system/profile/lib"
+                                                                                       "C_INCLUDE_PATH=/run/current-system/profile/include"
+                                                                                       "GUILE_LOAD_COMPILED_PATH=/run/current-system/profile/lib/guile/3.0/site-ccache:/run/current-system/profile/share/guile/site/3.0"
+                                                                                       "LIBRARY_PATH=/run/current-system/profile/lib"
+                                                                                       "PATH=/home/joe/.nix-profile/bin:/home/joe/.guix-home/profile/bin:/home/joe/.guix-home/profile/sbin:/run/privileged/bin:/home/joe/.config/guix/current/bin:/home/joe/.guix-profile/bin:/run/current-system/profile/bin:/run/current-system/profile/sbin"
+                                                                                       "GIT_SSL_NO_VERIFY=1"
+                                                                                       "LANG=nl_NL.UTF-8")))
                           (stop #~(make-kill-destructor))
                           (auto-start? #t)
                           (respawn? #t))))
