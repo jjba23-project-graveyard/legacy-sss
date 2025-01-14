@@ -91,18 +91,19 @@
 
 (define sss-joe-user-account
   (user-account
-   (name "joe")
-   (group "users")
-   (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))))
+    (name "joe")
+    (group "users")
+    (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))))
 
 (define sss-manon-user-account
   (user-account
-   (name "manon")
-   (group "users")
-   (supplementary-groups '("audio" "video" "netdev" "input"))))
+    (name "manon")
+    (group "users")
+    (supplementary-groups '("audio" "video" "netdev" "input"))))
 
 (define wikimusic-fetch-backups-job
-  '(job "0 0 * * *" "mkdir -p /home/joe/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ /home/joe/Documenten/wikimusic-backups/"))
+  '(job "0 0 * * *"
+    "mkdir -p /home/joe/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ /home/joe/Documenten/wikimusic-backups/"))
 
 (define sss-cron-jobs-service
   (simple-service 'sss-cron-jobs mcron-service-type
@@ -199,40 +200,44 @@
   (identifier-syntax (sss-desktop-services-for-system)))
 
 (operating-system
- (host-name "guixvm")
- (timezone "Europe/Amsterdam")
+  (host-name "guixvm")
+  (timezone "Europe/Amsterdam")
 
- (locale "nl_NL.utf8")
- (keyboard-layout (keyboard-layout "us"))
+  (locale "nl_NL.utf8")
+  (keyboard-layout (keyboard-layout "us"))
 
- (bootloader (bootloader-configuration
-              (bootloader grub-efi-bootloader)
-              (targets '("/boot/efi"))))
+  (bootloader (bootloader-configuration
+                (bootloader grub-efi-bootloader)
+                (targets '("/boot/efi"))))
 
- (kernel linux)
- (initrd microcode-initrd)
- (firmware (list linux-firmware))
- (kernel-arguments (list "console=ttyS0,115200"))
- (sudoers-file (local-file "system/sudoers"))
+  (kernel linux)
+  (initrd microcode-initrd)
+  (firmware (list linux-firmware))
+  (kernel-arguments (list "console=ttyS0,115200"))
+  (sudoers-file (plain-file "sudoers"
+                            (string-join '("root ALL=(ALL) NOPASSWD:ALL"
+                                           "%wheel ALL=(ALL) NOPASSWD:ALL"
+                                           "joe ALL=(ALL) NOPASSWD:ALL"
+                                           "manon ALL=(ALL) ALL"
+                                           "claudio ALL=(ALL) ALL") "\n")))
 
- (file-systems (append sss-filesystems %base-file-systems))
+  (file-systems (append sss-filesystems %base-file-systems))
 
- (users (cons* sss-joe-user-account sss-manon-user-account
-               %base-user-accounts))
+  (users (cons* sss-joe-user-account sss-manon-user-account
+                %base-user-accounts))
 
- (packages (append (sss-system-packages #:per-host-packages
-                                        sss-per-host-packages) %base-packages))
+  (packages (append (sss-system-packages #:per-host-packages
+                                         sss-per-host-packages) %base-packages))
 
- (services
-  (cons* (service nix-service-type)
-         (service power-profiles-daemon-service-type)
-         sss-iptables
-         sss-joe-subuid
-         sss-joe-mpd
-         (service libvirt-service-type
-                  (libvirt-configuration
-                   (unix-sock-group "libvirt")
-                   (tls-port "16555")))
-         sss-cron-jobs-service
-         sss-desktop-services)))
+  (services
+   (cons* (service nix-service-type)
+          (service power-profiles-daemon-service-type)
+          sss-iptables
+          sss-joe-subuid
+          sss-joe-mpd
+          (service libvirt-service-type
+                   (libvirt-configuration (unix-sock-group "libvirt")
+                                          (tls-port "16555")))
+          sss-cron-jobs-service
+          sss-desktop-services)))
 

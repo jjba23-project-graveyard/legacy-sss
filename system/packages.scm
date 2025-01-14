@@ -540,6 +540,8 @@ more.")
         neofetch
         cmatrix
 
+        pkg-config
+
         bluez
         hplip
 
