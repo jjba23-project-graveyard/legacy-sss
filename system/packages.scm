@@ -141,9 +141,10 @@
     (source
      (origin
        (method url-fetch)
-       (uri (string-append "mirror://gnu/artanis/artanis-" version ".tar.gz"))
+       (uri
+        "https://gitlab.com/hardenedlinux/artanis/-/archive/3c7eadbfbe6cca68757944eb42c83d8ef96d044d/artanis-3c7eadbfbe6cca68757944eb42c83d8ef96d044d.tar.gz")
        (sha256
-        (base32 "1b7mab8izvli4152hzv4n2z67kw0kwm7pvh0m960whr77rdxwid4"))
+        (base32 "0a9jvpgbxf9vhi4fq7k9wlyj5w2p4lw0ndzq63y4m16hb0cf712p"))
        (modules '((guix build utils)))
        (snippet '(begin
                    (delete-file-recursively "artanis/third-party/json.scm")
@@ -167,7 +168,8 @@
                       ""))
                    #t))))
     (build-system gnu-build-system)
-    (inputs (list bash-minimal guile-3.0 nspr nss))
+    (inputs (list bash-minimal guile-3.0 nspr nss
+                  (specification->package "gettext")))
     ;; FIXME the bundled csv contains one more exported procedure
     ;; (sxml->csv-string) than guile-csv. The author is maintainer of both
     ;; projects.
@@ -175,7 +177,12 @@
     (propagated-inputs (list guile-json-4 guile-curl guile-readline
                              guile-redis))
     (native-inputs (list bash-minimal ;for the `source' builtin
-                         pkg-config util-linux)) ;for the `script' command
+                         pkg-config
+                         util-linux
+                         automake
+                         autoconf
+                         libtool
+                         libltdl)) ;for the `script' command
     (arguments
      `(#:modules (((guix build guile-build-system)
                    #:select (target-guile-effective-version))
@@ -566,6 +573,8 @@ more.")
         aspell-dict-es
         aspell-dict-en
         aspell-dict-ca
+
+        (specification->package "gettext")
 
         (sss/x86-only-pkg architecture "google-chrome-stable")
         (sss/x86-only-pkg architecture "reaper")
