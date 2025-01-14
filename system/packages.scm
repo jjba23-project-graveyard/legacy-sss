@@ -547,6 +547,9 @@ more.")
 
         autoconf
         automake
+        libltdl
+        libtool
+
         perl
 
         mpv
