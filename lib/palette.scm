@@ -18,10 +18,21 @@
 (define-module (sss palette)
   #:use-module (gnu))
 
-;; (sss-hex-to-rgba (sss-get-color 'bg-main))
+;; (sss-hex-to-rgba (sss-get-color sss-active-palette 'bg-main))
 
-(define-public (sss-get-color sym)
-  (cdr (assoc sym sss-active-palette)))
+(define-public (sss-get-color palette sym)
+  (let ((p (cond
+             ((eq? palette
+                   'sss-palette-ef-dream)
+              sss-palette-ef-dream)
+             ((eq? palette
+                   'sss-palette-ef-bio)
+              sss-palette-ef-bio)
+             ((eq? palette
+                   'sss-palette-ef-cyprus)
+              sss-palette-ef-cyprus)
+             (else sss-palette-ef-dream))))
+    (cdr (assoc sym p))))
 
 (begin
   (define (hex-to-decimal n)
@@ -212,18 +223,3 @@
     (text . "#efd5c5")
     (background . "#232025")
     (background-l . "#322f34")))
-
-;;
-;; Define the active palette for all users accounts
-;; You should reconfigure and ideally restart the system
-;; for all changes to take effect
-;;
-;; Possible values are:
-;;   - sss-palette-ef-bio
-;;   - sss-palette-ef-cyprus
-;;   - sss-palette-ef-dream
-;; 
-(define-public sss-active-palette
-  sss-palette-ef-dream)
-
-;; (define-public sss-active-palette sss-palette-ef-cyprus)

@@ -52,9 +52,9 @@
 (begin
   (define* (sss-sway-wallpaper #:key sss-clone-dir)
     (cond
-      ((equal? sss-palette-ef-cyprus sss-active-palette)
+      ((equal? 'sss-palette-ef-cyprus sss-active-palette)
        (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
-      ((equal? sss-palette-ef-dream sss-active-palette)
+      ((equal? 'sss-palette-ef-dream sss-active-palette)
        (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
       (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
@@ -71,15 +71,15 @@
 
 (define sss-sway-startup-reload-programs
   (let ((gtk-theme-name (cond
-                          ((equal? sss-palette-ef-cyprus sss-active-palette)
+                          ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                            "Yaru-sage")
-                          ((equal? sss-palette-ef-dream sss-active-palette)
+                          ((equal? 'sss-palette-ef-dream sss-active-palette)
                            "Yaru-magenta-dark")
                           (else "Yaru-sage-dark")))
         (icon-theme-name (cond
-                           ((equal? sss-palette-ef-cyprus sss-active-palette)
+                           ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                             "Yaru-sage")
-                           ((equal? sss-palette-ef-dream sss-active-palette)
+                           ((equal? 'sss-palette-ef-dream sss-active-palette)
                             "Yaru-magenta-dark")
                            (else "Yaru-sage-dark"))))
     
@@ -199,28 +199,43 @@
     ;; class                 border  backgr. text    indicator child_border
     ,(format #f
              "client.focused ~a ~a ~a ~a ~a"
-             (sss-get-color 'primary)
-             (sss-get-color 'primary)
-             (sss-get-color 'text)
-             (sss-get-color 'primary)
-             (sss-get-color 'primary))
+             (sss-get-color sss-active-palette
+                            'primary)
+             (sss-get-color sss-active-palette
+                            'primary)
+             (sss-get-color sss-active-palette
+                            'text)
+             (sss-get-color sss-active-palette
+                            'primary)
+             (sss-get-color sss-active-palette
+                            'primary))
     ,(format #f
              "client.focused_inactive ~a ~a ~a ~a ~a"
-             (sss-get-color 'primary)
-             (sss-get-color 'primary)
-             (sss-get-color 'text)
-             (sss-get-color 'primary)
-             (sss-get-color 'primary))
+             (sss-get-color sss-active-palette
+                            'primary)
+             (sss-get-color sss-active-palette
+                            'primary)
+             (sss-get-color sss-active-palette
+                            'text)
+             (sss-get-color sss-active-palette
+                            'primary)
+             (sss-get-color sss-active-palette
+                            'primary))
     ,(format #f
              "client.unfocused ~a ~a #808f80 ~a ~a"
-             (sss-get-color 'background-l)
-             (sss-get-color 'background-l)
-             (sss-get-color 'background-l)
-             (sss-get-color 'background-l))
+             (sss-get-color sss-active-palette
+                            'background-l)
+             (sss-get-color sss-active-palette
+                            'background-l)
+             (sss-get-color sss-active-palette
+                            'background-l)
+             (sss-get-color sss-active-palette
+                            'background-l))
     "client.urgent           #b02930 #b02930 #cfdfd5 #900000   #900000"
     "client.placeholder      #000000 #0c0c0c #cfdfd5 #000000   #0c0c0c"
     ,(format #f "client.background ~a"
-             (sss-get-color 'text))
+             (sss-get-color sss-active-palette
+                            'text))
     ,(format #f "seat seat0 xcursor_theme ~a ~a" "Yaru" "24")))
 
 (begin

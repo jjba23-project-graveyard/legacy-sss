@@ -25,13 +25,16 @@
     (on-button-right . invoke-default-action)
     (background-color unquote
                       (string-upcase (format #f "~abb"
-                                             (sss-get-color 'background))))
+                                             (sss-get-color sss-active-palette
+                                              'background))))
     (border-color unquote
                   (string-upcase (format #f "~abb"
-                                         (sss-get-color 'primary))))
+                                         (sss-get-color sss-active-palette
+                                                        'primary))))
     (text-color unquote
                 (string-upcase (format #f "~abb"
-                                       (sss-get-color 'text))))
+                                       (sss-get-color sss-active-palette
+                                                      'text))))
     (font . "Monaspace Neon 10")
     (width . 420)
     (icons . 1)

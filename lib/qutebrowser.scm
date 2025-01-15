@@ -23,21 +23,26 @@
 
 (define sss-qutebrowser-palette
   `((bg-default unquote
-                (sss-get-color 'background))
+                (sss-get-color sss-active-palette
+                               'background))
     (bg-lighter unquote
-                (sss-get-color 'background-l))
+                (sss-get-color sss-active-palette
+                               'background-l))
     (bg-selection . "#3e4451")
     (fg-disabled unquote
-                 (sss-get-color 'fg-dim))
+                 (sss-get-color sss-active-palette
+                                'fg-dim))
     (fg-default unquote
-                (sss-get-color 'text))
+                (sss-get-color sss-active-palette
+                               'text))
     (bg-lightest . "#c8ccd4")
     (fg-error . "#e06c75")
     (bg-hint . "#e5c07b")
     (fg-matched-text . "#98c379")
     (bg-passthrough-mode . "#56b6c2")
     (bg-insert-mode unquote
-                    (sss-get-color 'primary))
+                    (sss-get-color sss-active-palette
+                                   'primary))
     (bg-warning . "#d19a66")))
 
 (define sss-qutebrowser-theme

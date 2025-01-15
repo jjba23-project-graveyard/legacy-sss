@@ -135,6 +135,22 @@ Find here a reference configuration with what is required.
   (define sss-clone-dir
     "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
+  ;;
+  ;; Define the active palette for all users accounts
+  ;; You should reconfigure and ideally restart the system
+  ;; for all changes to take effect
+  ;;
+  ;; Note: You could choose on a per-user basis to set a fixed palette
+  ;; and not follow system wide, by just redefining this value
+  ;;
+  ;; Possible values are:
+  ;;   - sss-palette-ef-bio
+  ;;   - sss-palette-ef-cyprus
+  ;;   - sss-palette-ef-dream
+  ;;
+  (define-public sss-active-palette
+    'sss-palette-ef-dream)
+
 #+end_src
 
 ** Non-free software

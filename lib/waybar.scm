@@ -206,44 +206,56 @@
             (font-family . "FontAwesome, Monaspace Neon")
             (font-weight . 500)
             (color unquote
-                   (sss-get-color 'text)))
+                   (sss-get-color sss-active-palette
+                                  'text)))
     ("#workspaces button" (font-size . "12pt"))
     ("#clock.date, #clock.time" (font-size . "10pt"))
     ("window#waybar" (background unquote
-                                 (sss-hex-to-rgba (sss-get-color 'background)
+                                 (sss-hex-to-rgba (sss-get-color
+                                                   sss-active-palette
+                                                   'background)
                                                   #:alpha 0.8))
      (padding . "12px")
      (font-family . "FontAwesome, Monaspace Neon")
      ;; (border-radius . "10px")
      ;; (border unquote
      ;; (format #f "2px solid ~a"
-     ;; (sss-get-color 'primary-d)))
+     ;; (sss-get-color sss-active-palette 'primary-d)))
      (color unquote
-            (sss-get-color 'text)))
+            (sss-get-color sss-active-palette
+                           'text)))
     (tooltip (background unquote
-                         (sss-get-color 'background-l))
+                         (sss-get-color sss-active-palette
+                                        'background-l))
              (border-radius . 0))
     ("#workspaces" (padding-right . 0))
     ("#workspaces button" (padding . "4px")
      (color unquote
-            (sss-get-color 'text)))
+            (sss-get-color sss-active-palette
+                           'text)))
     ("#clock" (padding-right . "90px")
      (padding-left . "16px"))
     ("#workspaces button.active" (border unquote
                                          (format #f "2px solid ~a"
-                                                 (sss-get-color 'primary-l)))
+                                                 (sss-get-color
+                                                  sss-active-palette
+                                                  'primary-l)))
      (color unquote
-            (sss-get-color 'background))
+            (sss-get-color sss-active-palette
+                           'background))
      (border-radius . 0)
      (margin-top . "2px")
      (transition . none))
     ("#workspaces button.focused" (color unquote
-                                         (sss-get-color 'primary-l)))
+                                         (sss-get-color sss-active-palette
+                                                        'primary-l)))
     ("#workspaces button.urgent" (color . "#ef6560"))
     ("#workspaces button.hover" (color unquote
-                                       (sss-get-color 'text))
+                                       (sss-get-color sss-active-palette
+                                                      'text))
      (background unquote
-                 (sss-hex-to-rgba (sss-get-color 'background)
+                 (sss-hex-to-rgba (sss-get-color sss-active-palette
+                                                 'background)
                                   #:alpha 0.7)))
     ("window#waybar.empty #window" (padding . 0)
      (margin . 0)

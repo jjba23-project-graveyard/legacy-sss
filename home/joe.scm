@@ -30,6 +30,10 @@
 (define sss-per-host-packages
   '())
 
+;; active system color palette (overridden by per-host)
+(define-public sss-active-palette
+  'sss-palette-ef-dream)
+
 ;; load user preferences per-host
 (load "../per-host.scm")
 
