@@ -66,7 +66,8 @@
     "waybar"
     "transmission-daemon"
     "foot -s"
-    ,(format #f "swww-daemon && ~a" wallpaper-setter)))
+    "swww-daemon"
+    ,(format #f "sleep 3 && ~a" wallpaper-setter)))
 
 (define sss-sway-startup-reload-programs
   (let ((gtk-theme-name (cond
