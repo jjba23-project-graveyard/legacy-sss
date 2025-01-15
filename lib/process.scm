@@ -54,7 +54,7 @@
                                          (display (format #f "~a {\n"
                                                           (car x)))
                                          (display (mk-kv-conf-lines (cdr x)
-                                                                    #:template "  ~a: ~a;\n"))
+                                                   #:template "  ~a: ~a;\n"))
                                          (display "}\n\n")) pairs))))
   (export mk-css-conf-lines))
 

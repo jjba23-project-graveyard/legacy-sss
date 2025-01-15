@@ -211,7 +211,7 @@
     ("#clock.date, #clock.time" (font-size . "10pt"))
     ("window#waybar" (background unquote
                                  (sss-hex-to-rgba (sss-get-color 'background)
-                                                  #:alpha 0.80))
+                                                  #:alpha 0.8))
      (padding . "12px")
      (font-family . "FontAwesome, Monaspace Neon")
      ;; (border-radius . "10px")

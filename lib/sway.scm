@@ -52,11 +52,11 @@
 (begin
   (define* (sss-sway-wallpaper #:key sss-clone-dir)
     (cond
-     ((equal? sss-palette-ef-cyprus sss-active-palette)
-      (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
-     ((equal? sss-palette-ef-dream sss-active-palette)
-      (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
-     (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
+      ((equal? sss-palette-ef-cyprus sss-active-palette)
+       (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
+      ((equal? sss-palette-ef-dream sss-active-palette)
+       (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
+      (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
 
 (define sss-sway-startup-programs
