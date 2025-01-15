@@ -59,15 +59,15 @@
       (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
 
-(define sss-sway-startup-programs
-  (list "lxsession"
-        "mako"
-        "emacs --daemon"
-        "dbus-update-activation-environment --all"
-        "waybar"
-        "transmission-daemon"
-        "foot -s"
-        "swww-daemon"))
+(define* (sss-sway-startup-programs #:key (wallpaper-setter ""))
+  `("lxsession" "mako"
+    "emacs --daemon"
+    "dbus-update-activation-environment --all"
+    "waybar"
+    "transmission-daemon"
+    "foot -s"
+    "swww-daemon"
+    ,wallpaper-setter))
 
 (define sss-sway-startup-reload-programs
   (let ((gtk-theme-name (cond
@@ -223,7 +223,15 @@
     (service home-sway-service-type
              (sway-configuration (packages (list swayfx))
                                  (gestures sss-sway-gestures)
-                                 (startup-programs sss-sway-startup-programs)
+                                 (startup-programs (sss-sway-startup-programs
+                                                                              #:wallpaper-setter
+                                                                              (format
+                                                                               #f
+                                                                               "swww img ~a --transition-step 30 --transition-fps 30 --transition-type center"
+                                                                               
+                                                                               (sss-sway-wallpaper
+                                                                                #:sss-clone-dir
+                                                                                sss-clone-dir))))
                                  (startup+reload-programs
                                   sss-sway-startup-reload-programs)
                                  (outputs (sss-sway-outputs #:sss-clone-dir
@@ -253,3 +261,4 @@
 ;; ;; Resume + sleep.
 ;; "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
 ;; "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
+
