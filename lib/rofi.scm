@@ -15,18 +15,32 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-;; (load "./palette.scm")
+(load "./palette.scm")
 
-;; (define-module (sss rofi)
-;;   #:use-module (gnu)
-;;   #:use-module (sss palette))
+(define-module (sss rofi)
+  #:use-module (gnu)
+  #:use-module (sss palette))
 
-;; (define sss-rofi-theme
-;;   `(("*" . ((foreground . "#ffeedd")
-;;             (backlight . "#ccffeedd")
-;;             (background-color . "transparent")))))
+(define-public sss-rofi-config
+  (string-append "configuration {
+    font: \"Monaspace Neon 13\";
+    show-icons: true;
+    icon-theme:	\"Yaru\";
+    display-drun: \"\";
+    disable-history:false;
+    fullscreen: false;
+    hide-scrollbar: false;
+    sidebar-mode: false;
+}
 
-;; (define sss-rofi-config "")
+@theme \"./sss-theme.rasi\""))
+
+(define-public sss-rofi-theme
+  `(("*" (foreground . "#ffeedd")
+     (backlight . "#ccffeedd")
+     (background-color . "transparent")
+     (black . "#3d352a")
+     (font . "\"Monaspace Neon 13\""))))
 
 ;; * {
 ;;    foreground:  #ffeedd;

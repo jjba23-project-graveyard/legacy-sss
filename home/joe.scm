@@ -78,6 +78,7 @@
              (sss xmodmap)
              (sss openpgp)
              (sss waybar)
+             (sss rofi)
              (sss ssh)
              (sss bridge emacs)
              (sss qutebrowser))
@@ -173,6 +174,14 @@
                                                          (scm->json-string
                                                           sss-waybar-conf
                                                           #:pretty #t)))
+
+             (".config/rofi/config.rasi" ,(plain-file "config.rasi"
+                                                      sss-rofi-config))
+             ;; Rofi styling
+             (".config/rofi/sss-theme.rasi" ,(plain-file "sss-theme.rasi"
+                                                         (mk-css-conf-lines
+                                                          sss-rofi-theme)))
+
              ;; Waybar styling
              (".config/waybar/style.css" ,(plain-file "waybar.css"
                                                       (mk-css-conf-lines
