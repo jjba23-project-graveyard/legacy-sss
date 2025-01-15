@@ -108,7 +108,9 @@
     (browser . "QT_QPA_PLATFORM=xcb qutebrowser")
     (term . "footclient")
     (password-manager . "/home/joe/.nix-profile/bin/1password")
-    (menu . "rofi -show drun")))
+    (menu . "rofi -show drun")
+    (runner . "rofi -show run")
+    (windower . "rofi -show window")))
 
 (define sss-sway-modes
   (list (sway-mode (mode-name "resize")
@@ -172,6 +174,8 @@
     ($mod+Shift+minus . "move scratchpad")
     ($mod+Shift+m . "sway output Virtual-1 mode 1920x1200")
     ($mod+Shift+s . "scratchpad show")
+    ($mod+r . "exec $runner")
+    (Alt+tab . "exec $windower")
     ($mod+Shift+e unquote
                   #~(string-append "exec "
                      #$sway
@@ -182,7 +186,7 @@
                      "-B 'Yes, exit sway' \\\n    '"
                      #$sway
                      "/bin/swaymsg exit'"))
-    ($mod+r . "mode \"resize\"")))
+    ($mod+Shift+r . "mode \"resize\"")))
 
 (define sss-swayfx-config
   `("corner_radius 12" "shadows enable" "blur enable"
