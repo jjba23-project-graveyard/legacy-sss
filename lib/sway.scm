@@ -108,7 +108,7 @@
     (browser . "QT_QPA_PLATFORM=xcb qutebrowser")
     (term . "footclient")
     (password-manager . "/home/joe/.nix-profile/bin/1password")
-    (menu . "fuzzel")))
+    (menu . "rofi -show drun")))
 
 (define sss-sway-modes
   (list (sway-mode (mode-name "resize")

@@ -23,7 +23,7 @@
 
 (define-public sss-rofi-config
   (string-append "configuration {
-    font: \"Monaspace Neon 13\";
+    font: \"Monaspace Neon 14\";
     show-icons: true;
     icon-theme:	\"Yaru\";
     display-drun: \"\";
@@ -39,82 +39,69 @@
   `(("*" (foreground . "#ffeedd")
      (backlight . "#ccffeedd")
      (background-color . "transparent")
+     (dark . "#1c1c1c")
      (black . "#3d352a")
-     (font . "\"Monaspace Neon 13\""))))
+     (lightblack . "#554444")
+     (tlightblack . "#554444cc")
+     (transparent . "rgba(0,0,0,0)")
+     (red . "#cd5c5c")
+     (lightred . "#cc5533")
+     (green . "#86af80")
+     (lightgreen . "#88cc22")
+     (yellow . "#e8ae5b")
+     (lightyellow . "#ffa75d")
+     (blue . "#6495ed")
+     (lightblue . "#87ceeb")
+     (magenta . "#deb887")
+     (lightmagenta . "#996600")
+     (cyan . "#b0c4de")
+     (tcyan . "#ccb0c4de")
+     (lightcyan . "#b0c4de")
+     (white . "#bbaa99")
+     (lightwhite . "#ddccbb")
+     (highlight . "underline bold #ffffff")
+     (font . "\"Monaspace Neon 14\""))
+    ("window" (location . "center")
+     (anchor . "center")
+     (transparency . "\"real\"")
+     (padding . "10px")
+     (border . "0px")
+     (border-radius . "12px")
+     (spacing . "0")
+     (color . "@magenta")
+     (background-color . "@transparent")
+     (orientation . "horizontal")
+     (children . "[ mainbox ]"))
+    ("message" (font . "\"Monaspace Neon 14\"")
+     (color . "@white")
+     (border-color . "@foreground")
+     (border . "0px 2px 2px 2px")
+     (padding . "5px")
+     (background-color . "@tcyan"))
+    ("mainbox" (spacing . "0")
+     (children . "[ inputbar, message, listview ]"))
+    ("entry,prompt,case-indicator" (text-font . "inherit")
+     (text-color . "inherit"))
+    ("prompt" (margin . "0px 0.3em 0em 0em"))
+    ("element" (padding . "3px")
+     (vertical-align . "0.5")
+     (border-radius . "2px")
+     (background-color . "transparent")
+     (color . "@foreground")
+     (font . "inherit"))
+    ("element-text" (background-color . "inherit")
+     (text-color . "inherit"))
+    ("listview" (padding . "8px")
+     (border-color . "@foreground")
+     (background-color . "#1c1c1ccc")
+     (dynamic . "false")
+     (lines . "24"))
+    ("element selected.normal" (background-color . "@magenta")
+     (text-color . "@black"))
+    ("inputbar" (color . "@magenta")
+     (padding . "11px")
+     (background-color . "@tlightblack"))))
 
-;; * {
-;;    foreground:  #ffeedd;
-;;                 backlight:   #ccffeedd;
-;;                 background-color:  transparent;
-;;                 dark: #1c1c1c;
-;;                 // Black
-;;                 black:       #3d352a;
-;;                 lightblack:  #554444;
-;;                 tlightblack:  #554444cc;
-;;                 //
-;;                 // Red
-;;                 red:         #cd5c5c;
-;;                 lightred:    #cc5533;
-;;                 //
-;;                 // Green
-;;                 green:       #86af80;
-;;                 lightgreen:  #88cc22;
-;;                 //
-;;                 // Yellow
-;;                 yellow:      #e8ae5b;
-;;                 lightyellow:     #ffa75d;
-;;                 //
-;;                 // Blue
-;;                 blue:      #6495ed;
-;;                 lightblue:     #87ceeb;
-;;                 //
-;;                 // Magenta
-;;                 magenta:      #deb887;
-;;                 lightmagenta:     #996600;
-;;                 //
-;;                 // Cyan
-;;                 cyan:      #b0c4de;
-;;                 tcyan:      #ccb0c4de;
-;;                 lightcyan:     #b0c4de;
-;;                 //
-;;                 // White
-;;                 white:      #bbaa99;
-;;                 lightwhite:     #ddccbb;
-;;                 //
-;;                 // Bold, Italic, Underline
-;;                 highlight:     underline bold #ffffff;
-
-;;                 transparent: rgba(0,0,0,0);
-;;                 font: "Source Code Pro 10";
-;;                 }
-;; window {
-;;         location: center;
-;;                   anchor:   center;
-;;                   transparency: "real";
-;;                   padding: 10px;
-;;                   border:  0px;
-;;                   border-radius: 10px;
-;;                   color: @magenta;
-;;                   background-color: @transparent;
-;;                   spacing: 0;
-;;                   children:  [mainbox];
-;;                   orientation: horizontal;
-;;                   }
-;; mainbox {
-;;          spacing: 0;
-;;                   children: [ inputbar, message, listview ];
-;;                   }
-;; message {
-;;          border-color: @foreground;
-;;                        border:  0px 2px 2px 2px;
-;;                        //    border-radius: 10px;
-;;                        padding: 5;
-;;                        background-color: @tcyan;
-;;                        }
-;; message {
-;;          font: "Source Code Pro 8";
-;;                color: @black;
-;;                }
 ;; inputbar {
 ;;           color: @lightgreen;
 ;;                  padding: 11px;
@@ -124,35 +111,16 @@
 ;;                  border-color: @foreground;
 ;;                  font: "Source Code Pro 18";
 ;;                  }
-;; entry,prompt,case-indicator {
-;;                              text-font: inherit;
-;;                                         text-color:inherit;
-;;                                         }
+
 ;; prompt {
 ;;         margin:     0px 0.3em 0em 0em ;
 ;;                     }
 ;; listview {
-;;           padding: 8px;
 ;;                    border-radius: 0px 0px 15px 15px;
-;;                    border-color: @foreground;
 ;;                    border: 0px 2px 2px 2px;
-;;                    background-color: #1c1c1ccc;
-;;                    dynamic: false;
-;;                    lines: 10;
+
 ;;                    }
-;; element {
-;;          padding: 3px;
-;;                   vertical-align: 0.5;
-;;                   //    border: 2px;
-;;                   border-radius: 4px;
-;;                   background-color: transparent;
-;;                   color: @foreground;
-;;                   font:inherit;
-;;                   }
-;; element-text {
-;;               background-color: inherit;
-;;                                 text-color:       inherit;
-;;                                 }
+
 ;; element selected.normal {
 ;;                          background-color: @blue;
 ;;                                            }
