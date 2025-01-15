@@ -66,7 +66,8 @@
         "dbus-update-activation-environment --all"
         "waybar"
         "transmission-daemon"
-        "foot -s"))
+        "foot -s"
+        "swww-daemon"))
 
 (define sss-sway-startup-reload-programs
   (let ((gtk-theme-name (cond
@@ -91,8 +92,9 @@
 (begin
   (define* (sss-sway-outputs #:key sss-clone-dir)
     (list (sway-output (identifier '*)
-                       (background (sss-sway-wallpaper #:sss-clone-dir
-                                                       sss-clone-dir)))))
+                       ;; (background (sss-sway-wallpaper #:sss-clone-dir
+                       ;; sss-clone-dir))
+                       )))
   (export sss-sway-outputs))
 
 (define-public sss-sway-variables
