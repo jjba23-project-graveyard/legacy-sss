@@ -21,33 +21,38 @@
   #:use-module (gnu)
   #:use-module (sss palette))
 
-(define-public sss-fuzzel-colors
-  `((background unquote
-                (string-drop (format #f "~add"
-                                     (sss-get-color sss-active-palette
-                                                    'background)) 1))
-    (text unquote
-          (string-drop (format #f "~aff"
-                               (sss-get-color sss-active-palette
-                                              'text)) 1))
-    (prompt . "bac2deff")
-    (placeholder . "7f849cff")
-    (input unquote
-           (string-drop (format #f "~aff"
-                                (sss-get-color sss-active-palette
-                                               'text)) 1))
-    ("match" . "a6e3a1ff")
-    (selection . "585b70ff")
-    (selection-text . "cdd6f4ff")
-    (selection-match . "a6e3a1ff")
-    (counter . "7f849cff")
-    (border . "a6e3a1ff")))
+(begin
+  (define* (sss-fuzzel-colors #:key sss-active-palette)
+    `((background unquote
+                  (string-drop (format #f "~add"
+                                       (sss-get-color sss-active-palette
+                                                      'background)) 1))
+      (text unquote
+            (string-drop (format #f "~aff"
+                                 (sss-get-color sss-active-palette
+                                                'text)) 1))
+      (prompt . "bac2deff")
+      (placeholder . "7f849cff")
+      (input unquote
+             (string-drop (format #f "~aff"
+                                  (sss-get-color sss-active-palette
+                                                 'text)) 1))
+      ("match" . "a6e3a1ff")
+      (selection . "585b70ff")
+      (selection-text . "cdd6f4ff")
+      (selection-match . "a6e3a1ff")
+      (counter . "7f849cff")
+      (border . "a6e3a1ff")))
+  (export sss-fuzzel-colors))
 
-(define-public sss-fuzzel-config
-  `((font . "Monaspace Neon:size=16") (terminal . "foot")
-    (icon-theme . "Yaru-sage-dark")
-    (list-executables-in-path . "yes")
-    (lines . 15)
-    (inner-pad . 8)
-    (border (radius . 24))
-    (colors unquote sss-fuzzel-colors)))
+(begin
+  (define* (sss-fuzzel-config #:key sss-active-palette)
+    `((font . "Monaspace Neon:size=16") (terminal . "foot")
+      (icon-theme . "Yaru-sage-dark")
+      (list-executables-in-path . "yes")
+      (lines . 15)
+      (inner-pad . 8)
+      (border (radius . 24))
+      (colors unquote
+              (sss-fuzzel-colors #:sss-active-palette sss-active-palette))))
+  (export sss-fuzzel-config))

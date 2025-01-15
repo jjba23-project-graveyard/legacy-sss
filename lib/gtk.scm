@@ -21,63 +21,69 @@
   #:use-module (gnu)
   #:use-module (sss palette))
 
-(define-public sss-gtk3-config
-  `((gtk-icon-theme-name unquote
-                         (cond
-                           ((equal? sss-palette-ef-cyprus sss-active-palette)
-                            "Yaru-sage")
-                           ((equal? sss-palette-ef-dream sss-active-palette)
-                            "Yaru-magenta-dark")
-                           (else "Yaru-sage-dark")))
-    (gtk-theme-name unquote
-                    (cond
-                      ((equal? sss-palette-ef-cyprus sss-active-palette)
-                       "Yaru-sage")
-                      ((equal? sss-palette-ef-dream sss-active-palette)
-                       "Yaru-magenta-dark")
-                      (else "Yaru-sage-dark")))
-    (gtk-font-name . "Monaspace Neon 11")
-    (gtk-key-theme-name . "Emacs")
-    (gtk-enable-event-sounds . 0)
-    (gtk-cursor-theme-name . "Yaru")
-    (gtk-cursor-theme-size . 24)
-    (gtk-enable-input-feedback-sounds . 0)
-    (gtk-application-prefer-dark-theme unquote
-                                       (cond
-                                         ((equal? sss-palette-ef-cyprus
-                                                  sss-active-palette)
-                                          0)
-                                         ((equal? sss-palette-ef-dream
-                                                  sss-active-palette)
-                                          0)
-                                         (else 1)))))
+(begin
+  (define* (sss-gtk3-config #:key sss-active-palette)
+    `((gtk-icon-theme-name unquote
+                           (cond
+                             ((equal? 'sss-palette-ef-cyprus
+                                      sss-active-palette)
+                              "Yaru-sage")
+                             ((equal? 'sss-palette-ef-dream sss-active-palette)
+                              "Yaru-magenta-dark")
+                             (else "Yaru-sage-dark")))
+      (gtk-theme-name unquote
+                      (cond
+                        ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                         "Yaru-sage")
+                        ((equal? 'sss-palette-ef-dream sss-active-palette)
+                         "Yaru-magenta-dark")
+                        (else "Yaru-sage-dark")))
+      (gtk-font-name . "Monaspace Neon 11")
+      (gtk-key-theme-name . "Emacs")
+      (gtk-enable-event-sounds . 0)
+      (gtk-cursor-theme-name . "Yaru")
+      (gtk-cursor-theme-size . 24)
+      (gtk-enable-input-feedback-sounds . 0)
+      (gtk-application-prefer-dark-theme unquote
+                                         (cond
+                                           ((equal? sss-palette-ef-cyprus
+                                                    sss-active-palette)
+                                            0)
+                                           ((equal? sss-palette-ef-dream
+                                                    sss-active-palette)
+                                            0)
+                                           (else 1)))))
+  (export sss-gtk3-config))
 
-(define-public sss-gtk4-config
-  `((gtk-icon-theme-name unquote
-                         (cond
-                           ((equal? sss-palette-ef-cyprus sss-active-palette)
-                            "Yaru-sage")
-                           ((equal? sss-palette-ef-dream sss-active-palette)
-                            "Yaru-magenta-dark")
-                           (else "Yaru-sage-dark")))
-    (gtk-theme-name unquote
-                    (cond
-                      ((equal? sss-palette-ef-cyprus sss-active-palette)
-                       "Yaru-sage")
-                      ((equal? sss-palette-ef-dream sss-active-palette)
-                       "Yaru-magenta-dark")
-                      (else "Yaru-sage-dark")))
-    (gtk-font-name . "Monaspace Neon 11")
-    (gtk-enable-event-sounds . 0)
-    (gtk-cursor-theme-name . "Yaru")
-    (gtk-cursor-theme-size . 24)
-    (gtk-enable-input-feedback-sounds . 0)
-    (gtk-application-prefer-dark-theme unquote
-                                       (cond
-                                         ((equal? sss-palette-ef-cyprus
-                                                  sss-active-palette)
-                                          0)
-                                         ((equal? sss-palette-ef-dream
-                                                  sss-active-palette)
-                                          1)
-                                         (else 1)))))
+(begin
+  (define* (sss-gtk4-config #:key sss-active-palette)
+    `((gtk-icon-theme-name unquote
+                           (cond
+                             ((equal? 'sss-palette-ef-cyprus
+                                      sss-active-palette)
+                              "Yaru-sage")
+                             ((equal? 'sss-palette-ef-dream sss-active-palette)
+                              "Yaru-magenta-dark")
+                             (else "Yaru-sage-dark")))
+      (gtk-theme-name unquote
+                      (cond
+                        ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                         "Yaru-sage")
+                        ((equal? 'sss-palette-ef-dream sss-active-palette)
+                         "Yaru-magenta-dark")
+                        (else "Yaru-sage-dark")))
+      (gtk-font-name . "Monaspace Neon 11")
+      (gtk-enable-event-sounds . 0)
+      (gtk-cursor-theme-name . "Yaru")
+      (gtk-cursor-theme-size . 24)
+      (gtk-enable-input-feedback-sounds . 0)
+      (gtk-application-prefer-dark-theme unquote
+                                         (cond
+                                           ((equal? 'sss-palette-ef-cyprus
+                                                    sss-active-palette)
+                                            0)
+                                           ((equal? 'sss-palette-ef-dream
+                                                    sss-active-palette)
+                                            1)
+                                           (else 1)))))
+  (export sss-gtk4-config))

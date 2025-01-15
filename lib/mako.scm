@@ -19,25 +19,28 @@
   #:use-module (gnu)
   #:use-module (sss palette))
 
-(define-public sss-mako-config
-  `((sort . "-time") (max-history . 7)
-    (on-button-left . dismiss)
-    (on-button-right . invoke-default-action)
-    (background-color unquote
-                      (string-upcase (format #f "~abb"
-                                             (sss-get-color sss-active-palette
-                                              'background))))
-    (border-color unquote
+(begin
+  (define* (sss-mako-config #:key sss-active-palette)
+    `((sort . "-time") (max-history . 7)
+      (on-button-left . dismiss)
+      (on-button-right . invoke-default-action)
+      (background-color unquote
+                        (string-upcase (format #f "~abb"
+                                               (sss-get-color
+                                                sss-active-palette
+                                                'background))))
+      (border-color unquote
+                    (string-upcase (format #f "~abb"
+                                           (sss-get-color sss-active-palette
+                                                          'primary))))
+      (text-color unquote
                   (string-upcase (format #f "~abb"
                                          (sss-get-color sss-active-palette
-                                                        'primary))))
-    (text-color unquote
-                (string-upcase (format #f "~abb"
-                                       (sss-get-color sss-active-palette
-                                                      'text))))
-    (font . "Monaspace Neon 10")
-    (width . 420)
-    (icons . 1)
-    (default-timeout . 12000)
-    (ignore-timeout . 1)
-    (border-radius . 10)))
+                                                        'text))))
+      (font . "Monaspace Neon 10")
+      (width . 420)
+      (icons . 1)
+      (default-timeout . 12000)
+      (ignore-timeout . 1)
+      (border-radius . 10)))
+  (export sss-mako-config))

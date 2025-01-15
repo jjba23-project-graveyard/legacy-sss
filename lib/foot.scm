@@ -21,25 +21,28 @@
   #:use-module (gnu)
   #:use-module (sss palette))
 
-(define-public sss-foot-config
-  `((font . "Monaspace Neon:size=9") (dpi-aware . "yes")
-    (pad . "14x14")
-    (bell (urgent . "no")
-          (notify . "no")
-          (visual . "no"))
-    (scrollback (lines . "1000000"))
-    (colors (alpha . "0.9")
-            (background unquote
-                        (string-drop (sss-get-color sss-active-palette
-                                                    'background) 1))
-            (foreground unquote
-                        (string-drop (sss-get-color sss-active-palette
-                                                    'text) 1)))
-    (search-bindings (cancel . "Control+g Control+Shift+c Escape"))
-    (url-bindings (cancel . "Control+g Control+Shift+c Escape"))
-    (key-bindings (scrollback-up-page . "Mod1+v")
-                  (scrollback-down-page . "Control+v")
-                  (scrollback-home . "Mod1+less")
-                  (scrollback-end . "Mod1+greater")
-                  (clipboard-copy . "Mod1+w")
-                  (clipboard-paste . "Control+y"))))
+(begin
+  (define* (sss-foot-config #:key sss-active-palette)
+    `((font . "Monaspace Neon:size=9") (dpi-aware . "yes")
+      (pad . "14x14")
+      (bell (urgent . "no")
+            (notify . "no")
+            (visual . "no"))
+      (scrollback (lines . "1000000"))
+      (colors (alpha . "0.9")
+              (background unquote
+                          (string-drop (sss-get-color sss-active-palette
+                                                      'background) 1))
+              (foreground unquote
+                          (string-drop (sss-get-color sss-active-palette
+                                                      'text) 1)))
+      (search-bindings (cancel . "Control+g Control+Shift+c Escape"))
+      (url-bindings (cancel . "Control+g Control+Shift+c Escape"))
+      (key-bindings (scrollback-up-page . "Mod1+v")
+                    (scrollback-down-page . "Control+v")
+                    (scrollback-home . "Mod1+less")
+                    (scrollback-end . "Mod1+greater")
+                    (clipboard-copy . "Mod1+w")
+                    (clipboard-paste . "Control+y"))))
+
+  (export sss-foot-config))

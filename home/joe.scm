@@ -122,15 +122,17 @@
              (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
                                                           (string-append
                                                            "[Settings]\n"
-                                                           (mk-kv-conf-lines
-                                                            sss-gtk3-config))))
+                                                           (mk-kv-conf-lines (sss-gtk3-config
+                                                                              #:sss-active-palette
+                                                                              sss-active-palette)))))
 
              ;; GTK 4 settings
              (".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
                                                           (string-append
                                                            "[Settings]\n"
-                                                           (mk-kv-conf-lines
-                                                            sss-gtk4-config))))
+                                                           (mk-kv-conf-lines (sss-gtk4-config
+                                                                              #:sss-active-palette
+                                                                              sss-active-palette)))))
 
              ;; Guix channels configuration
              (".config/guix/channels.scm" ,(local-file "../lib/channels.scm"))
@@ -188,8 +190,9 @@
 
              ;; Waybar styling
              (".config/waybar/style.css" ,(plain-file "waybar.css"
-                                                      (mk-css-conf-lines
-                                                       sss-waybar-css)))
+                                                      (mk-css-conf-lines (sss-waybar-css
+                                                                          #:sss-active-palette
+                                                                          sss-active-palette))))
              ;; Waybar Power menu from Scheme to XML format
              (".config/waybar/power_menu.xml" ,(plain-file "power_menu.xml"
                                                            (with-output-to-string (lambda ()
@@ -200,8 +203,9 @@
 
              ;; Fuzzel (application launcher) configuration
              (".config/fuzzel/fuzzel.ini" ,(plain-file "fuzzel.ini"
-                                                       (mk-rec-kv-conf-lines
-                                                        sss-fuzzel-config)))
+                                                       (mk-rec-kv-conf-lines (sss-fuzzel-config
+                                                                              #:sss-active-palette
+                                                                              sss-active-palette))))
 
              ;; XDG desktop portal configuration (for flatpak apps)
              (".config/xdg-desktop-portal/portals.conf" ,(plain-file
@@ -213,8 +217,9 @@
 
              ;; Foot terminal configuration
              (".config/foot/foot.ini" ,(plain-file "foot.ini"
-                                                   (mk-rec-kv-conf-lines
-                                                    sss-foot-config)))
+                                                   (mk-rec-kv-conf-lines (sss-foot-config
+                                                                          #:sss-active-palette
+                                                                          sss-active-palette))))
 
              ;; Kvantum theme configuration
              (".config/Kvantum/kvantum.kvconfig" ,(plain-file
@@ -232,16 +237,21 @@
 
              ;; Qt6 configuration
              (".config/qt6ct/qt6ct.conf" ,(plain-file "qt6ct.conf"
-                                                      sss-qt6ct-config))
+                                                      (sss-qt6ct-config
+                                                       #:sss-active-palette
+                                                       sss-active-palette)))
 
              ;; Qt5 configuration
              (".config/qt5ct/qt5ct.conf" ,(plain-file "qt5ct.conf"
-                                                      sss-qt5ct-config))
+                                                      (sss-qt5ct-config
+                                                       #:sss-active-palette
+                                                       sss-active-palette)))
 
              ;; Mako (notification daemon) configuration
              (".config/mako/config" ,(plain-file "config"
-                                                 (mk-kv-conf-lines
-                                                  sss-mako-config)))
+                                                 (mk-kv-conf-lines (sss-mako-config
+                                                                    #:sss-active-palette
+                                                                    sss-active-palette))))
 
              ;; Enchant spell checker configuration
              ;; Enchant dictionary ordering
@@ -252,7 +262,9 @@
                                                         sss-enchant-dict-en)))
              ;; Qutebrowser configurations (web browser)
              (".config/qutebrowser/config.py" ,(plain-file "config.py"
-                                                sss-qutebrowser-config))
+                                                           (sss-qutebrowser-config
+                                                            #:sss-active-palette
+                                                            sss-active-palette)))
              (".config/qutebrowser/bookmarks/urls" ,(plain-file "urls"
                                                                 (serialize-qutebrowser-urls
                                                                  sss-qutebrowser-bookmarks)))
@@ -269,7 +281,9 @@
              (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))
              ;; Emacs bridge with SSS
              (".emacs.d/sss-bridge.el" ,(plain-file "sss-bridge.el"
-                                                    sss-bridge-emacs))
+                                                    (sss-bridge-emacs
+                                                     #:sss-active-palette
+                                                     sss-active-palette)))
              ;; Emacs early initialization file
              (".emacs.d/early-init.el" ,(local-file
                                          "../lib/emacs/early-init.el")))))

@@ -21,21 +21,29 @@
   #:use-module (gnu)
   #:use-module (sss palette))
 
-(define-public sss-bridge-emacs-vars
-  `((sss-emacs-theme unquote
-                     (cond
-                       ((equal? sss-active-palette sss-palette-ef-dream)
-                        "'ef-dream")
-                       ((equal? sss-active-palette sss-palette-ef-cyprus)
-                        "'ef-cyprus")
-                       (else "'ef-bio")))))
+(begin
+  (define* (sss-bridge-emacs-vars #:key sss-active-palette)
+    `((sss-emacs-theme unquote
+                       (cond
+                         ((equal? sss-active-palette
+                                  'sss-palette-ef-dream)
+                          "'ef-dream")
+                         ((equal? sss-active-palette
+                                  'sss-palette-ef-cyprus)
+                          "'ef-cyprus")
+                         (else "'ef-bio")))))
+  (export sss-bridge-emacs-vars))
 
-(define-public sss-bridge-emacs
-  (with-output-to-string (lambda ()
-                           (display "(setq ")
-                           (for-each (lambda (v)
-                                       (display (format #f "~a ~a\n"
-                                                        (car v)
-                                                        (cdr v))))
-                                     sss-bridge-emacs-vars)
-                           (display ")"))))
+(begin
+  (define* (sss-bridge-emacs #:key sss-active-palette)
+    (with-output-to-string (lambda ()
+                             (display "(setq ")
+                             (for-each (lambda (v)
+                                         (display (format #f "~a ~a\n"
+                                                          (car v)
+                                                          (cdr v))))
+                                       (sss-bridge-emacs-vars
+                                        #:sss-active-palette
+                                        sss-active-palette))
+                             (display ")"))))
+  (export sss-bridge-emacs))

@@ -21,29 +21,31 @@
   #:use-module (gnu)
   #:use-module (sss palette))
 
-(define sss-qutebrowser-palette
-  `((bg-default unquote
-                (sss-get-color sss-active-palette
-                               'background))
-    (bg-lighter unquote
-                (sss-get-color sss-active-palette
-                               'background-l))
-    (bg-selection . "#3e4451")
-    (fg-disabled unquote
-                 (sss-get-color sss-active-palette
-                                'fg-dim))
-    (fg-default unquote
-                (sss-get-color sss-active-palette
-                               'text))
-    (bg-lightest . "#c8ccd4")
-    (fg-error . "#e06c75")
-    (bg-hint . "#e5c07b")
-    (fg-matched-text . "#98c379")
-    (bg-passthrough-mode . "#56b6c2")
-    (bg-insert-mode unquote
-                    (sss-get-color sss-active-palette
-                                   'primary))
-    (bg-warning . "#d19a66")))
+(begin
+  (define* (sss-qutebrowser-palette #:key sss-active-palette)
+    `((bg-default unquote
+                  (sss-get-color sss-active-palette
+                                 'background))
+      (bg-lighter unquote
+                  (sss-get-color sss-active-palette
+                                 'background-l))
+      (bg-selection . "#3e4451")
+      (fg-disabled unquote
+                   (sss-get-color sss-active-palette
+                                  'fg-dim))
+      (fg-default unquote
+                  (sss-get-color sss-active-palette
+                                 'text))
+      (bg-lightest . "#c8ccd4")
+      (fg-error . "#e06c75")
+      (bg-hint . "#e5c07b")
+      (fg-matched-text . "#98c379")
+      (bg-passthrough-mode . "#56b6c2")
+      (bg-insert-mode unquote
+                      (sss-get-color sss-active-palette
+                                     'primary))
+      (bg-warning . "#d19a66")))
+  (export sss-qutebrowser-palette))
 
 (define sss-qutebrowser-theme
   `( ;Text color of the completion widget. May be a single color to use for
@@ -406,9 +408,10 @@
                               (cdr e)
                               (car e))) alist) "\n"))
 
-(define (sss-qutebrowser-apply-color key color)
-  (format #f "c.colors.~a = ~s\n" key
-          (assq-ref sss-qutebrowser-palette color)))
+(define* (sss-qutebrowser-apply-color #:key sss-active-palette k color)
+  (format #f "c.colors.~a = ~s\n" k
+          (assq-ref (sss-qutebrowser-palette #:sss-active-palette
+                                             sss-active-palette) color)))
 
 (define (serialize-qutebrowser-bindings alist)
   (map (lambda (e)
@@ -423,33 +426,37 @@
 (define (sss-qutebrowser-set-config-opt opt val)
   (format #f "config.set('~a', ~a)" opt val))
 
-(define-public sss-qutebrowser-config
-  (string-join (append `("config = config" "c = c"
-                         "config.load_autoconfig(False)"
-                         ,(sss-qutebrowser-set-config-opt
-                           "completion.use_best_match"
-                           'True)
-                         ,(sss-qutebrowser-set-config-opt "auto_save.interval"
-                           0)
-                         ;; ,(sss-qutebrowser-set-config-opt "colors.webpage.darkmode.enabled" 'True)
-                         "c.input.insert_mode.plugins = True"
-                         "c.input.insert_mode.auto_load = True"
-                         "c.input.forward_unbound_keys = 'all'"
-                         "c.url.start_pages = ['https://jointhefreeworld.org/joe-web-welkomscherm/']"
-                         "config.set('content.notifications.enabled', True, '*://app.slack.com/')"
-                         "ESC_BIND = 'clear-keychain ;; search ;; fullscreen --leave'"
-                         "c.bindings.default['normal'] = {}")
-                       `(,(sss-qutebrowser-commands-bindings 'command
-                           sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
-                                                               sss-qutebrowser-normal-bindings)
-                         ,(sss-qutebrowser-commands-bindings 'insert
-                           sss-qutebrowser-insert-bindings)
-                         ,(sss-qutebrowser-commands-bindings 'caret
-                           sss-qutebrowser-caret-bindings)
-                         ,(sss-qutebrowser-commands-bindings 'hint
-                           sss-qutebrowser-hint-bindings))
-                       (map (lambda (e)
-                              (sss-qutebrowser-apply-color (car e)
-                                                           (car (cdr e))))
-                            sss-qutebrowser-theme)) "\n"))
+(begin
+  (define* (sss-qutebrowser-config #:key sss-active-palette)
+    (string-join (append `("config = config" "c = c"
+                           "config.load_autoconfig(False)"
+                           ,(sss-qutebrowser-set-config-opt
+                             "completion.use_best_match"
+                             'True)
+                           ,(sss-qutebrowser-set-config-opt
+                             "auto_save.interval" 0)
+                           ;; ,(sss-qutebrowser-set-config-opt "colors.webpage.darkmode.enabled" 'True)
+                           "c.input.insert_mode.plugins = True"
+                           "c.input.insert_mode.auto_load = True"
+                           "c.input.forward_unbound_keys = 'all'"
+                           "c.url.start_pages = ['https://jointhefreeworld.org/joe-web-welkomscherm/']"
+                           "config.set('content.notifications.enabled', True, '*://app.slack.com/')"
+                           "ESC_BIND = 'clear-keychain ;; search ;; fullscreen --leave'"
+                           "c.bindings.default['normal'] = {}")
+                         `(,(sss-qutebrowser-commands-bindings 'command
+                             sss-qutebrowser-command-bindings) ,(sss-qutebrowser-commands-bindings 'normal
+                                                                 sss-qutebrowser-normal-bindings)
+                           ,(sss-qutebrowser-commands-bindings 'insert
+                             sss-qutebrowser-insert-bindings)
+                           ,(sss-qutebrowser-commands-bindings 'caret
+                             sss-qutebrowser-caret-bindings)
+                           ,(sss-qutebrowser-commands-bindings 'hint
+                             sss-qutebrowser-hint-bindings))
+                         (map (lambda (e)
+                                (sss-qutebrowser-apply-color
+                                 #:sss-active-palette sss-active-palette
+                                 #:k (car e)
+                                 #:color (car (cdr e)))) sss-qutebrowser-theme))
+                 "\n"))
 
+  (export sss-qutebrowser-config))
