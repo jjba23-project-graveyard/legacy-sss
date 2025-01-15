@@ -1,21 +1,24 @@
 
 # Table of Contents
 
-1.  [What lies here?](#org84adc6e)
-2.  [Why ?](#orgf0d22ee)
-3.  [How this manual works](#org4b71b93)
-4.  [Customizations](#org7e3c5bc)
-5.  [Per host - per-host.scm](#org149311d)
-6.  [Non-free software](#org8f10850)
-7.  [Bootstrapping](#org5273663)
-8.  [Nix profile](#orge37c3cb)
-9.  [Keyboard Terminology](#org3ff9f1e)
-10. [Sway](#org03d9240)
-    1.  [Screenshot keybindings](#orgea25084)
-    2.  [Application keybindings](#org81ffb57)
-11. [Emacs](#org9c9b0f0)
-    1.  [General non-vanilla bindings](#orgcc04e5b)
-    2.  [SSS specific keybindings](#org2653e14)
+1.  [What lies here?](#org36ead23)
+    1.  [An operating system (OS) configured in Scheme](#orgc1e1a34)
+    2.  [Joe's Emacs configuration](#orgab93a1d)
+2.  [Why ?](#orgd21435d)
+3.  [How this manual works](#orgf038a06)
+4.  [Customizations](#orgb80d485)
+5.  [Per host - per-host.scm](#orgb6bdf8c)
+6.  [Non-free software](#orgda730ed)
+7.  [Bootstrapping](#orgc0e3b4a)
+8.  [Nix profile](#org548ab06)
+9.  [SSS Project](#org76e612c)
+10. [Keyboard Terminology](#org1e083e1)
+11. [Sway](#orgffb2a2c)
+    1.  [Screenshot keybindings](#org6de324c)
+    2.  [Application keybindings](#org4a54c76)
+12. [Emacs](#org2bb997d)
+    1.  [General non-vanilla bindings](#org2b85551)
+    2.  [SSS specific keybindings](#org276b11e)
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
@@ -36,29 +39,43 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 ![img](../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png)
 
 
-<a id="org84adc6e"></a>
+<a id="org36ead23"></a>
 
 # What lies here?
 
-Knowledge you may find in the project includes:
+
+<a id="orgc1e1a34"></a>
+
+## An operating system (OS) configured in Scheme
 
 -   GNU Guix system configurations
--   Advanced Emacs configurations with Emacs Lisp + Elpaca
 -   SwayFX configurations
 -   Foot terminal emulator
+-   Rofi application launcher
 -   Waybar configuration and style
 -   Mako configuration and style
 -   multi-user Git configuration setup (work/personal)
 -   Qutebrowser configurations
+-   Multi user configurations
+-   Theme palettes that affect the entire system
+
+
+<a id="orgab93a1d"></a>
+
+## Joe's Emacs configuration
+
+An operating system unto itself.
+
+-   Advanced Emacs configurations with Emacs Lisp + Elpaca
+
+
+<a id="orgd21435d"></a>
+
+# Why ?
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
 Warning: parts of the code and settings might default to the Dutch language ( `nl_NL.UTF-8` ).
-
-
-<a id="orgf0d22ee"></a>
-
-# Why ?
 
 I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
 
@@ -91,7 +108,7 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="org4b71b93"></a>
+<a id="orgf038a06"></a>
 
 # How this manual works
 
@@ -107,7 +124,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Export to Markdown via `org-md-export-to-markdown`
 
 
-<a id="org7e3c5bc"></a>
+<a id="orgb80d485"></a>
 
 # Customizations
 
@@ -118,7 +135,7 @@ Several color palettes, inspired by the great \`ef-themes\` by Protesilaos Stavr
 Find Prot's themes here: <https://github.com/protesilaos/ef-themes>
 
 
-<a id="org149311d"></a>
+<a id="orgb6bdf8c"></a>
 
 # Per host - per-host.scm
 
@@ -154,7 +171,7 @@ Find here a reference configuration with what is required.
       "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
 
-<a id="org8f10850"></a>
+<a id="orgda730ed"></a>
 
 # Non-free software
 
@@ -164,7 +181,7 @@ SSS attempts to stay as libre as possible, while also respecting your convenienc
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="org5273663"></a>
+<a id="orgc0e3b4a"></a>
 
 # Bootstrapping
 
@@ -230,7 +247,7 @@ You can then reboot and you should be greeted by a simple TTY. SSS uses no login
 Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
-<a id="orge37c3cb"></a>
+<a id="org548ab06"></a>
 
 # Nix profile
 
@@ -260,7 +277,14 @@ You can keep your Nix packages updated by running:
 The installed software will be available, for example at: `/home/joe/.nix-profile/bin/`
 
 
-<a id="org3ff9f1e"></a>
+<a id="org76e612c"></a>
+
+# SSS Project
+
+Find the [project management of SSS here](../Project management/README.md)
+
+
+<a id="org1e083e1"></a>
 
 # Keyboard Terminology
 
@@ -308,12 +332,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org03d9240"></a>
+<a id="orgffb2a2c"></a>
 
 # Sway
 
 
-<a id="orgea25084"></a>
+<a id="org6de324c"></a>
 
 ## Screenshot keybindings
 
@@ -359,7 +383,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org81ffb57"></a>
+<a id="org4a54c76"></a>
 
 ## Application keybindings
 
@@ -429,12 +453,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org9c9b0f0"></a>
+<a id="org2bb997d"></a>
 
 # Emacs
 
 
-<a id="orgcc04e5b"></a>
+<a id="org2b85551"></a>
 
 ## General non-vanilla bindings
 
@@ -474,7 +498,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org2653e14"></a>
+<a id="org276b11e"></a>
 
 ## SSS specific keybindings
 

@@ -23,21 +23,31 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 
 ** What lies here?
 
-Knowledge you may find in the project includes:
+*** An operating system (OS) configured in Scheme
+
 - GNU Guix system configurations
-- Advanced Emacs configurations with Emacs Lisp + Elpaca
 - SwayFX configurations
 - Foot terminal emulator
+- Rofi application launcher
 - Waybar configuration and style
 - Mako configuration and style
 - multi-user Git configuration setup (work/personal)
 - Qutebrowser configurations
+- Multi user configurations
+- Theme palettes that affect the entire system
+  
+*** Joe's Emacs configuration
+
+An operating system unto itself.
+
+- Advanced Emacs configurations with Emacs Lisp + Elpaca
+
+** Why ?
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
 Warning: parts of the code and settings might default to the Dutch language ( ~nl_NL.UTF-8~ ).
 
-** Why ?
 
 I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
 
@@ -236,6 +246,10 @@ You can keep your Nix packages updated by running:
 
 The installed software will be available, for example at: ~/home/joe/.nix-profile/bin/~
 
+** SSS Project
+
+Find the [[file:../Project management/README.org][project management of SSS here]]
+
 ** Keyboard Terminology
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
@@ -291,3 +305,4 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 | ~C-c # j~ | Perform a joe rebuild          |
 | ~C-c # f~ | Perform a system + joe rebuild |
 |         |                                |
+

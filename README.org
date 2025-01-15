@@ -4,11 +4,7 @@
 #+options: num:nil
 
 
-A Lisp machine adventure, where the hacking culture is celebrated.
-
-GNU Guix + GNU Emacs + Nix + SwayFX + Wayland + Qutebrowser 💚
-
-Let me help you achieve /GNUrvana/.
+SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me help you achieve /GNUrvana/.
 
 If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee ☕]] so I can continue with a lot of motivation.
 
@@ -22,7 +18,6 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 
 [[file:./resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png]]
 
-
 ** SSS Manuals
 
 I strive to provide proper and extensive documentation on the Supreme Sexp System (SSS), in several formats, available at your convenience.
@@ -33,6 +28,27 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 - Markdown format [[file:docs/Manual/README.md]]  
 - texi format [[file:docs/Manual/README.texi]]
 - info format [[file:docs/Manual/README.info]]    
+
+** What lies here?
+
+*** An operating system (OS) configured in Scheme
+
+- GNU Guix system configurations
+- SwayFX configurations
+- Foot terminal emulator
+- Rofi application launcher
+- Waybar configuration and style
+- Mako configuration and style
+- multi-user Git configuration setup (work/personal)
+- Qutebrowser configurations
+- Multi user configurations
+- Theme palettes that affect the entire system
+  
+*** Joe's Emacs configuration
+
+An operating system unto itself.
+
+- Advanced Emacs configurations with Emacs Lisp + Elpaca
 
 ** SSS Project
 

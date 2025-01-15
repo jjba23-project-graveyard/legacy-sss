@@ -46,12 +46,18 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 * Non-free software::
 * Bootstrapping::
 * Nix profile::
+* SSS Project::
 * Keyboard Terminology::
 * Sway::
 * Emacs::
 
 @detailmenu
 --- The Detailed Node Listing ---
+
+What lies here?
+
+* An operating system (OS) configured in Scheme::
+* Joe's Emacs configuration::
 
 Sway
 
@@ -69,16 +75,23 @@ Emacs
 @node What lies here?
 @chapter What lies here?
 
-Knowledge you may find in the project includes:
+@menu
+* An operating system (OS) configured in Scheme::
+* Joe's Emacs configuration::
+@end menu
+
+@node An operating system (OS) configured in Scheme
+@section An operating system (OS) configured in Scheme
+
 @itemize
 @item
 GNU Guix system configurations
 @item
-Advanced Emacs configurations with Emacs Lisp + Elpaca
-@item
 SwayFX configurations
 @item
 Foot terminal emulator
+@item
+Rofi application launcher
 @item
 Waybar configuration and style
 @item
@@ -87,14 +100,29 @@ Mako configuration and style
 multi-user Git configuration setup (work/personal)
 @item
 Qutebrowser configurations
+@item
+Multi user configurations
+@item
+Theme palettes that affect the entire system
 @end itemize
+
+@node Joe's Emacs configuration
+@section Joe's Emacs configuration
+
+An operating system unto itself.
+
+@itemize
+@item
+Advanced Emacs configurations with Emacs Lisp + Elpaca
+@end itemize
+
+@node Why ?
+@chapter Why ?
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
 Warning: parts of the code and settings might default to the Dutch language ( @code{nl_NL.UTF-8} ).
 
-@node Why ?
-@chapter Why ?
 
 I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
 
@@ -307,6 +335,11 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 @end example
 
 The installed software will be available, for example at: @code{/home/joe/.nix-profile/bin/}
+
+@node SSS Project
+@chapter SSS Project
+
+Find the @uref{../Project management/README.org, project management of SSS here}
 
 @node Keyboard Terminology
 @chapter Keyboard Terminology

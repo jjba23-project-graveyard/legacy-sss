@@ -1,4 +1,4 @@
-% Created 2025-01-12 zo 21:19
+% Created 2025-01-15 wo 23:25
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -48,26 +48,40 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{center}
 
 \section{What lies here?}
-\label{sec:orgfff3a45}
+\label{sec:org4ae22dd}
 
-Knowledge you may find in the project includes:
+\subsection{An operating system (OS) configured in Scheme}
+\label{sec:orgfb95912}
+
 \begin{itemize}
 \item GNU Guix system configurations
-\item Advanced Emacs configurations with Emacs Lisp + Elpaca
 \item SwayFX configurations
 \item Foot terminal emulator
+\item Rofi application launcher
 \item Waybar configuration and style
 \item Mako configuration and style
 \item multi-user Git configuration setup (work/personal)
 \item Qutebrowser configurations
+\item Multi user configurations
+\item Theme palettes that affect the entire system
 \end{itemize}
+
+\subsection{Joe's Emacs configuration}
+\label{sec:orge54241e}
+
+An operating system unto itself.
+
+\begin{itemize}
+\item Advanced Emacs configurations with Emacs Lisp + Elpaca
+\end{itemize}
+
+\section{Why ?}
+\label{sec:org100eb11}
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
 Warning: parts of the code and settings might default to the Dutch language ( \texttt{nl\_NL.UTF-8} ).
 
-\section{Why ?}
-\label{sec:orgdd277e0}
 
 I am currently working on the GNU operating system in order to create a secure libre Lisp workstation.
 
@@ -100,7 +114,7 @@ Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} sinc
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 \section{How this manual works}
-\label{sec:org2c1d0f2}
+\label{sec:orgc28b806}
 
 This manual is written by hand with care and attention for detail.
 
@@ -116,7 +130,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 \end{itemize}
 
 \section{Customizations}
-\label{sec:orgd7fcdcb}
+\label{sec:orgcb72c74}
 
 SSS supports several user customizations, more specifically:
 
@@ -126,7 +140,7 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:orga547834}
+\label{sec:org246c444}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -163,7 +177,7 @@ Find here a reference configuration with what is required.
 \end{verbatim}
 
 \section{Non-free software}
-\label{sec:orgb1cbd5a}
+\label{sec:org08cfe4a}
 
 SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
 \begin{itemize}
@@ -173,7 +187,7 @@ SSS attempts to stay as libre as possible, while also respecting your convenienc
 
 
 \section{Bootstrapping}
-\label{sec:org3565412}
+\label{sec:orgc83c723}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
@@ -241,7 +255,7 @@ Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
 \section{Nix profile}
-\label{sec:org4a856dd}
+\label{sec:org19ee247}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -276,8 +290,13 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 
 The installed software will be available, for example at: \texttt{/home/joe/.nix-profile/bin/}
 
+\section{SSS Project}
+\label{sec:orgfd4dace}
+
+Find the \href{../Project management/README.org}{project management of SSS here}
+
 \section{Keyboard Terminology}
-\label{sec:org567c25f}
+\label{sec:org3f42056}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -294,10 +313,10 @@ term & meaning\\[0pt]
 
 
 \section{Sway}
-\label{sec:org1b2bd41}
+\label{sec:orgd2d49eb}
 
 \subsection{Screenshot keybindings}
-\label{sec:orgab06d30}
+\label{sec:orgf3664f0}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -311,7 +330,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{Application keybindings}
-\label{sec:org25c65b3}
+\label{sec:orgafd10b3}
 
 
 \begin{center}
@@ -330,10 +349,10 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \section{Emacs}
-\label{sec:orgafaf0f0}
+\label{sec:orgebc65f4}
 
 \subsection{General non-vanilla bindings}
-\label{sec:org7e197d9}
+\label{sec:org674586f}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -346,7 +365,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:org03a33e9}
+\label{sec:org5dbf52d}
 
 \begin{center}
 \begin{tabular}{ll}

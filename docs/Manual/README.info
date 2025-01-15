@@ -42,11 +42,17 @@ of the current, ever-changing state of SSS.
 * Non-free software::
 * Bootstrapping::
 * Nix profile::
+* SSS Project::
 * Keyboard Terminology::
 * Sway::
 * Emacs::
 
 — The Detailed Node Listing —
+
+What lies here?
+
+* An operating system (OS) configured in Scheme::
+* Joe's Emacs configuration::
 
 Sway
 
@@ -65,22 +71,37 @@ File: README.info,  Node: What lies here?,  Next: Why ?,  Prev: Top,  Up: Top
 1 What lies here?
 *****************
 
-Knowledge you may find in the project includes:
+* Menu:
+
+* An operating system (OS) configured in Scheme::
+* Joe's Emacs configuration::
+
+
+File: README.info,  Node: An operating system (OS) configured in Scheme,  Next: Joe's Emacs configuration,  Up: What lies here?
+
+1.1 An operating system (OS) configured in Scheme
+=================================================
+
    • GNU Guix system configurations
-   • Advanced Emacs configurations with Emacs Lisp + Elpaca
    • SwayFX configurations
    • Foot terminal emulator
+   • Rofi application launcher
    • Waybar configuration and style
    • Mako configuration and style
    • multi-user Git configuration setup (work/personal)
    • Qutebrowser configurations
+   • Multi user configurations
+   • Theme palettes that affect the entire system
 
-   Find the divine sayings, and the destined computer configurations,
-all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here
-for learning you a fully Lisp machine with GNU/Linux for a great good.
+
+File: README.info,  Node: Joe's Emacs configuration,  Prev: An operating system (OS) configured in Scheme,  Up: What lies here?
 
-   Warning: parts of the code and settings might default to the Dutch
-language ( ‘nl_NL.UTF-8’ ).
+1.2 Joe’s Emacs configuration
+=============================
+
+An operating system unto itself.
+
+   • Advanced Emacs configurations with Emacs Lisp + Elpaca
 
 
 File: README.info,  Node: Why ?,  Next: How this manual works,  Prev: What lies here?,  Up: Top
@@ -88,8 +109,15 @@ File: README.info,  Node: Why ?,  Next: How this manual works,  Prev: What lies 
 2 Why ?
 *******
 
-I am currently working on the GNU operating system in order to create a
-secure libre Lisp workstation.
+Find the divine sayings, and the destined computer configurations, all
+my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for
+learning you a fully Lisp machine with GNU/Linux for a great good.
+
+   Warning: parts of the code and settings might default to the Dutch
+language ( ‘nl_NL.UTF-8’ ).
+
+   I am currently working on the GNU operating system in order to create
+a secure libre Lisp workstation.
 
    I refer to SSS lovingly as the modern Lisp machine.  With this one
 obtains a computing style and programming environment that can be
@@ -342,7 +370,7 @@ sometimes I directly run ‘sway’ from the TTY.
    Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
-File: README.info,  Node: Nix profile,  Next: Keyboard Terminology,  Prev: Bootstrapping,  Up: Top
+File: README.info,  Node: Nix profile,  Next: SSS Project,  Prev: Bootstrapping,  Up: Top
 
 8 Nix profile
 *************
@@ -378,10 +406,19 @@ to use, for the first time.
 ‘/home/joe/.nix-profile/bin/’
 
 
-File: README.info,  Node: Keyboard Terminology,  Next: Sway,  Prev: Nix profile,  Up: Top
+File: README.info,  Node: SSS Project,  Next: Keyboard Terminology,  Prev: Nix profile,  Up: Top
 
-9 Keyboard Terminology
-**********************
+9 SSS Project
+*************
+
+Find the project management of SSS here (../Project
+management/README.org)
+
+
+File: README.info,  Node: Keyboard Terminology,  Next: Sway,  Prev: SSS Project,  Up: Top
+
+10 Keyboard Terminology
+***********************
 
 When keybindings (shortcurts) are defined, the following legend applies
 (a la Emacs):
@@ -396,7 +433,7 @@ term   meaning
 
 File: README.info,  Node: Sway,  Next: Emacs,  Prev: Keyboard Terminology,  Up: Top
 
-10 Sway
+11 Sway
 *******
 
 * Menu:
@@ -407,7 +444,7 @@ File: README.info,  Node: Sway,  Next: Emacs,  Prev: Keyboard Terminology,  Up: 
 
 File: README.info,  Node: Screenshot keybindings,  Next: Application keybindings,  Up: Sway
 
-10.1 Screenshot keybindings
+11.1 Screenshot keybindings
 ===========================
 
 keybind   command
@@ -420,7 +457,7 @@ keybind   command
 
 File: README.info,  Node: Application keybindings,  Prev: Screenshot keybindings,  Up: Sway
 
-10.2 Application keybindings
+11.2 Application keybindings
 ============================
 
 keybind   command
@@ -436,7 +473,7 @@ keybind   command
 
 File: README.info,  Node: Emacs,  Prev: Sway,  Up: Top
 
-11 Emacs
+12 Emacs
 ********
 
 * Menu:
@@ -447,7 +484,7 @@ File: README.info,  Node: Emacs,  Prev: Sway,  Up: Top
 
 File: README.info,  Node: General non-vanilla bindings,  Next: SSS specific keybindings,  Up: Emacs
 
-11.1 General non-vanilla bindings
+12.1 General non-vanilla bindings
 =================================
 
 keybind   command
@@ -458,7 +495,7 @@ keybind   command
 
 File: README.info,  Node: SSS specific keybindings,  Prev: General non-vanilla bindings,  Up: Emacs
 
-11.2 SSS specific keybindings
+12.2 SSS specific keybindings
 =============================
 
 keybind     command
@@ -471,21 +508,24 @@ keybind     command
 
 Tag Table:
 Node: Top73
-Node: What lies here?1690
-Node: Why ?2500
-Node: How this manual works5526
-Node: Customizations6243
-Node: Per host - per-hostscm6679
-Node: Non-free software7955
-Node: Bootstrapping8504
-Node: Nix profile12685
-Node: Keyboard Terminology13715
-Node: Sway14110
-Node: Screenshot keybindings14279
-Node: Application keybindings14685
-Node: Emacs15210
-Node: General non-vanilla bindings15359
-Node: SSS specific keybindings15637
+Node: What lies here?1804
+Node: An operating system (OS) configured in Scheme2012
+Node: Joe's Emacs configuration2626
+Node: Why ?2917
+Node: How this manual works6261
+Node: Customizations6978
+Node: Per host - per-hostscm7414
+Node: Non-free software8690
+Node: Bootstrapping9239
+Node: Nix profile13420
+Node: SSS Project14441
+Node: Keyboard Terminology14646
+Node: Sway15043
+Node: Screenshot keybindings15212
+Node: Application keybindings15618
+Node: Emacs16143
+Node: General non-vanilla bindings16292
+Node: SSS specific keybindings16570
 
 End Tag Table
 
