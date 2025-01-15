@@ -66,8 +66,7 @@
     "waybar"
     "transmission-daemon"
     "foot -s"
-    "swww-daemon"
-    ,wallpaper-setter))
+    ,(format #f "swww-daemon && ~a" wallpaper-setter)))
 
 (define sss-sway-startup-reload-programs
   (let ((gtk-theme-name (cond
@@ -228,6 +227,7 @@
                                                                               (format
                                                                                #f
                                                                                "swww img ~a --transition-step 30 --transition-fps 30 --transition-type center"
+
                                                                                
                                                                                (sss-sway-wallpaper
                                                                                 #:sss-clone-dir
