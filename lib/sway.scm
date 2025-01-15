@@ -216,7 +216,8 @@
     "client.urgent           #b02930 #b02930 #cfdfd5 #900000   #900000"
     "client.placeholder      #000000 #0c0c0c #cfdfd5 #000000   #0c0c0c"
     ,(format #f "client.background ~a"
-             (sss-get-color 'text))))
+             (sss-get-color 'text))
+    ,(format #f "seat seat0 xcursor_theme ~a ~a" "Yaru" "24")))
 
 (begin
   (define* (sss-sway-service-type #:key sss-clone-dir)
