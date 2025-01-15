@@ -251,6 +251,22 @@ required.
      (define sss-clone-dir
        "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
+     ;;
+     ;; Define the active palette for all users accounts
+     ;; You should reconfigure and ideally restart the system
+     ;; for all changes to take effect
+     ;;
+     ;; Note: You could choose on a per-user basis to set a fixed palette
+     ;; and not follow system wide, by just redefining this value
+     ;;
+     ;; Possible values are:
+     ;;   - sss-palette-ef-bio
+     ;;   - sss-palette-ef-cyprus
+     ;;   - sss-palette-ef-dream
+     ;;
+     (define-public sss-active-palette
+       'sss-palette-ef-dream)
+
 
 
 File: README.info,  Node: Non-free software,  Next: Bootstrapping,  Prev: Per host - per-hostscm,  Up: Top
@@ -515,17 +531,17 @@ Node: Why ?2917
 Node: How this manual works6261
 Node: Customizations6978
 Node: Per host - per-hostscm7414
-Node: Non-free software8690
-Node: Bootstrapping9239
-Node: Nix profile13420
-Node: SSS Project14441
-Node: Keyboard Terminology14646
-Node: Sway15043
-Node: Screenshot keybindings15212
-Node: Application keybindings15618
-Node: Emacs16143
-Node: General non-vanilla bindings16292
-Node: SSS specific keybindings16570
+Node: Non-free software9217
+Node: Bootstrapping9766
+Node: Nix profile13947
+Node: SSS Project14968
+Node: Keyboard Terminology15173
+Node: Sway15570
+Node: Screenshot keybindings15739
+Node: Application keybindings16145
+Node: Emacs16670
+Node: General non-vanilla bindings16819
+Node: SSS specific keybindings17097
 
 End Tag Table
 
