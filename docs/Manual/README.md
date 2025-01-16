@@ -1,26 +1,26 @@
 
 # Table of Contents
 
-1.  [What lies here?](#org2198393)
-    1.  [An operating system (OS) configured in Scheme](#orgb6b2e5a)
-    2.  [Joe's Emacs configuration](#org7513d95)
-2.  [Why ?](#org226ad19)
-3.  [Non-free software](#org74a079a)
-4.  [How this manual works](#org7305605)
-5.  [Customizations](#orgb238e55)
-6.  [Per host - per-host.scm](#orgfa25d53)
-7.  [Bootstrapping](#orge463613)
-8.  [Nix profile](#org2c86f6d)
-9.  [SSS Project](#orgda32a89)
-10. [System audio](#org025ec07)
-11. [Keyboard Terminology](#org2b18f36)
-12. [Sway](#org518ae4d)
-    1.  [General keybindings](#org0db58c3)
-    2.  [Application keybindings](#org073b59c)
-    3.  [Screenshot keybindings](#org6496efa)
-13. [Emacs](#org200b32a)
-    1.  [General non-vanilla bindings](#org3d255fd)
-    2.  [SSS specific keybindings](#orgc62aed5)
+1.  [What lies here?](#org0670d7f)
+    1.  [An operating system (OS) configured in Scheme](#orgdcef480)
+    2.  [Joe's Emacs configuration](#org3ec4987)
+2.  [Why ?](#org2d81645)
+3.  [Non-free software](#orgb1b6cb3)
+4.  [How this manual works](#org4ab6d40)
+5.  [Customizations](#org7eed9fe)
+6.  [Per host - per-host.scm](#org0975d8b)
+7.  [Bootstrapping](#org11a04f0)
+8.  [Nix profile](#org35e6431)
+9.  [SSS Project](#org24fa299)
+10. [System audio](#org7500cfc)
+11. [Keyboard Terminology](#orgdfcb7e9)
+12. [Sway](#orgb896397)
+    1.  [General keybindings](#orgae7f64e)
+    2.  [Application keybindings](#org854af20)
+    3.  [Screenshot keybindings](#org761a01d)
+13. [Emacs](#org0be57d3)
+    1.  [General non-vanilla bindings](#orga8dae37)
+    2.  [SSS specific keybindings](#orga18fa99)
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
@@ -36,6 +36,8 @@ Installing and managing SSS is not intended for beginners to GNU/Linux systems, 
 
 SSS strives to have all things configured via Lisp dialects when possible and convenient, staying accessible to all kinds of users, and allowing for magical things to happen.
 
+![img](../../resources/images/dall-e-3-thumb.png)
+
 I would appreciate if you write your findings when using SSS and if you can, fork the project, and contribute some improvements, or mail me at <jjbigorra@gmail.com>
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
@@ -43,12 +45,12 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 ![img](../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png)
 
 
-<a id="org2198393"></a>
+<a id="org0670d7f"></a>
 
 # What lies here?
 
 
-<a id="orgb6b2e5a"></a>
+<a id="orgdcef480"></a>
 
 ## An operating system (OS) configured in Scheme
 
@@ -64,7 +66,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 -   Theme palettes that affect the entire system
 
 
-<a id="org7513d95"></a>
+<a id="org3ec4987"></a>
 
 ## Joe's Emacs configuration
 
@@ -73,7 +75,7 @@ An operating system unto itself.
 -   Advanced Emacs configurations with Emacs Lisp + Elpaca
 
 
-<a id="org226ad19"></a>
+<a id="org2d81645"></a>
 
 # Why ?
 
@@ -112,7 +114,7 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="org74a079a"></a>
+<a id="orgb1b6cb3"></a>
 
 # Non-free software
 
@@ -122,7 +124,7 @@ SSS attempts to stay as libre as possible, while also respecting your convenienc
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="org7305605"></a>
+<a id="org4ab6d40"></a>
 
 # How this manual works
 
@@ -138,7 +140,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Export to Markdown via `org-md-export-to-markdown`
 
 
-<a id="orgb238e55"></a>
+<a id="org7eed9fe"></a>
 
 # Customizations
 
@@ -149,7 +151,7 @@ Several color palettes, inspired by the great \`ef-themes\` by Protesilaos Stavr
 Find Prot's themes here: <https://github.com/protesilaos/ef-themes>
 
 
-<a id="orgfa25d53"></a>
+<a id="org0975d8b"></a>
 
 # Per host - per-host.scm
 
@@ -201,7 +203,7 @@ Find here a reference configuration with what is required.
       'sss-palette-ef-dream)
 
 
-<a id="orge463613"></a>
+<a id="org11a04f0"></a>
 
 # Bootstrapping
 
@@ -269,7 +271,7 @@ SSS uses **no login managers** like GDM or SDDM. Simply login to the TTY and sta
 Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
-<a id="org2c86f6d"></a>
+<a id="org35e6431"></a>
 
 # Nix profile
 
@@ -314,14 +316,14 @@ You can keep your Nix packages updated by running:
 The installed software will be available, for example at: `/home/joe/.nix-profile/bin/`
 
 
-<a id="orgda32a89"></a>
+<a id="org24fa299"></a>
 
 # SSS Project
 
 Find the [project management of SSS here](../Project management/README.md)
 
 
-<a id="org025ec07"></a>
+<a id="org7500cfc"></a>
 
 # System audio
 
@@ -332,7 +334,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the `RTC_USE_PIPEWIRE` variable to `true`. This is already the case by default in SSS.
 
 
-<a id="org2b18f36"></a>
+<a id="orgdfcb7e9"></a>
 
 # Keyboard Terminology
 
@@ -380,12 +382,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org518ae4d"></a>
+<a id="orgb896397"></a>
 
 # Sway
 
 
-<a id="org0db58c3"></a>
+<a id="orgae7f64e"></a>
 
 ## General keybindings
 
@@ -425,7 +427,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org073b59c"></a>
+<a id="org854af20"></a>
 
 ## Application keybindings
 
@@ -495,7 +497,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org6496efa"></a>
+<a id="org761a01d"></a>
 
 ## Screenshot keybindings
 
@@ -529,12 +531,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org200b32a"></a>
+<a id="org0be57d3"></a>
 
 # Emacs
 
 
-<a id="org3d255fd"></a>
+<a id="orga8dae37"></a>
 
 ## General non-vanilla bindings
 
@@ -574,7 +576,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgc62aed5"></a>
+<a id="orga18fa99"></a>
 
 ## SSS specific keybindings
 

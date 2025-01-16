@@ -1,4 +1,4 @@
-% Created 2025-01-16 do 13:09
+% Created 2025-01-16 do 13:24
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -41,6 +41,10 @@ Installing and managing SSS is not intended for beginners to GNU/Linux systems, 
 
 SSS strives to have all things configured via Lisp dialects when possible and convenient, staying accessible to all kinds of users, and allowing for magical things to happen.
 
+\begin{center}
+\includegraphics[width=.9\linewidth]{../../resources/images/dall-e-3-thumb.png}
+\end{center}
+
 I would appreciate if you write your findings when using SSS and if you can, fork the project, and contribute some improvements, or mail me at <jjbigorra@gmail.com>
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
@@ -50,10 +54,10 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{center}
 
 \section{What lies here?}
-\label{sec:orgedc059e}
+\label{sec:org78fea6c}
 
 \subsection{An operating system (OS) configured in Scheme}
-\label{sec:org67d559e}
+\label{sec:org086b15e}
 
 \begin{itemize}
 \item GNU Guix system configurations
@@ -69,7 +73,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{itemize}
 
 \subsection{Joe's Emacs configuration}
-\label{sec:orgf625281}
+\label{sec:org6a78d1f}
 
 An operating system unto itself.
 
@@ -78,7 +82,7 @@ An operating system unto itself.
 \end{itemize}
 
 \section{Why ?}
-\label{sec:org6ccb0fb}
+\label{sec:orgf5e2e11}
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
@@ -116,7 +120,7 @@ Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} sinc
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 \section{Non-free software}
-\label{sec:orgc7c8d68}
+\label{sec:org34a449f}
 
 SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
 \begin{itemize}
@@ -126,7 +130,7 @@ SSS attempts to stay as libre as possible, while also respecting your convenienc
 
 
 \section{How this manual works}
-\label{sec:org72bbcc8}
+\label{sec:org4e9b35c}
 
 This manual is written by hand with care and attention for detail.
 
@@ -142,7 +146,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 \end{itemize}
 
 \section{Customizations}
-\label{sec:org5417aaa}
+\label{sec:orga9c7a81}
 
 SSS supports several user customizations, more specifically:
 
@@ -152,7 +156,7 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:org762f3a0}
+\label{sec:org218daf0}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -205,7 +209,7 @@ Find here a reference configuration with what is required.
 \end{verbatim}
 
 \section{Bootstrapping}
-\label{sec:orgd502df1}
+\label{sec:org01f97e9}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
@@ -275,7 +279,7 @@ Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
 \section{Nix profile}
-\label{sec:org61f1296}
+\label{sec:org3e42695}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -327,12 +331,12 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 The installed software will be available, for example at: \texttt{/home/joe/.nix-profile/bin/}
 
 \section{SSS Project}
-\label{sec:org81f5400}
+\label{sec:orgba1e928}
 
 Find the \href{../Project management/README.org}{project management of SSS here}
 
 \section{System audio}
-\label{sec:orgccee1bf}
+\label{sec:org5bd7c94}
 
 SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
 
@@ -341,7 +345,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the \texttt{RTC\_USE\_PIPEWIRE} variable to \texttt{true}. This is already the case by default in SSS.
 
 \section{Keyboard Terminology}
-\label{sec:org45255dd}
+\label{sec:org2819a44}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -358,10 +362,10 @@ term & meaning\\[0pt]
 
 
 \section{Sway}
-\label{sec:org1d2d4cf}
+\label{sec:orgdf61b02}
 
 \subsection{General keybindings}
-\label{sec:orgadf9886}
+\label{sec:org2e821a3}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -374,7 +378,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{Application keybindings}
-\label{sec:orgaf4127e}
+\label{sec:org4f3cfbe}
 
 
 \begin{center}
@@ -393,7 +397,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{Screenshot keybindings}
-\label{sec:org53357fe}
+\label{sec:orgf6dffe7}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -405,10 +409,10 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \section{Emacs}
-\label{sec:org4e38fe6}
+\label{sec:org0f9edc4}
 
 \subsection{General non-vanilla bindings}
-\label{sec:orgaecb20e}
+\label{sec:org12f7577}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -421,7 +425,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:orgd4fb51b}
+\label{sec:org3044b28}
 
 \begin{center}
 \begin{tabular}{ll}
