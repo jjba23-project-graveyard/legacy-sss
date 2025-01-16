@@ -67,7 +67,7 @@
     "transmission-daemon"
     "foot -s"
     "swww-daemon"
-    ,(format #f "sleep 3 && ~a" wallpaper-setter)))
+    ,(format #f "sleep 2 && ~a" wallpaper-setter)))
 
 (define sss-sway-startup-reload-programs
   (let ((gtk-theme-name (cond
@@ -108,6 +108,21 @@
     (browser . "QT_QPA_PLATFORM=xcb qutebrowser")
     (term . "footclient")
     (password-manager . "/home/joe/.nix-profile/bin/1password")
+    (locker unquote
+            (string-join '("swaylock" "--screenshots"
+                           "--clock"
+                           "--indicator"
+                           "--indicator-radius 100"
+                           "--indicator-thickness 7"
+                           "--effect-blur 7x5"
+                           "--effect-vignette 0.5:0.5"
+                           "--ring-color bb00cc"
+                           "--key-hl-color 880033"
+                           "--line-color 00000000"
+                           "--inside-color 00000088"
+                           "--separator-color 00000000"
+                           "--grace 2"
+                           "--fade-in 0.2") " "))
     (menu . "rofi -show drun")
     (runner . "rofi -show run")
     (windower . "rofi -show window")))
@@ -126,6 +141,7 @@
     ($mod+shift+period . "exec grimshot copy")
     ($mod+period . "exec grimshot save")
     ($mod+k . "kill")
+    ($mod+l . "exec $locker")
     ($mod+slash . "exec $menu")
     ($mod+i . "exec $browser")
     ($mod+Shift+i . "exec $bloated-browser")
@@ -247,7 +263,7 @@
                                                                               #:wallpaper-setter
                                                                               (format
                                                                                #f
-                                                                               "swww img ~a --transition-step 30 --transition-fps 30 --transition-type center"
+                                                                               "swww img ~a --transition-step 12 --transition-fps 30 --transition-type center"
 
                                                                                
                                                                                (sss-sway-wallpaper

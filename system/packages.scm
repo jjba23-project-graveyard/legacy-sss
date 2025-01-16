@@ -328,7 +328,7 @@ more.")
 
 (define sss-wm-packages
   (list swaybg
-        swaylock
+        swaylock-effects
         swayidle
 
         waybar-experimental
