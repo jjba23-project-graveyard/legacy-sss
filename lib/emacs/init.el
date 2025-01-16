@@ -763,6 +763,12 @@ According to size, color and font family"
   (let ((default-directory "~/Ontwikkeling/Persoonlijk/sss"))
     (async-shell-command "make jr")))
 
+(defun sss-publish-manual ()
+  "Rebuild GNU Guix Joe's config manual."
+  (interactive)
+  (let ((default-directory "~/Ontwikkeling/Persoonlijk/sss"))
+    (async-shell-command "make publish-manual")))
+
 (defun sss-full-reconfigure ()
   "Fully Rebuild GNU Guix Joe's configs and Joe's user."
   (interactive)
@@ -894,6 +900,7 @@ According to size, color and font family"
          ("C-c # j" . sss-joe-reconfigure)
          ("C-c # s" . sss-sys-reconfigure)
          ("C-c # u" . sss-sys-update)
+         ("C-c # m" . sss-publish-manual)
          ("C-c # f" . sss-full-reconfigure))
   :hook ((text-mode . visual-line-mode))
   :config

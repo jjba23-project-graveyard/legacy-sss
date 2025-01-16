@@ -47,6 +47,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 * Bootstrapping::
 * Nix profile::
 * SSS Project::
+* System audio::
 * Keyboard Terminology::
 * Sway::
 * Emacs::
@@ -374,6 +375,15 @@ The installed software will be available, for example at: @code{/home/joe/.nix-p
 @chapter SSS Project
 
 Find the @uref{../Project management/README.org, project management of SSS here}
+
+@node System audio
+@chapter System audio
+
+SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
+
+In practice this means that any user account in your system that wants to make use of audio, should have the  @code{(service home-dbus-service-type)} and @code{(service home-pipewire-service-type)} services enabled for their account (yes per-user basis).
+
+You will also want to set the @code{RTC_USE_PIPEWIRE} variable to @code{true}. This is already the case by default in SSS@.
 
 @node Keyboard Terminology
 @chapter Keyboard Terminology

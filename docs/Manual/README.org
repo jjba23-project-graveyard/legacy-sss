@@ -284,6 +284,14 @@ The installed software will be available, for example at: ~/home/joe/.nix-profil
 
 Find the [[file:../Project management/README.org][project management of SSS here]]
 
+** System audio
+
+SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
+
+In practice this means that any user account in your system that wants to make use of audio, should have the  ~(service home-dbus-service-type)~ and ~(service home-pipewire-service-type)~ services enabled for their account (yes per-user basis).
+
+You will also want to set the ~RTC_USE_PIPEWIRE~ variable to ~true~. This is already the case by default in SSS.
+
 ** Keyboard Terminology
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):

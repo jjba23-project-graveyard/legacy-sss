@@ -1,4 +1,4 @@
-% Created 2025-01-16 do 09:34
+% Created 2025-01-16 do 10:08
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -48,10 +48,10 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{center}
 
 \section{What lies here?}
-\label{sec:orgfbe3235}
+\label{sec:orga6fdda9}
 
 \subsection{An operating system (OS) configured in Scheme}
-\label{sec:org12d585d}
+\label{sec:orgdfe3acb}
 
 \begin{itemize}
 \item GNU Guix system configurations
@@ -67,7 +67,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{itemize}
 
 \subsection{Joe's Emacs configuration}
-\label{sec:orgd96bc7f}
+\label{sec:orgf0cc4a6}
 
 An operating system unto itself.
 
@@ -76,7 +76,7 @@ An operating system unto itself.
 \end{itemize}
 
 \section{Why ?}
-\label{sec:orgc523287}
+\label{sec:orgbf240d2}
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
@@ -114,7 +114,7 @@ Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} sinc
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 \section{Non-free software}
-\label{sec:orgbc9da87}
+\label{sec:org8f02b4f}
 
 SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
 \begin{itemize}
@@ -124,7 +124,7 @@ SSS attempts to stay as libre as possible, while also respecting your convenienc
 
 
 \section{How this manual works}
-\label{sec:org541f1ba}
+\label{sec:org3df565d}
 
 This manual is written by hand with care and attention for detail.
 
@@ -140,7 +140,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 \end{itemize}
 
 \section{Customizations}
-\label{sec:org454ed43}
+\label{sec:org53a9178}
 
 SSS supports several user customizations, more specifically:
 
@@ -150,7 +150,7 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:org2e7ff9d}
+\label{sec:org92ad2ff}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -203,7 +203,7 @@ Find here a reference configuration with what is required.
 \end{verbatim}
 
 \section{Bootstrapping}
-\label{sec:org541174c}
+\label{sec:org31fc133}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
@@ -273,7 +273,7 @@ Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
 \section{Nix profile}
-\label{sec:org4b599fb}
+\label{sec:org271006c}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -325,12 +325,21 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 The installed software will be available, for example at: \texttt{/home/joe/.nix-profile/bin/}
 
 \section{SSS Project}
-\label{sec:orgefa63af}
+\label{sec:orgf29e37e}
 
 Find the \href{../Project management/README.org}{project management of SSS here}
 
+\section{System audio}
+\label{sec:org35d5f1d}
+
+SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
+
+In practice this means that any user account in your system that wants to make use of audio, should have the  \texttt{(service home-dbus-service-type)} and \texttt{(service home-pipewire-service-type)} services enabled for their account (yes per-user basis).
+
+You will also want to set the \texttt{RTC\_USE\_PIPEWIRE} variable to \texttt{true}. This is already the case by default in SSS.
+
 \section{Keyboard Terminology}
-\label{sec:org5536f99}
+\label{sec:org3df3e12}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -347,10 +356,10 @@ term & meaning\\[0pt]
 
 
 \section{Sway}
-\label{sec:orgfa6cb1e}
+\label{sec:org61c1676}
 
 \subsection{Screenshot keybindings}
-\label{sec:org21a83f6}
+\label{sec:orgf330829}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -364,7 +373,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{Application keybindings}
-\label{sec:org34544ca}
+\label{sec:orge710a02}
 
 
 \begin{center}
@@ -383,10 +392,10 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \section{Emacs}
-\label{sec:org68953eb}
+\label{sec:org479d523}
 
 \subsection{General non-vanilla bindings}
-\label{sec:orgebe673d}
+\label{sec:org66c25da}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -399,7 +408,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:org43fa451}
+\label{sec:orgbdf94f2}
 
 \begin{center}
 \begin{tabular}{ll}

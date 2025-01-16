@@ -43,6 +43,7 @@ of the current, ever-changing state of SSS.
 * Bootstrapping::
 * Nix profile::
 * SSS Project::
+* System audio::
 * Keyboard Terminology::
 * Sway::
 * Emacs::
@@ -438,7 +439,7 @@ the profile.
 ‘/home/joe/.nix-profile/bin/’
 
 
-File: README.info,  Node: SSS Project,  Next: Keyboard Terminology,  Prev: Nix profile,  Up: Top
+File: README.info,  Node: SSS Project,  Next: System audio,  Prev: Nix profile,  Up: Top
 
 9 SSS Project
 *************
@@ -447,9 +448,26 @@ Find the project management of SSS here (../Project
 management/README.org)
 
 
-File: README.info,  Node: Keyboard Terminology,  Next: Sway,  Prev: SSS Project,  Up: Top
+File: README.info,  Node: System audio,  Next: Keyboard Terminology,  Prev: SSS Project,  Up: Top
 
-10 Keyboard Terminology
+10 System audio
+***************
+
+SSS favors modern technologies and thus makes use of Pipewire for all
+your GNU/Linux audio needs.
+
+   In practice this means that any user account in your system that
+wants to make use of audio, should have the ‘(service
+home-dbus-service-type)’ and ‘(service home-pipewire-service-type)’
+services enabled for their account (yes per-user basis).
+
+   You will also want to set the ‘RTC_USE_PIPEWIRE’ variable to ‘true’.
+This is already the case by default in SSS.
+
+
+File: README.info,  Node: Keyboard Terminology,  Next: Sway,  Prev: System audio,  Up: Top
+
+11 Keyboard Terminology
 ***********************
 
 When keybindings (shortcurts) are defined, the following legend applies
@@ -465,7 +483,7 @@ term   meaning
 
 File: README.info,  Node: Sway,  Next: Emacs,  Prev: Keyboard Terminology,  Up: Top
 
-11 Sway
+12 Sway
 *******
 
 * Menu:
@@ -476,7 +494,7 @@ File: README.info,  Node: Sway,  Next: Emacs,  Prev: Keyboard Terminology,  Up: 
 
 File: README.info,  Node: Screenshot keybindings,  Next: Application keybindings,  Up: Sway
 
-11.1 Screenshot keybindings
+12.1 Screenshot keybindings
 ===========================
 
 keybind   command
@@ -489,7 +507,7 @@ keybind   command
 
 File: README.info,  Node: Application keybindings,  Prev: Screenshot keybindings,  Up: Sway
 
-11.2 Application keybindings
+12.2 Application keybindings
 ============================
 
 keybind   command
@@ -505,7 +523,7 @@ keybind   command
 
 File: README.info,  Node: Emacs,  Prev: Sway,  Up: Top
 
-12 Emacs
+13 Emacs
 ********
 
 * Menu:
@@ -516,7 +534,7 @@ File: README.info,  Node: Emacs,  Prev: Sway,  Up: Top
 
 File: README.info,  Node: General non-vanilla bindings,  Next: SSS specific keybindings,  Up: Emacs
 
-12.1 General non-vanilla bindings
+13.1 General non-vanilla bindings
 =================================
 
 keybind   command
@@ -527,7 +545,7 @@ keybind   command
 
 File: README.info,  Node: SSS specific keybindings,  Prev: General non-vanilla bindings,  Up: Emacs
 
-12.2 SSS specific keybindings
+13.2 SSS specific keybindings
 =============================
 
 keybind     command
@@ -540,24 +558,25 @@ keybind     command
 
 Tag Table:
 Node: Top73
-Node: What lies here?1804
-Node: An operating system (OS) configured in Scheme2012
-Node: Joe's Emacs configuration2626
-Node: Why ?2917
-Node: Non-free software6257
-Node: How this manual works6797
-Node: Customizations7526
-Node: Per host - per-hostscm7962
-Node: Bootstrapping9761
-Node: Nix profile13952
-Node: SSS Project15511
-Node: Keyboard Terminology15716
-Node: Sway16113
-Node: Screenshot keybindings16282
-Node: Application keybindings16688
-Node: Emacs17213
-Node: General non-vanilla bindings17362
-Node: SSS specific keybindings17640
+Node: What lies here?1821
+Node: An operating system (OS) configured in Scheme2029
+Node: Joe's Emacs configuration2643
+Node: Why ?2934
+Node: Non-free software6274
+Node: How this manual works6814
+Node: Customizations7543
+Node: Per host - per-hostscm7979
+Node: Bootstrapping9778
+Node: Nix profile13969
+Node: SSS Project15528
+Node: System audio15725
+Node: Keyboard Terminology16339
+Node: Sway16737
+Node: Screenshot keybindings16906
+Node: Application keybindings17312
+Node: Emacs17837
+Node: General non-vanilla bindings17986
+Node: SSS specific keybindings18264
 
 End Tag Table
 

@@ -23,7 +23,8 @@
   `((green . "'\\[\\033[01;32m\\]'") (reset . "'\\[\\033[00m\\]'")))
 
 (define sss-bash-path-appends
-  `("${KREW_ROOT:-$HOME/.krew}/bin" "$HOME/.local/bin"))
+  `("${KREW_ROOT:-$HOME/.krew}/bin" "$HOME/.local/bin"
+    "$HOME/.guix-profile/bin"))
 
 (define sss-bash-exports
   `((PS1 . "${grn}\"\\u@\\h \\w${GUIX_ENVIRONMENT:+ [env]} λ\"${clr}\"  \"")))
