@@ -40,10 +40,10 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 @menu
 * What lies here?::
 * Why ?::
+* Non-free software::
 * How this manual works::
 * Customizations::
 * Per host - per-host.scm: Per host - per-hostscm. 
-* Non-free software::
 * Bootstrapping::
 * Nix profile::
 * SSS Project::
@@ -154,6 +154,17 @@ Some commands in the @code{Makefile} are more geared towards @code{joe} since we
 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
+@node Non-free software
+@chapter Non-free software
+
+SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
+@itemize
+@item
+includes the OG Linux kernel (with proprietary blobs) so as to be more compatible with modern hardware
+@item
+includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
+@end itemize
+
 @node How this manual works
 @chapter How this manual works
 
@@ -238,17 +249,6 @@ Find here a reference configuration with what is required.
 
 @end example
 
-@node Non-free software
-@chapter Non-free software
-
-SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
-@itemize
-@item
-includes the OG Linux kernel (with proprietary blobs) so as to be more compatible with modern hardware
-@item
-includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
-@end itemize
-
 @node Bootstrapping
 @chapter Bootstrapping
 
@@ -312,7 +312,9 @@ The @code{fallback} option is optional, and simply helps when upstream substitut
 
 Once the system reconfigure is complete, you should also bootstrap your user's GNU home with something like: @code{guix home reconfigure ./home/joe.scm  --fallback}
 
-You can then reboot and you should be greeted by a simple TTY@. SSS uses no login managers like GDM or SDDM@. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to @code{gui}, or sometimes I directly run @code{sway} from the TTY@.
+You can then reboot and you should be greeted by a simple TTY@.
+
+SSS uses @strong{no login managers} like GDM or SDDM@. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to @code{gui}, or sometimes I directly run @code{sway} from the TTY@.
 
 Feel free to contact me for any doubts at jjbigorra@@gmail.com.
 
@@ -327,9 +329,25 @@ SSS also provides some facilities to manage Nix from the comfort of your Guile S
 
 You might need to activate and link the profile in order to be able to use, for the first time.
 
+Assuming @code{joe} as user in question.
+
+@code{/nix/var/nix/profiles/per-user/} should be:
 @example
+joe@@guixvm ~ λ  ll /nix/var/nix/profiles/per-user/
+totaal 20K
+drwxr-xr-x 2 joe  users  16K 29 dec 23:09 joe/
+drwxr-xr-x 2 root root  4,0K 22 nov 13:23 root/
+@end example
+
+For this, make the directory an link it to your home.
+
+@example
+sudo mkdir -p /nix/var/nix/profiles/per-user/joe/profile
+sudo chown -R /nix/var/nix/profiles/per-user/joe
 ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile
 @end example
+
+It's possible you might need to logout and log back in to re-activate the profile.
 
 You can switch your install to use nixpkgs-unstable with:
 

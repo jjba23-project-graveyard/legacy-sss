@@ -79,6 +79,13 @@ Some commands in the ~Makefile~ are more geared towards ~joe~ since we assume a 
 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
+** Non-free software
+
+SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
+- includes the OG Linux kernel (with proprietary blobs) so as to be more compatible with modern hardware
+- includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
+
+
 ** How this manual works
 
 This manual is written by hand with care and attention for detail.
@@ -153,13 +160,6 @@ Find here a reference configuration with what is required.
 
 #+end_src
 
-** Non-free software
-
-SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
-- includes the OG Linux kernel (with proprietary blobs) so as to be more compatible with modern hardware
-- includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
-
-
 ** Bootstrapping
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install ~sss~ on a brand-new Guix installation.
@@ -222,7 +222,9 @@ The ~fallback~ option is optional, and simply helps when upstream substitute (ca
 
 Once the system reconfigure is complete, you should also bootstrap your user's GNU home with something like: ~guix home reconfigure ./home/joe.scm  --fallback~
 
-You can then reboot and you should be greeted by a simple TTY. SSS uses no login managers like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to ~gui~, or sometimes I directly run ~sway~ from the TTY.
+You can then reboot and you should be greeted by a simple TTY.
+
+SSS uses *no login managers* like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to ~gui~, or sometimes I directly run ~sway~ from the TTY.
   
 Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
@@ -237,9 +239,25 @@ SSS also provides some facilities to manage Nix from the comfort of your Guile S
 
 You might need to activate and link the profile in order to be able to use, for the first time.
 
+Assuming ~joe~ as user in question.
+
+~/nix/var/nix/profiles/per-user/~ should be:
+#+begin_example
+joe@guixvm ~ λ  ll /nix/var/nix/profiles/per-user/
+totaal 20K
+drwxr-xr-x 2 joe  users  16K 29 dec 23:09 joe/
+drwxr-xr-x 2 root root  4,0K 22 nov 13:23 root/
+#+end_example
+
+For this, make the directory an link it to your home.
+
 #+begin_src sh
+  sudo mkdir -p /nix/var/nix/profiles/per-user/joe/profile
+  sudo chown -R /nix/var/nix/profiles/per-user/joe
   ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile
 #+end_src
+
+It's possible you might need to logout and log back in to re-activate the profile.
 
 You can switch your install to use nixpkgs-unstable with:
 

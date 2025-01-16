@@ -1,4 +1,4 @@
-% Created 2025-01-15 wo 23:57
+% Created 2025-01-16 do 09:34
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -48,10 +48,10 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{center}
 
 \section{What lies here?}
-\label{sec:org640550b}
+\label{sec:orgfbe3235}
 
 \subsection{An operating system (OS) configured in Scheme}
-\label{sec:org4b3e8fd}
+\label{sec:org12d585d}
 
 \begin{itemize}
 \item GNU Guix system configurations
@@ -67,7 +67,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{itemize}
 
 \subsection{Joe's Emacs configuration}
-\label{sec:orgd415635}
+\label{sec:orgd96bc7f}
 
 An operating system unto itself.
 
@@ -76,7 +76,7 @@ An operating system unto itself.
 \end{itemize}
 
 \section{Why ?}
-\label{sec:org13d89d8}
+\label{sec:orgc523287}
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
@@ -113,8 +113,18 @@ Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} sinc
 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
+\section{Non-free software}
+\label{sec:orgbc9da87}
+
+SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
+\begin{itemize}
+\item includes the OG Linux kernel (with proprietary blobs) so as to be more compatible with modern hardware
+\item includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
+\end{itemize}
+
+
 \section{How this manual works}
-\label{sec:org45c6871}
+\label{sec:org541f1ba}
 
 This manual is written by hand with care and attention for detail.
 
@@ -130,7 +140,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 \end{itemize}
 
 \section{Customizations}
-\label{sec:org0744bd1}
+\label{sec:org454ed43}
 
 SSS supports several user customizations, more specifically:
 
@@ -140,7 +150,7 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:orgc169840}
+\label{sec:org2e7ff9d}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -192,18 +202,8 @@ Find here a reference configuration with what is required.
 
 \end{verbatim}
 
-\section{Non-free software}
-\label{sec:org4386a7f}
-
-SSS attempts to stay as libre as possible, while also respecting your convenience. This means, among other things that SSS:
-\begin{itemize}
-\item includes the OG Linux kernel (with proprietary blobs) so as to be more compatible with modern hardware
-\item includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
-\end{itemize}
-
-
 \section{Bootstrapping}
-\label{sec:org309187f}
+\label{sec:org541174c}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
@@ -265,13 +265,15 @@ The \texttt{fallback} option is optional, and simply helps when upstream substit
 
 Once the system reconfigure is complete, you should also bootstrap your user's GNU home with something like: \texttt{guix home reconfigure ./home/joe.scm  -{}-{}fallback}
 
-You can then reboot and you should be greeted by a simple TTY. SSS uses no login managers like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to \texttt{gui}, or sometimes I directly run \texttt{sway} from the TTY.
+You can then reboot and you should be greeted by a simple TTY.
+
+SSS uses \textbf{no login managers} like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to \texttt{gui}, or sometimes I directly run \texttt{sway} from the TTY.
 
 Feel free to contact me for any doubts at jjbigorra@gmail.com.
 
 
 \section{Nix profile}
-\label{sec:org63971e0}
+\label{sec:org4b599fb}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -281,9 +283,25 @@ SSS also provides some facilities to manage Nix from the comfort of your Guile S
 
 You might need to activate and link the profile in order to be able to use, for the first time.
 
+Assuming \texttt{joe} as user in question.
+
+\texttt{/nix/var/nix/profiles/per-user/} should be:
 \begin{verbatim}
+joe@guixvm ~ λ  ll /nix/var/nix/profiles/per-user/
+totaal 20K
+drwxr-xr-x 2 joe  users  16K 29 dec 23:09 joe/
+drwxr-xr-x 2 root root  4,0K 22 nov 13:23 root/
+\end{verbatim}
+
+For this, make the directory an link it to your home.
+
+\begin{verbatim}
+sudo mkdir -p /nix/var/nix/profiles/per-user/joe/profile
+sudo chown -R /nix/var/nix/profiles/per-user/joe
 ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile
 \end{verbatim}
+
+It's possible you might need to logout and log back in to re-activate the profile.
 
 You can switch your install to use nixpkgs-unstable with:
 
@@ -307,12 +325,12 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 The installed software will be available, for example at: \texttt{/home/joe/.nix-profile/bin/}
 
 \section{SSS Project}
-\label{sec:org8f402ba}
+\label{sec:orgefa63af}
 
 Find the \href{../Project management/README.org}{project management of SSS here}
 
 \section{Keyboard Terminology}
-\label{sec:org1951891}
+\label{sec:org5536f99}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -329,10 +347,10 @@ term & meaning\\[0pt]
 
 
 \section{Sway}
-\label{sec:org9b63656}
+\label{sec:orgfa6cb1e}
 
 \subsection{Screenshot keybindings}
-\label{sec:org416cf07}
+\label{sec:org21a83f6}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -346,7 +364,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{Application keybindings}
-\label{sec:orgd38b701}
+\label{sec:org34544ca}
 
 
 \begin{center}
@@ -365,10 +383,10 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \section{Emacs}
-\label{sec:orgc0ee6cf}
+\label{sec:org68953eb}
 
 \subsection{General non-vanilla bindings}
-\label{sec:org3c290b4}
+\label{sec:orgebe673d}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -381,7 +399,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:org1ff2496}
+\label{sec:org43fa451}
 
 \begin{center}
 \begin{tabular}{ll}
