@@ -40,6 +40,7 @@
       ("QT_WAYLAND_DISABLE_WINDOWDECORATION" . "1")
       ("QT_AUTO_SCREEN_SCALE_FACTOR" . "1")
       ("RTC_USE_PIPEWIRE" . "true")
+      ("TERM" . "xterm-256color")
       ("HISTTIMEFORMAT" . "%F %T  | ")
       ("HISTSIZE" . "200000")
       ("HISTCONTROL" . "ignoreboth:erasedups")
