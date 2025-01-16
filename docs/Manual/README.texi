@@ -62,8 +62,9 @@ What lies here?
 
 Sway
 
-* Screenshot keybindings::
+* General keybindings::
 * Application keybindings::
+* Screenshot keybindings::
 
 Emacs
 
@@ -407,24 +408,23 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 @chapter Sway
 
 @menu
-* Screenshot keybindings::
+* General keybindings::
 * Application keybindings::
+* Screenshot keybindings::
 @end menu
 
-@node Screenshot keybindings
-@section Screenshot keybindings
+@node General keybindings
+@section General keybindings
 
 @multitable {aaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
 @headitem keybind
 @tab command
-@item @code{s-S-.}
-@tab @strong{Copy} screenshot of entire screen
-@item @code{s-.}
-@tab @strong{Save} screenshot of entire screen
 @item @code{s-k}
 @tab Kill/Close a window or application
 @item @code{s-S-c}
 @tab Reload Sway configuration
+@item @code{s-l}
+@tab Lock screen
 @end multitable
 
 @node Application keybindings
@@ -449,6 +449,18 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 @tab Open password manager (1password)
 @item 
 @tab 
+@end multitable
+
+@node Screenshot keybindings
+@section Screenshot keybindings
+
+@multitable {aaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@headitem keybind
+@tab command
+@item @code{s-S-.}
+@tab @strong{Copy} screenshot of entire screen
+@item @code{s-.}
+@tab @strong{Save} screenshot of entire screen
 @end multitable
 
 @node Emacs

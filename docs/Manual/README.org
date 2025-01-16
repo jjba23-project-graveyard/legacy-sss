@@ -306,15 +306,14 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 
 ** Sway
 
-*** Screenshot keybindings
+*** General keybindings
 
 | keybind | command                            |
 |---------+------------------------------------|
-| ~s-S-.~   | *Copy* screenshot of entire screen   |
-| ~s-.~     | *Save* screenshot of entire screen   |
 | ~s-k~     | Kill/Close a window or application |
-| ~s-S-c~   | Reload Sway configuration         |
-|---------+------------------------------------|
+| ~s-S-c~   | Reload Sway configuration          |
+| ~s-l~     | Lock screen                       |
+
 *** Application keybindings
 
 
@@ -329,6 +328,13 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 | ~s--~     | Open password manager (1password)    |
 |        |                                      |
 |---------+--------------------------------------|
+*** Screenshot keybindings
+
+| keybind | command                            |
+|---------+------------------------------------|
+| ~s-S-.~   | *Copy* screenshot of entire screen   |
+| ~s-.~     | *Save* screenshot of entire screen   |
+|---------+------------------------------------|
 ** Emacs
 
 *** General non-vanilla bindings

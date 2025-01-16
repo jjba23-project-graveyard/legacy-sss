@@ -57,8 +57,9 @@ What lies here?
 
 Sway
 
-* Screenshot keybindings::
+* General keybindings::
 * Application keybindings::
+* Screenshot keybindings::
 
 Emacs
 
@@ -488,24 +489,24 @@ File: README.info,  Node: Sway,  Next: Emacs,  Prev: Keyboard Terminology,  Up: 
 
 * Menu:
 
-* Screenshot keybindings::
+* General keybindings::
 * Application keybindings::
+* Screenshot keybindings::
 
 
-File: README.info,  Node: Screenshot keybindings,  Next: Application keybindings,  Up: Sway
+File: README.info,  Node: General keybindings,  Next: Application keybindings,  Up: Sway
 
-12.1 Screenshot keybindings
-===========================
+12.1 General keybindings
+========================
 
 keybind   command
 -----------------------------------------------
-‘s-S-.’   *Copy* screenshot of entire screen
-‘s-.’     *Save* screenshot of entire screen
 ‘s-k’     Kill/Close a window or application
 ‘s-S-c’   Reload Sway configuration
+‘s-l’     Lock screen
 
 
-File: README.info,  Node: Application keybindings,  Prev: Screenshot keybindings,  Up: Sway
+File: README.info,  Node: Application keybindings,  Next: Screenshot keybindings,  Prev: General keybindings,  Up: Sway
 
 12.2 Application keybindings
 ============================
@@ -519,6 +520,17 @@ keybind   command
 ‘s-t’     _idem_
 ‘s-e’     Open text editor (Emacs)
 ‘s--’     Open password manager (1password)
+
+
+File: README.info,  Node: Screenshot keybindings,  Prev: Application keybindings,  Up: Sway
+
+12.3 Screenshot keybindings
+===========================
+
+keybind   command
+-----------------------------------------------
+‘s-S-.’   *Copy* screenshot of entire screen
+‘s-.’     *Save* screenshot of entire screen
 
 
 File: README.info,  Node: Emacs,  Prev: Sway,  Up: Top
@@ -558,25 +570,26 @@ keybind     command
 
 Tag Table:
 Node: Top73
-Node: What lies here?1821
-Node: An operating system (OS) configured in Scheme2029
-Node: Joe's Emacs configuration2643
-Node: Why ?2934
-Node: Non-free software6274
-Node: How this manual works6814
-Node: Customizations7543
-Node: Per host - per-hostscm7979
-Node: Bootstrapping9778
-Node: Nix profile13969
-Node: SSS Project15528
-Node: System audio15725
-Node: Keyboard Terminology16339
-Node: Sway16737
-Node: Screenshot keybindings16906
-Node: Application keybindings17312
-Node: Emacs17837
-Node: General non-vanilla bindings17986
-Node: SSS specific keybindings18264
+Node: What lies here?1845
+Node: An operating system (OS) configured in Scheme2053
+Node: Joe's Emacs configuration2667
+Node: Why ?2958
+Node: Non-free software6298
+Node: How this manual works6838
+Node: Customizations7567
+Node: Per host - per-hostscm8003
+Node: Bootstrapping9802
+Node: Nix profile13993
+Node: SSS Project15552
+Node: System audio15749
+Node: Keyboard Terminology16363
+Node: Sway16761
+Node: General keybindings16954
+Node: Application keybindings17279
+Node: Screenshot keybindings17832
+Node: Emacs18149
+Node: General non-vanilla bindings18298
+Node: SSS specific keybindings18576
 
 End Tag Table
 
