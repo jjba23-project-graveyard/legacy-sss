@@ -509,6 +509,8 @@ more.")
 
    gparted
 
+   imagemagick
+
    lm-sensors
    exfatprogs
    exfat-utils

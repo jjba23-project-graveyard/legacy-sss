@@ -3,10 +3,7 @@
 
 ** Work in Progress
 
-*** WIP write good manual, documentation and cheatsheet for SSS easily
-
-*** WIP dynamic theming based on Guix user config
-
+*** WIP Add dynamic wallpapers and scripts, apply random ones, also depending on daytime using swww
 
 ** Backlog
 
@@ -19,17 +16,24 @@ or xfce
 
 *** TODO make it easier to manage Nix packages from Guile scheme
 
-*** TODO create simple bootstrap script for first-setup to help adoption of SSS
-
-*** TODO create project banners, logos, marketing
-
-*** TODO create a user factory which is by default configured to joe's settings but is easily tweaked and with no duplication it creates new users.
-
 *** TODO test code in lib
 
 
 
 ** Work done
+*** DONE create project banners, logos
+CLOSED: [2025-01-16 do 13:11]
+
+*** DONE create simple bootstrap script for first-setup to help adoption of SSS
+CLOSED: [2025-01-16 do 13:11]
+*** DONE write good manual, documentation and cheatsheet for SSS easily
+CLOSED: [2025-01-16 do 13:11]
+
+*** DONE dynamic theming based on Guix user config
+CLOSED: [2025-01-16 do 13:11]
+
+*** DONE create a user factory which is by default configured to joe's settings but is easily tweaked and with no duplication it creates new users.
+CLOSED: [2025-01-16 do 13:11]
 
 *** DONE manage all simple key-value configs from Scheme code
 CLOSED: [2024-11-22 vr 13:17]
