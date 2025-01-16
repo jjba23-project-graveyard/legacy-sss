@@ -1,4 +1,5 @@
 #+title: SSS/GNU system - Manual & Documentation
+#+email: jjbigorra@gmail.com
 #+TEXINFO_DIR_CATEGORY: System software
 #+TEXINFO_DIR_NAME: SSS - Supreme Sexp System
 #+TEXINFO_DIR_DESC: Supreme Sexp System (SSS) represents a Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are celebrated.
@@ -13,9 +14,11 @@ If you like my work, please support me by [[https://bmc.link/jjbigorra][buying m
 
 This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
-SSS is not intended for beginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
+Installing and managing SSS is not intended for beginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
 
-SSS strives to have all things configured via Lisp dialects when possible and convenient, which allows for magical things to happen.
+SSS strives to have all things configured via Lisp dialects when possible and convenient, staying accessible to all kinds of users, and allowing for magical things to happen.
+
+I would appreciate if you write your findings when using SSS and if you can, fork the project, and contribute some improvements, or mail me at <jjbigorra@gmail.com>
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 

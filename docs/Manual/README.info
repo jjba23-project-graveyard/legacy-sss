@@ -20,12 +20,17 @@ celebrated.  Let me help you achieve _GNUrvana_.
 encourages the hacking spirit, and offers a superior user experience
 thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
-   SSS is not intended for beginners to GNU/Linux systems, and requires
-some prior experience in this.  Familiarity with Lisp dialects is also a
-great plus point.
+   Installing and managing SSS is not intended for beginners to
+GNU/Linux systems, and requires some prior experience in this.
+Familiarity with Lisp dialects is also a great plus point.
 
    SSS strives to have all things configured via Lisp dialects when
-possible and convenient, which allows for magical things to happen.
+possible and convenient, staying accessible to all kinds of users, and
+allowing for magical things to happen.
+
+   I would appreciate if you write your findings when using SSS and if
+you can, fork the project, and contribute some improvements, or mail me
+at <jjbigorra@gmail.com>
 
    Note: Screenshot below might be outdated and no longer representative
 of the current, ever-changing state of SSS.
@@ -570,26 +575,26 @@ keybind     command
 
 Tag Table:
 Node: Top73
-Node: What lies here?1845
-Node: An operating system (OS) configured in Scheme2053
-Node: Joe's Emacs configuration2667
-Node: Why ?2958
-Node: Non-free software6298
-Node: How this manual works6838
-Node: Customizations7567
-Node: Per host - per-hostscm8003
-Node: Bootstrapping9802
-Node: Nix profile13993
-Node: SSS Project15552
-Node: System audio15749
-Node: Keyboard Terminology16363
-Node: Sway16761
-Node: General keybindings16954
-Node: Application keybindings17279
-Node: Screenshot keybindings17832
-Node: Emacs18149
-Node: General non-vanilla bindings18298
-Node: SSS specific keybindings18576
+Node: What lies here?2079
+Node: An operating system (OS) configured in Scheme2287
+Node: Joe's Emacs configuration2901
+Node: Why ?3192
+Node: Non-free software6532
+Node: How this manual works7072
+Node: Customizations7801
+Node: Per host - per-hostscm8237
+Node: Bootstrapping10036
+Node: Nix profile14227
+Node: SSS Project15786
+Node: System audio15983
+Node: Keyboard Terminology16597
+Node: Sway16995
+Node: General keybindings17188
+Node: Application keybindings17513
+Node: Screenshot keybindings18066
+Node: Emacs18383
+Node: General non-vanilla bindings18532
+Node: SSS specific keybindings18810
 
 End Tag Table
 

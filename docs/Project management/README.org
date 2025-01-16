@@ -10,6 +10,11 @@
 
 ** Backlog
 
+*** TODO I want to make it a usable system for all, and also define some user sessions for less experienced computer users
+thinkin of adding a labwc / openbox thing for "normies" haha
+create replica windows xp for normie users
+or xfce
+
 *** TODO record types (define-configuration) to modularize config and translate foot configs and git configs and other complex ones to Scheme, and extract to a Guile library factory pattern for users
 
 *** TODO make it easier to manage Nix packages from Guile scheme
