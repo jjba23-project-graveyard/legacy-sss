@@ -29,7 +29,7 @@
   #:use-module (guix build-system qt)
   #:use-module (guix packages)
   #:use-module (guix utils)
-  #:use-module  (guix build-system go)
+  #:use-module (guix build-system go)
   #:use-module (guix build-system meson)
   #:use-module (guix download)
   #:use-module (guix build-system gnu)
@@ -291,25 +291,25 @@ more.")
 ;; TODO install to right location where Kvantum can see it?
 (define-public sss-kv-yaru-colors
   (package
-   (name "kvantum-yaru-colors")
-   (version "21.04")
-   (source
-    (origin
-     (method git-fetch)
-     (uri (git-reference
-           (url "https://github.com/GabePoel/KvYaru-Colors.git")
-           (commit "7df1a89610618e6d3a145ff44ed47f0aafdb4ae5")))
-     (sha256
-      (base32 "1d7ys8jyk8k34dbq807vvxj9xpq9jgi8yx3xkn1ypswx5mabl9ls"))))
-   (build-system copy-build-system)
-   (arguments
-    (list
-     #:install-plan #~'(("./src/" "/usr/share/Kvantum"))))
-   (synopsis "Kvantum theme to match the Yaru colors theme!")
-   (description
-    "Kvantum themes to match the Yaru Colors and Yaru Remix themes! Check releases for latest stable version.")
-   (home-page "https://github.com/GabePoel/KvYaru-Colors.git")
-   (license license:gpl3+)))
+    (name "kvantum-yaru-colors")
+    (version "21.04")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/GabePoel/KvYaru-Colors.git")
+             (commit "7df1a89610618e6d3a145ff44ed47f0aafdb4ae5")))
+       (sha256
+        (base32 "1d7ys8jyk8k34dbq807vvxj9xpq9jgi8yx3xkn1ypswx5mabl9ls"))))
+    (build-system copy-build-system)
+    (arguments
+     (list
+      #:install-plan #~'(("./src/" "/usr/share/Kvantum"))))
+    (synopsis "Kvantum theme to match the Yaru colors theme!")
+    (description
+     "Kvantum themes to match the Yaru Colors and Yaru Remix themes! Check releases for latest stable version.")
+    (home-page "https://github.com/GabePoel/KvYaru-Colors.git")
+    (license license:gpl3+)))
 
 (define sss-font-packages
   (list fontconfig
@@ -438,236 +438,234 @@ more.")
 (define* (sss-other-system-packages #:key architecture)
   (list
 
-   flatpak
-   pipewire
-   nginx
-   watchexec
-   git
-   pavucontrol
+        flatpak
+        pipewire
+        nginx
+        watchexec
+        git
+        pavucontrol
 
-   kcalc
+        kcalc
 
-   slurp
+        slurp
 
-   kvantum
-   qt5ct
-   qtsvg
-   ;; seems like qt wayland 6 and 5 are not yet compatible
-   ;; this causes crashes in qt 5 and 6 apps
-   ;; qtwayland
-   qtwayland-5
-   qt6ct
+        kvantum
+        qt5ct
+        qtsvg
+        ;; seems like qt wayland 6 and 5 are not yet compatible
+        ;; this causes crashes in qt 5 and 6 apps
+        ;; qtwayland
+        qtwayland-5
+        qt6ct
 
-   geany
+        geany
 
-   gnome-font-viewer
-   gnome-characters
+        gnome-font-viewer
+        gnome-characters
 
-   
+        xz
+        ispell
+        (specification->package "bind")
+        wireshark
 
-   xz
-   ispell
-   (specification->package "bind")
-   wireshark
+        gnome-tweaks
+        arandr
+        httpie
+        (specification->package "remmina")
+        libnotify
+        wdisplays
 
-   gnome-tweaks
-   arandr
-   httpie
-   (specification->package "remmina")
-   libnotify
-   wdisplays
+        shotcut
+        openshot
+        inkscape
+        dunst
+        fzf
+        vlc
+        sqlite
+        postgresql
 
-   shotcut
-   openshot
-   inkscape
-   dunst
-   fzf
-   vlc
-   sqlite
-   postgresql
+        gdk-pixbuf
+        gtk
 
-   gdk-pixbuf
-   gtk
+        qutebrowser
 
-   qutebrowser
+        gnome-calculator
+        cheese
+        gnome-system-monitor
+        evince
 
-   gnome-calculator
-   cheese
-   gnome-system-monitor
-   evince
+        qemu
 
-   qemu
+        obs
+        libreoffice
+        gimp
+        imagemagick
+        libwebp
+        feh
 
-   obs
-   libreoffice
-   gimp
-   imagemagick
-   libwebp
-   feh
+        xmodmap
 
-   xmodmap
+        gparted
 
-   gparted
+        imagemagick
 
-   imagemagick
+        lm-sensors
+        exfatprogs
+        exfat-utils
+        fuse-exfat
+        tmon
+        flameshot
 
-   lm-sensors
-   exfatprogs
-   exfat-utils
-   fuse-exfat
-   tmon
-   flameshot
+        parallel
 
-   parallel
+        thunar
 
-   thunar
+        ffmpegthumbs
+        xarchiver
+        ristretto
+        orage
 
-   ffmpegthumbs
-   xarchiver
-   ristretto
-   orage
+        sqlitebrowser
+        direnv
 
-   sqlitebrowser
-   direnv
+        bsd-games
 
-   bsd-games
+        power-profiles-daemon
+        libltdl
+        scenefx
+        swayfx
 
-   power-profiles-daemon
-   libltdl
-   scenefx
-   swayfx
+        gdb
 
-   gdb
+        transmission
+        transmission-remote-gtk
 
-   transmission
-   transmission-remote-gtk
+        xf86-video-fbdev
+        xf86-input-libinput
+        lxsession
+        pamixer
 
-   xf86-video-fbdev
-   xf86-input-libinput
-   lxsession
-   pamixer
+        texinfo
+        texlive
 
-   texinfo
-   texlive
+        (sss/x86-only-pkg architecture "ghcid")
 
-   (sss/x86-only-pkg architecture "ghcid")
+        neofetch
+        cmatrix
 
-   neofetch
-   cmatrix
+        pkg-config
 
-   pkg-config
+        bluez
+        hplip
 
-   bluez
-   hplip
+        autoconf
+        automake
+        libltdl
+        libtool
 
-   autoconf
-   automake
-   libltdl
-   libtool
+        perl
 
-   perl
+        mpv
+        mpv-mpris
+        unixodbc
+        tree
+        fyi
 
-   mpv
-   mpv-mpris
-   unixodbc
-   tree
-   fyi
+        enchant
+        emacs-jinx
+        aspell
+        aspell-dict-nl
+        aspell-dict-pt-pt
+        aspell-dict-es
+        aspell-dict-en
+        aspell-dict-ca
 
-   enchant
-   emacs-jinx
-   aspell
-   aspell-dict-nl
-   aspell-dict-pt-pt
-   aspell-dict-es
-   aspell-dict-en
-   aspell-dict-ca
+        drill
 
-   drill
+        (specification->package "gettext")
 
-   (specification->package "gettext")
+        (sss/x86-only-pkg architecture "google-chrome-stable")
+        (sss/x86-only-pkg architecture "reaper")
+        (sss/x86-only-pkg architecture "stellarium")
+        (sss/x86-only-pkg architecture "virt-manager")
 
-   (sss/x86-only-pkg architecture "google-chrome-stable")
-   (sss/x86-only-pkg architecture "reaper")
-   (sss/x86-only-pkg architecture "stellarium")
-   (sss/x86-only-pkg architecture "virt-manager")
+        (specification->package "darkhttpd")
 
-   (specification->package "darkhttpd")
+        openvpn
+        network-manager-applet
+        network-manager-openconnect
+        network-manager-openvpn
 
-   openvpn
-   network-manager-applet
-   network-manager-openconnect
-   network-manager-openvpn
+        nautilus
 
-   nautilus
-
-   xxd))
+        xxd))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
 
 (define-public sss-guile-dbi
   (package
-   (name "guile-dbi")
-   (version "2.1.8")
-   (source
-    (origin
-     (method git-fetch)
-     (uri (git-reference
-           (url "https://github.com/opencog/guile-dbi")
-           (commit (string-append "guile-dbi-" version))))
-     (file-name (git-file-name name version))
-     (sha256
-      (base32 "123m4j82bi60s1v95pjh4djb7bh6zdwmljbpyg7zq8ni2gyal7lw"))))
-   (build-system gnu-build-system)
-   (arguments
-    `(#:make-flags '("LDFLAGS=\"-Wl,-allow-multiple-definition\"")
-      #:modules (((guix build guile-build-system)
-                  #:select (target-guile-effective-version))
-                 ,@%default-gnu-modules)
-      #:imported-modules ((guix build guile-build-system)
-                          ,@%default-gnu-imported-modules)
-      #:configure-flags (list (string-append "--with-guile-site-dir=" %output
-                                             "/share/guile/site/"
-                                             (target-guile-effective-version (assoc-ref
-                                                                              %build-inputs
-                                                                              "guile"))))
-      #:phases (modify-phases %standard-phases
-                              (add-after 'unpack 'chdir
-                                         (lambda _
-                                           ;; The upstream Git repository contains all the code, so change
-                                           ;; to the directory specific to guile-dbi.
-                                           (chdir "guile-dbi")))
-                              (add-after 'install 'patch-extension-path
-                                         (lambda* (#:key inputs outputs #:allow-other-keys)
-                                           (let* ((out (assoc-ref outputs "out"))
-                                                  (dbi.scm (string-append out "/share/guile/site/"
-                                                                          (target-guile-effective-version
-                                                                           (assoc-ref inputs
-                                                                                      "guile"))
-                                                                          "/dbi/dbi.scm"))
-                                                  (ext (string-append out "/lib/libguile-dbi")))
-                                             (substitute* dbi.scm
-                                                          (("libguile-dbi")
-                                                           ext))))))))
-   (native-inputs (list autoconf
-                        automake
-                        libtool
-                        perl
-                        texinfo
-                        libltdl))
-   (propagated-inputs (list guile-3.0))
-   (synopsis "Guile database abstraction layer")
-   (home-page "https://github.com/opencog/guile-dbi")
-   (description
-    "guile-dbi is a library for Guile that provides a convenient interface to
+    (name "guile-dbi")
+    (version "2.1.8")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/opencog/guile-dbi")
+             (commit (string-append "guile-dbi-" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "123m4j82bi60s1v95pjh4djb7bh6zdwmljbpyg7zq8ni2gyal7lw"))))
+    (build-system gnu-build-system)
+    (arguments
+     `(#:make-flags '("LDFLAGS=\"-Wl,-allow-multiple-definition\"")
+       #:modules (((guix build guile-build-system)
+                   #:select (target-guile-effective-version))
+                  ,@%default-gnu-modules)
+       #:imported-modules ((guix build guile-build-system)
+                           ,@%default-gnu-imported-modules)
+       #:configure-flags (list (string-append "--with-guile-site-dir=" %output
+                                              "/share/guile/site/"
+                                              (target-guile-effective-version (assoc-ref
+                                                                               %build-inputs
+                                                                               "guile"))))
+       #:phases (modify-phases %standard-phases
+                  (add-after 'unpack 'chdir
+                    (lambda _
+                      ;; The upstream Git repository contains all the code, so change
+                      ;; to the directory specific to guile-dbi.
+                      (chdir "guile-dbi")))
+                  (add-after 'install 'patch-extension-path
+                    (lambda* (#:key inputs outputs #:allow-other-keys)
+                      (let* ((out (assoc-ref outputs "out"))
+                             (dbi.scm (string-append out "/share/guile/site/"
+                                                     (target-guile-effective-version
+                                                      (assoc-ref inputs
+                                                                 "guile"))
+                                                     "/dbi/dbi.scm"))
+                             (ext (string-append out "/lib/libguile-dbi")))
+                        (substitute* dbi.scm
+                          (("libguile-dbi")
+                           ext))))))))
+    (native-inputs (list autoconf
+                         automake
+                         libtool
+                         perl
+                         texinfo
+                         libltdl))
+    (propagated-inputs (list guile-3.0))
+    (synopsis "Guile database abstraction layer")
+    (home-page "https://github.com/opencog/guile-dbi")
+    (description
+     "guile-dbi is a library for Guile that provides a convenient interface to
 SQL databases.  Database programming with guile-dbi is generic in that the same
 programming interface is presented regardless of which database system is used.
 It currently supports MySQL, Postgres and SQLite3.")
-   (license license:gpl2+)
-   (native-search-paths
-    (list (search-path-specification
-           (variable "GUILE_DBD_PATH")
-           (files '("lib")))))))
+    (license license:gpl2+)
+    (native-search-paths
+     (list (search-path-specification
+            (variable "GUILE_DBD_PATH")
+            (files '("lib")))))))
 
 (define-public sss-guile-dbd-sqlite3
   (package

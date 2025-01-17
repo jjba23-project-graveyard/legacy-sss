@@ -23,7 +23,7 @@
 
 (begin
   (define* (sss-foot-config #:key sss-active-palette)
-    `((font . "Monaspace Neon:size=9") (dpi-aware . "yes")
+    `((font . "Monaspace Neon:size=12") (dpi-aware . "yes")
       (pad . "14x14")
       (bell (urgent . "no")
             (notify . "no")
