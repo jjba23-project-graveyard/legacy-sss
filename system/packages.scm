@@ -720,6 +720,7 @@ SQL databases.  This package implements the interface for SQLite.")))
 (define sss-guile-packages
   (list artanis-next
         guile-fibers
+        guile-g-golf
         guile-json-4
         guile-sqlite3
         sss-guile-dbi
