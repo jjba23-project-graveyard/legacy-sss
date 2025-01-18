@@ -36,6 +36,8 @@ SSS strives to have all things configured via Lisp dialects when possible and co
 
 I would appreciate if you write your findings when using SSS and if you can, fork the project, and contribute some improvements, or mail me at <jjbigorra@@gmail.com>
 
+It is recommended to use tagged releases of SSS, as those are considered as stable by the developers.
+
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS@.
 
 @image{../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00,,,,png}
