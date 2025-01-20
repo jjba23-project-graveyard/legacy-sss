@@ -19,7 +19,9 @@
 
 (use-modules (gnu system file-systems))
 
+;;;
 ;;; SSS defaults section
+;;;
 
 ;; set default values for optional `per-host.scm' values
 ;; which can be overriden on a host-per-host basis
@@ -29,6 +31,12 @@
 
 ;; system timezone
 (define sss-timezone "Europe/Amsterdam")
+
+;; system keyboard layout
+(define sss-keyboard-layout "us")
+
+;; system hostname
+(define sss-hostname "gnusystem")
 
 ;; location where you cloned SSS Git repository
 (define sss-clone-dir
@@ -42,7 +50,9 @@
 (define-public sss-active-palette
   'sss-palette-ef-dream)
 
+;;;
 ;;; end SSS defaults section
+;;;
 
 ;; load user preferences per-host
 (load "../per-host.scm")

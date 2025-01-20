@@ -24,7 +24,9 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
+;;;
 ;;; SSS defaults section
+;;;
 
 ;; set default values for optional `per-host.scm' values
 ;; which can be overriden on a host-per-host basis
@@ -34,6 +36,12 @@
 
 ;; system timezone
 (define sss-timezone "Europe/Amsterdam")
+
+;; system keyboard layout
+(define sss-keyboard-layout "us")
+
+;; system hostname
+(define sss-hostname "gnusystem")
 
 ;; location where you cloned SSS Git repository
 (define sss-clone-dir
@@ -47,7 +55,9 @@
 (define-public sss-active-palette
   'sss-palette-ef-dream)
 
+;;;
 ;;; end SSS defaults section
+;;;
 
 ;; load user preferences per-host
 (load "./per-host.scm")
@@ -224,10 +234,10 @@
   (identifier-syntax (sss-desktop-services-for-system)))
 
 (operating-system
- (host-name "guixvm")
+ (host-name sss-hostname)
  (timezone sss-timezone)
  (locale (format #f "~a.utf8" sss-lang))
- (keyboard-layout (keyboard-layout "us"))
+ (keyboard-layout (keyboard-layout sss-keyboard-layout))
 
  (bootloader (bootloader-configuration
               (bootloader grub-efi-bootloader)
