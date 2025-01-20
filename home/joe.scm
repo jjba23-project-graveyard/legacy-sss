@@ -19,8 +19,16 @@
 
 (use-modules (gnu system file-systems))
 
+;;; SSS defaults section
+
 ;; set default values for optional `per-host.scm' values
 ;; which can be overriden on a host-per-host basis
+
+;; system language
+(define sss-lang "en_US")
+
+;; system timezone
+(define sss-timezone "Europe/Amsterdam")
 
 ;; location where you cloned SSS Git repository
 (define sss-clone-dir
@@ -33,6 +41,8 @@
 ;; active system color palette (overridden by per-host)
 (define-public sss-active-palette
   'sss-palette-ef-dream)
+
+;;; end SSS defaults section
 
 ;; load user preferences per-host
 (load "../per-host.scm")
@@ -291,16 +301,17 @@
 ;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")
 (home-environment
-  (packages (list pfetch))
-  (services
-   (list sss-home-files-service
-         (sss-ssh-service #:ssh-hosts joe-ssh-hosts)
-         (sss-home-vars-service #:sss-clone-dir sss-clone-dir)
-         (sss-bash-service #:sss-clone-dir sss-clone-dir)
-         sss-openpgp-conf
-         (service home-dbus-service-type)
-         (service home-pipewire-service-type)
-         (service sss-byggsteg-service-type)
-         (sss-sway-service-type #:sss-clone-dir sss-clone-dir)
-         sss-fontconfig-service-type)))
+ (packages (list pfetch))
+ (services
+  (list sss-home-files-service
+        (sss-ssh-service #:ssh-hosts joe-ssh-hosts)
+        (sss-home-vars-service #:sss-clone-dir sss-clone-dir
+                               #:sss-lang sss-lang)
+        (sss-bash-service #:sss-clone-dir sss-clone-dir)
+        sss-openpgp-conf
+        (service home-dbus-service-type)
+        (service home-pipewire-service-type)
+        (service sss-byggsteg-service-type)
+        (sss-sway-service-type #:sss-clone-dir sss-clone-dir)
+        sss-fontconfig-service-type)))
 

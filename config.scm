@@ -24,8 +24,16 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
+;;; SSS defaults section
+
 ;; set default values for optional `per-host.scm' values
 ;; which can be overriden on a host-per-host basis
+
+;; system language
+(define sss-lang "en_US")
+
+;; system timezone
+(define sss-timezone "Europe/Amsterdam")
 
 ;; location where you cloned SSS Git repository
 (define sss-clone-dir
@@ -38,6 +46,8 @@
 ;; active system color palette (overridden by per-host)
 (define-public sss-active-palette
   'sss-palette-ef-dream)
+
+;;; end SSS defaults section
 
 ;; load user preferences per-host
 (load "./per-host.scm")
@@ -214,51 +224,50 @@
   (identifier-syntax (sss-desktop-services-for-system)))
 
 (operating-system
-  (host-name "guixvm")
-  (timezone "Europe/Amsterdam")
+ (host-name "guixvm")
+ (timezone sss-timezone)
+ (locale (format #f "~a.utf8" sss-lang))
+ (keyboard-layout (keyboard-layout "us"))
 
-  (locale "nl_NL.utf8")
-  (keyboard-layout (keyboard-layout "us"))
+ (bootloader (bootloader-configuration
+              (bootloader grub-efi-bootloader)
+              (targets '("/boot/efi"))))
 
-  (bootloader (bootloader-configuration
-                (bootloader grub-efi-bootloader)
-                (targets '("/boot/efi"))))
+ (kernel linux)
+ (initrd microcode-initrd)
+ (firmware (list linux-firmware))
+ (kernel-arguments (list "console=ttyS0,115200"))
+ (sudoers-file (plain-file "sudoers"
+                           (string-join '("root ALL=(ALL) NOPASSWD:ALL"
+                                          "%wheel ALL=(ALL) NOPASSWD:ALL"
+                                          "joe ALL=(ALL) NOPASSWD:ALL"
+                                          "manon ALL=(ALL) ALL"
+                                          "claudio ALL=(ALL) ALL") "\n")))
 
-  (kernel linux)
-  (initrd microcode-initrd)
-  (firmware (list linux-firmware))
-  (kernel-arguments (list "console=ttyS0,115200"))
-  (sudoers-file (plain-file "sudoers"
-                            (string-join '("root ALL=(ALL) NOPASSWD:ALL"
-                                           "%wheel ALL=(ALL) NOPASSWD:ALL"
-                                           "joe ALL=(ALL) NOPASSWD:ALL"
-                                           "manon ALL=(ALL) ALL"
-                                           "claudio ALL=(ALL) ALL") "\n")))
+ (file-systems (append sss-filesystems %base-file-systems))
 
-  (file-systems (append sss-filesystems %base-file-systems))
+ (users (cons* sss-joe-user-account sss-manon-user-account
+               %base-user-accounts))
 
-  (users (cons* sss-joe-user-account sss-manon-user-account
-                %base-user-accounts))
+ (packages (append (sss-system-packages #:per-host-packages
+                                        sss-per-host-packages) %base-packages))
 
-  (packages (append (sss-system-packages #:per-host-packages
-                                         sss-per-host-packages) %base-packages))
-
-  (services
-   (cons* (service nix-service-type)
-          (service power-profiles-daemon-service-type)
-          sss-iptables
-          sss-subuid
-          sss-joe-mpd
-          (service screen-locker-service-type
-                   (screen-locker-configuration (name "swaylock")
-                                                (program (file-append
-                                                          swaylock-effects
-                                                          "/bin/swaylock"))
-                                                (using-pam? #t)
-                                                (using-setuid? #f)))
-          (service libvirt-service-type
-                   (libvirt-configuration (unix-sock-group "libvirt")
-                                          (tls-port "16555")))
-          sss-cron-jobs-service
-          sss-desktop-services)))
+ (services
+  (cons* (service nix-service-type)
+         (service power-profiles-daemon-service-type)
+         sss-iptables
+         sss-subuid
+         sss-joe-mpd
+         (service screen-locker-service-type
+                  (screen-locker-configuration (name "swaylock")
+                                               (program (file-append
+                                                         swaylock-effects
+                                                         "/bin/swaylock"))
+                                               (using-pam? #t)
+                                               (using-setuid? #f)))
+         (service libvirt-service-type
+                  (libvirt-configuration (unix-sock-group "libvirt")
+                                         (tls-port "16555")))
+         sss-cron-jobs-service
+         sss-desktop-services)))
 

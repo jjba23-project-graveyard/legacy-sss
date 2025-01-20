@@ -122,6 +122,13 @@ Find here a reference configuration with what is required.
   (use-modules (gnu)
                (gnu packages))
 
+  ;; system language
+  (define sss-lang "en_US")
+
+  ;; system timezone
+  (define sss-timezone "Europe/Amsterdam")
+
+  ;; disk partitioning
   (define sss-filesystems
     (list (file-system
            (device "/dev/nvme0n1p3")

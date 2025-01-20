@@ -23,16 +23,13 @@
 
 ;; Environment variables for a user, plug into SSS
 (begin
-  (define* (sss-home-vars #:key sss-clone-dir)
+  (define* (sss-home-vars #:key sss-clone-dir sss-lang)
     `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale")
-      ("LANG" . "nl_NL.UTF-8")
-      ("LANGUAGE" . "nl_NL")
+      ("LANG" . ,(format #f "~a.UTF-8" sss-lang))
+      ("LANGUAGE" . ,sss-lang)
       ("XDG_CURRENT_DESKTOP" . "sway")
       ("XDG_SESSION_TYPE" . "wayland")
-      ("WLR_NO_HARDWARE_CURSORS" . "1")
-      ;; TODO figure out why Firefox + Thunderbird on Wayland has issues (in Qemu slow mouse)
-      ;; then set to 1
-      ("MOZ_ENABLE_WAYLAND" . "0")
+      ("MOZ_ENABLE_WAYLAND" . "1")
       ("QT_QPA_PLATFORM" . "wayland")
       ("QT_QPT_PLATFORM" . "wayland")
       ("QT_QPA_PLATFORMTHEME" . "qt6ct")
@@ -56,8 +53,9 @@
 
 ;; Environment variables Guix service for a user, plug into SSS
 (begin
-  (define* (sss-home-vars-service #:key sss-clone-dir)
+  (define* (sss-home-vars-service #:key sss-clone-dir sss-lang)
     (simple-service 'some-useful-env-vars-service
                     home-environment-variables-service-type
-                    (sss-home-vars #:sss-clone-dir sss-clone-dir)))
+                    (sss-home-vars #:sss-clone-dir sss-clone-dir
+                                   #:sss-lang sss-lang)))
   (export sss-home-vars-service))
