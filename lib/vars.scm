@@ -24,9 +24,11 @@
 ;; Environment variables for a user, plug into SSS
 (begin
   (define* (sss-home-vars #:key sss-clone-dir sss-lang)
-    `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale")
-      ("LANG" . ,(format #f "~a.UTF-8" sss-lang))
-      ("LANGUAGE" . ,sss-lang)
+    `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale") ("LANG" unquote
+                                                           (format #f
+                                                                   "~a.UTF-8"
+                                                                   sss-lang))
+      ("LANGUAGE" unquote sss-lang)
       ("XDG_CURRENT_DESKTOP" . "sway")
       ("XDG_SESSION_TYPE" . "wayland")
       ("MOZ_ENABLE_WAYLAND" . "1")
