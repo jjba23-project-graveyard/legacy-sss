@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-01-20 ma 22:52 -->
+<!-- 2025-01-20 ma 23:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SSS/GNU system - Manual &amp; Documentation</title>
@@ -201,37 +201,39 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2b7f82d">1. What lies here?</a>
+<li><a href="#org43ae12a">1. What lies here?</a>
 <ul>
-<li><a href="#orgefcdeec">1.1. An operating system (OS) configured in Scheme</a></li>
-<li><a href="#org1b5d0a0">1.2. Joe's Emacs configuration</a></li>
+<li><a href="#org627e5c9">1.1. An operating system (OS) configured in Scheme</a></li>
+<li><a href="#orgb4a345c">1.2. Joe's Emacs configuration</a></li>
 </ul>
 </li>
-<li><a href="#org9f986d7">2. Why ?</a></li>
-<li><a href="#org145e046">3. Non-free software</a></li>
-<li><a href="#org52d1274">4. How this manual works</a></li>
-<li><a href="#orgc7d5f89">5. Customizations</a></li>
-<li><a href="#org88ce2fd">6. Per host - per-host.scm</a></li>
-<li><a href="#org570d7a2">7. Bootstrapping</a>
+<li><a href="#orgbd1ce80">2. Why ?</a></li>
+<li><a href="#orge866e6b">3. Non-free software</a></li>
+<li><a href="#org3dc88a4">4. How this manual works</a></li>
+<li><a href="#orga4a547b">5. Customizations</a></li>
+<li><a href="#org83cd096">6. Per host - per-host.scm</a></li>
+<li><a href="#orgc9e0303">7. Bootstrapping</a>
 <ul>
-<li><a href="#orgeab174f">7.1. After install</a></li>
+<li><a href="#org5d43356">7.1. Guix Install tips</a></li>
+<li><a href="#org9bdce1b">7.2. After install</a></li>
+<li><a href="#org080aa74">7.3. On login managers, and login screens</a></li>
 </ul>
 </li>
-<li><a href="#org8541923">8. Nix profile</a></li>
-<li><a href="#org73a4ad7">9. SSS Project</a></li>
-<li><a href="#org93b86d7">10. System audio</a></li>
-<li><a href="#org6354752">11. Keyboard Terminology</a></li>
-<li><a href="#orgfccf9c9">12. Sway</a>
+<li><a href="#orgdf2e56d">8. Nix profile</a></li>
+<li><a href="#orgb739e3f">9. SSS Project</a></li>
+<li><a href="#org494b974">10. System audio</a></li>
+<li><a href="#org76dac8e">11. Keyboard Terminology</a></li>
+<li><a href="#orgc6eeef1">12. Sway</a>
 <ul>
-<li><a href="#orge86dec4">12.1. General keybindings</a></li>
-<li><a href="#org172706e">12.2. Application keybindings</a></li>
-<li><a href="#org162c84a">12.3. Screenshot keybindings</a></li>
+<li><a href="#org9f477be">12.1. General keybindings</a></li>
+<li><a href="#org7589cc9">12.2. Application keybindings</a></li>
+<li><a href="#orgfefe1d5">12.3. Screenshot keybindings</a></li>
 </ul>
 </li>
-<li><a href="#orgbfd1a4c">13. Emacs</a>
+<li><a href="#org0f23208">13. Emacs</a>
 <ul>
-<li><a href="#orgc7719b4">13.1. General non-vanilla bindings</a></li>
-<li><a href="#orgb34e427">13.2. SSS specific keybindings</a></li>
+<li><a href="#org90829f0">13.1. General non-vanilla bindings</a></li>
+<li><a href="#orgf743cac">13.2. SSS specific keybindings</a></li>
 </ul>
 </li>
 </ul>
@@ -266,7 +268,7 @@ SSS strives to have all things configured via Lisp dialects when possible and co
 </p>
 
 
-<div id="org5ea88a7" class="figure">
+<div id="orgb6a16ec" class="figure">
 <p><img src="../../resources/images/dall-e-3-thumb.png" alt="dall-e-3-thumb.png" />
 </p>
 </div>
@@ -284,17 +286,17 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 </p>
 
 
-<div id="org15b9bbb" class="figure">
+<div id="orgab9028a" class="figure">
 <p><img src="../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png" alt="2024-12-29T18:08:55,108562468+01:00.png" />
 </p>
 </div>
 
-<div id="outline-container-org2b7f82d" class="outline-2">
-<h2 id="org2b7f82d"><span class="section-number-2">1.</span> What lies here?</h2>
+<div id="outline-container-org43ae12a" class="outline-2">
+<h2 id="org43ae12a"><span class="section-number-2">1.</span> What lies here?</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgefcdeec" class="outline-3">
-<h3 id="orgefcdeec"><span class="section-number-3">1.1.</span> An operating system (OS) configured in Scheme</h3>
+<div id="outline-container-org627e5c9" class="outline-3">
+<h3 id="org627e5c9"><span class="section-number-3">1.1.</span> An operating system (OS) configured in Scheme</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>GNU Guix system configurations</li>
@@ -311,8 +313,8 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 </div>
 </div>
 
-<div id="outline-container-org1b5d0a0" class="outline-3">
-<h3 id="org1b5d0a0"><span class="section-number-3">1.2.</span> Joe's Emacs configuration</h3>
+<div id="outline-container-orgb4a345c" class="outline-3">
+<h3 id="orgb4a345c"><span class="section-number-3">1.2.</span> Joe's Emacs configuration</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 An operating system unto itself.
@@ -325,8 +327,8 @@ An operating system unto itself.
 </div>
 </div>
 
-<div id="outline-container-org9f986d7" class="outline-2">
-<h2 id="org9f986d7"><span class="section-number-2">2.</span> Why ?</h2>
+<div id="outline-container-orgbd1ce80" class="outline-2">
+<h2 id="orgbd1ce80"><span class="section-number-2">2.</span> Why ?</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
@@ -399,8 +401,8 @@ The system and home folders of users are managed independently of each other, in
 </div>
 </div>
 
-<div id="outline-container-org145e046" class="outline-2">
-<h2 id="org145e046"><span class="section-number-2">3.</span> Non-free software</h2>
+<div id="outline-container-orge866e6b" class="outline-2">
+<h2 id="orge866e6b"><span class="section-number-2">3.</span> Non-free software</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 SSS attempts to stay as libre as possible, while also respecting your convenience.
@@ -417,8 +419,8 @@ This means, among other things that SSS:
 </div>
 
 
-<div id="outline-container-org52d1274" class="outline-2">
-<h2 id="org52d1274"><span class="section-number-2">4.</span> How this manual works</h2>
+<div id="outline-container-org3dc88a4" class="outline-2">
+<h2 id="org3dc88a4"><span class="section-number-2">4.</span> How this manual works</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 This manual is written by hand with care and attention for detail.
@@ -435,8 +437,8 @@ I write my documents in Org format from Emacs and export them for your convenien
 </div>
 </div>
 
-<div id="outline-container-orgc7d5f89" class="outline-2">
-<h2 id="orgc7d5f89"><span class="section-number-2">5.</span> Customizations</h2>
+<div id="outline-container-orga4a547b" class="outline-2">
+<h2 id="orga4a547b"><span class="section-number-2">5.</span> Customizations</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 SSS supports several user customizations, more specifically:
@@ -453,8 +455,8 @@ Find Prot's themes here: <a href="https://github.com/protesilaos/ef-themes">http
 </div>
 
 
-<div id="outline-container-org88ce2fd" class="outline-2">
-<h2 id="org88ce2fd"><span class="section-number-2">6.</span> Per host - per-host.scm</h2>
+<div id="outline-container-org83cd096" class="outline-2">
+<h2 id="org83cd096"><span class="section-number-2">6.</span> Per host - per-host.scm</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 It is <b>REQUIRED</b> to include a <code>per-host.scm</code> in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
@@ -524,8 +526,8 @@ Find here a reference configuration with what is required.
 </div>
 </div>
 
-<div id="outline-container-org570d7a2" class="outline-2">
-<h2 id="org570d7a2"><span class="section-number-2">7.</span> Bootstrapping</h2>
+<div id="outline-container-orgc9e0303" class="outline-2">
+<h2 id="orgc9e0303"><span class="section-number-2">7.</span> Bootstrapping</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 It's possible you need to some manual installations, and temporary workarounds, in order to install <code>sss</code> on a brand-new Guix installation.
@@ -549,6 +551,14 @@ It is highly recommended to first become familiar with SSS and Guix via a <i>thr
 
 <p>
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
+</p>
+</div>
+
+<div id="outline-container-org5d43356" class="outline-3">
+<h3 id="org5d43356"><span class="section-number-3">7.1.</span> Guix Install tips</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+If your system doesn't boot due to lack of drivers, it can be useful to add the <code>nomodeset</code> option after <code>quiet</code> in the GRUB menu, by editing the boot "command" of the latest entry.
 </p>
 
 <p>
@@ -580,10 +590,11 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: <a href="https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual">https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual</a>.
 </p>
 </div>
+</div>
 
-<div id="outline-container-orgeab174f" class="outline-3">
-<h3 id="orgeab174f"><span class="section-number-3">7.1.</span> After install</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-org9bdce1b" class="outline-3">
+<h3 id="org9bdce1b"><span class="section-number-3">7.2.</span> After install</h3>
+<div class="outline-text-3" id="text-7-2">
 <p>
 Add <code>nonguix</code> in your channels file (<code>$HOME/.config/guix/channels.scm</code>). This will later be overwritten by SSS.
 </p>
@@ -619,7 +630,7 @@ Once you have followed all those above steps, you can enter a temporary Guix she
 </p>
 
 <p>
-You can do this with <code>guix shell make git</code>.
+You can do this with <code>guix shell make git icecat</code>. Icecat will be used for you to browse temporarily and install SSS.
 </p>
 
 <p>
@@ -657,17 +668,35 @@ Once the system reconfigure is complete, you should also bootstrap your user's G
 <p>
 You can then reboot and you should be greeted by a simple TTY.
 </p>
+</div>
+</div>
+
+<div id="outline-container-org080aa74" class="outline-3">
+<h3 id="org080aa74"><span class="section-number-3">7.3.</span> On login managers, and login screens</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+SSS uses <b>no login managers</b> like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not).
+That being said, feel free to use your own.
+</p>
 
 <p>
-SSS uses <b>no login managers</b> like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to <code>gui</code>, or sometimes I directly run <code>sway</code> from the TTY.
+I like to alias my login command to <code>gui</code>, or sometimes I directly run <code>sway</code> from the TTY.
+</p>
+
+<p>
+Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's computer vibe.
+</p>
+
+<p>
+If you run traditional X11 sessions, you could choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 </p>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org8541923" class="outline-2">
-<h2 id="org8541923"><span class="section-number-2">8.</span> Nix profile</h2>
+<div id="outline-container-orgdf2e56d" class="outline-2">
+<h2 id="orgdf2e56d"><span class="section-number-2">8.</span> Nix profile</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
@@ -692,7 +721,7 @@ Assuming <code>joe</code> as user in question.
 <p>
 <code>/nix/var/nix/profiles/per-user/</code> should be:
 </p>
-<pre class="example" id="org16e8329">
+<pre class="example" id="orgcc765c1">
 joe@guixvm ~ λ  ll /nix/var/nix/profiles/per-user/
 totaal 20K
 drwxr-xr-x 2 joe  users  16K 29 dec 23:09 joe/
@@ -748,8 +777,8 @@ The installed software will be available, for example at: <code>/home/joe/.nix-p
 </div>
 </div>
 
-<div id="outline-container-org73a4ad7" class="outline-2">
-<h2 id="org73a4ad7"><span class="section-number-2">9.</span> SSS Project</h2>
+<div id="outline-container-orgb739e3f" class="outline-2">
+<h2 id="orgb739e3f"><span class="section-number-2">9.</span> SSS Project</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Find the <a href="../Project management/README.html">project management of SSS here</a>
@@ -757,8 +786,8 @@ Find the <a href="../Project management/README.html">project management of SSS h
 </div>
 </div>
 
-<div id="outline-container-org93b86d7" class="outline-2">
-<h2 id="org93b86d7"><span class="section-number-2">10.</span> System audio</h2>
+<div id="outline-container-org494b974" class="outline-2">
+<h2 id="org494b974"><span class="section-number-2">10.</span> System audio</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
@@ -774,8 +803,8 @@ You will also want to set the <code>RTC_USE_PIPEWIRE</code> variable to <code>tr
 </div>
 </div>
 
-<div id="outline-container-org6354752" class="outline-2">
-<h2 id="org6354752"><span class="section-number-2">11.</span> Keyboard Terminology</h2>
+<div id="outline-container-org76dac8e" class="outline-2">
+<h2 id="org76dac8e"><span class="section-number-2">11.</span> Keyboard Terminology</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
@@ -821,12 +850,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </div>
 
 
-<div id="outline-container-orgfccf9c9" class="outline-2">
-<h2 id="orgfccf9c9"><span class="section-number-2">12.</span> Sway</h2>
+<div id="outline-container-orgc6eeef1" class="outline-2">
+<h2 id="orgc6eeef1"><span class="section-number-2">12.</span> Sway</h2>
 <div class="outline-text-2" id="text-12">
 </div>
-<div id="outline-container-orge86dec4" class="outline-3">
-<h3 id="orge86dec4"><span class="section-number-3">12.1.</span> General keybindings</h3>
+<div id="outline-container-org9f477be" class="outline-3">
+<h3 id="org9f477be"><span class="section-number-3">12.1.</span> General keybindings</h3>
 <div class="outline-text-3" id="text-12-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -862,8 +891,8 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </div>
 </div>
 
-<div id="outline-container-org172706e" class="outline-3">
-<h3 id="org172706e"><span class="section-number-3">12.2.</span> Application keybindings</h3>
+<div id="outline-container-org7589cc9" class="outline-3">
+<h3 id="org7589cc9"><span class="section-number-3">12.2.</span> Application keybindings</h3>
 <div class="outline-text-3" id="text-12-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -923,8 +952,8 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 </div>
 </div>
-<div id="outline-container-org162c84a" class="outline-3">
-<h3 id="org162c84a"><span class="section-number-3">12.3.</span> Screenshot keybindings</h3>
+<div id="outline-container-orgfefe1d5" class="outline-3">
+<h3 id="orgfefe1d5"><span class="section-number-3">12.3.</span> Screenshot keybindings</h3>
 <div class="outline-text-3" id="text-12-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -955,12 +984,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </div>
 </div>
 </div>
-<div id="outline-container-orgbfd1a4c" class="outline-2">
-<h2 id="orgbfd1a4c"><span class="section-number-2">13.</span> Emacs</h2>
+<div id="outline-container-org0f23208" class="outline-2">
+<h2 id="org0f23208"><span class="section-number-2">13.</span> Emacs</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-orgc7719b4" class="outline-3">
-<h3 id="orgc7719b4"><span class="section-number-3">13.1.</span> General non-vanilla bindings</h3>
+<div id="outline-container-org90829f0" class="outline-3">
+<h3 id="org90829f0"><span class="section-number-3">13.1.</span> General non-vanilla bindings</h3>
 <div class="outline-text-3" id="text-13-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -996,8 +1025,8 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </div>
 </div>
 
-<div id="outline-container-orgb34e427" class="outline-3">
-<h3 id="orgb34e427"><span class="section-number-3">13.2.</span> SSS specific keybindings</h3>
+<div id="outline-container-orgf743cac" class="outline-3">
+<h3 id="orgf743cac"><span class="section-number-3">13.2.</span> SSS specific keybindings</h3>
 <div class="outline-text-3" id="text-13-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1041,7 +1070,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Music Player Daemon (MPD) user</p>
-<p class="date">Created: 2025-01-20 ma 22:52</p>
+<p class="date">Created: 2025-01-20 ma 23:38</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,4 +1,4 @@
-% Created 2025-01-20 ma 22:52
+% Created 2025-01-20 ma 23:38
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -56,10 +56,10 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{center}
 
 \section{What lies here?}
-\label{sec:orgeaa532d}
+\label{sec:org63a027e}
 
 \subsection{An operating system (OS) configured in Scheme}
-\label{sec:orga559980}
+\label{sec:org2c9ef68}
 
 \begin{itemize}
 \item GNU Guix system configurations
@@ -75,7 +75,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{itemize}
 
 \subsection{Joe's Emacs configuration}
-\label{sec:orgb52fa2f}
+\label{sec:org520d16a}
 
 An operating system unto itself.
 
@@ -84,7 +84,7 @@ An operating system unto itself.
 \end{itemize}
 
 \section{Why ?}
-\label{sec:org1f6e3a9}
+\label{sec:orgfe6ae63}
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
@@ -122,7 +122,7 @@ Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} sinc
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 \section{Non-free software}
-\label{sec:orgff384c6}
+\label{sec:org136b287}
 
 SSS attempts to stay as libre as possible, while also respecting your convenience.
 
@@ -134,7 +134,7 @@ This means, among other things that SSS:
 
 
 \section{How this manual works}
-\label{sec:orgf5debd0}
+\label{sec:orgff622f8}
 
 This manual is written by hand with care and attention for detail.
 
@@ -146,7 +146,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 \end{itemize}
 
 \section{Customizations}
-\label{sec:org4263971}
+\label{sec:orgb936dad}
 
 SSS supports several user customizations, more specifically:
 
@@ -156,7 +156,7 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:orgde5855c}
+\label{sec:orgf9917e9}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -222,7 +222,7 @@ Find here a reference configuration with what is required.
 \end{verbatim}
 
 \section{Bootstrapping}
-\label{sec:org45dfe50}
+\label{sec:org2325a12}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
@@ -235,6 +235,11 @@ If you are not familiar with the \texttt{dd} command which is present in all GNU
 It is highly recommended to first become familiar with SSS and Guix via a \emph{throw-away} virtual machine where you can experiment and do mistakes. After familiarity is acquired then a bare metal installation is the best.
 
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
+
+\subsection{Guix Install tips}
+\label{sec:org881243e}
+
+If your system doesn't boot due to lack of drivers, it can be useful to add the \texttt{nomodeset} option after \texttt{quiet} in the GRUB menu, by editing the boot "command" of the latest entry.
 
 If you are on aarch64/arm64, or other more niche architectures, then you might need to put in some more work to get an installer image, and to get it working, likely having to generate an ISO image yourself to install Guix or a qcow2 virtual machine.
 
@@ -252,7 +257,7 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: \url{https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual}.
 
 \subsection{After install}
-\label{sec:org86229cf}
+\label{sec:org706e164}
 
 Add \texttt{nonguix} in your channels file (\texttt{\$HOME/.config/guix/channels.scm}). This will later be overwritten by SSS.
 
@@ -277,7 +282,7 @@ Guix is a rolling distribution and you don't need to be always on bleeding edge 
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
 
-You can do this with \texttt{guix shell make git}.
+You can do this with \texttt{guix shell make git icecat}. Icecat will be used for you to browse temporarily and install SSS.
 
 Then proceed to clone SSS with \texttt{git clone https://codeberg.org/jjba23/sss.git} to your favourite location. This location will need to be added to \texttt{per-host.scm}.
 
@@ -297,11 +302,21 @@ Once the system reconfigure is complete, you should also bootstrap your user's G
 
 You can then reboot and you should be greeted by a simple TTY.
 
-SSS uses \textbf{no login managers} like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to \texttt{gui}, or sometimes I directly run \texttt{sway} from the TTY.
+\subsection{On login managers, and login screens}
+\label{sec:orgbee8e77}
+
+SSS uses \textbf{no login managers} like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not).
+That being said, feel free to use your own.
+
+I like to alias my login command to \texttt{gui}, or sometimes I directly run \texttt{sway} from the TTY.
+
+Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's computer vibe.
+
+If you run traditional X11 sessions, you could choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 
 
 \section{Nix profile}
-\label{sec:org21dbbc7}
+\label{sec:org5590d1f}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -353,12 +368,12 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 The installed software will be available, for example at: \texttt{/home/joe/.nix-profile/bin/}
 
 \section{SSS Project}
-\label{sec:org0791b0c}
+\label{sec:orgf878bee}
 
 Find the \href{../Project management/README.org}{project management of SSS here}
 
 \section{System audio}
-\label{sec:org943a14d}
+\label{sec:org1a2db88}
 
 SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
 
@@ -367,7 +382,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the \texttt{RTC\_USE\_PIPEWIRE} variable to \texttt{true}. This is already the case by default in SSS.
 
 \section{Keyboard Terminology}
-\label{sec:orgef45109}
+\label{sec:org9252308}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -384,10 +399,10 @@ term & meaning\\[0pt]
 
 
 \section{Sway}
-\label{sec:org624a6e1}
+\label{sec:org0a809fd}
 
 \subsection{General keybindings}
-\label{sec:org6e74bf2}
+\label{sec:org727dcee}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -400,7 +415,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{Application keybindings}
-\label{sec:orgadf3eae}
+\label{sec:org8f88406}
 
 
 \begin{center}
@@ -419,7 +434,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{Screenshot keybindings}
-\label{sec:orgeca997c}
+\label{sec:org45b0c32}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -431,10 +446,10 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \section{Emacs}
-\label{sec:orgd23adfe}
+\label{sec:org1eee994}
 
 \subsection{General non-vanilla bindings}
-\label{sec:org15e06b4}
+\label{sec:org08f4d0b}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -447,7 +462,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:org9a7f8ce}
+\label{sec:org04f4efd}
 
 \begin{center}
 \begin{tabular}{ll}

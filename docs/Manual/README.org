@@ -192,6 +192,10 @@ It is highly recommended to first become familiar with SSS and Guix via a /throw
 
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
+*** Guix Install tips
+
+If your system doesn't boot due to lack of drivers, it can be useful to add the ~nomodeset~ option after ~quiet~ in the GRUB menu, by editing the boot "command" of the latest entry.
+
 If you are on aarch64/arm64, or other more niche architectures, then you might need to put in some more work to get an installer image, and to get it working, likely having to generate an ISO image yourself to install Guix or a qcow2 virtual machine.
 
 The following articles may be of help:
@@ -232,7 +236,7 @@ Guix is a rolling distribution and you don't need to be always on bleeding edge 
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
 
-You can do this with ~guix shell make git~.
+You can do this with ~guix shell make git icecat~. Icecat will be used for you to browse temporarily and install SSS.
 
 Then proceed to clone SSS with ~git clone https://codeberg.org/jjba23/sss.git~ to your favourite location. This location will need to be added to ~per-host.scm~.
 
@@ -252,7 +256,16 @@ Once the system reconfigure is complete, you should also bootstrap your user's G
 
 You can then reboot and you should be greeted by a simple TTY.
 
-SSS uses *no login managers* like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to ~gui~, or sometimes I directly run ~sway~ from the TTY.
+*** On login managers, and login screens
+
+SSS uses *no login managers* like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not).
+That being said, feel free to use your own.
+
+I like to alias my login command to ~gui~, or sometimes I directly run ~sway~ from the TTY.
+
+Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's computer vibe.
+
+If you run traditional X11 sessions, you could choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 
 
 ** Nix profile
