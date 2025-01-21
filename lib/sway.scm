@@ -202,6 +202,8 @@
                      "-B 'Yes, exit sway' \\\n    '"
                      #$sway
                      "/bin/swaymsg exit'"))
+    (XF86MonBrightnessDown . "exec sudo light -U 3")
+    (XF86MonBrightnessUp . "exec sudo light -A 3")
     ($mod+Shift+r . "mode \"resize\"")))
 
 (define sss-swayfx-config
@@ -284,18 +286,4 @@
                                                   sss-sway-floating-windows)
                                                  sss-sway-extra-content)))))
   (export sss-sway-service-type))
-
-;; #~(string-append
-;; #$swayidle "/bin/swayidle -w \\\n    "
-;; ;; 300: lock screen.
-;; "timeout 300 '" #$swaylock "/bin/swaylock "
-;; "--indicator-radius 75 \\\n    "
-;; "-i " #$sway
-;; #$sss-sway-wallpaper " \\\n    "
-;; "-f -c 000000' \\\n    "
-;; ;; 600: lock + screen off.
-;; "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
-;; ;; Resume + sleep.
-;; "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
-;; "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
 
