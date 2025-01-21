@@ -43,6 +43,10 @@
 (define sss-keyboard-layout
   "us")
 
+;; caps to control enabled
+(define sss-keyboard-caps-to-ctrl
+  #t)
+
 ;; system hostname
 (define sss-hostname
   "gnusystem")

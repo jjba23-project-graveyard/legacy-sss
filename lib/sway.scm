@@ -27,6 +27,7 @@
   #:use-module (gnu packages terminals)
   #:use-module (gnu packages admin)
   #:use-module (gnu home services shepherd)
+  #:use-module (gnu system keyboard)
   #:use-module (guix gexp)
   #:use-module (sss-packages)
   #:use-module (gnu home services sway)
@@ -204,6 +205,13 @@
                      "/bin/swaymsg exit'"))
     (XF86MonBrightnessDown . "exec sudo light -U 3")
     (XF86MonBrightnessUp . "exec sudo light -A 3")
+    (XF86AudioRaiseVolume . "exec pactl set-sink-volume @DEFAULT_SINK@ +5%")
+    (XF86AudioLowerVolume . "exec pactl set-sink-volume @DEFAULT_SINK@ -5%")
+    (XF86AudioMute . "exec pactl set-sink-mute @DEFAULT_SINK@ toggle")
+    (XF86AudioMicMute . "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle")
+    (XF86AudioPlay . "exec playerctl play-pause")
+    (XF86AudioNext . "exec playerctl next")
+    (XF86AudioPrev . "exec playerctl previous")
     ($mod+Shift+r . "mode \"resize\"")))
 
 (define sss-swayfx-config
@@ -257,7 +265,8 @@
     ,(format #f "seat seat0 xcursor_theme ~a ~a" "Yaru" "24")))
 
 (begin
-  (define* (sss-sway-service-type #:key sss-clone-dir)
+  (define* (sss-sway-service-type #:key sss-clone-dir sss-keyboard-layout
+                                  sss-keyboard-caps-to-ctrl)
     (service home-sway-service-type
              (sway-configuration (packages (list swayfx))
                                  (gestures sss-sway-gestures)
@@ -265,7 +274,7 @@
                                                                               #:wallpaper-setter
                                                                               (format
                                                                                #f
-                                                                               "swww img ~a --transition-step 12 --transition-fps 30 --transition-type center"
+                                                                               "swww img ~a --transition-step 10 --transition-fps 30 --transition-type center"
 
                                                                                
                                                                                (sss-sway-wallpaper
@@ -275,6 +284,21 @@
                                   sss-sway-startup-reload-programs)
                                  (outputs (sss-sway-outputs #:sss-clone-dir
                                                             sss-clone-dir))
+                                 (inputs (list (sway-input (identifier
+                                                            "type:keyboard")
+                                                           (layout (keyboard-layout
+                                                                    sss-keyboard-layout
+                                                                    #:options (cond
+                                                                                
+                                                                                
+                                                                                (sss-keyboard-caps-to-ctrl '
+                                                                                 ("ctrl:nocaps"))
+
+                                                                                
+                                                                                (else '())))))
+                                               (sway-input (identifier
+                                                            "type:touchpad")
+                                                           (tap #t))))
                                  (variables sss-sway-variables)
                                  (modes sss-sway-modes)
                                  (keybindings sss-sway-keybindings)

@@ -38,6 +38,10 @@
 (define sss-keyboard-layout
   "us")
 
+;; caps to control enabled
+(define sss-keyboard-caps-to-ctrl
+  #t)
+
 ;; system hostname
 (define sss-hostname
   "gnusystem")
@@ -326,6 +330,9 @@
          (service home-dbus-service-type)
          (service home-pipewire-service-type)
          (service sss-byggsteg-service-type)
-         (sss-sway-service-type #:sss-clone-dir sss-clone-dir)
+         (sss-sway-service-type #:sss-clone-dir sss-clone-dir
+                                #:sss-keyboard-layout sss-keyboard-layout
+                                #:sss-keyboard-caps-to-ctrl
+                                sss-keyboard-caps-to-ctrl)
          sss-fontconfig-service-type)))
 
