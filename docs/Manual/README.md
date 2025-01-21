@@ -1,33 +1,33 @@
 
 # Table of Contents
 
-1.  [What lies here?](#org85cef3c)
-    1.  [An operating system (OS) configured in Scheme](#org67122f4)
-    2.  [Joe's Emacs configuration](#org26265e4)
-2.  [Why ?](#orgc62b70d)
-3.  [What is Guix](#orga705463)
-4.  [Non-free software](#orgdb29966)
-5.  [How this manual works](#org54bd261)
-6.  [Customizations](#org85567c6)
-7.  [Per host - per-host.scm](#orgb0c527f)
-8.  [Bootstrapping](#org8d9e3cb)
-    1.  [Guix Install tips](#orgab537fc)
-    2.  [After install](#orgcfd74f7)
-    3.  [On login managers, and login screens](#org00494ca)
-9.  [Nix profile](#orge0c0b95)
-10. [SSS Project](#orgd047ff1)
-11. [System audio](#org56b8927)
-12. [Sway, resolutions and scaling](#org2843edc)
-13. [Wallpapers](#orgd369f02)
-14. [SSH, Git](#org0244bdf)
-15. [Keyboard Terminology](#orgd7fcf58)
-16. [Sway](#orgb6bb3d1)
-    1.  [General keybindings](#orgcb83238)
-    2.  [Application keybindings](#orgd608fa1)
-    3.  [More keybindings](#orga93c2f0)
-17. [Emacs](#org7cba5d3)
-    1.  [General non-vanilla bindings](#orgb0d41dc)
-    2.  [SSS specific keybindings](#orga7c7b2b)
+1.  [What lies here?](#org0a6f1d5)
+    1.  [An operating system (OS) configured in Scheme](#orgd4d1e72)
+    2.  [Joe's Emacs configuration](#orgb8d3eea)
+2.  [Why ?](#org2674d27)
+3.  [What is Guix](#org53c634c)
+4.  [Non-free software](#org4885d98)
+5.  [How this manual works](#org53270fc)
+6.  [Customizations](#org9d97521)
+7.  [Per host - per-host.scm](#org95dc9f7)
+8.  [Bootstrapping](#org44aa2e4)
+    1.  [Guix Install tips](#orgfdf47c5)
+    2.  [After install](#org055fd2f)
+    3.  [On login managers, and login screens](#orgf63b071)
+9.  [Nix profile](#org8f0821a)
+10. [SSS Project](#org0e489a0)
+11. [System audio](#orgd4adfee)
+12. [Sway, resolutions and scaling](#org0a8d5be)
+13. [Wallpapers](#orgd7df765)
+14. [SSH, Git](#org6abd902)
+15. [Keyboard Terminology](#orge92f203)
+16. [Sway](#org79fdfc3)
+    1.  [General keybindings](#org3a53101)
+    2.  [Application keybindings](#orgb4fc4f9)
+    3.  [More keybindings](#org54c75b6)
+17. [Emacs](#org914060e)
+    1.  [General non-vanilla bindings](#orgf98f416)
+    2.  [SSS specific keybindings](#org5d7e797)
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
@@ -54,12 +54,12 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 ![img](../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png)
 
 
-<a id="org85cef3c"></a>
+<a id="org0a6f1d5"></a>
 
 # What lies here?
 
 
-<a id="org67122f4"></a>
+<a id="orgd4d1e72"></a>
 
 ## An operating system (OS) configured in Scheme
 
@@ -75,7 +75,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 -   Theme palettes that affect the entire system
 
 
-<a id="org26265e4"></a>
+<a id="orgb8d3eea"></a>
 
 ## Joe's Emacs configuration
 
@@ -84,7 +84,7 @@ An operating system unto itself.
 -   Advanced Emacs configurations with Emacs Lisp + Elpaca
 
 
-<a id="orgc62b70d"></a>
+<a id="org2674d27"></a>
 
 # Why ?
 
@@ -123,7 +123,7 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="orga705463"></a>
+<a id="org53c634c"></a>
 
 # What is Guix
 
@@ -134,7 +134,7 @@ While you can install GNU Guix on top of an existing GNU/Linux system where it c
 I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: <https://guix.gnu.org/manual/en/html_node/>.
 
 
-<a id="orgdb29966"></a>
+<a id="org4885d98"></a>
 
 # Non-free software
 
@@ -146,7 +146,7 @@ This means, among other things that SSS:
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="org54bd261"></a>
+<a id="org53270fc"></a>
 
 # How this manual works
 
@@ -158,7 +158,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Run `C-c # m` from Emacs, which runs lib/sss-manual.el, exporting the Org document to several other formats (LaTEX, PDF, HTML, Markdown, etc.)
 
 
-<a id="org85567c6"></a>
+<a id="org9d97521"></a>
 
 # Customizations
 
@@ -169,100 +169,76 @@ Several color palettes, inspired by the great \`ef-themes\` by Protesilaos Stavr
 Find Prot's themes here: <https://github.com/protesilaos/ef-themes>
 
 
-<a id="orgb0c527f"></a>
+<a id="org95dc9f7"></a>
 
 # Per host - per-host.scm
 
 It is **REQUIRED** to include a `per-host.scm` in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
 
-      (use-modules (gnu)
-                   (gnu packages))
+    (use-modules (gnu)
+                 (gnu packages))
     
-      ;; system language
-      (define sss-lang "en_US")
+    ;; system language
+    (define sss-lang "en_US")
     
-      ;; system timezone
-      (define sss-timezone "Europe/Amsterdam")
+    ;; system timezone
+    (define sss-timezone "Europe/Amsterdam")
     
-      ;; system keyboard layout
-      (define sss-keyboard-layout "us")
+    ;; system keyboard layout
+    (define sss-keyboard-layout "us")
     
-      ;; caps to control enabled
-      (define sss-keyboard-caps-to-ctrl
-        #t)
+    ;; caps to control enabled
+    (define sss-keyboard-caps-to-ctrl
+      #t)
     
-      ;; system hostname
-      (define sss-hostname "gnusystem")
+    ;; system hostname
+    (define sss-hostname "gnusystem")
     
-      ;; disk partitioning
-      (define sss-filesystems
-        (list (file-system
-               (device "/dev/nvme0n1p3")
-               (mount-point "/")
-               (type "ext4"))
-              (file-system
-               (device "/dev/nvme0n1p1")
-               (mount-point "/boot/efi")
-               (type "vfat"))))
+    ;; disk partitioning
+    (define sss-filesystems
+      (list (file-system
+             (device "/dev/nvme0n1p3")
+             (mount-point "/")
+             (type "ext4"))
+            (file-system
+             (device "/dev/nvme0n1p1")
+             (mount-point "/boot/efi")
+             (type "vfat"))))
     
-      ;; packages that should only be installed in the current host
-      ;; or (define sss-per-host-packages '())
-      (define sss-per-host-packages
-        (list
-         ;; AMD non-free drivers
-         (specification->package "amd-microcode")
-         (specification->package "amdgpu-firmware")
-         ;; Games
-         (specification->package "prismlauncher")
-         (specification->package "steam")))
+    ;; packages that should only be installed in the current host
+    ;; or (define sss-per-host-packages '())
+    (define sss-per-host-packages
+      (list
+       ;; AMD non-free drivers
+       (specification->package "amd-microcode")
+       (specification->package "amdgpu-firmware")
+       ;; Games
+       (specification->package "prismlauncher")
+       (specification->package "steam")))
     
-      ;; location where you cloned SSS Git repository
-      (define sss-clone-dir
-        "/home/joe/Ontwikkeling/Persoonlijk/sss")
+    ;; location where you cloned SSS Git repository
+    (define sss-clone-dir
+      "/home/joe/Ontwikkeling/Persoonlijk/sss")
     
-      ;;
-      ;; Define the active palette for all users accounts
-      ;; You should reconfigure and ideally restart the system
-      ;; for all changes to take effect
-      ;;
-      ;; Note: You could choose on a per-user basis to set a fixed palette
-      ;; and not follow system wide, by just redefining this value
-      ;;
-      ;; Possible values are:
-      ;;   - sss-palette-ef-bio
-      ;;   - sss-palette-ef-cyprus
-      ;;   - sss-palette-ef-dream
-      ;;
-      (define-public sss-active-palette
-        'sss-palette-ef-dream)
-    
-    ;; Nix packages to install
-    (define-public sss-nixpkgs '("yaml-language-server"
-                                 "bash-language-server"
-                                 "monaspace"
-                                 "jdt-language-server"
-                                 "nil"
-                                 "black"
-                                 "pyright"
-                                 "marksman"
-                                 "_1password-gui"
-                                 "_1password-cli"
-                                 "stack"
-                                 "sbt"
-                                 "scala_2_13"
-                                 "firefox"
-                                 "thunderbird"
-                                 "postman"
-                                 "vscode-langservers-extracted"
-                                 "nwg-look"
-                                 "krew"
-                                 "mermaid-cli"
-                                 "jetbrains.idea-community"
-                                 ))
+    ;;
+    ;; Define the active palette for all users accounts
+    ;; You should reconfigure and ideally restart the system
+    ;; for all changes to take effect
+    ;;
+    ;; Note: You could choose on a per-user basis to set a fixed palette
+    ;; and not follow system wide, by just redefining this value
+    ;;
+    ;; Possible values are:
+    ;;   - sss-palette-ef-bio
+    ;;   - sss-palette-ef-cyprus
+    ;;   - sss-palette-ef-dream
+    ;;
+    (define-public sss-active-palette
+      'sss-palette-ef-dream)
 
 
-<a id="org8d9e3cb"></a>
+<a id="org44aa2e4"></a>
 
 # Bootstrapping
 
@@ -279,7 +255,7 @@ It is highly recommended to first become familiar with SSS and Guix via a *throw
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
 
-<a id="orgab537fc"></a>
+<a id="orgfdf47c5"></a>
 
 ## Guix Install tips
 
@@ -301,7 +277,7 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: <https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual>.
 
 
-<a id="orgcfd74f7"></a>
+<a id="org055fd2f"></a>
 
 ## After install
 
@@ -351,7 +327,7 @@ You might at this point want to reset the font cache for the system and user.
 You can then reboot and you should be greeted by a simple TTY.
 
 
-<a id="org00494ca"></a>
+<a id="orgf63b071"></a>
 
 ## On login managers, and login screens
 
@@ -365,7 +341,7 @@ Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's comput
 If you run traditional X11 sessions, you could choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 
 
-<a id="orge0c0b95"></a>
+<a id="org8f0821a"></a>
 
 # Nix profile
 
@@ -411,15 +387,25 @@ The installed software will be available, for example at: `/home/joe/.nix-profil
 
 SSS provides some scripts that allow you to maintain your Nix configuration and installed packages programatically, see the Makefile.
 
+You will then need a file `nixpkgs-list.scm`. See the root of the repo.
 
-<a id="orgd047ff1"></a>
+      ;; Nix packages to install
+    (define-public sss-nixpkgs '("yaml-language-server"
+                                 "bash-language-server"
+    
+                                 "mermaid-cli"
+                                 "jetbrains.idea-community"
+                                 ))
+
+
+<a id="org0e489a0"></a>
 
 # SSS Project
 
 Find the [project management of SSS here](../Project management/README.md)
 
 
-<a id="org56b8927"></a>
+<a id="orgd4adfee"></a>
 
 # System audio
 
@@ -430,7 +416,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the `RTC_USE_PIPEWIRE` variable to `true`. This is already the case by default in SSS.
 
 
-<a id="org2843edc"></a>
+<a id="org0a8d5be"></a>
 
 # Sway, resolutions and scaling
 
@@ -448,7 +434,7 @@ You might want to customize things though, here follow some examples of commands
     swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
 
 
-<a id="orgd369f02"></a>
+<a id="orgd7df765"></a>
 
 # Wallpapers
 
@@ -459,14 +445,14 @@ This uses swww and thus can load animated images as well and do fancy transition
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
 
-<a id="org0244bdf"></a>
+<a id="org6abd902"></a>
 
 # SSH, Git
 
 SSS is automatically configured with SSH setup, and multi-user Git setup.
 
 
-<a id="orgd7fcf58"></a>
+<a id="orge92f203"></a>
 
 # Keyboard Terminology
 
@@ -520,12 +506,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgb6bb3d1"></a>
+<a id="org79fdfc3"></a>
 
 # Sway
 
 
-<a id="orgcb83238"></a>
+<a id="org3a53101"></a>
 
 ## General keybindings
 
@@ -601,7 +587,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgd608fa1"></a>
+<a id="orgb4fc4f9"></a>
 
 ## Application keybindings
 
@@ -671,7 +657,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orga93c2f0"></a>
+<a id="org54c75b6"></a>
 
 ## More keybindings
 
@@ -717,12 +703,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org7cba5d3"></a>
+<a id="org914060e"></a>
 
 # Emacs
 
 
-<a id="orgb0d41dc"></a>
+<a id="orgf98f416"></a>
 
 ## General non-vanilla bindings
 
@@ -762,7 +748,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orga7c7b2b"></a>
+<a id="org5d7e797"></a>
 
 ## SSS specific keybindings
 

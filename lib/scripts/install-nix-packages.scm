@@ -1,7 +1,7 @@
 
 (use-modules (ice-9 popen) (ice-9 textual-ports)(ice-9 readline))
 
-(load "../../per-host.scm")
+(load "../../nixpkgs-list.scm")
 
 (define-public (syscall cmd)
   (let* ((process (open-input-pipe cmd))

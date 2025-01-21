@@ -188,29 +188,7 @@ Find here a reference configuration with what is required.
   (define-public sss-active-palette
     'sss-palette-ef-dream)
 
-;; Nix packages to install
-(define-public sss-nixpkgs '("yaml-language-server"
-                             "bash-language-server"
-                             "monaspace"
-                             "jdt-language-server"
-                             "nil"
-                             "black"
-                             "pyright"
-                             "marksman"
-                             "_1password-gui"
-                             "_1password-cli"
-                             "stack"
-                             "sbt"
-                             "scala_2_13"
-                             "firefox"
-                             "thunderbird"
-                             "postman"
-                             "vscode-langservers-extracted"
-                             "nwg-look"
-                             "krew"
-                             "mermaid-cli"
-                             "jetbrains.idea-community"
-                             ))
+
 #+end_src
 
 ** Bootstrapping
@@ -362,6 +340,18 @@ You can keep your Nix packages updated by running:
 The installed software will be available, for example at: ~/home/joe/.nix-profile/bin/~
 
 SSS provides some scripts that allow you to maintain your Nix configuration and installed packages programatically, see the Makefile.
+
+You will then need a file ~nixpkgs-list.scm~. See the root of the repo.
+
+#+begin_src scheme
+    ;; Nix packages to install
+  (define-public sss-nixpkgs '("yaml-language-server"
+                               "bash-language-server"
+                               
+                               "mermaid-cli"
+                               "jetbrains.idea-community"
+                               ))
+#+end_src
 
 ** SSS Project
 

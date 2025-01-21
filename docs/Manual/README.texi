@@ -224,90 +224,68 @@ It is @strong{REQUIRED} to include a @code{per-host.scm} in the root of this pro
 Find here a reference configuration with what is required.
 
 @example
-  (use-modules (gnu)
-               (gnu packages))
+(use-modules (gnu)
+             (gnu packages))
 
-  ;; system language
-  (define sss-lang "en_US")
+;; system language
+(define sss-lang "en_US")
 
-  ;; system timezone
-  (define sss-timezone "Europe/Amsterdam")
+;; system timezone
+(define sss-timezone "Europe/Amsterdam")
 
-  ;; system keyboard layout
-  (define sss-keyboard-layout "us")
+;; system keyboard layout
+(define sss-keyboard-layout "us")
 
-  ;; caps to control enabled
-  (define sss-keyboard-caps-to-ctrl
-    #t)
+;; caps to control enabled
+(define sss-keyboard-caps-to-ctrl
+  #t)
 
-  ;; system hostname
-  (define sss-hostname "gnusystem")
+;; system hostname
+(define sss-hostname "gnusystem")
 
-  ;; disk partitioning
-  (define sss-filesystems
-    (list (file-system
-           (device "/dev/nvme0n1p3")
-           (mount-point "/")
-           (type "ext4"))
-          (file-system
-           (device "/dev/nvme0n1p1")
-           (mount-point "/boot/efi")
-           (type "vfat"))))
+;; disk partitioning
+(define sss-filesystems
+  (list (file-system
+         (device "/dev/nvme0n1p3")
+         (mount-point "/")
+         (type "ext4"))
+        (file-system
+         (device "/dev/nvme0n1p1")
+         (mount-point "/boot/efi")
+         (type "vfat"))))
 
-  ;; packages that should only be installed in the current host
-  ;; or (define sss-per-host-packages '())
-  (define sss-per-host-packages
-    (list
-     ;; AMD non-free drivers
-     (specification->package "amd-microcode")
-     (specification->package "amdgpu-firmware")
-     ;; Games
-     (specification->package "prismlauncher")
-     (specification->package "steam")))
+;; packages that should only be installed in the current host
+;; or (define sss-per-host-packages '())
+(define sss-per-host-packages
+  (list
+   ;; AMD non-free drivers
+   (specification->package "amd-microcode")
+   (specification->package "amdgpu-firmware")
+   ;; Games
+   (specification->package "prismlauncher")
+   (specification->package "steam")))
 
-  ;; location where you cloned SSS Git repository
-  (define sss-clone-dir
-    "/home/joe/Ontwikkeling/Persoonlijk/sss")
+;; location where you cloned SSS Git repository
+(define sss-clone-dir
+  "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
-  ;;
-  ;; Define the active palette for all users accounts
-  ;; You should reconfigure and ideally restart the system
-  ;; for all changes to take effect
-  ;;
-  ;; Note: You could choose on a per-user basis to set a fixed palette
-  ;; and not follow system wide, by just redefining this value
-  ;;
-  ;; Possible values are:
-  ;;   - sss-palette-ef-bio
-  ;;   - sss-palette-ef-cyprus
-  ;;   - sss-palette-ef-dream
-  ;;
-  (define-public sss-active-palette
-    'sss-palette-ef-dream)
+;;
+;; Define the active palette for all users accounts
+;; You should reconfigure and ideally restart the system
+;; for all changes to take effect
+;;
+;; Note: You could choose on a per-user basis to set a fixed palette
+;; and not follow system wide, by just redefining this value
+;;
+;; Possible values are:
+;;   - sss-palette-ef-bio
+;;   - sss-palette-ef-cyprus
+;;   - sss-palette-ef-dream
+;;
+(define-public sss-active-palette
+  'sss-palette-ef-dream)
 
-;; Nix packages to install
-(define-public sss-nixpkgs '("yaml-language-server"
-                             "bash-language-server"
-                             "monaspace"
-                             "jdt-language-server"
-                             "nil"
-                             "black"
-                             "pyright"
-                             "marksman"
-                             "_1password-gui"
-                             "_1password-cli"
-                             "stack"
-                             "sbt"
-                             "scala_2_13"
-                             "firefox"
-                             "thunderbird"
-                             "postman"
-                             "vscode-langservers-extracted"
-                             "nwg-look"
-                             "krew"
-                             "mermaid-cli"
-                             "jetbrains.idea-community"
-                             ))
+
 @end example
 
 @node Bootstrapping
@@ -469,6 +447,18 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 The installed software will be available, for example at: @code{/home/joe/.nix-profile/bin/}
 
 SSS provides some scripts that allow you to maintain your Nix configuration and installed packages programatically, see the Makefile.
+
+You will then need a file @code{nixpkgs-list.scm}. See the root of the repo.
+
+@example
+  ;; Nix packages to install
+(define-public sss-nixpkgs '("yaml-language-server"
+                             "bash-language-server"
+
+                             "mermaid-cli"
+                             "jetbrains.idea-community"
+                             ))
+@end example
 
 @node SSS Project
 @chapter SSS Project
