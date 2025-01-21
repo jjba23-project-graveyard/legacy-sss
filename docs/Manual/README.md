@@ -1,29 +1,30 @@
 
 # Table of Contents
 
-1.  [What lies here?](#orgb5b9e3e)
-    1.  [An operating system (OS) configured in Scheme](#orgfedcee7)
-    2.  [Joe's Emacs configuration](#orge15057a)
-2.  [Why ?](#org1036d70)
-3.  [Non-free software](#org36cd4cf)
-4.  [How this manual works](#org21be078)
-5.  [Customizations](#orgfaaa64a)
-6.  [Per host - per-host.scm](#orgd0925f4)
-7.  [Bootstrapping](#org4051fe3)
-    1.  [Guix Install tips](#org3876907)
-    2.  [After install](#org4fb2fbc)
-    3.  [On login managers, and login screens](#org530fafa)
-8.  [Nix profile](#org47cfe3a)
-9.  [SSS Project](#orgc4ae346)
-10. [System audio](#orgd180cda)
-11. [Keyboard Terminology](#org5195016)
-12. [Sway](#orgdcac5b1)
-    1.  [General keybindings](#org98c203a)
-    2.  [Application keybindings](#orgba58a11)
-    3.  [Screenshot keybindings](#org0b70f04)
-13. [Emacs](#org16c64b3)
-    1.  [General non-vanilla bindings](#org05db403)
-    2.  [SSS specific keybindings](#orgea8956e)
+1.  [What lies here?](#orgcc939ed)
+    1.  [An operating system (OS) configured in Scheme](#orgd305c54)
+    2.  [Joe's Emacs configuration](#orge0c4591)
+2.  [Why ?](#orgc10937c)
+3.  [What is Guix](#org6584151)
+4.  [Non-free software](#org08b22d8)
+5.  [How this manual works](#org1a344e3)
+6.  [Customizations](#org2a56949)
+7.  [Per host - per-host.scm](#orgece69c1)
+8.  [Bootstrapping](#org03ddf29)
+    1.  [Guix Install tips](#orge9a9667)
+    2.  [After install](#org3f46c2d)
+    3.  [On login managers, and login screens](#org2971fd2)
+9.  [Nix profile](#orge670b14)
+10. [SSS Project](#org13e5af3)
+11. [System audio](#org2dcbf78)
+12. [Keyboard Terminology](#orga88f24b)
+13. [Sway](#orgb1124cc)
+    1.  [General keybindings](#org67ce8ea)
+    2.  [Application keybindings](#org8667166)
+    3.  [Screenshot keybindings](#org981a8b4)
+14. [Emacs](#org3aa1d51)
+    1.  [General non-vanilla bindings](#org1a64e44)
+    2.  [SSS specific keybindings](#orgf84e50d)
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
@@ -50,12 +51,12 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 ![img](../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png)
 
 
-<a id="orgb5b9e3e"></a>
+<a id="orgcc939ed"></a>
 
 # What lies here?
 
 
-<a id="orgfedcee7"></a>
+<a id="orgd305c54"></a>
 
 ## An operating system (OS) configured in Scheme
 
@@ -71,7 +72,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 -   Theme palettes that affect the entire system
 
 
-<a id="orge15057a"></a>
+<a id="orge0c4591"></a>
 
 ## Joe's Emacs configuration
 
@@ -80,7 +81,7 @@ An operating system unto itself.
 -   Advanced Emacs configurations with Emacs Lisp + Elpaca
 
 
-<a id="org1036d70"></a>
+<a id="orgc10937c"></a>
 
 # Why ?
 
@@ -119,7 +120,18 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="org36cd4cf"></a>
+<a id="org6584151"></a>
+
+# What is Guix
+
+GNU Guix is a package management tool for and distribution of the GNU system. Guix makes reproducibility easy and allows users to install, upgrade, or remove software packages, to roll back to a previous package set, to build packages from source, and generally assists with the creation and maintenance of software environments.
+
+While you can install GNU Guix on top of an existing GNU/Linux system where it complements the available tools without interference, I encourage the use of Guix system, as standalone operating system distro, on top of which I have built the Supreme Sexp System (SSS).
+
+I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: <https://guix.gnu.org/manual/en/html_node/>.
+
+
+<a id="org08b22d8"></a>
 
 # Non-free software
 
@@ -131,7 +143,7 @@ This means, among other things that SSS:
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="org21be078"></a>
+<a id="org1a344e3"></a>
 
 # How this manual works
 
@@ -143,7 +155,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Run `C-c # m` from Emacs, which runs lib/sss-manual.el, exporting the Org document to several other formats (LaTEX, PDF, HTML, Markdown, etc.)
 
 
-<a id="orgfaaa64a"></a>
+<a id="org2a56949"></a>
 
 # Customizations
 
@@ -154,7 +166,7 @@ Several color palettes, inspired by the great \`ef-themes\` by Protesilaos Stavr
 Find Prot's themes here: <https://github.com/protesilaos/ef-themes>
 
 
-<a id="orgd0925f4"></a>
+<a id="orgece69c1"></a>
 
 # Per host - per-host.scm
 
@@ -219,7 +231,7 @@ Find here a reference configuration with what is required.
       'sss-palette-ef-dream)
 
 
-<a id="org4051fe3"></a>
+<a id="org03ddf29"></a>
 
 # Bootstrapping
 
@@ -236,7 +248,7 @@ It is highly recommended to first become familiar with SSS and Guix via a *throw
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
 
-<a id="org3876907"></a>
+<a id="orge9a9667"></a>
 
 ## Guix Install tips
 
@@ -258,7 +270,7 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: <https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual>.
 
 
-<a id="org4fb2fbc"></a>
+<a id="org3f46c2d"></a>
 
 ## After install
 
@@ -303,7 +315,7 @@ Once the system reconfigure is complete, you should also bootstrap your user's G
 You can then reboot and you should be greeted by a simple TTY.
 
 
-<a id="org530fafa"></a>
+<a id="org2971fd2"></a>
 
 ## On login managers, and login screens
 
@@ -317,7 +329,7 @@ Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's comput
 If you run traditional X11 sessions, you could choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 
 
-<a id="org47cfe3a"></a>
+<a id="orge670b14"></a>
 
 # Nix profile
 
@@ -362,14 +374,14 @@ You can keep your Nix packages updated by running:
 The installed software will be available, for example at: `/home/joe/.nix-profile/bin/`
 
 
-<a id="orgc4ae346"></a>
+<a id="org13e5af3"></a>
 
 # SSS Project
 
 Find the [project management of SSS here](../Project management/README.md)
 
 
-<a id="orgd180cda"></a>
+<a id="org2dcbf78"></a>
 
 # System audio
 
@@ -380,7 +392,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the `RTC_USE_PIPEWIRE` variable to `true`. This is already the case by default in SSS.
 
 
-<a id="org5195016"></a>
+<a id="orga88f24b"></a>
 
 # Keyboard Terminology
 
@@ -434,12 +446,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgdcac5b1"></a>
+<a id="orgb1124cc"></a>
 
 # Sway
 
 
-<a id="org98c203a"></a>
+<a id="org67ce8ea"></a>
 
 ## General keybindings
 
@@ -515,7 +527,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgba58a11"></a>
+<a id="org8667166"></a>
 
 ## Application keybindings
 
@@ -585,7 +597,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org0b70f04"></a>
+<a id="org981a8b4"></a>
 
 ## Screenshot keybindings
 
@@ -625,12 +637,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org16c64b3"></a>
+<a id="org3aa1d51"></a>
 
 # Emacs
 
 
-<a id="org05db403"></a>
+<a id="org1a64e44"></a>
 
 ## General non-vanilla bindings
 
@@ -670,7 +682,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgea8956e"></a>
+<a id="orgf84e50d"></a>
 
 ## SSS specific keybindings
 

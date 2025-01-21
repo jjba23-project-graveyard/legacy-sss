@@ -86,6 +86,14 @@ Some commands in the ~Makefile~ are more geared towards ~joe~ since we assume a 
 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
+** What is Guix
+
+GNU Guix is a package management tool for and distribution of the GNU system. Guix makes reproducibility easy and allows users to install, upgrade, or remove software packages, to roll back to a previous package set, to build packages from source, and generally assists with the creation and maintenance of software environments.
+
+While you can install GNU Guix on top of an existing GNU/Linux system where it complements the available tools without interference, I encourage the use of Guix system, as standalone operating system distro, on top of which I have built the Supreme Sexp System (SSS).
+
+I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: https://guix.gnu.org/manual/en/html_node/.
+
 ** Non-free software
 
 SSS attempts to stay as libre as possible, while also respecting your convenience.

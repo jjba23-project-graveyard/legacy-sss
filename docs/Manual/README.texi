@@ -46,6 +46,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 @menu
 * What lies here?::
 * Why ?::
+* What is Guix::
 * Non-free software::
 * How this manual works::
 * Customizations::
@@ -167,6 +168,15 @@ This configuration is somewhat biased towards containing a @code{joe} user who a
 Some commands in the @code{Makefile} are more geared towards @code{joe} since we assume a device is most frequently only tended to by one system administration most of the time. Some examples are @code{make fr} or @code{make jr}. Feel free to change this or contribute improvements to make this modular.
 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
+
+@node What is Guix
+@chapter What is Guix
+
+GNU Guix is a package management tool for and distribution of the GNU system. Guix makes reproducibility easy and allows users to install, upgrade, or remove software packages, to roll back to a previous package set, to build packages from source, and generally assists with the creation and maintenance of software environments.
+
+While you can install GNU Guix on top of an existing GNU/Linux system where it complements the available tools without interference, I encourage the use of Guix system, as standalone operating system distro, on top of which I have built the Supreme Sexp System (SSS).
+
+I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: @uref{https://guix.gnu.org/manual/en/html_node/}.
 
 @node Non-free software
 @chapter Non-free software
