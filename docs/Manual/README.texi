@@ -68,7 +68,9 @@ What lies here?
 
 Bootstrapping
 
+* Guix Install tips::
 * After install::
+* On login managers, and login screens: On login managers and login screens. 
 
 Sway
 
@@ -283,10 +285,23 @@ It is highly recommended to first become familiar with SSS and Guix via a @emph{
 
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
+@menu
+* Guix Install tips::
+* After install::
+* On login managers, and login screens: On login managers and login screens. 
+@end menu
+
+@node Guix Install tips
+@section Guix Install tips
+
+If your system doesn't boot due to lack of drivers, it can be useful to add the @code{nomodeset} option after @code{quiet} in the GRUB menu, by editing the boot "command" of the latest entry.
+
 If you are on aarch64/arm64, or other more niche architectures, then you might need to put in some more work to get an installer image, and to get it working, likely having to generate an ISO image yourself to install Guix or a qcow2 virtual machine.
 
 The following articles may be of help:
 @uref{https://jointhefreeworld.org/blog/articles/gnu-linux/gnu-guix-virtual-machine-image-aarch64/}
+
+If things really aren't working with your hardware, you can build your own ISO with the right drivers, or use the one from nonguix: @uref{https://gitlab.com/nonguix/nonguix/-/releases}
 
 It is highly recommended to connect your device to Internet via an Ethernet cable or some other form of wired connection, specially since Guix by default will only come with free software drivers, and as such, might not immediately support your WiFi card. After installing SSS drivers will be there and you can use WiFi.
 
@@ -295,10 +310,6 @@ When installing Guix, make sure you take note of the Scheme code that gets gener
 After having installed things using the guided Guix installer, or via the command line for advanced users, boot into your new system.
 
 I would recommend to then use a web browser and visit the web version of this manual: @uref{https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual}.
-
-@menu
-* After install::
-@end menu
 
 @node After install
 @section After install
@@ -326,7 +337,7 @@ Guix is a rolling distribution and you don't need to be always on bleeding edge 
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS@.
 
-You can do this with @code{guix shell make git}.
+You can do this with @code{guix shell make git icecat}. Icecat will be used for you to browse temporarily and install SSS@.
 
 Then proceed to clone SSS with @code{git clone https://codeberg.org/jjba23/sss.git} to your favourite location. This location will need to be added to @code{per-host.scm}.
 
@@ -346,7 +357,17 @@ Once the system reconfigure is complete, you should also bootstrap your user's G
 
 You can then reboot and you should be greeted by a simple TTY@.
 
-SSS uses @strong{no login managers} like GDM or SDDM@. Simply login to the TTY and start your favorite GUI (or not). I like to alias this to @code{gui}, or sometimes I directly run @code{sway} from the TTY@.
+@node On login managers and login screens
+@section On login managers, and login screens
+
+SSS uses @strong{no login managers} like GDM or SDDM@. Simply login to the TTY and start your favorite GUI (or not).
+That being said, feel free to use your own.
+
+I like to alias my login command to @code{gui}, or sometimes I directly run @code{sway} from the TTY@.
+
+Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's computer vibe.
+
+If you run traditional X11 sessions, you could choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 
 @node Nix profile
 @chapter Nix profile

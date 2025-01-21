@@ -27,16 +27,20 @@
 ;; which can be overriden on a host-per-host basis
 
 ;; system language
-(define sss-lang "en_US")
+(define sss-lang
+  "en_US")
 
 ;; system timezone
-(define sss-timezone "Europe/Amsterdam")
+(define sss-timezone
+  "Europe/Amsterdam")
 
 ;; system keyboard layout
-(define sss-keyboard-layout "us")
+(define sss-keyboard-layout
+  "us")
 
 ;; system hostname
-(define sss-hostname "gnusystem")
+(define sss-hostname
+  "gnusystem")
 
 ;; location where you cloned SSS Git repository
 (define sss-clone-dir
@@ -311,17 +315,17 @@
 ;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")
 (home-environment
- (packages (list pfetch))
- (services
-  (list sss-home-files-service
-        (sss-ssh-service #:ssh-hosts joe-ssh-hosts)
-        (sss-home-vars-service #:sss-clone-dir sss-clone-dir
-                               #:sss-lang sss-lang)
-        (sss-bash-service #:sss-clone-dir sss-clone-dir)
-        sss-openpgp-conf
-        (service home-dbus-service-type)
-        (service home-pipewire-service-type)
-        (service sss-byggsteg-service-type)
-        (sss-sway-service-type #:sss-clone-dir sss-clone-dir)
-        sss-fontconfig-service-type)))
+  (packages (list pfetch))
+  (services
+   (list sss-home-files-service
+         (sss-ssh-service #:ssh-hosts joe-ssh-hosts)
+         (sss-home-vars-service #:sss-clone-dir sss-clone-dir
+                                #:sss-lang sss-lang)
+         (sss-bash-service #:sss-clone-dir sss-clone-dir)
+         sss-openpgp-conf
+         (service home-dbus-service-type)
+         (service home-pipewire-service-type)
+         (service sss-byggsteg-service-type)
+         (sss-sway-service-type #:sss-clone-dir sss-clone-dir)
+         sss-fontconfig-service-type)))
 
