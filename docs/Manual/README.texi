@@ -365,6 +365,13 @@ The @code{fallback} option is optional, and simply helps when upstream substitut
 
 Once the system reconfigure is complete, you should also bootstrap your user's GNU home with something like: @code{guix home reconfigure ./home/joe.scm  --fallback}
 
+You might at this point want to reset the font cache for the system and user.
+
+@example
+fc-cache -frv
+sudo fc-cache -frv
+@end example
+
 You can then reboot and you should be greeted by a simple TTY@.
 
 @node On login managers and login screens

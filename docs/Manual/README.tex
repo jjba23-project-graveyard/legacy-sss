@@ -1,4 +1,4 @@
-% Created 2025-01-21 di 13:22
+% Created 2025-01-21 di 19:33
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -56,10 +56,10 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{center}
 
 \section{What lies here?}
-\label{sec:orgb57ccbc}
+\label{sec:orgdbb6385}
 
 \subsection{An operating system (OS) configured in Scheme}
-\label{sec:org9f7b66a}
+\label{sec:orgb2a661e}
 
 \begin{itemize}
 \item GNU Guix system configurations
@@ -75,7 +75,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{itemize}
 
 \subsection{Joe's Emacs configuration}
-\label{sec:orgd5377c9}
+\label{sec:orgdbdd1da}
 
 An operating system unto itself.
 
@@ -84,7 +84,7 @@ An operating system unto itself.
 \end{itemize}
 
 \section{Why ?}
-\label{sec:org1150d62}
+\label{sec:orgdd8bf7a}
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
@@ -122,7 +122,7 @@ Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} sinc
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 \section{What is Guix}
-\label{sec:org9412a8e}
+\label{sec:org104dd51}
 
 GNU Guix is a package management tool for and distribution of the GNU system. Guix makes reproducibility easy and allows users to install, upgrade, or remove software packages, to roll back to a previous package set, to build packages from source, and generally assists with the creation and maintenance of software environments.
 
@@ -131,7 +131,7 @@ While you can install GNU Guix on top of an existing GNU/Linux system where it c
 I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: \url{https://guix.gnu.org/manual/en/html\_node/}.
 
 \section{Non-free software}
-\label{sec:orgd7bb6dd}
+\label{sec:orgaa8bb1c}
 
 SSS attempts to stay as libre as possible, while also respecting your convenience.
 
@@ -143,7 +143,7 @@ This means, among other things that SSS:
 
 
 \section{How this manual works}
-\label{sec:org22aea27}
+\label{sec:orgc2670d1}
 
 This manual is written by hand with care and attention for detail.
 
@@ -155,7 +155,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 \end{itemize}
 
 \section{Customizations}
-\label{sec:org70bbfc5}
+\label{sec:org935e2ec}
 
 SSS supports several user customizations, more specifically:
 
@@ -165,7 +165,7 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:orgf1d4ffe}
+\label{sec:orgf2cca02}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -231,7 +231,7 @@ Find here a reference configuration with what is required.
 \end{verbatim}
 
 \section{Bootstrapping}
-\label{sec:orgb90a5c8}
+\label{sec:org76a6886}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
@@ -246,7 +246,7 @@ It is highly recommended to first become familiar with SSS and Guix via a \emph{
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
 \subsection{Guix Install tips}
-\label{sec:org7927932}
+\label{sec:orgd4f266d}
 
 If your system doesn't boot due to lack of drivers, it can be useful to add the \texttt{nomodeset} option after \texttt{quiet} in the GRUB menu, by editing the boot "command" of the latest entry.
 
@@ -266,7 +266,7 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: \url{https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual}.
 
 \subsection{After install}
-\label{sec:orgb3c4742}
+\label{sec:orge08bd65}
 
 Add \texttt{nonguix} in your channels file (\texttt{\$HOME/.config/guix/channels.scm}). This will later be overwritten by SSS.
 
@@ -309,10 +309,17 @@ The \texttt{fallback} option is optional, and simply helps when upstream substit
 
 Once the system reconfigure is complete, you should also bootstrap your user's GNU home with something like: \texttt{guix home reconfigure ./home/joe.scm  -{}-{}fallback}
 
+You might at this point want to reset the font cache for the system and user.
+
+\begin{verbatim}
+fc-cache -frv
+sudo fc-cache -frv
+\end{verbatim}
+
 You can then reboot and you should be greeted by a simple TTY.
 
 \subsection{On login managers, and login screens}
-\label{sec:org0e30cc5}
+\label{sec:orge909215}
 
 SSS uses \textbf{no login managers} like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not).
 That being said, feel free to use your own.
@@ -325,7 +332,7 @@ If you run traditional X11 sessions, you could choose to do startx instead of a 
 
 
 \section{Nix profile}
-\label{sec:org078e273}
+\label{sec:org1f535e9}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -377,12 +384,12 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 The installed software will be available, for example at: \texttt{/home/joe/.nix-profile/bin/}
 
 \section{SSS Project}
-\label{sec:orgabfbbbf}
+\label{sec:org8731fd8}
 
 Find the \href{../Project management/README.org}{project management of SSS here}
 
 \section{System audio}
-\label{sec:orgb712438}
+\label{sec:org38a90f5}
 
 SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
 
@@ -391,7 +398,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the \texttt{RTC\_USE\_PIPEWIRE} variable to \texttt{true}. This is already the case by default in SSS.
 
 \section{Keyboard Terminology}
-\label{sec:orgbd3686d}
+\label{sec:org0773096}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -410,10 +417,10 @@ term & meaning\\[0pt]
 
 
 \section{Sway}
-\label{sec:orgea4b9f9}
+\label{sec:org9348b75}
 
 \subsection{General keybindings}
-\label{sec:org3db969a}
+\label{sec:org001db53}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -433,7 +440,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{Application keybindings}
-\label{sec:orgb906024}
+\label{sec:org4ad5b33}
 
 
 \begin{center}
@@ -452,7 +459,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{Screenshot keybindings}
-\label{sec:org5fa96d7}
+\label{sec:org273ec66}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -465,10 +472,10 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \section{Emacs}
-\label{sec:org8d7736e}
+\label{sec:orgad4b241}
 
 \subsection{General non-vanilla bindings}
-\label{sec:org8ae4141}
+\label{sec:org6dd5d3f}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -482,7 +489,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:org25f0aa3}
+\label{sec:org448d0f5}
 
 \begin{center}
 \begin{tabular}{ll}
