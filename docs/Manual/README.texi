@@ -419,7 +419,7 @@ You will also want to set the @code{RTC_USE_PIPEWIRE} variable to @code{true}. T
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
-@multitable {aaaa} {aaaaaaaaaaaaaaaaaaaaaaaaa}
+@multitable {aaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaa}
 @headitem term
 @tab meaning
 @item @code{s}
@@ -430,6 +430,8 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 @tab Meta / Alt / Option key
 @item @code{C}
 @tab Control key
+@item @code{SPC}
+@tab Space key
 @end multitable
 
 @node Sway
@@ -444,7 +446,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 @node General keybindings
 @section General keybindings
 
-@multitable {aaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@multitable {aaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
 @headitem keybind
 @tab command
 @item @code{s-k}
@@ -453,16 +455,28 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 @tab Reload Sway configuration
 @item @code{s-l}
 @tab Lock screen
+@item @code{s-1..9}
+@tab Move focus to workspace 1..9
+@item @code{s-S-1..9}
+@tab Move window to workspace 1..9
+@item @code{s-v}
+@tab Vertical splits
+@item @code{s-h}
+@tab Horizontal splits
+@item @code{s-S-SPC}
+@tab Toggle floating/tiling mode for window
+@item 
+@tab 
 @end multitable
 
 @node Application keybindings
 @section Application keybindings
 
-@multitable {aaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@multitable {aaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
 @headitem keybind
 @tab command
 @item @code{s-/}
-@tab Launch application fuzzy finder menu
+@tab Launch application fuzzy finder menu (Rofi)
 @item @code{s-i}
 @tab Open a Web Browser (Qutebrowser)
 @item @code{s-S-i}
@@ -489,6 +503,8 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 @tab @strong{Copy} screenshot of entire screen
 @item @code{s-.}
 @tab @strong{Save} screenshot of entire screen
+@item 
+@tab 
 @end multitable
 
 @node Emacs

@@ -326,39 +326,49 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 | ~S~    | Shift key                 |
 | ~M~    | Meta / Alt / Option key   |
 | ~C~    | Control key               |
+| ~SPC~  | Space key                 |
+|------+---------------------------|
 
 
 ** Sway
 
 *** General keybindings
 
-| keybind | command                            |
-|---------+------------------------------------|
-| ~s-k~     | Kill/Close a window or application |
-| ~s-S-c~   | Reload Sway configuration          |
-| ~s-l~     | Lock screen                       |
+| keybind  | command                                |
+|----------+----------------------------------------|
+| ~s-k~      | Kill/Close a window or application     |
+| ~s-S-c~    | Reload Sway configuration              |
+| ~s-l~      | Lock screen                            |
+| ~s-1..9~   | Move focus to workspace 1..9           |
+| ~s-S-1..9~ | Move window to workspace 1..9          |
+| ~s-v~      | Vertical splits                        |
+| ~s-h~      | Horizontal splits                      |
+| ~s-S-SPC~  | Toggle floating/tiling mode for window |
+|          |                                        |
+|----------+----------------------------------------|
 
 *** Application keybindings
 
 
-| keybind | command                              |
-|---------+--------------------------------------|
-| ~s-/~     | Launch application fuzzy finder menu |
-| ~s-i~     | Open a Web Browser (Qutebrowser)     |
-| ~s-S-i~   | Open a bloated Web Browser (Chrome)  |
-| ~s-RET~   | Open a terminal emulator (Foot)      |
-| ~s-t~     | /idem/                                 |
-| ~s-e~     | Open text editor (Emacs)             |
-| ~s--~     | Open password manager (1password)    |
-|        |                                      |
-|---------+--------------------------------------|
+| keybind | command                                     |
+|---------+---------------------------------------------|
+| ~s-/~     | Launch application fuzzy finder menu (Rofi) |
+| ~s-i~     | Open a Web Browser (Qutebrowser)            |
+| ~s-S-i~   | Open a bloated Web Browser (Chrome)         |
+| ~s-RET~   | Open a terminal emulator (Foot)             |
+| ~s-t~     | /idem/                                        |
+| ~s-e~     | Open text editor (Emacs)                    |
+| ~s--~     | Open password manager (1password)           |
+|         |                                             |
+|---------+---------------------------------------------|
 *** Screenshot keybindings
 
-| keybind | command                            |
-|---------+------------------------------------|
-| ~s-S-.~   | *Copy* screenshot of entire screen   |
-| ~s-.~     | *Save* screenshot of entire screen   |
-|---------+------------------------------------|
+| keybind | command                          |
+|---------+----------------------------------|
+| ~s-S-.~   | *Copy* screenshot of entire screen |
+| ~s-.~     | *Save* screenshot of entire screen |
+|         |                                  |
+|---------+----------------------------------|
 ** Emacs
 
 *** General non-vanilla bindings
@@ -368,6 +378,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 | ~M-s r~   | consult-ripgrep |
 | ~M-s o~   | consult-occur   |
 |         |                 |
+|---------+-----------------|
 
 *** SSS specific keybindings
 
@@ -377,4 +388,5 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 | ~C-c # j~ | Perform a joe rebuild          |
 | ~C-c # f~ | Perform a system + joe rebuild |
 |         |                                |
+|---------+--------------------------------|
 

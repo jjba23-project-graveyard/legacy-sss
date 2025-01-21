@@ -1,4 +1,4 @@
-% Created 2025-01-20 ma 22:04
+% Created 2025-01-21 di 13:12
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -56,10 +56,10 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{center}
 
 \section{What lies here?}
-\label{sec:org3493710}
+\label{sec:org51ba659}
 
 \subsection{An operating system (OS) configured in Scheme}
-\label{sec:org71fecda}
+\label{sec:orge4f5ad9}
 
 \begin{itemize}
 \item GNU Guix system configurations
@@ -75,7 +75,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{itemize}
 
 \subsection{Joe's Emacs configuration}
-\label{sec:orge0ed53a}
+\label{sec:orgd940e01}
 
 An operating system unto itself.
 
@@ -84,7 +84,7 @@ An operating system unto itself.
 \end{itemize}
 
 \section{Why ?}
-\label{sec:org1616d85}
+\label{sec:orgab774d5}
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
@@ -122,7 +122,7 @@ Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} sinc
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 \section{Non-free software}
-\label{sec:org4c5729e}
+\label{sec:orgfdbb903}
 
 SSS attempts to stay as libre as possible, while also respecting your convenience.
 
@@ -134,7 +134,7 @@ This means, among other things that SSS:
 
 
 \section{How this manual works}
-\label{sec:org7db3fae}
+\label{sec:org05b2ca6}
 
 This manual is written by hand with care and attention for detail.
 
@@ -146,7 +146,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 \end{itemize}
 
 \section{Customizations}
-\label{sec:org5253766}
+\label{sec:orgd8c1e09}
 
 SSS supports several user customizations, more specifically:
 
@@ -156,7 +156,7 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:orgcbe0c59}
+\label{sec:orgf99f664}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -222,7 +222,7 @@ Find here a reference configuration with what is required.
 \end{verbatim}
 
 \section{Bootstrapping}
-\label{sec:orga25bb83}
+\label{sec:orgc88277a}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
@@ -250,7 +250,7 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: \url{https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual}.
 
 \subsection{After install}
-\label{sec:orga7458b0}
+\label{sec:orgdf14b88}
 
 Add \texttt{nonguix} in your channels file (\texttt{\$HOME/.config/guix/channels.scm}). This will later be overwritten by SSS.
 
@@ -299,7 +299,7 @@ SSS uses \textbf{no login managers} like GDM or SDDM. Simply login to the TTY an
 
 
 \section{Nix profile}
-\label{sec:org41046be}
+\label{sec:org203f87e}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -351,12 +351,12 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 The installed software will be available, for example at: \texttt{/home/joe/.nix-profile/bin/}
 
 \section{SSS Project}
-\label{sec:org036a965}
+\label{sec:org8578ab4}
 
 Find the \href{../Project management/README.org}{project management of SSS here}
 
 \section{System audio}
-\label{sec:org6bfd9e9}
+\label{sec:orgca83c9a}
 
 SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
 
@@ -365,7 +365,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the \texttt{RTC\_USE\_PIPEWIRE} variable to \texttt{true}. This is already the case by default in SSS.
 
 \section{Keyboard Terminology}
-\label{sec:org8c950ea}
+\label{sec:org1f612c5}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -377,15 +377,17 @@ term & meaning\\[0pt]
 \texttt{S} & Shift key\\[0pt]
 \texttt{M} & Meta / Alt / Option key\\[0pt]
 \texttt{C} & Control key\\[0pt]
+\texttt{SPC} & Space key\\[0pt]
+\hline
 \end{tabular}
 \end{center}
 
 
 \section{Sway}
-\label{sec:org603c661}
+\label{sec:org936a76f}
 
 \subsection{General keybindings}
-\label{sec:org7d40826}
+\label{sec:orgc5a94bd}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -394,18 +396,25 @@ keybind & command\\[0pt]
 \texttt{s-k} & Kill/Close a window or application\\[0pt]
 \texttt{s-S-c} & Reload Sway configuration\\[0pt]
 \texttt{s-l} & Lock screen\\[0pt]
+\texttt{s-1..9} & Move focus to workspace 1..9\\[0pt]
+\texttt{s-S-1..9} & Move window to workspace 1..9\\[0pt]
+\texttt{s-v} & Vertical splits\\[0pt]
+\texttt{s-h} & Horizontal splits\\[0pt]
+\texttt{s-S-SPC} & Toggle floating/tiling mode for window\\[0pt]
+ & \\[0pt]
+\hline
 \end{tabular}
 \end{center}
 
 \subsection{Application keybindings}
-\label{sec:orgb5be87f}
+\label{sec:org2839f87}
 
 
 \begin{center}
 \begin{tabular}{ll}
 keybind & command\\[0pt]
 \hline
-\texttt{s-/} & Launch application fuzzy finder menu\\[0pt]
+\texttt{s-/} & Launch application fuzzy finder menu (Rofi)\\[0pt]
 \texttt{s-i} & Open a Web Browser (Qutebrowser)\\[0pt]
 \texttt{s-S-i} & Open a bloated Web Browser (Chrome)\\[0pt]
 \texttt{s-RET} & Open a terminal emulator (Foot)\\[0pt]
@@ -417,7 +426,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{Screenshot keybindings}
-\label{sec:org1e0e211}
+\label{sec:orgf73a067}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -425,14 +434,15 @@ keybind & command\\[0pt]
 \hline
 \texttt{s-S-.} & \textbf{Copy} screenshot of entire screen\\[0pt]
 \texttt{s-.} & \textbf{Save} screenshot of entire screen\\[0pt]
+ & \\[0pt]
 \hline
 \end{tabular}
 \end{center}
 \section{Emacs}
-\label{sec:orge981cbc}
+\label{sec:org75a8bb4}
 
 \subsection{General non-vanilla bindings}
-\label{sec:org8027e2b}
+\label{sec:orgf674581}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -441,11 +451,12 @@ keybind & command\\[0pt]
 \texttt{M-s r} & consult-ripgrep\\[0pt]
 \texttt{M-s o} & consult-occur\\[0pt]
  & \\[0pt]
+\hline
 \end{tabular}
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:org5bdbc59}
+\label{sec:orgbc95d6a}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -455,6 +466,7 @@ keybind & command\\[0pt]
 \texttt{C-c \# j} & Perform a joe rebuild\\[0pt]
 \texttt{C-c \# f} & Perform a system + joe rebuild\\[0pt]
  & \\[0pt]
+\hline
 \end{tabular}
 \end{center}
 \end{document}
