@@ -346,6 +346,23 @@ In practice this means that any user account in your system that wants to make u
 
 You will also want to set the ~RTC_USE_PIPEWIRE~ variable to ~true~. This is already the case by default in SSS.
 
+** Sway, resolutions and scaling
+
+Most of the times, Sway will have set the correct resolution and scale (fractional) for your device. This also happens automatically when plugging in/out external monitors.
+
+You might want to customize things though, here follow some examples of commands I use daily for this:
+
+#+begin_src shell
+  # Set fractional scaling to 1.5x , perfect for my Framework laptop 13,5"
+  swaymsg -- output eDP-1 scale 1.5
+  # Set resolution to 4k and scale 2x
+  swaymsg -- output Virtual-1 mode --custom 3840x2160 scale 2
+  # Set resolution and refresh rate
+  swaymsg -- output HDMI-A-1 mode --custom 1680x1050@50
+  # 1080p
+  swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
+#+end_src
+
 ** Keyboard Terminology
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
