@@ -1,6 +1,13 @@
 #+title: bluetoothctl tips and tricks
 
 #+begin_src shell
-  bluetoothctl
-  power on
+  # Run bluetoothctl in a shell
+  user@host $ bluetoothctl
+  #  help
+
+  # then turn your bluethooth on:
+  #  power on
+
+  # scan for devices around you:
+  #  scan on
 #+end_src

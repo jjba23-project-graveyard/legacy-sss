@@ -139,6 +139,10 @@ Find here a reference configuration with what is required.
   ;; system keyboard layout
   (define sss-keyboard-layout "us")
 
+  ;; caps to control enabled
+  (define sss-keyboard-caps-to-ctrl
+    #t)
+
   ;; system hostname
   (define sss-hostname "gnusystem")
 
@@ -183,6 +187,7 @@ Find here a reference configuration with what is required.
   ;;
   (define-public sss-active-palette
     'sss-palette-ef-dream)
+
 
 #+end_src
 
@@ -298,7 +303,7 @@ Assuming ~joe~ as user in question.
 ~/nix/var/nix/profiles/per-user/~ should be:
 #+begin_example
 joe@guixvm ~ λ  ll /nix/var/nix/profiles/per-user/
-totaal 20K
+
 drwxr-xr-x 2 joe  users  16K 29 dec 23:09 joe/
 drwxr-xr-x 2 root root  4,0K 22 nov 13:23 root/
 #+end_example
@@ -306,8 +311,8 @@ drwxr-xr-x 2 root root  4,0K 22 nov 13:23 root/
 For this, make the directory an link it to your home.
 
 #+begin_src sh
-  sudo mkdir -p /nix/var/nix/profiles/per-user/joe/profile
-  sudo chown -R /nix/var/nix/profiles/per-user/joe
+  sudo mkdir -p /nix/var/nix/profiles/per-user/joe
+  sudo chown -R joe:users /nix/var/nix/profiles/per-user/joe
   ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile
 #+end_src
 
@@ -334,6 +339,20 @@ You can keep your Nix packages updated by running:
 
 The installed software will be available, for example at: ~/home/joe/.nix-profile/bin/~
 
+SSS provides some scripts that allow you to maintain your Nix configuration and installed packages programatically, see the Makefile.
+
+You will then need a file ~nixpkgs-list.scm~. See the root of the repo.
+
+#+begin_src scheme
+    ;; Nix packages to install
+  (define-public sss-nixpkgs '("yaml-language-server"
+                               "bash-language-server"
+                               
+                               "mermaid-cli"
+                               "jetbrains.idea-community"
+                               ))
+#+end_src
+
 ** SSS Project
 
 Find the [[file:../Project management/README.org][project management of SSS here]]
@@ -345,6 +364,35 @@ SSS favors modern technologies and thus makes use of Pipewire for all your GNU/L
 In practice this means that any user account in your system that wants to make use of audio, should have the  ~(service home-dbus-service-type)~ and ~(service home-pipewire-service-type)~ services enabled for their account (yes per-user basis).
 
 You will also want to set the ~RTC_USE_PIPEWIRE~ variable to ~true~. This is already the case by default in SSS.
+
+** Sway, resolutions and scaling
+
+Most of the times, Sway will have set the correct resolution and scale (fractional) for your device. This also happens automatically when plugging in/out external monitors.
+
+You might want to customize things though, here follow some examples of commands I use daily for this:
+
+#+begin_src shell
+  # Set fractional scaling to 1.5x , perfect for my Framework laptop 13,5"
+  swaymsg -- output eDP-1 scale 1.5
+  # Set resolution to 4k and scale 2x
+  swaymsg -- output Virtual-1 mode --custom 3840x2160 scale 2
+  # Set resolution and refresh rate
+  swaymsg -- output HDMI-A-1 mode --custom 1680x1050@50
+  # 1080p
+  swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
+#+end_src
+
+** Wallpapers
+
+SSS automatically loads at startup a matching wallpaper for the currently enabled theme.
+
+This uses swww and thus can load animated images as well and do fancy transitions.
+
+TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
+
+** SSH, Git
+
+SSS is automatically configured with SSH setup, and multi-user Git setup.
 
 ** Keyboard Terminology
 
@@ -391,12 +439,13 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 | ~s--~     | Open password manager (1password)           |
 |         |                                             |
 |---------+---------------------------------------------|
-*** Screenshot keybindings
+*** More keybindings
 
 | keybind | command                          |
 |---------+----------------------------------|
 | ~s-S-.~   | *Copy* screenshot of entire screen |
 | ~s-.~     | *Save* screenshot of entire screen |
+| ~s-S-b~   | Set wallpaper to theme's default |
 |         |                                  |
 |---------+----------------------------------|
 ** Emacs

@@ -27,6 +27,7 @@
   #:use-module (gnu packages terminals)
   #:use-module (gnu packages admin)
   #:use-module (gnu home services shepherd)
+  #:use-module (gnu system keyboard)
   #:use-module (guix gexp)
   #:use-module (sss-packages)
   #:use-module (gnu home services sway)
@@ -61,13 +62,12 @@
 
 (define* (sss-sway-startup-programs #:key (wallpaper-setter ""))
   `("lxsession" "mako"
-    "emacs --daemon"
     "dbus-update-activation-environment --all"
+    "emacs --daemon"
     "waybar"
-    "transmission-daemon"
     "foot -s"
-    "swww-daemon"
-    ,(format #f "sleep 2 && ~a" wallpaper-setter)))
+    "transmission-daemon"
+    ,(format #f "swww-daemon & sleep 1 && ~a" wallpaper-setter)))
 
 (define sss-sway-startup-reload-programs
   (let ((gtk-theme-name (cond
@@ -97,35 +97,42 @@
                        )))
   (export sss-sway-outputs))
 
-(define-public sss-sway-variables
-  `((mod . "Mod4") (left . "Left")
-    (down . "Down")
-    (up . "Up")
-    (right . "Right")
-    (gnome-schema . "org.gnome.desktop.interface")
-    (editor . "emacsclient -c")
-    (bloated-browser . "google-chrome")
-    (browser . "QT_QPA_PLATFORM=xcb qutebrowser")
-    (term . "footclient")
-    (password-manager . "/home/joe/.nix-profile/bin/1password")
-    (locker unquote
-            (string-join '("swaylock" "--screenshots"
-                           "--clock"
-                           "--indicator"
-                           "--indicator-radius 100"
-                           "--indicator-thickness 7"
-                           "--effect-blur 7x5"
-                           "--effect-vignette 0.5:0.5"
-                           "--ring-color bb00cc"
-                           "--key-hl-color 880033"
-                           "--line-color 00000000"
-                           "--inside-color 00000088"
-                           "--separator-color 00000000"
-                           "--grace 2"
-                           "--fade-in 0.2") " "))
-    (menu . "rofi -show drun")
-    (runner . "rofi -show run")
-    (windower . "rofi -show window")))
+(begin
+  (define* (sss-sway-variables #:key sss-clone-dir)
+    `((mod . "Mod4") (left . "Left")
+      (down . "Down")
+      (up . "Up")
+      (right . "Right")
+      (gnome-schema . "org.gnome.desktop.interface")
+      (editor . "emacsclient -c")
+      (bloated-browser . "google-chrome")
+      (browser . "QT_QPA_PLATFORM=xcb qutebrowser")
+      (term . "footclient")
+      (wallpaper-setter unquote
+                        (format #f
+                         "swww img ~a --transition-step 10 --transition-fps 30 --transition-type center"
+
+                         (sss-sway-wallpaper #:sss-clone-dir sss-clone-dir)))
+      (password-manager . "/home/joe/.nix-profile/bin/1password")
+      (locker unquote
+              (string-join '("swaylock" "--screenshots"
+                             "--clock"
+                             "--indicator"
+                             "--indicator-radius 100"
+                             "--indicator-thickness 7"
+                             "--effect-blur 7x5"
+                             "--effect-vignette 0.5:0.5"
+                             "--ring-color bb00cc"
+                             "--key-hl-color 880033"
+                             "--line-color 00000000"
+                             "--inside-color 00000088"
+                             "--separator-color 00000000"
+                             "--grace 2"
+                             "--fade-in 0.2") " "))
+      (menu . "rofi -show drun")
+      (runner . "rofi -show run")
+      (windower . "rofi -show window")))
+  (export sss-sway-variables))
 
 (define sss-sway-modes
   (list (sway-mode (mode-name "resize")
@@ -142,6 +149,7 @@
     ($mod+period . "exec grimshot save")
     ($mod+k . "kill")
     ($mod+l . "exec $locker")
+    ($mod+Shift+b . "exec $wallpaper-setter")
     ($mod+slash . "exec $menu")
     ($mod+i . "exec $browser")
     ($mod+Shift+i . "exec $bloated-browser")
@@ -202,6 +210,15 @@
                      "-B 'Yes, exit sway' \\\n    '"
                      #$sway
                      "/bin/swaymsg exit'"))
+    (XF86MonBrightnessDown . "exec sudo light -U 3")
+    (XF86MonBrightnessUp . "exec sudo light -A 3")
+    (XF86AudioRaiseVolume . "exec pactl set-sink-volume @DEFAULT_SINK@ +5%")
+    (XF86AudioLowerVolume . "exec pactl set-sink-volume @DEFAULT_SINK@ -5%")
+    (XF86AudioMute . "exec pactl set-sink-mute @DEFAULT_SINK@ toggle")
+    (XF86AudioMicMute . "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle")
+    (XF86AudioPlay . "exec playerctl play-pause")
+    (XF86AudioNext . "exec playerctl next")
+    (XF86AudioPrev . "exec playerctl previous")
     ($mod+Shift+r . "mode \"resize\"")))
 
 (define sss-swayfx-config
@@ -255,7 +272,8 @@
     ,(format #f "seat seat0 xcursor_theme ~a ~a" "Yaru" "24")))
 
 (begin
-  (define* (sss-sway-service-type #:key sss-clone-dir)
+  (define* (sss-sway-service-type #:key sss-clone-dir sss-keyboard-layout
+                                  sss-keyboard-caps-to-ctrl)
     (service home-sway-service-type
              (sway-configuration (packages (list swayfx))
                                  (gestures sss-sway-gestures)
@@ -263,7 +281,7 @@
                                                                               #:wallpaper-setter
                                                                               (format
                                                                                #f
-                                                                               "swww img ~a --transition-step 12 --transition-fps 30 --transition-type center"
+                                                                               "swww img ~a --transition-step 10 --transition-fps 30 --transition-type center"
 
                                                                                
                                                                                (sss-sway-wallpaper
@@ -273,7 +291,24 @@
                                   sss-sway-startup-reload-programs)
                                  (outputs (sss-sway-outputs #:sss-clone-dir
                                                             sss-clone-dir))
-                                 (variables sss-sway-variables)
+                                 (inputs (list (sway-input (identifier
+                                                            "type:keyboard")
+                                                           (layout (keyboard-layout
+                                                                    sss-keyboard-layout
+                                                                    #:options (cond
+                                                                                
+                                                                                
+                                                                                (sss-keyboard-caps-to-ctrl '
+                                                                                 ("ctrl:nocaps"))
+
+                                                                                
+                                                                                (else '())))))
+                                               (sway-input (identifier
+                                                            "type:touchpad")
+                                                           (tap #t))))
+                                 (variables (sss-sway-variables
+                                                                #:sss-clone-dir
+                                                                sss-clone-dir))
                                  (modes sss-sway-modes)
                                  (keybindings sss-sway-keybindings)
                                  (extra-content (append sss-swayfx-config
@@ -284,18 +319,4 @@
                                                   sss-sway-floating-windows)
                                                  sss-sway-extra-content)))))
   (export sss-sway-service-type))
-
-;; #~(string-append
-;; #$swayidle "/bin/swayidle -w \\\n    "
-;; ;; 300: lock screen.
-;; "timeout 300 '" #$swaylock "/bin/swaylock "
-;; "--indicator-radius 75 \\\n    "
-;; "-i " #$sway
-;; #$sss-sway-wallpaper " \\\n    "
-;; "-f -c 000000' \\\n    "
-;; ;; 600: lock + screen off.
-;; "timeout 600 '" #$sway "/bin/swaymsg \"output * power off\"' \\\n    "
-;; ;; Resume + sleep.
-;; "resume '" #$sway "/bin/swaymsg \"output * power on\"' \\\n    "
-;; "before-sleep '" #$swaylock "/bin/swaylock -f -c 000000'")
 

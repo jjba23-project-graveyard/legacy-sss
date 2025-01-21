@@ -43,6 +43,10 @@
 (define sss-keyboard-layout
   "us")
 
+;; caps to control enabled
+(define sss-keyboard-caps-to-ctrl
+  #t)
+
 ;; system hostname
 (define sss-hostname
   "gnusystem")
@@ -58,6 +62,9 @@
 ;; active system color palette (overridden by per-host)
 (define-public sss-active-palette
   'sss-palette-ef-dream)
+
+;; Nix packages to install
+(define-public sss-nixpkgs '())
 
 ;;;
 ;;; end SSS defaults section

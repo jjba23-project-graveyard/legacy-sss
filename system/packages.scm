@@ -719,7 +719,7 @@ SQL databases.  This package implements the interface for SQLite.")))
       (license license:gpl3+))))
 
 (define sss-guile-packages
-  (list artanis-next
+  (list artanis
         guile-fibers
         guile-g-golf
         guile-json-4
