@@ -62,13 +62,12 @@
 
 (define* (sss-sway-startup-programs #:key (wallpaper-setter ""))
   `("lxsession" "mako"
-    "emacs --daemon"
     "dbus-update-activation-environment --all"
+    "emacs --daemon"
     "waybar"
-    "transmission-daemon"
     "foot -s"
-    "swww-daemon"
-    ,(format #f "sleep 2 && ~a" wallpaper-setter)))
+    "transmission-daemon"
+    ,(format #f "swww-daemon & sleep 1 && ~a" wallpaper-setter)))
 
 (define sss-sway-startup-reload-programs
   (let ((gtk-theme-name (cond
@@ -98,35 +97,42 @@
                        )))
   (export sss-sway-outputs))
 
-(define-public sss-sway-variables
-  `((mod . "Mod4") (left . "Left")
-    (down . "Down")
-    (up . "Up")
-    (right . "Right")
-    (gnome-schema . "org.gnome.desktop.interface")
-    (editor . "emacsclient -c")
-    (bloated-browser . "google-chrome")
-    (browser . "QT_QPA_PLATFORM=xcb qutebrowser")
-    (term . "footclient")
-    (password-manager . "/home/joe/.nix-profile/bin/1password")
-    (locker unquote
-            (string-join '("swaylock" "--screenshots"
-                           "--clock"
-                           "--indicator"
-                           "--indicator-radius 100"
-                           "--indicator-thickness 7"
-                           "--effect-blur 7x5"
-                           "--effect-vignette 0.5:0.5"
-                           "--ring-color bb00cc"
-                           "--key-hl-color 880033"
-                           "--line-color 00000000"
-                           "--inside-color 00000088"
-                           "--separator-color 00000000"
-                           "--grace 2"
-                           "--fade-in 0.2") " "))
-    (menu . "rofi -show drun")
-    (runner . "rofi -show run")
-    (windower . "rofi -show window")))
+(begin
+  (define* (sss-sway-variables #:key sss-clone-dir)
+    `((mod . "Mod4") (left . "Left")
+      (down . "Down")
+      (up . "Up")
+      (right . "Right")
+      (gnome-schema . "org.gnome.desktop.interface")
+      (editor . "emacsclient -c")
+      (bloated-browser . "google-chrome")
+      (browser . "QT_QPA_PLATFORM=xcb qutebrowser")
+      (term . "footclient")
+      (wallpaper-setter unquote
+                        (format #f
+                         "swww img ~a --transition-step 10 --transition-fps 30 --transition-type center"
+
+                         (sss-sway-wallpaper #:sss-clone-dir sss-clone-dir)))
+      (password-manager . "/home/joe/.nix-profile/bin/1password")
+      (locker unquote
+              (string-join '("swaylock" "--screenshots"
+                             "--clock"
+                             "--indicator"
+                             "--indicator-radius 100"
+                             "--indicator-thickness 7"
+                             "--effect-blur 7x5"
+                             "--effect-vignette 0.5:0.5"
+                             "--ring-color bb00cc"
+                             "--key-hl-color 880033"
+                             "--line-color 00000000"
+                             "--inside-color 00000088"
+                             "--separator-color 00000000"
+                             "--grace 2"
+                             "--fade-in 0.2") " "))
+      (menu . "rofi -show drun")
+      (runner . "rofi -show run")
+      (windower . "rofi -show window")))
+  (export sss-sway-variables))
 
 (define sss-sway-modes
   (list (sway-mode (mode-name "resize")
@@ -143,6 +149,7 @@
     ($mod+period . "exec grimshot save")
     ($mod+k . "kill")
     ($mod+l . "exec $locker")
+    ($mod+Shift+b . "exec $wallpaper-setter")
     ($mod+slash . "exec $menu")
     ($mod+i . "exec $browser")
     ($mod+Shift+i . "exec $bloated-browser")
@@ -299,7 +306,9 @@
                                                (sway-input (identifier
                                                             "type:touchpad")
                                                            (tap #t))))
-                                 (variables sss-sway-variables)
+                                 (variables (sss-sway-variables
+                                                                #:sss-clone-dir
+                                                                sss-clone-dir))
                                  (modes sss-sway-modes)
                                  (keybindings sss-sway-keybindings)
                                  (extra-content (append sss-swayfx-config
