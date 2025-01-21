@@ -534,6 +534,7 @@ more.")
         libltdl
         scenefx
         swayfx
+        light
 
         gdb
 
