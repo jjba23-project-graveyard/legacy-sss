@@ -28,6 +28,7 @@
 
 .PHONY: update system-reconfigure joe-reconfigure manon-reconfigure format jr fr sr mr fmt
 
+
 define sss-log-complete
 	@printf "\n\033[1m>>= $(shell date) - completed work on target %s\033[0m\n" $(1)
 endef
@@ -108,3 +109,13 @@ npu:
 	@make nix-profile-upgrade
 fmt:
 	@make format
+
+clone-user-repos:
+	guile --fresh-auto-compile lib/scripts/clone-user-repos.scm
+
+install-nix-packages:
+	guile --fresh-auto-compile lib/scripts/install-nix-packages.scm
+
+npi:
+	@make install-nix-packages
+

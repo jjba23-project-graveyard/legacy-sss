@@ -9,7 +9,7 @@
 @finalout
 @titlepage
 @title SSS/GNU system - Manual & Documentation
-@author Music Player Daemon (MPD) user
+@author Josep Bigorra
 @end titlepage
 
 @contents
@@ -55,6 +55,9 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 * Nix profile::
 * SSS Project::
 * System audio::
+* Sway, resolutions and scaling: Sway resolutions and scaling. 
+* Wallpapers::
+* SSH, Git: SSH Git. 
 * Keyboard Terminology::
 * Sway::
 * Emacs::
@@ -77,7 +80,7 @@ Sway
 
 * General keybindings::
 * Application keybindings::
-* Screenshot keybindings::
+* More keybindings::
 
 Emacs
 
@@ -221,63 +224,90 @@ It is @strong{REQUIRED} to include a @code{per-host.scm} in the root of this pro
 Find here a reference configuration with what is required.
 
 @example
-(use-modules (gnu)
-             (gnu packages))
+  (use-modules (gnu)
+               (gnu packages))
 
-;; system language
-(define sss-lang "en_US")
+  ;; system language
+  (define sss-lang "en_US")
 
-;; system timezone
-(define sss-timezone "Europe/Amsterdam")
+  ;; system timezone
+  (define sss-timezone "Europe/Amsterdam")
 
-;; system keyboard layout
-(define sss-keyboard-layout "us")
+  ;; system keyboard layout
+  (define sss-keyboard-layout "us")
 
-;; system hostname
-(define sss-hostname "gnusystem")
+  ;; caps to control enabled
+  (define sss-keyboard-caps-to-ctrl
+    #t)
 
-;; disk partitioning
-(define sss-filesystems
-  (list (file-system
-         (device "/dev/nvme0n1p3")
-         (mount-point "/")
-         (type "ext4"))
-        (file-system
-         (device "/dev/nvme0n1p1")
-         (mount-point "/boot/efi")
-         (type "vfat"))))
+  ;; system hostname
+  (define sss-hostname "gnusystem")
 
-;; packages that should only be installed in the current host
-;; or (define sss-per-host-packages '())
-(define sss-per-host-packages
-  (list
-   ;; AMD non-free drivers
-   (specification->package "amd-microcode")
-   (specification->package "amdgpu-firmware")
-   ;; Games
-   (specification->package "prismlauncher")
-   (specification->package "steam")))
+  ;; disk partitioning
+  (define sss-filesystems
+    (list (file-system
+           (device "/dev/nvme0n1p3")
+           (mount-point "/")
+           (type "ext4"))
+          (file-system
+           (device "/dev/nvme0n1p1")
+           (mount-point "/boot/efi")
+           (type "vfat"))))
 
-;; location where you cloned SSS Git repository
-(define sss-clone-dir
-  "/home/joe/Ontwikkeling/Persoonlijk/sss")
+  ;; packages that should only be installed in the current host
+  ;; or (define sss-per-host-packages '())
+  (define sss-per-host-packages
+    (list
+     ;; AMD non-free drivers
+     (specification->package "amd-microcode")
+     (specification->package "amdgpu-firmware")
+     ;; Games
+     (specification->package "prismlauncher")
+     (specification->package "steam")))
 
-;;
-;; Define the active palette for all users accounts
-;; You should reconfigure and ideally restart the system
-;; for all changes to take effect
-;;
-;; Note: You could choose on a per-user basis to set a fixed palette
-;; and not follow system wide, by just redefining this value
-;;
-;; Possible values are:
-;;   - sss-palette-ef-bio
-;;   - sss-palette-ef-cyprus
-;;   - sss-palette-ef-dream
-;;
-(define-public sss-active-palette
-  'sss-palette-ef-dream)
+  ;; location where you cloned SSS Git repository
+  (define sss-clone-dir
+    "/home/joe/Ontwikkeling/Persoonlijk/sss")
 
+  ;;
+  ;; Define the active palette for all users accounts
+  ;; You should reconfigure and ideally restart the system
+  ;; for all changes to take effect
+  ;;
+  ;; Note: You could choose on a per-user basis to set a fixed palette
+  ;; and not follow system wide, by just redefining this value
+  ;;
+  ;; Possible values are:
+  ;;   - sss-palette-ef-bio
+  ;;   - sss-palette-ef-cyprus
+  ;;   - sss-palette-ef-dream
+  ;;
+  (define-public sss-active-palette
+    'sss-palette-ef-dream)
+
+;; Nix packages to install
+(define-public sss-nixpkgs '("yaml-language-server"
+                             "bash-language-server"
+                             "monaspace"
+                             "jdt-language-server"
+                             "nil"
+                             "black"
+                             "pyright"
+                             "marksman"
+                             "_1password-gui"
+                             "_1password-cli"
+                             "stack"
+                             "sbt"
+                             "scala_2_13"
+                             "firefox"
+                             "thunderbird"
+                             "postman"
+                             "vscode-langservers-extracted"
+                             "nwg-look"
+                             "krew"
+                             "mermaid-cli"
+                             "jetbrains.idea-community"
+                             ))
 @end example
 
 @node Bootstrapping
@@ -402,7 +432,7 @@ Assuming @code{joe} as user in question.
 @code{/nix/var/nix/profiles/per-user/} should be:
 @example
 joe@@guixvm ~ λ  ll /nix/var/nix/profiles/per-user/
-totaal 20K
+
 drwxr-xr-x 2 joe  users  16K 29 dec 23:09 joe/
 drwxr-xr-x 2 root root  4,0K 22 nov 13:23 root/
 @end example
@@ -410,8 +440,8 @@ drwxr-xr-x 2 root root  4,0K 22 nov 13:23 root/
 For this, make the directory an link it to your home.
 
 @example
-sudo mkdir -p /nix/var/nix/profiles/per-user/joe/profile
-sudo chown -R /nix/var/nix/profiles/per-user/joe
+sudo mkdir -p /nix/var/nix/profiles/per-user/joe
+sudo chown -R joe:users /nix/var/nix/profiles/per-user/joe
 ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile
 @end example
 
@@ -438,6 +468,8 @@ NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 
 The installed software will be available, for example at: @code{/home/joe/.nix-profile/bin/}
 
+SSS provides some scripts that allow you to maintain your Nix configuration and installed packages programatically, see the Makefile.
+
 @node SSS Project
 @chapter SSS Project
 
@@ -451,6 +483,38 @@ SSS favors modern technologies and thus makes use of Pipewire for all your GNU/L
 In practice this means that any user account in your system that wants to make use of audio, should have the  @code{(service home-dbus-service-type)} and @code{(service home-pipewire-service-type)} services enabled for their account (yes per-user basis).
 
 You will also want to set the @code{RTC_USE_PIPEWIRE} variable to @code{true}. This is already the case by default in SSS@.
+
+@node Sway resolutions and scaling
+@chapter Sway, resolutions and scaling
+
+Most of the times, Sway will have set the correct resolution and scale (fractional) for your device. This also happens automatically when plugging in/out external monitors.
+
+You might want to customize things though, here follow some examples of commands I use daily for this:
+
+@example
+# Set fractional scaling to 1.5x , perfect for my Framework laptop 13,5"
+swaymsg -- output eDP-1 scale 1.5
+# Set resolution to 4k and scale 2x
+swaymsg -- output Virtual-1 mode --custom 3840x2160 scale 2
+# Set resolution and refresh rate
+swaymsg -- output HDMI-A-1 mode --custom 1680x1050@@50
+# 1080p
+swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
+@end example
+
+@node Wallpapers
+@chapter Wallpapers
+
+SSS automatically loads at startup a matching wallpaper for the currently enabled theme.
+
+This uses swww and thus can load animated images as well and do fancy transitions.
+
+TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
+
+@node SSH Git
+@chapter SSH, Git
+
+SSS is automatically configured with SSH setup, and multi-user Git setup.
 
 @node Keyboard Terminology
 @chapter Keyboard Terminology
@@ -478,7 +542,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 @menu
 * General keybindings::
 * Application keybindings::
-* Screenshot keybindings::
+* More keybindings::
 @end menu
 
 @node General keybindings
@@ -531,8 +595,8 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 @tab 
 @end multitable
 
-@node Screenshot keybindings
-@section Screenshot keybindings
+@node More keybindings
+@section More keybindings
 
 @multitable {aaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
 @headitem keybind
@@ -541,6 +605,8 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 @tab @strong{Copy} screenshot of entire screen
 @item @code{s-.}
 @tab @strong{Save} screenshot of entire screen
+@item @code{s-S-b}
+@tab Set wallpaper to theme's default
 @item 
 @tab 
 @end multitable

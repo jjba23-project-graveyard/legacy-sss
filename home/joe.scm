@@ -58,6 +58,9 @@
 (define-public sss-active-palette
   'sss-palette-ef-dream)
 
+;; Nix packages to install
+(define-public sss-nixpkgs '())
+
 ;;;
 ;;; end SSS defaults section
 ;;;
