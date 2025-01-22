@@ -1,35 +1,37 @@
 
 # Table of Contents
 
-1.  [What lies here?](#org2f99613)
-    1.  [An operating system (OS) configured in Scheme](#orgfc83a3d)
-    2.  [Joe's Emacs configuration](#orgd8b2522)
-2.  [Why ?](#org1b73be6)
-3.  [What is Guix](#orge06be2b)
-4.  [Non-free software](#org1331645)
-5.  [How this manual works](#org596af82)
-6.  [Customizations](#orgf7d770c)
-7.  [Per host - per-host.scm](#org6d8d6f1)
-8.  [Bootstrapping](#org5c812e4)
-    1.  [Guix Install tips](#org8eef9f9)
-    2.  [After install](#org73cd078)
-    3.  [On login managers, and login screens](#org4cc2bd4)
-9.  [Nix profile](#org877a2b2)
-10. [SSS Project](#org2af08ee)
-11. [System audio](#orgda11196)
-12. [Sway, resolutions and scaling](#orgb29f22b)
-13. [Wallpapers](#orgf47b872)
-14. [SSH, Git](#org5081e52)
-15. [Disk space](#orgd33a43c)
-16. [Bluetooth](#org0e16c76)
-17. [Keyboard Terminology](#orgfdcab5f)
-18. [Sway](#orgc8c058f)
-    1.  [General keybindings](#orgae93883)
-    2.  [Application keybindings](#orge108318)
-    3.  [More keybindings](#org17213d1)
-19. [Emacs](#orgd173633)
-    1.  [General non-vanilla bindings](#orgfdbc317)
-    2.  [SSS specific keybindings](#org911640c)
+1.  [What lies here?](#org9307fc5)
+    1.  [An operating system (OS) configured in Scheme](#orgc2eac4a)
+    2.  [Joe's Emacs configuration](#orgfb04110)
+2.  [Why ?](#org24b6d43)
+3.  [What is Guix](#org4912e29)
+4.  [On Non-free software](#org625396e)
+5.  [Keyboard Terminology](#orge6a880d)
+6.  [How this manual works](#orgfc7928b)
+7.  [Customizing SSS](#org42ae81a)
+8.  [Per host - per-host.scm](#org0efdf02)
+9.  [Bootstrapping](#org1e1e49a)
+    1.  [Guix Install tips](#org02aa2f3)
+    2.  [Installing SSS on Guix](#org3b9cedb)
+    3.  [On login managers, and login screens](#org1095566)
+10. [Nix profile](#orgd4562c4)
+11. [SSS Project](#org27f2ad0)
+12. [System audio](#org992e6dc)
+13. [Sway, resolutions and scaling](#orgfb32295)
+14. [Wallpapers](#org53d486b)
+15. [SSH, Git](#org2430657)
+16. [Disk space](#org3b9e083)
+17. [Bluetooth](#org3ec8ea6)
+18. [Sway keybindings](#org86dd64d)
+    1.  [General keybindings](#org62c6a36)
+    2.  [Application keybindings](#org6ad2927)
+    3.  [More keybindings](#org2f4508b)
+19. [Emacs keybindings](#org8f0f1f3)
+    1.  [General non-vanilla bindings](#org0d26c81)
+    2.  [SSS specific keybindings](#org2a50f9d)
+20. [Glossary](#orgd402d27)
+21. [Acronyms](#orgd2ec71b)
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
@@ -39,11 +41,11 @@ SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me
 
 If you like my work, please support me by [buying me a cup of coffee](https://bmc.link/jjbigorra) so I can continue with a lot of motivation.
 
-This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
+This custom GNU + Linux setup lets you customize everything endlessly, inspires creativity and problem-solving, and gives you a great user experience. This is partly thanks to the REPL (Read Eval Print Loop) and Lisp programming languages.
 
-Installing and managing SSS is not intended for beginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
+Installing and managing SSS is not meant for people new to GNU/Linux systems. You should already have some experience using them. Knowing Lisp dialects is also a big help.
 
-SSS strives to have all things configured via Lisp dialects when possible and convenient, staying accessible to all kinds of users, and allowing for magical things to happen.
+SSS tries to set up everything using Lisp dialects whenever it makes sense and is easy to do. This keeps it user-friendly and lets you do some amazing things.
 
 ![img](../../resources/images/dall-e-3-thumb.png)
 
@@ -56,12 +58,12 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 ![img](../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png)
 
 
-<a id="org2f99613"></a>
+<a id="org9307fc5"></a>
 
 # What lies here?
 
 
-<a id="orgfc83a3d"></a>
+<a id="orgc2eac4a"></a>
 
 ## An operating system (OS) configured in Scheme
 
@@ -77,7 +79,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 -   Theme palettes that affect the entire system
 
 
-<a id="orgd8b2522"></a>
+<a id="orgfb04110"></a>
 
 ## Joe's Emacs configuration
 
@@ -86,7 +88,7 @@ An operating system unto itself.
 -   Advanced Emacs configurations with Emacs Lisp + Elpaca
 
 
-<a id="org1b73be6"></a>
+<a id="org24b6d43"></a>
 
 # Why ?
 
@@ -98,25 +100,19 @@ I am currently working on the GNU operating system in order to create a secure l
 
 I refer to SSS lovingly as the modern Lisp machine. With this one obtains a computing style and programming environment that can be referred to as Lisp user space. This is a modern iteration of the Lisp machines of yore.
 
-Staying as libre as possible, any of the system's application code can be made available to you at any time.
-
-You can be aware of all the code that is running on your machine, which puts GNU among the most secure operating systems on Earth.
+You can be aware of all the code that is running on your machine, which puts free GNU systems among the most secure operating systems on Earth.
 
 Learning Lisps is really going down a rabbit hole, but trust me, you will come out with a better understanding of programming as a whole out the other end.
-
-Secure yourself against malevolent state actors and never trust someone else's unverified binaries again, as you can build from the source all the way down.
 
 Lisp user space provides an introspective, hackable, and transactionable operating system that can be modified live in a REPL.
 
 The lines between data and code fade, allowing insane flexibility and power.
 
-Lisp user space is centered on text-based user interfaces instead of graphical user interfaces, and can be mostly used without a mouse, which makes it easier to use for people living with disabilities as well as power users.
+Lisp user space is centered on accessible interfaces that are mostly text-based, and can be mostly used without a mouse, which makes it easier to use for people living with disabilities as well as power users.
 
 All of the system can be inspected and most of it can be hacked live in a REPL, making it a pure expression of the libre software ethic, and an incredibly versatile tool for a skilled programmer.
 
 In some ways this is a laboratory of experimentation for my computing environment. What I do with any other program that forms part of SSS is only meant to work for me. As such, I will try to maintain backwards compatibility and consistency, but I may introduce breaking changes without prior notice.
-
-This is all to say that you understand the risks associated with tracking an ever-changing project that does not enjoy widespread testing and whose target audience is only me. If you are fine with that and are willing to assume responsibility for any possible breakage, then please feel welcome to follow along. You can always open an issue here, contact me, or contribute any fixes, if you will.
 
 This configuration is somewhat biased towards containing a `joe` user who also acts as administrator for most of the time. This is trivial to change and should be easy to adapt to your needs. Your mileage may vary (YMMV).
 
@@ -125,7 +121,7 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="orge06be2b"></a>
+<a id="org4912e29"></a>
 
 # What is Guix
 
@@ -136,9 +132,9 @@ While you can install GNU Guix on top of an existing GNU/Linux system where it c
 I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: <https://guix.gnu.org/manual/en/html_node/>.
 
 
-<a id="org1331645"></a>
+<a id="org625396e"></a>
 
-# Non-free software
+# On Non-free software
 
 SSS attempts to stay as libre as possible, while also respecting your convenience.
 
@@ -148,7 +144,61 @@ This means, among other things that SSS:
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="org596af82"></a>
+<a id="orge6a880d"></a>
+
+# Keyboard Terminology
+
+When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">term</th>
+<th scope="col" class="org-left">meaning</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left"><code>s</code></td>
+<td class="org-left">Super / Windows / CMD key</td>
+</tr>
+
+
+<tr>
+<td class="org-left"><code>S</code></td>
+<td class="org-left">Shift key</td>
+</tr>
+
+
+<tr>
+<td class="org-left"><code>M</code></td>
+<td class="org-left">Meta / Alt / Option key</td>
+</tr>
+
+
+<tr>
+<td class="org-left"><code>C</code></td>
+<td class="org-left">Control key</td>
+</tr>
+
+
+<tr>
+<td class="org-left"><code>SPC</code></td>
+<td class="org-left">Space key</td>
+</tr>
+</tbody>
+</table>
+
+
+<a id="orgfc7928b"></a>
 
 # How this manual works
 
@@ -160,9 +210,9 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Run `C-c # m` from Emacs, which runs lib/sss-manual.el, exporting the Org document to several other formats (LaTEX, PDF, HTML, Markdown, etc.)
 
 
-<a id="orgf7d770c"></a>
+<a id="org42ae81a"></a>
 
-# Customizations
+# Customizing SSS
 
 SSS supports several user customizations, more specifically:
 
@@ -171,7 +221,7 @@ Several color palettes, inspired by the great \`ef-themes\` by Protesilaos Stavr
 Find Prot's themes here: <https://github.com/protesilaos/ef-themes>
 
 
-<a id="org6d8d6f1"></a>
+<a id="org0efdf02"></a>
 
 # Per host - per-host.scm
 
@@ -240,7 +290,7 @@ Find here a reference configuration with what is required.
       'sss-palette-ef-dream)
 
 
-<a id="org5c812e4"></a>
+<a id="org1e1e49a"></a>
 
 # Bootstrapping
 
@@ -257,7 +307,7 @@ It is highly recommended to first become familiar with SSS and Guix via a *throw
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
 
-<a id="org8eef9f9"></a>
+<a id="org02aa2f3"></a>
 
 ## Guix Install tips
 
@@ -279,9 +329,11 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: <https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual>.
 
 
-<a id="org73cd078"></a>
+<a id="org3b9cedb"></a>
 
-## After install
+## Installing SSS on Guix
+
+Once you have a working Guix base installation on your machine, you are ready to go about installing SSS.
 
 Add `nonguix` in your channels file (`$HOME/.config/guix/channels.scm`). This will later be overwritten by SSS.
 
@@ -329,7 +381,7 @@ You might at this point want to reset the font cache for the system and user.
 You can then reboot and you should be greeted by a simple TTY.
 
 
-<a id="org4cc2bd4"></a>
+<a id="org1095566"></a>
 
 ## On login managers, and login screens
 
@@ -343,7 +395,7 @@ Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's comput
 If you run traditional X11 sessions, you could choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 
 
-<a id="org877a2b2"></a>
+<a id="orgd4562c4"></a>
 
 # Nix profile
 
@@ -401,14 +453,14 @@ Installing all wanted Nix packages can be done with `make npi` for example and u
                                  ))
 
 
-<a id="org2af08ee"></a>
+<a id="org27f2ad0"></a>
 
 # SSS Project
 
 Find the [project management of SSS here](../Project management/README.md)
 
 
-<a id="orgda11196"></a>
+<a id="org992e6dc"></a>
 
 # System audio
 
@@ -419,7 +471,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the `RTC_USE_PIPEWIRE` variable to `true`. This is already the case by default in SSS.
 
 
-<a id="orgb29f22b"></a>
+<a id="orgfb32295"></a>
 
 # Sway, resolutions and scaling
 
@@ -437,25 +489,25 @@ You might want to customize things though, here follow some examples of commands
     swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
 
 
-<a id="orgf47b872"></a>
+<a id="org53d486b"></a>
 
 # Wallpapers
 
 SSS automatically loads at startup a matching wallpaper for the currently enabled theme.
 
-This uses swww and thus can load animated images as well and do fancy transitions.
+This uses swww and thus can load animated images as well and do fancy transitions. If you have bugs loading wallpaper at startup, try reloading the wallpaper with `s-S-b`.
 
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
 
-<a id="org5081e52"></a>
+<a id="org2430657"></a>
 
 # SSH, Git
 
 SSS is automatically configured with SSH setup, and multi-user Git setup.
 
 
-<a id="orgd33a43c"></a>
+<a id="org3b9e083"></a>
 
 # Disk space
 
@@ -479,7 +531,7 @@ If you'd like to find the largest files in your disk, here’s an example comman
     du -ah / | sort -rh | head -n 20
 
 
-<a id="org0e16c76"></a>
+<a id="org3ec8ea6"></a>
 
 # Bluetooth
 
@@ -517,66 +569,12 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
     # exit
 
 
-<a id="orgfdcab5f"></a>
+<a id="org86dd64d"></a>
 
-# Keyboard Terminology
-
-When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+# Sway keybindings
 
 
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">term</th>
-<th scope="col" class="org-left">meaning</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td class="org-left"><code>s</code></td>
-<td class="org-left">Super / Windows / CMD key</td>
-</tr>
-
-
-<tr>
-<td class="org-left"><code>S</code></td>
-<td class="org-left">Shift key</td>
-</tr>
-
-
-<tr>
-<td class="org-left"><code>M</code></td>
-<td class="org-left">Meta / Alt / Option key</td>
-</tr>
-
-
-<tr>
-<td class="org-left"><code>C</code></td>
-<td class="org-left">Control key</td>
-</tr>
-
-
-<tr>
-<td class="org-left"><code>SPC</code></td>
-<td class="org-left">Space key</td>
-</tr>
-</tbody>
-</table>
-
-
-<a id="orgc8c058f"></a>
-
-# Sway
-
-
-<a id="orgae93883"></a>
+<a id="org62c6a36"></a>
 
 ## General keybindings
 
@@ -652,7 +650,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orge108318"></a>
+<a id="org6ad2927"></a>
 
 ## Application keybindings
 
@@ -722,7 +720,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org17213d1"></a>
+<a id="org2f4508b"></a>
 
 ## More keybindings
 
@@ -768,12 +766,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgd173633"></a>
+<a id="org8f0f1f3"></a>
 
-# Emacs
+# Emacs keybindings
 
 
-<a id="orgfdbc317"></a>
+<a id="org0d26c81"></a>
 
 ## General non-vanilla bindings
 
@@ -813,7 +811,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org911640c"></a>
+<a id="org2a50f9d"></a>
 
 ## SSS specific keybindings
 
@@ -857,4 +855,35 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </tr>
 </tbody>
 </table>
+
+
+<a id="orgd402d27"></a>
+
+# Glossary
+
+-   ****GNU/Linux****: A free and open-source operating system combining the GNU system and the Linux kernel.
+-   ****Lisp Machine****: A type of computer optimized for running Lisp, a family of programming languages.
+-   ****GNU Guix****: A functional package management tool and standalone distribution of the GNU system.
+-   ****REPL (Read Eval Print Loop)****: An interactive programming environment for evaluating code and seeing immediate results.
+-   ****TTY (TeleTYpewriter)****: A text terminal for interacting with a computer system.
+-   ****Scheme****: A Lisp dialect often used for scripting in GNU Guix.
+-   ****Wayland****: A protocol for a display server, often used as a modern alternative to X11.
+-   ****Sway****: A Wayland compositor compatible with i3-style window management.
+-   ****PipeWire****: A modern multimedia framework for managing audio and video streams.
+-   ****Elpaca****: A package manager for Emacs that supports advanced configuration options.
+-   ****Libre****: Free and open-source software that respects user freedom.
+
+
+<a id="orgd2ec71b"></a>
+
+# Acronyms
+
+-   ****SSS****: Supreme Sexp System
+-   ****GNU****: GNU's Not Unix
+-   ****OS****: Operating System
+-   ****REPL****: Read Eval Print Loop
+-   ****TTY****: TeleTYpewriter
+-   ****X11****: The X Window System
+-   ****DBus****: Desktop Bus (inter-process communication system)
+-   ****RTC****: Real-Time Communication
 
