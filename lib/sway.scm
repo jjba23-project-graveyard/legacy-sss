@@ -51,7 +51,7 @@
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
-  (define* (sss-sway-wallpaper #:key sss-clone-dir)
+  (define* (sss-sway-wallpaper #:key sss-clone-dir sss-active-palette)
     (cond
       ((equal? 'sss-palette-ef-cyprus sss-active-palette)
        (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
@@ -69,7 +69,7 @@
     "transmission-daemon"
     ,(format #f "swww-daemon & sleep 1 && ~a" wallpaper-setter)))
 
-(define sss-sway-startup-reload-programs
+(define* (sss-sway-startup-reload-programs #:key sss-active-palette)
   (let ((gtk-theme-name (cond
                           ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                            "Yaru-sage")
@@ -98,7 +98,7 @@
   (export sss-sway-outputs))
 
 (begin
-  (define* (sss-sway-variables #:key sss-clone-dir)
+  (define* (sss-sway-variables #:key sss-clone-dir sss-active-palette)
     `((mod . "Mod4") (left . "Left")
       (down . "Down")
       (up . "Up")
@@ -112,8 +112,10 @@
                         (format #f
                          "swww img ~a --transition-step 10 --transition-fps 30 --transition-type center"
 
-                         (sss-sway-wallpaper #:sss-clone-dir sss-clone-dir)))
-      (password-manager . "/home/joe/.nix-profile/bin/1password")
+                         (sss-sway-wallpaper #:sss-clone-dir sss-clone-dir
+                                             #:sss-active-palette
+                                             sss-active-palette)))
+      (password-manager . "$HOME/.nix-profile/bin/1password")
       (locker unquote
               (string-join '("swaylock" "--screenshots"
                              "--clock"
@@ -226,7 +228,7 @@
     "default_dim_inactive 0.2" "dim_inactive_colors.unfocused #000000FF"
     "dim_inactive_colors.urgent #900000FF"))
 
-(define sss-sway-extra-content
+(define* (sss-sway-extra-content #:key sss-active-palette)
   `("gaps inner 12" "gaps outer 8"
 
     ;; class                 border  backgr. text    indicator child_border
@@ -273,7 +275,7 @@
 
 (begin
   (define* (sss-sway-service-type #:key sss-clone-dir sss-keyboard-layout
-                                  sss-keyboard-caps-to-ctrl)
+                                  sss-keyboard-caps-to-ctrl sss-active-palette)
     (service home-sway-service-type
              (sway-configuration (packages (list swayfx))
                                  (gestures sss-sway-gestures)
@@ -285,10 +287,13 @@
 
                                                                                
                                                                                (sss-sway-wallpaper
+                                                                                #:sss-active-palette
+                                                                                sss-active-palette
                                                                                 #:sss-clone-dir
                                                                                 sss-clone-dir))))
-                                 (startup+reload-programs
-                                  sss-sway-startup-reload-programs)
+                                 (startup+reload-programs (sss-sway-startup-reload-programs
+                                                           #:sss-active-palette
+                                                           sss-active-palette))
                                  (outputs (sss-sway-outputs #:sss-clone-dir
                                                             sss-clone-dir))
                                  (inputs (list (sway-input (identifier
@@ -307,16 +312,19 @@
                                                             "type:touchpad")
                                                            (tap #t))))
                                  (variables (sss-sway-variables
-                                                                #:sss-clone-dir
-                                                                sss-clone-dir))
+                                             #:sss-active-palette
+                                             sss-active-palette
+                                             #:sss-clone-dir sss-clone-dir))
                                  (modes sss-sway-modes)
                                  (keybindings sss-sway-keybindings)
                                  (extra-content (append sss-swayfx-config
-                                                 (map (lambda (w)
-                                                        (format #f
-                                                         "for_window [app_id=\"~a\"] floating enable"
-                                                         w))
-                                                  sss-sway-floating-windows)
-                                                 sss-sway-extra-content)))))
+                                                        (map (lambda (w)
+                                                               (format #f
+                                                                "for_window [app_id=\"~a\"] floating enable"
+                                                                w))
+                                                         sss-sway-floating-windows)
+                                                        (sss-sway-extra-content
+                                                         #:sss-active-palette
+                                                         sss-active-palette))))))
   (export sss-sway-service-type))
 

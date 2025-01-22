@@ -15,11 +15,12 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "../palette.scm")
+;; (load "./palette.scm")
 
 (define-module (sss bridge emacs)
   #:use-module (gnu)
-  #:use-module (sss palette))
+  ;; #:use-module (sss palette)
+  )
 
 (begin
   (define* (sss-bridge-emacs-vars #:key sss-active-palette)

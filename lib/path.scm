@@ -15,8 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss path)
-  #:use-module (ice-9 ftw))
+(use-modules (ice-9 ftw))
 
 (define *sss-makefile*
   "Makefile")
@@ -73,18 +72,10 @@
                                 (string=? f "home.scm")))))))
       (else '()))))
 
-(define-public (load-home-modules user)
-  (display "Loading home modules...\n")
-  (let ((cs (scan-components (format #f "home/~a" user))))
-    (for-each (lambda (s)
-                (load s))
-              (append cs))))
-
-(define-public (load-lib-modules)
+(define (load-lib-modules)
   (display "Loading lib modules...\n")
-  (let ((cs (scan-components "lib"))
-        (cs-bridge (scan-components "lib/bridge")))
+  (let ((cs (scan-components "lib")))
     (for-each (lambda (s)
-                (load s))
-              (append cs cs-bridge))))
+                (display (format #f ">>= loading ~a\n" s))
+                (load s)) cs)))
 

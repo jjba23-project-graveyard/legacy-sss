@@ -3,7 +3,7 @@
              (ice-9 textual-ports)
              (ice-9 readline))
 
-(load "../nix-packages.scm")
+(load "../../per-host.scm")
 
 (define-public (syscall cmd)
   (let* ((process (open-input-pipe cmd))

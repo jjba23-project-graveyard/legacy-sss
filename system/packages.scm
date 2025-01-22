@@ -735,7 +735,8 @@ SQL databases.  This package implements the interface for SQLite.")))
   (define* (sss-system-packages #:key (per-host-packages '())
                                 (architecture (or (%current-target-system)
                                                   (%current-system))))
-    (append per-host-packages
+    (append (map (lambda (x)
+                   (specification->package x)) per-host-packages)
             (sss-other-system-packages #:architecture architecture)
             sss-wm-packages
             sss-font-packages

@@ -24,55 +24,15 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-;;;
-;;; SSS defaults section
-;;;
-
-;; set default values for optional `per-host.scm' values
-;; which can be overriden on a host-per-host basis
-
-;; system language
-(define sss-lang
-  "en_US")
-
-;; system timezone
-(define sss-timezone
-  "Europe/Amsterdam")
-
-;; system keyboard layout
-(define sss-keyboard-layout
-  "us")
-
-;; caps to control enabled
-(define sss-keyboard-caps-to-ctrl
-  #t)
-
-;; system hostname
-(define sss-hostname
-  "gnusystem")
-
-;; location where you cloned SSS Git repository
-(define sss-clone-dir
-  "/home/joe/Ontwikkeling/Persoonlijk/sss")
-
-;; packages that should only be installed in the current host
-(define sss-per-host-packages
-  '())
-
-;; active system color palette (overridden by per-host)
-(define-public sss-active-palette
-  'sss-palette-ef-dream)
-
-;; Nix packages to install
-(define-public sss-nixpkgs
-  '())
-
-;;;
-;;; end SSS defaults section
-;;;
+;; load SSS defaults
+(load "./sss-defaults.scm")
 
 ;; load user preferences per-host
 (load "../per-host.scm")
+
+;; show input settings
+(load "../system/show-settings.scm")
+(sss-show-settings)
 
 (load "../lib/process.scm")
 
@@ -138,12 +98,12 @@
   (user-account
     (name "manon")
     (group "users")
-    (supplementary-groups '("audio" "video" "netdev" "input"))))
+    (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))))
 
 ;; Cron job destined to fetch WikiMusic backups from my production server to my local manchines
 (define wikimusic-fetch-backups-job
   '(job "0 0 * * *"
-    "mkdir -p /home/joe/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ /home/joe/Documenten/wikimusic-backups/"))
+    "mkdir -p $HOME/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ $HOME/Documenten/wikimusic-backups/"))
 
 ;; Setup system cron jobs
 (define sss-cron-jobs-service
@@ -153,8 +113,8 @@
 ;; Setup MPD service for joe
 (define sss-joe-mpd
   (service mpd-service-type
-           (mpd-configuration (music-directory "/home/joe/Muziek")
-                              (playlist-directory "/home/joe/Muziek/Playlists"))))
+           (mpd-configuration (music-directory "$HOME/Muziek")
+                              (playlist-directory "$HOME/Muziek/Playlists"))))
 
 ;; Setup subuid and subgid for the system
 (define sss-subuid
@@ -261,7 +221,7 @@
   ;; (kernel-arguments (list "console=ttyS0,115200"))
   (sudoers-file (plain-file "sudoers"
                             (string-join '("root ALL=(ALL) NOPASSWD:ALL"
-                                           "%wheel ALL=(ALL) NOPASSWD:ALL"
+                                           "%wheel ALL=(ALL) ALL"
                                            "joe ALL=(ALL) NOPASSWD:ALL"
                                            "manon ALL=(ALL) ALL"
                                            "claudio ALL=(ALL) ALL") "\n")))

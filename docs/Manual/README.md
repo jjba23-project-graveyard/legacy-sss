@@ -1,40 +1,40 @@
 
 # Table of Contents
 
-1.  [What lies here?](#org81752b9)
-    1.  [An operating system (OS) configured in Scheme](#org21fadba)
-    2.  [Joe's Emacs configuration](#org40fead5)
-2.  [Why ?](#org0a6dbfb)
-3.  [What is Guix](#org8a6817d)
-4.  [On Non-free software](#org0d2ee4c)
-5.  [Keyboard Terminology](#orgdd47aca)
-6.  [How this manual works](#orgd7d2fbc)
-7.  [Customizing SSS](#org0828d00)
-8.  [Per host - per-host.scm](#orgf11a1f7)
-9.  [Bootstrapping](#org72b279a)
-    1.  [Guix Install tips](#org399242f)
-    2.  [Installing SSS on Guix](#org1c7f5f2)
-        1.  [Adding channels](#orgbf61ae3)
-        2.  [Keeping SSS updated](#org06c881d)
-        3.  [Initial installation of SSS from a devshell](#org37e5703)
-    3.  [On login managers, and login screens](#org87f52a4)
-10. [Nix profile](#orge11e2c0)
-11. [SSS Project](#org23d5688)
-12. [System audio](#org5652608)
-13. [Sway, resolutions and scaling](#orgbbf9bd4)
-14. [Wallpapers](#org02ef5a8)
-15. [SSH, Git](#org9f9607d)
-16. [Disk space](#orgf7f81fc)
-17. [Bluetooth](#org0f521a2)
-18. [Sway keybindings](#org42340cb)
-    1.  [General keybindings](#org2fb50b9)
-    2.  [Application keybindings](#org01d99ce)
-    3.  [More keybindings](#org09d9640)
-19. [Emacs keybindings](#org9b38d35)
-    1.  [General non-vanilla bindings](#org17bd7b6)
-    2.  [SSS specific keybindings](#orga56a7a9)
-20. [Glossary](#org46d0712)
-21. [Acronyms](#orgd9a531c)
+1.  [What lies here?](#org9e7fe53)
+    1.  [An operating system (OS) configured in Scheme](#org07e65dc)
+    2.  [Joe's Emacs configuration](#orgaa557c9)
+2.  [Why ?](#orgb413876)
+3.  [What is Guix](#orgf1288c4)
+4.  [On Non-free software](#org5daf679)
+5.  [Keyboard Terminology](#org6b79297)
+6.  [How this manual works](#orgacfbd52)
+7.  [Customizing SSS](#orgacbe276)
+8.  [Per host - per-host.scm](#orgc04d733)
+9.  [Bootstrapping](#orga752080)
+    1.  [Guix Install tips](#orgc19f230)
+    2.  [Installing SSS on Guix](#org2fc655a)
+        1.  [Adding channels](#orgfc5f250)
+        2.  [Keeping SSS updated](#org2a380a1)
+        3.  [Initial installation of SSS from a devshell](#orgbe1c366)
+    3.  [On login managers, and login screens](#orgda446ae)
+10. [Nix profile](#org9a523d1)
+11. [SSS Project](#orgce04840)
+12. [System audio](#org10e65c9)
+13. [Sway, resolutions and scaling](#org002a7e5)
+14. [Wallpapers](#orgd3fbe91)
+15. [SSH, Git](#orgb875f0e)
+16. [Disk space](#orgdd8794f)
+17. [Bluetooth](#org16d8df0)
+18. [Sway keybindings](#orgd271499)
+    1.  [General keybindings](#orgc054aed)
+    2.  [Application keybindings](#orgda758a9)
+    3.  [More keybindings](#orgc1cfccd)
+19. [Emacs keybindings](#org3a02782)
+    1.  [General non-vanilla bindings](#org3bdea58)
+    2.  [SSS specific keybindings](#org594be3c)
+20. [Glossary](#org2f0192b)
+21. [Acronyms](#org6c1ab69)
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
@@ -61,12 +61,12 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 ![img](../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png)
 
 
-<a id="org81752b9"></a>
+<a id="org9e7fe53"></a>
 
 # What lies here?
 
 
-<a id="org21fadba"></a>
+<a id="org07e65dc"></a>
 
 ## An operating system (OS) configured in Scheme
 
@@ -82,7 +82,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 -   Theme palettes that affect the entire system
 
 
-<a id="org40fead5"></a>
+<a id="orgaa557c9"></a>
 
 ## Joe's Emacs configuration
 
@@ -91,7 +91,7 @@ An operating system unto itself.
 -   Advanced Emacs configurations with Emacs Lisp + Elpaca
 
 
-<a id="org0a6dbfb"></a>
+<a id="orgb413876"></a>
 
 # Why ?
 
@@ -124,7 +124,7 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="org8a6817d"></a>
+<a id="orgf1288c4"></a>
 
 # What is Guix
 
@@ -135,7 +135,7 @@ While you can install GNU Guix on top of an existing GNU/Linux system where it c
 I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: <https://guix.gnu.org/manual/en/html_node/>.
 
 
-<a id="org0d2ee4c"></a>
+<a id="org5daf679"></a>
 
 # On Non-free software
 
@@ -147,7 +147,7 @@ This means, among other things that SSS:
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="orgdd47aca"></a>
+<a id="org6b79297"></a>
 
 # Keyboard Terminology
 
@@ -201,7 +201,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgd7d2fbc"></a>
+<a id="orgacfbd52"></a>
 
 # How this manual works
 
@@ -213,7 +213,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Run `C-c # m` from Emacs, which runs lib/sss-manual.el, exporting the Org document to several other formats (LaTEX, PDF, HTML, Markdown, etc.)
 
 
-<a id="org0828d00"></a>
+<a id="orgacbe276"></a>
 
 # Customizing SSS
 
@@ -224,76 +224,97 @@ Several color palettes, inspired by the great \`ef-themes\` by Protesilaos Stavr
 Find Prot's themes here: <https://github.com/protesilaos/ef-themes>
 
 
-<a id="orgf11a1f7"></a>
+<a id="orgc04d733"></a>
 
 # Per host - per-host.scm
 
 It is **REQUIRED** to include a `per-host.scm` in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
 
-    (use-modules (gnu)
-                 (gnu packages))
+      (use-modules (gnu)
+                   (gnu packages))
     
-    ;; system language
-    (define sss-lang "en_US")
+      ;; system language
+      (define sss-lang "en_US")
     
-    ;; system timezone
-    (define sss-timezone "Europe/Amsterdam")
+      ;; system timezone
+      (define sss-timezone "Europe/Amsterdam")
     
-    ;; system keyboard layout
-    (define sss-keyboard-layout "us")
+      ;; system keyboard layout
+      (define sss-keyboard-layout "us")
     
-    ;; caps to control enabled
-    (define sss-keyboard-caps-to-ctrl
-      #t)
+      ;; caps to control enabled
+      (define sss-keyboard-caps-to-ctrl
+        #t)
     
-    ;; system hostname
-    (define sss-hostname "gnusystem")
+      ;; system hostname
+      (define sss-hostname "gnusystem")
     
-    ;; disk partitioning
-    (define sss-filesystems
-      (list (file-system
-             (device "/dev/nvme0n1p3")
-             (mount-point "/")
-             (type "ext4"))
-            (file-system
-             (device "/dev/nvme0n1p1")
-             (mount-point "/boot/efi")
-             (type "vfat"))))
+      ;; disk partitioning
+      (define sss-filesystems
+        (list (file-system
+               (device "/dev/nvme0n1p3")
+               (mount-point "/")
+               (type "ext4"))
+              (file-system
+               (device "/dev/nvme0n1p1")
+               (mount-point "/boot/efi")
+               (type "vfat"))))
     
-    ;; packages that should only be installed in the current host
-    ;; or (define sss-per-host-packages '())
-    (define sss-per-host-packages
-      (list
-       ;; AMD non-free drivers
-       (specification->package "amd-microcode")
-       (specification->package "amdgpu-firmware")
-       ;; Games
-       (specification->package "prismlauncher")
-       (specification->package "steam")))
+      ;; packages that should only be installed in the current host
+      ;; or (define sss-per-host-packages '())
+      (define sss-per-host-packages '(
+                                      ;; AMD non-free drivers
+                                      "amd-microcode" "amdgpu-firmware"
+                                      ;; Games
+                                      "prismlauncher" "steam")
+        )
     
-    ;; location where you cloned SSS Git repository
-    (define sss-clone-dir
-      "/home/joe/Ontwikkeling/Persoonlijk/sss")
+      ;; location where you cloned SSS Git repository
+      (define sss-clone-dir
+        "$HOME/Ontwikkeling/Persoonlijk/sss")
     
-    ;;
-    ;; Define the active palette for all users accounts
-    ;; You should reconfigure and ideally restart the system
-    ;; for all changes to take effect
-    ;;
-    ;; Note: You could choose on a per-user basis to set a fixed palette
-    ;; and not follow system wide, by just redefining this value
-    ;;
-    ;; Possible values are:
-    ;;   - sss-palette-ef-bio
-    ;;   - sss-palette-ef-cyprus
-    ;;   - sss-palette-ef-dream
-    ;;
-    (define-public sss-active-palette
-      'sss-palette-ef-dream)
+      ;;
+      ;; Define the active palette for all users accounts
+      ;; You should reconfigure and ideally restart the system
+      ;; for all changes to take effect
+      ;;
+      ;; Note: You could choose on a per-user basis to set a fixed palette
+      ;; and not follow system wide, by just redefining this value
+      ;;
+      ;; Possible values are:
+      ;;   - sss-palette-ef-bio
+      ;;   - sss-palette-ef-cyprus
+      ;;   - sss-palette-ef-dream
+      ;;
+      (define-public sss-active-palette
+        'sss-palette-ef-dream)
+    
+      ;; Nix packages to install
+    (define-public sss-nixpkgs
+      '("yaml-language-server" "bash-language-server"
+        "monaspace"
+        "jdt-language-server"
+        "nil"
+        "black"
+        "pyright"
+        "marksman"
+        "_1password-gui"
+        "_1password-cli"
+        "stack"
+        "sbt"
+        "scala_2_13"
+        "firefox"
+        "thunderbird"
+        "postman"
+        "vscode-langservers-extracted"
+        "nwg-look"
+        "krew"
+        "mermaid-cli"
+        "jetbrains.idea-community"))
 
 
-<a id="org72b279a"></a>
+<a id="orga752080"></a>
 
 # Bootstrapping
 
@@ -310,7 +331,7 @@ It is highly recommended to first become familiar with SSS and Guix via a *throw
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
 
-<a id="org399242f"></a>
+<a id="orgc19f230"></a>
 
 ## Guix Install tips
 
@@ -332,14 +353,14 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: <https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual>.
 
 
-<a id="org1c7f5f2"></a>
+<a id="org2fc655a"></a>
 
 ## Installing SSS on Guix
 
 Once you have a working Guix base installation on your machine, you are ready to go about installing SSS.
 
 
-<a id="orgbf61ae3"></a>
+<a id="orgfc5f250"></a>
 
 ### Adding channels
 
@@ -358,7 +379,7 @@ Add `nonguix` in your channels file (`$HOME/.config/guix/channels.scm`). This wi
 After adding the channel, perform a `guix pull` from your user account (**no sudo or root**) and let all channels get updated.
 
 
-<a id="org06c881d"></a>
+<a id="org2a380a1"></a>
 
 ### Keeping SSS updated
 
@@ -367,7 +388,7 @@ You should every now and then update the SSS repo with `git pull`. You also shou
 Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
 
 
-<a id="org37e5703"></a>
+<a id="orgbe1c366"></a>
 
 ### Initial installation of SSS from a devshell
 
@@ -399,7 +420,7 @@ You might at this point want to reset the font cache for the system and user.
 You can then reboot and you should be greeted by a simple TTY.
 
 
-<a id="org87f52a4"></a>
+<a id="orgda446ae"></a>
 
 ## On login managers, and login screens
 
@@ -413,7 +434,7 @@ Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's comput
 If you run traditional X11 sessions, you could choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 
 
-<a id="orge11e2c0"></a>
+<a id="org9a523d1"></a>
 
 # Nix profile
 
@@ -438,7 +459,7 @@ For this, make the directory an link it to your home.
 
     sudo mkdir -p /nix/var/nix/profiles/per-user/joe
     sudo chown -R joe:users /nix/var/nix/profiles/per-user/joe
-    ln -sfv /nix/var/nix/profiles/per-user/joe/profile /home/joe/.nix-profile
+    ln -sfv /nix/var/nix/profiles/per-user/joe/profile $HOME/.nix-profile
 
 It's possible you might need to logout and log back in to re-activate the profile.
 
@@ -455,30 +476,23 @@ You can keep your Nix packages updated by running:
 
     NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'
 
-The installed software will be available, for example at: `/home/joe/.nix-profile/bin/`
+The installed software will be available, for example at: `$HOME/.nix-profile/bin/`
 
-SSS provides some scripts that allow you to maintain your Nix configuration and installed packages programatically, see the Makefile.
+SSS provides some scripts that allow you to maintain your Nix configuration and installed packages programatically with Lisp.
 
-You will then need a file `system/nix-packages.scm`. You can find these scripts and the list file at `system/scripts` in this repo.
+You can find these scripts and the list file at `system/scripts` in this repo and in the Makefile.
+
 Installing all wanted Nix packages can be done with `make npi` for example and updating them with `make npu`.
 
-      ;; Nix packages to install
-    (define-public sss-nixpkgs '("yaml-language-server"
-                                 "bash-language-server"
-    
-                                 "mermaid-cli"
-                                 "jetbrains.idea-community"
-                                 ))
 
-
-<a id="org23d5688"></a>
+<a id="orgce04840"></a>
 
 # SSS Project
 
 Find the [project management of SSS here](../Project management/README.md)
 
 
-<a id="org5652608"></a>
+<a id="org10e65c9"></a>
 
 # System audio
 
@@ -489,7 +503,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the `RTC_USE_PIPEWIRE` variable to `true`. This is already the case by default in SSS.
 
 
-<a id="orgbbf9bd4"></a>
+<a id="org002a7e5"></a>
 
 # Sway, resolutions and scaling
 
@@ -507,7 +521,7 @@ You might want to customize things though, here follow some examples of commands
     swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
 
 
-<a id="org02ef5a8"></a>
+<a id="orgd3fbe91"></a>
 
 # Wallpapers
 
@@ -518,14 +532,14 @@ This uses swww and thus can load animated images as well and do fancy transition
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
 
-<a id="org9f9607d"></a>
+<a id="orgb875f0e"></a>
 
 # SSH, Git
 
 SSS is automatically configured with SSH setup, and multi-user Git setup.
 
 
-<a id="orgf7f81fc"></a>
+<a id="orgdd8794f"></a>
 
 # Disk space
 
@@ -549,7 +563,7 @@ If you'd like to find the largest files in your disk, here’s an example comman
     du -ah / | sort -rh | head -n 20
 
 
-<a id="org0f521a2"></a>
+<a id="org16d8df0"></a>
 
 # Bluetooth
 
@@ -587,12 +601,12 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
     # exit
 
 
-<a id="org42340cb"></a>
+<a id="orgd271499"></a>
 
 # Sway keybindings
 
 
-<a id="org2fb50b9"></a>
+<a id="orgc054aed"></a>
 
 ## General keybindings
 
@@ -668,7 +682,7 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
 </table>
 
 
-<a id="org01d99ce"></a>
+<a id="orgda758a9"></a>
 
 ## Application keybindings
 
@@ -738,7 +752,7 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
 </table>
 
 
-<a id="org09d9640"></a>
+<a id="orgc1cfccd"></a>
 
 ## More keybindings
 
@@ -784,12 +798,12 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
 </table>
 
 
-<a id="org9b38d35"></a>
+<a id="org3a02782"></a>
 
 # Emacs keybindings
 
 
-<a id="org17bd7b6"></a>
+<a id="org3bdea58"></a>
 
 ## General non-vanilla bindings
 
@@ -829,7 +843,7 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
 </table>
 
 
-<a id="orga56a7a9"></a>
+<a id="org594be3c"></a>
 
 ## SSS specific keybindings
 
@@ -875,7 +889,7 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
 </table>
 
 
-<a id="org46d0712"></a>
+<a id="org2f0192b"></a>
 
 # Glossary
 
@@ -892,7 +906,7 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
 -   ****Libre****: Free and open-source software that respects user freedom.
 
 
-<a id="orgd9a531c"></a>
+<a id="org6c1ab69"></a>
 
 # Acronyms
 

@@ -19,67 +19,21 @@
 
 (use-modules (gnu system file-systems))
 
-;;;
-;;; SSS defaults section
-;;;
-
-;; set default values for optional `per-host.scm' values
-;; which can be overriden on a host-per-host basis
-
-;; system language
-(define sss-lang
-  "en_US")
-
-;; system timezone
-(define sss-timezone
-  "Europe/Amsterdam")
-
-;; system keyboard layout
-(define sss-keyboard-layout
-  "us")
-
-;; caps to control enabled
-(define sss-keyboard-caps-to-ctrl
-  #t)
-
-;; system hostname
-(define sss-hostname
-  "gnusystem")
-
-;; location where you cloned SSS Git repository
-(define sss-clone-dir
-  "/home/joe/Ontwikkeling/Persoonlijk/sss")
-
-;; packages that should only be installed in the current host
-(define sss-per-host-packages
-  '())
-
-;; active system color palette (overridden by per-host)
-(define-public sss-active-palette
-  'sss-palette-ef-dream)
-
-;; Nix packages to install
-(define-public sss-nixpkgs
-  '())
-
-;;;
-;;; end SSS defaults section
-;;;
+;; load SSS defaults
+(load "../system/sss-defaults.scm")
 
 ;; load user preferences per-host
 (load "../per-host.scm")
 
+;; show input settings
+(load "../system/show-settings.scm")
+(sss-show-settings)
+
 (load "../lib/path.scm")
-(use-modules (sss path))
 
 ;; Autoload all Scheme modules in lib and subdirectories
 ;; All modules should have the `.scm' extension
 (load-lib-modules)
-
-;; Autoload all Scheme modules in home/<user> and subdirectories
-;; Some special modules and files are skipped, such as `home.scm'
-;; All modules should have the `.scm' extension
-(load-home-modules "joe")
 
 ;; Load Guile modules
 (use-modules (gnu home)
@@ -111,7 +65,6 @@
              (sss gtk)
              (sss portals)
              (sss qt)
-             (sss xmodmap)
              (sss openpgp)
              (sss waybar)
              (sss rofi)
@@ -145,18 +98,13 @@
 ;; Define user's home files (a.k.a. dotfiles)
 (define sss-home-files-service
   (service home-files-service-type
-           `( ;XModmap configuration file for example for Caps to Lock
-              (".xmodmap" ,(plain-file "xmodmap"
-                                       (mk-kv-conf-lines sss-xmodmap-config
-                                        #:template spaced-equal-conf-pair)))
-
-             ;; GTK 3 settings
-             (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
-                                                          (string-append
-                                                           "[Settings]\n"
-                                                           (mk-kv-conf-lines (sss-gtk3-config
-                                                                              #:sss-active-palette
-                                                                              sss-active-palette)))))
+           `( ;GTK 3 settings
+              (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
+                                                           (string-append
+                                                            "[Settings]\n"
+                                                            (mk-kv-conf-lines (sss-gtk3-config
+                                                                               #:sss-active-palette
+                                                                               sss-active-palette)))))
 
              ;; GTK 4 settings
              (".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
@@ -337,6 +285,7 @@
          (sss-sway-service-type #:sss-clone-dir sss-clone-dir
                                 #:sss-keyboard-layout sss-keyboard-layout
                                 #:sss-keyboard-caps-to-ctrl
-                                sss-keyboard-caps-to-ctrl)
+                                sss-keyboard-caps-to-ctrl
+                                #:sss-active-palette sss-active-palette)
          sss-fontconfig-service-type)))
 
