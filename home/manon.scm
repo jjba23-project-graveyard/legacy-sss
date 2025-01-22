@@ -65,7 +65,6 @@
              (sss gtk)
              (sss portals)
              (sss qt)
-             (sss xmodmap)
              (sss openpgp)
              (sss waybar)
              (sss rofi)

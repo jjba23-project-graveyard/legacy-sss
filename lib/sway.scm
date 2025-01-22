@@ -16,7 +16,6 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (load "./palette.scm")
-(load "../system/packages.scm")
 
 (define-module (sss sway)
   #:use-module (gnu home)
