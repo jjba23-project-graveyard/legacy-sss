@@ -70,10 +70,7 @@ full-rebuild: format
 	@fc-cache -r
 	$(call sss-log-complete,"full-rebuild")
 nix-profile-upgrade:
-	@NIXPKGS_ALLOW_UNFREE=1 nix profile upgrade '.*' --impure
-	@echo -e "$(shell date +%s)" | cat - \
-		resources/sss-state/nixpkgs-updated-at | tee \
-		resources/sss-state/nixpkgs-updated-at
+	guile --fresh-auto-compile system/scripts/update-nix-packages.scm
 format:
 	$(call sss-log-starting,"format")
 	-find ~+ -maxdepth 8 -name "*.scm" -type f -exec guix style -f {} \;
