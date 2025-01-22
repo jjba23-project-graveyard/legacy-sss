@@ -49,7 +49,7 @@ update:
 	@guix pull
 system-reconfigure:
 	$(call sss-log-starting,"system-reconfigure")
-	@sudo guix system reconfigure config.scm --fallback
+	@sudo guix system reconfigure ./system/config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")
 	$(call sss-notify,"SSS system-reconfigure was succesful!")
 joe-reconfigure: format
@@ -111,10 +111,10 @@ fmt:
 	@make format
 
 clone-user-repos:
-	guile --fresh-auto-compile lib/scripts/clone-user-repos.scm
+	guile --fresh-auto-compile system/scripts/clone-user-repos.scm
 
 install-nix-packages:
-	guile --fresh-auto-compile lib/scripts/install-nix-packages.scm
+	guile --fresh-auto-compile system/scripts/install-nix-packages.scm
 
 npi:
 	@make install-nix-packages

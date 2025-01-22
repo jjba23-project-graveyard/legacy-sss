@@ -677,6 +677,8 @@ According to size, color and font family"
   :ensure nil
   :after (org-modern)
   :hook ((org-mode . sss-org-mode))
+  :bind (:map org-mode-map 
+              ("C-c #" . nil))
   :init
   (setq org-todo-keywords '((sequence "TODO" "WIP" "REVIEWING" "|" "DONE")))
   (setq org-log-done 'time)

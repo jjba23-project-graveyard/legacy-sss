@@ -64,19 +64,20 @@
   'sss-palette-ef-dream)
 
 ;; Nix packages to install
-(define-public sss-nixpkgs '())
+(define-public sss-nixpkgs
+  '())
 
 ;;;
 ;;; end SSS defaults section
 ;;;
 
 ;; load user preferences per-host
-(load "./per-host.scm")
+(load "../per-host.scm")
 
-(load "./lib/process.scm")
+(load "../lib/process.scm")
 
 ;; load system packages and definitions
-(load "./system/packages.scm")
+(load "./packages.scm")
 
 (use-modules (sss-packages))
 

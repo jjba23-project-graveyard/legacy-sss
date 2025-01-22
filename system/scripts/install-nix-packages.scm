@@ -1,7 +1,9 @@
 
-(use-modules (ice-9 popen) (ice-9 textual-ports)(ice-9 readline))
+(use-modules (ice-9 popen)
+             (ice-9 textual-ports)
+             (ice-9 readline))
 
-(load "../../nixpkgs-list.scm")
+(load "../nix-packages.scm")
 
 (define-public (syscall cmd)
   (let* ((process (open-input-pipe cmd))
@@ -15,4 +17,5 @@
 
 (syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")
 
-(for-each (lambda(x) (nix-profile-install x)) sss-nixpkgs)
+(for-each (lambda (x)
+            (nix-profile-install x)) sss-nixpkgs)

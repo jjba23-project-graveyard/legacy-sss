@@ -448,7 +448,8 @@ The installed software will be available, for example at: @code{/home/joe/.nix-p
 
 SSS provides some scripts that allow you to maintain your Nix configuration and installed packages programatically, see the Makefile.
 
-You will then need a file @code{nixpkgs-list.scm}. See the root of the repo.
+You will then need a file @code{system/nix-packages.scm}. You can find these scripts and the list file at @code{system/scripts} in this repo.
+Installing all wanted Nix packages can be done with @code{make npi} for example and updating them with @code{make npu}.
 
 @example
   ;; Nix packages to install
