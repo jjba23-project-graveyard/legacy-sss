@@ -65,12 +65,12 @@
              (sss gtk)
              (sss portals)
              (sss qt)
-             (sss xmodmap)
              (sss openpgp)
              (sss waybar)
              (sss rofi)
              (sss ssh)
              (sss bridge emacs)
+             (sss labwc)
              (sss qutebrowser))
 
 ;; Define user's home files (a.k.a. dotfiles)
@@ -102,6 +102,17 @@
                                                            "[preferred]\n"
                                                            (mk-kv-conf-lines
                                                             sss-portals-config))))
+
+             ;; Mako (notification daemon) configuration
+             (".config/mako/config" ,(plain-file "config"
+                                                 (mk-kv-conf-lines (sss-mako-config
+                                                                    #:sss-active-palette
+                                                                    sss-active-palette))))
+
+             (".config/labwc/rc.xml" ,(local-file "../lib/labwc/rc.xml"))
+             (".config/labwc/menu.xml" ,(local-file "../lib/labwc/menu.xml"))
+             (".config/labwc/shutdown" ,(local-file "../lib/labwc/shutdown"))
+             (".config/labwc/themerc" ,(local-file "../lib/labwc/themerc"))
 
              ;; Containers configuration (for Docker, Podman, etc.)
              ;; Specifies container registries

@@ -16,7 +16,6 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (load "./palette.scm")
-(load "../system/packages.scm")
 
 (define-module (sss sway)
   #:use-module (gnu home)
@@ -29,7 +28,6 @@
   #:use-module (gnu home services shepherd)
   #:use-module (gnu system keyboard)
   #:use-module (guix gexp)
-  #:use-module (sss-packages)
   #:use-module (gnu home services sway)
   #:use-module (gnu home services sound)
   #:use-module (gnu home services desktop)

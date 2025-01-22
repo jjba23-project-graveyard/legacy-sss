@@ -155,18 +155,18 @@
              (".config/nixpkgs/config.nix" ,(local-file
                                              "../lib/nix/nixpkgs.nix"))
 
-             ;; Waybar configuration (for status bar)
-             (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
-                                                         (scm->json-string
-                                                          sss-waybar-conf
-                                                          #:pretty #t)))
-
              (".config/rofi/config.rasi" ,(plain-file "config.rasi"
                                                       sss-rofi-config))
              ;; Rofi styling
              (".config/rofi/sss-theme.rasi" ,(plain-file "sss-theme.rasi"
                                                          (mk-css-conf-lines
                                                           sss-rofi-theme)))
+
+             ;; Waybar configuration (for status bar)
+             (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
+                                                         (scm->json-string
+                                                          sss-waybar-conf
+                                                          #:pretty #t)))
 
              ;; Waybar styling
              (".config/waybar/style.css" ,(plain-file "waybar.css"
