@@ -234,6 +234,8 @@ I would recommend to then use a web browser and visit the web version of this ma
 
 Once you have a working Guix base installation on your machine, you are ready to go about installing SSS.
 
+*** Adding channels
+
 Add ~nonguix~ in your channels file (=$HOME/.config/guix/channels.scm=). This will later be overwritten by SSS.
 
 #+begin_src  scheme
@@ -251,9 +253,13 @@ Add ~nonguix~ in your channels file (=$HOME/.config/guix/channels.scm=). This wi
 
 After adding the channel, perform a ~guix pull~ from your user account (*no sudo or root*) and let all channels get updated.
 
-Note: You should every now and then do a ~guix pull~ from your regular user, and then rebuild this system with the root user (~make sr~).
+*** Keeping SSS updated
+
+You should every now and then update the SSS repo with ~git pull~. You also should regularly do a ~guix pull~ from your regular user, and then rebuild this system with the root user (~make sr~).
 
 Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
+
+*** Initial installation of SSS from a devshell
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
 

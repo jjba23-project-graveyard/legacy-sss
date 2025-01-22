@@ -80,6 +80,12 @@ Bootstrapping
 * Installing SSS on Guix::
 * On login managers, and login screens: On login managers and login screens. 
 
+Installing SSS on Guix
+
+* Adding channels::
+* Keeping SSS updated::
+* Initial installation of SSS from a devshell::
+
 Sway keybindings
 
 * General keybindings::
@@ -352,6 +358,15 @@ I would recommend to then use a web browser and visit the web version of this ma
 
 Once you have a working Guix base installation on your machine, you are ready to go about installing SSS@.
 
+@menu
+* Adding channels::
+* Keeping SSS updated::
+* Initial installation of SSS from a devshell::
+@end menu
+
+@node Adding channels
+@subsection Adding channels
+
 Add @code{nonguix} in your channels file (@samp{$HOME/.config/guix/channels.scm}). This will later be overwritten by SSS@.
 
 @example
@@ -369,9 +384,15 @@ Add @code{nonguix} in your channels file (@samp{$HOME/.config/guix/channels.scm}
 
 After adding the channel, perform a @code{guix pull} from your user account (@strong{no sudo or root}) and let all channels get updated.
 
-Note: You should every now and then do a @code{guix pull} from your regular user, and then rebuild this system with the root user (@code{make sr}).
+@node Keeping SSS updated
+@subsection Keeping SSS updated
+
+You should every now and then update the SSS repo with @code{git pull}. You also should regularly do a @code{guix pull} from your regular user, and then rebuild this system with the root user (@code{make sr}).
 
 Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
+
+@node Initial installation of SSS from a devshell
+@subsection Initial installation of SSS from a devshell
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS@.
 

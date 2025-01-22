@@ -119,3 +119,8 @@ install-nix-packages:
 npi:
 	@make install-nix-packages
 
+# Deploy manual HTML to the jointhefreeworld.org website
+deploy:
+	mkdir -pv /srv/http/jointhefreeworld.org/manuals/sss
+	rm -rfv /srv/http/jointhefreeworld.org/manuals/sss/index.html
+	cp -rfv docs/Manual/README.html /srv/http/jointhefreeworld.org/manuals/sss/index.html
