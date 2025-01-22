@@ -1,33 +1,35 @@
 
 # Table of Contents
 
-1.  [What lies here?](#org093589e)
-    1.  [An operating system (OS) configured in Scheme](#org7c7bf20)
-    2.  [Joe's Emacs configuration](#org2433af3)
-2.  [Why ?](#orgd1c3693)
-3.  [What is Guix](#org9ca5b99)
-4.  [Non-free software](#org177181f)
-5.  [How this manual works](#orgf493b72)
-6.  [Customizations](#org55a3ece)
-7.  [Per host - per-host.scm](#org1d02478)
-8.  [Bootstrapping](#org0f8616a)
-    1.  [Guix Install tips](#orga547603)
-    2.  [After install](#org414d6c8)
-    3.  [On login managers, and login screens](#orgdf2f16f)
-9.  [Nix profile](#orgd5326d4)
-10. [SSS Project](#org49eb0b9)
-11. [System audio](#org1dba94f)
-12. [Sway, resolutions and scaling](#orge5b6101)
-13. [Wallpapers](#org5d3e928)
-14. [SSH, Git](#org9ecf8af)
-15. [Keyboard Terminology](#org31e988b)
-16. [Sway](#org0568650)
-    1.  [General keybindings](#org985bcb8)
-    2.  [Application keybindings](#org4e00c35)
-    3.  [More keybindings](#orga966052)
-17. [Emacs](#org25cbb70)
-    1.  [General non-vanilla bindings](#org5742bd8)
-    2.  [SSS specific keybindings](#orgcf4884a)
+1.  [What lies here?](#org2f99613)
+    1.  [An operating system (OS) configured in Scheme](#orgfc83a3d)
+    2.  [Joe's Emacs configuration](#orgd8b2522)
+2.  [Why ?](#org1b73be6)
+3.  [What is Guix](#orge06be2b)
+4.  [Non-free software](#org1331645)
+5.  [How this manual works](#org596af82)
+6.  [Customizations](#orgf7d770c)
+7.  [Per host - per-host.scm](#org6d8d6f1)
+8.  [Bootstrapping](#org5c812e4)
+    1.  [Guix Install tips](#org8eef9f9)
+    2.  [After install](#org73cd078)
+    3.  [On login managers, and login screens](#org4cc2bd4)
+9.  [Nix profile](#org877a2b2)
+10. [SSS Project](#org2af08ee)
+11. [System audio](#orgda11196)
+12. [Sway, resolutions and scaling](#orgb29f22b)
+13. [Wallpapers](#orgf47b872)
+14. [SSH, Git](#org5081e52)
+15. [Disk space](#orgd33a43c)
+16. [Bluetooth](#org0e16c76)
+17. [Keyboard Terminology](#orgfdcab5f)
+18. [Sway](#orgc8c058f)
+    1.  [General keybindings](#orgae93883)
+    2.  [Application keybindings](#orge108318)
+    3.  [More keybindings](#org17213d1)
+19. [Emacs](#orgd173633)
+    1.  [General non-vanilla bindings](#orgfdbc317)
+    2.  [SSS specific keybindings](#org911640c)
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
@@ -54,12 +56,12 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 ![img](../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png)
 
 
-<a id="org093589e"></a>
+<a id="org2f99613"></a>
 
 # What lies here?
 
 
-<a id="org7c7bf20"></a>
+<a id="orgfc83a3d"></a>
 
 ## An operating system (OS) configured in Scheme
 
@@ -75,7 +77,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 -   Theme palettes that affect the entire system
 
 
-<a id="org2433af3"></a>
+<a id="orgd8b2522"></a>
 
 ## Joe's Emacs configuration
 
@@ -84,7 +86,7 @@ An operating system unto itself.
 -   Advanced Emacs configurations with Emacs Lisp + Elpaca
 
 
-<a id="orgd1c3693"></a>
+<a id="org1b73be6"></a>
 
 # Why ?
 
@@ -123,7 +125,7 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="org9ca5b99"></a>
+<a id="orge06be2b"></a>
 
 # What is Guix
 
@@ -134,7 +136,7 @@ While you can install GNU Guix on top of an existing GNU/Linux system where it c
 I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: <https://guix.gnu.org/manual/en/html_node/>.
 
 
-<a id="org177181f"></a>
+<a id="org1331645"></a>
 
 # Non-free software
 
@@ -146,7 +148,7 @@ This means, among other things that SSS:
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="orgf493b72"></a>
+<a id="org596af82"></a>
 
 # How this manual works
 
@@ -158,7 +160,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Run `C-c # m` from Emacs, which runs lib/sss-manual.el, exporting the Org document to several other formats (LaTEX, PDF, HTML, Markdown, etc.)
 
 
-<a id="org55a3ece"></a>
+<a id="orgf7d770c"></a>
 
 # Customizations
 
@@ -169,7 +171,7 @@ Several color palettes, inspired by the great \`ef-themes\` by Protesilaos Stavr
 Find Prot's themes here: <https://github.com/protesilaos/ef-themes>
 
 
-<a id="org1d02478"></a>
+<a id="org6d8d6f1"></a>
 
 # Per host - per-host.scm
 
@@ -238,7 +240,7 @@ Find here a reference configuration with what is required.
       'sss-palette-ef-dream)
 
 
-<a id="org0f8616a"></a>
+<a id="org5c812e4"></a>
 
 # Bootstrapping
 
@@ -255,7 +257,7 @@ It is highly recommended to first become familiar with SSS and Guix via a *throw
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
 
-<a id="orga547603"></a>
+<a id="org8eef9f9"></a>
 
 ## Guix Install tips
 
@@ -277,7 +279,7 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: <https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual>.
 
 
-<a id="org414d6c8"></a>
+<a id="org73cd078"></a>
 
 ## After install
 
@@ -327,7 +329,7 @@ You might at this point want to reset the font cache for the system and user.
 You can then reboot and you should be greeted by a simple TTY.
 
 
-<a id="orgdf2f16f"></a>
+<a id="org4cc2bd4"></a>
 
 ## On login managers, and login screens
 
@@ -341,7 +343,7 @@ Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's comput
 If you run traditional X11 sessions, you could choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 
 
-<a id="orgd5326d4"></a>
+<a id="org877a2b2"></a>
 
 # Nix profile
 
@@ -399,14 +401,14 @@ Installing all wanted Nix packages can be done with `make npi` for example and u
                                  ))
 
 
-<a id="org49eb0b9"></a>
+<a id="org2af08ee"></a>
 
 # SSS Project
 
 Find the [project management of SSS here](../Project management/README.md)
 
 
-<a id="org1dba94f"></a>
+<a id="orgda11196"></a>
 
 # System audio
 
@@ -417,7 +419,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the `RTC_USE_PIPEWIRE` variable to `true`. This is already the case by default in SSS.
 
 
-<a id="orge5b6101"></a>
+<a id="orgb29f22b"></a>
 
 # Sway, resolutions and scaling
 
@@ -435,7 +437,7 @@ You might want to customize things though, here follow some examples of commands
     swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
 
 
-<a id="org5d3e928"></a>
+<a id="orgf47b872"></a>
 
 # Wallpapers
 
@@ -446,14 +448,76 @@ This uses swww and thus can load animated images as well and do fancy transition
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
 
-<a id="org9ecf8af"></a>
+<a id="org5081e52"></a>
 
 # SSH, Git
 
 SSS is automatically configured with SSH setup, and multi-user Git setup.
 
 
-<a id="org31e988b"></a>
+<a id="orgd33a43c"></a>
+
+# Disk space
+
+Reproducibility and isolation of builds naturally leads to a little more disk usage than other systems. This is not a problem nowadays, with cheap storage.
+
+That being said, here follow some useful reminders, every now and then clean:
+
+-   Guix generations
+-   Guix store
+-   Nix store
+-   Unused Steam games
+
+You could run something like this:
+
+    sudo guix system delete-generations 1d
+    sudo guix gc
+    nix-store --gc
+
+If you'd like to find the largest files in your disk, here’s an example command:  
+
+    du -ah / | sort -rh | head -n 20
+
+
+<a id="org0e16c76"></a>
+
+# Bluetooth
+
+The real best way to manage your bluetooth is using the bluetoothctl shell. This is a little more manual and low-level, but it will allow your to programatically connect to your devices, setup shortcuts for "favourite" connections, and much more.
+
+    # Run bluetoothctl in a shell
+    user@host $ bluetoothctl
+    #
+    # Waiting to connect to bluetoothd...[bluetooth]# Agent registered
+    # [bluetooth]# hci0 new_settings: powered bondable ssp br/edr le secure-conn cis-central cis-peripheral 
+    # [bluetooth]# [CHG] Controller C8:A3:E8:76:98:80 Pairable: yes
+    # [bluetooth]# AdvertisementMonitor path registered
+    # [bluetooth]#
+    
+    #  help
+    
+    # then turn your bluethooth on:
+    #  power on
+    #
+    # [bluetooth]# Changing power on succeeded
+    
+    # scan for devices around you:
+    #  scan on
+    #
+    # [bluetooth]# SetDiscoveryFilter success
+    # [bluetooth]# Discovery started
+    # [bluetooth]# [CHG] Controller C8:A3:E8:76:98:80 Discovering: yes
+    # [bluetooth]# [NEW] Device 52:B7:C5:C2:54:3A 52-B7-C5-C2-54-3A
+    # [bluetooth]# [NEW] Device 4B:C8:1D:17:55:A6 4B-C8-1D-17-55-A6
+    # [bluetooth]# [NEW] Device 27:9F:3F:70:13:71 27-9F-3F-70-13-71
+    # [bluetooth]# [NEW] Device E3:FE:C8:39:99:36 Wahoo KICKR 6F8D
+    
+    # pair C0:23:8D:57:73:CF 
+    
+    # exit
+
+
+<a id="orgfdcab5f"></a>
 
 # Keyboard Terminology
 
@@ -507,12 +571,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org0568650"></a>
+<a id="orgc8c058f"></a>
 
 # Sway
 
 
-<a id="org985bcb8"></a>
+<a id="orgae93883"></a>
 
 ## General keybindings
 
@@ -588,7 +652,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org4e00c35"></a>
+<a id="orge108318"></a>
 
 ## Application keybindings
 
@@ -658,7 +722,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orga966052"></a>
+<a id="org17213d1"></a>
 
 ## More keybindings
 
@@ -704,12 +768,12 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org25cbb70"></a>
+<a id="orgd173633"></a>
 
 # Emacs
 
 
-<a id="org5742bd8"></a>
+<a id="orgfdbc317"></a>
 
 ## General non-vanilla bindings
 
@@ -749,7 +813,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgcf4884a"></a>
+<a id="org911640c"></a>
 
 ## SSS specific keybindings
 

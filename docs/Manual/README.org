@@ -395,6 +395,67 @@ TODO: allow more dynamics and often changing of wallpapers, also random wallpape
 
 SSS is automatically configured with SSH setup, and multi-user Git setup.
 
+** Disk space
+
+Reproducibility and isolation of builds naturally leads to a little more disk usage than other systems. This is not a problem nowadays, with cheap storage.
+
+That being said, here follow some useful reminders, every now and then clean:
+- Guix generations
+- Guix store
+- Nix store
+- Unused Steam games
+
+You could run something like this:
+#+begin_example
+sudo guix system delete-generations 1d
+sudo guix gc
+nix-store --gc
+#+end_example
+
+If you'd like to find the largest files in your disk, here’s an example command:  
+  #+begin_src sh
+du -ah / | sort -rh | head -n 20
+  #+end_src
+
+** Bluetooth
+
+The real best way to manage your bluetooth is using the bluetoothctl shell. This is a little more manual and low-level, but it will allow your to programatically connect to your devices, setup shortcuts for "favourite" connections, and much more.
+
+#+begin_src shell
+  # Run bluetoothctl in a shell
+  user@host $ bluetoothctl
+  #
+  # Waiting to connect to bluetoothd...[bluetooth]# Agent registered
+  # [bluetooth]# hci0 new_settings: powered bondable ssp br/edr le secure-conn cis-central cis-peripheral 
+  # [bluetooth]# [CHG] Controller C8:A3:E8:76:98:80 Pairable: yes
+  # [bluetooth]# AdvertisementMonitor path registered
+  # [bluetooth]#
+
+  #  help
+
+  # then turn your bluethooth on:
+  #  power on
+  #
+  # [bluetooth]# Changing power on succeeded
+
+  # scan for devices around you:
+  #  scan on
+  #
+  # [bluetooth]# SetDiscoveryFilter success
+  # [bluetooth]# Discovery started
+  # [bluetooth]# [CHG] Controller C8:A3:E8:76:98:80 Discovering: yes
+  # [bluetooth]# [NEW] Device 52:B7:C5:C2:54:3A 52-B7-C5-C2-54-3A
+  # [bluetooth]# [NEW] Device 4B:C8:1D:17:55:A6 4B-C8-1D-17-55-A6
+  # [bluetooth]# [NEW] Device 27:9F:3F:70:13:71 27-9F-3F-70-13-71
+  # [bluetooth]# [NEW] Device E3:FE:C8:39:99:36 Wahoo KICKR 6F8D
+
+  # pair C0:23:8D:57:73:CF 
+
+  # exit
+#+end_src
+
+
+
 ** Keyboard Terminology
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):

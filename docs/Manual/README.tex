@@ -1,4 +1,4 @@
-% Created 2025-01-22 wo 08:37
+% Created 2025-01-22 wo 08:51
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -56,10 +56,10 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{center}
 
 \section{What lies here?}
-\label{sec:org429e42a}
+\label{sec:org7f57cd6}
 
 \subsection{An operating system (OS) configured in Scheme}
-\label{sec:org32e6269}
+\label{sec:org79e83d5}
 
 \begin{itemize}
 \item GNU Guix system configurations
@@ -75,7 +75,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{itemize}
 
 \subsection{Joe's Emacs configuration}
-\label{sec:org3fc2ca5}
+\label{sec:org46b5241}
 
 An operating system unto itself.
 
@@ -84,7 +84,7 @@ An operating system unto itself.
 \end{itemize}
 
 \section{Why ?}
-\label{sec:org56064f9}
+\label{sec:org1894839}
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
@@ -122,7 +122,7 @@ Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} sinc
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 \section{What is Guix}
-\label{sec:org33eff70}
+\label{sec:org2adf234}
 
 GNU Guix is a package management tool for and distribution of the GNU system. Guix makes reproducibility easy and allows users to install, upgrade, or remove software packages, to roll back to a previous package set, to build packages from source, and generally assists with the creation and maintenance of software environments.
 
@@ -131,7 +131,7 @@ While you can install GNU Guix on top of an existing GNU/Linux system where it c
 I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: \url{https://guix.gnu.org/manual/en/html\_node/}.
 
 \section{Non-free software}
-\label{sec:org7173d3d}
+\label{sec:org3836939}
 
 SSS attempts to stay as libre as possible, while also respecting your convenience.
 
@@ -143,7 +143,7 @@ This means, among other things that SSS:
 
 
 \section{How this manual works}
-\label{sec:orgd6daad9}
+\label{sec:orgdcf31d4}
 
 This manual is written by hand with care and attention for detail.
 
@@ -155,7 +155,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 \end{itemize}
 
 \section{Customizations}
-\label{sec:org3bb0dd9}
+\label{sec:orgbb892a6}
 
 SSS supports several user customizations, more specifically:
 
@@ -165,7 +165,7 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:orgb3488c1}
+\label{sec:org0538f0b}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -236,7 +236,7 @@ Find here a reference configuration with what is required.
 \end{verbatim}
 
 \section{Bootstrapping}
-\label{sec:orgb462d61}
+\label{sec:orgb36fb23}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
@@ -251,7 +251,7 @@ It is highly recommended to first become familiar with SSS and Guix via a \emph{
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
 \subsection{Guix Install tips}
-\label{sec:org82b2c7e}
+\label{sec:orga246015}
 
 If your system doesn't boot due to lack of drivers, it can be useful to add the \texttt{nomodeset} option after \texttt{quiet} in the GRUB menu, by editing the boot "command" of the latest entry.
 
@@ -271,7 +271,7 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: \url{https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual}.
 
 \subsection{After install}
-\label{sec:orgdfadab5}
+\label{sec:org1cc3685}
 
 Add \texttt{nonguix} in your channels file (\texttt{\$HOME/.config/guix/channels.scm}). This will later be overwritten by SSS.
 
@@ -324,7 +324,7 @@ sudo fc-cache -frv
 You can then reboot and you should be greeted by a simple TTY.
 
 \subsection{On login managers, and login screens}
-\label{sec:org88c6f03}
+\label{sec:org292b179}
 
 SSS uses \textbf{no login managers} like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not).
 That being said, feel free to use your own.
@@ -337,7 +337,7 @@ If you run traditional X11 sessions, you could choose to do startx instead of a 
 
 
 \section{Nix profile}
-\label{sec:org7bc5b93}
+\label{sec:org0794314}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -404,12 +404,12 @@ Installing all wanted Nix packages can be done with \texttt{make npi} for exampl
 \end{verbatim}
 
 \section{SSS Project}
-\label{sec:orge6ad2b6}
+\label{sec:orgf03117a}
 
 Find the \href{../Project management/README.org}{project management of SSS here}
 
 \section{System audio}
-\label{sec:org8709092}
+\label{sec:org0ea988d}
 
 SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
 
@@ -418,7 +418,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the \texttt{RTC\_USE\_PIPEWIRE} variable to \texttt{true}. This is already the case by default in SSS.
 
 \section{Sway, resolutions and scaling}
-\label{sec:org50e0052}
+\label{sec:orgd4f75a0}
 
 Most of the times, Sway will have set the correct resolution and scale (fractional) for your device. This also happens automatically when plugging in/out external monitors.
 
@@ -436,7 +436,7 @@ swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
 \end{verbatim}
 
 \section{Wallpapers}
-\label{sec:org10835d4}
+\label{sec:org42a6cb2}
 
 SSS automatically loads at startup a matching wallpaper for the currently enabled theme.
 
@@ -445,12 +445,77 @@ This uses swww and thus can load animated images as well and do fancy transition
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
 \section{SSH, Git}
-\label{sec:orgfe66246}
+\label{sec:org7008f1d}
 
 SSS is automatically configured with SSH setup, and multi-user Git setup.
 
+\section{Disk space}
+\label{sec:org697ecdf}
+
+Reproducibility and isolation of builds naturally leads to a little more disk usage than other systems. This is not a problem nowadays, with cheap storage.
+
+That being said, here follow some useful reminders, every now and then clean:
+\begin{itemize}
+\item Guix generations
+\item Guix store
+\item Nix store
+\item Unused Steam games
+\end{itemize}
+
+You could run something like this:
+\begin{verbatim}
+sudo guix system delete-generations 1d
+sudo guix gc
+nix-store --gc
+\end{verbatim}
+
+If you'd like to find the largest files in your disk, here’s an example command:  
+\begin{verbatim}
+du -ah / | sort -rh | head -n 20
+\end{verbatim}
+
+\section{Bluetooth}
+\label{sec:orgeb3713a}
+
+The real best way to manage your bluetooth is using the bluetoothctl shell. This is a little more manual and low-level, but it will allow your to programatically connect to your devices, setup shortcuts for "favourite" connections, and much more.
+
+\begin{verbatim}
+# Run bluetoothctl in a shell
+user@host $ bluetoothctl
+#
+# Waiting to connect to bluetoothd...[bluetooth]# Agent registered
+# [bluetooth]# hci0 new_settings: powered bondable ssp br/edr le secure-conn cis-central cis-peripheral 
+# [bluetooth]# [CHG] Controller C8:A3:E8:76:98:80 Pairable: yes
+# [bluetooth]# AdvertisementMonitor path registered
+# [bluetooth]#
+
+#  help
+
+# then turn your bluethooth on:
+#  power on
+#
+# [bluetooth]# Changing power on succeeded
+
+# scan for devices around you:
+#  scan on
+#
+# [bluetooth]# SetDiscoveryFilter success
+# [bluetooth]# Discovery started
+# [bluetooth]# [CHG] Controller C8:A3:E8:76:98:80 Discovering: yes
+# [bluetooth]# [NEW] Device 52:B7:C5:C2:54:3A 52-B7-C5-C2-54-3A
+# [bluetooth]# [NEW] Device 4B:C8:1D:17:55:A6 4B-C8-1D-17-55-A6
+# [bluetooth]# [NEW] Device 27:9F:3F:70:13:71 27-9F-3F-70-13-71
+# [bluetooth]# [NEW] Device E3:FE:C8:39:99:36 Wahoo KICKR 6F8D
+
+# pair C0:23:8D:57:73:CF 
+
+# exit
+\end{verbatim}
+
+
+
 \section{Keyboard Terminology}
-\label{sec:org9ac7b9c}
+\label{sec:orgba2452a}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -469,10 +534,10 @@ term & meaning\\[0pt]
 
 
 \section{Sway}
-\label{sec:org6ecd29f}
+\label{sec:orgdb4275b}
 
 \subsection{General keybindings}
-\label{sec:orgbf2fca5}
+\label{sec:org6a63c3e}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -492,7 +557,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{Application keybindings}
-\label{sec:orgdfbb416}
+\label{sec:orga3b9d43}
 
 
 \begin{center}
@@ -511,7 +576,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{More keybindings}
-\label{sec:orgc80fd48}
+\label{sec:org878b736}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -525,10 +590,10 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \section{Emacs}
-\label{sec:orgb5d769d}
+\label{sec:org11de1ff}
 
 \subsection{General non-vanilla bindings}
-\label{sec:org73d1f47}
+\label{sec:org39074cf}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -542,7 +607,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:orgfa0101d}
+\label{sec:org510e60d}
 
 \begin{center}
 \begin{tabular}{ll}
