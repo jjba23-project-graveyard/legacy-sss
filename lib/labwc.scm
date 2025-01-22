@@ -22,9 +22,14 @@
   #:use-module (gnu)
   #:use-module (sss palette))
 
-(define-public labwc-rc "")
-(define-public labwc-menu "")
-(define-public labwc-autostart "")
-(define-public labwc-shutdown "")
-(define-public labwc-environment "") 
+(define-public labwc-rc
+  "")
+(define-public labwc-menu
+  "")
+(define-public labwc-autostart
+  "")
+(define-public labwc-shutdown
+  "")
+(define-public labwc-environment
+  "")
 

@@ -12,5 +12,4 @@
     (close-pipe process)
     (display process-output) process-output))
 
-
 (syscall "NIXPGS_ALLOW_UNFREE=1 nix profile upgrade --impure '.*'")

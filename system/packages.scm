@@ -328,7 +328,8 @@ more.")
         font-monaspace
         font-google-noto))
 
-(define sss-normie-packages (list labwc))
+(define sss-normie-packages
+  (list labwc))
 
 (define sss-wm-packages
   (list swaybg
