@@ -73,6 +73,7 @@ What lies here?
 
 * An operating system (OS) configured in Scheme::
 * Joe's Emacs configuration::
+* Manon's session::
 
 Bootstrapping
 
@@ -106,10 +107,13 @@ Emacs keybindings
 @menu
 * An operating system (OS) configured in Scheme::
 * Joe's Emacs configuration::
+* Manon's session::
 @end menu
 
 @node An operating system (OS) configured in Scheme
 @section An operating system (OS) configured in Scheme
+
+This is joe's session:
 
 @itemize
 @item
@@ -143,6 +147,12 @@ An operating system unto itself.
 @item
 Advanced Emacs configurations with Emacs Lisp + Elpaca
 @end itemize
+
+@node Manon's session
+@section Manon's session
+
+I also include a (work in progress) Windows-like session for "non-geek" users, with "normal floating windows".
+This session uses labwc compositor.
 
 @node Why ?
 @chapter Why ?

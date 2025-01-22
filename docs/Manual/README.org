@@ -32,6 +32,8 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 
 ** An operating system (OS) configured in Scheme
 
+This is joe's session:
+
 - GNU Guix system configurations
 - SwayFX configurations
 - Foot terminal emulator
@@ -48,6 +50,11 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 An operating system unto itself.
 
 - Advanced Emacs configurations with Emacs Lisp + Elpaca
+
+** Manon's session
+
+I also include a (work in progress) Windows-like session for "non-geek" users, with "normal floating windows".
+This session uses labwc compositor.
 
 * Why ?
 
