@@ -31,6 +31,7 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 - Org format [[file:docs/Manual/README.org]]
 - PDF format [[file:docs/Manual/README.pdf]]  
 - HTML format [[file:docs/Manual/README.html]]
+- Online HTML: [[https://jointhefreeworld.org/manuals/sss/index.html]]  
 - Markdown format [[file:docs/Manual/README.md]]  
 - texi format [[file:docs/Manual/README.texi]]
 - info format [[file:docs/Manual/README.info]]    
