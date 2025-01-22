@@ -328,6 +328,8 @@ more.")
         font-monaspace
         font-google-noto))
 
+(define sss-normie-packages (list labwc))
+
 (define sss-wm-packages
   (list swaybg
         swaylock-effects
@@ -382,7 +384,7 @@ more.")
         tree-sitter-javascript))
 
 (define sss-terminal-emulator-packages
-  (list foot))
+  (list foot konsole xfce4-terminal))
 
 (define sss-dev-packages
   (list (specification->package "openjdk@21.0.2")
@@ -739,6 +741,7 @@ SQL databases.  This package implements the interface for SQLite.")))
                    (specification->package x)) per-host-packages)
             (sss-other-system-packages #:architecture architecture)
             sss-wm-packages
+            sss-normie-packages
             sss-font-packages
             sss-dev-packages
             sss-guile-packages

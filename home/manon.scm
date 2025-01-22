@@ -71,7 +71,9 @@
              (sss rofi)
              (sss ssh)
              (sss bridge emacs)
+             (sss labwc)
              (sss qutebrowser))
+
 
 ;; Define user's home files (a.k.a. dotfiles)
 (define sss-home-files-service
@@ -89,8 +91,8 @@
              ;; Nix configuration with experimental features
              (".config/nix/nix.conf" ,(plain-file "nix.conf"
                                                   (mk-rec-kv-conf-lines `((experimental-features . "nix-command flakes"))
-                                                   #:template
-                                                   spaced-equal-conf-pair)))
+                                                                        #:template
+                                                                        spaced-equal-conf-pair)))
              ;; Loads Nixpkgs configuration locally
              (".config/nixpkgs/config.nix" ,(local-file
                                              "../lib/nix/nixpkgs.nix"))
@@ -103,6 +105,17 @@
                                                            (mk-kv-conf-lines
                                                             sss-portals-config))))
 
+             ;; Mako (notification daemon) configuration
+             (".config/mako/config" ,(plain-file "config"
+                                                 (mk-kv-conf-lines (sss-mako-config
+                                                                    #:sss-active-palette
+                                                                    sss-active-palette))))
+
+             (".config/labwc/rc.xml" ,(local-file "../lib/labwc/rc.xml"))
+             (".config/labwc/menu.xml" ,(local-file "../lib/labwc/menu.xml"))
+             (".config/labwc/shutdown" ,(local-file "../lib/labwc/shutdown"))
+             (".config/labwc/themerc" ,(local-file "../lib/labwc/themerc"))
+             
              ;; Containers configuration (for Docker, Podman, etc.)
              ;; Specifies container registries
              (".config/containers/registries.conf" ,(plain-file
@@ -110,7 +123,7 @@
                                                      "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
-                                                 "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}")))))
+                                                            "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}")))))
 
 ;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")
