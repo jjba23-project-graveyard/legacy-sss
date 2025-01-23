@@ -28,12 +28,13 @@
 
 ;;; Code:
 
-(defvar elpaca-installer-version 0.8)
+;; Install the Elpaca package manager
+(defvar elpaca-installer-version 0.9)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                              :ref nil :depth 1
+                              :ref nil :depth 1 :inherit ignore
                               :files (:defaults "elpaca-test.el" (:exclude "extensions"))
                               :build (:not elpaca--activate-package)))
 (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
@@ -67,8 +68,11 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
+;; Enable integration of use-package with Elpaca
 (elpaca elpaca-use-package (elpaca-use-package-mode))
 
+;; Load the bridge between SSS (Supreme Sexp System) and Emacs
+;; factually binding Guile Scheme + Guix and Emacs together
 (load "~/.emacs.d/sss-bridge.el")
 
 ;; Declare sss customizations
@@ -355,6 +359,9 @@ According to size, color and font family"
 
 (use-package typescript-mode :ensure t :mode "\\.ts\\'")
 
+(use-package compat
+  :ensure (:host github :repo "emacs-compat/compat" :branch "master"))
+
 (use-package nix-ts-mode 
   :ensure t 
   :mode "\\.nix\\'")
@@ -364,7 +371,7 @@ According to size, color and font family"
 ;; Emacs UI/UX/DX
 
 (use-package ef-themes
-  :ensure t
+  :ensure (:host github :repo "protesilaos/ef-themes" :branch "master")
   :config
   (setq ef-bio-palette-overrides '((variable fg-main)
                                    (string green-faint)))
@@ -418,13 +425,11 @@ According to size, color and font family"
 
 (use-package yaml-mode :ensure t :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
 
-(use-package org-contrib :ensure t)
-
 (use-package org-present :ensure t)
 
 (use-package org-auto-tangle
   :ensure t
-  :after (org org-contrib)
+  :after (org)
   :hook ((org-mode . org-auto-tangle-mode)))
 
 (use-package org-roam
@@ -470,7 +475,7 @@ According to size, color and font family"
   (add-to-list 'super-save-hook-triggers 'find-file-hook))
 
 (use-package spacious-padding 
-  :ensure t 
+  :ensure (:host github :repo "protesilaos/spacious-padding" :branch "master")
   :init
   (setq spacious-padding-widths
         '( :internal-border-width 18 
@@ -485,7 +490,8 @@ According to size, color and font family"
   :config
   (spacious-padding-mode))
 
-(use-package rainbow-mode :ensure t)
+(use-package rainbow-mode
+  :ensure (:host github :repo "emacsmirror/rainbow-mode" :branch "master"))
 
 (use-package ob-http :ensure t)
 
@@ -521,8 +527,6 @@ According to size, color and font family"
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-
-(use-package bug-hunter :ensure t)
 
 (use-package sly 
   :ensure t  
@@ -797,7 +801,7 @@ According to size, color and font family"
 	("C-c ! f" . flymake-mode)))
 
 (use-package flymake-proselint
-  :ensure t
+  :ensure (:host github :repo "emacs-compat/flymake-proselint" :branch "master")
   :hook ((text-mode . (lambda () (flymake-mode)(flymake-proselint-setup)))
          (markdown-mode . (lambda () (flymake-mode)(flymake-proselint-setup)))
          (org-mode . (lambda () (flymake-mode)(flymake-proselint-setup))))
