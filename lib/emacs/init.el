@@ -573,11 +573,11 @@ According to size, color and font family"
   (corfu-history-mode)
   (corfu-popupinfo-mode 1))
 
-(use-package nerd-icons-corfu
+(use-package kind-icon
   :ensure t
-  :after (corfu nerd-icons)
+  :after corfu
   :config
-  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 
 (use-package smartparens
