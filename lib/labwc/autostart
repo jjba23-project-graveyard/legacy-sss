@@ -2,4 +2,4 @@ lxsession
 mako
 dbus-update-activation-environment --all
 transmission-daemon
-swww-daemon & sleep 1 && swww img ~a --transition-step 10 --transition-fps 30 --transition-type center $HOME/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/h2mp9dpdlpee1.jpeg
+swww-daemon & sleep 1 && swww img $HOME/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/h2mp9dpdlpee1.jpeg --transition-step 10 --transition-fps 30 --transition-type center 
