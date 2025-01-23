@@ -89,8 +89,8 @@
              ;; Nix configuration with experimental features
              (".config/nix/nix.conf" ,(plain-file "nix.conf"
                                                   (mk-rec-kv-conf-lines `((experimental-features . "nix-command flakes"))
-                                                   #:template
-                                                   spaced-equal-conf-pair)))
+                                                                        #:template
+                                                                        spaced-equal-conf-pair)))
              ;; Loads Nixpkgs configuration locally
              (".config/nixpkgs/config.nix" ,(local-file
                                              "../lib/nix/nixpkgs.nix"))
@@ -113,6 +113,12 @@
              (".config/labwc/menu.xml" ,(local-file "../lib/labwc/menu.xml"))
              (".config/labwc/shutdown" ,(local-file "../lib/labwc/shutdown"))
              (".config/labwc/themerc" ,(local-file "../lib/labwc/themerc"))
+             (".config/labwc/shade.xbm" ,(local-file "../lib/labwc/shade.xbm"))
+             (".config/labwc/max.xbm" ,(local-file "../lib/labwc/max.xbm"))
+             (".config/labwc/iconify.xbm" ,(local-file "../lib/labwc/iconify.xbm"))
+             (".config/labwc/close.xbm" ,(local-file "../lib/labwc/close.xbm"))
+             (".config/labwc/bullet.xbm" ,(local-file "../lib/labwc/bullet.xbm"))
+             (".config/labwc/autostart" ,(local-file "../lib/labwc/autostart"))
 
              ;; Containers configuration (for Docker, Podman, etc.)
              ;; Specifies container registries
@@ -121,7 +127,7 @@
                                                      "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
-                                                 "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}")))))
+                                                            "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}")))))
 
 ;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")
