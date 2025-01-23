@@ -531,7 +531,11 @@ Installing all wanted Nix packages can be done with @code{make npi} for example 
 @node SSS Project
 @chapter SSS Project
 
-Find the @uref{../Project management/README.org, project management of SSS here}
+Contributing to free software is a uniquely beautiful act because it embodies principles of generosity, collaboration, and empowerment.
+
+We welcome everyone to feel invited to the SSS Project, and feel free to contribute, improve it and/or suggest improvements, brainstorm with me, make it more modular/flexible.
+
+Find the backlog and @uref{../project-management.org, project management of SSS here}.
 
 @node System audio
 @chapter System audio
