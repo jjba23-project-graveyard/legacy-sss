@@ -849,13 +849,6 @@ According to size, color and font family"
 (use-package prodigy
   :ensure t)
 
-(use-package libmpdel
-  :ensure t
-  :init
-  (setq libmpdel-music-directory "~/Muziek"))
-
-(use-package mpdel
-  :ensure t)
 
 ;; TODO when upgrading to Emacs 30 which-key will be built-in
 (use-package which-key 

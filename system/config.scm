@@ -110,12 +110,6 @@
   (simple-service 'sss-cron-jobs mcron-service-type
                   (list wikimusic-fetch-backups-job)))
 
-;; Setup MPD service for joe
-(define sss-joe-mpd
-  (service mpd-service-type
-           (mpd-configuration (music-directory "$HOME/Muziek")
-                              (playlist-directory "$HOME/Muziek/Playlists"))))
-
 ;; Setup subuid and subgid for the system
 (define sss-subuid
   (simple-service 'podman-subuid-subgid
@@ -239,7 +233,6 @@
           (service power-profiles-daemon-service-type)
           sss-iptables
           sss-subuid
-          sss-joe-mpd
           (service screen-locker-service-type
                    (screen-locker-configuration (name "swaylock")
                                                 (program (file-append

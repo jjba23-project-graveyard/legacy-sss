@@ -51,7 +51,6 @@
 ;; 
 ;;   - Includes essential and custom modules such as clock, battery, network, and custom power actions.
 ;;   - Workspaces: Custom icons for workspace numbers with scroll disabled and all outputs enabled.
-;;   - MPD: Displays the current song, playback state, and queue length with detailed formatting for connected and disconnected states.
 ;;   - Clock: Includes date, time, and timezone with customizable tooltips and refresh interval.
 ;;   - Battery: Dynamically updates based on charging, plugged-in, and critical states, with custom icons and thresholds.
 ;;   - Network: Distinguishes between WiFi, Ethernet, and disconnected states, with formatted tooltips for connection details.
@@ -60,21 +59,15 @@
 ;;   - Many configurations utilize icons and colors, aligning with themes for visual consistency.
 ;;   - Supports dynamic tooltips and real-time updates for responsive UX.
 ;;
-;; (mpd) - (format .  "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} -
-;; {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})
-;; ⸨{songPosition}|{queueLength}⸩ {volume}% ")
 ;; 
 ;; (clock) - (format-alt . "{:%Y-%m-%d}")
 ;;
 (define-public sss-waybar-conf
   `((position . bottom) (height . 42)
     (spacing . 16)
-    ;; (margin-bottom . 10)
-    ;; (margin-right . 12)
-    ;; (margin-left . 12)
     (modules-left . #(clock sway/workspaces sway/mode sway/scratchpad custom/media sway/window))
     (modules-center)
-    (modules-right . #(mpd idle_inhibitor pulseaudio network power-profiles-daemon cpu memory temperature backlight keyboard-state sway/language battery #{battery#bat2}# tray custom/power))
+    (modules-right . #(idle_inhibitor pulseaudio network power-profiles-daemon cpu memory temperature backlight keyboard-state sway/language battery #{battery#bat2}# tray custom/power))
     (sway/workspaces (disable-scroll . #t)
                      (all-outputs . #t)
                      (warp-on-scroll . #f)
@@ -103,24 +96,7 @@
                      (format-icons . #("" "\uf2d2"))
                      (tooltip . #t)
                      (tooltip-format . "{app}: {title}"))
-    (mpd (format unquote
-                 (string-append
-                  "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}"
-                  "{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) "
-                  "⸨{songPosition}|{queueLength}⸩ \uf001"))
-         (format-disconnected . "Disconnected \uf001")
-         (format-stopped . "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped \uf001")
-         (unknown-tag . "N/A")
-         (interval . 5)
-         (consume-icons (on . "\uf0c4 "))
-         (random-icons (off . "<span color=\"#f53c3c\">\uf074</span> ")
-                       (on . "\uf074 "))
-         (repeat-icons (on . "\uf01e "))
-         (single-icons (on . "\uf01e1 "))
-         (state-icons (paused . "\uf04c")
-                      (playing . "\uf04b"))
-         (tooltip-format . "MPD (connected)")
-         (tooltip-format-disconnected . "MPD (disconnected)"))
+
     (idle_inhibitor (format . "{icon}")
                     (format-icons (activated . "\uf06e")
                                   (deactivated . "\uf070")))
@@ -264,7 +240,6 @@
       ("#tray" (margin-right . "4px"))
       ("#keyboard-state" (font-size . "9pt"))
       ("#network" (font-size . "9pt"))
-      ("#mpd" (font-size . "9pt"))
       ("#pulseaudio" (font-size . "9pt"))
       ("#cpu" (font-size . "9pt"))
       ("#memory" (font-size . "9pt"))))

@@ -60,7 +60,6 @@
                      texlive
                      gimp
                      python-web
-                     mpd
                      python
                      xdisorg
                      tls
@@ -301,7 +300,7 @@
         sss-kv-yaru-colors))
 
 (define sss-music-packages
-  (list spotifyd lilypond mpd mpd-mpc ardour))
+  (list spotifyd lilypond ardour))
 
 (define sss-browser-packages
   (list icecat icedove))
