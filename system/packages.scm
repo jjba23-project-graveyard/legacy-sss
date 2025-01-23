@@ -203,7 +203,10 @@
         swaylock-effects
         swayidle
         rofi-wayland
+        fzf
 
+        slurp
+        
         waybar-experimental
         wmenu
         swww
@@ -266,6 +269,8 @@
   (list htop
         emacs-pgtk
         vim
+        git
+        neovim
         openssh
         openssl
         dbus
@@ -299,11 +304,27 @@
         adwaita-icon-theme
         sss-kv-yaru-colors))
 
+(define sss-latex-packages
+  (list
+   texinfo
+   texlive))
+
 (define sss-music-packages
   (list spotifyd lilypond ardour))
 
 (define sss-browser-packages
   (list icecat icedove))
+
+(define sss-qt-packages
+  (list    kvantum
+           qt5ct
+           qtwayland-5
+           qtsvg
+           ;; seems like qt wayland 6 and 5 are not yet compatible
+           ;; this causes crashes in qt 5 and 6 apps
+           ;; qtwayland-6
+           qt6ct
+           ))
 
 (define* (sss-other-system-packages #:key architecture)
   (list
@@ -312,21 +333,8 @@
    pipewire
    nginx
    watchexec
-   git
+
    pavucontrol
-
-   kcalc
-
-   slurp
-
-   kvantum
-   qt5ct
-   qtsvg
-   ;; seems like qt wayland 6 and 5 are not yet compatible
-   ;; this causes crashes in qt 5 and 6 apps
-   ;; qtwayland
-   qtwayland-5
-   qt6ct
 
    geany
 
@@ -336,7 +344,7 @@
    xz
    ispell
    (specification->package "bind")
-   wireshark
+
 
    gnome-tweaks
    arandr
@@ -348,9 +356,9 @@
    shotcut
    openshot
    inkscape
-   dunst
-   fzf
+
    vlc
+   
    sqlite
    postgresql
 
@@ -420,9 +428,6 @@
    lxsession
    pamixer
 
-   texinfo
-   texlive
-
    (sss/x86-only-pkg architecture "ghcid")
 
    neofetch
@@ -446,14 +451,6 @@
    tree
    fyi
 
-   enchant
-   emacs-jinx
-   aspell
-   aspell-dict-nl
-   aspell-dict-pt-pt
-   aspell-dict-es
-   aspell-dict-en
-   aspell-dict-ca
 
    drill
 
@@ -464,19 +461,30 @@
    (sss/x86-only-pkg architecture "stellarium")
    (sss/x86-only-pkg architecture "virt-manager")
 
-   (specification->package "darkhttpd")
-
-   openvpn
-   network-manager-applet
-   network-manager-openconnect
-   network-manager-openvpn
-
    nautilus
 
    xxd))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
+
+(define sss-net-packages
+  (list    openvpn
+           (specification->package "darkhttpd")
+           network-manager-applet
+           network-manager-openconnect
+           wireshark
+           network-manager-openvpn))
+
+(define sss-dict-packages
+  (list    enchant
+           emacs-jinx
+           aspell
+           aspell-dict-nl
+           aspell-dict-pt-pt
+           aspell-dict-es
+           aspell-dict-en
+           aspell-dict-ca))
 
 ;; SYSTEM PACKAGES
 ;;
@@ -497,5 +505,8 @@
             sss-coreutils
             sss-terminal-emulator-packages
             sss-browser-packages
+            sss-latex-packages
+            sss-dict-packages
+            sss-net-package
             sss-theme-packages))
   (export sss-system-packages))
