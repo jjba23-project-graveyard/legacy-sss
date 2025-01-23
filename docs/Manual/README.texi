@@ -58,7 +58,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 * System audio::
 * Sway, resolutions and scaling: Sway resolutions and scaling. 
 * Wallpapers::
-* SSH, Git: SSH Git. 
+* Git::
 * Disk space::
 * Bluetooth::
 * Troubleshooting FAQ::
@@ -66,6 +66,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 * Emacs keybindings::
 * Glossary::
 * Acronyms::
+* Inheriting an SSS/GNU system::
 
 @detailmenu
 --- The Detailed Node Listing ---
@@ -86,7 +87,7 @@ Installing SSS on Guix
 
 * Adding channels::
 * Keeping SSS updated::
-* Initial installation of SSS from a devshell::
+* Installation of SSS::
 
 Sway keybindings
 
@@ -393,7 +394,7 @@ Once you have a working Guix base installation on your machine, you are ready to
 @menu
 * Adding channels::
 * Keeping SSS updated::
-* Initial installation of SSS from a devshell::
+* Installation of SSS::
 @end menu
 
 @node Adding channels
@@ -423,8 +424,8 @@ You should every now and then update the SSS repo with @code{git pull}. You also
 
 Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
 
-@node Initial installation of SSS from a devshell
-@subsection Initial installation of SSS from a devshell
+@node Installation of SSS
+@subsection Installation of SSS
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS@.
 
@@ -439,6 +440,8 @@ Enter the directory of SSS: @code{cd sss}.
 Make sure you place your @code{per-host.scm} in the root of this directory. Then you can do a @code{make sr}.
 
 Note: @code{make sr} translates to @code{sudo guix system reconfigure config.scm --fallback}.
+
+While unlikely, it's possible that some packages fail to install/build for your setup. I would encourage to temporarily comment those out of the configuration (likely at @code{system/packages.scm}) and try again. After a working SSS setup, you can uncomment them and try again.
 
 For more commands take a look at the SSS Makefile: @uref{../../Makefile}.
 
@@ -566,10 +569,20 @@ This uses swww and thus can load animated images as well and do fancy transition
 
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
-@node SSH Git
-@chapter SSH, Git
+@node Git
+@chapter Git
 
-SSS is automatically configured with SSH setup, and multi-user Git setup.
+Joe's account is automatically configured with a multi-user Git setup. See @code{lib/git.scm}.
+Currently this works on a per-directory basis, and is configured by default to my preferred settings.
+TODO: make this more configurable.
+
+My settings are:
+@itemize
+@item
+@code{$HOME/Ontwikkeling/Persoonlijk} is where I keep my personal development projects. These are uploaded to Codeberg, and use their own gitconfig, email address, default git message, GPG key, and SSH keys.
+@item
+@code{$HOME/Ontwikkeling/Werk} is where I keep my work projects. These are uploaded to Github, and use their own gitconfig, email address, default git message, GPG key, and SSH keys.
+@end itemize
 
 @node Disk space
 @chapter Disk space
@@ -642,10 +655,21 @@ user@@host $ bluetoothctl
 @chapter Troubleshooting FAQ
 
 Q: I ran out of disk space, and have too much garbage in the system!
+
 A: Check the Makefile of SSS and run a @code{make full-gc} followed by a @code{make sr}
 
 Q: Grub install fails due to missing disk space / input-output error!
+
 A: It's recommended to delete some old generations of the system (perhaps also a @code{make full-gc}) and to clean the dump file at: @code{/sys/firmware/efi/efivars/dump*}
+
+Q: I have a strange error, where @code{guix system reconfigure} or @code{guix home reconfigure} fails, and some error about @code{expected string ~`Derive String(['}! This is also not consistently reproducible and happens in some machines, others not!
+
+A: Sorry, your guix store is partially corrupted. There is some things you can do luckily. First of all backup your important data. Then try to identify the culprit, i.e. the file in the store which is being read and not successfully parsed.
+
+You could first try to do a @code{sudo guix gc --verify=repair,contents}, but that may not help. If it does then great you are done!
+Otherwise try to find a way to disable the dependency on this in your config if possible. Proceed to delete all Guix home generations (except current), after which you should delete all system generations (except current) and do an intensive garbage collection (@code{make full-gc}).
+
+You can optionally do a @code{guix pull} now to see if maybe a new version of things comes along and helps. In any case try to @code{reconfigure} (@code{make jr} / @code{make sr}) again and it should work, after which you can turn the "offender" back on.
 
 @node Sway keybindings
 @chapter Sway keybindings
@@ -809,5 +833,40 @@ A: It's recommended to delete some old generations of the system (perhaps also a
 @item
 @strong{@strong{RTC}}: Real-Time Communication
 @end itemize
+
+@node Inheriting an SSS/GNU system
+@chapter Inheriting an SSS/GNU system
+
+While we may not like thinking about these situations, life has an expiry date for us all, and as such we should prepare for a day when we are no more.
+
+
+Instructions are crucial in this case because the computer systems we posess might hold valuable or sentimental information.
+
+Without guidance, it could be difficult to figure out how to access these computers, specially a somewhat niche setup like SSS@.
+
+Our loved ones can hopefully thanks to this section of the manual understand how to use the computer, retrieve important files, or preserve their work.
+
+Firstly, get a hold of as many passwords as you can and account information, before turning on the device.
+
+Proceed to turn on the device. If immediately a password prompt appears, this is likely a system-wide BIOS password, which you will need to unlock to even use the computer.
+
+Choose the boot option for Guix/GNU/Linux if the choice is presented. If multiple options are shown, just press ENTER to choose the default option or use the arrow keys to move around the GRUB boot menu. If the machine struggles to boot, something like Universal Rescue Disk could come in handy.
+
+Once you boot into SSS (Guix + GNU + Linux), you will see a fast succession of letters in a black screen, wait a bit until you see appear something like:
+
+This is the GNU system!
+login:
+
+At this point you should type the username of the session you want to log into (generally this is short and all lowercase letters), followed by ENTER@.
+
+Then you will get a password prompt. Type the password and press ENTER@. Don't worry if you don't see any * characters for the password, your typing worked, this is just a security measure.
+
+If the details were not correct, you will get prompted to login again.
+
+If they were correct, then you will enter the user's shell, at which point you could type @code{gui} followed by ENTER to start a graphical user interface.
+
+You should have then booted into a more familiar environment. If the user you logged into has the Sway session, the keyboard bindings are documented in sections above. You could for example use @code{Super+/} to open the fuzzy application finder (Super is often the "Windows" or "command" key).
+
+Good luck!
 
 @bye

@@ -115,6 +115,10 @@ install-nix-packages:
 
 npi:
 	@make install-nix-packages
+	@make install-nix-package-shortcuts
+
+install-nix-package-shortcuts:
+	cp -rfv $(HOME)/.nix-profile/share/applications/*.desktop $(HOME)/.local/share/applications/
 
 # Deploy manual HTML to the jointhefreeworld.org website
 deploy:
