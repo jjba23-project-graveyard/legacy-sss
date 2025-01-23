@@ -308,170 +308,172 @@
 (define* (sss-other-system-packages #:key architecture)
   (list
 
-        flatpak
-        pipewire
-        nginx
-        watchexec
-        git
-        pavucontrol
+   flatpak
+   pipewire
+   nginx
+   watchexec
+   git
+   pavucontrol
 
-        kcalc
+   kcalc
 
-        slurp
+   slurp
 
-        kvantum
-        qt5ct
-        qtsvg
-        ;; seems like qt wayland 6 and 5 are not yet compatible
-        ;; this causes crashes in qt 5 and 6 apps
-        ;; qtwayland
-        qtwayland-5
-        qt6ct
+   kvantum
+   qt5ct
+   qtsvg
+   ;; seems like qt wayland 6 and 5 are not yet compatible
+   ;; this causes crashes in qt 5 and 6 apps
+   ;; qtwayland
+   qtwayland-5
+   qt6ct
 
-        geany
+   geany
 
-        gnome-font-viewer
-        gnome-characters
+   gnome-font-viewer
+   gnome-characters
 
-        xz
-        ispell
-        (specification->package "bind")
-        wireshark
+   xz
+   ispell
+   (specification->package "bind")
+   wireshark
 
-        gnome-tweaks
-        arandr
-        httpie
-        (specification->package "remmina")
-        libnotify
-        wdisplays
+   gnome-tweaks
+   arandr
+   httpie
+   (specification->package "remmina")
+   libnotify
+   wdisplays
 
-        shotcut
-        openshot
-        inkscape
-        dunst
-        fzf
-        vlc
-        sqlite
-        postgresql
+   shotcut
+   openshot
+   inkscape
+   dunst
+   fzf
+   vlc
+   sqlite
+   postgresql
 
-        gdk-pixbuf
-        gtk
+   gdk-pixbuf
+   gtk
 
-        qutebrowser
+   qutebrowser
 
-        gnome-calculator
-        cheese
-        gnome-system-monitor
-        evince
+   gnome-calculator
+   cheese
+   gnome-system-monitor
+   evince
 
-        qemu
+   qemu
 
-        obs
-        libreoffice
-        gimp
-        imagemagick
-        libwebp
-        feh
+   obs
+   libreoffice
+   gimp
+   imagemagick
+   libwebp
+   feh
 
-        gparted
+   gparted
 
-        imagemagick
+   imagemagick
 
-        lm-sensors
-        exfatprogs
-        exfat-utils
-        fuse-exfat
-        tmon
-        flameshot
+   lm-sensors
+   exfatprogs
+   exfat-utils
+   fuse-exfat
+   tmon
+   flameshot
 
-        parallel
+   parallel
 
-        thunar
+   thunar
 
-        pinentry
-        pinentry-tty
-        emacs-pinentry
+   pinentry
+   pinentry-tty
+   emacs-pinentry
 
-        ffmpegthumbs
-        xarchiver
-        ristretto
-        orage
+   ffmpegthumbs
+   xarchiver
+   ristretto
+   orage
 
-        sqlitebrowser
-        direnv
+   sqlitebrowser
+   direnv
 
-        bsd-games
+   bsd-games
 
-        power-profiles-daemon
-        libltdl
-        scenefx
-        swayfx
-        light
+   power-profiles-daemon
+   libltdl
+   scenefx
+   swayfx
+   light
 
-        gdb
+   gdb
 
-        transmission
-        transmission-remote-gtk
+   imagemagick
 
-        xf86-video-fbdev
-        xf86-input-libinput
-        lxsession
-        pamixer
+   transmission
+   transmission-remote-gtk
 
-        texinfo
-        texlive
+   xf86-video-fbdev
+   xf86-input-libinput
+   lxsession
+   pamixer
 
-        (sss/x86-only-pkg architecture "ghcid")
+   texinfo
+   texlive
 
-        neofetch
-        cmatrix
+   (sss/x86-only-pkg architecture "ghcid")
 
-        pkg-config
+   neofetch
+   cmatrix
 
-        bluez
-        hplip
+   pkg-config
 
-        autoconf
-        automake
-        libltdl
-        libtool
+   bluez
+   hplip
 
-        perl
+   autoconf
+   automake
+   libltdl
+   libtool
 
-        mpv
-        mpv-mpris
-        unixodbc
-        tree
-        fyi
+   perl
 
-        enchant
-        emacs-jinx
-        aspell
-        aspell-dict-nl
-        aspell-dict-pt-pt
-        aspell-dict-es
-        aspell-dict-en
-        aspell-dict-ca
+   mpv
+   mpv-mpris
+   unixodbc
+   tree
+   fyi
 
-        drill
+   enchant
+   emacs-jinx
+   aspell
+   aspell-dict-nl
+   aspell-dict-pt-pt
+   aspell-dict-es
+   aspell-dict-en
+   aspell-dict-ca
 
-        (specification->package "gettext")
+   drill
 
-        (sss/x86-only-pkg architecture "google-chrome-stable")
-        (sss/x86-only-pkg architecture "reaper")
-        (sss/x86-only-pkg architecture "stellarium")
-        (sss/x86-only-pkg architecture "virt-manager")
+   (specification->package "gettext")
 
-        (specification->package "darkhttpd")
+   (sss/x86-only-pkg architecture "google-chrome-stable")
+   (sss/x86-only-pkg architecture "reaper")
+   (sss/x86-only-pkg architecture "stellarium")
+   (sss/x86-only-pkg architecture "virt-manager")
 
-        openvpn
-        network-manager-applet
-        network-manager-openconnect
-        network-manager-openvpn
+   (specification->package "darkhttpd")
 
-        nautilus
+   openvpn
+   network-manager-applet
+   network-manager-openconnect
+   network-manager-openvpn
 
-        xxd))
+   nautilus
+
+   xxd))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
