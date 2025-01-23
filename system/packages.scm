@@ -389,6 +389,10 @@
 
         thunar
 
+        pinentry
+        pinentry-tty
+        emacs-pinentry
+
         ffmpegthumbs
         xarchiver
         ristretto
