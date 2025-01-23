@@ -1,4 +1,4 @@
-% Created 2025-01-22 wo 12:23
+% Created 2025-01-23 do 11:08
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -56,10 +56,10 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 \end{center}
 
 \section{What lies here?}
-\label{sec:org1eb5bfd}
+\label{sec:orgd201a9d}
 
 \subsection{An operating system (OS) configured in Scheme}
-\label{sec:org4957bb2}
+\label{sec:org6f1c9c9}
 
 This is joe's session:
 
@@ -77,7 +77,7 @@ This is joe's session:
 \end{itemize}
 
 \subsection{Joe's Emacs configuration}
-\label{sec:org9c5ece5}
+\label{sec:org3e1560b}
 
 An operating system unto itself.
 
@@ -86,13 +86,13 @@ An operating system unto itself.
 \end{itemize}
 
 \subsection{Manon's session}
-\label{sec:orge851f0b}
+\label{sec:orgfd56ff4}
 
 I also include a (work in progress) Windows-like session for "non-geek" users, with "normal floating windows".
 This session uses labwc compositor.
 
 \section{Why ?}
-\label{sec:org7cc1b5c}
+\label{sec:org8f3c6f9}
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
@@ -124,7 +124,7 @@ Some commands in the \texttt{Makefile} are more geared towards \texttt{joe} sinc
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 \section{What is Guix}
-\label{sec:org3dba002}
+\label{sec:org5a39781}
 
 GNU Guix is a package management tool for and distribution of the GNU system. Guix makes reproducibility easy and allows users to install, upgrade, or remove software packages, to roll back to a previous package set, to build packages from source, and generally assists with the creation and maintenance of software environments.
 
@@ -133,7 +133,7 @@ While you can install GNU Guix on top of an existing GNU/Linux system where it c
 I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: \url{https://guix.gnu.org/manual/en/html\_node/}.
 
 \section{On Non-free software}
-\label{sec:orgfd56e28}
+\label{sec:org2b6f247}
 
 SSS attempts to stay as libre as possible, while also respecting your convenience.
 
@@ -144,7 +144,7 @@ This means, among other things that SSS:
 \end{itemize}
 
 \section{Keyboard Terminology}
-\label{sec:org87b7a6a}
+\label{sec:org4528573}
 
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 
@@ -162,7 +162,7 @@ term & meaning\\[0pt]
 \end{center}
 
 \section{How this manual works}
-\label{sec:org03ac428}
+\label{sec:org03ee314}
 
 This manual is written by hand with care and attention for detail.
 
@@ -174,7 +174,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 \end{itemize}
 
 \section{Customizing SSS}
-\label{sec:org0698b1a}
+\label{sec:org6b848ec}
 
 SSS supports several user customizations, more specifically:
 
@@ -184,7 +184,7 @@ Find Prot's themes here: \url{https://github.com/protesilaos/ef-themes}
 
 
 \section{Per host - per-host.scm}
-\label{sec:org8e8e91f}
+\label{sec:orgefd3860}
 
 It is \textbf{REQUIRED} to include a \texttt{per-host.scm} in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -276,7 +276,7 @@ Find here a reference configuration with what is required.
 \end{verbatim}
 
 \section{Bootstrapping}
-\label{sec:org4aa476f}
+\label{sec:orgbff9fb3}
 
 It's possible you need to some manual installations, and temporary workarounds, in order to install \texttt{sss} on a brand-new Guix installation.
 
@@ -291,7 +291,7 @@ It is highly recommended to first become familiar with SSS and Guix via a \emph{
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
 \subsection{Guix Install tips}
-\label{sec:org1090699}
+\label{sec:orgffb2cb3}
 
 If your system doesn't boot due to lack of drivers, it can be useful to add the \texttt{nomodeset} option after \texttt{quiet} in the GRUB menu, by editing the boot "command" of the latest entry.
 
@@ -311,12 +311,12 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: \url{https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual}.
 
 \subsection{Installing SSS on Guix}
-\label{sec:org6e38c79}
+\label{sec:org06dbe39}
 
 Once you have a working Guix base installation on your machine, you are ready to go about installing SSS.
 
 \subsubsection{Adding channels}
-\label{sec:orge7df2c2}
+\label{sec:org0239a47}
 
 Add \texttt{nonguix} in your channels file (\texttt{\$HOME/.config/guix/channels.scm}). This will later be overwritten by SSS.
 
@@ -336,14 +336,14 @@ Add \texttt{nonguix} in your channels file (\texttt{\$HOME/.config/guix/channels
 After adding the channel, perform a \texttt{guix pull} from your user account (\textbf{no sudo or root}) and let all channels get updated.
 
 \subsubsection{Keeping SSS updated}
-\label{sec:org7e87de0}
+\label{sec:org5a204a5}
 
 You should every now and then update the SSS repo with \texttt{git pull}. You also should regularly do a \texttt{guix pull} from your regular user, and then rebuild this system with the root user (\texttt{make sr}).
 
 Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
 
 \subsubsection{Initial installation of SSS from a devshell}
-\label{sec:org7016a03}
+\label{sec:orgc42a6c2}
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
 
@@ -375,7 +375,7 @@ sudo fc-cache -frv
 You can then reboot and you should be greeted by a simple TTY.
 
 \subsection{On login managers, and login screens}
-\label{sec:orge7077d4}
+\label{sec:org75a1f94}
 
 SSS uses \textbf{no login managers} like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not).
 That being said, feel free to use your own.
@@ -388,7 +388,7 @@ If you run traditional X11 sessions, you could choose to do startx instead of a 
 
 
 \section{Nix profile}
-\label{sec:org912daa2}
+\label{sec:org5fb0441}
 
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 
@@ -447,12 +447,12 @@ Installing all wanted Nix packages can be done with \texttt{make npi} for exampl
 
 
 \section{SSS Project}
-\label{sec:orgc066e43}
+\label{sec:orgb01a92d}
 
 Find the \href{../Project management/README.org}{project management of SSS here}
 
 \section{System audio}
-\label{sec:org565aabd}
+\label{sec:org55a3b99}
 
 SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
 
@@ -461,7 +461,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the \texttt{RTC\_USE\_PIPEWIRE} variable to \texttt{true}. This is already the case by default in SSS.
 
 \section{Sway, resolutions and scaling}
-\label{sec:orgdab9255}
+\label{sec:org0f9aff0}
 
 Most of the times, Sway will have set the correct resolution and scale (fractional) for your device. This also happens automatically when plugging in/out external monitors.
 
@@ -479,7 +479,7 @@ swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
 \end{verbatim}
 
 \section{Wallpapers}
-\label{sec:orge6c131d}
+\label{sec:org3e28ea2}
 
 SSS automatically loads at startup a matching wallpaper for the currently enabled theme.
 
@@ -488,12 +488,12 @@ This uses swww and thus can load animated images as well and do fancy transition
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
 \section{SSH, Git}
-\label{sec:org6ac1608}
+\label{sec:org6cfbc14}
 
 SSS is automatically configured with SSH setup, and multi-user Git setup.
 
 \section{Disk space}
-\label{sec:org314ea50}
+\label{sec:orga0f41bf}
 
 Reproducibility and isolation of builds naturally leads to a little more disk usage than other systems. This is not a problem nowadays, with cheap storage.
 
@@ -518,7 +518,7 @@ du -ah / | sort -rh | head -n 20
 \end{verbatim}
 
 \section{Bluetooth}
-\label{sec:orgae82bb7}
+\label{sec:org6ef7d99}
 
 The real best way to manage your bluetooth is using the bluetoothctl shell. This is a little more manual and low-level, but it will allow your to programatically connect to your devices, setup shortcuts for "favourite" connections, and much more.
 
@@ -555,12 +555,21 @@ user@host $ bluetoothctl
 # exit
 \end{verbatim}
 
+\section{Troubleshooting FAQ}
+\label{sec:org07a1d9e}
+
+Q: I ran out of disk space, and have too much garbage in the system!
+A: Check the Makefile of SSS and run a \texttt{make full-gc} followed by a \texttt{make sr}
+
+Q: Grub install fails due to missing disk space / input-output error!
+A: It's recommended to delete some old generations of the system (perhaps also a \texttt{make full-gc}) and to clean the dump file at: \texttt{/sys/firmware/efi/efivars/dump*}
+
 
 \section{Sway keybindings}
-\label{sec:org1cd6dcb}
+\label{sec:org41a6daf}
 
 \subsection{General keybindings}
-\label{sec:org12f3bf9}
+\label{sec:org8016b4f}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -580,7 +589,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{Application keybindings}
-\label{sec:org95622d4}
+\label{sec:org2706249}
 
 
 \begin{center}
@@ -599,7 +608,7 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \subsection{More keybindings}
-\label{sec:orgb299c32}
+\label{sec:org418bd3f}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -613,10 +622,10 @@ keybind & command\\[0pt]
 \end{tabular}
 \end{center}
 \section{Emacs keybindings}
-\label{sec:org5cfaa10}
+\label{sec:org83b3d70}
 
 \subsection{General non-vanilla bindings}
-\label{sec:org2affeb4}
+\label{sec:org004201f}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -630,7 +639,7 @@ keybind & command\\[0pt]
 \end{center}
 
 \subsection{SSS specific keybindings}
-\label{sec:orgebcd085}
+\label{sec:org796dce0}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -646,7 +655,7 @@ keybind & command\\[0pt]
 
 
 \section{Glossary}
-\label{sec:org68aaf55}
+\label{sec:org59765e7}
 
 \begin{itemize}
 \item \textbf{\textbf{GNU/Linux}}: A free and open-source operating system combining the GNU system and the Linux kernel.
@@ -663,7 +672,7 @@ keybind & command\\[0pt]
 \end{itemize}
 
 \section{Acronyms}
-\label{sec:orgdfd39a7}
+\label{sec:orgc8d3a2e}
 
 \begin{itemize}
 \item \textbf{\textbf{SSS}}: Supreme Sexp System

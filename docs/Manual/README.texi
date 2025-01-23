@@ -61,6 +61,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 * SSH, Git: SSH Git. 
 * Disk space::
 * Bluetooth::
+* Troubleshooting FAQ::
 * Sway keybindings::
 * Emacs keybindings::
 * Glossary::
@@ -636,6 +637,15 @@ user@@host $ bluetoothctl
 
 # exit
 @end example
+
+@node Troubleshooting FAQ
+@chapter Troubleshooting FAQ
+
+Q: I ran out of disk space, and have too much garbage in the system!
+A: Check the Makefile of SSS and run a @code{make full-gc} followed by a @code{make sr}
+
+Q: Grub install fails due to missing disk space / input-output error!
+A: It's recommended to delete some old generations of the system (perhaps also a @code{make full-gc}) and to clean the dump file at: @code{/sys/firmware/efi/efivars/dump*}
 
 @node Sway keybindings
 @chapter Sway keybindings

@@ -488,6 +488,14 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
   # exit
 #+end_src
 
+* Troubleshooting FAQ
+
+Q: I ran out of disk space, and have too much garbage in the system!
+A: Check the Makefile of SSS and run a ~make full-gc~ followed by a ~make sr~
+
+Q: Grub install fails due to missing disk space / input-output error!
+A: It's recommended to delete some old generations of the system (perhaps also a ~make full-gc~) and to clean the dump file at: ~/sys/firmware/efi/efivars/dump*~
+
 
 * Sway keybindings
 
