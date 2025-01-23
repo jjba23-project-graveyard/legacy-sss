@@ -3,24 +3,38 @@
 
 ** Work in Progress
 
-*** WIP Add dynamic wallpapers and scripts, apply random ones, also depending on daytime using swww
+*** WIP make modules in lib/ more configurable, less hardcoded
+
+
+-----
 
 ** Backlog
 
+*** TODO find way to display latest tag as image in READMES and manual
+
+*** TODO Improve and document GPG agent and key generation, signing, checking, and GPG SSS config signing commits
+
+*** WIP Add dynamic wallpapers and scripts, apply random ones, also depending on daytime using swww
+
+
 *** TODO I want to make it a usable system for all, and also define some user sessions for less experienced computer users
 thinkin of adding a labwc / openbox thing for "normies" haha
-create replica windows xp for normie users
-or xfce
+create replica windows 10 for normie users
 
-*** TODO record types (define-configuration) to modularize config and translate foot configs and git configs and other complex ones to Scheme, and extract to a Guile library factory pattern for users
-
-*** TODO make it easier to manage Nix packages from Guile scheme
+*** TODO record types to modularize config and translate foot configs and git configs and other complex ones to Scheme, and extract to a Guile library factory pattern for users
+(define-configuration) (define-record-type) - System crafters has good Scheme explanations and tutorials on YouTube
 
 *** TODO test code in lib
 
 
+-----
 
-** Work done
+
+** ✅ Work done
+
+*** DONE make it easier to manage Nix packages from Guile scheme
+CLOSED: [2025-01-23 do 23:33]
+
 *** DONE create project banners, logos
 CLOSED: [2025-01-16 do 13:11]
 
