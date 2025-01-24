@@ -723,6 +723,10 @@ According to size, color and font family"
 (use-package geiser-guile
   :ensure t)
 
+(use-package queue
+  :ensure (:host github :repo "emacs-straight/queue" :branch "master")
+  :demand t)
+
 (use-package arei
   :ensure (:host github :repo "abcdw/emacs-arei" :branch "master")
   :demand t)
