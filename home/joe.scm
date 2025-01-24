@@ -165,9 +165,15 @@
 
              ;; Waybar configuration (for status bar)
              (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
-                                                         (scm->json-string
-                                                          sss-waybar-conf
-                                                          #:pretty #t)))
+                                                         (scm->json-string (sss-waybar-conf
+                                                                            #:with-ip
+                                                                            #t
+                                                                            #:with-sway-workspaces
+                                                                            #t
+                                                                            #:with-memory
+                                                                            #t)
+                                                                           #:pretty
+                                                                           #t)))
 
              ;; Waybar styling
              (".config/waybar/style.css" ,(plain-file "waybar.css"

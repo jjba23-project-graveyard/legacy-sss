@@ -45,117 +45,137 @@
                                             (property (@ (name "label"))
                                                       "Reboot")))))))
 
-;; My WayBar configurations, defined in Guile Scheme, a status bar with a detailed, modular setup.
-;;
-;; TODO list additional things and docs separately, modularize
-;; 
-;;   - Includes essential and custom modules such as clock, battery, network, and custom power actions.
-;;   - Workspaces: Custom icons for workspace numbers with scroll disabled and all outputs enabled.
-;;   - Clock: Includes date, time, and timezone with customizable tooltips and refresh interval.
-;;   - Battery: Dynamically updates based on charging, plugged-in, and critical states, with custom icons and thresholds.
-;;   - Network: Distinguishes between WiFi, Ethernet, and disconnected states, with formatted tooltips for connection details.
-;;   - Power Profiles: Displays and provides tooltips for performance and power-saver modes.
-;;   - Pulseaudio: Customizes audio output with volume percentage, mute states, and clickable integration with `pavucontrol`.
-;;   - Many configurations utilize icons and colors, aligning with themes for visual consistency.
-;;   - Supports dynamic tooltips and real-time updates for responsive UX.
-;;
-;; 
-;; (clock) - (format-alt . "{:%Y-%m-%d}")
-;;
-(define-public sss-waybar-conf
-  `((position . bottom) (height . 42)
-    (spacing . 16)
-    (modules-left . #(clock sway/workspaces sway/mode sway/scratchpad custom/media sway/window))
-    (modules-center)
-    (modules-right . #(idle_inhibitor pulseaudio network power-profiles-daemon cpu memory temperature backlight keyboard-state sway/language battery #{battery#bat2}# tray custom/power))
-    (sway/workspaces (disable-scroll . #t)
-                     (all-outputs . #t)
-                     (warp-on-scroll . #f)
-                     (format . "{icon}")
-                     (format-icons ("1" . "I")
-                                   ("2" . "II")
-                                   ("3" . "III")
-                                   ("4" . "IV")
-                                   ("5" . "V")
-                                   ("6" . "VI")
-                                   ("7" . "VII")
-                                   ("8" . "VIII")
-                                   ("9" . "IX")
-                                   ("10" . "X")
-                                   ("default" . "\uf111")
-                                   ;; ("urgent" . "") ("focused" . "")
-                                   ))
-    (keyboard-state (numlock . #t)
-                    (capslock . #t)
-                    (format . "{name} {icon} ")
-                    (format-icons (locked . "\uf023")
-                                  (unlocked . "\uf09c")))
-    (sway/mode (format . "<span style=\"italic\">{}</span>"))
-    (sway/scratchpad (format . "{icon} {count}")
-                     (show-empty . #f)
-                     (format-icons . #("" "\uf2d2"))
-                     (tooltip . #t)
-                     (tooltip-format . "{app}: {title}"))
+(define sss-waybar-power-button
+  `(custom/power (format . "⏻ ")
+                 (tooltip . #f)
+                 (menu . "on-click")
+                 (menu-file . "$HOME/.config/waybar/power_menu.xml")
+                 (menu-actions (shutdown . "sudo halt")
+                               (reboot . "sudo reboot")
+                               (suspend . "sudo loginctl suspend")
+                               (hibernate . "sudo loginctl hibernate"))))
 
-    (idle_inhibitor (format . "{icon}")
-                    (format-icons (activated . "\uf06e")
-                                  (deactivated . "\uf070")))
-    (tray (spacing . 10))
-    (clock (format . "{:%H:%M %z - SSS/GNU - %a, %d %B %Y}")
-           (tooltip-format . "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>")
-           (interval . 60))
-    (cpu (format . "{usage}% \uf2db")
-         (tooltip . #f))
-    (memory (format . "{}% \uf0c9"))
-    (temperature (critical-threshold . 80)
-                 (format . "{temperatureC}°C {icon}")
-                 (format-icons . #("\uf2c9")))
-    (backlight (format . "{percent}% {icon}")
-               (format-icons . #("\ue38d" "\ue3d3" "\ue3d1" "\ue3cf" "\ue3ce" "\ue3cd" "\ue3ca" "\ue3c8" "\ue39b")))
-    (battery (states (warning . 30)
-                     (critical . 15))
-             (format . "{capacity}% {icon}")
-             (format-full . "{capacity}% {icon}")
-             (format-charging . "{capacity}% \uf5e7")
-             (format-plugged . "{capacity}% \uf1e6")
-             (format-alt . "{time} {icon}")
-             (format-icons . #("\uf244" "\uf243" "\uf242" "\uf241" "\uf240")))
-    (#{battery#bat2}# (bat . "BAT2"))
-    (power-profiles-daemon (format . "{icon}")
-                           (tooltip-format . "Power profile: {profile}\nDriver: {driver}")
-                           (tooltip . #t)
-                           (format-icons (default . "\uf0e7")
-                                         (performance . "\uf0e7")
-                                         (balanced . "\uf24e")
-                                         (power-saver . "\uf06c")))
-    (network (format-wifi . "{essid} ({signalStrength}%) \uf1eb")
-             (format-ethernet . "{ipaddr}/{cidr} \uf796")
-             (tooltip-format . "{ifname} via {gwaddr} \uf796")
-             (format-linked . "{ifname} (No IP) \uf796")
-             (format-disconnected . "Disconnected ⚠")
-             (format-alt . "{ifname}: {ipaddr}/{cidr}"))
-    (pulseaudio (format . "{volume}% {icon} {format_source}")
-                (format-bluetooth . "{volume}% {icon}\uf294 {format_source}")
-                (format-bluetooth-muted . "\uf6a9 {icon}\uf294 {format_source}")
-                (format-muted . "\uf6a9 {format_source}")
-                (format-source . "{volume}% \uf130")
-                (format-source-muted . "\uf131")
-                (format-icons (headphone . "\uf025")
-                              (hands-free . "\uf590")
-                              (headset . "\uf590")
-                              (phone . "\uf095")
-                              (portable . "\uf095")
-                              (car . "\uf1b9")
-                              (default . #("\uf026" "\uf027" "\uf028")))
-                (on-click . "pavucontrol"))
-    (custom/power (format . "⏻ ")
-                  (tooltip . #f)
-                  (menu . "on-click")
-                  (menu-file . "$HOME/.config/waybar/power_menu.xml")
-                  (menu-actions (shutdown . "sudo halt")
-                                (reboot . "sudo reboot")
-                                (suspend . "sudo loginctl suspend")
-                                (hibernate . "sudo loginctl hibernate")))))
+;;- SSS/GNU
+(define sss-waybar-start-button
+  `(custom/sss-waybar-start-button (format . "SSS/GNU")
+                                   (on-click . "rofi -show drun")))
+
+(define sss-waybar-audio-icon
+  `(pulseaudio (format . "{volume}% {icon} {format_source}")
+               (format-bluetooth . "{volume}% {icon}\uf294 {format_source}")
+               (format-bluetooth-muted . "\uf6a9 {icon}\uf294 {format_source}")
+               (format-muted . "\uf6a9 {format_source}")
+               (format-source . "{volume}% \uf130")
+               (format-source-muted . "\uf131")
+               (format-icons (headphone . "\uf025")
+                             (hands-free . "\uf590")
+                             (headset . "\uf590")
+                             (phone . "\uf095")
+                             (portable . "\uf095")
+                             (car . "\uf1b9")
+                             (default . #("\uf026" "\uf027" "\uf028")))
+               (on-click . "pavucontrol")))
+
+(define sss-waybar-power-profiles
+  `(power-profiles-daemon (format . "{icon}")
+                          (tooltip-format . "Power profile: {profile}\nDriver: {driver}")
+                          (tooltip . #t)
+                          (format-icons (default . "\uf0e7")
+                                        (performance . "\uf0e7")
+                                        (balanced . "\uf24e")
+                                        (power-saver . "\uf06c"))))
+
+(define sss-waybar-battery-2
+  `(#{battery#bat2}# (bat . "BAT2")))
+
+(define sss-waybar-battery
+  `(battery (states (warning . 30)
+                    (critical . 15))
+            (format . "{capacity}% {icon}")
+            (format-full . "{capacity}% {icon}")
+            (format-charging . "{capacity}% \uf5e7")
+            (format-plugged . "{capacity}% \uf1e6")
+            (format-alt . "{time} {icon}")
+            (format-icons . #("\uf244" "\uf243" "\uf242" "\uf241" "\uf240"))))
+
+(define sss-waybar-sway-workspaces
+  `(sway/workspaces (disable-scroll . #t)
+                    (all-outputs . #t)
+                    (warp-on-scroll . #f)
+                    (format . "{icon}")
+                    (format-icons ("1" . "I")
+                                  ("2" . "II")
+                                  ("3" . "III")
+                                  ("4" . "IV")
+                                  ("5" . "V")
+                                  ("6" . "VI")
+                                  ("7" . "VII")
+                                  ("8" . "VIII")
+                                  ("9" . "IX")
+                                  ("10" . "X")
+                                  ("default" . "\uf111")
+                                  ;; ("urgent" . "") ("focused" . "")
+                                  )))
+
+(define sss-waybar-clock
+  `(clock (format . "{:%H:%M - %a, %d %B %Y}")
+          (tooltip-format . "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>")
+          (interval . 60)))
+
+(define sss-waybar-ip
+  `(network (format-wifi . "{essid} ({signalStrength}%) \uf1eb")
+            (format-ethernet . "{ipaddr}/{cidr} \uf796")
+            (tooltip-format . "{ifname} via {gwaddr} \uf796")
+            (format-linked . "{ifname} (No IP) \uf796")
+            (format-disconnected . "Disconnected ⚠")
+            (format-alt . "{ifname}: {ipaddr}/{cidr}")))
+
+(define sss-waybar-backlight
+  `(backlight (format . "{percent}% {icon}")
+              (format-icons . #("\ue38d" "\ue3d3" "\ue3d1" "\ue3cf" "\ue3ce" "\ue3cd" "\ue3ca" "\ue3c8" "\ue39b"))))
+
+;; My WayBar configurations, defined in Guile Scheme, a status bar with a detailed, modular setup.
+(begin
+  (define* (sss-waybar-conf #:key (with-ip #f)
+                            (with-sway-workspaces #f)
+                            (with-memory #f))
+    `((position . bottom) (height . 42)
+      (spacing . 16)
+      (modules-left . #(custom/sss-waybar-start-button clock sway/workspaces sway/mode sway/scratchpad custom/media sway/window))
+      (modules-center)
+      (modules-right . #(pulseaudio network power-profiles-daemon cpu memory backlight keyboard-state sway/language battery #{battery#bat2}# tray custom/power))
+      ,sss-waybar-start-button
+      ,(cond
+         (with-sway-workspaces sss-waybar-sway-workspaces)
+         (else '()))
+      (keyboard-state (numlock . #t)
+                      (capslock . #t)
+                      (format . "{name} {icon} ")
+                      (format-icons (locked . "\uf023")
+                                    (unlocked . "\uf09c")))
+      (sway/mode (format . "<span style=\"italic\">{}</span>"))
+      (sway/scratchpad (format . "{icon} {count}")
+                       (show-empty . #f)
+                       (format-icons . #("" "\uf2d2"))
+                       (tooltip . #t)
+                       (tooltip-format . "{app}: {title}"))
+      (tray (spacing . 10))
+      ,sss-waybar-clock
+      (cpu (format . "{usage}% \uf2db")
+           (tooltip . #f))
+      ,(cond
+         (with-memory `(memory (format . "{}% \uf0c9")))
+         (else '()))
+      ,sss-waybar-backlight
+      ,sss-waybar-battery
+      ,sss-waybar-battery-2
+      ,sss-waybar-power-profiles
+      ,(cond
+         (with-ip sss-waybar-ip)
+         (else '()))
+      ,sss-waybar-audio-icon
+      ,sss-waybar-power-button))
+  (export sss-waybar-conf))
 
 ;; Defines a CSS configuration for SSS Waybar using Scheme.
 ;; This configuration customizes various UI elements, such as background color,
@@ -177,8 +197,8 @@
     `((module (background . transparent)
               (padding-top . "6px")
               (padding-top . "6px")
-              (padding-right . "14px")
-              (padding-left . "14px")
+              (padding-right . "12px")
+              (padding-left . "12px")
               (padding-bottom . "6px")
               (font-family . "FontAwesome, Monaspace Neon")
               (font-weight . 500)
@@ -194,10 +214,6 @@
                                                     #:alpha 0.8))
        (padding . "12px")
        (font-family . "FontAwesome, Monaspace Neon")
-       ;; (border-radius . "10px")
-       ;; (border unquote
-       ;; (format #f "2px solid ~a"
-       ;; (sss-get-color sss-active-palette 'primary-d)))
        (color unquote
               (sss-get-color sss-active-palette
                              'text)))
@@ -205,6 +221,19 @@
                            (sss-get-color sss-active-palette
                                           'background-l))
                (border-radius . 0))
+      ("#custom-sss-waybar-start-button" (background unquote
+                                                     (sss-hex-to-rgba (sss-get-color
+                                                                       sss-active-palette
+                                                                       'background)
+                                                                      #:alpha
+                                                                      1))
+       (font-weight . 700)
+       (margin . "8px")
+       (padding-top . "4px")
+       (padding-bottom . "4px")
+       (padding-left . "8px")
+       (padding-right . "8px")
+       (border-radius . "10px"))
       ("#workspaces" (padding-right . 0))
       ("#workspaces button" (padding . "4px")
        (color unquote
