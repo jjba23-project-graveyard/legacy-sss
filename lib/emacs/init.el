@@ -977,6 +977,8 @@ According to size, color and font family"
   (setq recentf-max-menu-items 100
         recentf-max-saved-items 100)
 
+  (global-hl-line-mode +1)
+
   (add-to-list 'after-make-frame-functions 'new-frame-setup t))
 
 
