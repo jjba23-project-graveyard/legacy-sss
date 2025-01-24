@@ -481,6 +481,9 @@
         aspell-dict-en
         aspell-dict-ca))
 
+(define sss-emacs-packages
+  '())
+
 ;; SYSTEM PACKAGES
 ;;
 ;; Add packages here to install them system wide
@@ -502,6 +505,6 @@
             sss-browser-packages
             sss-latex-packages
             sss-dict-packages
-            sss-net-package
+            sss-net-packages
             sss-theme-packages))
   (export sss-system-packages))

@@ -178,3 +178,8 @@ deploy:
 	mkdir -pv $(DEPLOY_WWW)/manuals/sss
 	rm -rfv $(DEPLOY_WWW)/manuals/sss/index.html
 	cp -rfv docs/Manual/README.html $(DEPLOY_WWW)/manuals/sss/index.html
+
+# repl: Start a Guile Scheme development REPL
+# Development REPL
+repl:
+	guix shell -m manifest.scm -- guile --fresh-auto-compile -c '((@ (ares server) run-nrepl-server))'

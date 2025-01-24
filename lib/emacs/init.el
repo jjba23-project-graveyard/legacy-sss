@@ -573,8 +573,11 @@ According to size, color and font family"
   (corfu-history-mode)
   (corfu-popupinfo-mode 1))
 
+(use-package svg-lib
+  :ensure (:host github :repo "rougier/svg-lib" :branch "master"))
+
 (use-package kind-icon
-  :ensure t
+  :ensure (:host github :repo "jdtsmith/kind-icon" :branch "main")
   :after corfu
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
@@ -714,10 +717,24 @@ According to size, color and font family"
 (use-package geiser
   :ensure t
   :init
-  (setq geiser-active-implementations '(guile)))
+  (setq geiser-active-implementations '(guile))
+  (setq geiser-mode-auto-p nil))
 
 (use-package geiser-guile
   :ensure t)
+
+(use-package queue
+  :ensure (:host github :repo "emacs-straight/queue" :branch "master")
+  :demand t)
+
+(use-package arei
+  :ensure (:host github :repo "abcdw/emacs-arei" :branch "master")
+  :demand t)
+
+(use-package sesman
+  :ensure (:host github :repo "vspinu/sesman" :branch "master")
+  :demand t)
+
 
 (use-package fancy-compilation
   :ensure t
@@ -959,6 +976,8 @@ According to size, color and font family"
   (recentf-mode 1)
   (setq recentf-max-menu-items 100
         recentf-max-saved-items 100)
+
+  (global-hl-line-mode +1)
 
   (add-to-list 'after-make-frame-functions 'new-frame-setup t))
 

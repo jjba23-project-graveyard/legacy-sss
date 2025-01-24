@@ -501,6 +501,61 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
   # exit
 #+end_src
 
+* Virtualization
+
+SSS comes equipped with libvirt and libvirt-manager (the GUI). Enable virtual bridge for libvirtd machine. See the Guix cookbook for more.
+
+If the machine hosting your virtual machines is connected wirelessly to the network, you won’t be able to use a true network bridge as explained in the preceding section. In this case, the next best option is to use a virtual bridge with static routing and to configure a libvirt-powered virtual machine to use it (via the virt-manager GUI for example). This is similar to the default mode of operation of QEMU/libvirt, except that instead of using NAT (Network Address Translation), it relies on static routes to join the VM (virtual machine) IP address to the LAN (local area network). This provides two-way connectivity to and from the virtual machine, which is needed for exposing services hosted on the virtual machine.
+
+A virtual network bridge consists of a few components/configurations, such as a TUN (network tunnel) interface, DHCP server (dnsmasq) and firewall rules (iptables). The virsh command, provided by the libvirt package, makes it very easy to create a virtual bridge. You first need to choose a network subnet for your virtual bridge; if your home LAN is in the ‘192.168.1.0/24’ network, you could opt to use e.g. ‘192.168.2.0/24’. Define an XML file, e.g. /tmp/virbr0.xml, containing the following:
+
+#+begin_src xml
+  <network>
+    <name>virbr0</name>
+    <bridge name="virbr0" />
+    <forward mode="route"/>
+    <ip address="192.168.2.0" netmask="255.255.255.0">
+      <dhcp>
+        <range start="192.168.2.1" end="192.168.2.254"/>
+      </dhcp>
+    </ip>
+  </network>
+#+end_src
+
+Then create and configure the interface using the virsh command, as root:
+
+#+begin_src shell
+  virsh net-define /tmp/virbr0.xml
+  virsh net-autostart virbr0
+  virsh net-start virbr0
+#+end_src
+
+The ‘virbr0’ interface should now be visible e.g. via the ‘ip address’ command. It will be automatically started every time your libvirt virtual machine is started.
+
+If you configured your virtual machine to use your newly created ‘virbr0’ virtual bridge interface, it should already receive an IP via DHCP such as ‘192.168.2.15’ and be reachable from the server hosting it, e.g. via ‘ping 192.168.2.15’. There’s one last configuration needed so that the VM can reach the external network: adding static routes to the network’s router.
+
+In this example, the LAN network is ‘192.168.1.0/24’ and the router configuration web page may be accessible via e.g. the http://192.168.1.1 page. On a router running the libreCMC firmware, you would navigate to the Network → Static Routes page (https://192.168.1.1/cgi-bin/luci/admin/network/routes), and you would add a new entry to the ‘Static IPv4 Routes’ with the following information:
+
+‘Interface’
+lan
+
+‘Target’
+192.168.2.0
+
+‘IPv4-Netmask’
+255.255.255.0
+
+‘IPv4-Gateway’
+server-ip
+
+‘Route type’
+unicast
+
+where server-ip is the IP address of the machine hosting the VMs, which should be static.
+
+After saving/applying this new static route, external connectivity should work from within your VM; you can e.g. run ‘ping gnu.org’ to verify that it functions correctly.
+
+
 * Troubleshooting FAQ
 
 Q: I ran out of disk space, and have too much garbage in the system!
