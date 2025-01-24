@@ -22,9 +22,13 @@
   #:use-module (sss palette))
 
 (begin
-  (define* (sss-gtk3-config #:key sss-active-palette)
+  (define* (sss-gtk3-config #:key sss-active-palette
+                            (fixed-theme #f)
+                            (fixed-icon-theme #f))
     `((gtk-icon-theme-name unquote
                            (cond
+                             ((not (equal? #f fixed-icon-theme))
+                              fixed-icon-theme)
                              ((equal? 'sss-palette-ef-cyprus
                                       sss-active-palette)
                               "Yaru-sage")
@@ -33,6 +37,8 @@
                              (else "Yaru-sage-dark")))
       (gtk-theme-name unquote
                       (cond
+                        ((not (equal? #f fixed-theme))
+                         fixed-theme)
                         ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                          "Yaru-sage")
                         ((equal? 'sss-palette-ef-dream sss-active-palette)
@@ -56,9 +62,13 @@
   (export sss-gtk3-config))
 
 (begin
-  (define* (sss-gtk4-config #:key sss-active-palette)
+  (define* (sss-gtk4-config #:key sss-active-palette
+                            (fixed-theme #f)
+                            (fixed-icon-theme #f))
     `((gtk-icon-theme-name unquote
                            (cond
+                             ((not (equal? #f fixed-icon-theme))
+                              fixed-icon-theme)
                              ((equal? 'sss-palette-ef-cyprus
                                       sss-active-palette)
                               "Yaru-sage")
@@ -67,6 +77,8 @@
                              (else "Yaru-sage-dark")))
       (gtk-theme-name unquote
                       (cond
+                        ((not (equal? #f fixed-theme))
+                         fixed-theme)
                         ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                          "Yaru-sage")
                         ((equal? 'sss-palette-ef-dream sss-active-palette)

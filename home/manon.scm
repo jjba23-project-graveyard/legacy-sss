@@ -76,8 +76,30 @@
 ;; Define user's home files (a.k.a. dotfiles)
 (define sss-home-files-service
   (service home-files-service-type
-           `(
-             
+           `( ;GTK 3 settings
+              (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
+                                                           (string-append
+                                                            "[Settings]\n"
+                                                            (mk-kv-conf-lines (sss-gtk3-config
+                                                                               #:sss-active-palette
+                                                                               sss-active-palette
+                                                                               #:fixed-theme
+                                                                               "Numix"
+                                                                               #:fixed-icon-theme
+                                                                               "Delft")))))
+
+             ;; GTK 4 settings
+             (".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
+                                                          (string-append
+                                                           "[Settings]\n"
+                                                           (mk-kv-conf-lines (sss-gtk4-config
+                                                                              #:sss-active-palette
+                                                                              sss-active-palette
+                                                                              #:fixed-theme
+                                                                              "Numix"
+                                                                              #:fixed-icon-theme
+                                                                              "Delft")))))
+
              ;; Guix channels configuration
              (".config/guix/channels.scm" ,(local-file "../lib/channels.scm"))
 
