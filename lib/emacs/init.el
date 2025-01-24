@@ -725,6 +725,11 @@ According to size, color and font family"
 
 (use-package arei :ensure nil :demand t)
 
+(use-package sesman
+  :ensure (:host github :repo "vspinu/sesman" :branch "master")
+  :demand t)
+
+
 (use-package fancy-compilation
   :ensure t
   :commands (fancy-compilation-mode)
