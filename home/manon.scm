@@ -109,16 +109,9 @@
                                                                     #:sss-active-palette
                                                                     sss-active-palette))))
 
-             (".config/labwc/rc.xml" ,(local-file "../lib/labwc/rc.xml"))
-             (".config/labwc/menu.xml" ,(local-file "../lib/labwc/menu.xml"))
-             (".config/labwc/shutdown" ,(local-file "../lib/labwc/shutdown"))
-             (".config/labwc/themerc" ,(local-file "../lib/labwc/themerc"))
-             (".config/labwc/shade.xbm" ,(local-file "../lib/labwc/shade.xbm"))
-             (".config/labwc/max.xbm" ,(local-file "../lib/labwc/max.xbm"))
-             (".config/labwc/iconify.xbm" ,(local-file "../lib/labwc/iconify.xbm"))
-             (".config/labwc/close.xbm" ,(local-file "../lib/labwc/close.xbm"))
-             (".config/labwc/bullet.xbm" ,(local-file "../lib/labwc/bullet.xbm"))
-             (".config/labwc/autostart" ,(local-file "../lib/labwc/autostart"))
+             (".config/labwc/rc.xml" ,labwc-rc)
+             (".config/labwc/menu.xml" ,labwc-menu)
+             (".config/labwc/autostart" ,labwc-autostart)
 
              ;; Containers configuration (for Docker, Podman, etc.)
              ;; Specifies container registries

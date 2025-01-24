@@ -23,13 +23,9 @@
   #:use-module (sss palette))
 
 (define-public labwc-rc
-  "")
+  (local-file "./labwc/rc.xml"))
 (define-public labwc-menu
-  "")
+  (local-file "./labwc/menu.xml"))
 (define-public labwc-autostart
-  "")
-(define-public labwc-shutdown
-  "")
-(define-public labwc-environment
-  "")
+  (local-file "./labwc/autostart"))
 

@@ -28,8 +28,8 @@
 
   <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
-    <name></name>
-    <icon></icon>
+    <name>Numix</name>
+    <icon>Delft</icon>
     <titlebar>
       <layout>icon:iconify,max,close</layout>
       <showTitle>yes</showTitle>
@@ -38,32 +38,32 @@
     <keepBorder>yes</keepBorder>
     <dropShadows>no</dropShadows>
     <font place="ActiveWindow">
-      <name>sans</name>
-      <size>10</size>
+      <name>Monaspace Neon</name>
+      <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="InactiveWindow">
-      <name>sans</name>
-      <size>10</size>
+      <name>Monaspace Neon</name>
+      <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="MenuHeader">
-      <name>sans</name>
-      <size>10</size>
+      <name>Monaspace Neon</name>
+      <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="MenuItem">
-      <name>sans</name>
-      <size>10</size>
+      <name>Monaspace Neon</name>
+      <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="OnScreenDisplay">
-      <name>sans</name>
-      <size>10</size>
+      <name>Monaspace Neon</name>
+      <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
@@ -244,12 +244,27 @@
       <action name="PreviousWindow" />
     </keybind>
     <keybind key="W-Return">
-      <action name="Execute" command="alacritty" />
+      <action name="Execute" command="xfce4-terminal" />
+    </keybind>
+    <keybind key="W-t">
+      <action name="Execute" command="xfce4-terminal" />
+    </keybind>
+    <keybind key="W-/">
+      <action name="Execute" command="rofi -show drun" />
+    </keybind>
+    <keybind key="W-r">
+      <action name="Execute" command="rofi -show run" />
     </keybind>
     <keybind key="A-F3">
-      <action name="Execute" command="bemenu-run" />
+      <action name="Execute" command="rofi -show drun" />
     </keybind>
     <keybind key="A-F4">
+      <action name="Close" />
+    </keybind>
+    <keybind key="W-l">
+      <action name="Execute" command="swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color bb00cc --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2" />
+    </keybind>
+    <keybind key="W-k">
       <action name="Close" />
     </keybind>
     <keybind key="W-a">

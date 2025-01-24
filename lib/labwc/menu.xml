@@ -74,7 +74,7 @@
     <action name="Exit" />
   </item>
   <item label="Poweroff">
-    <action name="Execute" command="systemctl -i poweroff" />
+    <action name="Execute" command="halt" />
   </item>
 </menu>
 
