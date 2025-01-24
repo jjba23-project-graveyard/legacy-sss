@@ -89,11 +89,38 @@
              ;; Nix configuration with experimental features
              (".config/nix/nix.conf" ,(plain-file "nix.conf"
                                                   (mk-rec-kv-conf-lines `((experimental-features . "nix-command flakes"))
-                                                                        #:template
-                                                                        spaced-equal-conf-pair)))
+                                                   #:template
+                                                   spaced-equal-conf-pair)))
              ;; Loads Nixpkgs configuration locally
              (".config/nixpkgs/config.nix" ,(local-file
                                              "../lib/nix/nixpkgs.nix"))
+
+             ;; Rofi config
+             (".config/rofi/config.rasi" ,(plain-file "config.rasi"
+                                                      sss-rofi-config))
+             ;; Rofi styling
+             (".config/rofi/sss-theme.rasi" ,(plain-file "sss-theme.rasi"
+                                                         (mk-css-conf-lines
+                                                          sss-rofi-theme)))
+
+             ;; Waybar configuration (for status bar)
+             (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
+                                                         (scm->json-string
+                                                          sss-waybar-conf
+                                                          #:pretty #t)))
+
+             ;; Waybar styling
+             (".config/waybar/style.css" ,(plain-file "waybar.css"
+                                                      (mk-css-conf-lines (sss-waybar-css
+                                                                          #:sss-active-palette
+                                                                          sss-active-palette))))
+             ;; Waybar Power menu from Scheme to XML format
+             (".config/waybar/power_menu.xml" ,(plain-file "power_menu.xml"
+                                                           (with-output-to-string (lambda ()
+                                                                                    
+                                                                                    
+                                                                                    (sxml->xml
+                                                                                     sss-waybar-power-menu)))))
 
              ;; XDG desktop portal configuration (for flatpak apps)
              (".config/xdg-desktop-portal/portals.conf" ,(plain-file
@@ -120,7 +147,7 @@
                                                      "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
-                                                            "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}")))))
+                                                 "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}")))))
 
 ;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")

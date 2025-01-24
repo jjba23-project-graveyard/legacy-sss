@@ -155,6 +155,7 @@
              (".config/nixpkgs/config.nix" ,(local-file
                                              "../lib/nix/nixpkgs.nix"))
 
+             ;; Rofi config
              (".config/rofi/config.rasi" ,(plain-file "config.rasi"
                                                       sss-rofi-config))
              ;; Rofi styling
