@@ -482,7 +482,7 @@
         aspell-dict-ca))
 
 (define sss-emacs-packages
-  (list emacs-arei))
+  '())
 
 ;; SYSTEM PACKAGES
 ;;

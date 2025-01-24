@@ -723,7 +723,9 @@ According to size, color and font family"
 (use-package geiser-guile
   :ensure t)
 
-(use-package arei :ensure nil :demand t)
+(use-package arei
+  :ensure (:host github :repo "abcdw/emacs-arei" :branch "master")
+  :demand t)
 
 (use-package sesman
   :ensure (:host github :repo "vspinu/sesman" :branch "master")
