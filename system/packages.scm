@@ -502,6 +502,6 @@
             sss-browser-packages
             sss-latex-packages
             sss-dict-packages
-            sss-net-package
+            sss-net-packages
             sss-theme-packages))
   (export sss-system-packages))
