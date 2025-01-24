@@ -146,8 +146,8 @@
       (modules-right . #(pulseaudio network power-profiles-daemon cpu memory backlight keyboard-state sway/language battery #{battery#bat2}# tray custom/power))
       ,sss-waybar-start-button
       ,(cond
-         (with-sway-workspaces sss-waybar-sway-workspaces)
-         (else '()))
+        (with-sway-workspaces sss-waybar-sway-workspaces)
+        (else `(sway/workspaces . null)))
       (keyboard-state (numlock . #t)
                       (capslock . #t)
                       (format . "{name} {icon} ")
@@ -164,15 +164,15 @@
       (cpu (format . "{usage}% \uf2db")
            (tooltip . #f))
       ,(cond
-         (with-memory `(memory (format . "{}% \uf0c9")))
-         (else '()))
+        (with-memory `(memory (format . "{}% \uf0c9")))
+        (else `(memory . null)))
       ,sss-waybar-backlight
       ,sss-waybar-battery
       ,sss-waybar-battery-2
       ,sss-waybar-power-profiles
       ,(cond
-         (with-ip sss-waybar-ip)
-         (else '()))
+        (with-ip sss-waybar-ip)
+        (else `(network . null)))
       ,sss-waybar-audio-icon
       ,sss-waybar-power-button))
   (export sss-waybar-conf))
