@@ -481,6 +481,9 @@
         aspell-dict-en
         aspell-dict-ca))
 
+(define sss-emacs-packages
+  (list emacs-arei))
+
 ;; SYSTEM PACKAGES
 ;;
 ;; Add packages here to install them system wide
