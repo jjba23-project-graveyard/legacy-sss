@@ -299,6 +299,8 @@
 (define sss-theme-packages
   (list papirus-icon-theme
         yaru-theme
+        numix-gtk-theme
+        delft-icon-theme
         gnome-themes-standard
         gnome-themes-extra
         adwaita-icon-theme
