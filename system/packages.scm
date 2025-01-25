@@ -181,23 +181,28 @@
 
 (define-public swfbar
   (package
-   (name "sfwbar")
-   (version "v1.0_beta16")
-   (source
-    (origin
-     (method git-fetch)
-     (uri (git-reference
-           (url "https://github.com/LBCrion/sfwbar.git")
-           (commit "v1.0_beta16")))
-     (sha256
-      (base32 "1jgd33fn5x213dg4fry35qg16yqg3c71a2psfwl6fsz5fp1iphcc"))))
-   (inputs (list pkg-config (specification->package "gtk+@3.24.41") json-c gtk-layer-shell))
-   (build-system meson-build-system)
-   (synopsis "Flexible Wayland taskbar focused on stacking layout compositors.")
-   (description
-    "SFWBar (S* Floating Window Bar) is a flexible taskbar application for Wayland compositors, designed with a stacking layout in mind. Originally developed for Sway, SFWBar will work with any Wayland compositor supporting layer shell protocol, the taskbar and window switcher functionality shall work with any compositor supporting foreign top-level protocol, but the pager, and window placement functionality require sway (or at least i3 IPC support).")
-   (home-page "https://github.com/LBCrion/sfwbar")
-   (license license:gpl3+)))
+    (name "sfwbar")
+    (version "v1.0_beta16")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/LBCrion/sfwbar.git")
+             (commit "v1.0_beta16")))
+       (sha256
+        (base32 "1jgd33fn5x213dg4fry35qg16yqg3c71a2psfwl6fsz5fp1iphcc"))))
+    (inputs (list pkg-config (specification->package "gtk+@3.24.41") json-c gtk-layer-shell))
+    (build-system meson-build-system)
+    (arguments
+     (list
+      #:glib-or-gtk? #t
+      #:configure-flags
+      #~(list (string-append #$output "/lib"))))
+    (synopsis "Flexible Wayland taskbar focused on stacking layout compositors.")
+    (description
+     "SFWBar (S* Floating Window Bar) is a flexible taskbar application for Wayland compositors, designed with a stacking layout in mind. Originally developed for Sway, SFWBar will work with any Wayland compositor supporting layer shell protocol, the taskbar and window switcher functionality shall work with any compositor supporting foreign top-level protocol, but the pager, and window placement functionality require sway (or at least i3 IPC support).")
+    (home-page "https://github.com/LBCrion/sfwbar")
+    (license license:gpl3+)))
 
 (define sss-font-packages
   (list fontconfig
