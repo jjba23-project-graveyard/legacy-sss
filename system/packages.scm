@@ -49,7 +49,9 @@
                      linux
                      gnuzilla
                      ncurses
+                     mpd
                      xfce
+                     python-xyz
                      rust
                      gnupg
                      multiprecision
@@ -191,7 +193,8 @@
              (commit "v1.0_beta16")))
        (sha256
         (base32 "1jgd33fn5x213dg4fry35qg16yqg3c71a2psfwl6fsz5fp1iphcc"))))
-    (inputs (list pkg-config (specification->package "gtk+@3.24.41") json-c gtk-layer-shell))
+    (native-inputs (list pkg-config))
+    (inputs (list libmpdclient mpd pulseaudio alsa-lib python-docutils (specification->package "gtk+@3.24.41") json-c gtk-layer-shell))
     (build-system meson-build-system)
     (arguments
      (list
