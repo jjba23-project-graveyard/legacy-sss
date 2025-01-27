@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -65,6 +65,7 @@
              (sss gtk)
              (sss portals)
              (sss qt)
+             (sss mime)
              (sss openpgp)
              (sss waybar)
              (sss rofi)
@@ -124,6 +125,15 @@
              (".config/rofi/sss-theme.rasi" ,(plain-file "sss-theme.rasi"
                                                          (mk-css-conf-lines
                                                           sss-rofi-theme)))
+
+             (".config/mimeapps.list" ,(plain-file "mimeapps.list"
+                                                   (sss-mimeapps-list-file
+                                                    #:added-associations
+                                                    sss-mime-added-associations
+                                                    #:removed-associations
+                                                    sss-mime-removed-associations
+                                                    #:default-applications
+                                                    sss-mime-default-applications)))
 
              ;; Waybar configuration (for status bar)
              (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
