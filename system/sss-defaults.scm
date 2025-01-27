@@ -60,6 +60,9 @@
 (define sss-nixpkgs
   '("yaml-language-server" "bash-language-server"
     "monaspace"
+    "discord"
+    "spotify"
+    "whatsapp-for-linux"
     "jdt-language-server"
     "nil"
     "black"
@@ -77,7 +80,10 @@
     "nwg-look"
     "krew"
     "mermaid-cli"
-    "jetbrains.idea-community"))
+    "jetbrains.idea-community"
+    "nixfmt"
+    "deadnix"
+    "awscli"))
 
 ;;;
 ;;; end SSS defaults section

@@ -49,6 +49,10 @@
           (format #f "cd ~a && make jr" sss-clone-dir))
       (pm unquote
           (format #f "cd ~a && make publish-manual" sss-clone-dir))
+      (npi unquote
+           (format #f "cd ~a && make npi" sss-clone-dir))
+      (npu unquote
+           (format #f "cd ~a && make npu" sss-clone-dir))
       (scala-dev unquote
                  (format #f "nix develop ~a/resources/flakes/scala-dev/"
                          sss-clone-dir))

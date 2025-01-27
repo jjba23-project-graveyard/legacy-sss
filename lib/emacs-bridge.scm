@@ -22,17 +22,18 @@
   ;; #:use-module (sss palette)
   )
 
+;; TODO pass here more variables from per-host and SSS
 (begin
   (define* (sss-bridge-emacs-vars #:key sss-active-palette)
     `((sss-emacs-theme unquote
                        (cond
-                         ((equal? sss-active-palette
-                                  'sss-palette-ef-dream)
-                          "'ef-dream")
-                         ((equal? sss-active-palette
-                                  'sss-palette-ef-cyprus)
-                          "'ef-cyprus")
-                         (else "'ef-bio")))))
+                        ((equal? sss-active-palette
+                                 'sss-palette-ef-dream)
+                         "'ef-dream")
+                        ((equal? sss-active-palette
+                                 'sss-palette-ef-cyprus)
+                         "'ef-cyprus")
+                        (else "'ef-bio")))))
   (export sss-bridge-emacs-vars))
 
 (begin
