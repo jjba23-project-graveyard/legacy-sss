@@ -583,6 +583,12 @@ You can optionally do a ~guix pull~ now to see if maybe a new version of things 
 
 -----
 
+Q: I am unable to generate  a GPG key! I get errors about pin-item or pinentry!
+
+A: Try with ~gpg --pinentry-mode loopback --full-gen-key~. Otherwise try other options and check you have the right pinentry programs installed.
+
+-----
+
 * Sway keybindings
 
 ** General keybindings

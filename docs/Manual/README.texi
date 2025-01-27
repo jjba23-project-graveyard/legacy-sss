@@ -9,7 +9,7 @@
 @finalout
 @titlepage
 @title SSS/GNU system - Manual & Documentation
-@author Music Player Daemon (MPD) user
+@author Josep Bigorra
 @end titlepage
 
 @contents
@@ -732,6 +732,10 @@ You could first try to do a @code{sudo guix gc --verify=repair,contents}, but th
 Otherwise try to find a way to disable the dependency on this in your config if possible. Proceed to delete all Guix home generations (except current), after which you should delete all system generations (except current) and do an intensive garbage collection (@code{make full-gc}).
 
 You can optionally do a @code{guix pull} now to see if maybe a new version of things comes along and helps. In any case try to @code{reconfigure} (@code{make jr} / @code{make sr}) again and it should work, after which you can turn the "offender" back on.
+
+Q: I am unable to generate  a GPG key! I get errors about pin-item or pinentry!
+
+A: Try with @code{gpg --pinentry-mode loopback --full-gen-key}. Otherwise try other options and check you have the right pinentry programs installed.
 
 @node Sway keybindings
 @chapter Sway keybindings
