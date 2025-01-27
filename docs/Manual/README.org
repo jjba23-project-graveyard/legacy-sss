@@ -556,6 +556,34 @@ where server-ip is the IP address of the machine hosting the VMs, which should b
 
 After saving/applying this new static route, external connectivity should work from within your VM; you can e.g. run ‘ping gnu.org’ to verify that it functions correctly.
 
+* Mime types
+
+SSS supports specifying default applications to use for certain files, and also xdg-open, and customize allowed options, all in comfortable Scheme code.
+
+Refer to the ~sss mime~ module at ~lib/~ and the ~sss-mimeapps-list-file~ function to understand more how it works.
+
+The XDG MIME Applications specification builds upon the shared MIME database and desktop entries to provide default applications.
+
+Added Associations indicates that the applications support opening that MIME type.
+For example:
+bar.desktop and baz.desktop can open JPEG images.
+This might affect the application list you see when right-clicking a file in a file browser.
+
+Removed Associations indicates that the applications do not support that MIME type.
+For example, baz.desktop cannot open H.264 video.
+
+Default Applications indicates that the applications should be the default choice for opening that MIME type.
+For example, JPEG images should be opened with foo.desktop. This implicitly adds an association between the application and the MIME type.
+If there are multiple applications, they are tried in order.
+
+At ~~/.config/mimeapps.list~ you get this:
+#+begin_example
+
+[Default Applications]
+application/pdf=evince.desktop;google-chrome.desktop;firefox.desktop
+text/html=google-chrome.desktop;firefox.desktop
+#+end_example
+
 
 * Troubleshooting FAQ
 

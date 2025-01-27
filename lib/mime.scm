@@ -20,6 +20,7 @@
 
 ;; SSS implementation of the XDG mimeapps standard
 ;;
+;; The XDG MIME Applications specification builds upon the shared MIME database and desktop entries to provide default applications.
 ;; Added Associations indicates that the applications support opening that MIME type.
 ;; For example:
 ;; bar.desktop and baz.desktop can open JPEG images.
