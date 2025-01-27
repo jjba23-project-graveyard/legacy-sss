@@ -50,11 +50,12 @@ This is joe's session:
 An operating system unto itself.
 
 - Advanced Emacs configurations with Emacs Lisp + Elpaca
+- Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix and more  
 
-** Manon's session
+** Universal session
 
 I also include a (work in progress) Windows-like session for "non-geek" users, with "normal floating windows".
-This session uses labwc compositor.
+This session uses labwc compositor and sfwbar.
 
 * Why ?
 

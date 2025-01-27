@@ -76,7 +76,7 @@ What lies here?
 
 * An operating system (OS) configured in Scheme::
 * Joe's Emacs configuration::
-* Manon's session::
+* Universal session::
 
 Bootstrapping
 
@@ -110,7 +110,7 @@ Emacs keybindings
 @menu
 * An operating system (OS) configured in Scheme::
 * Joe's Emacs configuration::
-* Manon's session::
+* Universal session::
 @end menu
 
 @node An operating system (OS) configured in Scheme
@@ -149,13 +149,15 @@ An operating system unto itself.
 @itemize
 @item
 Advanced Emacs configurations with Emacs Lisp + Elpaca
+@item
+Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix and more  
 @end itemize
 
-@node Manon's session
-@section Manon's session
+@node Universal session
+@section Universal session
 
 I also include a (work in progress) Windows-like session for "non-geek" users, with "normal floating windows".
-This session uses labwc compositor.
+This session uses labwc compositor and sfwbar.
 
 @node Why ?
 @chapter Why ?

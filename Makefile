@@ -67,7 +67,7 @@ update:
 	@guix pull
 
 # system-reconfigure: Reconfigures the system using the provided configuration file.
-system-reconfigure:
+system-reconfigure: format
 	$(call sss-log-starting,"system-reconfigure")
 	@sudo guix system reconfigure ./system/config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")

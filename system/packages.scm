@@ -436,6 +436,8 @@
         bluez
         hplip
 
+        (sss/x86-only-pkg architecture "nyxt")
+
         autoconf
         automake
         libltdl
