@@ -40,12 +40,13 @@
   '())
 
 (define-public sss-mime-default-applications
-  '((application/pdf evince google-chrome firefox)
-    (text/html google-chrome firefox)
-    (text/plain geany mousepad emacs)
-    (image/png ristretto google-chrome firefox feh)
-    (image/jpg ristretto google-chrome firefox feh)
-    (image/jpeg ristretto google-chrome firefox feh)))
+  '((application/pdf org.gnome.Evince google-chrome firefox)
+    (text/html google-chrome firefox emacsclient)
+    (text/plain emacsclient geany)
+    (text/xml emacsclient geany)
+    (image/png org.gnome.gThumb google-chrome firefox feh)
+    (image/jpg org.gnome.gThumb google-chrome firefox feh)
+    (image/jpeg org.gnome.gThumb google-chrome firefox feh)))
 
 (begin
   (define (make-mime-row r)

@@ -408,6 +408,8 @@
 
         bsd-games
 
+        gthumb
+
         power-profiles-daemon
         libltdl
         scenefx
