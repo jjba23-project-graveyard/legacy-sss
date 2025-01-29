@@ -53,6 +53,10 @@
            (format #f "cd ~a && make npi" sss-clone-dir))
       (npu unquote
            (format #f "cd ~a && make npu" sss-clone-dir))
+      (fpi unquote
+           (format #f "cd ~a && make fpi" sss-clone-dir))
+      (fpu unquote
+           (format #f "cd ~a && make fpu" sss-clone-dir))
       (scala-dev unquote
                  (format #f "nix develop ~a/resources/flakes/scala-dev/"
                          sss-clone-dir))

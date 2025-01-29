@@ -54,6 +54,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 * Per host - per-host.scm: Per host - per-hostscm. 
 * Bootstrapping::
 * Nix profile::
+* Flatpaks::
 * SSS Project::
 * System audio::
 * Sway, resolutions and scaling: Sway resolutions and scaling. 
@@ -63,7 +64,6 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 * Bluetooth::
 * Virtualization::
 * Mime types::
-* Flatpaks::
 * Troubleshooting FAQ::
 * Sway keybindings::
 * Emacs keybindings::
@@ -539,6 +539,15 @@ You can find these scripts and the list file at @code{system/scripts} in this re
 
 Installing all wanted Nix packages can be done with @code{make npi} for example and updating them with @code{make npu}.
 
+@node Flatpaks
+@chapter Flatpaks
+
+SSS takes care of flatpak origins and installing and maintaining your flatpaks up to date, all programatically and with Lisp.
+
+You can find these scripts and the list file at @code{system/scripts} in this repo and in the Makefile.
+
+Installing all wanted Flatpak packages can be done with @code{make fpi} for example and updating them with @code{make fpu}.
+
 @node SSS Project
 @chapter SSS Project
 
@@ -749,11 +758,6 @@ At @code{~/.config/mimeapps.list} you get this:
 application/pdf=evince.desktop;google-chrome.desktop;firefox.desktop
 text/html=google-chrome.desktop;firefox.desktop
 @end example
-
-@node Flatpaks
-@chapter Flatpaks
-
-SSS takes care of flatpak origins and installing and maintaining your flatpaks up to date.
 
 @node Troubleshooting FAQ
 @chapter Troubleshooting FAQ

@@ -141,6 +141,10 @@ install-nix-packages:
 install-flatpak-packages:
 	guile --fresh-auto-compile system/scripts/install-flatpak-packages.scm
 
+# update-flatpak-packages: Updates the system's Flatpak packages
+update-flatpak-packages:
+	flatpak update --user -y
+
 # Aliases for common tasks
 
 jr:  # Alias for joe-reconfigure
@@ -169,6 +173,8 @@ npi:  # Installs Nix packages
 
 fpi:  # Installs Flatpak packages
 	@make install-flatpak-packages
+fpu:  # Updates Flatpak packages
+	@make update-flatpak-packages
 
 # deploy: Deploys the manual HTML to a web server directory.
 deploy:
