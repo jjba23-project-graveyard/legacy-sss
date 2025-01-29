@@ -32,6 +32,9 @@
                              ((equal? 'sss-palette-ef-cyprus
                                       sss-active-palette)
                               "Yaru-sage")
+                             ((equal? 'sss-palette-heavy-metal
+                                      sss-active-palette)
+                              "Yaru-red-dark")
                              ((equal? 'sss-palette-ef-dream sss-active-palette)
                               "Yaru-magenta-dark")
                              (else "Yaru-sage-dark")))
@@ -41,6 +44,8 @@
                          fixed-theme)
                         ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                          "Yaru-sage")
+                        ((equal? 'sss-palette-heavy-metal sss-active-palette)
+                         "Yaru-red-dark")
                         ((equal? 'sss-palette-ef-dream sss-active-palette)
                          "Yaru-magenta-dark")
                         (else "Yaru-sage-dark")))
@@ -72,6 +77,9 @@
                              ((equal? 'sss-palette-ef-cyprus
                                       sss-active-palette)
                               "Yaru-sage")
+                             ((equal? 'sss-palette-heavy-metal
+                                      sss-active-palette)
+                              "Yaru-red-dark")
                              ((equal? 'sss-palette-ef-dream sss-active-palette)
                               "Yaru-magenta-dark")
                              (else "Yaru-sage-dark")))
@@ -81,6 +89,8 @@
                          fixed-theme)
                         ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                          "Yaru-sage")
+                        ((equal? 'sss-palette-heavy-metal sss-active-palette)
+                         "Yaru-red-dark")
                         ((equal? 'sss-palette-ef-dream sss-active-palette)
                          "Yaru-magenta-dark")
                         (else "Yaru-sage-dark")))

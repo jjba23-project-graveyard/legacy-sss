@@ -55,6 +55,8 @@
        (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
       ((equal? 'sss-palette-ef-dream sss-active-palette)
        (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
+      ((equal? 'sss-palette-heavy-metal sss-active-palette)
+       (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
       (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
 
@@ -71,12 +73,17 @@
   (let ((gtk-theme-name (cond
                           ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                            "Yaru-sage")
+                          ((equal? 'sss-palette-heavy-metal sss-active-palette)
+                           "Yaru-red-dark")
                           ((equal? 'sss-palette-ef-dream sss-active-palette)
                            "Yaru-magenta-dark")
                           (else "Yaru-sage-dark")))
         (icon-theme-name (cond
                            ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                             "Yaru-sage")
+                           ((equal? 'sss-palette-heavy-metal
+                                    sss-active-palette)
+                            "Yaru-red-dark")
                            ((equal? 'sss-palette-ef-dream sss-active-palette)
                             "Yaru-magenta-dark")
                            (else "Yaru-sage-dark"))))

@@ -225,7 +225,6 @@
         xdg-desktop-portal
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
-        xdg-desktop-portal-gnome
 
         ;; Compatibility for older Xorg applications
         xorg-server-xwayland

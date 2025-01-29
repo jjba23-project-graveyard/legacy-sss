@@ -33,6 +33,9 @@
                          ((equal? sss-active-palette
                                   'sss-palette-ef-cyprus)
                           "'ef-cyprus")
+                         ((equal? sss-active-palette
+                                  'sss-palette-heavy-metal)
+                          "'ef-tritanopia-dark")
                          (else "'ef-bio")))))
   (export sss-bridge-emacs-vars))
 

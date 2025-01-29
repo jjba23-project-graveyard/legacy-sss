@@ -32,6 +32,10 @@
                                                        sss-active-palette)
                                                       "Yaru-sage")
                                                      ((equal?
+                                                       sss-palette-heavy-metal
+                                                       sss-active-palette)
+                                                      "Yaru-red-dark")
+                                                     ((equal?
                                                        sss-palette-ef-dream
                                                        sss-active-palette)
                                                       "Yaru-magenta-dark")
@@ -68,6 +72,10 @@
                                                        sss-palette-ef-cyprus
                                                        sss-active-palette)
                                                       "Yaru-sage")
+                                                     ((equal?
+                                                       sss-palette-heavy-metal
+                                                       sss-active-palette)
+                                                      "Yaru-red-dark")
                                                      ((equal?
                                                        sss-palette-ef-dream
                                                        sss-active-palette)

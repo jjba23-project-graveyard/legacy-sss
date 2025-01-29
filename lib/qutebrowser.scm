@@ -32,7 +32,7 @@
       (bg-selection . "#3e4451")
       (fg-disabled unquote
                    (sss-get-color sss-active-palette
-                                  'fg-dim))
+                                  'text))
       (fg-default unquote
                   (sss-get-color sss-active-palette
                                  'text))
