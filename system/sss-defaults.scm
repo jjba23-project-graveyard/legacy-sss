@@ -91,7 +91,10 @@
 
 ;; Flatpak packages to install to the user
 (define sss-flatpak-pkgs
-  '("app.drey.Warp" "com.usebottles.bottles"))
+  '("app.drey.Warp"
+    "com.usebottles.bottles"
+    "com.ktechpit.whatsie"
+    "com.anydesk.Anydesk"))
 
 ;;;
 ;;; end SSS defaults section
