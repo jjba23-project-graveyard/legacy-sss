@@ -85,6 +85,14 @@
     "deadnix"
     "awscli"))
 
+;; Flatpak remotes to add to a user
+(define sss-flatpak-user-remotes
+  '((flathub . "https://dl.flathub.org/repo/flathub.flatpakrepo")))
+
+;; Flatpak packages to install to the user
+(define sss-flatpak-pkgs
+  '("app.drey.Warp" "com.usebottles.bottles"))
+
 ;;;
 ;;; end SSS defaults section
 ;;;

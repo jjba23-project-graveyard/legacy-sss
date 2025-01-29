@@ -63,6 +63,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 * Bluetooth::
 * Virtualization::
 * Mime types::
+* Flatpaks::
 * Troubleshooting FAQ::
 * Sway keybindings::
 * Emacs keybindings::
@@ -264,66 +265,66 @@ It is @strong{REQUIRED} to include a @code{per-host.scm} in the root of this pro
 Find here a reference configuration with what is required.
 
 @example
-  (use-modules (gnu)
-               (gnu packages))
+(use-modules (gnu)
+             (gnu packages))
 
-  ;; system language
-  (define sss-lang "en_US")
+;; system language
+(define sss-lang "en_US")
 
-  ;; system timezone
-  (define sss-timezone "Europe/Amsterdam")
+;; system timezone
+(define sss-timezone "Europe/Amsterdam")
 
-  ;; system keyboard layout
-  (define sss-keyboard-layout "us")
+;; system keyboard layout
+(define sss-keyboard-layout "us")
 
-  ;; caps to control enabled
-  (define sss-keyboard-caps-to-ctrl
-    #t)
+;; caps to control enabled
+(define sss-keyboard-caps-to-ctrl
+  #t)
 
-  ;; system hostname
-  (define sss-hostname "gnusystem")
+;; system hostname
+(define sss-hostname "gnusystem")
 
-  ;; disk partitioning
-  (define sss-filesystems
-    (list (file-system
-           (device "/dev/nvme0n1p3")
-           (mount-point "/")
-           (type "ext4"))
-          (file-system
-           (device "/dev/nvme0n1p1")
-           (mount-point "/boot/efi")
-           (type "vfat"))))
+;; disk partitioning
+(define sss-filesystems
+  (list (file-system
+         (device "/dev/nvme0n1p3")
+         (mount-point "/")
+         (type "ext4"))
+        (file-system
+         (device "/dev/nvme0n1p1")
+         (mount-point "/boot/efi")
+         (type "vfat"))))
 
-  ;; packages that should only be installed in the current host
-  ;; or (define sss-per-host-packages '())
-  (define sss-per-host-packages '(
-                                  ;; AMD non-free drivers
-                                  "amd-microcode" "amdgpu-firmware"
-                                  ;; Games
-                                  "prismlauncher" "steam")
-    )
+;; packages that should only be installed in the current host
+;; or (define sss-per-host-packages '())
+(define sss-per-host-packages '(
+                                ;; AMD non-free drivers
+                                "amd-microcode" "amdgpu-firmware"
+                                ;; Games
+                                "prismlauncher" "steam")
+  )
 
-  ;; location where you cloned SSS Git repository
-  (define sss-clone-dir
-    "$HOME/Ontwikkeling/Persoonlijk/sss")
+;; location where you cloned SSS Git repository
+(define sss-clone-dir
+  "$HOME/Ontwikkeling/Persoonlijk/sss")
 
-  ;;
-  ;; Define the active palette for all users accounts
-  ;; You should reconfigure and ideally restart the system
-  ;; for all changes to take effect
-  ;;
-  ;; Note: You could choose on a per-user basis to set a fixed palette
-  ;; and not follow system wide, by just redefining this value
-  ;;
-  ;; Possible values are:
-  ;;   - sss-palette-ef-bio
-  ;;   - sss-palette-ef-cyprus
-  ;;   - sss-palette-ef-dream
-  ;;
-  (define-public sss-active-palette
-    'sss-palette-ef-dream)
+;;
+;; Define the active palette for all users accounts
+;; You should reconfigure and ideally restart the system
+;; for all changes to take effect
+;;
+;; Note: You could choose on a per-user basis to set a fixed palette
+;; and not follow system wide, by just redefining this value
+;;
+;; Possible values are:
+;;   - sss-palette-ef-bio
+;;   - sss-palette-ef-cyprus
+;;   - sss-palette-ef-dream
+;;
+(define-public sss-active-palette
+  'sss-palette-ef-dream)
 
-  ;; Nix packages to install
+;; Nix packages to install
 (define-public sss-nixpkgs
   '("yaml-language-server" "bash-language-server"
     "monaspace"
@@ -345,6 +346,12 @@ Find here a reference configuration with what is required.
     "krew"
     "mermaid-cli"
     "jetbrains.idea-community"))
+
+;; Flatpak remotes to add to the user
+(define sss-flatpak-user-remotes '((flathub . "https://dl.flathub.org/repo/flathub.flatpakrepo")))
+
+;; Flatpak packages to install
+(define sss-flatpak-pkgs '("app.drey.Warp" "com.usebottles.bottles"))
 
 
 @end example
@@ -742,6 +749,11 @@ At @code{~/.config/mimeapps.list} you get this:
 application/pdf=evince.desktop;google-chrome.desktop;firefox.desktop
 text/html=google-chrome.desktop;firefox.desktop
 @end example
+
+@node Flatpaks
+@chapter Flatpaks
+
+SSS takes care of flatpak origins and installing and maintaining your flatpaks up to date.
 
 @node Troubleshooting FAQ
 @chapter Troubleshooting FAQ

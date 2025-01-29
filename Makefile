@@ -32,7 +32,7 @@
 .PHONY: update system-reconfigure joe-reconfigure manon-reconfigure \
         format jr fr sr mr fmt full-rebuild nix-profile-upgrade \
         publish-manual gc store-gc full-gc shepherd-logs npu \
-        clone-user-repos install-nix-packages npi deploy
+        clone-user-repos install-nix-packages npi deploy install-flatpak-packages
 
 # Constants
 
@@ -137,10 +137,9 @@ clone-user-repos:
 install-nix-packages:
 	guile --fresh-auto-compile system/scripts/install-nix-packages.scm
 
-# install-nix-package-shortcuts: Copies .desktop files for installed applications.
-install-nix-package-shortcuts:
-	cp -rfv $(HOME)/.nix-profile/share/applications/*.desktop \
-		$(HOME)/.local/share/applications/
+# install-flatpak-packages: Installs Flatpak packages using a custom script.
+install-flatpak-packages:
+	guile --fresh-auto-compile system/scripts/install-flatpak-packages.scm
 
 # Aliases for common tasks
 
@@ -165,13 +164,11 @@ npu:  # Alias for nix-profile-upgrade
 fmt:  # Alias for format
 	@make format
 
-npi:  # Installs Nix packages and updates application shortcuts.
+npi:  # Installs Nix packages 
 	@make install-nix-packages
-	@make install-nix-package-shortcuts
 
-# install-nix-package-shortcuts: Copies .desktop files for installed applications.
-nps:
-	@make install-nix-package-shortcuts
+fpi:  # Installs Flatpak packages
+	@make install-flatpak-packages
 
 # deploy: Deploys the manual HTML to a web server directory.
 deploy:
