@@ -94,6 +94,8 @@ full-rebuild: format
 	@make joe-reconfigure
 	@sudo fc-cache -rfv
 	@fc-cache -rfv
+	@make install-flatpak-packages
+	@make install-nix-packages
 	$(call sss-log-complete,"full-rebuild")
 
 # nix-profile-upgrade: Upgrades Nix packages using a custom Guile script.
