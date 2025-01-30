@@ -869,7 +869,14 @@ According to size, color and font family"
 
 (use-package go-mode
   :ensure (:host github :repo "dominikh/go-mode.el" :branch "master")
-  :demand t)
+  :demand t
+  :init
+  (setq gofmt-command "gofumpt")
+  :config
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (setq indent-tabs-mode 1)
+              (setq tab-width 4))))
 
 (use-package go-flymake
   :ensure (:host github :repo "dougm/goflymake" :branch "master")
