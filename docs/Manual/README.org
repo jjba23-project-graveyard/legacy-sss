@@ -50,7 +50,7 @@ This is joe's session:
 An operating system unto itself.
 
 - Advanced Emacs configurations with Emacs Lisp + Elpaca
-- Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix and more  
+- Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix, Golang and more  
 
 ** Universal session
 

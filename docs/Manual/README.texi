@@ -9,7 +9,7 @@
 @finalout
 @titlepage
 @title SSS/GNU system - Manual & Documentation
-@author Josep Bigorra
+@author Music Player Daemon (MPD) user
 @end titlepage
 
 @contents
@@ -152,7 +152,7 @@ An operating system unto itself.
 @item
 Advanced Emacs configurations with Emacs Lisp + Elpaca
 @item
-Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix and more  
+Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix, Golang and more  
 @end itemize
 
 @node Universal session
@@ -320,6 +320,7 @@ Find here a reference configuration with what is required.
 ;;   - sss-palette-ef-bio
 ;;   - sss-palette-ef-cyprus
 ;;   - sss-palette-ef-dream
+;;   - sss-palette-heavy-metal
 ;;
 (define-public sss-active-palette
   'sss-palette-ef-dream)

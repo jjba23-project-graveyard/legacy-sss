@@ -54,7 +54,7 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 An operating system unto itself.
 
 - Advanced Emacs configurations with Emacs Lisp + Elpaca
-- Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix and more
+- Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix, Golang and more
 
 * SSS Project
 
