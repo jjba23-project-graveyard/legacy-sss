@@ -259,6 +259,7 @@ According to size, color and font family"
 	 (haskell-mode . eglot-ensure)
 	 (markdown-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
+         (go-mode . eglot-ensure)         
          (python-mode . eglot-ensure)
          (rust-mode . eglot-ensure)
          (before-save . eglot-format-buffer))
@@ -865,6 +866,14 @@ According to size, color and font family"
 
 (use-package prodigy
   :ensure t)
+
+(use-package go-mode
+  :ensure (:host github :repo "dominikh/go-mode.el" :branch "master")
+  :demand t)
+
+(use-package go-flymake
+  :ensure (:host github :repo "dougm/goflymake" :branch "master")
+  :demand t)
 
 
 ;; TODO when upgrading to Emacs 30 which-key will be built-in

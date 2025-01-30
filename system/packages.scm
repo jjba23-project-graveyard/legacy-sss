@@ -46,6 +46,7 @@
                      autotools
                      perl
                      linux
+                     golang
                      gnuzilla
                      ncurses
                      xfce
@@ -490,6 +491,9 @@
 (define sss-emacs-packages
   '())
 
+(define sss-go-packages
+  (list (specification->package "go@1.23") gofumpt gopls))
+
 ;; SYSTEM PACKAGES
 ;;
 ;; Add packages here to install them system wide
@@ -508,6 +512,7 @@
             sss-treesitter-packages
             sss-coreutils
             sss-terminal-emulator-packages
+            sss-go-packages
             sss-browser-packages
             sss-latex-packages
             sss-dict-packages
