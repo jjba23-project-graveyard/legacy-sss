@@ -51,6 +51,7 @@
                      ncurses
                      xfce
                      rust
+                     commencement
                      gnupg
                      multiprecision
                      gcc
@@ -282,6 +283,8 @@
         unzip
         gmp
         gcc
+        (specification->package "gccgo")
+        gcc-toolchain
         curl
         ripgrep
         net-tools
