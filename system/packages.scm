@@ -283,7 +283,6 @@
         unzip
         gmp
         gcc
-        (specification->package "gccgo")
         gcc-toolchain
         curl
         ripgrep
