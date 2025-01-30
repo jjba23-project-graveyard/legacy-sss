@@ -364,6 +364,8 @@
         gdk-pixbuf
         gtk
 
+        binutils
+
         qutebrowser
 
         gnome-calculator
