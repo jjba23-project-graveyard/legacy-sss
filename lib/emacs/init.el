@@ -80,11 +80,11 @@
   "SSS customization group."
   :group 'tools)
 
-(defcustom sss-font-mono "Monaspace Neon"
+(defcustom sss-font-mono "Adwaita Mono"
   "My personal choice for monospaced font family." 
   :type 'string)
 
-(defcustom sss-font-sans "Monaspace Neon"
+(defcustom sss-font-sans "Adwaita Mono"
   "My personal choice for sans font family." 
   :type 'string)
 

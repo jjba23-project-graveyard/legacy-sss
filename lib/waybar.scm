@@ -200,7 +200,7 @@
               (padding-right . "12px")
               (padding-left . "12px")
               (padding-bottom . "6px")
-              (font-family . "FontAwesome, Monaspace Neon")
+              (font-family . "FontAwesome, Adwaita Mono")
               (font-weight . 500)
               (color unquote
                      (sss-get-color sss-active-palette
@@ -213,7 +213,7 @@
                                                      'background)
                                                     #:alpha 0.8))
        (padding . "12px")
-       (font-family . "FontAwesome, Monaspace Neon")
+       (font-family . "FontAwesome, Adwaita Mono")
        (color unquote
               (sss-get-color sss-active-palette
                              'text)))

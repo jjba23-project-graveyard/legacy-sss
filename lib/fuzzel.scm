@@ -47,7 +47,7 @@
 
 (begin
   (define* (sss-fuzzel-config #:key sss-active-palette)
-    `((font . "Monaspace Neon:size=16") (terminal . "foot")
+    `((font . "Adwaita Mono:size=16") (terminal . "foot")
       (icon-theme . "Yaru-sage-dark")
       (list-executables-in-path . "yes")
       (lines . 15)

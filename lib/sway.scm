@@ -92,7 +92,7 @@
       (format #f "gsettings set $gnome-schema icon-theme '~a'" icon-theme-name)
       "gsettings set $gnome-schema cursor-theme 'Yaru'"
       "gsettings set $gnome-schema cursor-size 24"
-      "gsettings set $gnome-schema font-name 'Monaspace Neon'")))
+      "gsettings set $gnome-schema font-name 'Adwaita Mono'")))
 
 (begin
   (define* (sss-sway-outputs #:key sss-clone-dir)

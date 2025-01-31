@@ -23,10 +23,10 @@
   (simple-service 'additional-fonts-service home-fontconfig-service-type
                   (list "~/.nix-profile/share/fonts"
                         '(alias (family "monospace")
-                                (prefer (family "Monaspace Neon")))
+                                (prefer (family "Adwaita Mono")))
                         '(alias (family "ui-monospace")
-                                (prefer (family "Monaspace Neon")))
+                                (prefer (family "Adwaita Mono")))
                         '(alias (family "Consolas")
-                                (prefer (family "Monaspace Neon")))
+                                (prefer (family "Adwaita Mono")))
                         '(alias (family "SF Mono")
-                                (prefer (family "Monaspace Neon"))))))
+                                (prefer (family "Adwaita Mono"))))))

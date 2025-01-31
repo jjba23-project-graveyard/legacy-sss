@@ -37,7 +37,7 @@
                   (string-upcase (format #f "~abb"
                                          (sss-get-color sss-active-palette
                                                         'text))))
-      (font . "Monaspace Neon 10")
+      (font . "Adwaita Mono 13")
       (width . 420)
       (icons . 1)
       (default-timeout . 12000)
