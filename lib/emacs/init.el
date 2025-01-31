@@ -774,7 +774,7 @@ According to size, color and font family"
   (if (display-graphic-p frame)
       (progn
 	(message "window system")
-	(tekengrootte-set-scale-regular)
+	(tekengrootte-set-scale-small)
 
 	)
     (message "not a window system")

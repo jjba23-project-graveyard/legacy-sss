@@ -137,6 +137,24 @@
       (specification->package pkg)
       (specification->package "curl")))
 
+(define-public font-adwaita
+  (package
+    (name "font-adwaita")
+    (version "48.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://download.gnome.org/sources/adwaita-fonts/48/adwaita-fonts-48.0.tar.xz")
+       (sha256
+        (base32 "05slzfhb5488v94syrry9jfbldaid6xpnq54dac6zq8qv4lz8bhx"))))
+    (build-system font-build-system)
+    (home-page "https://gitlab.gnome.org/GNOME/adwaita-fonts")
+    (synopsis "Adwaita font families, sans and mono")
+    (description
+     "Adwaita Sans, a variation of Inter, and Adwaita Mono, Iosevka customized to match Inter.")
+    (license license:silofl1.1)))
+
 (define-public font-monaspace
   (package
     (name "font-monaspace")
@@ -189,6 +207,7 @@
         font-victor-mono
         font-jetbrains-mono
         font-intel-one-mono
+        font-adwaita
         font-liberation
         font-dejavu
         font-microsoft-web-core-fonts
