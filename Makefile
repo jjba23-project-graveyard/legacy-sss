@@ -42,17 +42,17 @@ DEPLOY_WWW=/srv/http/jointhefreeworld.org
 
 # sss-log-complete: Logs when a target has finished executing.
 define sss-log-complete
-	@printf "\n\033[1m>>= $(shell date) - completed work on target %s\033[0m\n" $(1)
+	@printf "\n\033[1m>>= $(shell date +%s) - completed work on target %s\033[0m\n" $(1)
 endef
 
 # sss-log-starting: Logs when a target starts execution.
 define sss-log-starting
-	@printf "\n\033[1m>>= $(shell date) - begin working on target: %s...\033[0m\n" $(1)
+	@printf "\n\033[1m>>= $(shell date +%s) - begin working on target: %s...\033[0m\n" $(1)
 endef
 
 # sss-log-info: Logs informational messages in custom format with highlight.
 define sss-log-info
-	@printf "\n\033[1m>>= $(shell date) - info - %s\033[0m\n" $(1)
+	@printf "\n\033[1m>>= $(shell date +%s) - info - %s\033[0m\n" $(1)
 endef
 
 # sss-notify: Sends desktop notifications (if available).
@@ -72,28 +72,34 @@ system-reconfigure: format
 	@sudo guix system reconfigure ./system/config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")
 	$(call sss-notify,"SSS system-reconfigure was successful!")
+	@-sudo fc-cache -frv
 
-# joe-reconfigure: Reconfigures Joe's home environment after formatting files.
+# User reconfigure function
+define sss-user-reconfigure
+	$(call sss-log-starting,"$(1)-reconfigure")
+	@guix home reconfigure ./home/$(1).scm --fallback
+	$(call sss-log-complete,"$(1)-reconfigure")
+	$(call sss-notify,"SSS $(1)-reconfigure was successful!")
+	@-fc-cache -frv
+endef
+
+
 joe-reconfigure: format
-	$(call sss-log-starting,"joe-reconfigure")
-	@guix home reconfigure ./home/joe.scm --fallback
-	$(call sss-log-complete,"joe-reconfigure")
-	$(call sss-notify,"SSS joe-reconfigure was successful!")
+	$(call sss-user-reconfigure,"joe")
+jr:
+	$(call sss-user-reconfigure,"joe")
 
-# manon-reconfigure: Reconfigures Manon's home environment after formatting files.
 manon-reconfigure: format
-	$(call sss-log-starting,"manon-reconfigure")
-	@guix home reconfigure ./home/manon.scm --fallback
-	$(call sss-log-complete,"manon-reconfigure")
-	$(call sss-notify,"SSS manon-reconfigure was successful!")
+	$(call sss-user-reconfigure,"manon")
+mr:
+	$(call sss-user-reconfigure,"manon")
+
 
 # full-rebuild: Rebuilds the entire system and home environment for Joe.
 full-rebuild: format
 	$(call sss-log-starting,"full-rebuild")
 	@make system-reconfigure
 	@make joe-reconfigure
-	@sudo fc-cache -rfv
-	@fc-cache -rfv
 	@make install-flatpak-packages
 	@make install-nix-packages
 	$(call sss-log-complete,"full-rebuild")
@@ -105,8 +111,8 @@ nix-profile-upgrade:
 # format: Formats Scheme and Emacs Lisp files in the project.
 format:
 	$(call sss-log-starting,"format")
-	-find ~+ -maxdepth 8 -name "*.scm" -type f -exec guix style -f {} \;
-	-find ~+ -maxdepth 8 -name "*.el" -type f -exec emacs -Q --batch {} \
+	@-find ~+ -maxdepth 8 -name "*.scm" -type f -exec guix style -f {} \;
+	@-find ~+ -maxdepth 8 -name "*.el" -type f -exec emacs -Q --batch {} \
 		-l $(shell realpath ./lib/emacs/batch-indent.el) -f indent-file \;
 	$(call sss-log-complete,"format")
 
@@ -149,11 +155,6 @@ update-flatpak-packages:
 
 # Aliases for common tasks
 
-jr:  # Alias for joe-reconfigure
-	@make joe-reconfigure
-
-mr:  # Alias for manon-reconfigure
-	@make manon-reconfigure
 
 sr:  # Alias for system-reconfigure
 	@make system-reconfigure
