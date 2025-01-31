@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 
 (begin
   (define* (sss-foot-config #:key sss-active-palette)
-    `((font . "Monaspace Neon:size=11") (dpi-aware . "no")
+    `((font . "Adwaita Mono:size=11") (dpi-aware . "no")
       (pad . "14x14")
       (bell (urgent . "no")
             (notify . "no")

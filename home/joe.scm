@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -62,6 +62,7 @@
              (sss enchant)
              (sss fontconfig)
              (sss bash)
+             (sss mime)
              (sss gtk)
              (sss portals)
              (sss qt)
@@ -215,6 +216,16 @@
                                                                  "[General]"
                                                                  "theme=KvYaru-MATEDark")
                                                                 "\n")))
+
+             (".config/mimeapps.list" ,(plain-file "mimeapps.list"
+                                                   (sss-mimeapps-list-file
+                                                    #:added-associations
+                                                    sss-mime-added-associations
+                                                    #:removed-associations
+                                                    sss-mime-removed-associations
+                                                    #:default-applications
+                                                    sss-mime-default-applications)))
+
              (".config/Kvantum/KvYaru-Green" ,(local-file
                                                "/run/current-system/profile/usr/share/Kvantum/KvYaru-Green"
                                                #:recursive? #t))

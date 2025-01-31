@@ -80,11 +80,11 @@
   "SSS customization group."
   :group 'tools)
 
-(defcustom sss-font-mono "Monaspace Neon"
+(defcustom sss-font-mono "Adwaita Mono"
   "My personal choice for monospaced font family." 
   :type 'string)
 
-(defcustom sss-font-sans "Monaspace Neon"
+(defcustom sss-font-sans "Adwaita Mono"
   "My personal choice for sans font family." 
   :type 'string)
 
@@ -259,6 +259,7 @@ According to size, color and font family"
 	 (haskell-mode . eglot-ensure)
 	 (markdown-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
+         (go-mode . eglot-ensure)         
          (python-mode . eglot-ensure)
          (rust-mode . eglot-ensure)
          (before-save . eglot-format-buffer))
@@ -773,7 +774,7 @@ According to size, color and font family"
   (if (display-graphic-p frame)
       (progn
 	(message "window system")
-	(tekengrootte-set-scale-regular)
+	(tekengrootte-set-scale-small)
 
 	)
     (message "not a window system")
@@ -865,6 +866,21 @@ According to size, color and font family"
 
 (use-package prodigy
   :ensure t)
+
+(use-package go-mode
+  :ensure (:host github :repo "dominikh/go-mode.el" :branch "master")
+  :demand t
+  :init
+  (setq gofmt-command "gofumpt")
+  :config
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (setq indent-tabs-mode 1)
+              (setq tab-width 4))))
+
+(use-package go-flymake
+  :ensure (:host github :repo "dougm/goflymake" :branch "master")
+  :demand t)
 
 
 ;; TODO when upgrading to Emacs 30 which-key will be built-in

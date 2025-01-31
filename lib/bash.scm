@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -49,6 +49,14 @@
           (format #f "cd ~a && make jr" sss-clone-dir))
       (pm unquote
           (format #f "cd ~a && make publish-manual" sss-clone-dir))
+      (npi unquote
+           (format #f "cd ~a && make npi" sss-clone-dir))
+      (npu unquote
+           (format #f "cd ~a && make npu" sss-clone-dir))
+      (fpi unquote
+           (format #f "cd ~a && make fpi" sss-clone-dir))
+      (fpu unquote
+           (format #f "cd ~a && make fpu" sss-clone-dir))
       (scala-dev unquote
                  (format #f "nix develop ~a/resources/flakes/scala-dev/"
                          sss-clone-dir))

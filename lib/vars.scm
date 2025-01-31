@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -48,6 +48,9 @@
       ("XCURSOR_THEME" . "Yaru")
       ("SDL_VIDEODRIVER" . "wayland")
       ("_JAVA_AWT_WM_NONREPARENTING" . "1")
+      ("XDG_DATA_DIRS" unquote
+       (format #f
+        "$XDG_DATA_DIRS:$HOME/.nix-profile/share:$HOME/.local/share/flatpak/exports/share"))
       ("INFOPATH" unquote
        (format #f "$INFOPATH:~a/docs/Manual" sss-clone-dir))
       ("DOCKER_HOST" . "unix:///tmp/podman.sock")))

@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
   ;; #:use-module (sss palette)
   )
 
+;; TODO pass here more variables from per-host and SSS
 (begin
   (define* (sss-bridge-emacs-vars #:key sss-active-palette)
     `((sss-emacs-theme unquote
@@ -32,6 +33,9 @@
                          ((equal? sss-active-palette
                                   'sss-palette-ef-cyprus)
                           "'ef-cyprus")
+                         ((equal? sss-active-palette
+                                  'sss-palette-heavy-metal)
+                          "'ef-tritanopia-dark")
                          (else "'ef-bio")))))
   (export sss-bridge-emacs-vars))
 

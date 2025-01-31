@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -47,12 +47,14 @@
                      autotools
                      perl
                      linux
+                     golang
                      gnuzilla
                      ncurses
                      mpd
                      xfce
                      python-xyz
                      rust
+                     commencement
                      gnupg
                      multiprecision
                      gcc
@@ -138,6 +140,24 @@
       (specification->package pkg)
       (specification->package "curl")))
 
+(define-public font-adwaita
+  (package
+    (name "font-adwaita")
+    (version "48.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://download.gnome.org/sources/adwaita-fonts/48/adwaita-fonts-48.0.tar.xz")
+       (sha256
+        (base32 "05slzfhb5488v94syrry9jfbldaid6xpnq54dac6zq8qv4lz8bhx"))))
+    (build-system font-build-system)
+    (home-page "https://gitlab.gnome.org/GNOME/adwaita-fonts")
+    (synopsis "Adwaita font families, sans and mono")
+    (description
+     "Adwaita Sans, a variation of Inter, and Adwaita Mono, Iosevka customized to match Inter.")
+    (license license:silofl1.1)))
+
 (define-public font-monaspace
   (package
     (name "font-monaspace")
@@ -161,51 +181,26 @@
 ;; TODO install to right location where Kvantum can see it?
 (define-public sss-kv-yaru-colors
   (package
-   (name "kvantum-yaru-colors")
-   (version "21.04")
-   (source
-    (origin
-     (method git-fetch)
-     (uri (git-reference
-           (url "https://github.com/GabePoel/KvYaru-Colors.git")
-           (commit "7df1a89610618e6d3a145ff44ed47f0aafdb4ae5")))
-     (sha256
-      (base32 "1d7ys8jyk8k34dbq807vvxj9xpq9jgi8yx3xkn1ypswx5mabl9ls"))))
-   (build-system copy-build-system)
-   (arguments
-    (list
-     #:install-plan #~'(("./src/" "/usr/share/Kvantum"))))
-   (synopsis "Kvantum theme to match the Yaru colors theme!")
-   (description
-    "Kvantum themes to match the Yaru Colors and Yaru Remix themes! Check releases for latest stable version.")
-   (home-page "https://github.com/GabePoel/KvYaru-Colors.git")
-   (license license:gpl3+)))
-
-(define-public swfbar
-  (package
-    (name "sfwbar")
-    (version "v1.0_beta16")
+    (name "kvantum-yaru-colors")
+    (version "21.04")
     (source
      (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/LBCrion/sfwbar.git")
-             (commit "v1.0_beta16")))
+             (url "https://github.com/GabePoel/KvYaru-Colors.git")
+             (commit "7df1a89610618e6d3a145ff44ed47f0aafdb4ae5")))
        (sha256
-        (base32 "1jgd33fn5x213dg4fry35qg16yqg3c71a2psfwl6fsz5fp1iphcc"))))
-    (native-inputs (list pkg-config))
-    (inputs (list libmpdclient mpd pulseaudio alsa-lib python-docutils (specification->package "gtk+@3.24.41") json-c gtk-layer-shell))
-    (build-system meson-build-system)
+        (base32 "1d7ys8jyk8k34dbq807vvxj9xpq9jgi8yx3xkn1ypswx5mabl9ls"))))
+    (build-system copy-build-system)
     (arguments
      (list
-      #:glib-or-gtk? #t
-      #:configure-flags
-      #~(list (string-append #$output "/lib"))))
-    (synopsis "Flexible Wayland taskbar focused on stacking layout compositors.")
+      #:install-plan #~'(("./src/" "/usr/share/Kvantum"))))
+    (synopsis "Kvantum theme to match the Yaru colors theme!")
     (description
-     "SFWBar (S* Floating Window Bar) is a flexible taskbar application for Wayland compositors, designed with a stacking layout in mind. Originally developed for Sway, SFWBar will work with any Wayland compositor supporting layer shell protocol, the taskbar and window switcher functionality shall work with any compositor supporting foreign top-level protocol, but the pager, and window placement functionality require sway (or at least i3 IPC support).")
-    (home-page "https://github.com/LBCrion/sfwbar")
+     "Kvantum themes to match the Yaru Colors and Yaru Remix themes! Check releases for latest stable version.")
+    (home-page "https://github.com/GabePoel/KvYaru-Colors.git")
     (license license:gpl3+)))
+
 
 (define sss-font-packages
   (list fontconfig
@@ -216,6 +211,7 @@
         font-victor-mono
         font-jetbrains-mono
         font-intel-one-mono
+        font-adwaita
         font-liberation
         font-dejavu
         font-microsoft-web-core-fonts
@@ -310,6 +306,7 @@
         unzip
         gmp
         gcc
+        gcc-toolchain
         curl
         ripgrep
         net-tools
@@ -357,141 +354,170 @@
 (define* (sss-other-system-packages #:key architecture)
   (list
 
-   flatpak
-   pipewire
-   nginx
-   watchexec
+        flatpak
+        pipewire
+        nginx
+        watchexec
 
-   pavucontrol
+        pavucontrol
 
-   geany
+        geany
 
-   gnome-font-viewer
-   gnome-characters
+        gnome-font-viewer
+        gnome-characters
 
-   xz
-   ispell
-   (specification->package "bind")
+        xz
+        ispell
+        (specification->package "bind")
 
-   gnome-tweaks
-   arandr
-   httpie
-   (specification->package "remmina")
-   libnotify
-   wdisplays
+        gnome-tweaks
+        arandr
+        httpie
+        (specification->package "remmina")
+        libnotify
+        wdisplays
 
-   shotcut
-   openshot
-   inkscape
+        shotcut
+        openshot
+        inkscape
 
-   vlc
+        vlc
 
-   sqlite
-   postgresql
+        sqlite
+        postgresql
 
-   gdk-pixbuf
-   gtk
+        gdk-pixbuf
+        gtk
 
-   qutebrowser
+        <<<<<<<
+        HEAD
+        qutebrowser
+        =======
+        binutils
 
-   gnome-calculator
-   cheese
-   gnome-system-monitor
-   evince
+        qutebrowser
+        >>>>>>>
+        807063b943b29bc7cbe4bf6d2b6df63fa205432e
 
-   qemu
+        gnome-calculator
+        cheese
+        gnome-system-monitor
+        evince
 
-   obs
-   libreoffice
-   gimp
-   imagemagick
-   libwebp
-   feh
+        qemu
 
-   gparted
+        obs
+        libreoffice
+        gimp
+        imagemagick
+        libwebp
+        feh
 
-   imagemagick
+        gparted
 
-   lm-sensors
-   exfatprogs
-   exfat-utils
-   fuse-exfat
-   tmon
-   flameshot
+        imagemagick
 
-   parallel
+        lm-sensors
+        exfatprogs
+        exfat-utils
+        fuse-exfat
+        tmon
+        flameshot
 
-   thunar
+        parallel
 
-   pinentry
-   pinentry-tty
-   emacs-pinentry
+        thunar
 
-   ffmpegthumbs
-   xarchiver
-   ristretto
-   orage
+        pinentry
+        pinentry-tty
+        emacs-pinentry
 
-   sqlitebrowser
-   direnv
+        ffmpegthumbs
+        xarchiver
+        ristretto
+        orage
 
-   bsd-games
+        sqlitebrowser
+        direnv
 
-   power-profiles-daemon
-   libltdl
-   scenefx
-   swayfx
-   light
+        bsd-games
 
-   gdb
+        <<<<<<<
+        HEAD
+        power-profiles-daemon
+        libltdl
+        scenefx
+        swayfx
+        light
+        =======
+        gthumb
 
-   swfbar
-   
-   imagemagick
+        power-profiles-daemon
+        libltdl
+        scenefx
+        swayfx
+        light
+        >>>>>>>
+        807063b943b29bc7cbe4bf6d2b6df63fa205432e
 
-   transmission
-   transmission-remote-gtk
+        gdb
 
-   xf86-video-fbdev
-   xf86-input-libinput
-   lxsession
-   pamixer
+        imagemagick
 
-   (sss/x86-only-pkg architecture "ghcid")
+        transmission
+        transmission-remote-gtk
 
-   neofetch
-   cmatrix
+        xf86-video-fbdev
+        xf86-input-libinput
+        lxsession
+        pamixer
 
-   pkg-config
+        (sss/x86-only-pkg architecture "ghcid")
 
-   bluez
-   hplip
+        neofetch
+        cmatrix
 
-   autoconf
-   automake
-   libltdl
-   libtool
+        pkg-config
 
-   perl
+        bluez
+        hplip
 
-   mpv
-   mpv-mpris
-   unixodbc
-   tree
-   fyi
+        <<<<<<<
+        HEAD
+        autoconf
+        automake
+        libltdl
+        libtool
+        =======
+        (sss/x86-only-pkg architecture "nyxt")
 
-   drill
+        autoconf
+        automake
+        libltdl
+        libtool
+        >>>>>>>
+        807063b943b29bc7cbe4bf6d2b6df63fa205432e
 
-   (specification->package "gettext")
+        perl
 
-   (sss/x86-only-pkg architecture "google-chrome-stable")
-   (sss/x86-only-pkg architecture "reaper")
-   (sss/x86-only-pkg architecture "stellarium")
-   (sss/x86-only-pkg architecture "virt-manager")
+        mpv
+        mpv-mpris
+        unixodbc
+        tree
+        fyi
 
-   nautilus
+        drill
 
-   xxd))
+        (specification->package "gettext")
+
+        (sss/x86-only-pkg architecture "google-chrome-stable")
+        (sss/x86-only-pkg architecture "reaper")
+        (sss/x86-only-pkg architecture "stellarium")
+        (sss/x86-only-pkg architecture "virt-manager")
+
+        nautilus
+
+        xxd))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
@@ -517,6 +543,9 @@
 (define sss-emacs-packages
   '())
 
+(define sss-go-packages
+  (list (specification->package "go@1.23") gofumpt gopls))
+
 ;; SYSTEM PACKAGES
 ;;
 ;; Add packages here to install them system wide
@@ -535,6 +564,7 @@
             sss-treesitter-packages
             sss-coreutils
             sss-terminal-emulator-packages
+            sss-go-packages
             sss-browser-packages
             sss-latex-packages
             sss-dict-packages

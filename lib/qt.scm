@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -32,6 +32,10 @@
                                                        sss-active-palette)
                                                       "Yaru-sage")
                                                      ((equal?
+                                                       sss-palette-heavy-metal
+                                                       sss-active-palette)
+                                                      "Yaru-red-dark")
+                                                     ((equal?
                                                        sss-palette-ef-dream
                                                        sss-active-palette)
                                                       "Yaru-magenta-dark")
@@ -39,8 +43,8 @@
                                        (standard_dialogs . default)
                                        (style . kvantum)))
                    "\n[Fonts]\n"
-                   (mk-kv-conf-lines `((fixed . "\"Monaspace Neon,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
-                                       (general . "\"Monaspace Neon,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
+                   (mk-kv-conf-lines `((fixed . "\"Adwaita Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
+                                       (general . "\"Adwaita Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
                    "\n[Interface]\n"
                    (mk-kv-conf-lines `((activate_item_on_single_click . 0)
                                        (buttonbox_layout . 3)
@@ -69,6 +73,10 @@
                                                        sss-active-palette)
                                                       "Yaru-sage")
                                                      ((equal?
+                                                       sss-palette-heavy-metal
+                                                       sss-active-palette)
+                                                      "Yaru-red-dark")
+                                                     ((equal?
                                                        sss-palette-ef-dream
                                                        sss-active-palette)
                                                       "Yaru-magenta-dark")
@@ -76,8 +84,8 @@
                                        (standard_dialogs . default)
                                        (style . kvantum)))
                    "\n[Fonts]\n"
-                   (mk-kv-conf-lines `((fixed . "\"Monaspace Neon,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
-                                       (general . "\"Monaspace Neon,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
+                   (mk-kv-conf-lines `((fixed . "\"Adwaita Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
+                                       (general . "\"Adwaita Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
                    "\n[Interface]\n"
                    (mk-kv-conf-lines `((activate_item_on_single_click . 0)
                                        (buttonbox_layout . 3)

@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -138,43 +138,47 @@
 (begin
   (define* (sss-waybar-conf #:key (with-ip #f)
                             (with-sway-workspaces #f)
-                            (with-memory #f))
-    `((position . bottom) (height . 42)
-      (spacing . 16)
-      (modules-left . #(custom/sss-waybar-start-button clock sway/workspaces sway/mode sway/scratchpad custom/media sway/window))
-      (modules-center)
-      (modules-right . #(pulseaudio network power-profiles-daemon cpu memory backlight keyboard-state sway/language battery #{battery#bat2}# tray custom/power))
-      ,sss-waybar-start-button
-      ,(cond
-         (with-sway-workspaces sss-waybar-sway-workspaces)
-         (else `(sway/workspaces . null)))
-      (keyboard-state (numlock . #t)
-                      (capslock . #t)
-                      (format . "{name} {icon} ")
-                      (format-icons (locked . "\uf023")
-                                    (unlocked . "\uf09c")))
-      (sway/mode (format . "<span style=\"italic\">{}</span>"))
-      (sway/scratchpad (format . "{icon} {count}")
-                       (show-empty . #f)
-                       (format-icons . #("" "\uf2d2"))
-                       (tooltip . #t)
-                       (tooltip-format . "{app}: {title}"))
-      (tray (spacing . 10))
-      ,sss-waybar-clock
-      (cpu (format . "{usage}% \uf2db")
-           (tooltip . #f))
-      ,(cond
-         (with-memory `(memory (format . "{}% \uf0c9")))
-         (else `(memory . null)))
-      ,sss-waybar-backlight
-      ,sss-waybar-battery
-      ,sss-waybar-battery-2
-      ,sss-waybar-power-profiles
-      ,(cond
-         (with-ip sss-waybar-ip)
-         (else `(network . null)))
-      ,sss-waybar-audio-icon
-      ,sss-waybar-power-button))
+                            (with-memory #f)
+                            (with-taskbar #f))
+    (let ((modules-left (if with-taskbar
+                            #(custom/sss-waybar-start-button clock wlr/taskbar)
+                            #(custom/sss-waybar-start-button clock sway/workspaces sway/mode sway/scratchpad custom/media sway/window))))
+      `((position . bottom) (height . 42)
+        (spacing . 16)
+        (modules-left unquote modules-left)
+        (modules-center)
+        (modules-right . #(pulseaudio network power-profiles-daemon cpu memory backlight keyboard-state sway/language battery #{battery#bat2}# tray custom/power))
+        ,sss-waybar-start-button
+        ,(cond
+           (with-sway-workspaces sss-waybar-sway-workspaces)
+           (else `(sway/workspaces . null)))
+        (keyboard-state (numlock . #t)
+                        (capslock . #t)
+                        (format . "{name} {icon} ")
+                        (format-icons (locked . "\uf023")
+                                      (unlocked . "\uf09c")))
+        (sway/mode (format . "<span style=\"italic\">{}</span>"))
+        (sway/scratchpad (format . "{icon} {count}")
+                         (show-empty . #f)
+                         (format-icons . #("" "\uf2d2"))
+                         (tooltip . #t)
+                         (tooltip-format . "{app}: {title}"))
+        (tray (spacing . 10))
+        ,sss-waybar-clock
+        (cpu (format . "{usage}% \uf2db")
+             (tooltip . #f))
+        ,(cond
+           (with-memory `(memory (format . "{}% \uf0c9")))
+           (else `(memory . null)))
+        ,sss-waybar-backlight
+        ,sss-waybar-battery
+        ,sss-waybar-battery-2
+        ,sss-waybar-power-profiles
+        ,(cond
+           (with-ip sss-waybar-ip)
+           (else `(network . null)))
+        ,sss-waybar-audio-icon
+        ,sss-waybar-power-button)))
   (export sss-waybar-conf))
 
 ;; Defines a CSS configuration for SSS Waybar using Scheme.
@@ -187,11 +191,6 @@
 ;; - Specific styles for workspace buttons, clocks, and tooltips.
 ;; - Dynamic colors fetched from `sss-get-color` for consistency with theme settings.
 ;; - Use of transition effects and alpha blending to enhance UI responsiveness.
-;; - Multiple font families and aesthetic coherence.
-;;
-;; Note:
-;; - Some styles, such as borders and border-radius, are commented out but ready
-;;   for activation if needed.
 (begin
   (define* (sss-waybar-css #:key sss-active-palette)
     `((module (background . transparent)
@@ -200,7 +199,7 @@
               (padding-right . "12px")
               (padding-left . "12px")
               (padding-bottom . "6px")
-              (font-family . "FontAwesome, Monaspace Neon")
+              (font-family . "FontAwesome, Adwaita Mono")
               (font-weight . 500)
               (color unquote
                      (sss-get-color sss-active-palette
@@ -213,7 +212,7 @@
                                                      'background)
                                                     #:alpha 0.8))
        (padding . "12px")
-       (font-family . "FontAwesome, Monaspace Neon")
+       (font-family . "FontAwesome, Adwaita Mono")
        (color unquote
               (sss-get-color sss-active-palette
                              'text)))

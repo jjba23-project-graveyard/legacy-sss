@@ -32,7 +32,7 @@
 .PHONY: update system-reconfigure joe-reconfigure manon-reconfigure \
         format jr fr sr mr fmt full-rebuild nix-profile-upgrade \
         publish-manual gc store-gc full-gc shepherd-logs npu \
-        clone-user-repos install-nix-packages npi deploy
+        clone-user-repos install-nix-packages npi deploy install-flatpak-packages
 
 # Constants
 
@@ -42,17 +42,17 @@ DEPLOY_WWW=/srv/http/jointhefreeworld.org
 
 # sss-log-complete: Logs when a target has finished executing.
 define sss-log-complete
-	@printf "\n\033[1m>>= $(shell date) - completed work on target %s\033[0m\n" $(1)
+	@printf "\n\033[1m>>= $(shell date +%s) - completed work on target %s\033[0m\n" $(1)
 endef
 
 # sss-log-starting: Logs when a target starts execution.
 define sss-log-starting
-	@printf "\n\033[1m>>= $(shell date) - begin working on target: %s...\033[0m\n" $(1)
+	@printf "\n\033[1m>>= $(shell date +%s) - begin working on target: %s...\033[0m\n" $(1)
 endef
 
 # sss-log-info: Logs informational messages in custom format with highlight.
 define sss-log-info
-	@printf "\n\033[1m>>= $(shell date) - info - %s\033[0m\n" $(1)
+	@printf "\n\033[1m>>= $(shell date +%s) - info - %s\033[0m\n" $(1)
 endef
 
 # sss-notify: Sends desktop notifications (if available).
@@ -67,33 +67,41 @@ update:
 	@guix pull
 
 # system-reconfigure: Reconfigures the system using the provided configuration file.
-system-reconfigure:
+system-reconfigure: format
 	$(call sss-log-starting,"system-reconfigure")
 	@sudo guix system reconfigure ./system/config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")
 	$(call sss-notify,"SSS system-reconfigure was successful!")
+	@-sudo fc-cache -frv
 
-# joe-reconfigure: Reconfigures Joe's home environment after formatting files.
+# User reconfigure function
+define sss-user-reconfigure
+	$(call sss-log-starting,"$(1)-reconfigure")
+	@guix home reconfigure ./home/$(1).scm --fallback
+	$(call sss-log-complete,"$(1)-reconfigure")
+	$(call sss-notify,"SSS $(1)-reconfigure was successful!")
+	@-fc-cache -frv
+endef
+
+
 joe-reconfigure: format
-	$(call sss-log-starting,"joe-reconfigure")
-	@guix home reconfigure ./home/joe.scm --fallback
-	$(call sss-log-complete,"joe-reconfigure")
-	$(call sss-notify,"SSS joe-reconfigure was successful!")
+	$(call sss-user-reconfigure,"joe")
+jr:
+	$(call sss-user-reconfigure,"joe")
 
-# manon-reconfigure: Reconfigures Manon's home environment after formatting files.
 manon-reconfigure: format
-	$(call sss-log-starting,"manon-reconfigure")
-	@guix home reconfigure ./home/manon.scm --fallback
-	$(call sss-log-complete,"manon-reconfigure")
-	$(call sss-notify,"SSS manon-reconfigure was successful!")
+	$(call sss-user-reconfigure,"manon")
+mr:
+	$(call sss-user-reconfigure,"manon")
+
 
 # full-rebuild: Rebuilds the entire system and home environment for Joe.
 full-rebuild: format
 	$(call sss-log-starting,"full-rebuild")
 	@make system-reconfigure
 	@make joe-reconfigure
-	@sudo fc-cache -rfv
-	@fc-cache -rfv
+	@make install-flatpak-packages
+	@make install-nix-packages
 	$(call sss-log-complete,"full-rebuild")
 
 # nix-profile-upgrade: Upgrades Nix packages using a custom Guile script.
@@ -103,8 +111,8 @@ nix-profile-upgrade:
 # format: Formats Scheme and Emacs Lisp files in the project.
 format:
 	$(call sss-log-starting,"format")
-	-find ~+ -maxdepth 8 -name "*.scm" -type f -exec guix style -f {} \;
-	-find ~+ -maxdepth 8 -name "*.el" -type f -exec emacs -Q --batch {} \
+	@-find ~+ -maxdepth 8 -name "*.scm" -type f -exec guix style -f {} \;
+	@-find ~+ -maxdepth 8 -name "*.el" -type f -exec emacs -Q --batch {} \
 		-l $(shell realpath ./lib/emacs/batch-indent.el) -f indent-file \;
 	$(call sss-log-complete,"format")
 
@@ -137,18 +145,16 @@ clone-user-repos:
 install-nix-packages:
 	guile --fresh-auto-compile system/scripts/install-nix-packages.scm
 
-# install-nix-package-shortcuts: Copies .desktop files for installed applications.
-install-nix-package-shortcuts:
-	cp -rfv $(HOME)/.nix-profile/share/applications/*.desktop \
-		$(HOME)/.local/share/applications/
+# install-flatpak-packages: Installs Flatpak packages using a custom script.
+install-flatpak-packages:
+	guile --fresh-auto-compile system/scripts/install-flatpak-packages.scm
+
+# update-flatpak-packages: Updates the system's Flatpak packages
+update-flatpak-packages:
+	flatpak update --user -y
 
 # Aliases for common tasks
 
-jr:  # Alias for joe-reconfigure
-	@make joe-reconfigure
-
-mr:  # Alias for manon-reconfigure
-	@make manon-reconfigure
 
 sr:  # Alias for system-reconfigure
 	@make system-reconfigure
@@ -165,13 +171,13 @@ npu:  # Alias for nix-profile-upgrade
 fmt:  # Alias for format
 	@make format
 
-npi:  # Installs Nix packages and updates application shortcuts.
+npi:  # Installs Nix packages 
 	@make install-nix-packages
-	@make install-nix-package-shortcuts
 
-# install-nix-package-shortcuts: Copies .desktop files for installed applications.
-nps:
-	@make install-nix-package-shortcuts
+fpi:  # Installs Flatpak packages
+	@make install-flatpak-packages
+fpu:  # Updates Flatpak packages
+	@make update-flatpak-packages
 
 # deploy: Deploys the manual HTML to a web server directory.
 deploy:

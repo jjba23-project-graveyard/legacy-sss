@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,10 +23,10 @@
   (simple-service 'additional-fonts-service home-fontconfig-service-type
                   (list "~/.nix-profile/share/fonts"
                         '(alias (family "monospace")
-                                (prefer (family "Monaspace Neon")))
+                                (prefer (family "Adwaita Mono")))
                         '(alias (family "ui-monospace")
-                                (prefer (family "Monaspace Neon")))
+                                (prefer (family "Adwaita Mono")))
                         '(alias (family "Consolas")
-                                (prefer (family "Monaspace Neon")))
+                                (prefer (family "Adwaita Mono")))
                         '(alias (family "SF Mono")
-                                (prefer (family "Monaspace Neon"))))))
+                                (prefer (family "Adwaita Mono"))))))

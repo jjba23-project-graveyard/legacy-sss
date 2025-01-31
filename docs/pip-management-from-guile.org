@@ -4,10 +4,6 @@
 
 #+begin_src scheme
 
-  (define pippkgs-updated-at
-    (read-line "resources/sss-state/pippkgs-updated-at"))
-
-
   (display "\n>>= installing pip packages\n")
 
   (for-each

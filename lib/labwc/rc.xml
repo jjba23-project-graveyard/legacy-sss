@@ -38,31 +38,31 @@
     <keepBorder>yes</keepBorder>
     <dropShadows>no</dropShadows>
     <font place="ActiveWindow">
-      <name>Monaspace Neon</name>
+      <name>Adwaita Mono</name>
       <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="InactiveWindow">
-      <name>Monaspace Neon</name>
+      <name>Adwaita Mono</name>
       <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="MenuHeader">
-      <name>Monaspace Neon</name>
+      <name>Adwaita Mono</name>
       <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="MenuItem">
-      <name>Monaspace Neon</name>
+      <name>Adwaita Mono</name>
       <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="OnScreenDisplay">
-      <name>Monaspace Neon</name>
+      <name>Adwaita Mono</name>
       <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>

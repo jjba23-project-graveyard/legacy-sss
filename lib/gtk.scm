@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -32,6 +32,9 @@
                              ((equal? 'sss-palette-ef-cyprus
                                       sss-active-palette)
                               "Yaru-sage")
+                             ((equal? 'sss-palette-heavy-metal
+                                      sss-active-palette)
+                              "Yaru-red-dark")
                              ((equal? 'sss-palette-ef-dream sss-active-palette)
                               "Yaru-magenta-dark")
                              (else "Yaru-sage-dark")))
@@ -41,10 +44,12 @@
                          fixed-theme)
                         ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                          "Yaru-sage")
+                        ((equal? 'sss-palette-heavy-metal sss-active-palette)
+                         "Yaru-red-dark")
                         ((equal? 'sss-palette-ef-dream sss-active-palette)
                          "Yaru-magenta-dark")
                         (else "Yaru-sage-dark")))
-      (gtk-font-name . "Monaspace Neon 11")
+      (gtk-font-name . "Adwaita Mono 11")
       (gtk-key-theme-name . "Emacs")
       (gtk-enable-event-sounds . 0)
       (gtk-cursor-theme-name . "Yaru")
@@ -72,6 +77,9 @@
                              ((equal? 'sss-palette-ef-cyprus
                                       sss-active-palette)
                               "Yaru-sage")
+                             ((equal? 'sss-palette-heavy-metal
+                                      sss-active-palette)
+                              "Yaru-red-dark")
                              ((equal? 'sss-palette-ef-dream sss-active-palette)
                               "Yaru-magenta-dark")
                              (else "Yaru-sage-dark")))
@@ -81,10 +89,12 @@
                          fixed-theme)
                         ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                          "Yaru-sage")
+                        ((equal? 'sss-palette-heavy-metal sss-active-palette)
+                         "Yaru-red-dark")
                         ((equal? 'sss-palette-ef-dream sss-active-palette)
                          "Yaru-magenta-dark")
                         (else "Yaru-sage-dark")))
-      (gtk-font-name . "Monaspace Neon 11")
+      (gtk-font-name . "Adwaita Mono 11")
       (gtk-enable-event-sounds . 0)
       (gtk-cursor-theme-name . "Yaru")
       (gtk-cursor-theme-size . 24)

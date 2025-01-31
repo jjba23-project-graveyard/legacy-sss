@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 
 (define-public sss-rofi-config
   (string-append "configuration {
-    font: \"Monaspace Neon 14\";
+    font: \"Adwaita Mono 14\";
     show-icons: true;
     icon-theme:	\"Yaru\";
     display-drun: \"\";
@@ -60,7 +60,7 @@
      (white . "#bbaa99")
      (lightwhite . "#ddccbb")
      (highlight . "underline bold #ffffff")
-     (font . "\"Monaspace Neon 14\""))
+     (font . "\"Adwaita Mono 14\""))
     ("window" (location . "center")
      (anchor . "center")
      (transparency . "\"real\"")
@@ -72,7 +72,7 @@
      (background-color . "@transparent")
      (orientation . "horizontal")
      (children . "[ mainbox ]"))
-    ("message" (font . "\"Monaspace Neon 14\"")
+    ("message" (font . "\"Adwaita Mono 14\"")
      (color . "@white")
      (border-color . "@foreground")
      (border . "0px 2px 2px 2px")
@@ -93,6 +93,7 @@
      (text-color . "inherit"))
     ("listview" (padding . "8px")
      (border-color . "@foreground")
+     (border-radius . "16px")
      (background-color . "#1c1c1ccc")
      (dynamic . "false")
      (lines . "24"))
@@ -100,6 +101,8 @@
      (text-color . "@black"))
     ("inputbar" (color . "@magenta")
      (padding . "11px")
+     (margin-bottom . "6px")
+     (border-radius . "16px")
      (background-color . "@tlightblack"))))
 
 ;; inputbar {

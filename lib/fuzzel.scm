@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@
 
 (begin
   (define* (sss-fuzzel-config #:key sss-active-palette)
-    `((font . "Monaspace Neon:size=16") (terminal . "foot")
+    `((font . "Adwaita Mono:size=16") (terminal . "foot")
       (icon-theme . "Yaru-sage-dark")
       (list-executables-in-path . "yes")
       (lines . 15)

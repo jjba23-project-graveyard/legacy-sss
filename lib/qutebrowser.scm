@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
       (bg-selection . "#3e4451")
       (fg-disabled unquote
                    (sss-get-color sss-active-palette
-                                  'fg-dim))
+                                  'text))
       (fg-default unquote
                   (sss-get-color sss-active-palette
                                  'text))

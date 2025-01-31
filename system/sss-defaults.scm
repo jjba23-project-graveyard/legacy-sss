@@ -1,6 +1,6 @@
 ;;; SSS - Supreme Sexp System
 
-;; Copyright (C) 2024 Josep Jesus Bigorra Algaba
+;; Copyright (C) 2025 - Josep Bigorra, jjba23 <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -60,6 +60,9 @@
 (define sss-nixpkgs
   '("yaml-language-server" "bash-language-server"
     "monaspace"
+    "discord"
+    "spotify"
+    "whatsapp-for-linux"
     "jdt-language-server"
     "nil"
     "black"
@@ -77,7 +80,19 @@
     "nwg-look"
     "krew"
     "mermaid-cli"
-    "jetbrains.idea-community"))
+    "jetbrains.idea-community"
+    "nixfmt"
+    "deadnix"
+    "awscli"))
+
+;; Flatpak remotes to add to a user
+(define sss-flatpak-user-remotes
+  '((flathub . "https://dl.flathub.org/repo/flathub.flatpakrepo")))
+
+;; Flatpak packages to install to the user
+(define sss-flatpak-pkgs
+  '("app.drey.Warp" "com.usebottles.bottles" "com.ktechpit.whatsie"
+    "com.anydesk.Anydesk"))
 
 ;;;
 ;;; end SSS defaults section
