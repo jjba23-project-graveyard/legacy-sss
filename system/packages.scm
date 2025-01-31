@@ -201,7 +201,6 @@
     (home-page "https://github.com/GabePoel/KvYaru-Colors.git")
     (license license:gpl3+)))
 
-
 (define sss-font-packages
   (list fontconfig
         font-google-roboto
@@ -389,15 +388,11 @@
         gdk-pixbuf
         gtk
 
-        <<<<<<<
-        HEAD
         qutebrowser
-        =======
+
         binutils
 
         qutebrowser
-        >>>>>>>
-        807063b943b29bc7cbe4bf6d2b6df63fa205432e
 
         gnome-calculator
         cheese
@@ -442,14 +437,11 @@
 
         bsd-games
 
-        <<<<<<<
-        HEAD
         power-profiles-daemon
         libltdl
         scenefx
         swayfx
         light
-        =======
         gthumb
 
         power-profiles-daemon
@@ -457,8 +449,6 @@
         scenefx
         swayfx
         light
-        >>>>>>>
-        807063b943b29bc7cbe4bf6d2b6df63fa205432e
 
         gdb
 
@@ -482,21 +472,17 @@
         bluez
         hplip
 
-        <<<<<<<
-        HEAD
         autoconf
         automake
         libltdl
         libtool
-        =======
+
         (sss/x86-only-pkg architecture "nyxt")
 
         autoconf
         automake
         libltdl
         libtool
-        >>>>>>>
-        807063b943b29bc7cbe4bf6d2b6df63fa205432e
 
         perl
 
