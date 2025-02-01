@@ -131,7 +131,7 @@
             (format-alt . "{ifname}: {ipaddr}/{cidr}")))
 
 (define sss-waybar-taskbar
-  `(wlr/taskbar (format . "{icon}")
+  `(wlr/taskbar (format . "{icon} {title:.30}")
                 (icon-size . 14)
                 (icon-theme . "Adwaita")
                 (tooltip-format . "{title}")
