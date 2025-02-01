@@ -130,6 +130,14 @@
             (format-disconnected . "Disconnected ⚠")
             (format-alt . "{ifname}: {ipaddr}/{cidr}")))
 
+(define sss-waybar-taskbar
+  `(wlr/taskbar (format . "{icon}")
+                (icon-size . 14)
+                (icon-theme . "Adwaita")
+                (tooltip-format . "{title}")
+                (on-click . "activate")
+                (on-click-middle . "minimize")))
+
 (define sss-waybar-backlight
   `(backlight (format . "{percent}% {icon}")
               (format-icons . #("\ue38d" "\ue3d3" "\ue3d1" "\ue3cf" "\ue3ce" "\ue3cd" "\ue3ca" "\ue3c8" "\ue39b"))))
@@ -174,6 +182,7 @@
         ,sss-waybar-battery
         ,sss-waybar-battery-2
         ,sss-waybar-power-profiles
+        ,sss-waybar-taskbar
         ,(cond
            (with-ip sss-waybar-ip)
            (else `(network . null)))

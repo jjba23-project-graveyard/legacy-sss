@@ -145,7 +145,7 @@
                                                                             #:with-memory
                                                                             #f
                                                                             #:with-taskbar
-                                                                            #f)
+                                                                            #t)
                                                                            #:pretty
                                                                            #t)))
 

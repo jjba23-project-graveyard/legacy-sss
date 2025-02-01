@@ -72,28 +72,28 @@
                             (fixed-icon-theme #f))
     `((gtk-icon-theme-name unquote
                            (cond
-                            ((not (equal? #f fixed-icon-theme))
-                             fixed-icon-theme)
-                            ((equal? 'sss-palette-ef-cyprus
-                                     sss-active-palette)
-                             "Yaru-sage")
-                            ((equal? 'sss-palette-heavy-metal
-                                     sss-active-palette)
-                             "Yaru-red-dark")
-                            ((equal? 'sss-palette-ef-dream sss-active-palette)
-                             "Yaru-magenta-dark")
-                            (else "Yaru-sage-dark")))
+                             ((not (equal? #f fixed-icon-theme))
+                              fixed-icon-theme)
+                             ((equal? 'sss-palette-ef-cyprus
+                                      sss-active-palette)
+                              "Yaru-sage")
+                             ((equal? 'sss-palette-heavy-metal
+                                      sss-active-palette)
+                              "Yaru-red-dark")
+                             ((equal? 'sss-palette-ef-dream sss-active-palette)
+                              "Yaru-magenta-dark")
+                             (else "Yaru-sage-dark")))
       (gtk-theme-name unquote
                       (cond
-                       ((not (equal? #f fixed-theme))
-                        fixed-theme)
-                       ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-                        "Yaru-sage")
-                       ((equal? 'sss-palette-heavy-metal sss-active-palette)
-                        "Yaru-red-dark")
-                       ((equal? 'sss-palette-ef-dream sss-active-palette)
-                        "Yaru-magenta-dark")
-                       (else "Yaru-sage-dark")))
+                        ((not (equal? #f fixed-theme))
+                         fixed-theme)
+                        ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                         "Yaru-sage")
+                        ((equal? 'sss-palette-heavy-metal sss-active-palette)
+                         "Yaru-red-dark")
+                        ((equal? 'sss-palette-ef-dream sss-active-palette)
+                         "Yaru-magenta-dark")
+                        (else "Yaru-sage-dark")))
       (gtk-font-name . "Inter 11")
       (gtk-enable-event-sounds . 0)
       (gtk-cursor-theme-name . "Yaru")
@@ -101,11 +101,11 @@
       (gtk-enable-input-feedback-sounds . 0)
       (gtk-application-prefer-dark-theme unquote
                                          (cond
-                                          ((equal? 'sss-palette-ef-cyprus
-                                                   sss-active-palette)
-                                           0)
-                                          ((equal? 'sss-palette-ef-dream
-                                                   sss-active-palette)
-                                           1)
-                                          (else 1)))))
+                                           ((equal? 'sss-palette-ef-cyprus
+                                                    sss-active-palette)
+                                            0)
+                                           ((equal? 'sss-palette-ef-dream
+                                                    sss-active-palette)
+                                            1)
+                                           (else 1)))))
   (export sss-gtk4-config))
