@@ -71,35 +71,32 @@
 
 (define* (sss-sway-startup-reload-programs #:key sss-active-palette)
   (let ((gtk-theme-name (cond
+                         ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                          "Yaru-sage")
+                         ((equal? 'sss-palette-heavy-metal sss-active-palette)
+                          "Yaru-red-dark")
+                         ((equal? 'sss-palette-ef-dream sss-active-palette)
+                          "Yaru-magenta-dark")
+                         (else "Yaru-sage-dark")))
+        (icon-theme-name (cond
                           ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                            "Yaru-sage")
-                          ((equal? 'sss-palette-heavy-metal sss-active-palette)
+                          ((equal? 'sss-palette-heavy-metal
+                                   sss-active-palette)
                            "Yaru-red-dark")
                           ((equal? 'sss-palette-ef-dream sss-active-palette)
                            "Yaru-magenta-dark")
-                          (else "Yaru-sage-dark")))
-        (icon-theme-name (cond
-                           ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-                            "Yaru-sage")
-                           ((equal? 'sss-palette-heavy-metal
-                                    sss-active-palette)
-                            "Yaru-red-dark")
-                           ((equal? 'sss-palette-ef-dream sss-active-palette)
-                            "Yaru-magenta-dark")
-                           (else "Yaru-sage-dark"))))
+                          (else "Yaru-sage-dark"))))
     
     `(,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name) ,
       (format #f "gsettings set $gnome-schema icon-theme '~a'" icon-theme-name)
       "gsettings set $gnome-schema cursor-theme 'Yaru'"
       "gsettings set $gnome-schema cursor-size 24"
-      "gsettings set $gnome-schema font-name 'Adwaita Mono'")))
+      "gsettings set $gnome-schema font-name 'Inter'")))
 
 (begin
   (define* (sss-sway-outputs #:key sss-clone-dir)
-    (list (sway-output (identifier '*)
-                       ;; (background (sss-sway-wallpaper #:sss-clone-dir
-                       ;; sss-clone-dir))
-                       )))
+    (list (sway-output (identifier '*))))
   (export sss-sway-outputs))
 
 (begin

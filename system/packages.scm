@@ -156,6 +156,24 @@
     (synopsis "Adwaita font families, sans and mono")
     (description
      "Adwaita Sans, a variation of Inter, and Adwaita Mono, Iosevka customized to match Inter.")
+    (license license:gpl3+)))
+
+(define-public font-inter
+  (package
+    (name "font-inter")
+    (version "4.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri
+        "https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip")
+       (sha256
+        (base32 "07miarbl5ain7pg7sxlrb2j4m9prbriacyqpv1mvckwxlkagv0wq"))))
+    (build-system font-build-system)
+    (home-page "https://github.com/rsms/inter")
+    (synopsis "Inter is a sans serif font family with high readability.")
+    (description
+     "Inter is a typeface carefully crafted & designed for computer screens. Inter features a tall x-height to aid in readability of mixed-case and lower-case text. Inter is a variable font with several OpenType features, like contextual alternates that adjusts punctuation.")
     (license license:silofl1.1)))
 
 (define-public font-monaspace
@@ -211,6 +229,7 @@
         font-jetbrains-mono
         font-intel-one-mono
         font-adwaita
+        font-inter
         font-liberation
         font-dejavu
         font-microsoft-web-core-fonts

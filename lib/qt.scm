@@ -43,8 +43,8 @@
                                        (standard_dialogs . default)
                                        (style . kvantum)))
                    "\n[Fonts]\n"
-                   (mk-kv-conf-lines `((fixed . "\"Adwaita Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
-                                       (general . "\"Adwaita Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
+                   (mk-kv-conf-lines `((fixed . "\"Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
+                                       (general . "\"Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
                    "\n[Interface]\n"
                    (mk-kv-conf-lines `((activate_item_on_single_click . 0)
                                        (buttonbox_layout . 3)
@@ -84,8 +84,8 @@
                                        (standard_dialogs . default)
                                        (style . kvantum)))
                    "\n[Fonts]\n"
-                   (mk-kv-conf-lines `((fixed . "\"Adwaita Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
-                                       (general . "\"Adwaita Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
+                   (mk-kv-conf-lines `((fixed . "\"Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
+                                       (general . "\"Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
                    "\n[Interface]\n"
                    (mk-kv-conf-lines `((activate_item_on_single_click . 0)
                                        (buttonbox_layout . 3)

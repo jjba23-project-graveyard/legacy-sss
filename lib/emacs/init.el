@@ -84,7 +84,7 @@
   "My personal choice for monospaced font family." 
   :type 'string)
 
-(defcustom sss-font-sans "Adwaita Mono"
+(defcustom sss-font-sans "Inter"
   "My personal choice for sans font family." 
   :type 'string)
 
@@ -223,15 +223,20 @@ According to size, color and font family"
                         :height (tekengrootte-mk-font-size 1.05))
     (set-face-attribute 'org-document-title nil 
 		        :height (tekengrootte-mk-font-size 1.2))
-    (set-face-attribute 'org-level-1 nil 
+    (set-face-attribute 'org-level-1 nil
+                        :font sss-font-sans
 		        :height (tekengrootte-mk-font-size 1.2))
-    (set-face-attribute 'org-level-2 nil 
+    (set-face-attribute 'org-level-2 nil
+                        :font sss-font-sans
 		        :height (tekengrootte-mk-font-size 1.2))
-    (set-face-attribute 'org-level-3 nil 
+    (set-face-attribute 'org-level-3 nil
+                        :font sss-font-sans
 		        :height (tekengrootte-mk-font-size 1.1))
-    (set-face-attribute 'org-level-4 nil 
+    (set-face-attribute 'org-level-4 nil
+                        :font sss-font-sans
 		        :height (tekengrootte-mk-font-size 1.1))
-    (set-face-attribute 'org-level-5 nil 
+    (set-face-attribute 'org-level-5 nil
+                        :font sss-font-sans
 		        :height (tekengrootte-mk-font-size 1.0))
     (ignore-errors
       (set-face-attribute 'keycast-key nil                       

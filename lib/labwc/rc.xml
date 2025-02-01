@@ -38,31 +38,31 @@
     <keepBorder>yes</keepBorder>
     <dropShadows>no</dropShadows>
     <font place="ActiveWindow">
-      <name>Adwaita Mono</name>
+      <name>Inter</name>
       <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="InactiveWindow">
-      <name>Adwaita Mono</name>
+      <name>Inter</name>
       <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="MenuHeader">
-      <name>Adwaita Mono</name>
+      <name>Inter</name>
       <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="MenuItem">
-      <name>Adwaita Mono</name>
+      <name>Inter</name>
       <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="OnScreenDisplay">
-      <name>Adwaita Mono</name>
+      <name>Inter</name>
       <size>12</size>
       <slant>normal</slant>
       <weight>normal</weight>
