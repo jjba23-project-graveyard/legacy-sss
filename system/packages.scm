@@ -306,7 +306,8 @@
         (specification->package "python")
         cl-asdf
         rust
-        rust-analyzer))
+        rust-analyzer
+        rust-cargo))
 
 (define sss-coreutils
   (list htop
