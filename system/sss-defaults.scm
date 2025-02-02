@@ -82,6 +82,7 @@
     "mermaid-cli"
     "jetbrains.idea-community"
     "nixfmt"
+    "rustfmt"
     "deadnix"
     "awscli"))
 
