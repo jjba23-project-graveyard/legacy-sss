@@ -56,6 +56,7 @@
                      rust
                      commencement
                      gnupg
+                     llvm
                      multiprecision
                      gcc
                      aspell
@@ -317,6 +318,7 @@
         neovim
         openssh
         openssl
+        clang
         dbus
         ncurses
         screen

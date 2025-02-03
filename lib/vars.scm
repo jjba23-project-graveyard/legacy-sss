@@ -46,11 +46,12 @@
       ("HISTFILESIZE" . "200000")
       ("XCURSOR_SIZE" . "24")
       ("XCURSOR_THEME" . "Yaru")
+      ("CC" . "/run/current-system/profile/bin/gcc")
       ("SDL_VIDEODRIVER" . "wayland")
       ("_JAVA_AWT_WM_NONREPARENTING" . "1")
       ("XDG_DATA_DIRS" unquote
        (format #f
-        "$XDG_DATA_DIRS:$HOME/.nix-profile/share:$HOME/.local/share/flatpak/exports/share"))
+               "$XDG_DATA_DIRS:$HOME/.nix-profile/share:$HOME/.local/share/flatpak/exports/share"))
       ("INFOPATH" unquote
        (format #f "$INFOPATH:~a/docs/Manual" sss-clone-dir))
       ("DOCKER_HOST" . "unix:///tmp/podman.sock")))
