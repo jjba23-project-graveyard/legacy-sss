@@ -281,7 +281,7 @@ According to size, color and font family"
   (add-to-list 'eglot-server-programs '(scala-ts-mode . ("metals")))
   (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nil")))
   (add-to-list 'eglot-server-programs '(markdown-mode . ("marksman")))
-
+  
   (setq-default eglot-workspace-configuration
                 '(
                   :metals ( :autoImportBuild t
@@ -294,6 +294,11 @@ According to size, color and font family"
                                           :typeParameters (:enable t )
                                           :hintsInPatternMatch (:enable nil )))
                   :haskell (:formattingProvider "ormolu")
+                  :rust-analyzer (:cargo (:sysroot "discover"
+                                                   :features "all"
+                                                   :buildScripts (:enable t))
+                                         :diagnostics (:disabled ["macro-error"])
+                                         :procMacro (:enable t))
                   :yaml ( :format (:enable t)
                           :validate t
                           :hover t
