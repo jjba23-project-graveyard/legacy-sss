@@ -20,7 +20,7 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
-[[file:./resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png]]
+[[https://jointhefreeworld.org/static-assets/other/img/sss-2025-02-04.png]]
 
 ** SSS Manuals
 

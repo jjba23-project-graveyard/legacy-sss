@@ -9,7 +9,7 @@
 @finalout
 @titlepage
 @title SSS/GNU system - Manual & Documentation
-@author Music Player Daemon (MPD) user
+@author Josep Bigorra
 @end titlepage
 
 @contents
@@ -40,7 +40,7 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS@.
 
-@image{../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00,,,,png}
+@image{../../resources/screenshots/sss-2025-02-04,,,,png}
 @end ifnottex
 
 @menu

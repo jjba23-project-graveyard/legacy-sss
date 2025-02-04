@@ -26,7 +26,7 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
-[[file:../../resources/screenshots/2024-12-29T18:08:55,108562468+01:00.png]]
+[[../../resources/screenshots/sss-2025-02-04.png]]
 
 * What lies here?
 
