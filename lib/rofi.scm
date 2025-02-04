@@ -103,11 +103,12 @@
        (lines . "20"))
       ("element selected.normal" (background-color . "@magenta")
        (text-color . "@black"))
-      ("inputbar" (color . "@magenta")
+      ("inputbar" (color . ,(sss-get-color sss-active-palette 'text))
        (padding . "11px")
        (margin-bottom . "6px")
        (border-radius . "16px")
-       (background-color . "@tlightblack"))))
+       (background-color . ,(sss-hex-to-rgba (sss-get-color sss-active-palette
+                                                            'background-l) #:alpha 0.9)))))
   (export sss-rofi-theme))
 
 ;; inputbar {
