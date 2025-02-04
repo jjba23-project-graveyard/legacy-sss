@@ -58,7 +58,7 @@
      ((equal? 'sss-palette-heavy-metal sss-active-palette)
       (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
      ((equal? 'sss-palette-solarized-light sss-active-palette)
-      (format #f "~a/resources/wallpapers/solarized-light.jpg" sss-clone-dir))
+      (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" sss-clone-dir))
      (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
 

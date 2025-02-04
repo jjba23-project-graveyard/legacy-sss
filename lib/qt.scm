@@ -28,18 +28,18 @@
                                        (icon_theme unquote
                                                    (cond
                                                     ((equal?
-                                                      sss-palette-ef-cyprus
+                                                      'sss-palette-ef-cyprus
                                                       sss-active-palette)
                                                      "Yaru-sage")
                                                     ((equal?
-                                                      sss-palette-heavy-metal
+                                                      'sss-palette-heavy-metal
                                                       sss-active-palette)
                                                      "Yaru-red-dark")
                                                     ((equal?
-                                                      sss-palette-ef-dream
+                                                      'sss-palette-ef-dream
                                                       sss-active-palette)
                                                      "Yaru-magenta-dark")
-                                                    ((equal? sss-palette-solarized-light sss-active-palette)
+                                                    ((equal? 'sss-palette-solarized-light sss-active-palette)
                                                      "Yaru")
                                                     (else "Yaru-sage-dark")))
                                        (standard_dialogs . default)
@@ -71,18 +71,18 @@
                                        (icon_theme unquote
                                                    (cond
                                                     ((equal?
-                                                      sss-palette-ef-cyprus
+                                                      'sss-palette-ef-cyprus
                                                       sss-active-palette)
                                                      "Yaru-sage")
                                                     ((equal?
-                                                      sss-palette-heavy-metal
+                                                      'sss-palette-heavy-metal
                                                       sss-active-palette)
                                                      "Yaru-red-dark")
                                                     ((equal?
-                                                      sss-palette-ef-dream
+                                                      'sss-palette-ef-dream
                                                       sss-active-palette)
                                                      "Yaru-magenta-dark")
-                                                    ((equal? sss-palette-solarized-light sss-active-palette)
+                                                    ((equal? 'sss-palette-solarized-light sss-active-palette)
                                                      "Yaru")
                                                     (else "Yaru-sage-dark")))
                                        (standard_dialogs . default)

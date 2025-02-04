@@ -61,10 +61,13 @@
       (gtk-enable-input-feedback-sounds . 0)
       (gtk-application-prefer-dark-theme unquote
                                          (cond
-                                          ((equal? sss-palette-ef-cyprus
+                                          ((equal? 'sss-palette-ef-cyprus
                                                    sss-active-palette)
                                            0)
-                                          ((equal? sss-palette-ef-dream
+                                          ((equal? 'sss-palette-ef-dream
+                                                   sss-active-palette)
+                                           1)
+                                          ((equal? 'sss-palette-solarized-light
                                                    sss-active-palette)
                                            0)
                                           (else 1)))))
@@ -115,5 +118,8 @@
                                           ((equal? 'sss-palette-ef-dream
                                                    sss-active-palette)
                                            1)
+                                          ((equal? 'sss-palette-solarized-light
+                                                   sss-active-palette)
+                                           0)
                                           (else 1)))))
   (export sss-gtk4-config))

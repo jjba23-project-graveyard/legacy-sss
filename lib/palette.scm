@@ -77,8 +77,8 @@
     (background-l . "#322f34")))
 
 (define-public sss-palette-solarized-light
-  `((primary . "#bf9811") (primary-l . "#b58900")
-    (primary-d . "#dddd00")
+  `((primary . "#e89149") (primary-l . "#f5883f")
+    (primary-d . "#b7410e")
     (text . "#586e75")
     (background . "#fdf6e3")
     (background-l . "#eee8d5")))
