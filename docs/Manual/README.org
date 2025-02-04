@@ -197,6 +197,7 @@ Find here a reference configuration with what is required.
   ;;   - sss-palette-ef-cyprus
   ;;   - sss-palette-ef-dream
   ;;   - sss-palette-heavy-metal
+  ;;   - sss-palette-solarized-light
   ;;
   (define-public sss-active-palette
     'sss-palette-ef-dream)
