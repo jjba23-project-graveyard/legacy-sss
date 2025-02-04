@@ -37,10 +37,13 @@
 
 (begin
   (define* (sss-rofi-theme #:key sss-active-palette)
-    `(("*" (foreground . ,(sss-get-color sss-active-palette
-                                         'text))
-       (backlight . ,(sss-hex-to-rgba (sss-get-color sss-active-palette
-                                                     'background) #:alpha 0.8))
+    `(("*" (foreground unquote
+                       (sss-get-color sss-active-palette
+                                      'text))
+       (backlight unquote
+                  (sss-hex-to-rgba (sss-get-color sss-active-palette
+                                                  'background)
+                                   #:alpha 0.8))
        (background-color . "transparent")
        (dark . "#1c1c1c")
        (black . "#3d352a")
@@ -97,18 +100,24 @@
       ("listview" (padding . "8px")
        (border-color . "@foreground")
        (border-radius . "16px")
-       (background-color . ,(sss-hex-to-rgba (sss-get-color sss-active-palette
-                                                            'background) #:alpha 0.8))
+       (background-color unquote
+                         (sss-hex-to-rgba (sss-get-color sss-active-palette
+                                                         'background)
+                                          #:alpha 0.8))
        (dynamic . "false")
        (lines . "20"))
       ("element selected.normal" (background-color . "@magenta")
        (text-color . "@black"))
-      ("inputbar" (color . ,(sss-get-color sss-active-palette 'text))
+      ("inputbar" (color unquote
+                         (sss-get-color sss-active-palette
+                                        'text))
        (padding . "11px")
        (margin-bottom . "6px")
        (border-radius . "16px")
-       (background-color . ,(sss-hex-to-rgba (sss-get-color sss-active-palette
-                                                            'background-l) #:alpha 0.9)))))
+       (background-color unquote
+                         (sss-hex-to-rgba (sss-get-color sss-active-palette
+                                                         'background-l)
+                                          #:alpha 0.9)))))
   (export sss-rofi-theme))
 
 ;; inputbar {

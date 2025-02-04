@@ -375,159 +375,159 @@
 (define* (sss-other-system-packages #:key architecture)
   (list
 
-   flatpak
-   pipewire
-   nginx
-   watchexec
+        flatpak
+        pipewire
+        nginx
+        watchexec
 
-   pavucontrol
+        pavucontrol
 
-   geany
+        geany
 
-   tumbler
+        tumbler
 
-   gnome-font-viewer
-   gnome-characters
+        gnome-font-viewer
+        gnome-characters
 
-   xz
-   ispell
-   (specification->package "bind")
+        xz
+        ispell
+        (specification->package "bind")
 
-   gnome-tweaks
-   arandr
-   httpie
-   (specification->package "remmina")
-   libnotify
-   wdisplays
+        gnome-tweaks
+        arandr
+        httpie
+        (specification->package "remmina")
+        libnotify
+        wdisplays
 
-   shotcut
-   openshot
-   inkscape
+        shotcut
+        openshot
+        inkscape
 
-   vlc
+        vlc
 
-   sqlite
-   postgresql
+        sqlite
+        postgresql
 
-   gdk-pixbuf
-   gtk
+        gdk-pixbuf
+        gtk
 
-   qutebrowser
+        qutebrowser
 
-   binutils
+        binutils
 
-   qutebrowser
+        qutebrowser
 
-   gnome-calculator
-   cheese
-   gnome-system-monitor
-   evince
+        gnome-calculator
+        cheese
+        gnome-system-monitor
+        evince
 
-   qemu
+        qemu
 
-   obs
-   libreoffice
-   gimp
-   imagemagick
-   libwebp
-   feh
+        obs
+        libreoffice
+        gimp
+        imagemagick
+        libwebp
+        feh
 
-   gparted
+        gparted
 
-   imagemagick
+        imagemagick
 
-   lm-sensors
-   exfatprogs
-   exfat-utils
-   fuse-exfat
-   tmon
-   flameshot
+        lm-sensors
+        exfatprogs
+        exfat-utils
+        fuse-exfat
+        tmon
+        flameshot
 
-   parallel
+        parallel
 
-   thunar
+        thunar
 
-   pinentry
-   pinentry-tty
-   emacs-pinentry
+        pinentry
+        pinentry-tty
+        emacs-pinentry
 
-   ffmpegthumbs
-   xarchiver
-   ristretto
-   orage
+        ffmpegthumbs
+        xarchiver
+        ristretto
+        orage
 
-   sqlitebrowser
-   direnv
+        sqlitebrowser
+        direnv
 
-   bsd-games
+        bsd-games
 
-   power-profiles-daemon
-   libltdl
-   scenefx
-   swayfx
-   light
-   gthumb
+        power-profiles-daemon
+        libltdl
+        scenefx
+        swayfx
+        light
+        gthumb
 
-   power-profiles-daemon
-   libltdl
-   scenefx
-   swayfx
-   light
+        power-profiles-daemon
+        libltdl
+        scenefx
+        swayfx
+        light
 
-   gdb
+        gdb
 
-   imagemagick
+        imagemagick
 
-   transmission
-   transmission-remote-gtk
+        transmission
+        transmission-remote-gtk
 
-   xf86-video-fbdev
-   xf86-input-libinput
-   lxsession
-   pamixer
+        xf86-video-fbdev
+        xf86-input-libinput
+        lxsession
+        pamixer
 
-   (sss/x86-only-pkg architecture "ghcid")
+        (sss/x86-only-pkg architecture "ghcid")
 
-   neofetch
-   cmatrix
+        neofetch
+        cmatrix
 
-   pkg-config
+        pkg-config
 
-   bluez
-   hplip
+        bluez
+        hplip
 
-   autoconf
-   automake
-   libltdl
-   libtool
+        autoconf
+        automake
+        libltdl
+        libtool
 
-   (sss/x86-only-pkg architecture "nyxt")
+        (sss/x86-only-pkg architecture "nyxt")
 
-   autoconf
-   automake
-   libltdl
-   libtool
+        autoconf
+        automake
+        libltdl
+        libtool
 
-   perl
+        perl
 
-   mpv
-   mpv-mpris
-   unixodbc
-   tree
-   fyi
+        mpv
+        mpv-mpris
+        unixodbc
+        tree
+        fyi
 
-   drill
+        drill
 
-   (specification->package "gettext")
+        (specification->package "gettext")
 
-   (sss/x86-only-pkg architecture "google-chrome-stable")
-   (sss/x86-only-pkg architecture "reaper")
-   (sss/x86-only-pkg architecture "stellarium")
-   (sss/x86-only-pkg architecture "virt-manager")
+        (sss/x86-only-pkg architecture "google-chrome-stable")
+        (sss/x86-only-pkg architecture "reaper")
+        (sss/x86-only-pkg architecture "stellarium")
+        (sss/x86-only-pkg architecture "virt-manager")
 
-   nautilus
+        nautilus
 
-   xxd))
+        xxd))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))

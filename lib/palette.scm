@@ -20,22 +20,22 @@
 
 (define-public (sss-get-color palette sym)
   (let ((p (cond
-            ((eq? palette
-                  'sss-palette-ef-dream)
-             sss-palette-ef-dream)
-            ((eq? palette
-                  'sss-palette-ef-bio)
-             sss-palette-ef-bio)
-            ((eq? palette
-                  'sss-palette-heavy-metal)
-             sss-palette-heavy-metal)
-            ((eq? palette
-                  'sss-palette-ef-cyprus)
-             sss-palette-ef-cyprus)
-            ((eq? palette
-                  'sss-palette-solarized-light)
-             sss-palette-solarized-light)
-            (else sss-palette-ef-dream))))
+             ((eq? palette
+                   'sss-palette-ef-dream)
+              sss-palette-ef-dream)
+             ((eq? palette
+                   'sss-palette-ef-bio)
+              sss-palette-ef-bio)
+             ((eq? palette
+                   'sss-palette-heavy-metal)
+              sss-palette-heavy-metal)
+             ((eq? palette
+                   'sss-palette-ef-cyprus)
+              sss-palette-ef-cyprus)
+             ((eq? palette
+                   'sss-palette-solarized-light)
+              sss-palette-solarized-light)
+             (else sss-palette-ef-dream))))
     (cdr (assoc sym p))))
 
 (begin
