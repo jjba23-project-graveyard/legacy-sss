@@ -248,6 +248,24 @@ According to size, color and font family"
       (set-face-attribute 'keycast-command nil                       
 		          :font sss-font-mono
                           :height (tekengrootte-mk-font-size 0.8)))
+    (ignore-errors
+      (set-face-attribute 'dired-subtree-depth-1-face nil                       
+		          :background nil))
+    (ignore-errors
+      (set-face-attribute 'dired-subtree-depth-2-face nil                       
+		          :background nil))
+    (ignore-errors
+      (set-face-attribute 'dired-subtree-depth-3-face nil                       
+		          :background nil))
+    (ignore-errors
+      (set-face-attribute 'dired-subtree-depth-4-face nil                       
+		          :background nil))
+    (ignore-errors
+      (set-face-attribute 'dired-subtree-depth-5-face nil                       
+		          :background nil))
+    (ignore-errors
+      (set-face-attribute 'dired-subtree-depth-6-face nil                       
+		          :background nil))
     )
   
   (sss-set-base-faces))
