@@ -18,23 +18,24 @@
 (define-module (sss palette)
   #:use-module (gnu))
 
-;; (sss-hex-to-rgba (sss-get-color sss-active-palette 'bg-main))
-
 (define-public (sss-get-color palette sym)
   (let ((p (cond
-             ((eq? palette
-                   'sss-palette-ef-dream)
-              sss-palette-ef-dream)
-             ((eq? palette
-                   'sss-palette-ef-bio)
-              sss-palette-ef-bio)
-             ((eq? palette
-                   'sss-palette-heavy-metal)
-              sss-palette-heavy-metal)
-             ((eq? palette
-                   'sss-palette-ef-cyprus)
-              sss-palette-ef-cyprus)
-             (else sss-palette-ef-dream))))
+            ((eq? palette
+                  'sss-palette-ef-dream)
+             sss-palette-ef-dream)
+            ((eq? palette
+                  'sss-palette-ef-bio)
+             sss-palette-ef-bio)
+            ((eq? palette
+                  'sss-palette-heavy-metal)
+             sss-palette-heavy-metal)
+            ((eq? palette
+                  'sss-palette-ef-cyprus)
+             sss-palette-ef-cyprus)
+            ((eq? palette
+                  'sss-palette-solarized-light)
+             sss-palette-solarized-light)
+            (else sss-palette-ef-dream))))
     (cdr (assoc sym p))))
 
 (begin
@@ -74,6 +75,13 @@
     (text . "#efd5c5")
     (background . "#232025")
     (background-l . "#322f34")))
+
+(define-public sss-palette-solarized-light
+  `((primary . "#bf9811") (primary-l . "#b58900")
+    (primary-d . "#dddd00")
+    (text . "#586e75")
+    (background . "#fdf6e3")
+    (background-l . "#eee8d5")))
 
 (define-public sss-palette-heavy-metal
   `((primary . "#b02930") (primary-l . "#f47360")

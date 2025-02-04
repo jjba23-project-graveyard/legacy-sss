@@ -179,7 +179,7 @@
 	 ("C-c f n" . tekengrootte-set-scale-nano)) 
   :hook ((tekengrootte-set-scale . (lambda () 
                                      (sss-set-base-faces)))) 
-  :after (ef-themes)
+  :after (ef-themes solarized-theme)
   :config
   (defun sss-set-base-faces ()
     "Adjust the base Emacs faces to my preferences.
@@ -389,9 +389,17 @@ According to size, color and font family"
   (setq ef-cyprus-palette-overrides '((variable fg-main)
                                       (bg-main bg-dim)
                                       (string green-faint)))
-  (load-theme sss-emacs-theme t)
-  )
+  (cond ((equal sss-emacs-theme 'ef-dream) (load-theme sss-emacs-theme t))
+        ((equal sss-emacs-theme 'ef-bio) (load-theme sss-emacs-theme t))
+        ((equal sss-emacs-theme 'ef-cyprus) (load-theme sss-emacs-theme t))
+        ((equal sss-emacs-theme 'ef-tritanopia-dark) (load-theme sss-emacs-theme t))
+        ))
 
+
+(use-package solarized-theme
+  :ensure (:host github :repo "bbatsov/solarized-emacs" :branch "master")
+  :config
+  (cond ((equal sss-emacs-theme 'solarized-light) (load-theme sss-emacs-theme t))))
 
 
 (use-package vertico 
