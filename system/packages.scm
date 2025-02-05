@@ -308,7 +308,8 @@
         cl-asdf
         rust
         rust-analyzer
-        rust-cargo))
+        rust-cargo
+        (specification->package "rust-clippy")))
 
 (define sss-coreutils
   (list htop
