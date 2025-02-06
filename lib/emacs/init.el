@@ -146,10 +146,12 @@
            )
           (("notes" . "~/Ontwikkeling/Persoonlijk/private-notes/")
            ("iter-vitae" . "~/Ontwikkeling/Persoonlijk/iter-vitae/")
+           ("pop-test" . "~/Ontwikkeling/Persoonlijk/pop-test/")
            ("jointhefreeworld" . "~/Ontwikkeling/Persoonlijk/jointhefreeworld/"))
           (("wolk-jjba" . "~/Ontwikkeling/Persoonlijk/wolk-jjba/")
            ("wikimusic-api" . "~/Ontwikkeling/Persoonlijk/wikimusic-api/")
            ("wikimusic-ssr" . "~/Ontwikkeling/Persoonlijk/wikimusic-ssr/")
+           ("lucidplan" . "~/Ontwikkeling/Persoonlijk/lucidplan/")
            ("byggsteg" . "~/Ontwikkeling/Persoonlijk/byggsteg/"))))
   (setq welkomscherm-bookmarks-work
         '((("Vandebron" . "~/Ontwikkeling/Werk/Vandebron/")

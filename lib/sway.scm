@@ -69,7 +69,8 @@
     "waybar"
     "foot -s"
     "transmission-daemon"
-    ,(format #f "swww-daemon & sleep 1 && ~a" wallpaper-setter)))
+    ,(format #f "swww-daemon & sleep 1 && ~a" wallpaper-setter)
+    "podman system service --time=0 unix:///tmp/podman.sock"))
 
 (define* (sss-sway-startup-reload-programs #:key sss-active-palette)
   (let ((gtk-theme-name (cond
