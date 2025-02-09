@@ -537,7 +537,6 @@
 
 (define sss-dict-packages
   (list enchant
-        emacs-jinx
         aspell
         aspell-dict-nl
         aspell-dict-pt-pt
@@ -546,10 +545,7 @@
         aspell-dict-ca))
 
 (define sss-emacs-packages
-  '())
-
-(define sss-go-packages
-  (list (specification->package "go@1.23") gofumpt gopls))
+  (list emacs-jinx))
 
 ;; SYSTEM PACKAGES
 ;;
@@ -569,7 +565,6 @@
             sss-treesitter-packages
             sss-coreutils
             sss-terminal-emulator-packages
-            sss-go-packages
             sss-browser-packages
             sss-latex-packages
             sss-dict-packages
