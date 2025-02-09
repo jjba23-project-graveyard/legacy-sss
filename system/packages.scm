@@ -453,6 +453,8 @@
 
         sqlitebrowser
         direnv
+        netcat
+        jq
 
         bsd-games
 
