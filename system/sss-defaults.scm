@@ -83,6 +83,7 @@
     "jetbrains.idea-community"
     "nixfmt"
     "rustfmt"
+    "way-displays"
     "deadnix"
     "awscli"))
 
