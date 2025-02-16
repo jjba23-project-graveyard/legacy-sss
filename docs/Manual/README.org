@@ -519,9 +519,13 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. This
 
 * Virtualization
 
-SSS comes equipped with libvirt and libvirt-manager (the GUI). Enable virtual bridge for libvirtd machine. See the Guix cookbook for more.
+SSS comes equipped with libvirt and libvirt-manager (the GUI).
 
-If the machine hosting your virtual machines is connected wirelessly to the network, you won’t be able to use a true network bridge as explained in the preceding section. In this case, the next best option is to use a virtual bridge with static routing and to configure a libvirt-powered virtual machine to use it (via the virt-manager GUI for example). This is similar to the default mode of operation of QEMU/libvirt, except that instead of using NAT (Network Address Translation), it relies on static routes to join the VM (virtual machine) IP address to the LAN (local area network). This provides two-way connectivity to and from the virtual machine, which is needed for exposing services hosted on the virtual machine.
+I'd recommend for most cases to simply use the GUI to create a new NAT network, and have your VMs be able to connect to the Internet.
+
+If you want two-way traffic, and your machine is connected wirelessly to the network, you won’t be able to use a true network bridge.
+
+In this case, the next best option is to use a virtual bridge with static routing and to configure a libvirt-powered virtual machine to use it (via the virt-manager GUI for example). This is similar to the default mode of operation of QEMU/libvirt, except that instead of using NAT (Network Address Translation), it relies on static routes to join the VM (virtual machine) IP address to the LAN (local area network). This provides two-way connectivity to and from the virtual machine, which is needed for exposing services hosted on the virtual machine.
 
 A virtual network bridge consists of a few components/configurations, such as a TUN (network tunnel) interface, DHCP server (dnsmasq) and firewall rules (iptables). The virsh command, provided by the libvirt package, makes it very easy to create a virtual bridge. You first need to choose a network subnet for your virtual bridge; if your home LAN is in the ‘192.168.1.0/24’ network, you could opt to use e.g. ‘192.168.2.0/24’. Define an XML file, e.g. /tmp/virbr0.xml, containing the following:
 
