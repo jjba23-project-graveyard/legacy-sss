@@ -34,6 +34,7 @@
   #:use-module (gnu packages lua)
   #:use-module (gnu packages ncurses)
   #:use-module (gnu packages pkg-config)
+  #:use-module (gnu packages gperf)
   #:use-module (gnu packages pulseaudio)
   #:use-module (gnu packages xorg))
 
