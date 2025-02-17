@@ -14,6 +14,7 @@ conky.config = {
     no_buffers = true
 };
 
+
 -- Variables: https://conky.cc/variables
 conky.text = [[
 ${color grey}Info:$color ${scroll 32 Conky $conky_version - $sysname $nodename $kernel $machine}
@@ -37,3 +38,4 @@ ${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
 ${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
 ${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
 ]]
+

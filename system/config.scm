@@ -37,6 +37,7 @@
 (load "../lib/process.scm")
 
 ;; load system packages and definitions
+(load "./packages/conky.scm")
 (load "./packages.scm")
 
 (use-modules (sss-packages))

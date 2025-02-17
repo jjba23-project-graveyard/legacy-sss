@@ -22,6 +22,7 @@
   #:use-module (nongnu packages chrome)
   #:use-module (nongnu packages music)
   #:use-module (gnu services nix)
+  #:use-module (sss packages conky)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
@@ -52,7 +53,6 @@
                      ncurses
                      mpd
                      xfce
-                     conky
                      python-xyz
                      commencement
                      gnupg
@@ -248,7 +248,7 @@
         swayidle
         rofi-wayland
         fzf
-        conky
+        sss-conky
 
         slurp
 
