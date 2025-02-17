@@ -6,7 +6,7 @@ conky.config = {
     out_to_wayland = true,
     alignment = 'top_left',
     background = false,
-    font = 'Adwaita Mono:size=12',
+    font = 'Adwaita Mono:size=11',
     gap_x = 60,
     gap_y = 60,
     minimum_height = 5,
