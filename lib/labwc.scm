@@ -28,7 +28,7 @@
   (local-file "./labwc/menu.xml"))
 
 (begin
-  (define-public (labwc-autostart #:key (extra-startups '()))
+  (define* (labwc-autostart #:key (extra-startups '()))
     (plain-file "autostart"
                 (string-join (append extra-startups
                                      '("lxsession >/dev/null 2>&1 &"
