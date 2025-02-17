@@ -42,17 +42,17 @@ DEPLOY_WWW=/srv/http/jointhefreeworld.org
 
 # sss-log-complete: Logs when a target has finished executing.
 define sss-log-complete
-	@printf "\n\033[1m>>= $(shell date +%s) - completed work on target %s\033[0m\n" $(1)
+	@printf "\n\033[1m>>= $(shell date --rfc-3339=seconds) - completed work on target %s\033[0m\n" $(1)
 endef
 
 # sss-log-starting: Logs when a target starts execution.
 define sss-log-starting
-	@printf "\n\033[1m>>= $(shell date +%s) - begin working on target: %s...\033[0m\n" $(1)
+	@printf "\n\033[1m>>= $(shell date --rfc-3339=seconds) - begin working on target: %s...\033[0m\n" $(1)
 endef
 
 # sss-log-info: Logs informational messages in custom format with highlight.
 define sss-log-info
-	@printf "\n\033[1m>>= $(shell date +%s) - info - %s\033[0m\n" $(1)
+	@printf "\n\033[1m>>= $(shell date --rfc-3339=seconds) - info - %s\033[0m\n" $(1)
 endef
 
 # sss-notify: Sends desktop notifications (if available).

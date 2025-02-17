@@ -31,6 +31,8 @@
   #:use-module (gnu packages fontutils)
   #:use-module (gnu packages image)
   #:use-module (gnu packages linux)
+  #:use-module (gnu packages freedesktop)
+  #:use-module (gnu packages gtk)
   #:use-module (gnu packages lua)
   #:use-module (gnu packages ncurses)
   #:use-module (gnu packages pkg-config)
@@ -55,7 +57,8 @@
     (build-system cmake-build-system)
     (arguments
      `(#:configure-flags (list "-DRELEASE=true" "-DBUILD_PULSEAUDIO=ON"
-                               "-DBUILD_WLAN=ON" "-DBUILD_TESTS=ON")
+                               "-DBUILD_WLAN=ON" "-DBUILD_TESTS=ON"
+                               "-DBUILD_WAYLAND=ON")
        #:phases (modify-phases %standard-phases
                   (add-after 'unpack 'add-freetype-to-search-path
                     (lambda* (#:key inputs #:allow-other-keys)
@@ -74,13 +77,17 @@
                   libx11
                   libxdamage
                   libxext
+                  cairo
                   libxft
                   libxi
                   libxinerama
+                  pango
                   pulseaudio
                   lua
                   gperf
                   ncurses
+                  wayland
+                  wayland-protocols
                   curl
                   wireless-tools))
     (native-inputs (list pkg-config))
