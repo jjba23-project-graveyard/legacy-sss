@@ -202,46 +202,46 @@
   (identifier-syntax (sss-desktop-services-for-system)))
 
 (operating-system
- (host-name sss-hostname)
- (timezone sss-timezone)
- (locale (format #f "~a.utf8" sss-lang))
- (keyboard-layout (keyboard-layout sss-keyboard-layout))
+  (host-name sss-hostname)
+  (timezone sss-timezone)
+  (locale (format #f "~a.utf8" sss-lang))
+  (keyboard-layout (keyboard-layout sss-keyboard-layout))
 
- (bootloader (bootloader-configuration
-              (bootloader grub-efi-bootloader)
-              (targets '("/boot/efi"))))
+  (bootloader (bootloader-configuration
+                (bootloader grub-efi-bootloader)
+                (targets '("/boot/efi"))))
 
- (kernel linux)
- (initrd microcode-initrd)
- (firmware (list linux-firmware))
- (sudoers-file (plain-file "sudoers"
-                           (sss-sudoers)))
+  (kernel linux)
+  (initrd microcode-initrd)
+  (firmware (list linux-firmware))
+  (sudoers-file (plain-file "sudoers"
+                            (sss-sudoers)))
 
- (file-systems (append sss-filesystems %base-file-systems))
+  (file-systems (append sss-filesystems %base-file-systems))
 
- (users (cons* sss-joe-user-account sss-manon-user-account
-               %base-user-accounts))
+  (users (cons* sss-joe-user-account sss-manon-user-account
+                %base-user-accounts))
 
- (packages (append (sss-system-packages #:per-host-packages
-                                        sss-per-host-packages) %base-packages))
+  (packages (append (sss-system-packages #:per-host-packages
+                                         sss-per-host-packages) %base-packages))
 
- (services
-  (cons* (service nix-service-type)
-         (service power-profiles-daemon-service-type)
-         sss-iptables
-         sss-subuid
-         (service screen-locker-service-type
-                  (screen-locker-configuration (name "swaylock")
-                                               (program (file-append
-                                                         swaylock-effects
-                                                         "/bin/swaylock"))
-                                               (using-pam? #t)
-                                               (using-setuid? #f)))
-         (service libvirt-service-type
-                  (libvirt-configuration (unix-sock-group "libvirt")
-                                         (tls-port "16555")))
-         (service virtlog-service-type
-                  (virtlog-configuration (max-clients 1000)))
-         sss-cron-jobs-service
-         sss-desktop-services)))
+  (services
+   (cons* (service nix-service-type)
+          (service power-profiles-daemon-service-type)
+          sss-iptables
+          sss-subuid
+          (service screen-locker-service-type
+                   (screen-locker-configuration (name "swaylock")
+                                                (program (file-append
+                                                          swaylock-effects
+                                                          "/bin/swaylock"))
+                                                (using-pam? #t)
+                                                (using-setuid? #f)))
+          (service libvirt-service-type
+                   (libvirt-configuration (unix-sock-group "libvirt")
+                                          (tls-port "16555")))
+          (service virtlog-service-type
+                   (virtlog-configuration (max-clients 1000)))
+          sss-cron-jobs-service
+          sss-desktop-services)))
 
