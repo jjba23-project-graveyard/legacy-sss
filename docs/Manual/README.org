@@ -20,15 +20,12 @@ Installing and managing SSS is not meant for people new to GNU/Linux systems. Yo
 
 SSS tries to set up everything using Lisp dialects whenever it makes sense and is easy to do. This keeps it user-friendly and lets you do some amazing things.
 
-[[file:../../resources/images/dall-e-3-thumb.png]]
+[[https://jointhefreeworld.org/static-assets/sss/dall-e-3-thumb.png]]
 
 I would appreciate if you write your findings when using SSS and if you can, fork the project, and contribute some improvements, or mail me at <jjbigorra@gmail.com>
 
 It is recommended to use tagged releases of SSS, as those are considered as stable by the developers.
 
-Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
-
-[[../../resources/screenshots/sss-2025-02-04.png]]
 
 * What lies here?
 
@@ -52,7 +49,11 @@ This is joe's session:
 An operating system unto itself.
 
 - Advanced Emacs configurations with Emacs Lisp + Elpaca
-- Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix, Golang and more  
+- Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix, Golang and more
+
+Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
+
+[[https://jointhefreeworld.org/static-assets/other/img/sss-2025-02-04.png]]  
 
 ** Universal session
 
