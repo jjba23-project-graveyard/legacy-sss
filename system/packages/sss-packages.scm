@@ -448,6 +448,7 @@
         pinentry-tty
         emacs-pinentry
 
+        powertop
         ffmpegthumbs
         xarchiver
         ristretto

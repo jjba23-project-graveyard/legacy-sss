@@ -18,6 +18,7 @@
 (define-public (sss-sudoers)
   (let ((no-passwd-cmd (string-join '("/run/current-system/profile/sbin/halt"
                                       "/run/current-system/profile/bin/chvt"
+                                      "/run/current-system/profile/sbin/reboot"
                                       "/run/current-system/profile/bin/loginctl")
                                     ",")))
     (string-join `("root ALL=(ALL) NOPASSWD:ALL" "%wheel ALL=(ALL) ALL"
