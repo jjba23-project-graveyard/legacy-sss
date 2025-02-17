@@ -85,6 +85,8 @@
     "rustfmt"
     "way-displays"
     "deadnix"
+    "lua"
+    "lua52Packages.lua-lsp"
     "awscli"))
 
 ;; Flatpak remotes to add to a user
