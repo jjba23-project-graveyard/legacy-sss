@@ -406,6 +406,8 @@ According to size, color and font family"
   :config
   (setq ef-bio-palette-overrides '((variable fg-main)
                                    (string green-faint)))
+  (setq ef-autumn-palette-overrides '((variable fg-main)
+                                      (bg-main bg-dim)))
   (setq ef-cyprus-palette-overrides '((variable fg-main)
                                       (bg-main bg-dim)
                                       (string green-faint)))

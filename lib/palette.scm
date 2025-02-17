@@ -73,7 +73,7 @@
     (background-l . "#f0ece0")))
 
 (define-public sss-palette-ef-autumn
-  `((primary . "#c0620e") (primary-l . "#c48702")
+  `((primary . "#7a3b23") (primary-l . "#c0620e")
     (primary-d . "#d0730f")
     (text . "#cfbcba")
     (background . "#26211d")
