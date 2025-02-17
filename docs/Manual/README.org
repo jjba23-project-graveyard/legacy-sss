@@ -239,6 +239,10 @@ Find here a reference configuration with what is required.
   (define sss-sway-extra-startups
   '("swaymsg -- output eDP-1 scale 1.5"))
 
+  ;; Additional Labwc startup commands on per-host basis
+  (define sss-labwc-extra-startups
+  '("wlr-randr --output eDP-1 --scale 1.5  >/dev/null 2>&1 &"))
+
 
 #+end_src
 
