@@ -20,22 +20,25 @@
 
 (define-public (sss-get-color palette sym)
   (let ((p (cond
-             ((eq? palette
-                   'sss-palette-ef-dream)
-              sss-palette-ef-dream)
-             ((eq? palette
-                   'sss-palette-ef-bio)
-              sss-palette-ef-bio)
-             ((eq? palette
-                   'sss-palette-heavy-metal)
-              sss-palette-heavy-metal)
-             ((eq? palette
-                   'sss-palette-ef-cyprus)
-              sss-palette-ef-cyprus)
-             ((eq? palette
-                   'sss-palette-solarized-light)
-              sss-palette-solarized-light)
-             (else sss-palette-ef-dream))))
+            ((eq? palette
+                  'sss-palette-ef-dream)
+             sss-palette-ef-dream)
+            ((eq? palette
+                  'sss-palette-ef-bio)
+             sss-palette-ef-bio)
+            ((eq? palette
+                  'sss-palette-heavy-metal)
+             sss-palette-heavy-metal)
+            ((eq? palette
+                  'sss-palette-ef-cyprus)
+             sss-palette-ef-cyprus)
+            ((eq? palette
+                  'sss-palette-ef-autumn)
+             sss-palette-ef-autumn)
+            ((eq? palette
+                  'sss-palette-solarized-light)
+             sss-palette-solarized-light)
+            (else sss-palette-ef-dream))))
     (cdr (assoc sym p))))
 
 (begin
@@ -68,6 +71,13 @@
     (text . "#242521")
     (background . "#fcf7ef")
     (background-l . "#f0ece0")))
+
+(define-public sss-palette-ef-autumn
+  `((primary . "#d0730f") (primary-l . "#c48702")
+    (primary-d . "#d0730f")
+    (text . "#cfbcba")
+    (background . "#26211d")
+    (background-l . "#36322f")))
 
 (define-public sss-palette-ef-dream
   `((primary . "#675072") (primary-l . "#b0a0cf")
