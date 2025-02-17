@@ -102,6 +102,10 @@
 (define sss-sway-extra-startups
   '())
 
+;; Additional Labwc startup commands on per-host basis
+(define sss-labwc-extra-startups
+  '())
+
 ;;;
 ;;; end SSS defaults section
 ;;;

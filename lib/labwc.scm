@@ -27,14 +27,17 @@
 (define-public labwc-menu
   (local-file "./labwc/menu.xml"))
 
-(define-public labwc-autostart
-  (plain-file "autostart"
-              (string-join '("lxsession >/dev/null 2>&1 &"
-                             "mako >/dev/null 2>&1 &"
-                             "dbus-update-activation-environment --all >/dev/null 2>&1 &"
-                             "transmission-daemon >/dev/null 2>&1 &"
-                             "waybar >/dev/null 2>&1 &"
-                             "swww-daemon >/dev/null 2>&1 &"
-                             "sleep 1 && swww img $HOME/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/h2mp9dpdlpee1.jpeg --transition-step 10 --transition-fps 30 --transition-type center >/dev/null 2>&1 &")
-                           "\n")))
+(begin
+  (define-public (labwc-autostart #:key (extra-startups '()))
+    (plain-file "autostart"
+                (string-join (append extra-startups
+                                     '("lxsession >/dev/null 2>&1 &"
+                                       "mako >/dev/null 2>&1 &"
+                                       "dbus-update-activation-environment --all >/dev/null 2>&1 &"
+                                       "transmission-daemon >/dev/null 2>&1 &"
+                                       "waybar >/dev/null 2>&1 &"
+                                       "swww-daemon >/dev/null 2>&1 &"
+                                       "sleep 1 && swww img $HOME/Ontwikkeling/Persoonlijk/sss/resources/wallpapers/h2mp9dpdlpee1.jpeg --transition-step 10 --transition-fps 30 --transition-type center >/dev/null 2>&1 &"))
+                             "\n")))
 
+  (export labwc-autostart))
