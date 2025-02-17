@@ -243,6 +243,25 @@ It's possible you need to some manual installations, and temporary workarounds, 
 
 Some aspects will be dependent on the manner of installation and hardware. Below follows a simple startup guide.
 
+*On Hardware Requirements:*
+
+While SSS is designed to be lightweight and efficient, certain hardware
+configurations will provide a smoother experience. The following are
+recommended minimums:
+
+- *CPU:* A modern x86-64 processor (Intel or AMD) is preferred. ARM64 is
+  supported but may require additional configuration.
+- *RAM:* 4GB of RAM is the absolute minimum. 8GB or more is highly
+  recommended for a comfortable experience, especially if you plan to
+  run memory-intensive applications or virtual machines.
+- *Disk Space:* 30GB of disk space is a good starting point. Consider
+  more if you plan to install a large number of packages, store many
+  files, or use virtual machines extensively. SSDs are strongly
+  recommended for optimal performance.
+- *Graphics:* SSS leverages Wayland and Sway. Most modern graphics cards
+  should work well. If you encounter issues, consult the Sway
+  documentation for compatibility information.
+
 Download and the Guix GNU/Linux distribution from the official Guix page: https://guix.gnu.org/download/ and make a bootable installation medium convenient for your use case.
 
 If you are not familiar with the ~dd~ command which is present in all GNU/Linux distributions and in macOS, you can always feel free to use something like Rufus on Windows, or balenaEtcher, to flash this image into a USB, with which you can then boot your computer.
@@ -765,3 +784,12 @@ If they were correct, then you will enter the user's shell, at which point you c
 You should have then booted into a more familiar environment. If the user you logged into has the Sway session, the keyboard bindings are documented in sections above. You could for example use ~Super+/~ to open the fuzzy application finder (Super is often the "Windows" or "command" key).
 
 Good luck!
+
+------
+
+
+* User Management
+
+SSS uses standard GNU/Linux user management tools. You should create users by tweaking the Scheme code of Guix config (~config.scm~) and optionally you can also create a Guix home file (~home/<user>.scm~).
+
+When everything is in place, add a password to the user with ~sudo passwd <user>~.
