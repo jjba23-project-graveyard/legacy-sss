@@ -413,6 +413,7 @@ According to size, color and font family"
         ((equal sss-emacs-theme 'ef-bio) (load-theme sss-emacs-theme t))
         ((equal sss-emacs-theme 'ef-cyprus) (load-theme sss-emacs-theme t))
         ((equal sss-emacs-theme 'ef-tritanopia-dark) (load-theme sss-emacs-theme t))
+        ((equal sss-emacs-theme 'ef-autumn) (load-theme sss-emacs-theme t))
         ))
 
 
