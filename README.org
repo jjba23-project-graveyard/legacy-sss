@@ -1,7 +1,10 @@
 #+title: Supreme Sexp System - SSS
 #+author: Josep Bigorra
 #+email: jjbigorra@gmail.com
-#+options: num:nil
+#+language: en
+#+options: toc:nil num:nil
+
+[[https://jointhefreeworld.org/static-assets/badges/GNU-Guix-c487702.png]] [[https://jointhefreeworld.org/static-assets/badges/Scheme-Guile-d0730f.png]] [[https://jointhefreeworld.org/static-assets/badges/Wayland-Sway-6a88ff.png]] [[https://jointhefreeworld.org/static-assets/badges/Emacs-29-d570af.png]] 
 
 
 SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me help you achieve /GNUrvana/.
@@ -28,11 +31,10 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 
 - Org format [[file:docs/Manual/README.org]]
 - Online HTML: [[https://jointhefreeworld.org/manuals/sss/index.html]] 
-- PDF format [[file:docs/Manual/README.pdf]]  
 - HTML format [[file:docs/Manual/README.html]]
 - Markdown format [[file:docs/Manual/README.md]]  
-- texi format [[file:docs/Manual/README.texi]]
-- info format [[file:docs/Manual/README.info]]    
+
+
 
 ** What lies here?
 

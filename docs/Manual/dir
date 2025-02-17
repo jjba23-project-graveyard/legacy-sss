@@ -1,9 +1,0 @@
-This is the file .../info/dir, which contains the
-topmost node of the Info hierarchy, called (dir)Top.
-The first time you invoke Info you start off looking at this node.
-
-File: dir,	Node: Top	This is the top of the INFO tree
-
-
-SSS
-* SSS - Supreme Sexp System: ($HOME/Ontwikkeling/Persoonlijk/sss/docs/Manual/README.info).  Supreme Sexp System (SSS) represents a Lisp machine adventure, where GNU, Emacs, Lisp and the hacking culture are celebrated.
