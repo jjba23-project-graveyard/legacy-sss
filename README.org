@@ -4,7 +4,7 @@
 #+language: en
 #+options: toc:nil num:nil
 
-[[https://jointhefreeworld.org/static-assets/badges/GNU-Guix-c487702.png]] [[https://jointhefreeworld.org/static-assets/badges/Scheme-Guile-d0730f.png]] [[https://jointhefreeworld.org/static-assets/badges/Wayland-Sway-6a88ff.png]] [[https://jointhefreeworld.org/static-assets/badges/Emacs-29-d570af.png]] 
+[[https://jointhefreeworld.org/static-assets/badges/GNU-Guix-c48702.png]] [[https://jointhefreeworld.org/static-assets/badges/Scheme-Guile-d0730f.png]] [[https://jointhefreeworld.org/static-assets/badges/Wayland-Sway-6a88ff.png]] [[https://jointhefreeworld.org/static-assets/badges/Emacs-29-d570af.png]] 
 
 
 SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me help you achieve /GNUrvana/.
