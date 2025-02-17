@@ -308,6 +308,8 @@
                                 #:sss-keyboard-layout sss-keyboard-layout
                                 #:sss-keyboard-caps-to-ctrl
                                 sss-keyboard-caps-to-ctrl
-                                #:sss-active-palette sss-active-palette)
+                                #:sss-active-palette sss-active-palette
+                                #:sss-sway-extra-startups
+                                sss-sway-extra-startups)
          sss-fontconfig-service-type)))
 

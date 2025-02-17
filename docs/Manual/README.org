@@ -235,6 +235,10 @@ Find here a reference configuration with what is required.
   ;; Flatpak packages to install
   (define sss-flatpak-pkgs '("app.drey.Warp" "com.usebottles.bottles"))
 
+  ;; Additional Sway startup commands on per-host basis
+  (define sss-sway-extra-startups
+  '("swaymsg -- output eDP-1 scale 1.5"))
+
 
 #+end_src
 

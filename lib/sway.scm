@@ -64,16 +64,18 @@
       (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
 
-(define* (sss-sway-startup-programs #:key (wallpaper-setter ""))
-  `("lxsession" "mako"
-    "dbus-update-activation-environment --all"
-    "emacs --daemon"
-    "waybar"
-    "foot -s"
-    "transmission-daemon"
-    ,(format #f "swww-daemon & sleep 1 && ~a" wallpaper-setter)
-    "podman system service --time=0 unix:///tmp/podman.sock"
-    "conky -d"))
+(define* (sss-sway-startup-programs #:key (wallpaper-setter "")
+                                    (extra-startups '()))
+  (append extra-startups
+          `("lxsession" "mako"
+            "dbus-update-activation-environment --all"
+            "emacs --daemon"
+            "waybar"
+            "foot -s"
+            "transmission-daemon"
+            ,(format #f "swww-daemon & sleep 1 && ~a" wallpaper-setter)
+            "conky -d"
+            "podman system service --time=0 unix:///tmp/podman.sock")))
 
 (define* (sss-sway-startup-reload-programs #:key sss-active-palette)
   (let ((gtk-theme-name (cond
@@ -292,23 +294,26 @@
     ,(format #f "seat seat0 xcursor_theme ~a ~a" "Yaru" "24")))
 
 (begin
-  (define* (sss-sway-service-type #:key sss-clone-dir sss-keyboard-layout
-                                  sss-keyboard-caps-to-ctrl sss-active-palette)
+  (define* (sss-sway-service-type #:key sss-clone-dir
+                                  sss-keyboard-layout
+                                  sss-keyboard-caps-to-ctrl
+                                  sss-active-palette
+                                  sss-sway-extra-startups)
     (service home-sway-service-type
              (sway-configuration (packages (list swayfx))
                                  (gestures sss-sway-gestures)
                                  (startup-programs (sss-sway-startup-programs
-                                                                              #:wallpaper-setter
-                                                                              (format
-                                                                               #f
-                                                                               "swww img ~a --transition-step 10 --transition-fps 30 --transition-type center"
+                                                    #:wallpaper-setter (format
+                                                                        #f
+                                                                        "swww img ~a --transition-step 10 --transition-fps 30 --transition-type center"
 
-                                                                               
-                                                                               (sss-sway-wallpaper
-                                                                                #:sss-active-palette
-                                                                                sss-active-palette
-                                                                                #:sss-clone-dir
-                                                                                sss-clone-dir))))
+                                                                        (sss-sway-wallpaper
+                                                                         #:sss-active-palette
+                                                                         sss-active-palette
+                                                                         #:sss-clone-dir
+                                                                         sss-clone-dir))
+                                                    #:extra-startups
+                                                    sss-sway-extra-startups))
                                  (startup+reload-programs (sss-sway-startup-reload-programs
                                                            #:sss-active-palette
                                                            sss-active-palette))

@@ -98,6 +98,10 @@
   '("app.drey.Warp" "com.usebottles.bottles" "com.ktechpit.whatsie"
     "com.anydesk.Anydesk"))
 
+;; Additional Sway startup commands on per-host basis
+(define sss-sway-extra-startups
+  '())
+
 ;;;
 ;;; end SSS defaults section
 ;;;

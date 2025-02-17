@@ -38,9 +38,9 @@
 
 ;; load system packages and definitions
 (load "./packages/conky.scm")
-(load "./packages.scm")
+(load "./packages/sss-packages.scm")
 
-(use-modules (sss-packages))
+(use-modules (sss packages))
 
 (use-service-modules networking
                      desktop

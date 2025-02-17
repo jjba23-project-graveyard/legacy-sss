@@ -15,7 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss-packages)
+(define-module (sss packages)
   #:use-module (gnu)
   #:use-module (nongnu packages fonts)
   #:use-module (nongnu packages messaging)
@@ -134,7 +134,7 @@
                      bittorrent
                      shellutils)
 
-(load "../per-host.scm")
+(load "../../per-host.scm")
 
 (define (sss/x86-only-pkg architecture pkg)
   (if (string-prefix? "x86_64" architecture)
@@ -391,7 +391,7 @@
         (specification->package "bind")
 
         gnome-tweaks
-        arandr
+        wlr-randr
         httpie
         (specification->package "remmina")
         libnotify
