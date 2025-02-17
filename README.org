@@ -57,7 +57,7 @@ An operating system unto itself.
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
-[[https://jointhefreeworld.org/static-assets/other/img/sss-2025-02-04.png]]  
+[[https://jointhefreeworld.org/static-assets/other/img/resized-sss-2025-02-04.png]]  
 
 * SSS Project
 
