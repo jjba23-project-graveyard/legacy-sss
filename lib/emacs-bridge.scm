@@ -27,22 +27,22 @@
   (define* (sss-bridge-emacs-vars #:key sss-active-palette)
     `((sss-emacs-theme unquote
                        (cond
-                        ((equal? sss-active-palette
-                                 'sss-palette-ef-dream)
-                         "'ef-dream")
-                        ((equal? sss-active-palette
-                                 'sss-palette-ef-cyprus)
-                         "'ef-cyprus")
-                        ((equal? sss-active-palette
-                                 'sss-palette-ef-autumn)
-                         "'ef-autumn")
-                        ((equal? sss-active-palette
-                                 'sss-palette-heavy-metal)
-                         "'ef-tritanopia-dark")
-                        ((equal? sss-active-palette
-                                 'sss-palette-solarized-light)
-                         "'solarized-light")
-                        (else "'ef-bio")))))
+                         ((equal? sss-active-palette
+                                  'sss-palette-ef-dream)
+                          "'ef-dream")
+                         ((equal? sss-active-palette
+                                  'sss-palette-ef-cyprus)
+                          "'ef-cyprus")
+                         ((equal? sss-active-palette
+                                  'sss-palette-ef-autumn)
+                          "'ef-autumn")
+                         ((equal? sss-active-palette
+                                  'sss-palette-heavy-metal)
+                          "'ef-tritanopia-dark")
+                         ((equal? sss-active-palette
+                                  'sss-palette-solarized-light)
+                          "'solarized-light")
+                         (else "'ef-bio")))))
   (export sss-bridge-emacs-vars))
 
 (begin

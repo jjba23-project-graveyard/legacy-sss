@@ -51,17 +51,17 @@
 (begin
   (define* (sss-sway-wallpaper #:key sss-clone-dir sss-active-palette)
     (cond
-     ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-      (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
-     ((equal? 'sss-palette-ef-dream sss-active-palette)
-      (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
-     ((equal? 'sss-palette-heavy-metal sss-active-palette)
-      (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
-     ((equal? 'sss-palette-solarized-light sss-active-palette)
-      (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" sss-clone-dir))
-     ((equal? 'sss-palette-ef-autumn sss-active-palette)
-      (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" sss-clone-dir))
-     (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
+      ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+       (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
+      ((equal? 'sss-palette-ef-dream sss-active-palette)
+       (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
+      ((equal? 'sss-palette-heavy-metal sss-active-palette)
+       (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
+      ((equal? 'sss-palette-solarized-light sss-active-palette)
+       (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" sss-clone-dir))
+      ((equal? 'sss-palette-ef-autumn sss-active-palette)
+       (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" sss-clone-dir))
+      (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
 
 (define* (sss-sway-startup-programs #:key (wallpaper-setter ""))
@@ -76,23 +76,9 @@
 
 (define* (sss-sway-startup-reload-programs #:key sss-active-palette)
   (let ((gtk-theme-name (cond
-                         ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-                          "Yaru-sage")
-                         ((equal? 'sss-palette-heavy-metal sss-active-palette)
-                          "Yaru-red-dark")
-                         ((equal? 'sss-palette-ef-dream sss-active-palette)
-                          "Yaru-magenta-dark")
-                         ((equal? 'sss-palette-ef-autumn sss-active-palette)
-                          "Yaru-dark")
-                         ((equal? 'sss-palette-solarized-light
-                                  sss-active-palette)
-                          "Yaru")
-                         (else "Yaru-sage-dark")))
-        (icon-theme-name (cond
                           ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                            "Yaru-sage")
-                          ((equal? 'sss-palette-heavy-metal
-                                   sss-active-palette)
+                          ((equal? 'sss-palette-heavy-metal sss-active-palette)
                            "Yaru-red-dark")
                           ((equal? 'sss-palette-ef-dream sss-active-palette)
                            "Yaru-magenta-dark")
@@ -101,7 +87,21 @@
                           ((equal? 'sss-palette-solarized-light
                                    sss-active-palette)
                            "Yaru")
-                          (else "Yaru-sage-dark"))))
+                          (else "Yaru-sage-dark")))
+        (icon-theme-name (cond
+                           ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                            "Yaru-sage")
+                           ((equal? 'sss-palette-heavy-metal
+                                    sss-active-palette)
+                            "Yaru-red-dark")
+                           ((equal? 'sss-palette-ef-dream sss-active-palette)
+                            "Yaru-magenta-dark")
+                           ((equal? 'sss-palette-ef-autumn sss-active-palette)
+                            "Yaru-dark")
+                           ((equal? 'sss-palette-solarized-light
+                                    sss-active-palette)
+                            "Yaru")
+                           (else "Yaru-sage-dark"))))
     
     `(,(format #f "gsettings set $gnome-schema gtk-theme '~a'" gtk-theme-name) ,
       (format #f "gsettings set $gnome-schema icon-theme '~a'" icon-theme-name)

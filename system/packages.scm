@@ -52,6 +52,7 @@
                      ncurses
                      mpd
                      xfce
+                     conky
                      python-xyz
                      commencement
                      gnupg
@@ -247,6 +248,7 @@
         swayidle
         rofi-wayland
         fzf
+        conky
 
         slurp
 
