@@ -287,6 +287,8 @@ According to size, color and font family"
          (go-mode . eglot-ensure)         
          (python-mode . eglot-ensure)
          (rust-mode . eglot-ensure)
+         (yaml-mode . eglot-ensure)
+         (yaml-ts-mode . eglot-ensure)
          (before-save . eglot-format-buffer))
   :bind (("C-c i i" . eglot-find-implementation)
 	 ("C-c i e" . eglot)
