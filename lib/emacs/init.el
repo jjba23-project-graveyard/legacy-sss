@@ -324,9 +324,9 @@ According to size, color and font family"
                           :hover t
                           :completion t
                           :schemas (
+                                    https://codeberg.org/jjba23/pop-test/raw/branch/trunk/resources/json-schema/pop-test.json ["golden-test.yaml" "golden-test.yml" "pop-test.yaml" "pop-test.yml"]
                                     https://raw.githubusercontent.com/Vandebron/gh-mpyl/refs/heads/main/src/mpyl/schema/project.schema.yml ["project.yml"]
-                                    https://json.schemastore.org/yamllint.json ["/*.yml"]
-                                    )
+                                    https://json.schemastore.org/yamllint.json ["/*.yml"])
                           :schemaStore (:enable t))
                   :nil (:formatting (:command ["nixfmt"]))))
 
