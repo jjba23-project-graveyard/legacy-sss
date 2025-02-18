@@ -710,8 +710,10 @@ A: Try with ~gpg --pinentry-mode loopback --full-gen-key~. Otherwise try other o
 |---------+----------------------------------|
 | ~s-S-.~   | *Copy* screenshot of entire screen |
 | ~s-.~     | *Save* screenshot of entire screen |
+| ~s-S-,~   | *Copy* screenshot of selected area |
+| ~s-,~     | *Save* screenshot of selected area |
 | ~s-S-b~   | Set wallpaper to theme's default |
-|         |                                  |
+| ~s-S-c~   | Reload Sway's configuration      |
 |---------+----------------------------------|
 * Emacs keybindings
 

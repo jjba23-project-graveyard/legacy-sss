@@ -22,4 +22,5 @@
 This assumes that the current directory is docs/Manual/"
   (find-file "README.org")
   (org-html-export-to-html)
-  (org-md-export-to-markdown))
+  (org-md-export-to-markdown)
+  (message "finished publishing SSS manual"))
