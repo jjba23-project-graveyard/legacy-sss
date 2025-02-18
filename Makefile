@@ -42,22 +42,22 @@ DEPLOY_WWW=/srv/http/jointhefreeworld.org
 
 # sss-log-complete: Logs when a target has finished executing.
 define sss-log-complete
-	@printf "\n\033[1m>>= $(shell date --rfc-3339=seconds) - completed work on target %s\033[0m\n" $(1)
+	@printf "\n\033[1m[INFO] $(shell date --rfc-3339=seconds) - completed work on target %s\033[0m\n" $(1)
 endef
 
 # sss-log-starting: Logs when a target starts execution.
 define sss-log-starting
-	@printf "\n\033[1m>>= $(shell date --rfc-3339=seconds) - begin working on target: %s...\033[0m\n" $(1)
+	@printf "\n\033[1m[INFO] $(shell date --rfc-3339=seconds) - begin working on target: %s...\033[0m\n" $(1)
 endef
 
 # sss-log-info: Logs informational messages in custom format with highlight.
 define sss-log-info
-	@printf "\n\033[1m>>= $(shell date --rfc-3339=seconds) - info - %s\033[0m\n" $(1)
+	@printf "\n\033[1m[INFO] $(shell date --rfc-3339=seconds) - %s\033[0m\n" $(1)
 endef
 
-# sss-notify: Sends desktop notifications (if available).
-define sss-notify
-	@-notify-send $(1)
+# sss-notify: Sends success desktop notifications (if available).
+define sss-notify-success
+	@-notify-send -i /run/current-system/profile/share/icons/Yaru/32x32/actions/dialog-yes.png $(1) $(2) >/dev/null 2>&1
 endef
 
 # Targets
@@ -71,7 +71,7 @@ system-reconfigure: format
 	$(call sss-log-starting,"system-reconfigure")
 	@sudo guix system reconfigure ./system/config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")
-	$(call sss-notify,"SSS system-reconfigure was successful!")
+	$(call sss-notify-success,"SSS system-reconfigure complete","task was completed successfully!")
 	@-sudo fc-cache -frv
 
 # User reconfigure function
@@ -79,7 +79,7 @@ define sss-user-reconfigure
 	$(call sss-log-starting,"$(1)-reconfigure")
 	@guix home reconfigure ./home/$(1).scm --fallback
 	$(call sss-log-complete,"$(1)-reconfigure")
-	$(call sss-notify,"SSS $(1)-reconfigure was successful!")
+	$(call sss-notify-success,"SSS $(1)-reconfigure complete","task was completed successfully!")
 	@-fc-cache -frv
 endef
 
@@ -121,6 +121,7 @@ publish-manual:
 	cd docs/Manual/ && emacs -Q --batch \
 		-l $(shell realpath ./lib/sss-manual.el) \
 		--funcall sss/publish-manual && cd ../../
+	$(call sss-notify-success,"SSS publish-manual complete","task was completed successfully!")
 
 # Cleans up unused objects in the Guix store.
 store-gc:  

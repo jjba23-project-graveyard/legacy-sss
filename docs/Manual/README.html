@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-02-18 di 09:44 -->
+<!-- 2025-02-18 di 10:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SSS/GNU system - Manual &amp; Documentation</title>
@@ -201,62 +201,62 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge043cd7">What lies here?</a>
+<li><a href="#org5e3dd99">What lies here?</a>
 <ul>
-<li><a href="#org056c552">An operating system (OS) configured in Scheme</a></li>
-<li><a href="#orgfc1593c">Joe's Emacs configuration</a></li>
-<li><a href="#orgd34db61">Universal session</a></li>
+<li><a href="#org59c4b6e">An operating system (OS) configured in Scheme</a></li>
+<li><a href="#orgb5432bb">Joe's Emacs configuration</a></li>
+<li><a href="#orgb06da54">Universal session</a></li>
 </ul>
 </li>
-<li><a href="#orgbca6ef4">Why ?</a></li>
-<li><a href="#orgdde5184">What is Guix</a></li>
-<li><a href="#org1fa26cc">On Non-free software</a></li>
-<li><a href="#orgf54c9f6">Keyboard Terminology</a></li>
-<li><a href="#orgf0dec1b">How this manual works</a></li>
-<li><a href="#orgf8cf081">Customizing SSS</a></li>
-<li><a href="#org153e4c4">Per host - per-host.scm</a></li>
-<li><a href="#org9587ff6">Bootstrapping</a>
+<li><a href="#orgd653626">Why ?</a></li>
+<li><a href="#orgb362c1c">What is Guix</a></li>
+<li><a href="#orgeeab85f">On Non-free software</a></li>
+<li><a href="#orgcefb868">Keyboard Terminology</a></li>
+<li><a href="#org7ee20c4">How this manual works</a></li>
+<li><a href="#orgd37a464">Customizing SSS</a></li>
+<li><a href="#org37e7922">Per host - per-host.scm</a></li>
+<li><a href="#orgb826d10">Bootstrapping</a>
 <ul>
-<li><a href="#org5f0e8b9">Guix Install tips</a></li>
-<li><a href="#org50558fa">Installing SSS on Guix</a>
+<li><a href="#orgbc8e32b">Guix Install tips</a></li>
+<li><a href="#org0c4576b">Installing SSS on Guix</a>
 <ul>
-<li><a href="#org561cc14">Adding channels</a></li>
-<li><a href="#orge160ab3">Keeping SSS updated</a></li>
-<li><a href="#org8bf9750">Installation of SSS</a></li>
+<li><a href="#org6d952fd">Adding channels</a></li>
+<li><a href="#org337d2c0">Keeping SSS updated</a></li>
+<li><a href="#orga82a2ec">Installation of SSS</a></li>
 </ul>
 </li>
-<li><a href="#org5d36f93">On login managers, and login screens</a></li>
+<li><a href="#orge182bfc">On login managers, and login screens</a></li>
 </ul>
 </li>
-<li><a href="#org8b5364a">Nix profile</a></li>
-<li><a href="#org0617f23">Flatpaks</a></li>
-<li><a href="#orgba1720b">SSS Project</a></li>
-<li><a href="#orgef91440">System audio</a></li>
-<li><a href="#org4914386">Sway, resolutions and scaling</a></li>
-<li><a href="#org3406897">Wallpapers</a></li>
-<li><a href="#org4d73970">Git</a></li>
-<li><a href="#orgc5564f2">Disk space</a></li>
-<li><a href="#orga90a330">Bluetooth</a></li>
-<li><a href="#org11a232b">Virtualization</a></li>
-<li><a href="#orgcff5f66">Mime types</a></li>
-<li><a href="#org12a647a">Troubleshooting FAQ</a></li>
-<li><a href="#org0ae3899">Sway keybindings</a>
+<li><a href="#org9087bff">Nix profile</a></li>
+<li><a href="#orgdb53409">Flatpaks</a></li>
+<li><a href="#orgc3920d9">SSS Project</a></li>
+<li><a href="#org377e1bc">System audio</a></li>
+<li><a href="#org331f91e">Sway, resolutions and scaling</a></li>
+<li><a href="#orga4b0d35">Wallpapers</a></li>
+<li><a href="#org00fa9fc">Git</a></li>
+<li><a href="#org652b005">Disk space</a></li>
+<li><a href="#org98f3f0d">Bluetooth</a></li>
+<li><a href="#orgecac0cc">Virtualization</a></li>
+<li><a href="#orge61b529">Mime types</a></li>
+<li><a href="#org8c6d693">Troubleshooting FAQ</a></li>
+<li><a href="#orgc40d998">Sway keybindings</a>
 <ul>
-<li><a href="#org01671a3">General keybindings</a></li>
-<li><a href="#org933c9b7">Application keybindings</a></li>
-<li><a href="#orgbf15ae5">More keybindings</a></li>
+<li><a href="#orgd0ee334">General keybindings</a></li>
+<li><a href="#org13ea391">Application keybindings</a></li>
+<li><a href="#org43bb297">More keybindings</a></li>
 </ul>
 </li>
-<li><a href="#orgc204088">Emacs keybindings</a>
+<li><a href="#orgb764512">Emacs keybindings</a>
 <ul>
-<li><a href="#org1e025ea">General non-vanilla bindings</a></li>
-<li><a href="#org3aa4a8a">SSS specific keybindings</a></li>
+<li><a href="#org913aee8">General non-vanilla bindings</a></li>
+<li><a href="#org5a7f1ee">SSS specific keybindings</a></li>
 </ul>
 </li>
-<li><a href="#orgd1446f9">Glossary</a></li>
-<li><a href="#org677ee59">Acronyms</a></li>
-<li><a href="#org2260b11">Inheriting an SSS/GNU system</a></li>
-<li><a href="#org0813cf3">User Management</a></li>
+<li><a href="#orgace8a2e">Glossary</a></li>
+<li><a href="#org9d2c041">Acronyms</a></li>
+<li><a href="#org22c31c0">Inheriting an SSS/GNU system</a></li>
+<li><a href="#org9eb3c72">User Management</a></li>
 </ul>
 </div>
 </div>
@@ -293,7 +293,7 @@ SSS tries to set up everything using Lisp dialects whenever it makes sense and i
 </p>
 
 
-<div id="orgdcb0d92" class="figure">
+<div id="org82d7c15" class="figure">
 <p><img src="https://jointhefreeworld.org/static-assets/sss/dall-e-3-thumb.png" alt="dall-e-3-thumb.png" />
 </p>
 </div>
@@ -307,13 +307,13 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 </p>
 
 
-<div id="outline-container-orge043cd7" class="outline-2">
-<h2 id="orge043cd7">What lies here?</h2>
-<div class="outline-text-2" id="text-orge043cd7">
+<div id="outline-container-org5e3dd99" class="outline-2">
+<h2 id="org5e3dd99">What lies here?</h2>
+<div class="outline-text-2" id="text-org5e3dd99">
 </div>
-<div id="outline-container-org056c552" class="outline-3">
-<h3 id="org056c552">An operating system (OS) configured in Scheme</h3>
-<div class="outline-text-3" id="text-org056c552">
+<div id="outline-container-org59c4b6e" class="outline-3">
+<h3 id="org59c4b6e">An operating system (OS) configured in Scheme</h3>
+<div class="outline-text-3" id="text-org59c4b6e">
 <p>
 This is joe's session:
 </p>
@@ -333,9 +333,9 @@ This is joe's session:
 </div>
 </div>
 
-<div id="outline-container-orgfc1593c" class="outline-3">
-<h3 id="orgfc1593c">Joe's Emacs configuration</h3>
-<div class="outline-text-3" id="text-orgfc1593c">
+<div id="outline-container-orgb5432bb" class="outline-3">
+<h3 id="orgb5432bb">Joe's Emacs configuration</h3>
+<div class="outline-text-3" id="text-orgb5432bb">
 <p>
 An operating system unto itself.
 </p>
@@ -350,16 +350,16 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 </p>
 
 
-<div id="org45a2deb" class="figure">
+<div id="org8fc83cf" class="figure">
 <p><img src="https://jointhefreeworld.org/static-assets/sss/resized-sss-2025-02-04.png" alt="resized-sss-2025-02-04.png" />  
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd34db61" class="outline-3">
-<h3 id="orgd34db61">Universal session</h3>
-<div class="outline-text-3" id="text-orgd34db61">
+<div id="outline-container-orgb06da54" class="outline-3">
+<h3 id="orgb06da54">Universal session</h3>
+<div class="outline-text-3" id="text-orgb06da54">
 <p>
 I also include a (work in progress) Windows-like session for "non-geek" users, with "normal floating windows".
 This session uses labwc compositor and sfwbar.
@@ -368,9 +368,9 @@ This session uses labwc compositor and sfwbar.
 </div>
 </div>
 
-<div id="outline-container-orgbca6ef4" class="outline-2">
-<h2 id="orgbca6ef4">Why ?</h2>
-<div class="outline-text-2" id="text-orgbca6ef4">
+<div id="outline-container-orgd653626" class="outline-2">
+<h2 id="orgd653626">Why ?</h2>
+<div class="outline-text-2" id="text-orgd653626">
 <p>
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 </p>
@@ -430,9 +430,9 @@ The system and home folders of users are managed independently of each other, in
 </div>
 </div>
 
-<div id="outline-container-orgdde5184" class="outline-2">
-<h2 id="orgdde5184">What is Guix</h2>
-<div class="outline-text-2" id="text-orgdde5184">
+<div id="outline-container-orgb362c1c" class="outline-2">
+<h2 id="orgb362c1c">What is Guix</h2>
+<div class="outline-text-2" id="text-orgb362c1c">
 <p>
 GNU Guix is a package management tool for and distribution of the GNU system. Guix makes reproducibility easy and allows users to install, upgrade, or remove software packages, to roll back to a previous package set, to build packages from source, and generally assists with the creation and maintenance of software environments.
 </p>
@@ -447,9 +447,9 @@ I highly recommend refering to and studying the Guix reference manual, it's a su
 </div>
 </div>
 
-<div id="outline-container-org1fa26cc" class="outline-2">
-<h2 id="org1fa26cc">On Non-free software</h2>
-<div class="outline-text-2" id="text-org1fa26cc">
+<div id="outline-container-orgeeab85f" class="outline-2">
+<h2 id="orgeeab85f">On Non-free software</h2>
+<div class="outline-text-2" id="text-orgeeab85f">
 <p>
 SSS attempts to stay as libre as possible, while also respecting your convenience.
 </p>
@@ -464,9 +464,9 @@ This means, among other things that SSS:
 </div>
 </div>
 
-<div id="outline-container-orgf54c9f6" class="outline-2">
-<h2 id="orgf54c9f6">Keyboard Terminology</h2>
-<div class="outline-text-2" id="text-orgf54c9f6">
+<div id="outline-container-orgcefb868" class="outline-2">
+<h2 id="orgcefb868">Keyboard Terminology</h2>
+<div class="outline-text-2" id="text-orgcefb868">
 <p>
 When keybindings (shortcurts) are defined, the following legend applies (a la Emacs):
 </p>
@@ -515,9 +515,9 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </div>
 </div>
 
-<div id="outline-container-orgf0dec1b" class="outline-2">
-<h2 id="orgf0dec1b">How this manual works</h2>
-<div class="outline-text-2" id="text-orgf0dec1b">
+<div id="outline-container-org7ee20c4" class="outline-2">
+<h2 id="org7ee20c4">How this manual works</h2>
+<div class="outline-text-2" id="text-org7ee20c4">
 <p>
 This manual is written by hand with care and attention for detail.
 </p>
@@ -533,9 +533,9 @@ I write my documents in Org format from Emacs and export them for your convenien
 </div>
 </div>
 
-<div id="outline-container-orgf8cf081" class="outline-2">
-<h2 id="orgf8cf081">Customizing SSS</h2>
-<div class="outline-text-2" id="text-orgf8cf081">
+<div id="outline-container-orgd37a464" class="outline-2">
+<h2 id="orgd37a464">Customizing SSS</h2>
+<div class="outline-text-2" id="text-orgd37a464">
 <p>
 SSS supports several user customizations, more specifically:
 </p>
@@ -551,9 +551,9 @@ Find Prot's themes here: <a href="https://github.com/protesilaos/ef-themes">http
 </div>
 
 
-<div id="outline-container-org153e4c4" class="outline-2">
-<h2 id="org153e4c4">Per host - per-host.scm</h2>
-<div class="outline-text-2" id="text-org153e4c4">
+<div id="outline-container-org37e7922" class="outline-2">
+<h2 id="org37e7922">Per host - per-host.scm</h2>
+<div class="outline-text-2" id="text-org37e7922">
 <p>
 It is <b>REQUIRED</b> to include a <code>per-host.scm</code> in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
 Find here a reference configuration with what is required.
@@ -665,9 +665,9 @@ Find here a reference configuration with what is required.
 </div>
 </div>
 
-<div id="outline-container-org9587ff6" class="outline-2">
-<h2 id="org9587ff6">Bootstrapping</h2>
-<div class="outline-text-2" id="text-org9587ff6">
+<div id="outline-container-orgb826d10" class="outline-2">
+<h2 id="orgb826d10">Bootstrapping</h2>
+<div class="outline-text-2" id="text-orgb826d10">
 <p>
 It's possible you need to some manual installations, and temporary workarounds, in order to install <code>sss</code> on a brand-new Guix installation.
 </p>
@@ -718,9 +718,9 @@ SSS strives to be completely cross-architecture and should work well everywhere.
 </p>
 </div>
 
-<div id="outline-container-org5f0e8b9" class="outline-3">
-<h3 id="org5f0e8b9">Guix Install tips</h3>
-<div class="outline-text-3" id="text-org5f0e8b9">
+<div id="outline-container-orgbc8e32b" class="outline-3">
+<h3 id="orgbc8e32b">Guix Install tips</h3>
+<div class="outline-text-3" id="text-orgbc8e32b">
 <p>
 If your system doesn't boot due to lack of drivers, it can be useful to add the <code>nomodeset</code> option after <code>quiet</code> in the GRUB menu, by editing the boot "command" of the latest entry.
 </p>
@@ -756,17 +756,17 @@ I would recommend to then use a web browser and visit the web version of this ma
 </div>
 </div>
 
-<div id="outline-container-org50558fa" class="outline-3">
-<h3 id="org50558fa">Installing SSS on Guix</h3>
-<div class="outline-text-3" id="text-org50558fa">
+<div id="outline-container-org0c4576b" class="outline-3">
+<h3 id="org0c4576b">Installing SSS on Guix</h3>
+<div class="outline-text-3" id="text-org0c4576b">
 <p>
 Once you have a working Guix base installation on your machine, you are ready to go about installing SSS.
 </p>
 </div>
 
-<div id="outline-container-org561cc14" class="outline-4">
-<h4 id="org561cc14">Adding channels</h4>
-<div class="outline-text-4" id="text-org561cc14">
+<div id="outline-container-org6d952fd" class="outline-4">
+<h4 id="org6d952fd">Adding channels</h4>
+<div class="outline-text-4" id="text-org6d952fd">
 <p>
 Add <code>nonguix</code> in your channels file (<code>$HOME/.config/guix/channels.scm</code>). This will later be overwritten by SSS.
 </p>
@@ -791,9 +791,9 @@ After adding the channel, perform a <code>guix pull</code> from your user accoun
 </div>
 </div>
 
-<div id="outline-container-orge160ab3" class="outline-4">
-<h4 id="orge160ab3">Keeping SSS updated</h4>
-<div class="outline-text-4" id="text-orge160ab3">
+<div id="outline-container-org337d2c0" class="outline-4">
+<h4 id="org337d2c0">Keeping SSS updated</h4>
+<div class="outline-text-4" id="text-org337d2c0">
 <p>
 You should every now and then update the SSS repo with <code>git pull</code>. You also should regularly do a <code>guix pull</code> from your regular user, and then rebuild this system with the root user (<code>make sr</code>).
 </p>
@@ -804,9 +804,9 @@ Guix is a rolling distribution and you don't need to be always on bleeding edge 
 </div>
 </div>
 
-<div id="outline-container-org8bf9750" class="outline-4">
-<h4 id="org8bf9750">Installation of SSS</h4>
-<div class="outline-text-4" id="text-org8bf9750">
+<div id="outline-container-orga82a2ec" class="outline-4">
+<h4 id="orga82a2ec">Installation of SSS</h4>
+<div class="outline-text-4" id="text-orga82a2ec">
 <p>
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
 </p>
@@ -855,7 +855,7 @@ Once the system reconfigure is complete, you should also bootstrap your user's G
 You might at this point want to reset the font cache for the system and user.
 </p>
 
-<pre class="example" id="orgd68e609">
+<pre class="example" id="org50b7490">
 fc-cache -frv
 sudo fc-cache -frv
 </pre>
@@ -867,9 +867,9 @@ You can then reboot and you should be greeted by a simple TTY.
 </div>
 </div>
 
-<div id="outline-container-org5d36f93" class="outline-3">
-<h3 id="org5d36f93">On login managers, and login screens</h3>
-<div class="outline-text-3" id="text-org5d36f93">
+<div id="outline-container-orge182bfc" class="outline-3">
+<h3 id="orge182bfc">On login managers, and login screens</h3>
+<div class="outline-text-3" id="text-orge182bfc">
 <p>
 SSS uses <b>no login managers</b> like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not).
 That being said, feel free to use your own.
@@ -891,9 +891,9 @@ If you run traditional X11 sessions, you could choose to do startx instead of a 
 </div>
 
 
-<div id="outline-container-org8b5364a" class="outline-2">
-<h2 id="org8b5364a">Nix profile</h2>
-<div class="outline-text-2" id="text-org8b5364a">
+<div id="outline-container-org9087bff" class="outline-2">
+<h2 id="org9087bff">Nix profile</h2>
+<div class="outline-text-2" id="text-org9087bff">
 <p>
 Nixpkgs contains a lot of software which we can leverage and manage from Guix.
 </p>
@@ -917,7 +917,7 @@ Assuming <code>joe</code> as user in question.
 <p>
 <code>/nix/var/nix/profiles/per-user/</code> should be:
 </p>
-<pre class="example" id="org667bdf4">
+<pre class="example" id="orge21240d">
 joe@guixvm ~ λ  ll /nix/var/nix/profiles/per-user/
 
 drwxr-xr-x 2 joe  users  16K 29 dec 23:09 joe/
@@ -985,9 +985,9 @@ Installing all wanted Nix packages can be done with <code>make npi</code> for ex
 </div>
 </div>
 
-<div id="outline-container-org0617f23" class="outline-2">
-<h2 id="org0617f23">Flatpaks</h2>
-<div class="outline-text-2" id="text-org0617f23">
+<div id="outline-container-orgdb53409" class="outline-2">
+<h2 id="orgdb53409">Flatpaks</h2>
+<div class="outline-text-2" id="text-orgdb53409">
 <p>
 SSS takes care of flatpak origins and installing and maintaining your flatpaks up to date, all programatically and with Lisp.
 </p>
@@ -1002,9 +1002,9 @@ Installing all wanted Flatpak packages can be done with <code>make fpi</code> fo
 </div>
 </div>
 
-<div id="outline-container-orgba1720b" class="outline-2">
-<h2 id="orgba1720b">SSS Project</h2>
-<div class="outline-text-2" id="text-orgba1720b">
+<div id="outline-container-orgc3920d9" class="outline-2">
+<h2 id="orgc3920d9">SSS Project</h2>
+<div class="outline-text-2" id="text-orgc3920d9">
 <p>
 Contributing to free software is a uniquely beautiful act because it embodies principles of generosity, collaboration, and empowerment.
 </p>
@@ -1019,9 +1019,9 @@ Find the backlog and <a href="../project-management.html">project management of 
 </div>
 </div>
 
-<div id="outline-container-orgef91440" class="outline-2">
-<h2 id="orgef91440">System audio</h2>
-<div class="outline-text-2" id="text-orgef91440">
+<div id="outline-container-org377e1bc" class="outline-2">
+<h2 id="org377e1bc">System audio</h2>
+<div class="outline-text-2" id="text-org377e1bc">
 <p>
 SSS favors modern technologies and thus makes use of Pipewire for all your GNU/Linux audio needs.
 </p>
@@ -1036,9 +1036,9 @@ You will also want to set the <code>RTC_USE_PIPEWIRE</code> variable to <code>tr
 </div>
 </div>
 
-<div id="outline-container-org4914386" class="outline-2">
-<h2 id="org4914386">Sway, resolutions and scaling</h2>
-<div class="outline-text-2" id="text-org4914386">
+<div id="outline-container-org331f91e" class="outline-2">
+<h2 id="org331f91e">Sway, resolutions and scaling</h2>
+<div class="outline-text-2" id="text-org331f91e">
 <p>
 Most of the times, Sway will have set the correct resolution and scale (fractional) for your device. This also happens automatically when plugging in/out external monitors.
 </p>
@@ -1061,9 +1061,9 @@ swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
 </div>
 </div>
 
-<div id="outline-container-org3406897" class="outline-2">
-<h2 id="org3406897">Wallpapers</h2>
-<div class="outline-text-2" id="text-org3406897">
+<div id="outline-container-orga4b0d35" class="outline-2">
+<h2 id="orga4b0d35">Wallpapers</h2>
+<div class="outline-text-2" id="text-orga4b0d35">
 <p>
 SSS automatically loads at startup a matching wallpaper for the currently enabled theme.
 </p>
@@ -1078,9 +1078,9 @@ TODO: allow more dynamics and often changing of wallpapers, also random wallpape
 </div>
 </div>
 
-<div id="outline-container-org4d73970" class="outline-2">
-<h2 id="org4d73970">Git</h2>
-<div class="outline-text-2" id="text-org4d73970">
+<div id="outline-container-org00fa9fc" class="outline-2">
+<h2 id="org00fa9fc">Git</h2>
+<div class="outline-text-2" id="text-org00fa9fc">
 <p>
 Joe's account is automatically configured with a multi-user Git setup. See <code>lib/git.scm</code>.
 Currently this works on a per-directory basis, and is configured by default to my preferred settings.
@@ -1097,9 +1097,9 @@ My settings are:
 </div>
 </div>
 
-<div id="outline-container-orgc5564f2" class="outline-2">
-<h2 id="orgc5564f2">Disk space</h2>
-<div class="outline-text-2" id="text-orgc5564f2">
+<div id="outline-container-org652b005" class="outline-2">
+<h2 id="org652b005">Disk space</h2>
+<div class="outline-text-2" id="text-org652b005">
 <p>
 Reproducibility and isolation of builds naturally leads to a little more disk usage than other systems. This is not a problem nowadays, with cheap storage.
 </p>
@@ -1117,7 +1117,7 @@ That being said, here follow some useful reminders, every now and then clean:
 <p>
 You could run something like this:
 </p>
-<pre class="example" id="orgb4bd786">
+<pre class="example" id="orgaf5e4a9">
 sudo guix system delete-generations 1d
 sudo guix gc
 nix-store --gc
@@ -1133,9 +1133,9 @@ If you'd like to find the largest files in your disk, here’s an example comman
 </div>
 </div>
 
-<div id="outline-container-orga90a330" class="outline-2">
-<h2 id="orga90a330">Bluetooth</h2>
-<div class="outline-text-2" id="text-orga90a330">
+<div id="outline-container-org98f3f0d" class="outline-2">
+<h2 id="org98f3f0d">Bluetooth</h2>
+<div class="outline-text-2" id="text-org98f3f0d">
 <p>
 The real best way to manage your bluetooth is using the bluetoothctl shell. This is a little more manual and low-level, but it will allow your to programatically connect to your devices, setup shortcuts for "favourite" connections, and much more.
 </p>
@@ -1176,9 +1176,9 @@ user@host $ bluetoothctl
 </div>
 </div>
 
-<div id="outline-container-org11a232b" class="outline-2">
-<h2 id="org11a232b">Virtualization</h2>
-<div class="outline-text-2" id="text-org11a232b">
+<div id="outline-container-orgecac0cc" class="outline-2">
+<h2 id="orgecac0cc">Virtualization</h2>
+<div class="outline-text-2" id="text-orgecac0cc">
 <p>
 SSS comes equipped with libvirt and libvirt-manager (the GUI).
 </p>
@@ -1271,9 +1271,9 @@ After saving/applying this new static route, external connectivity should work f
 </div>
 </div>
 
-<div id="outline-container-orgcff5f66" class="outline-2">
-<h2 id="orgcff5f66">Mime types</h2>
-<div class="outline-text-2" id="text-orgcff5f66">
+<div id="outline-container-orge61b529" class="outline-2">
+<h2 id="orge61b529">Mime types</h2>
+<div class="outline-text-2" id="text-orge61b529">
 <p>
 SSS supports specifying default applications to use for certain files, and also xdg-open, and customize allowed options, all in comfortable Scheme code.
 </p>
@@ -1314,7 +1314,7 @@ If there are multiple applications, they are tried in order.
 <p>
 At <code>~/.config/mimeapps.list</code> you get this:
 </p>
-<pre class="example" id="org9bbe0be">
+<pre class="example" id="orgb2db60d">
 
 [Default Applications]
 application/pdf=evince.desktop;google-chrome.desktop;firefox.desktop
@@ -1324,9 +1324,9 @@ text/html=google-chrome.desktop;firefox.desktop
 </div>
 
 
-<div id="outline-container-org12a647a" class="outline-2">
-<h2 id="org12a647a">Troubleshooting FAQ</h2>
-<div class="outline-text-2" id="text-org12a647a">
+<div id="outline-container-org8c6d693" class="outline-2">
+<h2 id="org8c6d693">Troubleshooting FAQ</h2>
+<div class="outline-text-2" id="text-org8c6d693">
 <p>
 Q: I ran out of disk space, and have too much garbage in the system!
 </p>
@@ -1379,13 +1379,13 @@ A: Try with <code>gpg --pinentry-mode loopback --full-gen-key</code>. Otherwise 
 </div>
 </div>
 
-<div id="outline-container-org0ae3899" class="outline-2">
-<h2 id="org0ae3899">Sway keybindings</h2>
-<div class="outline-text-2" id="text-org0ae3899">
+<div id="outline-container-orgc40d998" class="outline-2">
+<h2 id="orgc40d998">Sway keybindings</h2>
+<div class="outline-text-2" id="text-orgc40d998">
 </div>
-<div id="outline-container-org01671a3" class="outline-3">
-<h3 id="org01671a3">General keybindings</h3>
-<div class="outline-text-3" id="text-org01671a3">
+<div id="outline-container-orgd0ee334" class="outline-3">
+<h3 id="orgd0ee334">General keybindings</h3>
+<div class="outline-text-3" id="text-orgd0ee334">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1450,9 +1450,9 @@ A: Try with <code>gpg --pinentry-mode loopback --full-gen-key</code>. Otherwise 
 </div>
 </div>
 
-<div id="outline-container-org933c9b7" class="outline-3">
-<h3 id="org933c9b7">Application keybindings</h3>
-<div class="outline-text-3" id="text-org933c9b7">
+<div id="outline-container-org13ea391" class="outline-3">
+<h3 id="org13ea391">Application keybindings</h3>
+<div class="outline-text-3" id="text-org13ea391">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1511,9 +1511,9 @@ A: Try with <code>gpg --pinentry-mode loopback --full-gen-key</code>. Otherwise 
 </table>
 </div>
 </div>
-<div id="outline-container-orgbf15ae5" class="outline-3">
-<h3 id="orgbf15ae5">More keybindings</h3>
-<div class="outline-text-3" id="text-orgbf15ae5">
+<div id="outline-container-org43bb297" class="outline-3">
+<h3 id="org43bb297">More keybindings</h3>
+<div class="outline-text-3" id="text-org43bb297">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1563,13 +1563,13 @@ A: Try with <code>gpg --pinentry-mode loopback --full-gen-key</code>. Otherwise 
 </div>
 </div>
 </div>
-<div id="outline-container-orgc204088" class="outline-2">
-<h2 id="orgc204088">Emacs keybindings</h2>
-<div class="outline-text-2" id="text-orgc204088">
+<div id="outline-container-orgb764512" class="outline-2">
+<h2 id="orgb764512">Emacs keybindings</h2>
+<div class="outline-text-2" id="text-orgb764512">
 </div>
-<div id="outline-container-org1e025ea" class="outline-3">
-<h3 id="org1e025ea">General non-vanilla bindings</h3>
-<div class="outline-text-3" id="text-org1e025ea">
+<div id="outline-container-org913aee8" class="outline-3">
+<h3 id="org913aee8">General non-vanilla bindings</h3>
+<div class="outline-text-3" id="text-org913aee8">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1604,9 +1604,9 @@ A: Try with <code>gpg --pinentry-mode loopback --full-gen-key</code>. Otherwise 
 </div>
 </div>
 
-<div id="outline-container-org3aa4a8a" class="outline-3">
-<h3 id="org3aa4a8a">SSS specific keybindings</h3>
-<div class="outline-text-3" id="text-org3aa4a8a">
+<div id="outline-container-org5a7f1ee" class="outline-3">
+<h3 id="org5a7f1ee">SSS specific keybindings</h3>
+<div class="outline-text-3" id="text-org5a7f1ee">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1648,9 +1648,9 @@ A: Try with <code>gpg --pinentry-mode loopback --full-gen-key</code>. Otherwise 
 </div>
 
 
-<div id="outline-container-orgd1446f9" class="outline-2">
-<h2 id="orgd1446f9">Glossary</h2>
-<div class="outline-text-2" id="text-orgd1446f9">
+<div id="outline-container-orgace8a2e" class="outline-2">
+<h2 id="orgace8a2e">Glossary</h2>
+<div class="outline-text-2" id="text-orgace8a2e">
 <ul class="org-ul">
 <li><b><b>GNU/Linux</b></b>: A free and open-source operating system combining the GNU system and the Linux kernel.</li>
 <li><b><b>Lisp Machine</b></b>: A type of computer optimized for running Lisp, a family of programming languages.</li>
@@ -1667,9 +1667,9 @@ A: Try with <code>gpg --pinentry-mode loopback --full-gen-key</code>. Otherwise 
 </div>
 </div>
 
-<div id="outline-container-org677ee59" class="outline-2">
-<h2 id="org677ee59">Acronyms</h2>
-<div class="outline-text-2" id="text-org677ee59">
+<div id="outline-container-org9d2c041" class="outline-2">
+<h2 id="org9d2c041">Acronyms</h2>
+<div class="outline-text-2" id="text-org9d2c041">
 <ul class="org-ul">
 <li><b><b>SSS</b></b>: Supreme Sexp System</li>
 <li><b><b>GNU</b></b>: GNU's Not Unix</li>
@@ -1683,9 +1683,9 @@ A: Try with <code>gpg --pinentry-mode loopback --full-gen-key</code>. Otherwise 
 </div>
 </div>
 
-<div id="outline-container-org2260b11" class="outline-2">
-<h2 id="org2260b11">Inheriting an SSS/GNU system</h2>
-<div class="outline-text-2" id="text-org2260b11">
+<div id="outline-container-org22c31c0" class="outline-2">
+<h2 id="org22c31c0">Inheriting an SSS/GNU system</h2>
+<div class="outline-text-2" id="text-org22c31c0">
 <p>
 While we may not like thinking about these situations, life has an expiry date for us all, and as such we should prepare for a day when we are no more.
 </p>
@@ -1753,9 +1753,9 @@ Good luck!
 </div>
 
 
-<div id="outline-container-org0813cf3" class="outline-2">
-<h2 id="org0813cf3">User Management</h2>
-<div class="outline-text-2" id="text-org0813cf3">
+<div id="outline-container-org9eb3c72" class="outline-2">
+<h2 id="org9eb3c72">User Management</h2>
+<div class="outline-text-2" id="text-org9eb3c72">
 <p>
 SSS uses standard GNU/Linux user management tools. You should create users by tweaking the Scheme code of Guix config (<code>config.scm</code>) and optionally you can also create a Guix home file (<code>home/&lt;user&gt;.scm</code>).
 </p>
@@ -1768,7 +1768,7 @@ When everything is in place, add a password to the user with <code>sudo passwd &
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Josep Bigorra</p>
-<p class="date">Created: 2025-02-18 di 09:44</p>
+<p class="date">Created: 2025-02-18 di 10:17</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
