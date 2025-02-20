@@ -226,14 +226,14 @@
     (Alt+tab . "exec $windower")
     ($mod+Shift+e unquote
                   #~(string-append "exec "
-                                   #$sway
-                                   "/bin/swaynag -t warning -m \\\n    "
-                                   "'You pressed the exit shortcut.  Do you really want to exit sway?"
-                                   " This will end your Wayland session.' \\
+                     #$sway
+                     "/bin/swaynag -t warning -m \\\n    "
+                     "'You pressed the exit shortcut.  Do you really want to exit sway?"
+                     " This will end your Wayland session.' \\
     "
-                                   "-B 'Yes, exit sway' \\\n    '"
-                                   #$sway
-                                   "/bin/swaymsg exit'"))
+                     "-B 'Yes, exit sway' \\\n    '"
+                     #$sway
+                     "/bin/swaymsg exit'"))
     (XF86MonBrightnessDown . "exec sudo light -U 3")
     (XF86MonBrightnessUp . "exec sudo light -A 3")
     (XF86AudioRaiseVolume . "exec pactl set-sink-volume @DEFAULT_SINK@ +5%")

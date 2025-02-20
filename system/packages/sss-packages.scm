@@ -494,6 +494,7 @@
         pkg-config
 
         bluez
+        blueman
         hplip
 
         autoconf
