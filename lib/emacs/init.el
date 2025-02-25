@@ -2,12 +2,11 @@
 
 ;; Copyright (C) 2024 Josep Bigorra
 
-;; Version: 0.6.0
 ;; Author: Josep Bigorra <jjbigorra@gmail.com>
 ;; Maintainer: Josep Bigorra <jjbigorra@gmail.com>
 ;; URL: https://codeberg.org/jjba23/sss
 ;; Package: emacs
-;; Package-Requires: ((emacs "29.1"))
+;; Package-Requires: ((emacs "30.0"))
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,6 +22,9 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; This Emacs configuration was last tested to work properly with:
+;;   - GNU Emacs 30.0.92 (build 1, x86_64-pc-linux-gnu, GTK+ Version 3.24.41, cairo version 1.18.0)
 
 ;; TODO
 
@@ -926,6 +928,12 @@ According to size, color and font family"
   :demand t)
 
 
+
+
+;;
+;; Configure Emacs native features
+;;
+
 (use-package which-key 
   :ensure nil
   :config
@@ -934,10 +942,6 @@ According to size, color and font family"
   (setq-default which-key-idle-delay 0.4) 
   (which-key-setup-minibuffer)
   (which-key-mode))
-
-;;
-;; Configure Emacs native features
-;;
 
 (use-package erc
   :ensure nil
@@ -962,6 +966,9 @@ According to size, color and font family"
   (erc-services-mode 1)
   (erc-update-modules))
 
+;;
+;; Emacs-self features
+;;
 (use-package emacs 
   :ensure nil 
   :bind (("C-x C-b" . ibuffer) 
@@ -978,6 +985,7 @@ According to size, color and font family"
          ("C-c # f" . sss-full-reconfigure))
   :hook ((text-mode . visual-line-mode))
   :config
+  ;; TODO configure via Scheme -> Emacs bridge
   (setq-default user-personal-name "Joe"
 		user-personal-full-name "Josep Jesus Bigorra Algaba"
 		user-personal-email "jjbigorra@gmail.com"
@@ -1000,10 +1008,12 @@ According to size, color and font family"
 	tab-always-indent 'complete
 	text-mode-ispell-word-completion nil
         vc-follow-symlinks t
+        use-dialog-box nil
 	delete-by-moving-to-trash t
 	tab-width 2)
   
-  (savehist-mode 1) 
+  (savehist-mode 1)
+  (save-place-mode 1)
   (tool-bar-mode -1) 
   (scroll-bar-mode -1) 
   (menu-bar-mode -1) 
@@ -1017,8 +1027,8 @@ According to size, color and font family"
       ))
 
   ;; when in wayland this can be nice:
-  (set-frame-parameter nil 'alpha-background 90) 
-  (add-to-list 'default-frame-alist '(alpha-background . 90))
+  (set-frame-parameter nil 'alpha-background 86) 
+  (add-to-list 'default-frame-alist '(alpha-background . 86))
   
   (when (fboundp 'windmove-default-keybindings) 
     (windmove-default-keybindings))
