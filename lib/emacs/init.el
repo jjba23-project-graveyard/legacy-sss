@@ -393,7 +393,7 @@ According to size, color and font family"
 (use-package typescript-mode :ensure t :mode "\\.ts\\'")
 
 (use-package compat
-  :ensure (:host github :repo "emacs-compat/compat" :branch "master"))
+  :ensure (:host github :repo "emacs-compat/compat" :branch "main"))
 
 (use-package nix-ts-mode 
   :ensure t 
@@ -404,7 +404,7 @@ According to size, color and font family"
 ;; Emacs UI/UX/DX
 
 (use-package ef-themes
-  :ensure (:host github :repo "protesilaos/ef-themes" :branch "master")
+  :ensure (:host github :repo "protesilaos/ef-themes" :branch "main")
   :config
   (setq ef-bio-palette-overrides '((variable fg-main)
                                    (string green-faint)))
@@ -519,7 +519,7 @@ According to size, color and font family"
   (add-to-list 'super-save-hook-triggers 'find-file-hook))
 
 (use-package spacious-padding 
-  :ensure (:host github :repo "protesilaos/spacious-padding" :branch "master")
+  :ensure (:host github :repo "protesilaos/spacious-padding" :branch "main")
   :init
   (setq spacious-padding-widths
         '( :internal-border-width 18 
@@ -861,12 +861,12 @@ According to size, color and font family"
 	("C-c ! p" . flymake-show-project-diagnostics)
 	("C-c ! f" . flymake-mode)))
 
-(use-package flymake-proselint
-  :ensure (:host github :repo "emacs-compat/flymake-proselint" :branch "master")
-  :hook ((text-mode . (lambda () (flymake-mode)(flymake-proselint-setup)))
-         (markdown-mode . (lambda () (flymake-mode)(flymake-proselint-setup)))
-         (org-mode . (lambda () (flymake-mode)(flymake-proselint-setup))))
-  )
+;; (use-package flymake-proselint
+;;   :ensure (:host github :repo "emacs-compat/flymake-proselint" :branch "master")
+;;   :hook ((text-mode . (lambda () (flymake-mode)(flymake-proselint-setup)))
+;;          (markdown-mode . (lambda () (flymake-mode)(flymake-proselint-setup)))
+;;          (org-mode . (lambda () (flymake-mode)(flymake-proselint-setup))))
+;;   )
 
 (use-package jinx
   :ensure nil
@@ -926,9 +926,8 @@ According to size, color and font family"
   :demand t)
 
 
-;; TODO when upgrading to Emacs 30 which-key will be built-in
 (use-package which-key 
-  :ensure t
+  :ensure nil
   :config
   (setq which-key-sort-order 'which-key-key-order-alpha	
 	which-key-max-description-length 35)

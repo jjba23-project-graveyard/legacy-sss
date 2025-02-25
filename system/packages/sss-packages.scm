@@ -310,7 +310,7 @@
 
 (define sss-coreutils
   (list htop
-        emacs-pgtk
+        emacs-next-pgtk
         vim
         git
         neovim
