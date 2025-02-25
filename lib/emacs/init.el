@@ -1014,6 +1014,7 @@ According to size, color and font family"
   
   (savehist-mode 1)
   (save-place-mode 1)
+  (global-auto-revert-mode 1)
   (tool-bar-mode -1) 
   (scroll-bar-mode -1) 
   (menu-bar-mode -1) 
