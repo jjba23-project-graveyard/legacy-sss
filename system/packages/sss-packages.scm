@@ -213,7 +213,8 @@
     (build-system copy-build-system)
     (arguments
      (list
-      #:install-plan #~'(("./src/" "/usr/share/Kvantum"))))
+      #:install-plan
+      #~'(("./src/" "/usr/share/Kvantum"))))
     (synopsis "Kvantum theme to match the Yaru colors theme!")
     (description
      "Kvantum themes to match the Yaru Colors and Yaru Remix themes! Check releases for latest stable version.")
@@ -304,7 +305,7 @@
 
 (define sss-dev-packages
   (list (specification->package "openjdk@21.0.2")
-        (specification->package "node@20.18.1")
+        (specification->package "node@22.12.0")
         (specification->package "python") cl-asdf))
 
 (define sss-coreutils
