@@ -73,7 +73,6 @@
     "stack"
     "sbt"
     "scala_2_13"
-    "firefox"
     "thunderbird"
     "postman"
     "vscode-langservers-extracted"
@@ -96,7 +95,7 @@
 ;; Flatpak packages to install to the user
 (define sss-flatpak-pkgs
   '("app.drey.Warp" "com.usebottles.bottles" "com.ktechpit.whatsie"
-    "com.anydesk.Anydesk"))
+    "com.anydesk.Anydesk" "app.zen_browser.zen"))
 
 ;; Additional Sway startup commands on per-host basis
 (define sss-sway-extra-startups

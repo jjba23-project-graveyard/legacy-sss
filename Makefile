@@ -140,18 +140,22 @@ shepherd-logs:
 
 # clone-user-repos: Clones user repositories using a custom script.
 clone-user-repos:
+	$(call sss-log-info,"Cloning user Git repositories for SSS")
 	guile --fresh-auto-compile system/scripts/clone-user-repos.scm
 
 # install-nix-packages: Installs Nix packages using a custom script.
 install-nix-packages:
+	$(call sss-log-info,"Installing Nix packages for SSS")
 	guile --fresh-auto-compile system/scripts/install-nix-packages.scm
 
 # install-flatpak-packages: Installs Flatpak packages using a custom script.
 install-flatpak-packages:
+	$(call sss-log-info,"Installing Flatpak packages for SSS")
 	guile --fresh-auto-compile system/scripts/install-flatpak-packages.scm
 
 # update-flatpak-packages: Updates the system's Flatpak packages
 update-flatpak-packages:
+	$(call sss-log-info,"Updating Flatpak packages for SSS")
 	flatpak update --user -y
 
 # Aliases for common tasks
