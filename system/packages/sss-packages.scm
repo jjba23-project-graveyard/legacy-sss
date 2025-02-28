@@ -270,8 +270,8 @@
         ;; Wayland portals
         xdg-desktop-portal
         xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-
+        ;; xdg-desktop-portal-gtk
+        
         ;; Compatibility for older Xorg applications
         xorg-server-xwayland
 
