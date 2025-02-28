@@ -512,6 +512,7 @@
 
         perl
 
+        youtube-dl
         mpv
         mpv-mpris
         unixodbc
