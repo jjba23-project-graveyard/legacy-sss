@@ -19,5 +19,6 @@
   #:use-module (gnu))
 
 (define-public sss-portals-config
-  '(("default" . "gtk") ("org.freedesktop.impl.portal.Screenshot" . "wlr")
-    ("org.freedesktop.impl.portal.ScreenCast" . "wlr")))
+  '(("default" . "wlr") ("org.freedesktop.impl.portal.Screenshot" . "wlr")
+    ("org.freedesktop.impl.portal.ScreenCast" . "wlr")
+    ("org.freedesktop.impl.portal.FileChooser" . "wlr")))
