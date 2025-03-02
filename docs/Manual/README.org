@@ -4,7 +4,7 @@
 #+language: en
 #+options: num:nil
 
-[[https://jointhefreeworld.org/static-assets/badges/GNU-Guix-c48702.png]] [[https://jointhefreeworld.org/static-assets/badges/Scheme-Guile-d0730f.png]] [[https://jointhefreeworld.org/static-assets/badges/Wayland-Sway-6a88ff.png]] [[https://jointhefreeworld.org/static-assets/badges/Emacs-29-d570af.png]] 
+[[https://jointhefreeworld.org/static-assets/badges/GNU-Guix-c48702.png]] [[https://jointhefreeworld.org/static-assets/badges/Scheme-Guile-d0730f.png]] [[https://jointhefreeworld.org/static-assets/badges/Wayland-Sway-6a88ff.png]] [[https://jointhefreeworld.org/static-assets/badges/Emacs-30-a8516e.png]] 
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
@@ -736,6 +736,13 @@ A: Try with ~gpg --pinentry-mode loopback --full-gen-key~. Otherwise try other o
 |         |                                |
 |---------+--------------------------------|
 
+* SSS project
+
+Contributing to free software is a uniquely beautiful act because it embodies principles of generosity, collaboration, and empowerment.
+
+We welcome everyone to feel invited to the SSS Project, and encourage active contribution in all forms, to improve it and/or suggest improvements, brainstorm with me, make it more modular/flexible, etc, feel free to contact me <jjbigorra@gmail.com> to chat, discuss or report feedback.
+
+Find here the Backlog and Kanban boards for SSS: https://lucidplan.jointhefreeworld.org/tickets/sss
 
 * Glossary
 
