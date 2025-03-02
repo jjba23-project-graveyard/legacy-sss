@@ -17,6 +17,12 @@ SSS strives to have all things configured via Lisp dialects when possible and co
 
 ⚠️ Installing and managing SSS is not meant for people new to GNU/Linux systems. You should already have some experience with software development. Knowing Lisp dialects, or functional programming techniquest is also a big help and is something you will learn further.
 
+Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
+
+[[https://jointhefreeworld.org/static-assets/sss/resized-sss-2025-02-04.png]]
+
+-----
+
 I would appreciate if you write your findings when using SSS and if you can, fork the project, and contribute some improvements, or mail me at <jjbigorra@gmail.com>
 
 It is recommended to use tagged releases of SSS, as those are considered as stable by the developers.
@@ -58,9 +64,6 @@ An operating system unto itself.
 - Advanced Emacs configurations with Emacs Lisp + Elpaca
 - Dev setup for: Scheme, Scala, Haskell, Lisp, Rust, Python, Shell, Nix, Golang and more
 
-Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
-
-[[https://jointhefreeworld.org/static-assets/sss/resized-sss-2025-02-04.png]]  
 
 * SSS Project
 
