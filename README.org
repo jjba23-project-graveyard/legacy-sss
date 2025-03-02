@@ -13,9 +13,9 @@ If you like my work, please support me by [[https://bmc.link/jjbigorra][buying m
 
 This custom GNU + Linux setup enhances customization to infinity, encourages the hacking spirit, and offers a superior user experience thanks in part too to REPL (Read Eval Print Loop) and Lisps.
 
-Installing and managing SSS is not intended for beginners to GNU/Linux systems, and requires some prior experience in this. Familiarity with Lisp dialects is also a great plus point.
+SSS strives to have all things configured via Lisp dialects when possible and convenient, staying accessible to all kinds of users, and allowing for magical things to happen 🪄.
 
-SSS strives to have all things configured via Lisp dialects when possible and convenient, staying accessible to all kinds of users, and allowing for magical things to happen.
+⚠️ Installing and managing SSS is not meant for people new to GNU/Linux systems. You should already have some experience with software development. Knowing Lisp dialects, or functional programming techniquest is also a big help and is something you will learn further.
 
 I would appreciate if you write your findings when using SSS and if you can, fork the project, and contribute some improvements, or mail me at <jjbigorra@gmail.com>
 
@@ -35,10 +35,12 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 
 ** What lies here?
 
-*** An operating system (OS) configured in Scheme
+*** An operating system (OS) configured in Lisp (Guile Scheme)
 
-- GNU Guix system configurations
-- SwayFX configurations
+- GNU Guix system configuration
+- SwayFX configuration
+- Labwc configuration
+- Conky configuration  
 - Foot terminal emulator
 - Rofi application launcher
 - Waybar configuration and style
@@ -46,14 +48,15 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 - multi-user Git configuration setup (work/personal)
 - Qutebrowser configurations
 - Multi user configurations
-- Theme palettes that affect the entire system
+- 🎨 Theme palettes that affect the entire system
+  and more....
   
 *** Joe's Emacs configuration
 
 An operating system unto itself.
 
 - Advanced Emacs configurations with Emacs Lisp + Elpaca
-- Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix, Golang and more
+- Dev setup for: Scheme, Scala, Haskell, Lisp, Rust, Python, Shell, Nix, Golang and more
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 

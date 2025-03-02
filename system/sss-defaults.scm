@@ -53,6 +53,12 @@
   '())
 
 ;; active system color palette (overridden by per-host)
+;;   - sss-palette-ef-bio
+;;   - sss-palette-ef-cyprus
+;;   - sss-palette-ef-dream
+;;   - sss-palette-heavy-metal
+;;   - sss-palette-solarized-light
+;;   - sss-palette-ef-autumn
 (define sss-active-palette
   'sss-palette-ef-dream)
 
