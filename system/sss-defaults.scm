@@ -73,6 +73,7 @@
     "stack"
     "sbt"
     "scala_2_13"
+    "scala-cli"
     "thunderbird"
     "postman"
     "vscode-langservers-extracted"
