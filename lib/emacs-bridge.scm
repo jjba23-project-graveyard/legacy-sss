@@ -24,37 +24,48 @@
 
 ;; TODO pass here more variables from per-host and SSS
 (begin
-  (define* (sss-bridge-emacs-vars #:key sss-active-palette)
-    `((sss-emacs-theme unquote
+  (define* (sss-bridge-emacs-vars #:key active-palette
+                                  user-name
+                                  user-full-name
+                                  user-email
+                                  user-initials)
+    `((user-personal-name unquote user-name)
+      (user-personal-full-name unquote user-full-name)
+      (user-personal-email unquote user-email)
+      (user-personal-initials unquote user-initials)
+      (sss-emacs-theme unquote
                        (cond
-                         ((equal? sss-active-palette
+                         ((equal? active-palette
                                   'sss-palette-ef-dream)
                           "'ef-dream")
-                         ((equal? sss-active-palette
+                         ((equal? active-palette
                                   'sss-palette-ef-cyprus)
                           "'ef-cyprus")
-                         ((equal? sss-active-palette
+                         ((equal? active-palette
                                   'sss-palette-ef-autumn)
                           "'ef-autumn")
-                         ((equal? sss-active-palette
+                         ((equal? active-palette
                                   'sss-palette-heavy-metal)
                           "'ef-tritanopia-dark")
-                         ((equal? sss-active-palette
+                         ((equal? active-palette
                                   'sss-palette-solarized-light)
                           "'solarized-light")
                          (else "'ef-bio")))))
   (export sss-bridge-emacs-vars))
 
 (begin
-  (define* (sss-bridge-emacs #:key sss-active-palette)
+  (define* (sss-bridge-emacs #:key active-palette
+                             user-name
+                             user-full-name
+                             user-email
+                             user-initials)
     (with-output-to-string (lambda ()
-                             (display "(setq ")
+                             (display "(setq-default ")
                              (for-each (lambda (v)
                                          (display (format #f "~a ~a\n"
                                                           (car v)
                                                           (cdr v))))
-                                       (sss-bridge-emacs-vars
-                                        #:sss-active-palette
-                                        sss-active-palette))
+                                       (sss-bridge-emacs-vars #:active-palette
+                                                              active-palette))
                              (display ")"))))
   (export sss-bridge-emacs))

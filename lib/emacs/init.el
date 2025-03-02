@@ -151,13 +151,12 @@
            ("pop-test" . "~/Ontwikkeling/Persoonlijk/pop-test/")
            ("jointhefreeworld" . "~/Ontwikkeling/Persoonlijk/jointhefreeworld/"))
           (("wolk-jjba" . "~/Ontwikkeling/Persoonlijk/wolk-jjba/")
-           ("wikimusic-api" . "~/Ontwikkeling/Persoonlijk/wikimusic-api/")
-           ("wikimusic-ssr" . "~/Ontwikkeling/Persoonlijk/wikimusic-ssr/")
+           ("wikimusic" . "~/Ontwikkeling/Persoonlijk/wikimusic/")
            ("lucidplan" . "~/Ontwikkeling/Persoonlijk/lucidplan/")
            ("byggsteg" . "~/Ontwikkeling/Persoonlijk/byggsteg/"))))
   (setq welkomscherm-bookmarks-work
         '((("Vandebron" . "~/Ontwikkeling/Werk/Vandebron/")
-           ("py-da-scripting" . "~/Ontwikkeling/Werk/scripting/"))          
+           ("onboarding" . "~/Ontwikkeling/Werk/onboarding/"))          
           ))
 
   (setq welkomscherm-buttons-actions
@@ -166,8 +165,7 @@
            ("re-render me" . (lambda(btn) (welkomscherm))))
           (("system-rebuild  (sr)" . (lambda(btn) (sss-sys-reconfigure)))
            ("joe-rebuild (jr)" . (lambda(btn) (sss-joe-reconfigure))))
-          ))
-  )
+          )))
 
 
 (use-package tekengrootte 
@@ -984,13 +982,7 @@ According to size, color and font family"
          ("C-c # m" . sss-publish-manual)
          ("C-c # f" . sss-full-reconfigure))
   :hook ((text-mode . visual-line-mode))
-  :config
-  ;; TODO configure via Scheme -> Emacs bridge
-  (setq-default user-personal-name "Joe"
-		user-personal-full-name "Josep Jesus Bigorra Algaba"
-		user-personal-email "jjbigorra@gmail.com"
-		user-personal-initials "JJBA")
-  
+  :config  
   (setq-default line-spacing 6
                 pgtk-wait-for-event-timeout 0
                 electric-indent-inhibit t)

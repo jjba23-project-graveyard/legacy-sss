@@ -100,12 +100,12 @@
 (define sss-home-files-service
   (service home-files-service-type
            `( ;GTK 3 settings
-              (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
-                                                           (string-append
-                                                            "[Settings]\n"
-                                                            (mk-kv-conf-lines (sss-gtk3-config
-                                                                               #:sss-active-palette
-                                                                               sss-active-palette)))))
+             (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
+                                                          (string-append
+                                                           "[Settings]\n"
+                                                           (mk-kv-conf-lines (sss-gtk3-config
+                                                                              #:sss-active-palette
+                                                                              sss-active-palette)))))
 
              ;; GTK 4 settings
              (".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
@@ -122,7 +122,7 @@
              ;; Global Git configuration
              (".gitconfig" ,(plain-file "gitconfig.ini"
                                         (mk-rec-kv-conf-lines sss-gitconfig
-                                         #:template spaced-equal-conf-pair)))
+                                                              #:template spaced-equal-conf-pair)))
              ;; Personal Git configuration
              (".gitconfig-personal" ,(plain-file "gitconfig-personal.ini"
                                                  (mk-rec-kv-conf-lines
@@ -150,8 +150,8 @@
              ;; Nix configuration with experimental features
              (".config/nix/nix.conf" ,(plain-file "nix.conf"
                                                   (mk-rec-kv-conf-lines `((experimental-features . "nix-command flakes"))
-                                                   #:template
-                                                   spaced-equal-conf-pair)))
+                                                                        #:template
+                                                                        spaced-equal-conf-pair)))
              ;; Loads Nixpkgs configuration locally
              (".config/nixpkgs/config.nix" ,(local-file
                                              "../lib/nix/nixpkgs.nix"))
@@ -278,14 +278,20 @@
                                                      "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
-                                                 "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
+                                                            "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
              ;; Emacs initialization file
              (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))
              ;; Emacs bridge with SSS
              (".emacs.d/sss-bridge.el" ,(plain-file "sss-bridge.el"
                                                     (sss-bridge-emacs
-                                                     #:sss-active-palette
-                                                     sss-active-palette)))
+                                                     #:active-palette
+                                                     sss-active-palette
+                                                     #:user-name "Joe"
+                                                     #:user-full-name
+                                                     "Josep Bigorra"
+                                                     #:user-email
+                                                     "jjbigorra@gmail.com"
+                                                     #:user-initials "JJBA")))
              ;; Emacs early initialization file
              (".emacs.d/early-init.el" ,(local-file
                                          "../lib/emacs/early-init.el")))))
