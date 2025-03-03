@@ -73,6 +73,7 @@
                      curl
                      cups
                      terminals
+                     shells
                      video
                      image
                      compression

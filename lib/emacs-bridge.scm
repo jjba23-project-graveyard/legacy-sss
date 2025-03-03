@@ -19,39 +19,7 @@
 
 (define-module (sss bridge emacs)
   #:use-module (gnu)
-  ;; #:use-module (sss palette)
-  )
-
-;; TODO pass here more variables from per-host and SSS
-(begin
-  (define* (sss-bridge-emacs-vars #:key active-palette
-                                  user-name
-                                  user-full-name
-                                  user-email
-                                  user-initials)
-    `((user-personal-name unquote user-name)
-      (user-personal-full-name unquote user-full-name)
-      (user-personal-email unquote user-email)
-      (user-personal-initials unquote user-initials)
-      (sss-emacs-theme unquote
-                       (cond
-                         ((equal? active-palette
-                                  'sss-palette-ef-dream)
-                          "'ef-dream")
-                         ((equal? active-palette
-                                  'sss-palette-ef-cyprus)
-                          "'ef-cyprus")
-                         ((equal? active-palette
-                                  'sss-palette-ef-autumn)
-                          "'ef-autumn")
-                         ((equal? active-palette
-                                  'sss-palette-heavy-metal)
-                          "'ef-tritanopia-dark")
-                         ((equal? active-palette
-                                  'sss-palette-solarized-light)
-                          "'solarized-light")
-                         (else "'ef-bio")))))
-  (export sss-bridge-emacs-vars))
+  #:use-module (srfi srfi-64))
 
 (begin
   (define* (sss-bridge-emacs #:key active-palette
@@ -59,13 +27,50 @@
                              user-full-name
                              user-email
                              user-initials)
+    (define sss-bridge-emacs-vars
+      `((user-personal-name . ,(format #f "\"~a\"" user-name))
+        (user-personal-full-name . ,(format #f "\"~a\"" user-full-name))
+        (user-personal-email . ,(format #f "\"~a\"" user-email))
+        (user-personal-initials . ,(format #f "\"~a\"" user-initials))
+        (sss-emacs-theme unquote
+                         (cond
+                          ((equal? active-palette
+                                   'sss-palette-ef-dream)
+                           "'ef-dream")
+                          ((equal? active-palette
+                                   'sss-palette-ef-cyprus)
+                           "'ef-cyprus")
+                          ((equal? active-palette
+                                   'sss-palette-ef-autumn)
+                           "'ef-autumn")
+                          ((equal? active-palette
+                                   'sss-palette-heavy-metal)
+                           "'ef-tritanopia-dark")
+                          ((equal? active-palette
+                                   'sss-palette-solarized-light)
+                           "'solarized-light")
+                          (else "'ef-bio")))))
+    
     (with-output-to-string (lambda ()
-                             (display "(setq-default ")
+                             (display "(setq-default")
                              (for-each (lambda (v)
-                                         (display (format #f "~a ~a\n"
+                                         (display (format #f "\n    ~a ~a"
                                                           (car v)
                                                           (cdr v))))
-                                       (sss-bridge-emacs-vars #:active-palette
-                                                              active-palette))
-                             (display ")"))))
+                                       sss-bridge-emacs-vars)
+                             (display ")\n"))))
   (export sss-bridge-emacs))
+
+(test-begin "Emacs bridge tests")
+(test-assert "bridge is correctly computes"
+  (equal? (string-append "(setq-default\n    user-personal-name \"John\"\n"
+                         "    user-personal-full-name \"John Doe\"\n"
+                         "    user-personal-email \"john@doe.com\"\n"
+                         "    user-personal-initials \"JD\"\n"
+                         "    sss-emacs-theme 'ef-bio)\n")
+          (sss-bridge-emacs #:active-palette 'ef-dream
+                            #:user-name "John"
+                            #:user-full-name "John Doe"
+                            #:user-email "john@doe.com"
+                            #:user-initials "JD")))
+(test-end)
