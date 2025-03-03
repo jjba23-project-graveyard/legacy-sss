@@ -20,55 +20,39 @@
 (define-module (sss hyprland)
   #:use-module (sss palette))
 
-(define* (serialize-hyprland-setting type setting #:key (indent ""))
+(define* (serialize-hyprland-setting type setting
+                                     #:key (indent ""))
   (format #f "~a~a=~a" indent type setting))
 
 (define* (serialize-hyprland-section #:key section settings)
-  (format #f "~a {\n~a\n}"
-          section
+  (format #f "~a {\n~a\n}" section
           (string-join (map (lambda (x)
-                              (serialize-hyprland-setting
-                               (car x)
-                               (cdr x)
-                               #:indent "  "))
+                              (serialize-hyprland-setting (car x)
+                                                          (cdr x)
+                                                          #:indent "  "))
                             settings) "\n")))
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
   (define* (sss-hyprland-wallpaper #:key sss-clone-dir sss-active-palette)
     (cond
-     ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-      (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
-     ((equal? 'sss-palette-ef-dream sss-active-palette)
-      (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
-     ((equal? 'sss-palette-heavy-metal sss-active-palette)
-      (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
-     ((equal? 'sss-palette-solarized-light sss-active-palette)
-      (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" sss-clone-dir))
-     ((equal? 'sss-palette-ef-autumn sss-active-palette)
-      (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" sss-clone-dir))
-     (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
+      ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+       (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
+      ((equal? 'sss-palette-ef-dream sss-active-palette)
+       (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
+      ((equal? 'sss-palette-heavy-metal sss-active-palette)
+       (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
+      ((equal? 'sss-palette-solarized-light sss-active-palette)
+       (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" sss-clone-dir))
+      ((equal? 'sss-palette-ef-autumn sss-active-palette)
+       (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" sss-clone-dir))
+      (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
 
-(define* (sss-hyprland-startup-programs #:key
-                                        sss-active-palette
+(define* (sss-hyprland-startup-programs #:key sss-active-palette
                                         (wallpaper-setter "")
                                         (extra-startups '()))
   (let* ((gtk-theme-name (cond
-                          ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-                           "Yaru-sage")
-                          ((equal? 'sss-palette-heavy-metal
-                                   sss-active-palette)
-                           "Yaru-red-dark")
-                          ((equal? 'sss-palette-ef-dream sss-active-palette)
-                           "Yaru-magenta-dark")
-                          ((equal? 'sss-palette-ef-autumn sss-active-palette)
-                           "Yaru-dark")
-                          ((equal? 'sss-palette-solarized-light
-                                   sss-active-palette)
-                           "Yaru")
-                          (else "Yaru-sage-dark")))
-         (icon-theme-name (cond
                            ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                             "Yaru-sage")
                            ((equal? 'sss-palette-heavy-metal
@@ -82,6 +66,20 @@
                                     sss-active-palette)
                             "Yaru")
                            (else "Yaru-sage-dark")))
+         (icon-theme-name (cond
+                            ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                             "Yaru-sage")
+                            ((equal? 'sss-palette-heavy-metal
+                                     sss-active-palette)
+                             "Yaru-red-dark")
+                            ((equal? 'sss-palette-ef-dream sss-active-palette)
+                             "Yaru-magenta-dark")
+                            ((equal? 'sss-palette-ef-autumn sss-active-palette)
+                             "Yaru-dark")
+                            ((equal? 'sss-palette-solarized-light
+                                     sss-active-palette)
+                             "Yaru")
+                            (else "Yaru-sage-dark")))
          (xs (append extra-startups
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
@@ -105,12 +103,10 @@
     xs))
 
 (define* (sss-hyprland-input-config #:key sss-keyboard-layout)
-  `((follow_mouse . 0)
-    (kb_layout . ,sss-keyboard-layout)))
+  `((follow_mouse . 0) (kb_layout unquote sss-keyboard-layout)))
 
 (define sss-hyprland-general-config
-  `((border_size . 1)
-    (no_border_on_floating . false)
+  `((border_size . 1) (no_border_on_floating . false)
     (gaps_in . 6)
     (gaps_out . 16)
     (layout . dwindle)
@@ -120,33 +116,27 @@
   `((workspace_swipe . true)))
 
 (define sss-hyprland-decoration-config
-  `((rounding . 6)
-    (active_opacity . "1.0")
+  `((rounding . 6) (active_opacity . "1.0")
     (inactive_opacity . "0.9")
     (dim_inactive . true)
     (dim_strength . "0.2")))
 
 (define sss-hyprland-blur-config
-  `((enabled . true)
-    (size . 8)))
+  `((enabled . true) (size . 8)))
 
 (define sss-hyprland-shadow-config
-  `((enabled . true)
-    (range . 4)))
+  `((enabled . true) (range . 4)))
 
 (define sss-hyprland-animations-config
-  `((enabled . true)
-    (first_launch_animation . true)))
+  `((enabled . true) (first_launch_animation . true)))
 
 (define sss-hyprland-touchpad-config
-  `((disable_while_typing . true)
-    (natural_scroll . false)
+  `((disable_while_typing . true) (natural_scroll . false)
     (scroll_factor . "1.0")
     (tap-to-click . true)))
 
 (define sss-hyprland-misc-config
-  `((disable_hyprland_logo . true)
-    (disable_splash_rendering . true)
+  `((disable_hyprland_logo . true) (disable_splash_rendering . true)
     (font_family . "Adwaita Sans")))
 
 (begin
@@ -159,35 +149,33 @@
                                          sss-active-palette
                                          #:sss-clone-dir sss-clone-dir))
            (startup-programs (sss-hyprland-startup-programs
-                              #:sss-active-palette
-                              sss-active-palette
-                              #:wallpaper-setter
-                              (format #f
-                                      (string-append
-                                       "swww img ~a"
-                                       " --transition-step 10"
-                                       " --transition-fps 30"
-                                       " --transition-type center")
-                                      wall)))
+                              #:sss-active-palette sss-active-palette
+                              #:wallpaper-setter (format #f
+                                                         (string-append
+                                                          "swww img ~a"
+                                                          " --transition-step 10"
+                                                          " --transition-fps 30"
+                                                          " --transition-type center")
+                                                         wall)))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hyprland-setting 'exec-once
-                                                                           startup-item))
+                                                startup-item))
                                              startup-programs))
-           (serialized-input-config (serialize-hyprland-section 'input sss-hyprland-input-config))
-           (config-lines (append
-                          '("# ====== SSS Hyprland configuration ======"
-                            "" ""
-                            "# ====== Startup programs ======"
-                            "")
-                          serialized-startup-programs
-                          '(""
-                            "# ====== Input configuration ======"
-                            "" )
-                          (list serialized-input-config))))
+           (serialized-input-config (serialize-hyprland-section #:section 'input
+                                                                #:settings (sss-hyprland-input-config
+                                                                            #:sss-keyboard-layout
+                                                                            sss-keyboard-layout)))
+           (config-lines (append '("# ====== SSS Hyprland configuration ======"
+                                   "" "" "# ====== Startup programs ======" "")
+                                 serialized-startup-programs
+                                 '("" "# ====== Input configuration ======" "")
+                                 (list serialized-input-config))))
       
       (string-join config-lines "\n")))
   (export sss-hyprland-config))
 
-(display "================")(newline)
+(display "================")
+(newline)
 (display (sss-hyprland-config #:sss-active-palette 'ef-dream
+                              #:sss-keyboard-layout "us"
                               #:sss-clone-dir "some"))
