@@ -21,16 +21,42 @@
   #:use-module (sss palette))
 
 (define* (serialize-hyprland-setting type setting
-                                     #:key (indent ""))
-  (format #f "~a~a=~a" indent type setting))
+                                     #:key (indent "")
+                                     (nested #f))
+  (if nested
+      (format #f
+              "~a~a~a=~a"
+              indent
+              indent
+              type
+              setting)
+      (format #f "~a~a=~a" indent type setting)))
 
-(define* (serialize-hyprland-section #:key section settings)
-  (format #f "~a {\n~a\n}" section
-          (string-join (map (lambda (x)
-                              (serialize-hyprland-setting (car x)
-                                                          (cdr x)
-                                                          #:indent "  "))
-                            settings) "\n")))
+(define* (serialize-hyprland-section #:key section settings
+                                     (indent "")
+                                     (nested #f))
+  (let ((xs (string-join (map (lambda (x)
+                                (cond
+                                  ((list? (cdr x))
+                                   (serialize-hyprland-section #:section (car
+                                                                          x)
+                                                               #:settings (cdr
+                                                                           x)
+                                                               #:indent "  "
+                                                               #:nested #t))
+                                  (else (serialize-hyprland-setting (car x)
+                                                                    (cdr x)
+                                                                    #:indent
+                                                                    "  "
+                                                                    #:nested
+                                                                    nested))))
+                              settings) "\n")))
+    (format #f
+            "~a~a {\n~a\n~a}"
+            indent
+            section
+            xs
+            indent)))
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
@@ -102,40 +128,37 @@
                        "gsettings set $gnome-schema font-name 'Inter'"))))
     xs))
 
-(define* (sss-hyprland-input-config #:key sss-keyboard-layout)
-  `((follow_mouse . 0) (kb_layout unquote sss-keyboard-layout)))
+(define* (sss-hyprland-input #:key sss-keyboard-layout)
+  `((follow_mouse . 0) (kb_layout unquote sss-keyboard-layout)
+    (touchpad (disable_while_typing . true)
+              (natural_scroll . false)
+              (scroll_factor . "1.0")
+              (tap-to-click . true))))
 
-(define sss-hyprland-general-config
+(define sss-hyprland-general
   `((border_size . 1) (no_border_on_floating . false)
     (gaps_in . 6)
     (gaps_out . 16)
     (layout . dwindle)
     (resize_on_border . true)))
 
-(define sss-hyprland-gestures-config
+(define sss-hyprland-gestures
   `((workspace_swipe . true)))
 
-(define sss-hyprland-decoration-config
+(define sss-hyprland-decoration
   `((rounding . 6) (active_opacity . "1.0")
     (inactive_opacity . "0.9")
     (dim_inactive . true)
-    (dim_strength . "0.2")))
+    (dim_strength . "0.2")
+    (blur (enabled . true)
+          (size . 8))
+    (shadow (enabled . true)
+            (range . 4))))
 
-(define sss-hyprland-blur-config
-  `((enabled . true) (size . 8)))
-
-(define sss-hyprland-shadow-config
-  `((enabled . true) (range . 4)))
-
-(define sss-hyprland-animations-config
+(define sss-hyprland-animations
   `((enabled . true) (first_launch_animation . true)))
 
-(define sss-hyprland-touchpad-config
-  `((disable_while_typing . true) (natural_scroll . false)
-    (scroll_factor . "1.0")
-    (tap-to-click . true)))
-
-(define sss-hyprland-misc-config
+(define sss-hyprland-misc
   `((disable_hyprland_logo . true) (disable_splash_rendering . true)
     (font_family . "Adwaita Sans")))
 
@@ -159,26 +182,34 @@
                                                          wall)))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hyprland-setting 'exec-once
-                                                                           startup-item))
+                                                startup-item))
                                              startup-programs))
-           (serialized-input-config (serialize-hyprland-section #:section 'input
-                                                                #:settings (sss-hyprland-input-config
-                                                                            #:sss-keyboard-layout
-                                                                            sss-keyboard-layout)))
-           (serialized-general-config (serialize-hyprland-section #:section 'general
-                                                                  #:settings sss-hyprland-general-config))
+           (serialized-input (serialize-hyprland-section #:section 'input
+                                                         #:settings (sss-hyprland-input
+                                                                     #:sss-keyboard-layout
+                                                                     sss-keyboard-layout)))
+           (serialized-general (serialize-hyprland-section #:section 'general
+                                #:settings sss-hyprland-general))
+           (serialized-decoration (serialize-hyprland-section #:section 'decoration
+                                   #:settings sss-hyprland-decoration))
            (config-lines (append '("# ====== SSS Hyprland configuration ======"
-                                   "" "" "# ====== Startup programs ======" "")
+                                   "#" "# auto-generated file, DO NOT EDIT!"
+                                   "" "# ====== Startup programs ======")
                                  serialized-startup-programs
-                                 `("" "" "# ====== General configuration ======" ,serialized-general-config)
-                                 
-                                 `("" "# ====== Input configuration ======" "" ,serialized-input-config)
-                                 )))
+                                 `("" "# ====== General configuration ======"
+                                   ,serialized-general)
+                                 `("" "# ====== Input configuration ======"
+                                   ,serialized-input)
+                                 `(""
+                                   "# ====== Decoration configuration ======"
+                                   ,serialized-decoration)
+                                 `(""
+                                   "# ====== End of SSS Hyprland configuration"
+                                   ""))))
       
       (string-join config-lines "\n")))
   (export sss-hyprland-config))
 
-(display "================")
 (newline)
 (display (sss-hyprland-config #:sss-active-palette 'ef-dream
                               #:sss-keyboard-layout "us"
