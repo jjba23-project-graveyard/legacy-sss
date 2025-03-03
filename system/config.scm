@@ -39,6 +39,7 @@
 
 ;; load system packages and definitions
 (load "./packages/conky.scm")
+(load "./packages/fonts.scm")
 (load "./packages/sss-packages.scm")
 
 (use-modules (sss packages))
@@ -102,10 +103,10 @@
     (group "users")
     (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))))
 
-;; Cron job destined to fetch WikiMusic backups from my production server to my local manchines
+;; Cron job destined to fetch WikiMusic backups from my production server to my local machines
 (define wikimusic-fetch-backups-job
   '(job "0 0 * * *"
-    "mkdir -p $HOME/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ $HOME/Documenten/wikimusic-backups/"))
+    "mkdir -p $HOME/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/wolk-jjba-backups/wikimusic/* $HOME/Documenten/wikimusic-backups/"))
 
 ;; Setup system cron jobs
 (define sss-cron-jobs-service
