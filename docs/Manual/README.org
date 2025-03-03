@@ -219,7 +219,6 @@ Find here a reference configuration with what is required.
       "stack"
       "sbt"
       "scala_2_13"
-      "firefox"
       "thunderbird"
       "postman"
       "vscode-langservers-extracted"
@@ -422,7 +421,7 @@ You can switch your install to use nixpkgs-unstable with:
 You can install Nix packages by running:
 
 #+begin_src sh
-  nix -L profile install --impure nixpkgs#firefox
+  nix -L profile install --impure nixpkgs#package-name
 #+end_src
 
 You can keep your Nix packages updated by running:
@@ -660,8 +659,8 @@ At ~~/.config/mimeapps.list~ you get this:
 #+begin_example
 
 [Default Applications]
-application/pdf=evince.desktop;google-chrome.desktop;firefox.desktop
-text/html=google-chrome.desktop;firefox.desktop
+application/pdf=evince.desktop;icecat.desktop
+text/html=icecat.desktop;emacsclient.desktop
 #+end_example
 
 

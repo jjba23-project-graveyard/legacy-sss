@@ -162,58 +162,56 @@
   `((disable_hyprland_logo . true) (disable_splash_rendering . true)
     (font_family . "Adwaita Sans")))
 
-
 (define sss-hyprland-binds
-  (append
-   (map (lambda(kb) (serialize-hyprland-setting (car kb)(cdr kb)))
-        `((bindel . ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")
-          (bindel . ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
-          (bindl . ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
-          (bindl . ", XF86AudioPlay, exec, playerctl play-pause")
-          (bindl . ", XF86AudioNext, exec, playerctl next")
-          (bindl . ", XF86AudioPrev, exec, playerctl previous")))
-   (map (lambda(kb)(serialize-hyprland-setting 'bind kb))
-        `("SUPER, K, killactive"
-          "SUPER, F, fullscreen"
-          "SUPER_SHIFT, Q, exit"
-          ;; 
-          "SUPER, T, exec, footclient"
-          "SUPER, slash, exec, rofi -show drun"
-          "SUPER, E, exec, emacsclient -c"
-          "SUPER_SHIFT, E, exec, emacsclient -t"
-          "SUPER, period, exec, grimshot save screen"
-          "SUPER_SHIFT, period, exec, grimshot copy screen"
-          "SUPER, comma, exec, grimshot save area"
-          "SUPER_SHIFT, comma, exec, grimshot copy area"
-          "SUPER, I, exec, icecat"
-          "SUPER_SHIFT, I, exec, google-chrome"
-          ;;
-          "SUPER, 1, workspace, 1"
-          "SUPER, 2, workspace, 2"
-          "SUPER, 3, workspace, 3"
-          "SUPER, 4, workspace, 4"
-          "SUPER, 5, workspace, 5"
-          "SUPER, 6, workspace, 6"
-          "SUPER, 7, workspace, 7"
-          "SUPER, 8, workspace, 8"
-          "SUPER, 9, workspace, 9"
-          ;;
-          "SUPER_SHIFT, 1, movetoworkspacesilent, 1"
-          "SUPER_SHIFT, 2, movetoworkspacesilent, 2"
-          "SUPER_SHIFT, 3, movetoworkspacesilent, 3"
-          "SUPER_SHIFT, 4, movetoworkspacesilent, 4"
-          "SUPER_SHIFT, 5, movetoworkspacesilent, 5"
-          "SUPER_SHIFT, 6, movetoworkspacesilent, 6"
-          "SUPER_SHIFT, 7, movetoworkspacesilent, 7"
-          "SUPER_SHIFT, 8, movetoworkspacesilent, 8"
-          "SUPER_SHIFT, 9, movetoworkspacesilent, 9"
-          ;;
-          "SUPER_SHIFT, space, togglefloating, active"
-          "SUPER_SHIFT, C, centerwindow, "
-          "SUPER, N, cyclenext, "
-          "SUPER, P, cyclenext, prev"
-          ))
-   ))
+  (append (map (lambda (kb)
+                 (serialize-hyprland-setting (car kb)
+                                             (cdr kb)))
+               `((bindel . ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")
+                 (bindel . ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
+                 (bindl . ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
+                 (bindl . ", XF86AudioPlay, exec, playerctl play-pause")
+                 (bindl . ", XF86AudioNext, exec, playerctl next")
+                 (bindl . ", XF86AudioPrev, exec, playerctl previous")))
+          (map (lambda (kb)
+                 (serialize-hyprland-setting 'bind kb))
+               `("SUPER, K, killactive" "SUPER, F, fullscreen"
+                 "SUPER_SHIFT, Q, exit"
+                 ;;
+                 "SUPER, T, exec, footclient"
+                 "SUPER, slash, exec, rofi -show drun"
+                 "SUPER, E, exec, emacsclient -c"
+                 "SUPER_SHIFT, E, exec, emacsclient -t"
+                 "SUPER, period, exec, grimshot save screen"
+                 "SUPER_SHIFT, period, exec, grimshot copy screen"
+                 "SUPER, comma, exec, grimshot save area"
+                 "SUPER_SHIFT, comma, exec, grimshot copy area"
+                 "SUPER, I, exec, icecat"
+                 "SUPER_SHIFT, I, exec, google-chrome"
+                 ;;
+                 "SUPER, 1, workspace, 1"
+                 "SUPER, 2, workspace, 2"
+                 "SUPER, 3, workspace, 3"
+                 "SUPER, 4, workspace, 4"
+                 "SUPER, 5, workspace, 5"
+                 "SUPER, 6, workspace, 6"
+                 "SUPER, 7, workspace, 7"
+                 "SUPER, 8, workspace, 8"
+                 "SUPER, 9, workspace, 9"
+                 ;;
+                 "SUPER_SHIFT, 1, movetoworkspacesilent, 1"
+                 "SUPER_SHIFT, 2, movetoworkspacesilent, 2"
+                 "SUPER_SHIFT, 3, movetoworkspacesilent, 3"
+                 "SUPER_SHIFT, 4, movetoworkspacesilent, 4"
+                 "SUPER_SHIFT, 5, movetoworkspacesilent, 5"
+                 "SUPER_SHIFT, 6, movetoworkspacesilent, 6"
+                 "SUPER_SHIFT, 7, movetoworkspacesilent, 7"
+                 "SUPER_SHIFT, 8, movetoworkspacesilent, 8"
+                 "SUPER_SHIFT, 9, movetoworkspacesilent, 9"
+                 ;;
+                 "SUPER_SHIFT, space, togglefloating, active"
+                 "SUPER_SHIFT, C, centerwindow, "
+                 "SUPER, N, cyclenext, "
+                 "SUPER, P, cyclenext, prev"))))
 
 (begin
   (define* (sss-hyprland-config #:key sss-clone-dir
@@ -235,18 +233,18 @@
                                                          wall)))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hyprland-setting 'exec-once
-                                                                           startup-item))
+                                                startup-item))
                                              startup-programs))
            (serialized-input (serialize-hyprland-section #:section 'input
                                                          #:settings (sss-hyprland-input
                                                                      #:sss-keyboard-layout
                                                                      sss-keyboard-layout)))
            (serialized-general (serialize-hyprland-section #:section 'general
-                                                           #:settings sss-hyprland-general))
+                                #:settings sss-hyprland-general))
            (serialized-decoration (serialize-hyprland-section #:section 'decoration
-                                                              #:settings sss-hyprland-decoration))
+                                   #:settings sss-hyprland-decoration))
            (serialized-animations (serialize-hyprland-section #:section 'animations
-                                                              #:settings sss-hyprland-animations))
+                                   #:settings sss-hyprland-animations))
            (serialized-key-bindings (string-join sss-hyprland-binds "\n"))
            (config-lines (append '("# ====== SSS Hyprland configuration ======"
                                    "#" "# auto-generated file, DO NOT EDIT!"
@@ -262,8 +260,7 @@
                                  `(""
                                    "# ====== Animations configuration ======"
                                    ,serialized-animations)
-                                 `(""
-                                   "# ====== Key bindings ======"
+                                 `("" "# ====== Key bindings ======"
                                    ,serialized-key-bindings)
                                  `(""
                                    "# ====== End of SSS Hyprland configuration ======"
