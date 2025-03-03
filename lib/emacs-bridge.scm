@@ -80,7 +80,8 @@
                       "    user-personal-email \"john@doe.com\"\n"
                       "    user-personal-initials \"JD\"\n"
                       "    sss-clone-dir \"/home/john\"\n"
-                      "    sss-notes-roam-dir \"/home/john/notes/roam\""
+                      "    sss-notes-roam-dir \"/home/john/notes/roam\"
+"
                       "    sss-emacs-theme 'ef-bio)\n")
                      (sss-bridge-emacs #:active-palette 'ef-dream
                                        #:user-name "John"
