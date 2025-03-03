@@ -728,9 +728,20 @@ According to size, color and font family"
   :ensure (:host github :repo "emacs-straight/queue" :branch "master")
   :demand t)
 
+;; ====== Scheme =======
+
 (use-package arei
   :ensure (:host github :repo "abcdw/emacs-arei" :branch "master")
   :demand t)
+
+(use-package geiser
+  :ensure t
+  :init
+  (setq geiser-active-implementations '(guile))
+  (setq geiser-mode-auto-p nil))
+
+(use-package geiser-guile
+  :ensure t)
 
 (use-package sesman
   :ensure (:host github :repo "vspinu/sesman" :branch "master")

@@ -30,7 +30,7 @@
     (group "users")
     (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))
     (comment "Josep Bigorra's account")
-    (shell (file-append fish "/run/current-system/profile/bin/fish"))
+    (shell (file-append fish "/bin/fish"))
     (home-directory "/home/joe")))
 
 ;; User account for Manon van den Bout
@@ -40,7 +40,7 @@
     (group "users")
     (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))
     (comment "Manon van den Bout's account")
-    (shell (file-append fish "/run/current-system/profile/bin/fish"))
+    (shell (file-append fish "/bin/fish"))
     (home-directory "/home/manon")))
 
 (define-public sss-users
