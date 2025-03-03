@@ -214,6 +214,7 @@
         ;; Wayland portals
         xdg-desktop-portal
         xdg-desktop-portal-wlr
+        xdg-desktop-portal-hyprland
         ;; xdg-desktop-portal-gtk
         
         ;; Compatibility for older Xorg applications
@@ -490,6 +491,9 @@
 (define sss-emacs-packages
   (list emacs-jinx))
 
+(define sss-hypr-packages
+  (list hyprland hypridle grimblast hyprcursor))
+
 ;; SYSTEM PACKAGES
 ;;
 ;; Add packages here to install them system wide
@@ -507,6 +511,7 @@
             sss-container-packages
             sss-treesitter-packages
             sss-coreutils
+            sss-hypr-packages
             sss-terminal-emulator-packages
             sss-browser-packages
             sss-latex-packages
