@@ -1,49 +1,49 @@
 
 # Table of Contents
 
--   [What lies here?](#org6747e0f)
-    -   [An operating system (OS) configured in Lisp (Guile Scheme)](#orgd1b7323)
-    -   [Joe's Emacs configuration](#org55be455)
-    -   [Universal session](#org31277c9)
--   [Why ?](#org59f298b)
--   [What is Guix](#org610d8c7)
--   [On Non-free software](#orga84d298)
--   [Keyboard Terminology](#orgb159c46)
--   [How this manual works](#orgd737474)
--   [Customizing SSS](#orgecfa43d)
--   [Per host - per-host.scm](#orge285a67)
--   [Bootstrapping](#org77b3891)
-    -   [Guix Install tips](#org7366b11)
-    -   [Installing SSS on Guix](#org33590f3)
-        -   [Adding channels](#org37c3849)
-        -   [Keeping SSS updated](#orgf2e33a5)
-        -   [Installation of SSS](#org1ca189f)
--   [Showcase](#org9f49240)
--   [login managers, and login screen](#orgdb79e44)
--   [Nix profile](#org579ebad)
--   [Flatpaks](#org9184b3b)
--   [SSS Project](#orgced2e07)
--   [System audio](#org4beed2c)
--   [Sway, resolutions and scaling](#org67a2690)
--   [Wallpapers](#org41d1b25)
--   [Git](#orgecf47af)
--   [Disk space](#org2b84d13)
--   [Bluetooth](#org4302a11)
--   [Virtualization](#orgd99f8ac)
--   [Mime types](#org34593d6)
--   [Troubleshooting FAQ](#org3a61813)
--   [Sway keybindings](#orgcf2d7f1)
-    -   [General keybindings](#org9592eb4)
-    -   [Application keybindings](#orgb417c45)
-    -   [More keybindings](#orge3a4c14)
--   [Emacs keybindings](#orgfe210c6)
-    -   [General non-vanilla bindings](#org116f079)
-    -   [SSS specific keybindings](#orgf547503)
--   [SSS project](#orgc9e300c)
--   [Glossary](#org052c545)
--   [Acronyms](#orgc4152b0)
--   [User Management](#org7ec50ff)
--   [Inheriting an SSS/GNU system](#org1d6a100)
+-   [What lies here?](#org9600e0d)
+    -   [An operating system (OS) configured in Lisp (Guile Scheme)](#orgf6ece34)
+    -   [Joe's Emacs configuration](#org93f92f4)
+    -   [Universal session](#org43515fa)
+-   [Why ?](#org68f3f71)
+-   [What is Guix](#orgbc549d3)
+-   [On Non-free software](#org72b78c9)
+-   [Keyboard Terminology](#org0e888a0)
+-   [How this manual works](#orgd28b3a0)
+-   [Customizing SSS](#org4e26be7)
+-   [Per host - per-host.scm](#orge3f8fec)
+-   [Bootstrapping](#org1b65d00)
+    -   [Guix Install tips](#orgc5e147a)
+    -   [Installing SSS on Guix](#org0b5d291)
+        -   [Adding channels](#orgfcbb005)
+        -   [Keeping SSS updated](#org7fabbd8)
+        -   [Installation of SSS](#org8317d23)
+-   [Showcase](#orgd750e18)
+-   [login managers, and login screen](#org20f0bd1)
+-   [Nix profile](#org4bb109d)
+-   [Flatpaks](#org1704206)
+-   [SSS Project](#org410901f)
+-   [System audio](#org2937722)
+-   [Sway, resolutions and scaling](#org59becfc)
+-   [Wallpapers](#orga254903)
+-   [Git](#org257dcdf)
+-   [Disk space](#org4065f1a)
+-   [Bluetooth](#org91f4a4f)
+-   [Virtualization](#org6c87b08)
+-   [Mime types](#org1a3b149)
+-   [Troubleshooting FAQ](#org7f2d532)
+-   [Sway keybindings](#org519b911)
+    -   [General keybindings](#orgdd38f2a)
+    -   [Application keybindings](#org950e432)
+    -   [More keybindings](#org4670546)
+-   [Emacs keybindings](#org4edbcfb)
+    -   [General non-vanilla bindings](#org3c0a3ca)
+    -   [SSS specific keybindings](#org6cc1ca3)
+-   [SSS project](#orga784b53)
+-   [Glossary](#orgecfe544)
+-   [Acronyms](#org1914ee3)
+-   [User Management](#org432a153)
+-   [Inheriting an SSS/GNU system](#org7d9d380)
 
 ![img](https://jointhefreeworld.org/static-assets/badges/GNU-Guix-c48702.png) ![img](https://jointhefreeworld.org/static-assets/badges/Scheme-Guile-d0730f.png) ![img](https://jointhefreeworld.org/static-assets/badges/Wayland-Hyprland-6a6aff.png) ![img](https://jointhefreeworld.org/static-assets/badges/Emacs-30-a8516e.png)  ![img](https://jointhefreeworld.org/static-assets/badges/Shell-Fish-2fffb2.png) 
 
@@ -68,12 +68,12 @@ I would appreciate if you write your findings when using SSS and if you can, for
 It is recommended to use tagged releases of SSS, as those are considered as stable by the developers.
 
 
-<a id="org6747e0f"></a>
+<a id="org9600e0d"></a>
 
 # What lies here?
 
 
-<a id="orgd1b7323"></a>
+<a id="orgf6ece34"></a>
 
 ## An operating system (OS) configured in Lisp (Guile Scheme)
 
@@ -95,7 +95,7 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
     and more&#x2026;.
 
 
-<a id="org55be455"></a>
+<a id="org93f92f4"></a>
 
 ## Joe's Emacs configuration
 
@@ -107,7 +107,7 @@ An operating system unto itself.
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
 
-<a id="org31277c9"></a>
+<a id="org43515fa"></a>
 
 ## Universal session
 
@@ -115,7 +115,7 @@ I also include a (work in progress) Windows-like session for "non-geek" users, w
 This session uses labwc compositor and waybar.
 
 
-<a id="org59f298b"></a>
+<a id="org68f3f71"></a>
 
 # Why ?
 
@@ -144,7 +144,7 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="org610d8c7"></a>
+<a id="orgbc549d3"></a>
 
 # What is Guix
 
@@ -155,7 +155,7 @@ While you can install GNU Guix on top of an existing GNU/Linux system where it c
 I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: <https://guix.gnu.org/manual/en/html_node/>.
 
 
-<a id="orga84d298"></a>
+<a id="org72b78c9"></a>
 
 # On Non-free software
 
@@ -167,7 +167,7 @@ This means, among other things that SSS:
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="orgb159c46"></a>
+<a id="org0e888a0"></a>
 
 # Keyboard Terminology
 
@@ -216,7 +216,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="orgd737474"></a>
+<a id="orgd28b3a0"></a>
 
 # How this manual works
 
@@ -228,7 +228,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Run `C-c # m` from Emacs, which runs lib/sss-manual.el, exporting the Org document to several other formats (LaTEX, PDF, HTML, Markdown, etc.)
 
 
-<a id="orgecfa43d"></a>
+<a id="org4e26be7"></a>
 
 # Customizing SSS
 
@@ -239,7 +239,7 @@ I took inspiration from many sources, including several color palettes, inspired
 ---
 
 
-<a id="orge285a67"></a>
+<a id="orge3f8fec"></a>
 
 # Per host - per-host.scm
 
@@ -343,11 +343,14 @@ Find here a reference configuration with what is required.
     ;; Additional Labwc startup commands on per-host basis
     (define sss-labwc-extra-startups
     '("wlr-randr --output eDP-1 --scale 1.5  >/dev/null 2>&1 &"))
+    
+    (define sss-hyprland-monitors
+    '("monitor = , preferred, auto, 1"))
 
 ---
 
 
-<a id="org77b3891"></a>
+<a id="org1b65d00"></a>
 
 # Bootstrapping
 
@@ -383,7 +386,7 @@ It is highly recommended to first become familiar with SSS and Guix via a *throw
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
 
-<a id="org7366b11"></a>
+<a id="orgc5e147a"></a>
 
 ## Guix Install tips
 
@@ -405,14 +408,14 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: <https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual>.
 
 
-<a id="org33590f3"></a>
+<a id="org0b5d291"></a>
 
 ## Installing SSS on Guix
 
 Once you have a working Guix base installation on your machine, you are ready to go about installing SSS.
 
 
-<a id="org37c3849"></a>
+<a id="orgfcbb005"></a>
 
 ### Adding channels
 
@@ -431,7 +434,7 @@ Add `nonguix` in your channels file (`$HOME/.config/guix/channels.scm`). This wi
 After adding the channel, perform a `guix pull` from your user account (**no sudo or root**) and let all channels get updated.
 
 
-<a id="orgf2e33a5"></a>
+<a id="org7fabbd8"></a>
 
 ### Keeping SSS updated
 
@@ -440,7 +443,7 @@ You should every now and then update the SSS repo with `git pull`. You also shou
 Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
 
 
-<a id="org1ca189f"></a>
+<a id="org8317d23"></a>
 
 ### Installation of SSS
 
@@ -474,14 +477,14 @@ You might at this point want to reset the font cache for the system and user.
 You can then reboot and you should be greeted by a simple TTY.
 
 
-<a id="org9f49240"></a>
+<a id="orgd750e18"></a>
 
 # Showcase
 
 ![img](https://jointhefreeworld.org/static-assets/sss/resized-sss-2025-02-04.png)  
 
 
-<a id="orgdb79e44"></a>
+<a id="org20f0bd1"></a>
 
 # login managers, and login screen
 
@@ -497,7 +500,7 @@ If you run traditional X11 sessions, you *could* choose to do startx instead of 
 ---
 
 
-<a id="org579ebad"></a>
+<a id="org4bb109d"></a>
 
 # Nix profile
 
@@ -550,7 +553,7 @@ Installing all wanted Nix packages can be done with `make npi` for example and u
 ---
 
 
-<a id="org9184b3b"></a>
+<a id="org1704206"></a>
 
 # Flatpaks
 
@@ -561,7 +564,7 @@ You can find these scripts and the list file at `system/scripts` in this repo an
 Installing all wanted Flatpak packages can be done with `make fpi` for example and updating them with `make fpu`.
 
 
-<a id="orgced2e07"></a>
+<a id="org410901f"></a>
 
 # SSS Project
 
@@ -574,7 +577,7 @@ Find the backlog and [project management of SSS here](../project-management.md).
 ---
 
 
-<a id="org4beed2c"></a>
+<a id="org2937722"></a>
 
 # System audio
 
@@ -585,7 +588,7 @@ In practice this means that any user account in your system that wants to make u
 You will also want to set the `RTC_USE_PIPEWIRE` variable to `true`. This is already the case by default in SSS.
 
 
-<a id="org67a2690"></a>
+<a id="org59becfc"></a>
 
 # Sway, resolutions and scaling
 
@@ -605,7 +608,7 @@ You might want to customize things though, here follow some examples of commands
 ---
 
 
-<a id="org41d1b25"></a>
+<a id="orga254903"></a>
 
 # Wallpapers
 
@@ -616,7 +619,7 @@ This uses swww and thus can load animated images as well and do fancy transition
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
 
-<a id="orgecf47af"></a>
+<a id="org257dcdf"></a>
 
 # Git
 
@@ -632,7 +635,7 @@ My settings are:
 ---
 
 
-<a id="org2b84d13"></a>
+<a id="org4065f1a"></a>
 
 # Disk space
 
@@ -658,7 +661,7 @@ If you'd like to find the largest files in your disk, here’s an example comman
 ---
 
 
-<a id="org4302a11"></a>
+<a id="org91f4a4f"></a>
 
 # Bluetooth
 
@@ -698,7 +701,7 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. That
 ---
 
 
-<a id="orgd99f8ac"></a>
+<a id="org6c87b08"></a>
 
 # Virtualization
 
@@ -757,7 +760,7 @@ After saving/applying this new static route, external connectivity should work f
 ---
 
 
-<a id="org34593d6"></a>
+<a id="org1a3b149"></a>
 
 # Mime types
 
@@ -793,7 +796,7 @@ At `~/.config/mimeapps.list` you get this:
 ---
 
 
-<a id="org3a61813"></a>
+<a id="org7f2d532"></a>
 
 # Troubleshooting FAQ
 
@@ -827,12 +830,12 @@ A: Try with `gpg --pinentry-mode loopback --full-gen-key`. Otherwise try other o
 ---
 
 
-<a id="orgcf2d7f1"></a>
+<a id="org519b911"></a>
 
 # Sway keybindings
 
 
-<a id="org9592eb4"></a>
+<a id="orgdd38f2a"></a>
 
 ## General keybindings
 
@@ -899,7 +902,7 @@ A: Try with `gpg --pinentry-mode loopback --full-gen-key`. Otherwise try other o
 </table>
 
 
-<a id="orgb417c45"></a>
+<a id="org950e432"></a>
 
 ## Application keybindings
 
@@ -961,7 +964,7 @@ A: Try with `gpg --pinentry-mode loopback --full-gen-key`. Otherwise try other o
 </table>
 
 
-<a id="orge3a4c14"></a>
+<a id="org4670546"></a>
 
 ## More keybindings
 
@@ -1015,12 +1018,12 @@ A: Try with `gpg --pinentry-mode loopback --full-gen-key`. Otherwise try other o
 ---
 
 
-<a id="orgfe210c6"></a>
+<a id="org4edbcfb"></a>
 
 # Emacs keybindings
 
 
-<a id="org116f079"></a>
+<a id="org3c0a3ca"></a>
 
 ## General non-vanilla bindings
 
@@ -1057,7 +1060,7 @@ A: Try with `gpg --pinentry-mode loopback --full-gen-key`. Otherwise try other o
 </table>
 
 
-<a id="orgf547503"></a>
+<a id="org6cc1ca3"></a>
 
 ## SSS specific keybindings
 
@@ -1101,7 +1104,7 @@ A: Try with `gpg --pinentry-mode loopback --full-gen-key`. Otherwise try other o
 ---
 
 
-<a id="orgc9e300c"></a>
+<a id="orga784b53"></a>
 
 # SSS project
 
@@ -1114,7 +1117,7 @@ Find here the Backlog and Kanban boards for SSS: <https://lucidplan.jointhefreew
 ---
 
 
-<a id="org052c545"></a>
+<a id="orgecfe544"></a>
 
 # Glossary
 
@@ -1133,7 +1136,7 @@ Find here the Backlog and Kanban boards for SSS: <https://lucidplan.jointhefreew
 ---
 
 
-<a id="orgc4152b0"></a>
+<a id="org1914ee3"></a>
 
 # Acronyms
 
@@ -1149,7 +1152,7 @@ Find here the Backlog and Kanban boards for SSS: <https://lucidplan.jointhefreew
 ---
 
 
-<a id="org7ec50ff"></a>
+<a id="org432a153"></a>
 
 # User Management
 
@@ -1160,7 +1163,7 @@ When everything is in place, add a password to the user with `sudo passwd <user>
 ---
 
 
-<a id="org1d6a100"></a>
+<a id="org7d9d380"></a>
 
 # Inheriting an SSS/GNU system
 

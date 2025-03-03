@@ -241,6 +241,9 @@ Find here a reference configuration with what is required.
   (define sss-labwc-extra-startups
   '("wlr-randr --output eDP-1 --scale 1.5  >/dev/null 2>&1 &"))
 
+  (define sss-hyprland-monitors
+  '("monitor = , preferred, auto, 1"))
+
 
 #+end_src
 

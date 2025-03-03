@@ -268,8 +268,11 @@
                                                          sss-keyboard-caps-to-ctrl
                                                          #:sss-active-palette
                                                          sss-active-palette
+                                                         #:sss-hyprland-monitors
+                                                         sss-hyprland-monitors 
                                                          #:sss-hyprland-extra-startups
-                                                         sss-sway-extra-startups)))
+                                                         sss-hyprland-extra-startups
+                                                         )))
              ;; Qutebrowser configurations (web browser)
              (".config/qutebrowser/config.py" ,(plain-file "config.py"
                                                            (sss-qutebrowser-config

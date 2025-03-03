@@ -224,8 +224,8 @@
                                 sss-keyboard-layout
                                 sss-keyboard-caps-to-ctrl
                                 sss-active-palette
+                                sss-hyprland-monitors 
                                 (sss-hyprland-extra-startups '())
-                                (sss-hyprland-monitors '("monitor = , preferred, auto, 1"))
                                 )
     (let* ((wall (sss-hyprland-wallpaper #:sss-active-palette
                                          sss-active-palette
@@ -279,7 +279,7 @@
       (string-join config-lines "\n")))
   (export sss-hyprland-config))
 
-(newline)
-(display (sss-hyprland-config #:sss-active-palette 'ef-dream
-                              #:sss-keyboard-layout "us"
-                              #:sss-clone-dir "some"))
+;; (newline)
+;; (display (sss-hyprland-config #:sss-active-palette 'ef-dream
+;;                               #:sss-keyboard-layout "us"
+;;                               #:sss-clone-dir "some"))

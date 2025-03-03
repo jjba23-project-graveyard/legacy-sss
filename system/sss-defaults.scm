@@ -108,10 +108,18 @@
 (define sss-sway-extra-startups
   '())
 
+;; Additional Hyprland startup commands on per-host basis
+(define sss-hyprland-extra-startups
+  '())
+
 ;; Additional Labwc startup commands on per-host basis
 (define sss-labwc-extra-startups
   '())
 
+(define sss-hyprland-monitors 
+  '("monitor = , preferred, auto, 1"))
+
 ;;;
 ;;; end SSS defaults section
 ;;;
+
