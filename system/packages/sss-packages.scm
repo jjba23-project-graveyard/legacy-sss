@@ -412,7 +412,6 @@
 
         binutils
 
-        qutebrowser
 
         gnome-calculator
         cheese
@@ -463,7 +462,6 @@
 
         gthumb
 
-        power-profiles-daemon
 
         scenefx
         swayfx
@@ -490,8 +488,6 @@
         blueman
         hplip
 
-        autoconf
-        automake
         libltdl
         libtool
 
