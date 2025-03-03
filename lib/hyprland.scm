@@ -225,7 +225,7 @@
                                 sss-keyboard-caps-to-ctrl
                                 sss-active-palette
                                 (sss-hyprland-extra-startups '())
-                                (sss-hyprland-monitors '())
+                                (sss-hyprland-monitors '("monitor = , preferred, auto, 1"))
                                 )
     (let* ((wall (sss-hyprland-wallpaper #:sss-active-palette
                                          sss-active-palette
