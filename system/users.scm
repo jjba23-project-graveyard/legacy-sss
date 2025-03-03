@@ -21,19 +21,27 @@
              (gnu services)
              (guix packages))
 
+(use-package-modules shells)
+
 ;; User account for Josep Bigorra
 (define sss-joe-user-account
   (user-account
-   (name "joe")
-   (group "users")
-   (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))))
+    (name "joe")
+    (group "users")
+    (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))
+    (comment "Josep Bigorra's account")
+    (shell (file-append fish "/run/current-system/profile/bin/fish"))
+    (home-directory "/home/joe")))
 
 ;; User account for Manon van den Bout
 (define sss-manon-user-account
   (user-account
     (name "manon")
     (group "users")
-    (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))))
+    (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))
+    (comment "Manon van den Bout's account")
+    (shell (file-append fish "/run/current-system/profile/bin/fish"))
+    (home-directory "/home/manon")))
 
 (define-public sss-users
   (cons* sss-joe-user-account sss-manon-user-account %base-user-accounts))

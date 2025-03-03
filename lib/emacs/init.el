@@ -730,16 +730,19 @@ According to size, color and font family"
   :hook ((org-mode . sss-org-mode))
   :bind (:map org-mode-map 
               ("C-c #" . nil))
+  :bind (("C-c l v" . org-toggle-link-display))
   :init
   (setq org-todo-keywords '((sequence "TODO" "WIP" "REVIEWING" "|" "DONE")))
   (setq org-log-done 'time)
   (setq org-hide-emphasis-markers t)
+  (setq org-link-descriptive nil)
   :config  
   (defun sss-org-mode ()
     (variable-pitch-mode 0)
     (org-modern-mode)
     (org-indent-mode)
-    (auto-fill-mode 0)))
+    (auto-fill-mode 0)
+    (org-restart-font-lock)))
 
 (use-package pandoc-mode :ensure t)
 
