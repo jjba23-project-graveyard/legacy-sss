@@ -63,6 +63,7 @@
              (sss fontconfig)
              (sss bash)
              (sss mime)
+             (sss fish)
              (sss gtk)
              (sss portals)
              (sss qt)
@@ -279,6 +280,11 @@
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
                                                  "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
+             ;; Fish shell configuration
+             (".config/fish/config.fish" ,(plain-file "config.fish"
+                                                      (sss-fish-config-service
+                                                       #:sss-clone-dir
+                                                       sss-clone-dir)))
              ;; Emacs initialization file
              (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))
              ;; Emacs bridge with SSS

@@ -28,29 +28,33 @@
                              user-email
                              user-initials)
     (define sss-bridge-emacs-vars
-      `((user-personal-name . ,(format #f "\"~a\"" user-name))
-        (user-personal-full-name . ,(format #f "\"~a\"" user-full-name))
-        (user-personal-email . ,(format #f "\"~a\"" user-email))
-        (user-personal-initials . ,(format #f "\"~a\"" user-initials))
+      `((user-personal-name unquote
+                            (format #f "\"~a\"" user-name))
+        (user-personal-full-name unquote
+                                 (format #f "\"~a\"" user-full-name))
+        (user-personal-email unquote
+                             (format #f "\"~a\"" user-email))
+        (user-personal-initials unquote
+                                (format #f "\"~a\"" user-initials))
         (sss-emacs-theme unquote
                          (cond
-                          ((equal? active-palette
-                                   'sss-palette-ef-dream)
-                           "'ef-dream")
-                          ((equal? active-palette
-                                   'sss-palette-ef-cyprus)
-                           "'ef-cyprus")
-                          ((equal? active-palette
-                                   'sss-palette-ef-autumn)
-                           "'ef-autumn")
-                          ((equal? active-palette
-                                   'sss-palette-heavy-metal)
-                           "'ef-tritanopia-dark")
-                          ((equal? active-palette
-                                   'sss-palette-solarized-light)
-                           "'solarized-light")
-                          (else "'ef-bio")))))
-    
+                           ((equal? active-palette
+                                    'sss-palette-ef-dream)
+                            "'ef-dream")
+                           ((equal? active-palette
+                                    'sss-palette-ef-cyprus)
+                            "'ef-cyprus")
+                           ((equal? active-palette
+                                    'sss-palette-ef-autumn)
+                            "'ef-autumn")
+                           ((equal? active-palette
+                                    'sss-palette-heavy-metal)
+                            "'ef-tritanopia-dark")
+                           ((equal? active-palette
+                                    'sss-palette-solarized-light)
+                            "'solarized-light")
+                           (else "'ef-bio")))))
+
     (with-output-to-string (lambda ()
                              (display "(setq-default")
                              (for-each (lambda (v)
@@ -63,14 +67,16 @@
 
 (test-begin "Emacs bridge tests")
 (test-assert "bridge is correctly computes"
-  (equal? (string-append "(setq-default\n    user-personal-name \"John\"\n"
-                         "    user-personal-full-name \"John Doe\"\n"
-                         "    user-personal-email \"john@doe.com\"\n"
-                         "    user-personal-initials \"JD\"\n"
-                         "    sss-emacs-theme 'ef-bio)\n")
-          (sss-bridge-emacs #:active-palette 'ef-dream
-                            #:user-name "John"
-                            #:user-full-name "John Doe"
-                            #:user-email "john@doe.com"
-                            #:user-initials "JD")))
+             (equal? (string-append "(setq-default
+    user-personal-name \"John\"
+"
+                                    "    user-personal-full-name \"John Doe\"\n"
+                                    "    user-personal-email \"john@doe.com\"\n"
+                                    "    user-personal-initials \"JD\"\n"
+                                    "    sss-emacs-theme 'ef-bio)\n")
+                     (sss-bridge-emacs #:active-palette 'ef-dream
+                                       #:user-name "John"
+                                       #:user-full-name "John Doe"
+                                       #:user-email "john@doe.com"
+                                       #:user-initials "JD")))
 (test-end)
