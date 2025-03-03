@@ -59,7 +59,7 @@ Note: Screenshot below might be outdated and no longer representative of the cur
 ** Universal session
 
 I also include a (work in progress) Windows-like session for "non-geek" users, with "normal floating windows".
-This session uses labwc compositor and sfwbar.
+This session uses labwc compositor and waybar.
 
 * Why ?
 

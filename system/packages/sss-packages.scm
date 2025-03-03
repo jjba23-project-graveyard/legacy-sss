@@ -27,7 +27,6 @@
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
   #:use-module (guix build-system guile)
-  #:use-module (guix build-system meson)
   #:use-module (guix build-system qt)
   #:use-module (guix packages)
   #:use-module (guix utils)
@@ -105,7 +104,6 @@
                      fonts
                      pulseaudio
                      libreoffice
-                     wm
                      lisp-xyz
                      web-browsers
                      audio
@@ -426,7 +424,6 @@
         obs
         libreoffice
         gimp
-        imagemagick
         libwebp
         feh
 
@@ -463,21 +460,16 @@
         bsd-games
 
         power-profiles-daemon
-        libltdl
-        scenefx
-        swayfx
-        light
+
         gthumb
 
         power-profiles-daemon
-        libltdl
+
         scenefx
         swayfx
         light
 
         gdb
-
-        imagemagick
 
         transmission
         transmission-remote-gtk
@@ -507,7 +499,7 @@
 
         autoconf
         automake
-        libltdl
+
         libtool
 
         perl
