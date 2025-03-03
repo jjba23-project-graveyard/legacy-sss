@@ -159,17 +159,21 @@
                                                          wall)))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hyprland-setting 'exec-once
-                                                startup-item))
+                                                                           startup-item))
                                              startup-programs))
            (serialized-input-config (serialize-hyprland-section #:section 'input
                                                                 #:settings (sss-hyprland-input-config
                                                                             #:sss-keyboard-layout
                                                                             sss-keyboard-layout)))
+           (serialized-general-config (serialize-hyprland-section #:section 'general
+                                                                  #:settings sss-hyprland-general-config))
            (config-lines (append '("# ====== SSS Hyprland configuration ======"
                                    "" "" "# ====== Startup programs ======" "")
                                  serialized-startup-programs
-                                 '("" "# ====== Input configuration ======" "")
-                                 (list serialized-input-config))))
+                                 `("" "" "# ====== General configuration ======" ,serialized-general-config)
+                                 
+                                 `("" "# ====== Input configuration ======" "" ,serialized-input-config)
+                                 )))
       
       (string-join config-lines "\n")))
   (export sss-hyprland-config))
