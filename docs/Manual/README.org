@@ -32,19 +32,21 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 ** An operating system (OS) configured in Lisp (Guile Scheme)
 
 - GNU Guix system configuration
-- SwayFX configuration
-- Labwc configuration
-- Conky configuration
+- Hyprland configuration (complete ⭐ 🎊)
+- 🎨 Theme palettes that affect the entire system
+- Labwc configuration (work-in progress)
+- Fish shell configuration
+- Conky configuration  
 - Foot terminal emulator
-- Fish shell configuration  
 - Rofi application launcher
 - Waybar configuration and style
 - Mako configuration and style
 - multi-user Git configuration setup (work/personal)
 - Qutebrowser configurations
 - Multi user configurations
-- 🎨 Theme palettes that affect the entire system
-and more....  
+- SwayFX configuration (discontinued)
+
+  and more....
   
 ** Joe's Emacs configuration
 
@@ -55,7 +57,7 @@ An operating system unto itself.
 
 Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
-[[https://jointhefreeworld.org/static-assets/sss/resized-sss-2025-02-04.png]]  
+
 
 ** Universal session
 
@@ -327,6 +329,7 @@ You should every now and then update the SSS repo with ~git pull~. You also shou
 
 Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
 
+
 *** Installation of SSS
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
@@ -360,16 +363,22 @@ sudo fc-cache -frv
 
 You can then reboot and you should be greeted by a simple TTY.
 
-** On login managers, and login screens
+
+* Showcase
+
+[[https://jointhefreeworld.org/static-assets/sss/resized-sss-2025-02-04.png]]  
+
+
+* login managers, and login screen
 
 SSS uses *no login managers* like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not).
 That being said, feel free to use your own.
 
-I like to alias my login command to ~gui~, or sometimes I directly run ~sway~ from the TTY.
+I like to alias my login command to ~gui~, or sometimes I directly run ~hyprland~ or ~labwc~ from the TTY.
 
 Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's computer vibe.
 
-If you run traditional X11 sessions, you could choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
+If you run traditional X11 sessions, you /could/ choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 
 -----
 
@@ -629,8 +638,8 @@ Refer to the ~sss mime~ module at ~lib/~ and the ~sss-mimeapps-list-file~ functi
 
 #+begin_src scheme
   (define-public sss-mime-default-applications
-  '((application/pdf org.gnome.Evince google-chrome firefox)
-    (text/html firefox emacsclient)))
+  '((application/pdf org.gnome.Evince icecat)
+    (text/html icecat emacsclient)))
 #+end_src
 
 The XDG MIME Applications specification builds upon the shared MIME database and desktop entries to provide default applications.

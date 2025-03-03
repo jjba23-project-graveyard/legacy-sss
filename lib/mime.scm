@@ -40,7 +40,7 @@
   '())
 
 (define-public sss-mime-default-applications
-  '((application/pdf org.gnome.Evince google-chrome firefox)
+  '((application/pdf org.gnome.Evince google-chrome icecat)
     (text/html google-chrome firefox emacsclient)
     (text/plain emacsclient geany)
     (text/xml emacsclient geany)

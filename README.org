@@ -28,7 +28,7 @@ I would appreciate if you write your findings when using SSS and if you can, for
 It is recommended to use tagged releases of SSS, as those are considered as stable by the developers.
 
 
-** SSS Manuals
+* SSS Manuals
 
 I strive to provide proper and extensive documentation on the Supreme Sexp System (SSS), in several formats, available at your convenience.
 
@@ -39,26 +39,28 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 
 
 
-** What lies here?
+* What lies here?
 
-*** An operating system (OS) configured in Lisp (Guile Scheme)
+** An operating system (OS) configured in Lisp (Guile Scheme)
 
 - GNU Guix system configuration
-- SwayFX configuration
-- Labwc configuration
+- Hyprland configuration (complete ⭐ 🎊)
+- 🎨 Theme palettes that affect the entire system
+- Labwc configuration (work-in progress)
+- Fish shell configuration
 - Conky configuration  
 - Foot terminal emulator
-- Fish shell configuration
 - Rofi application launcher
 - Waybar configuration and style
 - Mako configuration and style
 - multi-user Git configuration setup (work/personal)
 - Qutebrowser configurations
 - Multi user configurations
-- 🎨 Theme palettes that affect the entire system
+- SwayFX configuration (discontinued)
+
   and more....
   
-*** Joe's Emacs configuration
+** Joe's Emacs configuration
 
 An operating system unto itself.
 
