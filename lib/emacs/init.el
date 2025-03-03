@@ -5,8 +5,6 @@
 ;; Author: Josep Bigorra <jjbigorra@gmail.com>
 ;; Maintainer: Josep Bigorra <jjbigorra@gmail.com>
 ;; URL: https://codeberg.org/jjba23/sss
-;; Package: emacs
-;; Package-Requires: ((emacs "30.0"))
 
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,8 +23,6 @@
 
 ;; This Emacs configuration was last tested to work properly with:
 ;;   - GNU Emacs 30.0.92 (build 1, x86_64-pc-linux-gnu, GTK+ Version 3.24.41, cairo version 1.18.0)
-
-;; TODO
 
 ;;; Code:
 
@@ -141,21 +137,19 @@
          )
   :init
   (setq welkomscherm-bookmarks-personal
-        '((("sss" . "~/Ontwikkeling/Persoonlijk/sss/")
-           ("emacs cfg" . "~/Ontwikkeling/Persoonlijk/sss/lib/emacs/init.el")
-           ("sway" . "~/Ontwikkeling/Persoonlijk/sss/lib/sway.scm")
-           ("guix pkgs" . "~/Ontwikkeling/Persoonlijk/sss/system/packages.scm")
-           )
+        `((("sss" . ,(string-replace "$HOME" "~" sss-clone-dir))
+           ("emacs cfg" . ,(format "%s/lib/emacs/init.el" (string-replace "$HOME" "~" sss-clone-dir)))
+           ("sway" . ,(format "%s/lib/sway.scm" (string-replace "$HOME" "~" sss-clone-dir))))
           (("notes" . "~/Ontwikkeling/Persoonlijk/private-notes/")
-           ("iter-vitae" . "~/Ontwikkeling/Persoonlijk/iter-vitae/")
            ("pop-test" . "~/Ontwikkeling/Persoonlijk/pop-test/")
+           ("iter-vitae" . "~/Ontwikkeling/Persoonlijk/iter-vitae/")
            ("jointhefreeworld" . "~/Ontwikkeling/Persoonlijk/jointhefreeworld/"))
           (("wolk-jjba" . "~/Ontwikkeling/Persoonlijk/wolk-jjba/")
            ("wikimusic" . "~/Ontwikkeling/Persoonlijk/wikimusic/")
            ("lucidplan" . "~/Ontwikkeling/Persoonlijk/lucidplan/")
            ("byggsteg" . "~/Ontwikkeling/Persoonlijk/byggsteg/"))))
   (setq welkomscherm-bookmarks-work
-        '((("Vandebron" . "~/Ontwikkeling/Werk/Vandebron/")
+        '((("VDB" . "~/Ontwikkeling/Werk/Vandebron/")
            ("onboarding" . "~/Ontwikkeling/Werk/onboarding/"))          
           ))
 
@@ -401,7 +395,7 @@ According to size, color and font family"
 
 ;; Dev ends here
 
-;; Emacs UI/UX/DX
+;; ====== Emacs UI/UX/DX ======
 
 (use-package ef-themes
   :ensure (:host github :repo "protesilaos/ef-themes" :branch "main")
@@ -485,7 +479,7 @@ According to size, color and font family"
          ("C-c n c" . org-roam-capture)
          ("C-c n j" . org-roam-dailies-capture-today))
   :init
-  (setq org-roam-directory (file-truename "~/Ontwikkeling/Persoonlijk/private-notes/Roam")
+  (setq org-roam-directory (file-truename (string-replace "$HOME" "~" sss-notes-roam-dir))
         org-roam-v2-ack t
         org-roam-node-display-template (concat "$\{title:*} " (propertize "$\{tags:10}" 'face 'org-tag)))
   :config
@@ -571,15 +565,11 @@ According to size, color and font family"
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-
-(use-package sly 
-  :ensure t  
-  :config (setq inferior-lisp-program "sbcl"))
-
 (use-package f :ensure t)
 
 (use-package speed-type :ensure t)
 
+;; TODO work on debugger support (use GUD? Realgud? DAPE?)
 ;; (use-package dape 
 ;;   :ensure t  
 ;;   :init (setq dape-buffer-window-arrangement 'gud))
@@ -684,33 +674,6 @@ According to size, color and font family"
   :bind (("C-c d d" . direnv-mode)
          ("C-c d a" . direnv-allow)))
 
-(use-package mu4e
-  :ensure nil
-  :defer 3
-  :bind (("C-c C-m m" . mu4e)
-         ("C-c C-m s" . mu4e-search)
-         ("C-c C-m h" . mu4e-display-manual)
-         ("C-c C-m f" . mu4e-headers-toggle-full-search))
-  :config
-  (setq mu4e-change-filenames-when-moving t
-        mu4e-get-mail-command "true"
-        mu4e-update-interval nil
-        mu4e-maildir "~/Mail/jjbigorra@gmail.com/"
-        mu4e-headers-result-limit 1000)    
-
-  (setq mu4e-drafts-folder "/Concepten"
-        mu4e-refile-folder "/Archive"
-        mu4e-sent-folder   "/Archive"
-        mu4e-trash-folder  "/Prullenbak")
-
-  (setq mu4e-maildir-shortcuts
-        '((:maildir "/Inbox"    :key ?i)
-          (:maildir "/Archive" :key ?s)
-          (:maildir "/Prullenbak"     :key ?t)
-          (:maildir "/Concepten"    :key ?d)
-          (:maildir "/Archive"  :key ?a))
-        ))
-
 (use-package aggressive-indent
   :ensure t
   :hook ((emacs-lisp-mode . aggressive-indent-mode)
@@ -761,15 +724,6 @@ According to size, color and font family"
   :ensure t  
   :hook ((dired-mode . nerd-icons-dired-mode)))
 
-(use-package geiser
-  :ensure t
-  :init
-  (setq geiser-active-implementations '(guile))
-  (setq geiser-mode-auto-p nil))
-
-(use-package geiser-guile
-  :ensure t)
-
 (use-package queue
   :ensure (:host github :repo "emacs-straight/queue" :branch "master")
   :demand t)
@@ -811,10 +765,6 @@ According to size, color and font family"
   (add-hook 'completion-at-point-functions #'cape-history)
   (add-hook 'completion-at-point-functions #'cape-elisp-block))
 
-(defun sss-bookmark-emacs-config ()
-  "Visit sss bookmark: Emacs main init.el config file."
-  (interactive) 
-  (find-file "~/Ontwikkeling/Persoonlijk/sss/lib/emacs/init.el"))
 
 (defun new-frame-setup (frame)
   (if (display-graphic-p frame)
@@ -830,31 +780,31 @@ According to size, color and font family"
 (defun sss-joe-reconfigure ()
   "Rebuild GNU Guix Joe's configs."
   (interactive)
-  (let ((default-directory "~/Ontwikkeling/Persoonlijk/sss"))
+  (let ((default-directory (string-replace "$HOME" "~" sss-clone-dir)))
     (async-shell-command "make jr")))
 
 (defun sss-publish-manual ()
   "Rebuild GNU Guix Joe's config manual."
   (interactive)
-  (let ((default-directory "~/Ontwikkeling/Persoonlijk/sss"))
+  (let ((default-directory (string-replace "$HOME" "~" sss-clone-dir)))
     (async-shell-command "make publish-manual")))
 
 (defun sss-full-reconfigure ()
   "Fully Rebuild GNU Guix Joe's configs and Joe's user."
   (interactive)
-  (let ((default-directory "~/Ontwikkeling/Persoonlijk/sss"))
+  (let ((default-directory (string-replace "$HOME" "~" sss-clone-dir)))
     (async-shell-command "make fr")))
 
 (defun sss-sys-reconfigure ()
   "Rebuild GNU Guix Joe's configs."
   (interactive)
-  (let ((default-directory "~/Ontwikkeling/Persoonlijk/sss"))
+  (let ((default-directory (string-replace "$HOME" "~" sss-clone-dir)))
     (async-shell-command "make sr")))
 
 (defun sss-sys-update ()
   "Update GNU Guix packages."
   (interactive)
-  (let ((default-directory "~/Ontwikkeling/Persoonlijk/sss"))
+  (let ((default-directory (string-replace "$HOME" "~" sss-clone-dir)))
     (async-shell-command "make update")))
 
 (use-package flymake
@@ -863,13 +813,6 @@ According to size, color and font family"
 	("C-c ! n" . flymake-goto-next-error)
 	("C-c ! p" . flymake-show-project-diagnostics)
 	("C-c ! f" . flymake-mode)))
-
-;; (use-package flymake-proselint
-;;   :ensure (:host github :repo "emacs-compat/flymake-proselint" :branch "master")
-;;   :hook ((text-mode . (lambda () (flymake-mode)(flymake-proselint-setup)))
-;;          (markdown-mode . (lambda () (flymake-mode)(flymake-proselint-setup)))
-;;          (org-mode . (lambda () (flymake-mode)(flymake-proselint-setup))))
-;;   )
 
 (use-package jinx
   :ensure nil
@@ -891,7 +834,8 @@ According to size, color and font family"
   )
 
 
-;; Emacs Multimedia System
+;; ====== Emacs Multimedia System ======
+
 (use-package emms
   :ensure t
   :init
@@ -930,10 +874,18 @@ According to size, color and font family"
 
 
 
+;; ====== SSS Emacs-Lisp functions ======
 
-;;
-;; Configure Emacs native features
-;;
+(defun sss-uuidgen ()
+  (interactive)
+  (let ((uid (string-replace "\n" "" (shell-command-to-string "uuidgen"))))
+    (message (format "generated UUID: %s" uid))
+    (kill-new uid)
+    ))
+
+
+;; ====== Emacs built-in features ======
+
 
 (use-package which-key 
   :ensure nil
@@ -967,14 +919,10 @@ According to size, color and font family"
   (erc-services-mode 1)
   (erc-update-modules))
 
-;;
-;; Emacs-self features
-;;
 (use-package emacs 
   :ensure nil 
   :bind (("C-x C-b" . ibuffer) 
          ("C-c a h" . highlight-compare-buffers) 
-         ("C-c b e" . sss-bookmark-emacs-config)
          ("C-c l d" . toggle-debug-on-error)
          ("C-c l e" . eval-buffer)
          ("C-c C-m C-s" . gnus-group-read-ephemeral-group)
@@ -1015,16 +963,9 @@ According to size, color and font family"
   (menu-bar-mode -1) 
   (delete-selection-mode +1)
 
-  (defun sss-uuidgen ()
-    (interactive)
-    (let ((uid (string-replace "\n" "" (shell-command-to-string "uuidgen"))))
-      (message (format "generated UUID: %s" uid))
-      (kill-new uid)
-      ))
-
-  ;; when in wayland this can be nice:
-  (set-frame-parameter nil 'alpha-background 86) 
-  (add-to-list 'default-frame-alist '(alpha-background . 86))
+  (ignore-errors
+    (set-frame-parameter nil 'alpha-background 86) 
+    (add-to-list 'default-frame-alist '(alpha-background . 86)))
   
   (when (fboundp 'windmove-default-keybindings) 
     (windmove-default-keybindings))
