@@ -39,7 +39,11 @@
 
 ;; load system packages and definitions
 (load "./packages/conky.scm")
+(load "./packages/fonts.scm")
 (load "./packages/sss-packages.scm")
+
+;; load system users
+(load "./users.scm")
 
 (use-modules (sss packages))
 
@@ -88,24 +92,12 @@
                      base
                      idutils)
 
-;; User account for Josep Bigorra
-(define sss-joe-user-account
-  (user-account
-    (name "joe")
-    (group "users")
-    (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))))
-
-;; User account for Manon van den Bout
-(define sss-manon-user-account
-  (user-account
-    (name "manon")
-    (group "users")
-    (supplementary-groups '("wheel" "netdev" "audio" "video" "input" "libvirt"))))
-
-;; Cron job destined to fetch WikiMusic backups from my production server to my local manchines
+;; Cron job destined to fetch WikiMusic backups from my production server to my local machines
 (define wikimusic-fetch-backups-job
   '(job "0 0 * * *"
-    "mkdir -p $HOME/Documenten/wikimusic-backups && scp -r joe@wolk-jjba:/srv/wikimusic/backups/ $HOME/Documenten/wikimusic-backups/"))
+        (string-append "mkdir -p $HOME/Documenten/wikimusic-backups &&"
+                       " scp -r joe@wolk-jjba:/wolk-jjba-backups/wikimusic/*"
+                       " $HOME/Documenten/wikimusic-backups/")))
 
 ;; Setup system cron jobs
 (define sss-cron-jobs-service
@@ -219,8 +211,7 @@
 
   (file-systems (append sss-filesystems %base-file-systems))
 
-  (users (cons* sss-joe-user-account sss-manon-user-account
-                %base-user-accounts))
+  (users sss-users)
 
   (packages (append (sss-system-packages #:per-host-packages
                                          sss-per-host-packages) %base-packages))

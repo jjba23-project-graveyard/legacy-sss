@@ -23,11 +23,11 @@
   #:use-module (nongnu packages music)
   #:use-module (gnu services nix)
   #:use-module (sss packages conky)
+  #:use-module (sss packages fonts)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
   #:use-module (guix build-system guile)
-  #:use-module (guix build-system meson)
   #:use-module (guix build-system qt)
   #:use-module (guix packages)
   #:use-module (guix utils)
@@ -73,6 +73,7 @@
                      curl
                      cups
                      terminals
+                     shells
                      video
                      image
                      compression
@@ -105,7 +106,6 @@
                      fonts
                      pulseaudio
                      libreoffice
-                     wm
                      lisp-xyz
                      web-browsers
                      audio
@@ -140,62 +140,6 @@
   (if (string-prefix? "x86_64" architecture)
       (specification->package pkg)
       (specification->package "curl")))
-
-(define-public font-adwaita
-  (package
-    (name "font-adwaita")
-    (version "48.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri
-        "https://download.gnome.org/sources/adwaita-fonts/48/adwaita-fonts-48.0.tar.xz")
-       (sha256
-        (base32 "05slzfhb5488v94syrry9jfbldaid6xpnq54dac6zq8qv4lz8bhx"))))
-    (build-system font-build-system)
-    (home-page "https://gitlab.gnome.org/GNOME/adwaita-fonts")
-    (synopsis "Adwaita font families, sans and mono")
-    (description
-     "Adwaita Sans, a variation of Inter, and Adwaita Mono, Iosevka customized to match Inter.")
-    (license license:gpl3+)))
-
-(define-public font-inter
-  (package
-    (name "font-inter")
-    (version "4.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri
-        "https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip")
-       (sha256
-        (base32 "07miarbl5ain7pg7sxlrb2j4m9prbriacyqpv1mvckwxlkagv0wq"))))
-    (build-system font-build-system)
-    (home-page "https://github.com/rsms/inter")
-    (synopsis "Inter is a sans serif font family with high readability.")
-    (description
-     "Inter is a typeface carefully crafted & designed for computer screens. Inter features a tall x-height to aid in readability of mixed-case and lower-case text. Inter is a variable font with several OpenType features, like contextual alternates that adjusts punctuation.")
-    (license license:silofl1.1)))
-
-(define-public font-monaspace
-  (package
-    (name "font-monaspace")
-    (version "1.101")
-    (source
-     (origin
-       (method url-fetch)
-       (uri
-        "https://github.com/githubnext/monaspace/archive/refs/tags/v1.101.tar.gz")
-       (sha256
-        (base32 "076gx85and4xb262y0rbqvy7f6w732krzlh236xr7v3zbsw1h872"))))
-    (build-system font-build-system)
-    (home-page "https://monaspace.githubnext.com")
-    (synopsis "An innovative superfamily of fonts for code")
-    (description
-     "The Monaspace type system is a monospaced type superfamily with some modern tricks up its sleeve.
-     It consists of five variable axis typefaces. Each one has a distinct voice, but they are all metrics-compatible with one another,
-     allowing you to mix and match them for a more expressive typographical palette.")
-    (license license:silofl1.1)))
 
 ;; TODO install to right location where Kvantum can see it?
 (define-public sss-kv-yaru-colors
@@ -414,8 +358,6 @@
 
         binutils
 
-        qutebrowser
-
         gnome-calculator
         cheese
         gnome-system-monitor
@@ -426,7 +368,6 @@
         obs
         libreoffice
         gimp
-        imagemagick
         libwebp
         feh
 
@@ -463,21 +404,14 @@
         bsd-games
 
         power-profiles-daemon
-        libltdl
-        scenefx
-        swayfx
-        light
+
         gthumb
 
-        power-profiles-daemon
-        libltdl
         scenefx
         swayfx
         light
 
         gdb
-
-        imagemagick
 
         transmission
         transmission-remote-gtk
@@ -498,8 +432,6 @@
         blueman
         hplip
 
-        autoconf
-        automake
         libltdl
         libtool
 
@@ -507,7 +439,7 @@
 
         autoconf
         automake
-        libltdl
+
         libtool
 
         perl
@@ -552,6 +484,9 @@
         aspell-dict-en
         aspell-dict-ca))
 
+(define sss-shell-packages
+  (list fish))
+
 (define sss-emacs-packages
   (list emacs-jinx))
 
@@ -575,6 +510,7 @@
             sss-terminal-emulator-packages
             sss-browser-packages
             sss-latex-packages
+            sss-shell-packages
             sss-dict-packages
             sss-net-packages
             sss-theme-packages))
