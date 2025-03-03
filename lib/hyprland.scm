@@ -130,6 +130,7 @@
 
 (define* (sss-hyprland-input #:key sss-keyboard-layout)
   `((follow_mouse . 0) (kb_layout unquote sss-keyboard-layout)
+    (kb_options . "caps:ctrl_modifier")
     (touchpad (disable_while_typing . true)
               (natural_scroll . false)
               (scroll_factor . "1.0")
@@ -176,6 +177,7 @@
                  (serialize-hyprland-setting 'bind kb))
                `("SUPER, K, killactive" "SUPER, F, fullscreen"
                  "SUPER_SHIFT, Q, exit"
+                 "SUPER_SHIFT, L, forcerendererreload"
                  ;;
                  "SUPER, T, exec, footclient"
                  "SUPER, slash, exec, rofi -show drun"

@@ -202,7 +202,7 @@
         swww
 
         mako
-        fuzzel
+
         grimshot
         wl-color-picker
         qpwgraph

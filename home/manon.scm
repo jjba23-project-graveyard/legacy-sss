@@ -54,7 +54,6 @@
 (use-modules (sss sway)
              (sss process)
              (sss foot)
-             (sss fuzzel)
              (sss git)
              (sss vars)
              (sss mako)
