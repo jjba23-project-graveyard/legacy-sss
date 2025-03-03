@@ -44,22 +44,22 @@
                             (format #f "\"~a\"" sss-notes-roam-dir))
         (sss-emacs-theme unquote
                          (cond
-                          ((equal? active-palette
-                                   'sss-palette-ef-dream)
-                           "'ef-dream")
-                          ((equal? active-palette
-                                   'sss-palette-ef-cyprus)
-                           "'ef-cyprus")
-                          ((equal? active-palette
-                                   'sss-palette-ef-autumn)
-                           "'ef-autumn")
-                          ((equal? active-palette
-                                   'sss-palette-heavy-metal)
-                           "'ef-tritanopia-dark")
-                          ((equal? active-palette
-                                   'sss-palette-solarized-light)
-                           "'solarized-light")
-                          (else "'ef-bio")))))
+                           ((equal? active-palette
+                                    'sss-palette-ef-dream)
+                            "'ef-dream")
+                           ((equal? active-palette
+                                    'sss-palette-ef-cyprus)
+                            "'ef-cyprus")
+                           ((equal? active-palette
+                                    'sss-palette-ef-autumn)
+                            "'ef-autumn")
+                           ((equal? active-palette
+                                    'sss-palette-heavy-metal)
+                            "'ef-tritanopia-dark")
+                           ((equal? active-palette
+                                    'sss-palette-solarized-light)
+                            "'solarized-light")
+                           (else "'ef-bio")))))
 
     (with-output-to-string (lambda ()
                              (display "(setq-default")
@@ -73,20 +73,21 @@
 
 (test-begin "Emacs bridge tests")
 (test-assert "bridge is correctly computed"
-  (equal? (string-append "(setq-default
+             (equal? (string-append "(setq-default
     user-personal-name \"John\"
 "
-                         "    user-personal-full-name \"John Doe\"\n"
-                         "    user-personal-email \"john@doe.com\"\n"
-                         "    user-personal-initials \"JD\"\n"
-                         "    sss-clone-dir \"/home/john\"\n"
-                         "    sss-notes-roam-dir \"/home/john/notes/roam\""
-                         "    sss-emacs-theme 'ef-bio)\n")
-          (sss-bridge-emacs #:active-palette 'ef-dream
-                            #:user-name "John"
-                            #:user-full-name "John Doe"
-                            #:user-email "john@doe.com"
-                            #:user-initials "JD"
-                            #:sss-clone-dir "/home/john"
-                            #:sss-notes-roam-dir "/home/john/notes/roam")))
+                      "    user-personal-full-name \"John Doe\"\n"
+                      "    user-personal-email \"john@doe.com\"\n"
+                      "    user-personal-initials \"JD\"\n"
+                      "    sss-clone-dir \"/home/john\"\n"
+                      "    sss-notes-roam-dir \"/home/john/notes/roam\""
+                      "    sss-emacs-theme 'ef-bio)\n")
+                     (sss-bridge-emacs #:active-palette 'ef-dream
+                                       #:user-name "John"
+                                       #:user-full-name "John Doe"
+                                       #:user-email "john@doe.com"
+                                       #:user-initials "JD"
+                                       #:sss-clone-dir "/home/john"
+                                       #:sss-notes-roam-dir
+                                       "/home/john/notes/roam")))
 (test-end)
