@@ -25,12 +25,12 @@
                                      (nested #f))
   (if nested
       (format #f
-              "~a~a~a=~a"
+              "~a~a~a = ~a"
               indent
               indent
               type
               setting)
-      (format #f "~a~a=~a" indent type setting)))
+      (format #f "~a~a = ~a" indent type setting)))
 
 (define* (serialize-hyprland-section #:key section settings
                                      (indent "")
@@ -162,6 +162,15 @@
   `((disable_hyprland_logo . true) (disable_splash_rendering . true)
     (font_family . "Adwaita Sans")))
 
+
+(define sss-hyprland-binds
+  `((bindel . ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")
+    (bindel . ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
+    (bindl . ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
+    (bindl . ", XF86AudioPlay, exec, playerctl play-pause")
+    (bindl . ", XF86AudioNext, exec, playerctl next")
+    (bindl . ", XF86AudioPrev, exec, playerctl previous")))
+
 (begin
   (define* (sss-hyprland-config #:key sss-clone-dir
                                 sss-keyboard-layout
@@ -194,6 +203,7 @@
                                                               #:settings sss-hyprland-decoration))
            (serialized-animations (serialize-hyprland-section #:section 'animations
                                                               #:settings sss-hyprland-animations))
+           (serialized-key-bindings (string-join (map (lambda(kb) (serialize-hyprland-setting (car kb) (cdr kb))) sss-hyprland-binds) "\n"))
            (config-lines (append '("# ====== SSS Hyprland configuration ======"
                                    "#" "# auto-generated file, DO NOT EDIT!"
                                    "" "# ====== Startup programs ======")
@@ -208,6 +218,9 @@
                                  `(""
                                    "# ====== Animations configuration ======"
                                    ,serialized-animations)
+                                 `(""
+                                   "# ====== Key bindings ======"
+                                   ,serialized-key-bindings)
                                  `(""
                                    "# ====== End of SSS Hyprland configuration"
                                    ""))))
