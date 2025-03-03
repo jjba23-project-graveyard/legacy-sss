@@ -86,8 +86,10 @@ endef
 
 joe-reconfigure: format
 	$(call sss-user-reconfigure,"joe")
+	@-hyprctl reload
 jr:
 	$(call sss-user-reconfigure,"joe")
+	@-hyprctl reload
 
 manon-reconfigure: format
 	$(call sss-user-reconfigure,"manon")

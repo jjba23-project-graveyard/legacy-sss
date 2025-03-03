@@ -129,7 +129,8 @@
     xs))
 
 (define* (sss-hyprland-input #:key sss-keyboard-layout)
-  `((follow_mouse . 0) (kb_layout unquote sss-keyboard-layout)
+  `((follow_mouse . 1)
+    (kb_layout unquote sss-keyboard-layout)
     (kb_options . "caps:ctrl_modifier")
     (touchpad (disable_while_typing . true)
               (natural_scroll . false)
