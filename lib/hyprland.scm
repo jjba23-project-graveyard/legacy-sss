@@ -182,16 +182,18 @@
                                                          wall)))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hyprland-setting 'exec-once
-                                                startup-item))
+                                                                           startup-item))
                                              startup-programs))
            (serialized-input (serialize-hyprland-section #:section 'input
                                                          #:settings (sss-hyprland-input
                                                                      #:sss-keyboard-layout
                                                                      sss-keyboard-layout)))
            (serialized-general (serialize-hyprland-section #:section 'general
-                                #:settings sss-hyprland-general))
+                                                           #:settings sss-hyprland-general))
            (serialized-decoration (serialize-hyprland-section #:section 'decoration
-                                   #:settings sss-hyprland-decoration))
+                                                              #:settings sss-hyprland-decoration))
+           (serialized-animations (serialize-hyprland-section #:section 'animations
+                                                              #:settings sss-hyprland-animations))
            (config-lines (append '("# ====== SSS Hyprland configuration ======"
                                    "#" "# auto-generated file, DO NOT EDIT!"
                                    "" "# ====== Startup programs ======")
@@ -203,6 +205,9 @@
                                  `(""
                                    "# ====== Decoration configuration ======"
                                    ,serialized-decoration)
+                                 `(""
+                                   "# ====== Animations configuration ======"
+                                   ,serialized-animations)
                                  `(""
                                    "# ====== End of SSS Hyprland configuration"
                                    ""))))
