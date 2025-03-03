@@ -164,12 +164,21 @@
 
 
 (define sss-hyprland-binds
-  `((bindel . ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")
-    (bindel . ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
-    (bindl . ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
-    (bindl . ", XF86AudioPlay, exec, playerctl play-pause")
-    (bindl . ", XF86AudioNext, exec, playerctl next")
-    (bindl . ", XF86AudioPrev, exec, playerctl previous")))
+  (append
+   (map (lambda(kb) (serialize-hyprland-setting (car kb)(cdr kb)))
+        `((bindel . ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")
+          (bindel . ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
+          (bindl . ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
+          (bindl . ", XF86AudioPlay, exec, playerctl play-pause")
+          (bindl . ", XF86AudioNext, exec, playerctl next")
+          (bindl . ", XF86AudioPrev, exec, playerctl previous")))
+   (map (lambda(kb)(serialize-hyprland-setting 'bind kb))
+        `("SUPER, K, killactive"
+          "SUPER, F, fullscreen"
+          "SUPER, T, exec, footclient"
+          "SUPER_SHIFT, E, exit"
+          "SUPER, slash, exec, rofi -show drun"))
+   ))
 
 (begin
   (define* (sss-hyprland-config #:key sss-clone-dir
@@ -203,7 +212,7 @@
                                                               #:settings sss-hyprland-decoration))
            (serialized-animations (serialize-hyprland-section #:section 'animations
                                                               #:settings sss-hyprland-animations))
-           (serialized-key-bindings (string-join (map (lambda(kb) (serialize-hyprland-setting (car kb) (cdr kb))) sss-hyprland-binds) "\n"))
+           (serialized-key-bindings (string-join sss-hyprland-binds "\n"))
            (config-lines (append '("# ====== SSS Hyprland configuration ======"
                                    "#" "# auto-generated file, DO NOT EDIT!"
                                    "" "# ====== Startup programs ======")
@@ -222,7 +231,7 @@
                                    "# ====== Key bindings ======"
                                    ,serialized-key-bindings)
                                  `(""
-                                   "# ====== End of SSS Hyprland configuration"
+                                   "# ====== End of SSS Hyprland configuration ======"
                                    ""))))
       
       (string-join config-lines "\n")))
