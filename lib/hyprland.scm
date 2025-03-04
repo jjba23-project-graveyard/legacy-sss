@@ -236,6 +236,7 @@
                                         "SUPER_SHIFT, comma, exec, grimshot copy area"
                                         "SUPER, I, exec, icecat"
                                         "SUPER_SHIFT, I, exec, google-chrome"
+                                        "SUPER, B, exec, thunar"
                                         ;;
                                         "SUPER, 1, workspace, 1"
                                         "SUPER, 2, workspace, 2"
@@ -271,13 +272,23 @@
                                                                        (animation . "fadeOut, 1, 5, linear"))))
            (serialized-input-field (serialize-hypr-section #:section 'input-field
                                                            #:settings `((monitor . "")
-                                                                        (fade_on_empty . false))))
+                                                                        (fade_on_empty . false)
+                                                                        (font_family . "Adwaita Sans"))))
+           (serialized-general-field (serialize-hypr-section #:section 'general
+                                                             #:settings `((hide_cursor . false)
+                                                                          (grace . 0)
+                                                                          (fractional_scaling . 2))))
            (serialized-background (serialize-hypr-section #:section 'background
-                                                          #:settings `((color . "rgb(23, 39, 41)"))))
+                                                          #:settings `((color . "rgb(10, 10, 10)"))))
            (config-lines (append
                           `("# ====== SSS Hyprlock configuration ======" "")
+                          `("# ====== Animations configuration ======" "")
                           (list serialized-animations)
+                          `("# ====== InputField configuration ======" "")
                           (list serialized-input-field)
+                          `("# ====== General configuration ======" "")
+                          (list serialized-general-field)
+                          `("# ====== Background configuration ======" "")
                           (list serialized-background))))
       
       (string-join config-lines "\n")))
