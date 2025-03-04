@@ -98,7 +98,7 @@
             (format-alt . "{time} {icon}")
             (format-icons . #("\uf244" "\uf243" "\uf242" "\uf241" "\uf240"))))
 
-(define sss-waybar-sway-workspaces
+(define sss-waybar-hyprland-workspaces
   `(sway/workspaces (disable-scroll . #t)
                     (all-outputs . #t)
                     (warp-on-scroll . #f)
@@ -114,7 +114,6 @@
                                   ("9" . "IX")
                                   ("10" . "X")
                                   ("default" . "\uf111")
-                                  ;; ("urgent" . "") ("focused" . "")
                                   )))
 
 (define sss-waybar-clock
@@ -142,24 +141,25 @@
   `(backlight (format . "{percent}% {icon}")
               (format-icons . #("\ue38d" "\ue3d3" "\ue3d1" "\ue3cf" "\ue3ce" "\ue3cd" "\ue3ca" "\ue3c8" "\ue39b"))))
 
+
 ;; My WayBar configurations, defined in Guile Scheme, a status bar with a detailed, modular setup.
 (begin
   (define* (sss-waybar-conf #:key (with-ip #f)
-                            (with-sway-workspaces #f)
+                            (with-hyprland-workspaces #f)
                             (with-memory #f)
                             (with-taskbar #f))
     (let ((modules-left (if with-taskbar
                             #(custom/sss-waybar-start-button clock wlr/taskbar)
-                            #(custom/sss-waybar-start-button clock sway/workspaces sway/mode sway/scratchpad custom/media sway/window))))
+                            #(custom/sss-waybar-start-button clock hyprland/workspaces custom/media hyprland/window))))
       `((position . bottom) (height . 42)
-        (spacing . 16)
+        (spacing . 12)
         (modules-left unquote modules-left)
         (modules-center)
         (modules-right . #(pulseaudio network power-profiles-daemon cpu memory backlight keyboard-state sway/language battery #{battery#bat2}# tray custom/power))
         ,sss-waybar-start-button
         ,(cond
-           (with-sway-workspaces sss-waybar-sway-workspaces)
-           (else `(sway/workspaces . null)))
+          (with-hyprland-workspaces sss-waybar-hyprland-workspaces)
+          (else `(hyprland/workspaces . null)))
         (keyboard-state (numlock . #t)
                         (capslock . #t)
                         (format . "{name} {icon} ")
@@ -176,16 +176,16 @@
         (cpu (format . "{usage}% \uf2db")
              (tooltip . #f))
         ,(cond
-           (with-memory `(memory (format . "{}% \uf0c9")))
-           (else `(memory . null)))
+          (with-memory `(memory (format . "{}% \uf0c9")))
+          (else `(memory . null)))
         ,sss-waybar-backlight
         ,sss-waybar-battery
         ,sss-waybar-battery-2
         ,sss-waybar-power-profiles
         ,sss-waybar-taskbar
         ,(cond
-           (with-ip sss-waybar-ip)
-           (else `(network . null)))
+          (with-ip sss-waybar-ip)
+          (else `(network . null)))
         ,sss-waybar-audio-icon
         ,sss-waybar-power-button)))
   (export sss-waybar-conf))

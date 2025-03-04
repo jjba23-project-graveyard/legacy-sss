@@ -116,6 +116,12 @@
 (define sss-labwc-extra-startups
   '())
 
+;; Hyprland monitor configurations as a list of strings (lines)
+;;
+;; you can have a sensible default like "monitor = , preferred, auto, 1"
+;; or more detailed config like "monitor=DP-1,1920x1080@144,0x0,1"
+;; see https://wiki.hyprland.org/hyprland-wiki/pages/Configuring/Monitors/
+;;
 (define sss-hyprland-monitors 
   '("monitor = , preferred, auto, 1"))
 

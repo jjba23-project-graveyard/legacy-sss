@@ -171,7 +171,7 @@
                                                          (scm->json-string (sss-waybar-conf
                                                                             #:with-ip
                                                                             #t
-                                                                            #:with-sway-workspaces
+                                                                            #:with-hyprland-workspaces
                                                                             #t
                                                                             #:with-memory
                                                                             #t)

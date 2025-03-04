@@ -138,9 +138,9 @@
               (tap-to-click . true))))
 
 (define sss-hyprland-general
-  `((border_size . 1) (no_border_on_floating . false)
-    (gaps_in . 6)
-    (gaps_out . 16)
+  `((border_size . 2) (no_border_on_floating . false)
+    (gaps_in . 8)
+    (gaps_out . 18)
     (layout . dwindle)
     (resize_on_border . true)))
 
@@ -148,7 +148,7 @@
   `((workspace_swipe . true)))
 
 (define sss-hyprland-decoration
-  `((rounding . 6) (active_opacity . "1.0")
+  `((rounding . 8) (active_opacity . "1.0")
     (inactive_opacity . "0.9")
     (dim_inactive . true)
     (dim_strength . "0.2")
@@ -171,6 +171,8 @@
                `((bindel . ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")
                  (bindel . ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
                  (bindl . ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
+                 (bindel . ", XF86MonBrightnessDown, exec, sudo light -U 5")
+                 (bindel . ", XF86MonBrightnessUp, exec, sudo light -A 5")
                  (bindl . ", XF86AudioPlay, exec, playerctl play-pause")
                  (bindl . ", XF86AudioNext, exec, playerctl next")
                  (bindl . ", XF86AudioPrev, exec, playerctl previous")))
