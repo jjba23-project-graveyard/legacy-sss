@@ -263,14 +263,24 @@
                                         "SUPER, tab, cyclenext, "))))
 
 (begin
-  (define* (sss-hyprlock-config)
-    (let* ((serialized-clock (serialize-hypr-section #:section 'label
+  (define* (sss-hyprlock-config #:key sss-clone-dir)
+    (let* ((serialized-img (serialize-hypr-section #:section 'image
+                                                   #:settings `((monitor . "")
+                                                                (path . ,(format #f "~a/resources/img/sss.png" sss-clone-dir))
+                                                                (position . "0, 230")
+                                                                (rounding . "-1")
+                                                                (size . "200")
+                                                                (border_size . 2)
+                                                                (border_color . "rgba(160, 160, 160, 0.5)")
+                                                                (halign . center)
+                                                                (valign . center))))
+           (serialized-clock (serialize-hypr-section #:section 'label
                                                      #:settings `((monitor . "")
                                                                   (text . "cmd[update:1000] echo \"<span foreground='##ffffff'>$(date)</span>\"")
                                                                   (color . "rgba(200, 200, 200, 1.0)")
                                                                   (font_size . 26)
                                                                   (font_family . "Adwaita Sans")
-                                                                  (position . "0, 240")
+                                                                  (position . "0, 380")
                                                                   (halign . center)
                                                                   (valign . center))))
            (serialized-greeting (serialize-hypr-section #:section 'label
@@ -279,7 +289,7 @@
                                                                      (color . "rgba(200, 200, 200, 1.0)")
                                                                      (font_size . 20)
                                                                      (font_family . "Adwaita Sans")
-                                                                     (position . "0, 160")
+                                                                     (position . "0, 80")
                                                                      (halign . center)
                                                                      (valign . center))))
            (serialized-greeting2 (serialize-hypr-section #:section 'label
@@ -288,7 +298,7 @@
                                                                       (color . "rgba(180, 180, 180, 1.0)")
                                                                       (font_size . 14)
                                                                       (font_family . "Adwaita Sans")
-                                                                      (position . "0, 100")
+                                                                      (position . "0, 40")
                                                                       (halign . center)
                                                                       (valign . center))))
            (serialized-animations (serialize-hypr-section #:section 'animations
@@ -298,6 +308,7 @@
                                                                        (animation . "fadeOut, 1, 5, linear"))))
            (serialized-input-field (serialize-hypr-section #:section 'input-field
                                                            #:settings `((monitor . "")
+                                                                        (position . "0, -100")
                                                                         (fade_on_empty . false)
                                                                         (font_family . "Adwaita Sans"))))
            (serialized-general-field (serialize-hypr-section #:section 'general
@@ -311,6 +322,7 @@
            (config-lines (append `("# ====== SSS Hyprlock configuration ======"
                                    "")
                                  `("# ====== UI elements ======" ""
+                                   ,serialized-img
                                    ,serialized-clock
                                    ,serialized-greeting
                                    ,serialized-greeting2)
