@@ -55,6 +55,11 @@
             xs
             indent)))
 
+(define* (notify-cmd #:key title subtitle)
+  (format #f
+   "notify-send -i /run/current-system/profile/share/icons/Yaru/32x32/actions/dialog-yes.png \"~a\" \"~a\" >/dev/null 2>&1"
+   title subtitle))
+
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
   (define* (sss-hypr-wallpaper #:key sss-clone-dir sss-active-palette)
@@ -174,9 +179,9 @@
      "ALT")
     (else "SUPER")))
 
-(define* (sss-hypr-bind #:key bind dispatch
-                        (cmd "")
-                        (mod ""))
+(define* (hypr-bind #:key bind dispatch
+                    (cmd "")
+                    (mod ""))
   (format #f
           "~a, ~a, ~a, ~a"
           (sss-hypr-translate-mod mod)
@@ -184,16 +189,27 @@
           dispatch
           cmd))
 
-(define* (sss-hypr-no-cmd-bind #:key bind dispatch
-                               (mod ""))
+(define* (exec-bind #:key bind
+                    (cmd "")
+                    (mod ""))
+  (hypr-bind #:bind bind
+             #:dispatch 'exec
+             #:cmd cmd
+             #:mod mod))
+
+(define* (special-bind #:key bind dispatch
+                       (mod ""))
   (format #f "~a, ~a, ~a"
           (sss-hypr-translate-mod mod) bind dispatch))
 
-(define sss-hypr-binds
+(define* (hypr-binds #:key wallpaper-setter)
   (append (map (lambda (kb)
                  (serialize-hypr-setting (car kb)
                                          (cdr kb)))
-               `((bindel . ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")
+               `((bindel unquote
+                         (hypr-bind #:dispatch 'exec
+                          #:bind "XF86AudioRaiseVolume"
+                          #:cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"))
                  (bindel . ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
                  (bindl . ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
                  (bindel . ", XF86MonBrightnessDown, exec, sudo light -U 5")
@@ -201,72 +217,130 @@
                  (bindl . ", XF86AudioPlay, exec, playerctl play-pause")
                  (bindl . ", XF86AudioNext, exec, playerctl next")
                  (bindl . ", XF86AudioPrev, exec, playerctl previous")))
+          (map (lambda (wn)
+                 (serialize-hypr-setting 'bind
+                                         (hypr-bind #:mod "s"
+                                                    #:bind (format #f "~a" wn)
+                                                    #:dispatch 'workspace
+                                                    #:cmd (format #f "~a" wn))))
+               '(1 2
+                 3
+                 4
+                 5
+                 6
+                 7
+                 8
+                 9))
+          (map (lambda (wn)
+                 (serialize-hypr-setting 'bind
+                                         (hypr-bind #:mod "s-S"
+                                                    #:bind (format #f "~a" wn)
+                                                    #:dispatch 'movetoworkspacesilent
+                                                    #:cmd (format #f "~a" wn))))
+               '(1 2
+                 3
+                 4
+                 5
+                 6
+                 7
+                 8
+                 9))
           (map (lambda (kb)
                  (serialize-hypr-setting 'bind kb))
-               `(,(sss-hypr-no-cmd-bind #:mod "s"
-                                        #:bind "K"
-                                        #:dispatch 'killactive) ,(sss-hypr-no-cmd-bind
-                                                                  #:mod "s"
-                                                                  #:bind "F"
-                                                                  #:dispatch 'fullscreen)
-                                        ,(sss-hypr-no-cmd-bind #:mod "s-S"
-                                                               #:bind "Q"
-                                                               #:dispatch 'exit)
-                                        ,(sss-hypr-no-cmd-bind #:mod "s-S"
-                                                               #:bind "L"
-                                                               #:dispatch 'forcerendererreload)
-                                        ;;
-                                        ,(sss-hypr-bind #:mod "s"
-                                                        #:bind "L"
-                                                        #:dispatch 'exec
-                                                        #:cmd (string-join '("hyprlock") " "))
-                                        ,(sss-hypr-bind #:mod "s"
-                                                        #:bind "T"
-                                                        #:dispatch 'exec
-                                                        #:cmd "footclient fish")
-                                        ,(sss-hypr-bind #:mod "s"
-                                                        #:bind "slash"
-                                                        #:dispatch 'exec
-                                                        #:cmd "rofi -show drun")
-                                        "SUPER, E, exec, emacsclient -c"
-                                        "SUPER_SHIFT, E, exec, emacsclient -t"
-                                        "SUPER, period, exec, grimshot save screen"
-                                        "SUPER_SHIFT, period, exec, grimshot copy screen"
-                                        "SUPER, comma, exec, grimshot save area"
-                                        "SUPER_SHIFT, comma, exec, grimshot copy area"
-                                        "SUPER, I, exec, icecat"
-                                        "SUPER_SHIFT, I, exec, google-chrome"
-                                        "SUPER, B, exec, thunar"
-                                        ;;
-                                        "SUPER, 1, workspace, 1"
-                                        "SUPER, 2, workspace, 2"
-                                        "SUPER, 3, workspace, 3"
-                                        "SUPER, 4, workspace, 4"
-                                        "SUPER, 5, workspace, 5"
-                                        "SUPER, 6, workspace, 6"
-                                        "SUPER, 7, workspace, 7"
-                                        "SUPER, 8, workspace, 8"
-                                        "SUPER, 9, workspace, 9"
-                                        ;;
-                                        "SUPER_SHIFT, 1, movetoworkspacesilent, 1"
-                                        "SUPER_SHIFT, 2, movetoworkspacesilent, 2"
-                                        "SUPER_SHIFT, 3, movetoworkspacesilent, 3"
-                                        "SUPER_SHIFT, 4, movetoworkspacesilent, 4"
-                                        "SUPER_SHIFT, 5, movetoworkspacesilent, 5"
-                                        "SUPER_SHIFT, 6, movetoworkspacesilent, 6"
-                                        "SUPER_SHIFT, 7, movetoworkspacesilent, 7"
-                                        "SUPER_SHIFT, 8, movetoworkspacesilent, 8"
-                                        "SUPER_SHIFT, 9, movetoworkspacesilent, 9"
-                                        ;;
-                                        "SUPER_SHIFT, space, togglefloating, active"
-                                        "SUPER_SHIFT, C, centerwindow, "
-                                        "SUPER, tab, cyclenext, "))))
+               (list (special-bind #:mod "s"
+                                   #:bind "K"
+                                   #:dispatch 'killactive)
+                     (special-bind #:mod "s"
+                                   #:bind "F"
+                                   #:dispatch 'fullscreen)
+                     (special-bind #:mod "s-S"
+                                   #:bind "Q"
+                                   #:dispatch 'exit)
+
+                     (special-bind #:mod "s-S"
+                                   #:bind "L"
+                                   #:dispatch 'forcerendererreload)
+                     (exec-bind #:mod "s"
+                                #:bind "L"
+                                #:cmd "hyprlock")
+                     (exec-bind #:mod "s"
+                                #:bind "T"
+                                #:cmd "footclient fish")
+                     (exec-bind #:mod "s"
+                                #:bind "slash"
+                                #:cmd "rofi -show drun")
+                     (exec-bind #:mod "s-S"
+                                #:bind "B"
+                                #:cmd wallpaper-setter)
+                     (exec-bind #:mod "s"
+                                #:bind "E"
+                                #:cmd "emacsclient -c")
+                     (exec-bind #:mod "s-S"
+                                #:bind "E"
+                                #:cmd "emacsclient -t")
+
+                     (exec-bind #:mod "s"
+                                #:bind "period"
+                                #:cmd (format #f
+                                       "grimshot save screen && sleep 1 && ~a"
+                                       (notify-cmd #:title "Screenshot saved"
+                                        #:subtitle
+                                        "Saved screenshot of whole screen to file!")))
+
+                     (exec-bind #:mod "s-S"
+                                #:bind "period"
+                                #:cmd (format #f
+                                       "grimshot copy screen && sleep 1 && ~a"
+                                       (notify-cmd #:title "Screenshot copied"
+                                        #:subtitle
+                                        "Copied screenshot of whole screen!")))
+                     (exec-bind #:mod "s"
+                                #:bind "comma"
+                                #:cmd (format #f
+                                       "grimshot save area && sleep 1 && ~a"
+                                       (notify-cmd #:title
+                                        "Screenshot area saved"
+                                        #:subtitle
+                                        "Saved screenshot of area to file!")))
+                     (exec-bind #:mod "s-S"
+                                #:bind "comma"
+                                #:cmd (format #f
+                                       "grimshot copy area && sleep 1 && ~a"
+                                       (notify-cmd #:title "Screenshot copied"
+                                        #:subtitle
+                                        "Copied screenshot of area!")))
+                     (exec-bind #:mod "s"
+                                #:bind "I"
+                                #:cmd "icecat")
+                     (exec-bind #:mod "s-S"
+                                #:bind "I"
+                                #:cmd "google-chrome")
+                     (exec-bind #:mod "s"
+                                #:bind "B"
+                                #:cmd "thunar")
+
+                     (hypr-bind #:mod "s-S"
+                                #:bind "space"
+                                #:dispatch "togglefloating"
+                                #:cmd "active")
+                     (hypr-bind #:mod "s-S"
+                                #:bind "C"
+                                #:dispatch "centerwindow"
+                                #:cmd "")
+                     (hypr-bind #:mod "s"
+                                #:bind "tab"
+                                #:dispatch "cyclenext"
+                                #:cmd "")))))
 
 (begin
   (define* (sss-hyprlock-config #:key sss-clone-dir)
     (let* ((serialized-img (serialize-hypr-section #:section 'image
                                                    #:settings `((monitor . "")
-                                                                (path . ,(format #f "~a/resources/img/sss.png" sss-clone-dir))
+                                                                (path unquote
+                                                                      (format
+                                                                              #f
+                                                                              "~a/resources/img/sss.png"
+                                                                              sss-clone-dir))
                                                                 (position . "0, 230")
                                                                 (rounding . "-1")
                                                                 (size . "200")
@@ -350,16 +424,15 @@
                                 (sss-hyprland-extra-startups '()))
     (let* ((wall (sss-hypr-wallpaper #:sss-active-palette sss-active-palette
                                      #:sss-clone-dir sss-clone-dir))
+           (wallpaper-setter (format #f
+                                     (string-append "swww img ~a"
+                                      " --transition-step 12"
+                                      " --transition-fps 60"
+                                      " --transition-type center") wall))
            (startup-programs (sss-hypr-startup-programs #:sss-active-palette
                                                         sss-active-palette
-                                                        #:wallpaper-setter (format
-                                                                            #f
-                                                                            (string-append
-                                                                             "swww img ~a"
-                                                                             " --transition-step 12"
-                                                                             " --transition-fps 60"
-                                                                             " --transition-type center")
-                                                                            wall)))
+                                                        #:wallpaper-setter
+                                                        wallpaper-setter))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hypr-setting 'exec-once
                                                 startup-item))
@@ -378,7 +451,10 @@
            (serialized-animations (serialize-hypr-section #:section 'animations
                                                           #:settings
                                                           sss-hypr-animations))
-           (serialized-key-bindings (string-join sss-hypr-binds "\n"))
+           (serialized-key-bindings (string-join (hypr-binds
+                                                             #:wallpaper-setter
+                                                             wallpaper-setter)
+                                                 "\n"))
            (config-lines (append `("# ====== SSS Hypr configuration ======"
                                    "#"
                                    "# auto-generated file, DO NOT EDIT!"
