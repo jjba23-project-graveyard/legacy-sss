@@ -113,8 +113,7 @@
                                       ("8" . "VIII")
                                       ("9" . "IX")
                                       ("10" . "X")
-                                      ("default" . "\uf111")
-                                      )))
+                                      ("default" . "\uf111"))))
 
 (define sss-waybar-clock
   `(clock (format . "{:%H:%M - %a, %d %B %Y}")
@@ -141,7 +140,6 @@
   `(backlight (format . "{percent}% {icon}")
               (format-icons . #("\ue38d" "\ue3d3" "\ue3d1" "\ue3cf" "\ue3ce" "\ue3cd" "\ue3ca" "\ue3c8" "\ue39b"))))
 
-
 ;; My WayBar configurations, defined in Guile Scheme, a status bar with a detailed, modular setup.
 (begin
   (define* (sss-waybar-conf #:key (with-ip #f)
@@ -158,8 +156,8 @@
         (modules-right . #(pulseaudio network power-profiles-daemon cpu memory backlight keyboard-state hyprland/language battery #{battery#bat2}# tray custom/power))
         ,sss-waybar-start-button
         ,(cond
-          (with-hyprland-workspaces sss-waybar-hyprland-workspaces)
-          (else `(hyprland/workspaces . null)))
+           (with-hyprland-workspaces sss-waybar-hyprland-workspaces)
+           (else `(hyprland/workspaces . null)))
         (keyboard-state (numlock . #t)
                         (capslock . #t)
                         (format . "{name} {icon} ")
@@ -171,16 +169,16 @@
         (cpu (format . "{usage}% \uf2db")
              (tooltip . #f))
         ,(cond
-          (with-memory `(memory (format . "{}% \uf0c9")))
-          (else `(memory . null)))
+           (with-memory `(memory (format . "{}% \uf0c9")))
+           (else `(memory . null)))
         ,sss-waybar-backlight
         ,sss-waybar-battery
         ,sss-waybar-battery-2
         ,sss-waybar-power-profiles
         ,sss-waybar-taskbar
         ,(cond
-          (with-ip sss-waybar-ip)
-          (else `(network . null)))
+           (with-ip sss-waybar-ip)
+           (else `(network . null)))
         ,sss-waybar-audio-icon
         ,sss-waybar-power-button)))
   (export sss-waybar-conf))

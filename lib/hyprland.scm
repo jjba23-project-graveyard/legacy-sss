@@ -79,20 +79,6 @@
                                         (wallpaper-setter "")
                                         (extra-startups '()))
   (let* ((gtk-theme-name (cond
-                          ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-                           "Yaru-sage")
-                          ((equal? 'sss-palette-heavy-metal
-                                   sss-active-palette)
-                           "Yaru-red-dark")
-                          ((equal? 'sss-palette-ef-dream sss-active-palette)
-                           "Yaru-magenta-dark")
-                          ((equal? 'sss-palette-ef-autumn sss-active-palette)
-                           "Yaru-dark")
-                          ((equal? 'sss-palette-solarized-light
-                                   sss-active-palette)
-                           "Yaru")
-                          (else "Yaru-sage-dark")))
-         (icon-theme-name (cond
                            ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                             "Yaru-sage")
                            ((equal? 'sss-palette-heavy-metal
@@ -106,6 +92,20 @@
                                     sss-active-palette)
                             "Yaru")
                            (else "Yaru-sage-dark")))
+         (icon-theme-name (cond
+                            ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                             "Yaru-sage")
+                            ((equal? 'sss-palette-heavy-metal
+                                     sss-active-palette)
+                             "Yaru-red-dark")
+                            ((equal? 'sss-palette-ef-dream sss-active-palette)
+                             "Yaru-magenta-dark")
+                            ((equal? 'sss-palette-ef-autumn sss-active-palette)
+                             "Yaru-dark")
+                            ((equal? 'sss-palette-solarized-light
+                                     sss-active-palette)
+                             "Yaru")
+                            (else "Yaru-sage-dark")))
          (xs (append extra-startups
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
@@ -118,19 +118,18 @@
                        "conky -d"
                        "podman system service --time=0 unix:///tmp/podman.sock"
                        ,(format #f
-                                "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
-                                gtk-theme-name)
+                         "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
+                         gtk-theme-name)
                        ,(format #f
-                                "gsettings set org.gnome.desktop.interface icon-theme '~a'"
-                                icon-theme-name)
+                         "gsettings set org.gnome.desktop.interface icon-theme '~a'"
+                         icon-theme-name)
                        "gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'"
                        "gsettings set org.gnome.desktop.interface cursor-size 24"
                        "gsettings set org.gnome.desktop.interface font-name 'Inter'"))))
     xs))
 
 (define* (sss-hyprland-input #:key sss-keyboard-layout)
-  `((follow_mouse . 1)
-    (kb_layout unquote sss-keyboard-layout)
+  `((follow_mouse . 1) (kb_layout unquote sss-keyboard-layout)
     (kb_options . "caps:ctrl_modifier")
     (touchpad (disable_while_typing . true)
               (natural_scroll . false)
@@ -143,7 +142,10 @@
     (gaps_out . 18)
     (layout . dwindle)
     (resize_on_border . true)
-    ("col.active_border" . ,(format #f "0xff~a" (string-drop (sss-get-color sss-active-palette 'primary) 1)))))
+    ("col.active_border" unquote
+     (format #f "0xff~a"
+             (string-drop (sss-get-color sss-active-palette
+                                         'primary) 1)))))
 
 (define sss-hyprland-gestures
   `((workspace_swipe . true)))
@@ -219,7 +221,6 @@
                  "SUPER, N, cyclenext, "
                  "SUPER, P, cyclenext, prev"))))
 
-
 ;; "monitor = eDP-1, 1920x1080@144, 0x0, 1"
 
 (begin
@@ -227,9 +228,8 @@
                                 sss-keyboard-layout
                                 sss-keyboard-caps-to-ctrl
                                 sss-active-palette
-                                sss-hyprland-monitors 
-                                (sss-hyprland-extra-startups '())
-                                )
+                                sss-hyprland-monitors
+                                (sss-hyprland-extra-startups '()))
     (let* ((wall (sss-hyprland-wallpaper #:sss-active-palette
                                          sss-active-palette
                                          #:sss-clone-dir sss-clone-dir))
@@ -244,24 +244,29 @@
                                                          wall)))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hyprland-setting 'exec-once
-                                                                           startup-item))
+                                                startup-item))
                                              startup-programs))
            (serialized-input (serialize-hyprland-section #:section 'input
                                                          #:settings (sss-hyprland-input
                                                                      #:sss-keyboard-layout
                                                                      sss-keyboard-layout)))
            (serialized-general (serialize-hyprland-section #:section 'general
-                                                           #:settings (sss-hyprland-general #:sss-active-palette sss-active-palette)))
+                                                           #:settings (sss-hyprland-general
+                                                                       #:sss-active-palette
+                                                                       sss-active-palette)))
            (serialized-decoration (serialize-hyprland-section #:section 'decoration
-                                                              #:settings sss-hyprland-decoration))
+                                   #:settings sss-hyprland-decoration))
            (serialized-animations (serialize-hyprland-section #:section 'animations
-                                                              #:settings sss-hyprland-animations))
+                                   #:settings sss-hyprland-animations))
            (serialized-key-bindings (string-join sss-hyprland-binds "\n"))
            (config-lines (append `("# ====== SSS Hyprland configuration ======"
-                                   "#" "# auto-generated file, DO NOT EDIT!"
-                                   "" "# ====== Monitors ======"
+                                   "#"
+                                   "# auto-generated file, DO NOT EDIT!"
+                                   ""
+                                   "# ====== Monitors ======"
                                    ,(string-join sss-hyprland-monitors "\n")
-                                   "" "# ====== Startup programs ======")
+                                   ""
+                                   "# ====== Startup programs ======")
                                  serialized-startup-programs
                                  `("" "# ====== General configuration ======"
                                    ,serialized-general)

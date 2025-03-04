@@ -19,6 +19,7 @@
   #:use-module (gnu))
 
 (define-public sss-portals-config
-  '(("default" . "hyprland") ("org.freedesktop.impl.portal.Screenshot" . "hyprland")
+  '(("default" . "hyprland")
+    ("org.freedesktop.impl.portal.Screenshot" . "hyprland")
     ("org.freedesktop.impl.portal.ScreenCast" . "hyprland")
     ("org.freedesktop.impl.portal.FileChooser" . "hyprland")))

@@ -77,16 +77,16 @@
 (define sss-home-files-service
   (service home-files-service-type
            `( ;GTK 3 settings
-             (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
-                                                          (string-append
-                                                           "[Settings]\n"
-                                                           (mk-kv-conf-lines (sss-gtk3-config
-                                                                              #:sss-active-palette
-                                                                              sss-active-palette
-                                                                              #:fixed-theme
-                                                                              "Numix"
-                                                                              #:fixed-icon-theme
-                                                                              "Delft")))))
+              (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
+                                                           (string-append
+                                                            "[Settings]\n"
+                                                            (mk-kv-conf-lines (sss-gtk3-config
+                                                                               #:sss-active-palette
+                                                                               sss-active-palette
+                                                                               #:fixed-theme
+                                                                               "Numix"
+                                                                               #:fixed-icon-theme
+                                                                               "Delft")))))
 
              ;; GTK 4 settings
              (".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
@@ -111,8 +111,8 @@
              ;; Nix configuration with experimental features
              (".config/nix/nix.conf" ,(plain-file "nix.conf"
                                                   (mk-rec-kv-conf-lines `((experimental-features . "nix-command flakes"))
-                                                                        #:template
-                                                                        spaced-equal-conf-pair)))
+                                                   #:template
+                                                   spaced-equal-conf-pair)))
              ;; Loads Nixpkgs configuration locally
              (".config/nixpkgs/config.nix" ,(local-file
                                              "../lib/nix/nixpkgs.nix"))
@@ -179,7 +179,7 @@
              (".config/labwc/rc.xml" ,labwc-rc)
              (".config/labwc/menu.xml" ,labwc-menu)
              (".config/labwc/autostart" ,(labwc-autostart #:extra-startups
-                                                          sss-labwc-extra-startups))
+                                          sss-labwc-extra-startups))
 
              ;; Containers configuration (for Docker, Podman, etc.)
              ;; Specifies container registries
@@ -188,7 +188,7 @@
                                                      "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
              ;; Container security policy
              (".config/containers/policy.json" ,(plain-file "policy.json"
-                                                            "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}")))))
+                                                 "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}")))))
 
 ;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")
