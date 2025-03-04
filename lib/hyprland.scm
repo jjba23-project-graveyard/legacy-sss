@@ -209,62 +209,78 @@
                                                                   #:mod "s"
                                                                   #:bind "F"
                                                                   #:dispatch 'fullscreen)
-                 ,(sss-hypr-no-cmd-bind #:mod "s-S"
-                                        #:bind "Q"
-                                        #:dispatch 'exit)
-                 ,(sss-hypr-no-cmd-bind #:mod "s-S"
-                                        #:bind "L"
-                                        #:dispatch 'forcerendererreload)
-                 ;;
-                 ,(sss-hypr-bind #:mod "s"
-                                 #:bind "L"
-                                 #:dispatch 'exec
-                                 #:cmd (string-join '("hyprlock") " "))
-                 ,(sss-hypr-bind #:mod "s"
-                                 #:bind "T"
-                                 #:dispatch 'exec
-                                 #:cmd "footclient fish")
-                 ,(sss-hypr-bind #:mod "s"
-                                 #:bind "slash"
-                                 #:dispatch 'exec
-                                 #:cmd "rofi -show drun")
-                 "SUPER, E, exec, emacsclient -c"
-                 "SUPER_SHIFT, E, exec, emacsclient -t"
-                 "SUPER, period, exec, grimshot save screen"
-                 "SUPER_SHIFT, period, exec, grimshot copy screen"
-                 "SUPER, comma, exec, grimshot save area"
-                 "SUPER_SHIFT, comma, exec, grimshot copy area"
-                 "SUPER, I, exec, icecat"
-                 "SUPER_SHIFT, I, exec, google-chrome"
-                 ;;
-                 "SUPER, 1, workspace, 1"
-                 "SUPER, 2, workspace, 2"
-                 "SUPER, 3, workspace, 3"
-                 "SUPER, 4, workspace, 4"
-                 "SUPER, 5, workspace, 5"
-                 "SUPER, 6, workspace, 6"
-                 "SUPER, 7, workspace, 7"
-                 "SUPER, 8, workspace, 8"
-                 "SUPER, 9, workspace, 9"
-                 ;;
-                 "SUPER_SHIFT, 1, movetoworkspacesilent, 1"
-                 "SUPER_SHIFT, 2, movetoworkspacesilent, 2"
-                 "SUPER_SHIFT, 3, movetoworkspacesilent, 3"
-                 "SUPER_SHIFT, 4, movetoworkspacesilent, 4"
-                 "SUPER_SHIFT, 5, movetoworkspacesilent, 5"
-                 "SUPER_SHIFT, 6, movetoworkspacesilent, 6"
-                 "SUPER_SHIFT, 7, movetoworkspacesilent, 7"
-                 "SUPER_SHIFT, 8, movetoworkspacesilent, 8"
-                 "SUPER_SHIFT, 9, movetoworkspacesilent, 9"
-                 ;;
-                 "SUPER_SHIFT, space, togglefloating, active"
-                 "SUPER_SHIFT, C, centerwindow, "
-                 "SUPER, N, cyclenext, "
-                 "SUPER, P, cyclenext, prev"))))
+                                        ,(sss-hypr-no-cmd-bind #:mod "s-S"
+                                                               #:bind "Q"
+                                                               #:dispatch 'exit)
+                                        ,(sss-hypr-no-cmd-bind #:mod "s-S"
+                                                               #:bind "L"
+                                                               #:dispatch 'forcerendererreload)
+                                        ;;
+                                        ,(sss-hypr-bind #:mod "s"
+                                                        #:bind "L"
+                                                        #:dispatch 'exec
+                                                        #:cmd (string-join '("hyprlock") " "))
+                                        ,(sss-hypr-bind #:mod "s"
+                                                        #:bind "T"
+                                                        #:dispatch 'exec
+                                                        #:cmd "footclient fish")
+                                        ,(sss-hypr-bind #:mod "s"
+                                                        #:bind "slash"
+                                                        #:dispatch 'exec
+                                                        #:cmd "rofi -show drun")
+                                        "SUPER, E, exec, emacsclient -c"
+                                        "SUPER_SHIFT, E, exec, emacsclient -t"
+                                        "SUPER, period, exec, grimshot save screen"
+                                        "SUPER_SHIFT, period, exec, grimshot copy screen"
+                                        "SUPER, comma, exec, grimshot save area"
+                                        "SUPER_SHIFT, comma, exec, grimshot copy area"
+                                        "SUPER, I, exec, icecat"
+                                        "SUPER_SHIFT, I, exec, google-chrome"
+                                        ;;
+                                        "SUPER, 1, workspace, 1"
+                                        "SUPER, 2, workspace, 2"
+                                        "SUPER, 3, workspace, 3"
+                                        "SUPER, 4, workspace, 4"
+                                        "SUPER, 5, workspace, 5"
+                                        "SUPER, 6, workspace, 6"
+                                        "SUPER, 7, workspace, 7"
+                                        "SUPER, 8, workspace, 8"
+                                        "SUPER, 9, workspace, 9"
+                                        ;;
+                                        "SUPER_SHIFT, 1, movetoworkspacesilent, 1"
+                                        "SUPER_SHIFT, 2, movetoworkspacesilent, 2"
+                                        "SUPER_SHIFT, 3, movetoworkspacesilent, 3"
+                                        "SUPER_SHIFT, 4, movetoworkspacesilent, 4"
+                                        "SUPER_SHIFT, 5, movetoworkspacesilent, 5"
+                                        "SUPER_SHIFT, 6, movetoworkspacesilent, 6"
+                                        "SUPER_SHIFT, 7, movetoworkspacesilent, 7"
+                                        "SUPER_SHIFT, 8, movetoworkspacesilent, 8"
+                                        "SUPER_SHIFT, 9, movetoworkspacesilent, 9"
+                                        ;;
+                                        "SUPER_SHIFT, space, togglefloating, active"
+                                        "SUPER_SHIFT, C, centerwindow, "
+                                        "SUPER, N, cyclenext, "
+                                        "SUPER, P, cyclenext, prev"))))
 
 (begin
   (define* (sss-hyprlock-config)
-    "")
+    (let* ((serialized-animations (serialize-hypr-section #:section 'animations
+                                                          #:settings `((enabled . true)
+                                                                       (bezier . "linear, 1, 1, 0, 0")
+                                                                       (animation . "fadeIn, 1, 5, linear")
+                                                                       (animation . "fadeOut, 1, 5, linear"))))
+           (serialized-input-field (serialize-hypr-section #:section 'input-field
+                                                           #:settings `((monitor . "")
+                                                                        (fade_on_empty . false))))
+           (serialized-background (serialize-hypr-section #:section 'background
+                                                          #:settings `((color . "rgb(23, 39, 41)"))))
+           (config-lines (append
+                          `("# ====== SSS Hyprlock configuration ======" "")
+                          (list serialized-animations)
+                          (list serialized-input-field)
+                          (list serialized-background))))
+      
+      (string-join config-lines "\n")))
   (export sss-hyprlock-config))
 
 (begin
@@ -288,7 +304,7 @@
                                                                             wall)))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hypr-setting 'exec-once
-                                                startup-item))
+                                                                       startup-item))
                                              startup-programs))
            (serialized-input (serialize-hypr-section #:section 'input
                                                      #:settings (sss-hypr-input
