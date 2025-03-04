@@ -200,8 +200,8 @@
   (keyboard-layout (keyboard-layout sss-keyboard-layout))
 
   (bootloader (bootloader-configuration
-               (bootloader grub-efi-bootloader)
-               (targets '("/boot/efi"))))
+                (bootloader grub-efi-bootloader)
+                (targets '("/boot/efi"))))
 
   (kernel linux)
   (initrd microcode-initrd)
@@ -223,8 +223,7 @@
           sss-subuid
           (service screen-locker-service-type
                    (screen-locker-configuration (name "hyprlock")
-                                                (program (file-append
-                                                          hyprlock
+                                                (program (file-append hyprlock
                                                           "/bin/hyprlock"))
                                                 (using-pam? #t)
                                                 (using-setuid? #f)))
