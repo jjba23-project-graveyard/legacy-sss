@@ -17,9 +17,11 @@ SSS strives to have all things configured via Lisp dialects when possible and co
 
 ⚠️ Installing and managing SSS is not meant for people new to GNU/Linux systems. You should already have some experience with software development. Knowing Lisp dialects, or functional programming techniquest is also a big help and is something you will learn further.
 
-Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
+Note: Screenshots below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
-[[https://jointhefreeworld.org/static-assets/sss/resized-sss-2025-02-04.png]]
+[[https://jointhefreeworld.org/static-assets/sss/sss-2025-03-04-1.png]]
+
+[[https://jointhefreeworld.org/static-assets/sss/sss-2025-03-04-lock.png]]
 
 -----
 
