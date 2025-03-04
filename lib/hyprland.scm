@@ -20,7 +20,7 @@
 (define-module (sss hyprland)
   #:use-module (sss palette))
 
-(define* (serialize-hyprland-setting type setting
+(define* (serialize-hypr-setting type setting
                                      #:key (indent "")
                                      (nested #f))
   (if nested
@@ -32,19 +32,19 @@
               setting)
       (format #f "~a~a = ~a" indent type setting)))
 
-(define* (serialize-hyprland-section #:key section settings
+(define* (serialize-hypr-section #:key section settings
                                      (indent "")
                                      (nested #f))
   (let ((xs (string-join (map (lambda (x)
                                 (cond
                                   ((list? (cdr x))
-                                   (serialize-hyprland-section #:section (car
+                                   (serialize-hypr-section #:section (car
                                                                           x)
                                                                #:settings (cdr
                                                                            x)
                                                                #:indent "  "
                                                                #:nested #t))
-                                  (else (serialize-hyprland-setting (car x)
+                                  (else (serialize-hypr-setting (car x)
                                                                     (cdr x)
                                                                     #:indent
                                                                     "  "
@@ -60,7 +60,7 @@
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
-  (define* (sss-hyprland-wallpaper #:key sss-clone-dir sss-active-palette)
+  (define* (sss-hypr-wallpaper #:key sss-clone-dir sss-active-palette)
     (cond
       ((equal? 'sss-palette-ef-cyprus sss-active-palette)
        (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
@@ -75,7 +75,7 @@
       (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-sway-wallpaper))
 
-(define* (sss-hyprland-startup-programs #:key sss-active-palette
+(define* (sss-hypr-startup-programs #:key sss-active-palette
                                         (wallpaper-setter "")
                                         (extra-startups '()))
   (let* ((gtk-theme-name (cond
@@ -128,7 +128,7 @@
                        "gsettings set org.gnome.desktop.interface font-name 'Inter'"))))
     xs))
 
-(define* (sss-hyprland-input #:key sss-keyboard-layout)
+(define* (sss-hypr-input #:key sss-keyboard-layout)
   `((follow_mouse . 1) (kb_layout unquote sss-keyboard-layout)
     (kb_options . "caps:ctrl_modifier")
     (touchpad (disable_while_typing . true)
@@ -136,7 +136,7 @@
               (scroll_factor . "1.0")
               (tap-to-click . true))))
 
-(define* (sss-hyprland-general #:key sss-active-palette)
+(define* (sss-hypr-general #:key sss-active-palette)
   `((border_size . 2) (no_border_on_floating . false)
     (gaps_in . 8)
     (gaps_out . 18)
@@ -147,10 +147,10 @@
              (string-drop (sss-get-color sss-active-palette
                                          'primary) 1)))))
 
-(define sss-hyprland-gestures
+(define sss-hypr-gestures
   `((workspace_swipe . true)))
 
-(define sss-hyprland-decoration
+(define sss-hypr-decoration
   `((rounding . 8) (active_opacity . "1.0")
     (inactive_opacity . "0.9")
     (dim_inactive . true)
@@ -160,17 +160,30 @@
     (shadow (enabled . true)
             (range . 4))))
 
-(define sss-hyprland-animations
+(define sss-hypr-animations
   `((enabled . true) (first_launch_animation . true)))
 
-(define sss-hyprland-misc
-  `((disable_hyprland_logo . true) (disable_splash_rendering . true)
+(define sss-hypr-misc
+  `((disable_hypr_logo . true) (disable_splash_rendering . true)
     (font_family . "Adwaita Sans")))
 
-(define sss-hyprland-binds
+(define (sss-hypr-translate-mod mod)
+  (cond
+   ((equal? "s" mod) "SUPER")
+   ((equal? "s-S" mod) "SUPER_SHIFT")
+   ((equal? "M" mod) "ALT")
+   (else "SUPER")))
+
+(define* (sss-hypr-bind #:key bind dispatch (cmd "") (mod ""))
+  (format #f "~a, ~a, ~a, ~a" (sss-hypr-translate-mod mod) bind dispatch cmd))
+
+(define* (sss-hypr-no-cmd-bind #:key bind dispatch (mod ""))
+  (format #f "~a, ~a, ~a" (sss-hypr-translate-mod mod) bind dispatch))
+
+(define sss-hypr-binds
   (append (map (lambda (kb)
-                 (serialize-hyprland-setting (car kb)
-                                             (cdr kb)))
+                 (serialize-hypr-setting (car kb)
+                                         (cdr kb)))
                `((bindel . ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")
                  (bindel . ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
                  (bindl . ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
@@ -180,13 +193,15 @@
                  (bindl . ", XF86AudioNext, exec, playerctl next")
                  (bindl . ", XF86AudioPrev, exec, playerctl previous")))
           (map (lambda (kb)
-                 (serialize-hyprland-setting 'bind kb))
-               `("SUPER, K, killactive" "SUPER, F, fullscreen"
-                 "SUPER_SHIFT, Q, exit"
-                 "SUPER_SHIFT, L, forcerendererreload"
+                 (serialize-hypr-setting 'bind kb))
+               `(
+                 ,(sss-hypr-no-cmd-bind #:mod "s" #:bind "K" #:dispatch 'killactive)
+                 ,(sss-hypr-no-cmd-bind #:mod "s" #:bind "F" #:dispatch 'fullscreen)
+                 ,(sss-hypr-no-cmd-bind #:mod "s-S" #:bind "Q" #:dispatch 'exit)
+                 ,(sss-hypr-no-cmd-bind #:mod "s-S" #:bind "L" #:dispatch 'forcerendererreload)
                  ;;
-                 "SUPER, T, exec, footclient fish"
-                 "SUPER, slash, exec, rofi -show drun"
+                 ,(sss-hypr-bind #:mod "s" #:bind "T" #:dispatch 'exec #:cmd "footclient fish")
+                 ,(sss-hypr-bind #:mod "s" #:bind "slash" #:dispatch 'exec #:cmd "rofi -show drun")
                  "SUPER, E, exec, emacsclient -c"
                  "SUPER_SHIFT, E, exec, emacsclient -t"
                  "SUPER, period, exec, grimshot save screen"
@@ -221,7 +236,6 @@
                  "SUPER, N, cyclenext, "
                  "SUPER, P, cyclenext, prev"))))
 
-;; "monitor = eDP-1, 1920x1080@144, 0x0, 1"
 
 (begin
   (define* (sss-hyprland-config #:key sss-clone-dir
@@ -230,10 +244,10 @@
                                 sss-active-palette
                                 sss-hyprland-monitors
                                 (sss-hyprland-extra-startups '()))
-    (let* ((wall (sss-hyprland-wallpaper #:sss-active-palette
-                                         sss-active-palette
-                                         #:sss-clone-dir sss-clone-dir))
-           (startup-programs (sss-hyprland-startup-programs
+    (let* ((wall (sss-hypr-wallpaper #:sss-active-palette
+                                     sss-active-palette
+                                     #:sss-clone-dir sss-clone-dir))
+           (startup-programs (sss-hypr-startup-programs
                               #:sss-active-palette sss-active-palette
                               #:wallpaper-setter (format #f
                                                          (string-append
@@ -243,23 +257,23 @@
                                                           " --transition-type center")
                                                          wall)))
            (serialized-startup-programs (map (lambda (startup-item)
-                                               (serialize-hyprland-setting 'exec-once
-                                                startup-item))
+                                               (serialize-hypr-setting 'exec-once
+                                                                       startup-item))
                                              startup-programs))
-           (serialized-input (serialize-hyprland-section #:section 'input
-                                                         #:settings (sss-hyprland-input
-                                                                     #:sss-keyboard-layout
-                                                                     sss-keyboard-layout)))
-           (serialized-general (serialize-hyprland-section #:section 'general
-                                                           #:settings (sss-hyprland-general
-                                                                       #:sss-active-palette
-                                                                       sss-active-palette)))
-           (serialized-decoration (serialize-hyprland-section #:section 'decoration
-                                   #:settings sss-hyprland-decoration))
-           (serialized-animations (serialize-hyprland-section #:section 'animations
-                                   #:settings sss-hyprland-animations))
-           (serialized-key-bindings (string-join sss-hyprland-binds "\n"))
-           (config-lines (append `("# ====== SSS Hyprland configuration ======"
+           (serialized-input (serialize-hypr-section #:section 'input
+                                                     #:settings (sss-hypr-input
+                                                                 #:sss-keyboard-layout
+                                                                 sss-keyboard-layout)))
+           (serialized-general (serialize-hypr-section #:section 'general
+                                                       #:settings (sss-hypr-general
+                                                                   #:sss-active-palette
+                                                                   sss-active-palette)))
+           (serialized-decoration (serialize-hypr-section #:section 'decoration
+                                                          #:settings sss-hypr-decoration))
+           (serialized-animations (serialize-hypr-section #:section 'animations
+                                                          #:settings sss-hypr-animations))
+           (serialized-key-bindings (string-join sss-hypr-binds "\n"))
+           (config-lines (append `("# ====== SSS Hypr configuration ======"
                                    "#"
                                    "# auto-generated file, DO NOT EDIT!"
                                    ""
@@ -287,7 +301,3 @@
       (string-join config-lines "\n")))
   (export sss-hyprland-config))
 
-;; (newline)
-;; (display (sss-hyprland-config #:sss-active-palette 'ef-dream
-;;                               #:sss-keyboard-layout "us"
-;;                               #:sss-clone-dir "some"))
