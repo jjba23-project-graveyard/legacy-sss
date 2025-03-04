@@ -260,12 +260,38 @@
                                         ;;
                                         "SUPER_SHIFT, space, togglefloating, active"
                                         "SUPER_SHIFT, C, centerwindow, "
-                                        "SUPER, N, cyclenext, "
-                                        "SUPER, P, cyclenext, prev"))))
+                                        "SUPER, tab, cyclenext, "))))
 
 (begin
   (define* (sss-hyprlock-config)
-    (let* ((serialized-animations (serialize-hypr-section #:section 'animations
+    (let* ((serialized-clock (serialize-hypr-section #:section 'label
+                                                     #:settings `((monitor . "")
+                                                                  (text . "cmd[update:1000] echo \"<span foreground='##ffffff'>$(date)</span>\"")
+                                                                  (color . "rgba(200, 200, 200, 1.0)")
+                                                                  (font_size . 26)
+                                                                  (font_family . "Adwaita Sans")
+                                                                  (position . "0, 240")
+                                                                  (halign . center)
+                                                                  (valign . center))))
+           (serialized-greeting (serialize-hypr-section #:section 'label
+                                                        #:settings `((monitor . "")
+                                                                     (text . "$USER @ SSS/GNU")
+                                                                     (color . "rgba(200, 200, 200, 1.0)")
+                                                                     (font_size . 20)
+                                                                     (font_family . "Adwaita Sans")
+                                                                     (position . "0, 160")
+                                                                     (halign . center)
+                                                                     (valign . center))))
+           (serialized-greeting2 (serialize-hypr-section #:section 'label
+                                                         #:settings `((monitor . "")
+                                                                      (text . "Supreme Sexp System")
+                                                                      (color . "rgba(180, 180, 180, 1.0)")
+                                                                      (font_size . 14)
+                                                                      (font_family . "Adwaita Sans")
+                                                                      (position . "0, 100")
+                                                                      (halign . center)
+                                                                      (valign . center))))
+           (serialized-animations (serialize-hypr-section #:section 'animations
                                                           #:settings `((enabled . true)
                                                                        (bezier . "linear, 1, 1, 0, 0")
                                                                        (animation . "fadeIn, 1, 5, linear")
@@ -279,17 +305,26 @@
                                                                           (grace . 0)
                                                                           (fractional_scaling . 2))))
            (serialized-background (serialize-hypr-section #:section 'background
-                                                          #:settings `((color . "rgb(10, 10, 10)"))))
-           (config-lines (append
-                          `("# ====== SSS Hyprlock configuration ======" "")
-                          `("# ====== Animations configuration ======" "")
-                          (list serialized-animations)
-                          `("# ====== InputField configuration ======" "")
-                          (list serialized-input-field)
-                          `("# ====== General configuration ======" "")
-                          (list serialized-general-field)
-                          `("# ====== Background configuration ======" "")
-                          (list serialized-background))))
+                                                          #:settings `((path . screenshot)
+                                                                       (blur_passes . 2)
+                                                                       (color . "rgb(10, 10, 10)"))))
+           (config-lines (append `("# ====== SSS Hyprlock configuration ======"
+                                   "")
+                                 `("# ====== UI elements ======" ""
+                                   ,serialized-clock
+                                   ,serialized-greeting
+                                   ,serialized-greeting2)
+                                 `("# ====== Animations configuration ======"
+                                   "")
+                                 (list serialized-animations)
+                                 `("# ====== InputField configuration ======"
+                                   "")
+                                 (list serialized-input-field)
+                                 `("# ====== General configuration ======" "")
+                                 (list serialized-general-field)
+                                 `("# ====== Background configuration ======"
+                                   "")
+                                 (list serialized-background))))
       
       (string-join config-lines "\n")))
   (export sss-hyprlock-config))
@@ -315,7 +350,7 @@
                                                                             wall)))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hypr-setting 'exec-once
-                                                                       startup-item))
+                                                startup-item))
                                              startup-programs))
            (serialized-input (serialize-hypr-section #:section 'input
                                                      #:settings (sss-hypr-input
