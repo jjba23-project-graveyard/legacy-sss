@@ -213,7 +213,7 @@
 
         ;; Wayland portals
         xdg-desktop-portal
-        xdg-desktop-portal-wlr
+        ;; xdg-desktop-portal-wlr
         xdg-desktop-portal-hyprland
         ;; xdg-desktop-portal-gtk
         
