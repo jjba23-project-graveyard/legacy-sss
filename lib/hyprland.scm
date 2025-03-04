@@ -59,17 +59,17 @@
 (begin
   (define* (sss-hypr-wallpaper #:key sss-clone-dir sss-active-palette)
     (cond
-     ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-      (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
-     ((equal? 'sss-palette-ef-dream sss-active-palette)
-      (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
-     ((equal? 'sss-palette-heavy-metal sss-active-palette)
-      (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
-     ((equal? 'sss-palette-solarized-light sss-active-palette)
-      (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" sss-clone-dir))
-     ((equal? 'sss-palette-ef-autumn sss-active-palette)
-      (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" sss-clone-dir))
-     (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
+      ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+       (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
+      ((equal? 'sss-palette-ef-dream sss-active-palette)
+       (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
+      ((equal? 'sss-palette-heavy-metal sss-active-palette)
+       (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
+      ((equal? 'sss-palette-solarized-light sss-active-palette)
+       (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" sss-clone-dir))
+      ((equal? 'sss-palette-ef-autumn sss-active-palette)
+       (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" sss-clone-dir))
+      (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
   (export sss-hypr-wallpaper))
 
 (define* (sss-hypr-startup-programs #:key sss-active-palette
@@ -217,6 +217,10 @@
                                         #:dispatch 'forcerendererreload)
                  ;;
                  ,(sss-hypr-bind #:mod "s"
+                                 #:bind "L"
+                                 #:dispatch 'exec
+                                 #:cmd (string-join '("hyprlock") " "))
+                 ,(sss-hypr-bind #:mod "s"
                                  #:bind "T"
                                  #:dispatch 'exec
                                  #:cmd "footclient fish")
@@ -257,6 +261,11 @@
                  "SUPER_SHIFT, C, centerwindow, "
                  "SUPER, N, cyclenext, "
                  "SUPER, P, cyclenext, prev"))))
+
+(begin
+  (define* (sss-hyprlock-config)
+    "")
+  (export sss-hyprlock-config))
 
 (begin
   (define* (sss-hyprland-config #:key sss-clone-dir

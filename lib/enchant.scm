@@ -29,7 +29,7 @@
 
 ;; Custom dictionary for English
 (define-public sss-enchant-dict-en
-  `("Guix" "SwayFX"
+  `("Guix" "Hyprland"
     "aspell"
     "hunspell"
     "Sexp"

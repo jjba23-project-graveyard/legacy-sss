@@ -200,8 +200,8 @@
   (keyboard-layout (keyboard-layout sss-keyboard-layout))
 
   (bootloader (bootloader-configuration
-                (bootloader grub-efi-bootloader)
-                (targets '("/boot/efi"))))
+               (bootloader grub-efi-bootloader)
+               (targets '("/boot/efi"))))
 
   (kernel linux)
   (initrd microcode-initrd)
@@ -222,10 +222,10 @@
           sss-iptables
           sss-subuid
           (service screen-locker-service-type
-                   (screen-locker-configuration (name "swaylock")
+                   (screen-locker-configuration (name "hyprlock")
                                                 (program (file-append
-                                                          swaylock-effects
-                                                          "/bin/swaylock"))
+                                                          hyprlock
+                                                          "/bin/hyprlock"))
                                                 (using-pam? #t)
                                                 (using-setuid? #f)))
           (service libvirt-service-type

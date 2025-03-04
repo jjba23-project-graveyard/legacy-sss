@@ -32,6 +32,7 @@
   #:use-module (guix packages)
   #:use-module (guix utils)
   #:use-module (guix build-system go)
+  #:use-module (guix build-system cmake)
   #:use-module (guix build-system meson)
   #:use-module (guix download)
   #:use-module (guix build-system gnu)
@@ -44,7 +45,9 @@
                      package-management
                      parallel
                      web
+                     gl
                      texinfo
+                     cmake
                      autotools
                      perl
                      linux
@@ -53,10 +56,12 @@
                      ncurses
                      mpd
                      xfce
+                     cpp
                      python-xyz
                      commencement
                      gnupg
                      llvm
+                     image
                      multiprecision
                      gcc
                      aspell
@@ -188,8 +193,7 @@
   (list labwc))
 
 (define sss-wm-packages
-  (list swaylock-effects
-        rofi-wayland
+  (list rofi-wayland
         fzf
         sss-conky
 
@@ -316,150 +320,150 @@
 (define* (sss-other-system-packages #:key architecture)
   (list
 
-   flatpak
-   pipewire
-   nginx
-   watchexec
+        flatpak
+        pipewire
+        nginx
+        watchexec
 
-   pavucontrol
+        pavucontrol
 
-   geany
+        geany
 
-   tumbler
+        tumbler
 
-   gnome-font-viewer
-   gnome-characters
+        gnome-font-viewer
+        gnome-characters
 
-   xz
-   ispell
-   (specification->package "bind")
+        xz
+        ispell
+        (specification->package "bind")
 
-   gnome-tweaks
-   wlr-randr
-   httpie
-   (specification->package "remmina")
-   libnotify
-   wdisplays
+        gnome-tweaks
+        wlr-randr
+        httpie
+        (specification->package "remmina")
+        libnotify
+        wdisplays
 
-   shotcut
-   openshot
-   inkscape
+        shotcut
+        openshot
+        inkscape
 
-   vlc
+        vlc
 
-   sqlite
-   postgresql
+        sqlite
+        postgresql
 
-   gdk-pixbuf
-   gtk
+        gdk-pixbuf
+        gtk
 
-   qutebrowser
+        qutebrowser
 
-   binutils
+        binutils
 
-   gnome-calculator
-   cheese
-   gnome-system-monitor
-   evince
+        gnome-calculator
+        cheese
+        gnome-system-monitor
+        evince
 
-   qemu
+        qemu
 
-   obs
-   libreoffice
-   gimp
-   libwebp
-   feh
+        obs
+        libreoffice
+        gimp
+        libwebp
+        feh
 
-   gparted
+        gparted
 
-   imagemagick
+        imagemagick
 
-   lm-sensors
-   exfatprogs
-   exfat-utils
-   fuse-exfat
-   tmon
-   flameshot
+        lm-sensors
+        exfatprogs
+        exfat-utils
+        fuse-exfat
+        tmon
+        flameshot
 
-   parallel
+        parallel
 
-   thunar
+        thunar
 
-   pinentry
-   pinentry-tty
-   emacs-pinentry
+        pinentry
+        pinentry-tty
+        emacs-pinentry
 
-   powertop
-   ffmpegthumbs
-   xarchiver
-   ristretto
-   orage
+        powertop
+        ffmpegthumbs
+        xarchiver
+        ristretto
+        orage
 
-   sqlitebrowser
-   direnv
-   netcat
-   jq
+        sqlitebrowser
+        direnv
+        netcat
+        jq
 
-   bsd-games
+        bsd-games
 
-   power-profiles-daemon
+        power-profiles-daemon
 
-   gthumb
+        gthumb
 
-   light
+        light
 
-   gdb
+        gdb
 
-   transmission
-   transmission-remote-gtk
+        transmission
+        transmission-remote-gtk
 
-   xf86-video-fbdev
-   xf86-input-libinput
-   lxsession
-   pamixer
+        xf86-video-fbdev
+        xf86-input-libinput
+        lxsession
+        pamixer
 
-   (sss/x86-only-pkg architecture "ghcid")
+        (sss/x86-only-pkg architecture "ghcid")
 
-   neofetch
-   cmatrix
+        neofetch
+        cmatrix
 
-   pkg-config
+        pkg-config
 
-   bluez
-   blueman
-   hplip
+        bluez
+        blueman
+        hplip
 
-   libltdl
-   libtool
+        libltdl
+        libtool
 
-   (sss/x86-only-pkg architecture "nyxt")
+        (sss/x86-only-pkg architecture "nyxt")
 
-   autoconf
-   automake
+        autoconf
+        automake
 
-   libtool
+        libtool
 
-   perl
+        perl
 
-   youtube-dl
-   mpv
-   mpv-mpris
-   unixodbc
-   tree
-   fyi
+        youtube-dl
+        mpv
+        mpv-mpris
+        unixodbc
+        tree
+        fyi
 
-   drill
+        drill
 
-   (specification->package "gettext")
+        (specification->package "gettext")
 
-   (sss/x86-only-pkg architecture "google-chrome-stable")
-   (sss/x86-only-pkg architecture "reaper")
-   (sss/x86-only-pkg architecture "stellarium")
-   (sss/x86-only-pkg architecture "virt-manager")
+        (sss/x86-only-pkg architecture "google-chrome-stable")
+        (sss/x86-only-pkg architecture "reaper")
+        (sss/x86-only-pkg architecture "stellarium")
+        (sss/x86-only-pkg architecture "virt-manager")
 
-   nautilus
+        nautilus
 
-   xxd))
+        xxd))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))
@@ -487,8 +491,48 @@
 (define sss-emacs-packages
   (list emacs-jinx))
 
+(define-public hyprlock
+  (package
+    (name "hyprlock")
+    (version "0.7.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/hyprwm/hyprlock")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "03ivr5nsjwiwvpdxpjnldwawy8sx8qgwhs57242xkb0zz0w0gvsk"))))
+    (build-system cmake-build-system)
+    (arguments
+     (list
+      #:tests? #f
+      #:cmake cmake-3.30)) ;No tests.
+    (native-inputs (list gcc-14 pkg-config))
+    (inputs (list hyprlang
+                  hyprutils
+                  hyprgraphics
+                  sdbus-c++
+                  wayland
+                  wayland-protocols
+                  mesa
+                  libwebp
+                  (specification->package "libjpeg")
+                  libxkbcommon
+                  hyprwayland-scanner
+                  egl-wayland
+                  cairo
+                  linux-pam
+                  pango))
+    (home-page "https://github.com/hyprwm/hyprlock")
+    (synopsis "Hyprland's lock screen")
+    (description
+     "Hyprland's simple, yet multi-threaded and GPU-accelerated screen locking utility.")
+    (license license:bsd-3)))
+
 (define sss-hypr-packages
-  (list hyprland hypridle grimblast hyprcursor))
+  (list hyprland hypridle grimblast hyprcursor hyprlock))
 
 ;; SYSTEM PACKAGES
 ;;

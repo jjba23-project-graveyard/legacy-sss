@@ -774,7 +774,7 @@ Find here the Backlog and Kanban boards for SSS: https://lucidplan.jointhefreewo
 - **TTY (TeleTYpewriter)**: A text terminal for interacting with a computer system.
 - **Scheme**: A Lisp dialect often used for scripting in GNU Guix.
 - **Wayland**: A protocol for a display server, often used as a modern alternative to X11.
-- **Sway**: A Wayland compositor compatible with i3-style window management.
+- **Hyprland**: A Wayland compositor with great and smooth graphics.
 - **PipeWire**: A modern multimedia framework for managing audio and video streams.
 - **Elpaca**: A package manager for Emacs that supports advanced configuration options.
 - **Libre**: Free and open-source software that respects user freedom.
@@ -831,9 +831,9 @@ Then you will get a password prompt. Type the password and press ENTER. Don't wo
 
 If the details were not correct, you will get prompted to login again.
 
-If they were correct, then you will enter the user's shell, at which point you could type ~gui~ followed by ENTER to start a graphical user interface.
+If they were correct, then you will enter the user's shell, at which point you could type ~gui~ followed by ENTER to start a graphical user interface. If it doesn't work, try ~hyprland~ or ~labwc~.
 
-You should have then booted into a more familiar environment. If the user you logged into has the Sway session, the keyboard bindings are documented in sections above. You could for example use ~Super+/~ to open the fuzzy application finder (Super is often the "Windows" or "command" key).
+You should have then booted into a more familiar environment. If the user you logged into has the Hyprland session, the keyboard bindings are documented in sections above. You could for example use ~Super+/~ to open the fuzzy application finder (Super is often the "Windows" or "command" key).
 
 Good luck!
 
