@@ -79,6 +79,20 @@
                                         (wallpaper-setter "")
                                         (extra-startups '()))
   (let* ((gtk-theme-name (cond
+                          ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                           "Yaru-sage")
+                          ((equal? 'sss-palette-heavy-metal
+                                   sss-active-palette)
+                           "Yaru-red-dark")
+                          ((equal? 'sss-palette-ef-dream sss-active-palette)
+                           "Yaru-magenta-dark")
+                          ((equal? 'sss-palette-ef-autumn sss-active-palette)
+                           "Yaru-dark")
+                          ((equal? 'sss-palette-solarized-light
+                                   sss-active-palette)
+                           "Yaru")
+                          (else "Yaru-sage-dark")))
+         (icon-theme-name (cond
                            ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                             "Yaru-sage")
                            ((equal? 'sss-palette-heavy-metal
@@ -92,20 +106,6 @@
                                     sss-active-palette)
                             "Yaru")
                            (else "Yaru-sage-dark")))
-         (icon-theme-name (cond
-                            ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-                             "Yaru-sage")
-                            ((equal? 'sss-palette-heavy-metal
-                                     sss-active-palette)
-                             "Yaru-red-dark")
-                            ((equal? 'sss-palette-ef-dream sss-active-palette)
-                             "Yaru-magenta-dark")
-                            ((equal? 'sss-palette-ef-autumn sss-active-palette)
-                             "Yaru-dark")
-                            ((equal? 'sss-palette-solarized-light
-                                     sss-active-palette)
-                             "Yaru")
-                            (else "Yaru-sage-dark")))
          (xs (append extra-startups
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
@@ -118,14 +118,14 @@
                        "conky -d"
                        "podman system service --time=0 unix:///tmp/podman.sock"
                        ,(format #f
-                                "gsettings set $gnome-schema gtk-theme '~a'"
+                                "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
                                 gtk-theme-name)
                        ,(format #f
-                                "gsettings set $gnome-schema icon-theme '~a'"
+                                "gsettings set org.gnome.desktop.interface icon-theme '~a'"
                                 icon-theme-name)
-                       "gsettings set $gnome-schema cursor-theme 'Yaru'"
-                       "gsettings set $gnome-schema cursor-size 24"
-                       "gsettings set $gnome-schema font-name 'Inter'"))))
+                       "gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'"
+                       "gsettings set org.gnome.desktop.interface cursor-size 24"
+                       "gsettings set org.gnome.desktop.interface font-name 'Inter'"))))
     xs))
 
 (define* (sss-hyprland-input #:key sss-keyboard-layout)
@@ -137,12 +137,13 @@
               (scroll_factor . "1.0")
               (tap-to-click . true))))
 
-(define sss-hyprland-general
+(define* (sss-hyprland-general #:key sss-active-palette)
   `((border_size . 2) (no_border_on_floating . false)
     (gaps_in . 8)
     (gaps_out . 18)
     (layout . dwindle)
-    (resize_on_border . true)))
+    (resize_on_border . true)
+    ("col.active_border" . ,(format #f "0xff~a" (string-drop (sss-get-color sss-active-palette 'primary) 1)))))
 
 (define sss-hyprland-gestures
   `((workspace_swipe . true)))
@@ -250,7 +251,7 @@
                                                                      #:sss-keyboard-layout
                                                                      sss-keyboard-layout)))
            (serialized-general (serialize-hyprland-section #:section 'general
-                                                           #:settings sss-hyprland-general))
+                                                           #:settings (sss-hyprland-general #:sss-active-palette sss-active-palette)))
            (serialized-decoration (serialize-hyprland-section #:section 'decoration
                                                               #:settings sss-hyprland-decoration))
            (serialized-animations (serialize-hyprland-section #:section 'animations
