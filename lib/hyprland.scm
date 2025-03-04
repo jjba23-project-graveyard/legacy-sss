@@ -136,7 +136,7 @@
 (define* (sss-hypr-general #:key sss-active-palette)
   `((border_size . 2) (no_border_on_floating . false)
     (gaps_in . 8)
-    (gaps_out . 18)
+    (gaps_out . 16)
     (layout . dwindle)
     (resize_on_border . true)
     ("col.active_border" unquote
@@ -151,7 +151,7 @@
   `((rounding . 8) (active_opacity . "1.0")
     (inactive_opacity . "0.9")
     (dim_inactive . true)
-    (dim_strength . "0.2")
+    (dim_strength . "0.1")
     (blur (enabled . true)
           (size . 8))
     (shadow (enabled . true)
