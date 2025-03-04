@@ -29,7 +29,6 @@
                                                                    "~a.UTF-8"
                                                                    sss-lang))
       ("LANGUAGE" unquote sss-lang)
-      ("XDG_CURRENT_DESKTOP" . "sway")
       ("XDG_SESSION_TYPE" . "wayland")
       ("MOZ_ENABLE_WAYLAND" . "1")
       ("QT_QPA_PLATFORM" . "wayland")
@@ -51,7 +50,7 @@
       ("_JAVA_AWT_WM_NONREPARENTING" . "1")
       ("XDG_DATA_DIRS" unquote
        (format #f
-        "$XDG_DATA_DIRS:$HOME/.nix-profile/share:$HOME/.local/share/flatpak/exports/share"))
+               "$XDG_DATA_DIRS:$HOME/.nix-profile/share:$HOME/.local/share/flatpak/exports/share"))
       ("INFOPATH" unquote
        (format #f "$INFOPATH:~a/docs/Manual" sss-clone-dir))
       ("DOCKER_HOST" . "unix:///tmp/podman.sock")))
