@@ -139,7 +139,7 @@
   (setq welkomscherm-bookmarks-personal
         `((("sss" . ,(string-replace "$HOME" "~" sss-clone-dir))
            ("emacs cfg" . ,(format "%s/lib/emacs/init.el" (string-replace "$HOME" "~" sss-clone-dir)))
-           ("hyprland" . ,(format "%s/lib/hyprland.scm" (string-replace "$HOME" "~" sss-clone-dir))))
+           ("hyprland" . ,(format "%s/lib/hyprland/" (string-replace "$HOME" "~" sss-clone-dir))))
           (("notes" . "~/Ontwikkeling/Persoonlijk/private-notes/")
            ("pop-test" . "~/Ontwikkeling/Persoonlijk/pop-test/")
            ("iter-vitae" . "~/Ontwikkeling/Persoonlijk/iter-vitae/")

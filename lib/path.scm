@@ -32,19 +32,19 @@
     (and=> (string-match "(.*)/.*$" pwd)
            (lambda (m)
              (match:substring m 1))))
-  ;; FIXME: Maybe we should generate relative path?
+
   (let lp
-    ((pwd (getcwd)))
+      ((pwd (getcwd)))
     (cond
-      ((not (string? pwd))
-       (error find-MAKEFILE-path "BUG: please report it!" pwd))
-      ((string-null? pwd)
-       (if check-only? #f
-           (error find-MAKEFILE-path
-            "No MAKEFILE! Are you in a legal SSS dir? Or maybe you need to create a new app?")))
-      ((-> pwd)
-       => proc)
-      (else (lp (last-path pwd))))))
+     ((not (string? pwd))
+      (error find-MAKEFILE-path "BUG: please report it!" pwd))
+     ((string-null? pwd)
+      (if check-only? #f
+          (error find-MAKEFILE-path
+                 "No MAKEFILE! Are you in a legal SSS dir? Or maybe you need to create a new app?")))
+     ((-> pwd)
+      => proc)
+     (else (lp (last-path pwd))))))
 
 (define (current-toplevel)
   (or (%current-toplevel)
@@ -73,9 +73,10 @@
       (else '()))))
 
 (define (load-lib-modules)
-  (display "Loading lib modules...\n")
-  (let ((cs (scan-components "lib")))
+  (let* ((lib-components (scan-components "lib"))
+         (hyprland-components (scan-components "lib/hyprland"))
+         (modules (append lib-components hyprland-components)))
     (for-each (lambda (s)
                 (display (format #f ">>= loading ~a\n" s))
-                (load s)) cs)))
+                (load s)) modules)))
 

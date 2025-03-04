@@ -15,50 +15,18 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "./palette.scm")
+(load "../palette.scm")
+(load "./hyprlang.scm")
 
-(define-module (sss hyprland)
-  #:use-module (sss palette))
+(define-module (sss hyprland hyprland)
+  #:use-module (sss palette)
+  #:use-module (sss hyprland hyprlang))
 
-(define* (serialize-hypr-setting type setting
-                                 #:key (indent "")
-                                 (nested #f))
-  (if nested
-      (format #f
-              "~a~a~a = ~a"
-              indent
-              indent
-              type
-              setting)
-      (format #f "~a~a = ~a" indent type setting)))
-
-(define* (serialize-hypr-section #:key section settings
-                                 (indent "")
-                                 (nested #f))
-  (let ((xs (string-join (map (lambda (x)
-                                (cond
-                                  ((list? (cdr x))
-                                   (serialize-hypr-section #:section (car x)
-                                                           #:settings (cdr x)
-                                                           #:indent "  "
-                                                           #:nested #t))
-                                  (else (serialize-hypr-setting (car x)
-                                                                (cdr x)
-                                                                #:indent "  "
-                                                                #:nested
-                                                                nested))))
-                              settings) "\n")))
-    (format #f
-            "~a~a {\n~a\n~a}"
-            indent
-            section
-            xs
-            indent)))
 
 (define* (notify-cmd #:key title subtitle)
   (format #f
-   "notify-send -i /run/current-system/profile/share/icons/Yaru/32x32/actions/dialog-yes.png \"~a\" \"~a\" >/dev/null 2>&1"
-   title subtitle))
+          "notify-send -i /run/current-system/profile/share/icons/Yaru/32x32/actions/dialog-yes.png \"~a\" \"~a\" >/dev/null 2>&1"
+          title subtitle))
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
@@ -169,38 +137,6 @@
   `((disable_hypr_logo . true) (disable_splash_rendering . true)
     (font_family . "Adwaita Sans")))
 
-(define (sss-hypr-translate-mod mod)
-  (cond
-    ((equal? "s" mod)
-     "SUPER")
-    ((equal? "s-S" mod)
-     "SUPER_SHIFT")
-    ((equal? "M" mod)
-     "ALT")
-    (else "SUPER")))
-
-(define* (hypr-bind #:key bind dispatch
-                    (cmd "")
-                    (mod ""))
-  (format #f
-          "~a, ~a, ~a, ~a"
-          (sss-hypr-translate-mod mod)
-          bind
-          dispatch
-          cmd))
-
-(define* (exec-bind #:key bind
-                    (cmd "")
-                    (mod ""))
-  (hypr-bind #:bind bind
-             #:dispatch 'exec
-             #:cmd cmd
-             #:mod mod))
-
-(define* (special-bind #:key bind dispatch
-                       (mod ""))
-  (format #f "~a, ~a, ~a"
-          (sss-hypr-translate-mod mod) bind dispatch))
 
 (define* (hypr-binds #:key wallpaper-setter)
   (append (map (lambda (kb)
@@ -208,8 +144,8 @@
                                          (cdr kb)))
                `((bindel unquote
                          (hypr-bind #:dispatch 'exec
-                          #:bind "XF86AudioRaiseVolume"
-                          #:cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"))
+                                    #:bind "XF86AudioRaiseVolume"
+                                    #:cmd "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"))
                  (bindel . ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
                  (bindl . ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
                  (bindel . ", XF86MonBrightnessDown, exec, sudo light -U 5")
@@ -224,13 +160,13 @@
                                                     #:dispatch 'workspace
                                                     #:cmd (format #f "~a" wn))))
                '(1 2
-                 3
-                 4
-                 5
-                 6
-                 7
-                 8
-                 9))
+                   3
+                   4
+                   5
+                   6
+                   7
+                   8
+                   9))
           (map (lambda (wn)
                  (serialize-hypr-setting 'bind
                                          (hypr-bind #:mod "s-S"
@@ -238,13 +174,13 @@
                                                     #:dispatch 'movetoworkspacesilent
                                                     #:cmd (format #f "~a" wn))))
                '(1 2
-                 3
-                 4
-                 5
-                 6
-                 7
-                 8
-                 9))
+                   3
+                   4
+                   5
+                   6
+                   7
+                   8
+                   9))
           (map (lambda (kb)
                  (serialize-hypr-setting 'bind kb))
                (list (special-bind #:mod "s"
@@ -282,33 +218,33 @@
                      (exec-bind #:mod "s"
                                 #:bind "period"
                                 #:cmd (format #f
-                                       "grimshot save screen && sleep 1 && ~a"
-                                       (notify-cmd #:title "Screenshot saved"
-                                        #:subtitle
-                                        "Saved screenshot of whole screen to file!")))
+                                              "grimshot save screen && sleep 1 && ~a"
+                                              (notify-cmd #:title "Screenshot saved"
+                                                          #:subtitle
+                                                          "Saved screenshot of whole screen to file!")))
 
                      (exec-bind #:mod "s-S"
                                 #:bind "period"
                                 #:cmd (format #f
-                                       "grimshot copy screen && sleep 1 && ~a"
-                                       (notify-cmd #:title "Screenshot copied"
-                                        #:subtitle
-                                        "Copied screenshot of whole screen!")))
+                                              "grimshot copy screen && sleep 1 && ~a"
+                                              (notify-cmd #:title "Screenshot copied"
+                                                          #:subtitle
+                                                          "Copied screenshot of whole screen!")))
                      (exec-bind #:mod "s"
                                 #:bind "comma"
                                 #:cmd (format #f
-                                       "grimshot save area && sleep 1 && ~a"
-                                       (notify-cmd #:title
-                                        "Screenshot area saved"
-                                        #:subtitle
-                                        "Saved screenshot of area to file!")))
+                                              "grimshot save area && sleep 1 && ~a"
+                                              (notify-cmd #:title
+                                                          "Screenshot area saved"
+                                                          #:subtitle
+                                                          "Saved screenshot of area to file!")))
                      (exec-bind #:mod "s-S"
                                 #:bind "comma"
                                 #:cmd (format #f
-                                       "grimshot copy area && sleep 1 && ~a"
-                                       (notify-cmd #:title "Screenshot copied"
-                                        #:subtitle
-                                        "Copied screenshot of area!")))
+                                              "grimshot copy area && sleep 1 && ~a"
+                                              (notify-cmd #:title "Screenshot copied"
+                                                          #:subtitle
+                                                          "Copied screenshot of area!")))
                      (exec-bind #:mod "s"
                                 #:bind "I"
                                 #:cmd "icecat")
@@ -332,88 +268,7 @@
                                 #:dispatch "cyclenext"
                                 #:cmd "")))))
 
-(begin
-  (define* (sss-hyprlock-config #:key sss-clone-dir)
-    (let* ((serialized-img (serialize-hypr-section #:section 'image
-                                                   #:settings `((monitor . "")
-                                                                (path unquote
-                                                                      (format
-                                                                              #f
-                                                                              "~a/resources/img/sss.png"
-                                                                              sss-clone-dir))
-                                                                (position . "0, 230")
-                                                                (rounding . "-1")
-                                                                (size . "200")
-                                                                (border_size . 2)
-                                                                (border_color . "rgba(160, 160, 160, 0.5)")
-                                                                (halign . center)
-                                                                (valign . center))))
-           (serialized-clock (serialize-hypr-section #:section 'label
-                                                     #:settings `((monitor . "")
-                                                                  (text . "cmd[update:1000] echo \"<span foreground='##ffffff'>$(date)</span>\"")
-                                                                  (color . "rgba(200, 200, 200, 1.0)")
-                                                                  (font_size . 26)
-                                                                  (font_family . "Adwaita Sans")
-                                                                  (position . "0, 380")
-                                                                  (halign . center)
-                                                                  (valign . center))))
-           (serialized-greeting (serialize-hypr-section #:section 'label
-                                                        #:settings `((monitor . "")
-                                                                     (text . "$USER @ SSS/GNU")
-                                                                     (color . "rgba(200, 200, 200, 1.0)")
-                                                                     (font_size . 20)
-                                                                     (font_family . "Adwaita Sans")
-                                                                     (position . "0, 80")
-                                                                     (halign . center)
-                                                                     (valign . center))))
-           (serialized-greeting2 (serialize-hypr-section #:section 'label
-                                                         #:settings `((monitor . "")
-                                                                      (text . "Supreme Sexp System")
-                                                                      (color . "rgba(180, 180, 180, 1.0)")
-                                                                      (font_size . 14)
-                                                                      (font_family . "Adwaita Sans")
-                                                                      (position . "0, 40")
-                                                                      (halign . center)
-                                                                      (valign . center))))
-           (serialized-animations (serialize-hypr-section #:section 'animations
-                                                          #:settings `((enabled . true)
-                                                                       (bezier . "linear, 1, 1, 0, 0")
-                                                                       (animation . "fadeIn, 1, 5, linear")
-                                                                       (animation . "fadeOut, 1, 5, linear"))))
-           (serialized-input-field (serialize-hypr-section #:section 'input-field
-                                                           #:settings `((monitor . "")
-                                                                        (position . "0, -100")
-                                                                        (fade_on_empty . false)
-                                                                        (font_family . "Adwaita Sans"))))
-           (serialized-general-field (serialize-hypr-section #:section 'general
-                                                             #:settings `((hide_cursor . false)
-                                                                          (grace . 0)
-                                                                          (fractional_scaling . 2))))
-           (serialized-background (serialize-hypr-section #:section 'background
-                                                          #:settings `((path . screenshot)
-                                                                       (blur_passes . 2)
-                                                                       (color . "rgb(10, 10, 10)"))))
-           (config-lines (append `("# ====== SSS Hyprlock configuration ======"
-                                   "")
-                                 `("# ====== UI elements ======" ""
-                                   ,serialized-img
-                                   ,serialized-clock
-                                   ,serialized-greeting
-                                   ,serialized-greeting2)
-                                 `("# ====== Animations configuration ======"
-                                   "")
-                                 (list serialized-animations)
-                                 `("# ====== InputField configuration ======"
-                                   "")
-                                 (list serialized-input-field)
-                                 `("# ====== General configuration ======" "")
-                                 (list serialized-general-field)
-                                 `("# ====== Background configuration ======"
-                                   "")
-                                 (list serialized-background))))
-      
-      (string-join config-lines "\n")))
-  (export sss-hyprlock-config))
+
 
 (begin
   (define* (sss-hyprland-config #:key sss-clone-dir
@@ -426,16 +281,16 @@
                                      #:sss-clone-dir sss-clone-dir))
            (wallpaper-setter (format #f
                                      (string-append "swww img ~a"
-                                      " --transition-step 12"
-                                      " --transition-fps 60"
-                                      " --transition-type center") wall))
+                                                    " --transition-step 12"
+                                                    " --transition-fps 60"
+                                                    " --transition-type center") wall))
            (startup-programs (sss-hypr-startup-programs #:sss-active-palette
                                                         sss-active-palette
                                                         #:wallpaper-setter
                                                         wallpaper-setter))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hypr-setting 'exec-once
-                                                startup-item))
+                                                                       startup-item))
                                              startup-programs))
            (serialized-input (serialize-hypr-section #:section 'input
                                                      #:settings (sss-hypr-input
@@ -452,8 +307,8 @@
                                                           #:settings
                                                           sss-hypr-animations))
            (serialized-key-bindings (string-join (hypr-binds
-                                                             #:wallpaper-setter
-                                                             wallpaper-setter)
+                                                  #:wallpaper-setter
+                                                  wallpaper-setter)
                                                  "\n"))
            (config-lines (append `("# ====== SSS Hypr configuration ======"
                                    "#"
