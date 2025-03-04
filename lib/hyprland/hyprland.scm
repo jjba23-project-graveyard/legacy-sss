@@ -30,52 +30,52 @@
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
-  (define* (sss-hypr-wallpaper #:key sss-clone-dir sss-active-palette)
+  (define* (hypr-wallpaper #:key clone-dir active-palette)
     (cond
-      ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-       (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
-      ((equal? 'sss-palette-ef-dream sss-active-palette)
-       (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
-      ((equal? 'sss-palette-heavy-metal sss-active-palette)
-       (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
-      ((equal? 'sss-palette-solarized-light sss-active-palette)
-       (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" sss-clone-dir))
-      ((equal? 'sss-palette-ef-autumn sss-active-palette)
-       (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" sss-clone-dir))
-      (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
-  (export sss-hypr-wallpaper))
+     ((equal? 'sss-palette-ef-cyprus active-palette)
+      (format #f "~a/resources/wallpapers/some-forest.jpg" clone-dir))
+     ((equal? 'sss-palette-ef-dream active-palette)
+      (format #f "~a/resources/wallpapers/1362745.png" clone-dir))
+     ((equal? 'sss-palette-heavy-metal active-palette)
+      (format #f "~a/resources/wallpapers/heavy-wall3.jpg" clone-dir))
+     ((equal? 'sss-palette-solarized-light active-palette)
+      (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" clone-dir))
+     ((equal? 'sss-palette-ef-autumn active-palette)
+      (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" clone-dir))
+     (else (format #f "~a/resources/wallpapers/some-forest.jpg" clone-dir))))
+  (export hypr-wallpaper))
 
-(define* (sss-hypr-startup-programs #:key sss-active-palette
-                                    (wallpaper-setter "")
-                                    (extra-startups '()))
+(define* (hypr-startup-programs #:key active-palette
+                                (wallpaper-setter "")
+                                (extra-startups '()))
   (let* ((gtk-theme-name (cond
-                           ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                          ((equal? 'sss-palette-ef-cyprus active-palette)
+                           "Yaru-sage")
+                          ((equal? 'sss-palette-heavy-metal
+                                   active-palette)
+                           "Yaru-red-dark")
+                          ((equal? 'sss-palette-ef-dream active-palette)
+                           "Yaru-magenta-dark")
+                          ((equal? 'sss-palette-ef-autumn active-palette)
+                           "Yaru-dark")
+                          ((equal? 'sss-palette-solarized-light
+                                   active-palette)
+                           "Yaru")
+                          (else "Yaru-sage-dark")))
+         (icon-theme-name (cond
+                           ((equal? 'sss-palette-ef-cyprus active-palette)
                             "Yaru-sage")
                            ((equal? 'sss-palette-heavy-metal
-                                    sss-active-palette)
+                                    active-palette)
                             "Yaru-red-dark")
-                           ((equal? 'sss-palette-ef-dream sss-active-palette)
+                           ((equal? 'sss-palette-ef-dream active-palette)
                             "Yaru-magenta-dark")
-                           ((equal? 'sss-palette-ef-autumn sss-active-palette)
+                           ((equal? 'sss-palette-ef-autumn active-palette)
                             "Yaru-dark")
                            ((equal? 'sss-palette-solarized-light
-                                    sss-active-palette)
+                                    active-palette)
                             "Yaru")
                            (else "Yaru-sage-dark")))
-         (icon-theme-name (cond
-                            ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-                             "Yaru-sage")
-                            ((equal? 'sss-palette-heavy-metal
-                                     sss-active-palette)
-                             "Yaru-red-dark")
-                            ((equal? 'sss-palette-ef-dream sss-active-palette)
-                             "Yaru-magenta-dark")
-                            ((equal? 'sss-palette-ef-autumn sss-active-palette)
-                             "Yaru-dark")
-                            ((equal? 'sss-palette-solarized-light
-                                     sss-active-palette)
-                             "Yaru")
-                            (else "Yaru-sage-dark")))
          (xs (append extra-startups
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
@@ -88,25 +88,25 @@
                        "conky -d"
                        "podman system service --time=0 unix:///tmp/podman.sock"
                        ,(format #f
-                         "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
-                         gtk-theme-name)
+                                "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
+                                gtk-theme-name)
                        ,(format #f
-                         "gsettings set org.gnome.desktop.interface icon-theme '~a'"
-                         icon-theme-name)
+                                "gsettings set org.gnome.desktop.interface icon-theme '~a'"
+                                icon-theme-name)
                        "gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'"
                        "gsettings set org.gnome.desktop.interface cursor-size 24"
                        "gsettings set org.gnome.desktop.interface font-name 'Inter'"))))
     xs))
 
-(define* (sss-hypr-input #:key sss-keyboard-layout)
-  `((follow_mouse . 1) (kb_layout unquote sss-keyboard-layout)
+(define* (hypr-input #:key keyboard-layout)
+  `((follow_mouse . 1) (kb_layout unquote keyboard-layout)
     (kb_options . "caps:ctrl_modifier")
     (touchpad (disable_while_typing . true)
               (natural_scroll . false)
               (scroll_factor . "1.0")
               (tap-to-click . true))))
 
-(define* (sss-hypr-general #:key sss-active-palette)
+(define* (hypr-general #:key active-palette)
   `((border_size . 2) (no_border_on_floating . false)
     (gaps_in . 8)
     (gaps_out . 16)
@@ -114,26 +114,26 @@
     (resize_on_border . true)
     ("col.active_border" unquote
      (format #f "0xff~a"
-             (string-drop (sss-get-color sss-active-palette
+             (string-drop (sss-get-color active-palette
                                          'primary) 1)))))
 
-(define sss-hypr-gestures
+(define hypr-gestures
   `((workspace_swipe . true)))
 
-(define sss-hypr-decoration
+(define* (hypr-decoration #:key (with-blur #f)(with-shadow #f))
   `((rounding . 8) (active_opacity . "1.0")
     (inactive_opacity . "0.9")
     (dim_inactive . true)
     (dim_strength . "0.1")
-    (blur (enabled . true)
+    (blur (enabled . ,(if with-blur 'true 'false))
           (size . 8))
-    (shadow (enabled . true)
+    (shadow (enabled . ,(if with-shadow 'true 'false))
             (range . 4))))
 
-(define sss-hypr-animations
+(define hypr-animations
   `((enabled . true) (first_launch_animation . true)))
 
-(define sss-hypr-misc
+(define hypr-misc
   `((disable_hypr_logo . true) (disable_splash_rendering . true)
     (font_family . "Adwaita Sans")))
 
@@ -271,41 +271,44 @@
 
 
 (begin
-  (define* (sss-hyprland-config #:key sss-clone-dir
-                                sss-keyboard-layout
-                                sss-keyboard-caps-to-ctrl
-                                sss-active-palette
-                                sss-hyprland-monitors
-                                (sss-hyprland-extra-startups '()))
-    (let* ((wall (sss-hypr-wallpaper #:sss-active-palette sss-active-palette
-                                     #:sss-clone-dir sss-clone-dir))
+  (define* (sss-hyprland-config #:key clone-dir
+                                keyboard-layout
+                                keyboard-caps-to-ctrl
+                                active-palette
+                                monitors
+                                (extra-startups '())
+                                (with-blur #f)
+                                (with-shadow #f))
+    (let* ((wall (hypr-wallpaper #:active-palette active-palette
+                                 #:clone-dir clone-dir))
            (wallpaper-setter (format #f
                                      (string-append "swww img ~a"
                                                     " --transition-step 12"
                                                     " --transition-fps 60"
                                                     " --transition-type center") wall))
-           (startup-programs (sss-hypr-startup-programs #:sss-active-palette
-                                                        sss-active-palette
-                                                        #:wallpaper-setter
-                                                        wallpaper-setter))
+           (startup-programs (hypr-startup-programs #:active-palette
+                                                    active-palette
+                                                    #:wallpaper-setter
+                                                    wallpaper-setter))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hypr-setting 'exec-once
                                                                        startup-item))
                                              startup-programs))
            (serialized-input (serialize-hypr-section #:section 'input
-                                                     #:settings (sss-hypr-input
-                                                                 #:sss-keyboard-layout
-                                                                 sss-keyboard-layout)))
+                                                     #:settings (hypr-input
+                                                                 #:keyboard-layout
+                                                                 keyboard-layout)))
            (serialized-general (serialize-hypr-section #:section 'general
-                                                       #:settings (sss-hypr-general
-                                                                   #:sss-active-palette
-                                                                   sss-active-palette)))
+                                                       #:settings (hypr-general
+                                                                   #:active-palette
+                                                                   active-palette)))
            (serialized-decoration (serialize-hypr-section #:section 'decoration
                                                           #:settings
-                                                          sss-hypr-decoration))
+                                                          (hypr-decoration #:with-blur with-blur #:with-shadow with-shadow)
+                                                          ))
            (serialized-animations (serialize-hypr-section #:section 'animations
                                                           #:settings
-                                                          sss-hypr-animations))
+                                                          hypr-animations))
            (serialized-key-bindings (string-join (hypr-binds
                                                   #:wallpaper-setter
                                                   wallpaper-setter)
@@ -315,7 +318,7 @@
                                    "# auto-generated file, DO NOT EDIT!"
                                    ""
                                    "# ====== Monitors ======"
-                                   ,(string-join sss-hyprland-monitors "\n")
+                                   ,(string-join monitors "\n")
                                    ""
                                    "# ====== Startup programs ======")
                                  serialized-startup-programs
