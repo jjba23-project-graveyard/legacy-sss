@@ -188,9 +188,7 @@
   (list labwc))
 
 (define sss-wm-packages
-  (list swaybg
-        swaylock-effects
-        swayidle
+  (list swaylock-effects
         rofi-wayland
         fzf
         sss-conky
@@ -318,152 +316,150 @@
 (define* (sss-other-system-packages #:key architecture)
   (list
 
-        flatpak
-        pipewire
-        nginx
-        watchexec
+   flatpak
+   pipewire
+   nginx
+   watchexec
 
-        pavucontrol
+   pavucontrol
 
-        geany
+   geany
 
-        tumbler
+   tumbler
 
-        gnome-font-viewer
-        gnome-characters
+   gnome-font-viewer
+   gnome-characters
 
-        xz
-        ispell
-        (specification->package "bind")
+   xz
+   ispell
+   (specification->package "bind")
 
-        gnome-tweaks
-        wlr-randr
-        httpie
-        (specification->package "remmina")
-        libnotify
-        wdisplays
+   gnome-tweaks
+   wlr-randr
+   httpie
+   (specification->package "remmina")
+   libnotify
+   wdisplays
 
-        shotcut
-        openshot
-        inkscape
+   shotcut
+   openshot
+   inkscape
 
-        vlc
+   vlc
 
-        sqlite
-        postgresql
+   sqlite
+   postgresql
 
-        gdk-pixbuf
-        gtk
+   gdk-pixbuf
+   gtk
 
-        qutebrowser
+   qutebrowser
 
-        binutils
+   binutils
 
-        gnome-calculator
-        cheese
-        gnome-system-monitor
-        evince
+   gnome-calculator
+   cheese
+   gnome-system-monitor
+   evince
 
-        qemu
+   qemu
 
-        obs
-        libreoffice
-        gimp
-        libwebp
-        feh
+   obs
+   libreoffice
+   gimp
+   libwebp
+   feh
 
-        gparted
+   gparted
 
-        imagemagick
+   imagemagick
 
-        lm-sensors
-        exfatprogs
-        exfat-utils
-        fuse-exfat
-        tmon
-        flameshot
+   lm-sensors
+   exfatprogs
+   exfat-utils
+   fuse-exfat
+   tmon
+   flameshot
 
-        parallel
+   parallel
 
-        thunar
+   thunar
 
-        pinentry
-        pinentry-tty
-        emacs-pinentry
+   pinentry
+   pinentry-tty
+   emacs-pinentry
 
-        powertop
-        ffmpegthumbs
-        xarchiver
-        ristretto
-        orage
+   powertop
+   ffmpegthumbs
+   xarchiver
+   ristretto
+   orage
 
-        sqlitebrowser
-        direnv
-        netcat
-        jq
+   sqlitebrowser
+   direnv
+   netcat
+   jq
 
-        bsd-games
+   bsd-games
 
-        power-profiles-daemon
+   power-profiles-daemon
 
-        gthumb
+   gthumb
 
-        scenefx
-        swayfx
-        light
+   light
 
-        gdb
+   gdb
 
-        transmission
-        transmission-remote-gtk
+   transmission
+   transmission-remote-gtk
 
-        xf86-video-fbdev
-        xf86-input-libinput
-        lxsession
-        pamixer
+   xf86-video-fbdev
+   xf86-input-libinput
+   lxsession
+   pamixer
 
-        (sss/x86-only-pkg architecture "ghcid")
+   (sss/x86-only-pkg architecture "ghcid")
 
-        neofetch
-        cmatrix
+   neofetch
+   cmatrix
 
-        pkg-config
+   pkg-config
 
-        bluez
-        blueman
-        hplip
+   bluez
+   blueman
+   hplip
 
-        libltdl
-        libtool
+   libltdl
+   libtool
 
-        (sss/x86-only-pkg architecture "nyxt")
+   (sss/x86-only-pkg architecture "nyxt")
 
-        autoconf
-        automake
+   autoconf
+   automake
 
-        libtool
+   libtool
 
-        perl
+   perl
 
-        youtube-dl
-        mpv
-        mpv-mpris
-        unixodbc
-        tree
-        fyi
+   youtube-dl
+   mpv
+   mpv-mpris
+   unixodbc
+   tree
+   fyi
 
-        drill
+   drill
 
-        (specification->package "gettext")
+   (specification->package "gettext")
 
-        (sss/x86-only-pkg architecture "google-chrome-stable")
-        (sss/x86-only-pkg architecture "reaper")
-        (sss/x86-only-pkg architecture "stellarium")
-        (sss/x86-only-pkg architecture "virt-manager")
+   (sss/x86-only-pkg architecture "google-chrome-stable")
+   (sss/x86-only-pkg architecture "reaper")
+   (sss/x86-only-pkg architecture "stellarium")
+   (sss/x86-only-pkg architecture "virt-manager")
 
-        nautilus
+   nautilus
 
-        xxd))
+   xxd))
 
 (define sss-container-packages
   (list podman-compose podman passt slirp4netns))

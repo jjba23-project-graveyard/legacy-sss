@@ -104,10 +104,6 @@
   '("app.drey.Warp" "com.usebottles.bottles" "com.ktechpit.whatsie"
     "com.anydesk.Anydesk" "app.zen_browser.zen"))
 
-;; Additional Sway startup commands on per-host basis
-(define sss-sway-extra-startups
-  '())
-
 ;; Additional Hyprland startup commands on per-host basis
 (define sss-hyprland-extra-startups
   '())

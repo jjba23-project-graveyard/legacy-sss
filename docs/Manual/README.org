@@ -44,7 +44,6 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 - multi-user Git configuration setup (work/personal)
 - Qutebrowser configurations
 - Multi user configurations
-- SwayFX configuration (discontinued)
 
   and more....
   
@@ -66,7 +65,7 @@ This session uses labwc compositor and waybar.
 
 * Why ?
 
-Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, SwayFX, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
+Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, Hyprland, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
 
 ⚠️ Warning: parts of the code and settings might default to the Dutch language ( ~nl_NL.UTF-8~ ).
 
@@ -233,10 +232,6 @@ Find here a reference configuration with what is required.
   ;; Flatpak packages to install
   (define sss-flatpak-pkgs '("app.drey.Warp" "com.usebottles.bottles"))
 
-  ;; Additional Sway startup commands on per-host basis
-  (define sss-sway-extra-startups
-  '("swaymsg -- output eDP-1 scale 1.5"))
-
   ;; Additional Labwc startup commands on per-host basis
   (define sss-labwc-extra-startups
   '("wlr-randr --output eDP-1 --scale 1.5  >/dev/null 2>&1 &"))
@@ -277,8 +272,8 @@ recommended minimums:
   more if you plan to install a large number of packages, store many
   files, or use virtual machines extensively. SSDs are strongly
   recommended for optimal performance.
-- *Graphics:* SSS leverages Wayland and Sway. Most modern graphics cards
-  should work well. If you encounter issues, consult the Sway
+- *Graphics:* SSS leverages Wayland and Hyprland. Most modern graphics cards
+  should work well. If you encounter issues, consult the Hyprland
   documentation for compatibility information.
 
 Download and the Guix GNU/Linux distribution from the official Guix page: https://guix.gnu.org/download/ and make a bootable installation medium convenient for your use case.
@@ -475,22 +470,6 @@ In practice this means that any user account in your system that wants to make u
 
 You will also want to set the ~RTC_USE_PIPEWIRE~ variable to ~true~. This is already the case by default in SSS.
 
-* Sway, resolutions and scaling
-
-Most of the times, Sway will have set the correct resolution and scale (fractional) for your device. This also happens automatically when plugging in/out external monitors.
-
-You might want to customize things though, here follow some examples of commands I use daily for this:
-
-#+begin_src shell
-  # Set fractional scaling to 1.5x , perfect for my Framework laptop 13,5"
-  swaymsg -- output eDP-1 scale 1.5
-  # Set resolution to 4k and scale 2x
-  swaymsg -- output Virtual-1 mode --custom 3840x2160 scale 2
-  # Set resolution and refresh rate
-  swaymsg -- output HDMI-A-1 mode --custom 1680x1050@50
-  # 1080p
-  swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1
-#+end_src
 
 -----
 
@@ -707,14 +686,16 @@ A: Try with ~gpg --pinentry-mode loopback --full-gen-key~. Otherwise try other o
 
 -----
 
-* Sway keybindings
+* WM keybindings
+
+Find here the Hyprland keybindings. I usually use these bindings in other WMs too.
+Labwc session has a a more windows-like style of bindings.
 
 ** General keybindings
 
 | keybind  | command                                |
 |----------+----------------------------------------|
 | ~s-k~      | Kill/Close a window or application     |
-| ~s-S-c~    | Reload Sway configuration              |
 | ~s-l~      | Lock screen                            |
 | ~s-1..9~   | Move focus to workspace 1..9           |
 | ~s-S-1..9~ | Move window to workspace 1..9          |
@@ -730,7 +711,7 @@ A: Try with ~gpg --pinentry-mode loopback --full-gen-key~. Otherwise try other o
 | keybind | command                                     |
 |---------+---------------------------------------------|
 | ~s-/~     | Launch application fuzzy finder menu (Rofi) |
-| ~s-i~     | Open a Web Browser (Qutebrowser)            |
+| ~s-i~     | Open a Web Browser (IceCat)      |
 | ~s-S-i~   | Open a bloated Web Browser (Chrome)         |
 | ~s-RET~   | Open a terminal emulator (Foot)             |
 | ~s-t~     | /idem/                                        |
@@ -747,7 +728,6 @@ A: Try with ~gpg --pinentry-mode loopback --full-gen-key~. Otherwise try other o
 | ~s-S-,~   | *Copy* screenshot of selected area |
 | ~s-,~     | *Save* screenshot of selected area |
 | ~s-S-b~   | Set wallpaper to theme's default |
-| ~s-S-c~   | Reload Sway's configuration      |
 |---------+----------------------------------|
 
 ------

@@ -51,28 +51,27 @@
              (sxml simple))
 
 ;; Load SSS modules
-(use-modules (sss sway)
-             (sss process)
-             (sss foot)
-             (sss git)
-             (sss vars)
-             (sss mako)
-             (sss byggsteg)
-             (sss enchant)
-             (sss fontconfig)
-             (sss hyprland)
-             (sss bash)
-             (sss mime)
-             (sss fish)
-             (sss gtk)
-             (sss portals)
-             (sss qt)
-             (sss openpgp)
-             (sss waybar)
-             (sss rofi)
-             (sss ssh)
-             (sss bridge emacs)
-             (sss qutebrowser))
+(use-modules 
+ (sss process)
+ (sss foot)
+ (sss git)
+ (sss vars)
+ (sss mako)
+ (sss enchant)
+ (sss fontconfig)
+ (sss hyprland)
+ (sss bash)
+ (sss mime)
+ (sss fish)
+ (sss gtk)
+ (sss portals)
+ (sss qt)
+ (sss openpgp)
+ (sss waybar)
+ (sss rofi)
+ (sss ssh)
+ (sss bridge emacs)
+ (sss qutebrowser))
 
 (define joe-ssh-hosts
   (list (openssh-host (name "wolk-jjba")
@@ -318,23 +317,15 @@
 ;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")
 (home-environment
-  (packages (list pfetch))
-  (services
-   (list sss-home-files-service
-         (sss-ssh-service #:ssh-hosts joe-ssh-hosts)
-         (sss-home-vars-service #:sss-clone-dir sss-clone-dir
-                                #:sss-lang sss-lang)
-         (sss-bash-service #:sss-clone-dir sss-clone-dir)
-         sss-openpgp-conf
-         (service home-dbus-service-type)
-         (service home-pipewire-service-type)
-         (service sss-byggsteg-service-type)
-         (sss-sway-service-type #:sss-clone-dir sss-clone-dir
-                                #:sss-keyboard-layout sss-keyboard-layout
-                                #:sss-keyboard-caps-to-ctrl
-                                sss-keyboard-caps-to-ctrl
-                                #:sss-active-palette sss-active-palette
-                                #:sss-sway-extra-startups
-                                sss-sway-extra-startups)
-         sss-fontconfig-service-type)))
+ (packages (list pfetch))
+ (services
+  (list sss-home-files-service
+        (sss-ssh-service #:ssh-hosts joe-ssh-hosts)
+        (sss-home-vars-service #:sss-clone-dir sss-clone-dir
+                               #:sss-lang sss-lang)
+        (sss-bash-service #:sss-clone-dir sss-clone-dir)
+        sss-openpgp-conf
+        (service home-dbus-service-type)
+        (service home-pipewire-service-type)
+        sss-fontconfig-service-type)))
 

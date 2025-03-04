@@ -56,7 +56,6 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 - multi-user Git configuration setup (work/personal)
 - Qutebrowser configurations
 - Multi user configurations
-- SwayFX configuration (discontinued)
 
   and more....
   

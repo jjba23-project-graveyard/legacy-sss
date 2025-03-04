@@ -21,8 +21,8 @@
   #:use-module (sss palette))
 
 (define* (serialize-hypr-setting type setting
-                                     #:key (indent "")
-                                     (nested #f))
+                                 #:key (indent "")
+                                 (nested #f))
   (if nested
       (format #f
               "~a~a~a = ~a"
@@ -33,23 +33,20 @@
       (format #f "~a~a = ~a" indent type setting)))
 
 (define* (serialize-hypr-section #:key section settings
-                                     (indent "")
-                                     (nested #f))
+                                 (indent "")
+                                 (nested #f))
   (let ((xs (string-join (map (lambda (x)
                                 (cond
                                   ((list? (cdr x))
-                                   (serialize-hypr-section #:section (car
-                                                                          x)
-                                                               #:settings (cdr
-                                                                           x)
-                                                               #:indent "  "
-                                                               #:nested #t))
+                                   (serialize-hypr-section #:section (car x)
+                                                           #:settings (cdr x)
+                                                           #:indent "  "
+                                                           #:nested #t))
                                   (else (serialize-hypr-setting (car x)
-                                                                    (cdr x)
-                                                                    #:indent
-                                                                    "  "
-                                                                    #:nested
-                                                                    nested))))
+                                                                (cdr x)
+                                                                #:indent "  "
+                                                                #:nested
+                                                                nested))))
                               settings) "\n")))
     (format #f
             "~a~a {\n~a\n~a}"
@@ -62,22 +59,22 @@
 (begin
   (define* (sss-hypr-wallpaper #:key sss-clone-dir sss-active-palette)
     (cond
-      ((equal? 'sss-palette-ef-cyprus sss-active-palette)
-       (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
-      ((equal? 'sss-palette-ef-dream sss-active-palette)
-       (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
-      ((equal? 'sss-palette-heavy-metal sss-active-palette)
-       (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
-      ((equal? 'sss-palette-solarized-light sss-active-palette)
-       (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" sss-clone-dir))
-      ((equal? 'sss-palette-ef-autumn sss-active-palette)
-       (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" sss-clone-dir))
-      (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
-  (export sss-sway-wallpaper))
+     ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+      (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))
+     ((equal? 'sss-palette-ef-dream sss-active-palette)
+      (format #f "~a/resources/wallpapers/1362745.png" sss-clone-dir))
+     ((equal? 'sss-palette-heavy-metal sss-active-palette)
+      (format #f "~a/resources/wallpapers/heavy-wall3.jpg" sss-clone-dir))
+     ((equal? 'sss-palette-solarized-light sss-active-palette)
+      (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" sss-clone-dir))
+     ((equal? 'sss-palette-ef-autumn sss-active-palette)
+      (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" sss-clone-dir))
+     (else (format #f "~a/resources/wallpapers/some-forest.jpg" sss-clone-dir))))
+  (export sss-hypr-wallpaper))
 
 (define* (sss-hypr-startup-programs #:key sss-active-palette
-                                        (wallpaper-setter "")
-                                        (extra-startups '()))
+                                    (wallpaper-setter "")
+                                    (extra-startups '()))
   (let* ((gtk-theme-name (cond
                            ((equal? 'sss-palette-ef-cyprus sss-active-palette)
                             "Yaru-sage")
@@ -169,16 +166,28 @@
 
 (define (sss-hypr-translate-mod mod)
   (cond
-   ((equal? "s" mod) "SUPER")
-   ((equal? "s-S" mod) "SUPER_SHIFT")
-   ((equal? "M" mod) "ALT")
-   (else "SUPER")))
+    ((equal? "s" mod)
+     "SUPER")
+    ((equal? "s-S" mod)
+     "SUPER_SHIFT")
+    ((equal? "M" mod)
+     "ALT")
+    (else "SUPER")))
 
-(define* (sss-hypr-bind #:key bind dispatch (cmd "") (mod ""))
-  (format #f "~a, ~a, ~a, ~a" (sss-hypr-translate-mod mod) bind dispatch cmd))
+(define* (sss-hypr-bind #:key bind dispatch
+                        (cmd "")
+                        (mod ""))
+  (format #f
+          "~a, ~a, ~a, ~a"
+          (sss-hypr-translate-mod mod)
+          bind
+          dispatch
+          cmd))
 
-(define* (sss-hypr-no-cmd-bind #:key bind dispatch (mod ""))
-  (format #f "~a, ~a, ~a" (sss-hypr-translate-mod mod) bind dispatch))
+(define* (sss-hypr-no-cmd-bind #:key bind dispatch
+                               (mod ""))
+  (format #f "~a, ~a, ~a"
+          (sss-hypr-translate-mod mod) bind dispatch))
 
 (define sss-hypr-binds
   (append (map (lambda (kb)
@@ -194,14 +203,27 @@
                  (bindl . ", XF86AudioPrev, exec, playerctl previous")))
           (map (lambda (kb)
                  (serialize-hypr-setting 'bind kb))
-               `(
-                 ,(sss-hypr-no-cmd-bind #:mod "s" #:bind "K" #:dispatch 'killactive)
-                 ,(sss-hypr-no-cmd-bind #:mod "s" #:bind "F" #:dispatch 'fullscreen)
-                 ,(sss-hypr-no-cmd-bind #:mod "s-S" #:bind "Q" #:dispatch 'exit)
-                 ,(sss-hypr-no-cmd-bind #:mod "s-S" #:bind "L" #:dispatch 'forcerendererreload)
+               `(,(sss-hypr-no-cmd-bind #:mod "s"
+                                        #:bind "K"
+                                        #:dispatch 'killactive) ,(sss-hypr-no-cmd-bind
+                                                                  #:mod "s"
+                                                                  #:bind "F"
+                                                                  #:dispatch 'fullscreen)
+                 ,(sss-hypr-no-cmd-bind #:mod "s-S"
+                                        #:bind "Q"
+                                        #:dispatch 'exit)
+                 ,(sss-hypr-no-cmd-bind #:mod "s-S"
+                                        #:bind "L"
+                                        #:dispatch 'forcerendererreload)
                  ;;
-                 ,(sss-hypr-bind #:mod "s" #:bind "T" #:dispatch 'exec #:cmd "footclient fish")
-                 ,(sss-hypr-bind #:mod "s" #:bind "slash" #:dispatch 'exec #:cmd "rofi -show drun")
+                 ,(sss-hypr-bind #:mod "s"
+                                 #:bind "T"
+                                 #:dispatch 'exec
+                                 #:cmd "footclient fish")
+                 ,(sss-hypr-bind #:mod "s"
+                                 #:bind "slash"
+                                 #:dispatch 'exec
+                                 #:cmd "rofi -show drun")
                  "SUPER, E, exec, emacsclient -c"
                  "SUPER_SHIFT, E, exec, emacsclient -t"
                  "SUPER, period, exec, grimshot save screen"
@@ -236,7 +258,6 @@
                  "SUPER, N, cyclenext, "
                  "SUPER, P, cyclenext, prev"))))
 
-
 (begin
   (define* (sss-hyprland-config #:key sss-clone-dir
                                 sss-keyboard-layout
@@ -244,21 +265,21 @@
                                 sss-active-palette
                                 sss-hyprland-monitors
                                 (sss-hyprland-extra-startups '()))
-    (let* ((wall (sss-hypr-wallpaper #:sss-active-palette
-                                     sss-active-palette
+    (let* ((wall (sss-hypr-wallpaper #:sss-active-palette sss-active-palette
                                      #:sss-clone-dir sss-clone-dir))
-           (startup-programs (sss-hypr-startup-programs
-                              #:sss-active-palette sss-active-palette
-                              #:wallpaper-setter (format #f
-                                                         (string-append
-                                                          "swww img ~a"
-                                                          " --transition-step 12"
-                                                          " --transition-fps 60"
-                                                          " --transition-type center")
-                                                         wall)))
+           (startup-programs (sss-hypr-startup-programs #:sss-active-palette
+                                                        sss-active-palette
+                                                        #:wallpaper-setter (format
+                                                                            #f
+                                                                            (string-append
+                                                                             "swww img ~a"
+                                                                             " --transition-step 12"
+                                                                             " --transition-fps 60"
+                                                                             " --transition-type center")
+                                                                            wall)))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hypr-setting 'exec-once
-                                                                       startup-item))
+                                                startup-item))
                                              startup-programs))
            (serialized-input (serialize-hypr-section #:section 'input
                                                      #:settings (sss-hypr-input
@@ -269,9 +290,11 @@
                                                                    #:sss-active-palette
                                                                    sss-active-palette)))
            (serialized-decoration (serialize-hypr-section #:section 'decoration
-                                                          #:settings sss-hypr-decoration))
+                                                          #:settings
+                                                          sss-hypr-decoration))
            (serialized-animations (serialize-hypr-section #:section 'animations
-                                                          #:settings sss-hypr-animations))
+                                                          #:settings
+                                                          sss-hypr-animations))
            (serialized-key-bindings (string-join sss-hypr-binds "\n"))
            (config-lines (append `("# ====== SSS Hypr configuration ======"
                                    "#"

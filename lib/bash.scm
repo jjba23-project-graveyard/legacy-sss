@@ -65,12 +65,8 @@
                            sss-clone-dir))
       (docker . "podman")
       (docker-compose . "podman-compose")
-      (ofmw . "swaymsg -- output eDP-1 scale 1.5")
-      (owm . "swaymsg -- output Virtual-1 mode --custom 3840x2400 scale 2")
-      (o1080 . "swaymsg -- output Virtual-1 mode --custom 1920x1080 scale 1")
-      (o4k . "swaymsg -- output Virtual-1 mode --custom 3840x2160 scale 2")
       (podman-unix-socket . "podman system service --time=0 unix:///tmp/podman.sock")
-      (gui . "sway")
+      (gui . "hyprland")
       (find-largest-files . "du -h -x -s -- * | sort -r -h | head -20")))
   (export sss-bash-aliases))
 
