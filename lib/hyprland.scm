@@ -185,7 +185,7 @@
                  "SUPER_SHIFT, Q, exit"
                  "SUPER_SHIFT, L, forcerendererreload"
                  ;;
-                 "SUPER, T, exec, footclient"
+                 "SUPER, T, exec, footclient fish"
                  "SUPER, slash, exec, rofi -show drun"
                  "SUPER, E, exec, emacsclient -c"
                  "SUPER_SHIFT, E, exec, emacsclient -t"
