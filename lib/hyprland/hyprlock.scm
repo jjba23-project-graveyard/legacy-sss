@@ -49,7 +49,7 @@
                                                                   (valign . center))))
            (serialized-greeting (serialize-hypr-section #:section 'label
                                                         #:settings `((monitor . "")
-                                                                     (text . "$USER @ SSS/GNU")
+                                                                     (text . "<b>$USER @ SSS/GNU</b>")
                                                                      (color . "rgba(200, 200, 200, 1.0)")
                                                                      (font_size . 20)
                                                                      (font_family . "Adwaita Sans")
@@ -58,7 +58,7 @@
                                                                      (valign . center))))
            (serialized-greeting2 (serialize-hypr-section #:section 'label
                                                          #:settings `((monitor . "")
-                                                                      (text . "Supreme Sexp System")
+                                                                      (text . "<i>Supreme Sexp System</i>")
                                                                       (color . "rgba(180, 180, 180, 1.0)")
                                                                       (font_size . 14)
                                                                       (font_family . "Adwaita Sans")
