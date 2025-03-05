@@ -65,10 +65,8 @@
 ;; Nix packages to install
 (define sss-nixpkgs
   '("yaml-language-server" "bash-language-server"
-    "monaspace"
     "discord"
     "spotify"
-    "whatsapp-for-linux"
     "jdt-language-server"
     "nil"
     "black"
@@ -80,7 +78,6 @@
     "sbt"
     "scala_2_13"
     "scala-cli"
-    "thunderbird"
     "postman"
     "vscode-langservers-extracted"
     "nwg-look"
@@ -94,7 +91,7 @@
     "deadnix"
     "lua"
     "lua52Packages.lua-lsp"
-    "flowblade"
+    "pitivi"
     "awscli"))
 
 ;; Flatpak remotes to add to a user
