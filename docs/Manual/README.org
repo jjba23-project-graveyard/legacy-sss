@@ -133,8 +133,22 @@ SSS supports several user customizations via the ~per-host.scm~ file and others.
 
 I took inspiration from many sources, including several color palettes, inspired by the great `ef-themes` by Protesilaos Stavrou  (https://github.com/protesilaos/ef-themes).
 
+There are more palettes though, see per-host section for more.
 
 -----
+
+* Showcase
+
+[[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-05-1.png]]
+
+[[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-05-2.png]]
+
+[[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-05-3.png]]
+
+[[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-05-4.png]]
+
+[[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-05-5.png]]
+
 
 * Per host - per-host.scm
 
@@ -365,15 +379,6 @@ sudo fc-cache -frv
 #+end_example
 
 You can then reboot and you should be greeted by a simple TTY.
-
-
-* Showcase
-
-[[https://jointhefreeworld.org/static-assets/sss/sss-2025-03-04-1.png]]
-
-[[https://jointhefreeworld.org/static-assets/sss/sss-2025-03-04-lock.png]]
-
-[[https://jointhefreeworld.org/static-assets/sss/sss-2025-03-04-2.png]]
 
 
 * login managers, and login screen
