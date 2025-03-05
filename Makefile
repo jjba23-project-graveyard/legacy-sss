@@ -86,15 +86,16 @@ endef
 
 joe-reconfigure: format
 	$(call sss-user-reconfigure,"joe")
-	@-hyprctl reload
+	-hyprctl reload
+	-pkill waybar
+	-waybar &
 jr:
-	$(call sss-user-reconfigure,"joe")
-	@-hyprctl reload
+	make joe-reconfigure
 
 manon-reconfigure: format
 	$(call sss-user-reconfigure,"manon")
 mr:
-	$(call sss-user-reconfigure,"manon")
+	make manon-reconfigure
 
 
 # full-rebuild: Rebuilds the entire system and home environment for Joe.

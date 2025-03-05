@@ -46,7 +46,7 @@
                                                       "Reboot")))))))
 
 (define sss-waybar-power-button
-  `(custom/power (format . "⏻ ")
+  `(custom/power (format . "sys")
                  (tooltip . #f)
                  (menu . "on-click")
                  (menu-file . "$HOME/.config/waybar/power_menu.xml")
@@ -56,8 +56,8 @@
                                (hibernate . "sudo loginctl hibernate"))))
 
 ;;- SSS/GNU
-(define sss-waybar-start-button
-  `(custom/sss-waybar-start-button (format . "SSS/GNU")
+(define* (sss-waybar-start-button #:key (content "λ  SSS/GNU"))
+  `(custom/sss-waybar-start-button (format unquote content)
                                    (on-click . "rofi -show drun")))
 
 (define sss-waybar-audio-icon
@@ -80,10 +80,10 @@
   `(power-profiles-daemon (format . "{icon}")
                           (tooltip-format . "Power profile: {profile}\nDriver: {driver}")
                           (tooltip . #t)
-                          (format-icons (default . "\uf0e7")
-                                        (performance . "\uf0e7")
-                                        (balanced . "\uf24e")
-                                        (power-saver . "\uf06c"))))
+                          (format-icons (default . "\uf0e7 -")
+                                        (performance . "\uf0e7 perf")
+                                        (balanced . "\uf24e bal")
+                                        (power-saver . "\uf06c eco"))))
 
 (define sss-waybar-battery-2
   `(#{battery#bat2}# (bat . "BAT2")))
@@ -116,22 +116,15 @@
                                       ("default" . "\uf111"))))
 
 (define sss-waybar-clock
-  `(clock (format . "{:%H:%M - %a, %d %B %Y}")
+  `(clock (on-click . "gnome-calendar")
+          (format . "{:%H:%M - %a, %d %B %Y}")
           (tooltip-format . "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>")
           (interval . 60)))
 
-(define sss-waybar-ip
-  `(network (format-wifi . "{essid} ({signalStrength}%) \uf1eb")
-            (format-ethernet . "{ipaddr}/{cidr} \uf796")
-            (tooltip-format . "{ifname} via {gwaddr} \uf796")
-            (format-linked . "{ifname} (No IP) \uf796")
-            (format-disconnected . "Disconnected ⚠")
-            (format-alt . "{ifname}: {ipaddr}/{cidr}")))
-
-(define sss-waybar-taskbar
-  `(wlr/taskbar (format . "{icon} {title:.30}")
-                (icon-size . 14)
-                (icon-theme . "Adwaita")
+(define* (sss-waybar-taskbar #:key active-palette)
+  `(wlr/taskbar (format . "{icon} {title:.28}")
+                (icon-size . 16)
+                (icon-theme . "Yaru")
                 (tooltip-format . "{title}")
                 (on-click . "activate")
                 (on-click-middle . "minimize")))
@@ -142,24 +135,30 @@
 
 ;; My WayBar configurations, defined in Guile Scheme, a status bar with a detailed, modular setup.
 (begin
-  (define* (sss-waybar-conf #:key (with-ip #f)
-                            (with-hyprland-workspaces #f)
+  (define* (sss-waybar-conf #:key active-palette
+                            (hyprland-session #f)
+                            (labwc-session #f)
                             (with-memory #f)
-                            (with-taskbar #f))
-    (let ((modules-left (if with-taskbar
+                            (with-taskbar #f)
+                            (with-numlock #f)
+                            (with-capslock #f))
+    (let ((modules-left (if labwc-session
                             #(custom/sss-waybar-start-button clock wlr/taskbar)
-                            #(custom/sss-waybar-start-button clock hyprland/workspaces custom/media hyprland/window))))
+                            #(custom/sss-waybar-start-button clock hyprland/workspaces custom/media)))
+          (modules-right (if labwc-session
+                             #(pulseaudio power-profiles-daemon cpu memory backlight keyboard-state battery custom/power tray)
+                             #(pulseaudio power-profiles-daemon cpu memory backlight keyboard-state battery custom/power tray))))
       `((position . bottom) (height . 42)
-        (spacing . 12)
+        (spacing . 10)
         (modules-left unquote modules-left)
         (modules-center)
-        (modules-right . #(pulseaudio network power-profiles-daemon cpu memory backlight keyboard-state hyprland/language battery #{battery#bat2}# tray custom/power))
-        ,sss-waybar-start-button
+        (modules-right unquote modules-right)
+        ,(sss-waybar-start-button)
         ,(cond
-           (with-hyprland-workspaces sss-waybar-hyprland-workspaces)
+           (hyprland-session sss-waybar-hyprland-workspaces)
            (else `(hyprland/workspaces . null)))
-        (keyboard-state (numlock . #t)
-                        (capslock . #t)
+        (keyboard-state (numlock unquote with-numlock)
+                        (capslock unquote with-capslock)
                         (format . "{name} {icon} ")
                         (format-icons (locked . "\uf023")
                                       (unlocked . "\uf09c")))
@@ -167,21 +166,41 @@
         (tray (spacing . 10))
         ,sss-waybar-clock
         (cpu (format . "{usage}% \uf2db")
-             (tooltip . #f))
+             (tooltip . #f)
+             (on-click . "gnome-system-monitor"))
         ,(cond
-           (with-memory `(memory (format . "{}% \uf0c9")))
+           (with-memory `(memory (format . "{}% \uf0c9")
+                                 (on-click . "gnome-system-monitor")))
            (else `(memory . null)))
         ,sss-waybar-backlight
         ,sss-waybar-battery
         ,sss-waybar-battery-2
         ,sss-waybar-power-profiles
-        ,sss-waybar-taskbar
-        ,(cond
-           (with-ip sss-waybar-ip)
-           (else `(network . null)))
+        ,(sss-waybar-taskbar #:active-palette active-palette)
         ,sss-waybar-audio-icon
         ,sss-waybar-power-button)))
   (export sss-waybar-conf))
+
+(define* (button-css #:key active-palette)
+  `((background unquote
+                (sss-hex-to-rgba (sss-get-color active-palette
+                                                'background)
+                                 #:alpha 1))
+    (color unquote
+           (sss-hex-to-rgba (sss-get-color active-palette
+                                           'text-l)
+                            #:alpha 1))
+    (font-weight . 700)
+    (margin-top . "6px")
+    (margin-bottom . "6px")
+    (margin-left . "6px")
+    (margin-right . "6px")
+    (font-size . "10pt")
+    (padding-top . "4px")
+    (padding-bottom . "4px")
+    (padding-left . "8px")
+    (padding-right . "8px")
+    (border-radius . "10px")))
 
 ;; Defines a CSS configuration for SSS Waybar using Scheme.
 ;; This configuration customizes various UI elements, such as background color,
@@ -196,25 +215,25 @@
 (begin
   (define* (sss-waybar-css #:key active-palette)
     `((module (background . transparent)
-              (padding-top . "6px")
-              (padding-top . "6px")
-              (padding-right . "12px")
-              (padding-left . "12px")
-              (padding-bottom . "6px")
-              (font-family . "FontAwesome, Adwaita Mono")
+              (font-family . "FontAwesome, Adwaita Sans")
               (font-weight . 500)
               (color unquote
                      (sss-get-color active-palette
                                     'text)))
       ("#workspaces button" (font-size . "12pt"))
-      ("#clock.date, #clock.time" (font-size . "10pt"))
+      ("#power-profiles-daemon" unquote
+       (button-css #:active-palette active-palette))
+      ("#custom-power" unquote
+       (button-css #:active-palette active-palette))
+      ("#clock" unquote
+       (button-css #:active-palette active-palette))
       ("window#waybar" (background unquote
                                    (sss-hex-to-rgba (sss-get-color
                                                      active-palette
                                                      'background)
-                                                    #:alpha 0.8))
+                                                    #:alpha 0.7))
        (padding . "12px")
-       (font-family . "FontAwesome, Adwaita Mono")
+       (font-family . "FontAwesome, Adwaita Sans")
        (color unquote
               (sss-get-color active-palette
                              'text)))
@@ -222,36 +241,23 @@
                            (sss-get-color active-palette
                                           'background-l))
                (border-radius . 0))
-      ("#custom-sss-waybar-start-button" (background unquote
-                                                     (sss-hex-to-rgba (sss-get-color
-                                                                       active-palette
-                                                                       'background)
-                                                                      #:alpha
-                                                                      1))
-       (font-weight . 700)
-       (margin . "8px")
-       (padding-top . "4px")
-       (padding-bottom . "4px")
-       (padding-left . "8px")
-       (padding-right . "8px")
-       (border-radius . "10px"))
+      ("#custom-sss-waybar-start-button" unquote
+       (button-css #:active-palette active-palette))
       ("#workspaces" (padding-right . 0))
       ("#workspaces button" (padding . "4px")
+       (font-weight . 700)
        (color unquote
               (sss-get-color active-palette
                              'text)))
-      ("#clock" (padding-right . "90px")
-       (padding-left . "16px"))
-      ("#workspaces button.active" (border unquote
-                                           (format #f "2px solid ~a"
-                                                   (sss-get-color
-                                                    active-palette
-                                                    'primary-l)))
+      ("#workspaces button.active" (background unquote
+                                               (sss-get-color active-palette
+                                                              'primary-l))
+       (border-radius . "10px")
        (color unquote
               (sss-get-color active-palette
                              'background))
-       (border-radius . 0)
-       (margin-top . "2px")
+       (margin-top . "6px")
+       (margin-bottom . "6px")
        (transition . none))
       ("#workspaces button.focused" (color unquote
                                            (sss-get-color active-palette
@@ -267,11 +273,14 @@
       ("window#waybar.empty #window" (padding . 0)
        (margin . 0)
        (opacity . 0))
-      ("#tray" (margin-right . "4px"))
+      ("#tray" unquote
+       (button-css #:active-palette active-palette))
       ("#keyboard-state" (font-size . "9pt"))
-      ("#network" (font-size . "9pt"))
-      ("#pulseaudio" (font-size . "9pt"))
-      ("#cpu" (font-size . "9pt"))
-      ("#memory" (font-size . "9pt"))))
+      ("#pulseaudio" unquote
+       (button-css #:active-palette active-palette))
+      ("#cpu" unquote
+       (button-css #:active-palette active-palette))
+      ("#memory" unquote
+       (button-css #:active-palette active-palette))))
 
   (export sss-waybar-css))

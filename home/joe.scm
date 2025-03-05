@@ -169,9 +169,9 @@
              ;; Waybar configuration (for status bar)
              (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
                                                          (scm->json-string (sss-waybar-conf
-                                                                            #:with-ip
-                                                                            #t
-                                                                            #:with-hyprland-workspaces
+                                                                            #:active-palette
+                                                                            sss-active-palette
+                                                                            #:hyprland-session
                                                                             #t
                                                                             #:with-memory
                                                                             #t)

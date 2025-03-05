@@ -80,7 +80,7 @@
                                                            (string-append
                                                             "[Settings]\n"
                                                             (mk-kv-conf-lines (sss-gtk3-config
-                                                                               #:sss-active-palette
+                                                                               #:active-palette
                                                                                sss-active-palette
                                                                                #:fixed-theme
                                                                                "Numix"
@@ -92,7 +92,7 @@
                                                           (string-append
                                                            "[Settings]\n"
                                                            (mk-kv-conf-lines (sss-gtk4-config
-                                                                              #:sss-active-palette
+                                                                              #:active-palette
                                                                               sss-active-palette
                                                                               #:fixed-theme
                                                                               "Numix"
@@ -122,7 +122,7 @@
              ;; Rofi styling
              (".config/rofi/sss-theme.rasi" ,(plain-file "sss-theme.rasi"
                                                          (mk-css-conf-lines (sss-rofi-theme
-                                                                             #:sss-active-palette
+                                                                             #:active-palette
                                                                              sss-active-palette))))
 
              (".config/mimeapps.list" ,(plain-file "mimeapps.list"
@@ -137,13 +137,11 @@
              ;; Waybar configuration (for status bar)
              (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
                                                          (scm->json-string (sss-waybar-conf
-                                                                            #:with-ip
-                                                                            #f
-                                                                            #:with-hyprland-workspaces
-                                                                            #f
+                                                                            #:active-palette
+                                                                            sss-active-palette
                                                                             #:with-memory
                                                                             #f
-                                                                            #:with-taskbar
+                                                                            #:labwc-session
                                                                             #t)
                                                                            #:pretty
                                                                            #t)))
@@ -151,7 +149,7 @@
              ;; Waybar styling
              (".config/waybar/style.css" ,(plain-file "waybar.css"
                                                       (mk-css-conf-lines (sss-waybar-css
-                                                                          #:sss-active-palette
+                                                                          #:active-palette
                                                                           sss-active-palette))))
              ;; Waybar Power menu from Scheme to XML format
              (".config/waybar/power_menu.xml" ,(plain-file "power_menu.xml"
@@ -172,7 +170,7 @@
              ;; Mako (notification daemon) configuration
              (".config/mako/config" ,(plain-file "config"
                                                  (mk-kv-conf-lines (sss-mako-config
-                                                                    #:sss-active-palette
+                                                                    #:active-palette
                                                                     sss-active-palette))))
 
              (".config/labwc/rc.xml" ,labwc-rc)

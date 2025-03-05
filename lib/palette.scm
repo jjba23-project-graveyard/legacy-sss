@@ -61,7 +61,8 @@
 (define-public sss-palette-ef-bio
   `((primary . "#00552f") (primary-l . "#3fb83f")
     (primary-d . "#0a4425")
-    (text . "#cfdfd5")
+    (text . "#dfefe6")
+    (text-l . "#cfdfd5")
     (background . "#111111")
     (background-l . "#222522")))
 
@@ -69,13 +70,15 @@
   `((primary . "#b3d19d") (primary-l . "#c4f2af")
     (primary-d . "#557400")
     (text . "#242521")
+    (text-l . "#353632")
     (background . "#fcf7ef")
     (background-l . "#f0ece0")))
 
 (define-public sss-palette-ef-autumn
   `((primary . "#7a3b23") (primary-l . "#c0620e")
     (primary-d . "#d0730f")
-    (text . "#cfbcba")
+    (text . "#dfcdcb")
+    (text-l . "#cfbcba")
     (background . "#26211d")
     (background-l . "#36322f")))
 
@@ -83,19 +86,22 @@
   `((primary . "#675072") (primary-l . "#b0a0cf")
     (primary-d . "#a0a0cf")
     (text . "#efd5c5")
+    (text-l . "#dec4b4")
     (background . "#232025")
     (background-l . "#322f34")))
 
 (define-public sss-palette-solarized-light
   `((primary . "#e89149") (primary-l . "#f5883f")
     (primary-d . "#b7410e")
-    (text . "#586e75")
+    (text . "#475d64")
+    (text-l . "#586e75")
     (background . "#fdf6e3")
     (background-l . "#eee8d5")))
 
 (define-public sss-palette-heavy-metal
   `((primary . "#b02930") (primary-l . "#f47360")
     (primary-d . "#d56f72")
-    (text . "#efd5c5")
+    (text . "#ffe6d6")
+    (text-l . "#efd5c5")
     (background . "#111111")
     (background-l . "#222522")))
