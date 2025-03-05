@@ -64,6 +64,7 @@
                      llvm
                      image
                      multiprecision
+                     kde
                      gcc
                      aspell
                      gdb
