@@ -346,8 +346,7 @@
         libnotify
         wdisplays
 
-        shotcut
-        openshot
+        kdenlive
         inkscape
 
         vlc
