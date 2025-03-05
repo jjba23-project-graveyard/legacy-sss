@@ -55,6 +55,7 @@
                      gnuzilla
                      ncurses
                      mpd
+                     android
                      xfce
                      cpp
                      python-xyz
@@ -453,6 +454,7 @@
         fyi
 
         drill
+        android-file-transfer
 
         (specification->package "gettext")
 
