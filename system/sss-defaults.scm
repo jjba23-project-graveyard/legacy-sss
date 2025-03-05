@@ -94,6 +94,7 @@
     "deadnix"
     "lua"
     "lua52Packages.lua-lsp"
+    "flowblade"
     "awscli"))
 
 ;; Flatpak remotes to add to a user
