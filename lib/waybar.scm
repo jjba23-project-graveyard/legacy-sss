@@ -149,7 +149,6 @@
                              #(pulseaudio power-profiles-daemon cpu memory backlight keyboard-state battery custom/power tray)
                              #(pulseaudio power-profiles-daemon cpu memory backlight keyboard-state battery custom/power tray))))
       `((position . bottom) (height . 42)
-        (spacing . 10)
         (modules-left unquote modules-left)
         (modules-center)
         (modules-right unquote modules-right)
@@ -163,7 +162,7 @@
                         (format-icons (locked . "\uf023")
                                       (unlocked . "\uf09c")))
         (hyprland/mode (format . "<span style=\"italic\">{}</span>"))
-        (tray (spacing . 10))
+        (tray (spacing . 12))
         ,sss-waybar-clock
         (cpu (format . "{usage}% \uf2db")
              (tooltip . #f)
@@ -185,7 +184,7 @@
   `((background unquote
                 (sss-hex-to-rgba (sss-get-color active-palette
                                                 'background)
-                                 #:alpha 0.9))
+                                 #:alpha 0.7))
     (color unquote
            (sss-hex-to-rgba (sss-get-color active-palette
                                            'text-l)
@@ -196,11 +195,9 @@
     (margin-left . "6px")
     (margin-right . "6px")
     (font-size . "10pt")
-    (padding-top . "4px")
-    (padding-bottom . "4px")
-    (padding-left . "8px")
-    (padding-right . "8px")
-    (border-radius . "10px")))
+    (padding-left . "10px")
+    (padding-right . "10px")
+    (border-radius . "18px")))
 
 ;; Defines a CSS configuration for SSS Waybar using Scheme.
 ;; This configuration customizes various UI elements, such as background color,
@@ -220,6 +217,8 @@
               (color unquote
                      (sss-get-color active-palette
                                     'text)))
+      ("#workspaces" unquote
+       (button-css #:active-palette active-palette))
       ("#workspaces button" (font-size . "12pt"))
       ("#power-profiles-daemon" unquote
        (button-css #:active-palette active-palette))
@@ -231,8 +230,8 @@
                                    (sss-hex-to-rgba (sss-get-color
                                                      active-palette
                                                      'background)
-                                                    #:alpha 0.7))
-       (padding . "12px")
+                                                    #:alpha 0.0))
+       (padding . "8px")
        (font-family . "FontAwesome, Adwaita Sans")
        (color unquote
               (sss-get-color active-palette
