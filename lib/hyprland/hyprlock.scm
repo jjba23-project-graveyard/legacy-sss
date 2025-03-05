@@ -28,9 +28,9 @@
                                                    #:settings `((monitor . "")
                                                                 (path unquote
                                                                       (format
-                                                                              #f
-                                                                              "~a/resources/img/sss.png"
-                                                                              sss-clone-dir))
+                                                                       #f
+                                                                       "~a/resources/img/sss.png"
+                                                                       sss-clone-dir))
                                                                 (position . "0, 230")
                                                                 (rounding . "-1")
                                                                 (size . "200")
@@ -74,6 +74,12 @@
                                                            #:settings `((monitor . "")
                                                                         (position . "0, -100")
                                                                         (fade_on_empty . false)
+                                                                        (size . "360, 70")
+                                                                        (dots_size . "0.2")
+                                                                        (placeholder_text . "enter your password...")
+                                                                        (inner_color . "rgba(200, 200, 200, 0.5)")
+                                                                        (outer_color . "rgba(160, 160, 160, 0.5)")
+                                                                        (font_color . "rgba(20, 20, 20, 0.5)")
                                                                         (font_family . "Adwaita Sans"))))
            (serialized-general-field (serialize-hypr-section #:section 'general
                                                              #:settings `((hide_cursor . false)
