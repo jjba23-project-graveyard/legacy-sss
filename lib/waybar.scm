@@ -185,7 +185,7 @@
   `((background unquote
                 (sss-hex-to-rgba (sss-get-color active-palette
                                                 'background)
-                                 #:alpha 1))
+                                 #:alpha 0.9))
     (color unquote
            (sss-hex-to-rgba (sss-get-color active-palette
                                            'text-l)
