@@ -738,7 +738,9 @@ According to size, color and font family"
   :ensure t
   :init
   (setq geiser-active-implementations '(guile))
-  (setq geiser-mode-auto-p nil))
+  (setq geiser-mode-auto-p nil)
+  (ignore-errors
+    (define-key scheme-mode-map (kbd "C-c i f") #'sss-guix-fmt)))
 
 (use-package geiser-guile
   :ensure t)
@@ -1002,8 +1004,6 @@ According to size, color and font family"
         recentf-max-saved-items 100)
 
   (global-hl-line-mode +1)
-
-  (define-key scheme-mode-map (kbd "C-c i f") #'sss-guix-fmt)
 
   (add-to-list 'after-make-frame-functions 'new-frame-setup t))
 
