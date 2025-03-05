@@ -88,6 +88,7 @@
     "mermaid-cli"
     "jetbrains.idea-community"
     "nixfmt"
+    "dbeaver-bin"
     "rustfmt"
     "way-displays"
     "deadnix"
