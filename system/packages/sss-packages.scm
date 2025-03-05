@@ -148,30 +148,6 @@
       (specification->package pkg)
       (specification->package "curl")))
 
-;; TODO install to right location where Kvantum can see it?
-(define-public sss-kv-yaru-colors
-  (package
-    (name "kvantum-yaru-colors")
-    (version "21.04")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/GabePoel/KvYaru-Colors.git")
-             (commit "7df1a89610618e6d3a145ff44ed47f0aafdb4ae5")))
-       (sha256
-        (base32 "1d7ys8jyk8k34dbq807vvxj9xpq9jgi8yx3xkn1ypswx5mabl9ls"))))
-    (build-system copy-build-system)
-    (arguments
-     (list
-      #:install-plan
-      #~'(("./src/" "/usr/share/Kvantum"))))
-    (synopsis "Kvantum theme to match the Yaru colors theme!")
-    (description
-     "Kvantum themes to match the Yaru Colors and Yaru Remix themes! Check releases for latest stable version.")
-    (home-page "https://github.com/GabePoel/KvYaru-Colors.git")
-    (license license:gpl3+)))
-
 (define sss-font-packages
   (list fontconfig
         font-google-roboto
@@ -297,8 +273,7 @@
         delft-icon-theme
         gnome-themes-standard
         gnome-themes-extra
-        adwaita-icon-theme
-        sss-kv-yaru-colors))
+        adwaita-icon-theme))
 
 (define sss-latex-packages
   (list texinfo texlive))
@@ -310,19 +285,10 @@
   (list icecat icedove))
 
 (define sss-qt-packages
-  (list kvantum
-        qt5ct
-        qtwayland-5
-        qtsvg
-        ;; seems like qt wayland 6 and 5 are not yet compatible
-        ;; this causes crashes in qt 5 and 6 apps
-        ;; qtwayland-6
-        qt6ct))
+  (list qtwayland qt6ct qtsvg))
 
 (define* (sss-other-system-packages #:key architecture)
-  (list
-
-        flatpak
+  (list flatpak
         pipewire
         nginx
         watchexec
@@ -337,25 +303,7 @@
         gnome-characters
 
         xz
-        ispell
-        (specification->package "bind")
 
-        gnome-tweaks
-        wlr-randr
-        httpie
-        (specification->package "remmina")
-        libnotify
-        wdisplays
-
-        kdenlive
-        inkscape
-
-        vlc
-
-        sqlite
-        postgresql
-
-        gdk-pixbuf
         gtk
 
         qutebrowser

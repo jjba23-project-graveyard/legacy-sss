@@ -205,14 +205,6 @@
                                                                           #:active-palette
                                                                           sss-active-palette))))
 
-             ;; Kvantum theme configuration
-             (".config/Kvantum/kvantum.kvconfig" ,(plain-file
-                                                   "kvantum.kvconfig"
-                                                   (string-join (list
-                                                                 "[General]"
-                                                                 "theme=KvYaru-MATEDark")
-                                                                "\n")))
-
              (".config/mimeapps.list" ,(plain-file "mimeapps.list"
                                                    (sss-mimeapps-list-file
                                                     #:added-associations
@@ -222,22 +214,9 @@
                                                     #:default-applications
                                                     sss-mime-default-applications)))
 
-             (".config/Kvantum/KvYaru-Green" ,(local-file
-                                               "/run/current-system/profile/usr/share/Kvantum/KvYaru-Green"
-                                               #:recursive? #t))
-             (".config/Kvantum/KvYaru-MATE" ,(local-file
-                                              "/run/current-system/profile/usr/share/Kvantum/KvYaru-MATE"
-                                              #:recursive? #t))
-
              ;; Qt6 configuration
              (".config/qt6ct/qt6ct.conf" ,(plain-file "qt6ct.conf"
                                                       (sss-qt6ct-config
-                                                       #:active-palette
-                                                       sss-active-palette)))
-
-             ;; Qt5 configuration
-             (".config/qt5ct/qt5ct.conf" ,(plain-file "qt5ct.conf"
-                                                      (sss-qt5ct-config
                                                        #:active-palette
                                                        sss-active-palette)))
 

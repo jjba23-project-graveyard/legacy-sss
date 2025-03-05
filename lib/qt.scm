@@ -43,11 +43,10 @@
                                                               active-palette)
                                                       "Yaru")
                                                      (else "Yaru-sage-dark")))
-                                       (standard_dialogs . default)
-                                       (style . kvantum)))
+                                       (standard_dialogs . default)))
                    "\n[Fonts]\n"
-                   (mk-kv-conf-lines `((fixed . "\"Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
-                                       (general . "\"Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
+                   (mk-kv-conf-lines `((fixed . "\"Adwaita Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
+                                       (general . "\"Adwaita Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
                    "\n[Interface]\n"
                    (mk-kv-conf-lines `((activate_item_on_single_click . 0)
                                        (buttonbox_layout . 3)
@@ -64,47 +63,3 @@
                                        (wheel_scroll_lines . 3)))))
   (export sss-qt6ct-config))
 
-(begin
-  (define* (sss-qt5ct-config #:key active-palette)
-    (string-append "[Appearance]\n"
-                   (mk-kv-conf-lines `((color_scheme_path . "/run/current-system/profile/share/qt6ct/colors/airy.conf")
-                                       (custom_palette . false)
-                                       (icon_theme unquote
-                                                   (cond
-                                                     ((equal? 'sss-palette-ef-cyprus
-                                                              active-palette)
-                                                      "Yaru-sage")
-                                                     ((equal? 'sss-palette-heavy-metal
-                                                              active-palette)
-                                                      "Yaru-red-dark")
-                                                     ((equal? 'sss-palette-ef-dream
-                                                              active-palette)
-                                                      "Yaru-magenta-dark")
-                                                     ((equal? 'sss-palette-ef-autumn
-                                                              active-palette)
-                                                      "Yaru-dark")
-                                                     ((equal? 'sss-palette-solarized-light
-                                                              active-palette)
-                                                      "Yaru")
-                                                     (else "Yaru-sage-dark")))
-                                       (standard_dialogs . default)
-                                       (style . kvantum)))
-                   "\n[Fonts]\n"
-                   (mk-kv-conf-lines `((fixed . "\"Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
-                                       (general . "\"Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")))
-                   "\n[Interface]\n"
-                   (mk-kv-conf-lines `((activate_item_on_single_click . 0)
-                                       (buttonbox_layout . 3)
-                                       (cursor_flash_time . 1000)
-                                       (dialog_buttons_have_icons . 1)
-                                       (double_click_interval . 400)
-                                       (gui_effects . "@Invalid()")
-                                       (keyboard_scheme . 2)
-                                       (menus_have_icons . true)
-                                       (show_shortcuts_in_context_menus . true)
-                                       (stylesheets . "@Invalid()")
-                                       (toolbutton_style . 4)
-                                       (underline_shortcut . 1)
-                                       (wheel_scroll_lines . 3)))))
-
-  (export sss-qt5ct-config))
