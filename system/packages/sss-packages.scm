@@ -204,7 +204,7 @@
         swww
 
         mako
-
+        wev
         grimshot
         wl-color-picker
         qpwgraph
@@ -396,8 +396,8 @@
         powertop
         ffmpegthumbs
         xarchiver
-        ristretto
-        orage
+
+        gnome-calendar
 
         sqlitebrowser
         direnv

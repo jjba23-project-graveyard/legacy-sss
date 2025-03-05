@@ -894,6 +894,14 @@ According to size, color and font family"
     (kill-new uid)
     ))
 
+(defun sss-guix-fmt ()
+  (interactive)
+  (let ((path (file-truename buffer-file-name)))
+    (message "formatting current buffer with Guix style")
+    (shell-command (format "guix style -f %s" path))
+    (revert-buffer :ignore-auto :noconfirm)
+    (message "formatted current buffer with Guix style")
+    ))
 
 ;; ====== Emacs built-in features ======
 
@@ -994,6 +1002,8 @@ According to size, color and font family"
         recentf-max-saved-items 100)
 
   (global-hl-line-mode +1)
+
+  (define-key scheme-mode-map (kbd "C-c i f") #'sss-guix-fmt)
 
   (add-to-list 'after-make-frame-functions 'new-frame-setup t))
 
