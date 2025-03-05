@@ -87,8 +87,7 @@ endef
 joe-reconfigure: format
 	$(call sss-user-reconfigure,"joe")
 	-hyprctl reload
-	-pkill waybar
-	-waybar &
+
 jr:
 	make joe-reconfigure
 

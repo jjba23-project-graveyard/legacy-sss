@@ -192,12 +192,12 @@
     (font-weight . 700)
     (margin-top . "6px")
     (margin-bottom . "6px")
-    (margin-left . "6px")
-    (margin-right . "6px")
+    (margin-left . "4px")
+    (margin-right . "4px")
     (font-size . "10pt")
     (padding-left . "10px")
     (padding-right . "10px")
-    (border-radius . "18px")))
+    (border-radius . "16px")))
 
 ;; Defines a CSS configuration for SSS Waybar using Scheme.
 ;; This configuration customizes various UI elements, such as background color,
@@ -223,6 +223,10 @@
       ("#power-profiles-daemon" unquote
        (button-css #:active-palette active-palette))
       ("#custom-power" unquote
+       (button-css #:active-palette active-palette))
+      ("#battery" unquote
+       (button-css #:active-palette active-palette))
+      ("#backlight" unquote
        (button-css #:active-palette active-palette))
       ("#clock" unquote
        (button-css #:active-palette active-palette))
