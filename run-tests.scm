@@ -26,6 +26,6 @@
 
 (define (run-all-tests)
   (for-each run-test
-            '("lib/emacs-bridge.scm")))
+            '("lib/emacs-bridge.scm" "lib/hyprland/hyprlang.scm")))
 
 (run-all-tests)

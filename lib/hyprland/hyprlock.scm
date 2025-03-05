@@ -28,9 +28,9 @@
                                                    #:settings `((monitor . "")
                                                                 (path unquote
                                                                       (format
-                                                                       #f
-                                                                       "~a/resources/img/sss.png"
-                                                                       sss-clone-dir))
+                                                                              #f
+                                                                              "~a/resources/img/sss.png"
+                                                                              sss-clone-dir))
                                                                 (position . "0, 230")
                                                                 (rounding . "-1")
                                                                 (size . "200")

@@ -15,8 +15,8 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-
-(define-module (sss hyprland hyprlang))
+(define-module (sss hyprland hyprlang)
+  #:use-module (srfi srfi-64))
 
 (begin
   (define* (serialize-hypr-setting type setting
@@ -38,16 +38,17 @@
                                    (nested #f))
     (let ((xs (string-join (map (lambda (x)
                                   (cond
-                                   ((list? (cdr x))
-                                    (serialize-hypr-section #:section (car x)
-                                                            #:settings (cdr x)
-                                                            #:indent "  "
-                                                            #:nested #t))
-                                   (else (serialize-hypr-setting (car x)
-                                                                 (cdr x)
-                                                                 #:indent "  "
-                                                                 #:nested
-                                                                 nested))))
+                                    ((list? (cdr x))
+                                     (serialize-hypr-section #:section (car x)
+                                                             #:settings (cdr x)
+                                                             #:indent "  "
+                                                             #:nested #t))
+                                    (else (serialize-hypr-setting (car x)
+                                                                  (cdr x)
+                                                                  #:indent
+                                                                  "  "
+                                                                  #:nested
+                                                                  nested))))
                                 settings) "\n")))
       (format #f
               "~a~a {\n~a\n~a}"
@@ -57,18 +58,27 @@
               indent)))
   (export serialize-hypr-section))
 
-
 (begin
   (define (hypr-translate-mod mod)
     (cond
-     ((equal? "s" mod)
-      "SUPER")
-     ((equal? "s-S" mod)
-      "SUPER_SHIFT")
-     ((equal? "M" mod)
-      "ALT")
-     (else "SUPER")))
+      ((equal? "s" mod)
+       "SUPER")
+      ((equal? "s-S" mod)
+       "SUPER_SHIFT")
+      ((equal? "M" mod)
+       "ALT")
+      (else mod)))
   (export hypr-translate-mod))
+
+(begin
+  (define (hypr-translate-bind bind)
+    (cond
+      ((equal? "mouse-left" bind)
+       "mouse:272")
+      ((equal? "mouse-right" bind)
+       "mouse:273")
+      (else bind)))
+  (export hypr-translate-bind))
 
 (begin
   (define* (hypr-bind #:key bind dispatch
@@ -77,7 +87,7 @@
     (format #f
             "~a, ~a, ~a, ~a"
             (hypr-translate-mod mod)
-            bind
+            (hypr-translate-bind bind)
             dispatch
             cmd))
   (export hypr-bind))
@@ -96,5 +106,72 @@
   (define* (special-bind #:key bind dispatch
                          (mod ""))
     (format #f "~a, ~a, ~a"
-            (hypr-translate-mod mod) bind dispatch))
+            (hypr-translate-mod mod)
+            (hypr-translate-bind bind) dispatch))
   (export special-bind))
+
+;; ====== module tests ======
+
+(test-begin "hyprlang tests")
+
+(test-equal "serialize-hypr-setting basic" "key = value"
+            (serialize-hypr-setting "key" "value"))
+
+(test-equal "serialize-hypr-setting with indent" "  key = value"
+            (serialize-hypr-setting "key" "value"
+                                    #:indent "  "))
+
+(test-equal "serialize-hypr-setting nested" "    key = value"
+            (serialize-hypr-setting "key"
+                                    "value"
+                                    #:indent "  "
+                                    #:nested #t))
+
+(test-equal "serialize-hypr-section basic" "section {\n  key = value\n}"
+            (serialize-hypr-section #:section "section"
+                                    #:settings '(("key" . "value"))))
+
+(test-equal "serialize-hypr-section nested" "section {
+  subsection {
+    key = value
+  }
+}"
+            (serialize-hypr-section #:section "section"
+                                    #:settings '(("subsection"
+                                                  ("key" . "value")))))
+
+(test-equal "hypr-translate-mod SUPER" "SUPER"
+            (hypr-translate-mod "s"))
+
+(test-equal "hypr-translate-mod ALT" "ALT"
+            (hypr-translate-mod "M"))
+
+(test-equal "hypr-translate-mod unknown" "unknown"
+            (hypr-translate-mod "unknown"))
+
+(test-equal "hypr-translate-bind mouse-left" "mouse:272"
+            (hypr-translate-bind "mouse-left"))
+
+(test-equal "hypr-translate-bind mouse-right" "mouse:273"
+            (hypr-translate-bind "mouse-right"))
+
+(test-equal "hypr-translate-bind passthrough" "key"
+            (hypr-translate-bind "key"))
+
+(test-equal "hypr-bind basic" "SUPER, key, dispatch, cmd"
+            (hypr-bind #:mod "SUPER"
+                       #:bind "key"
+                       #:dispatch 'dispatch
+                       #:cmd "cmd"))
+
+(test-equal "exec-bind basic" "SUPER, key, exec, cmd"
+            (exec-bind #:mod "SUPER"
+                       #:bind "key"
+                       #:cmd "cmd"))
+
+(test-equal "special-bind basic" "SUPER, key, dispatch"
+            (special-bind #:mod "SUPER"
+                          #:bind "key"
+                          #:dispatch 'dispatch))
+
+(test-end)

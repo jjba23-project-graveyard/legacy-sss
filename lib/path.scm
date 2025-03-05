@@ -34,17 +34,17 @@
              (match:substring m 1))))
 
   (let lp
-      ((pwd (getcwd)))
+    ((pwd (getcwd)))
     (cond
-     ((not (string? pwd))
-      (error find-MAKEFILE-path "BUG: please report it!" pwd))
-     ((string-null? pwd)
-      (if check-only? #f
-          (error find-MAKEFILE-path
-                 "No MAKEFILE! Are you in a legal SSS dir? Or maybe you need to create a new app?")))
-     ((-> pwd)
-      => proc)
-     (else (lp (last-path pwd))))))
+      ((not (string? pwd))
+       (error find-MAKEFILE-path "BUG: please report it!" pwd))
+      ((string-null? pwd)
+       (if check-only? #f
+           (error find-MAKEFILE-path
+            "No MAKEFILE! Are you in a legal SSS dir? Or maybe you need to create a new app?")))
+      ((-> pwd)
+       => proc)
+      (else (lp (last-path pwd))))))
 
 (define (current-toplevel)
   (or (%current-toplevel)
