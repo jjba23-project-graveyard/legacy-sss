@@ -27,8 +27,8 @@
                              user-full-name
                              user-email
                              user-initials
-                             sss-clone-dir
-                             sss-notes-roam-dir)
+                             clone-dir
+                             notes-roam-dir)
     (define sss-bridge-emacs-vars
       `((user-personal-name unquote
                             (format #f "\"~a\"" user-name))
@@ -39,9 +39,9 @@
         (user-personal-initials unquote
                                 (format #f "\"~a\"" user-initials))
         (sss-clone-dir unquote
-                       (format #f "\"~a\"" sss-clone-dir))
+                       (format #f "\"~a\"" clone-dir))
         (sss-notes-roam-dir unquote
-                            (format #f "\"~a\"" sss-notes-roam-dir))
+                            (format #f "\"~a\"" notes-roam-dir))
         (sss-emacs-theme unquote
                          (cond
                            ((equal? active-palette
@@ -88,7 +88,7 @@
                                        #:user-full-name "John Doe"
                                        #:user-email "john@doe.com"
                                        #:user-initials "JD"
-                                       #:sss-clone-dir "/home/john"
-                                       #:sss-notes-roam-dir
+                                       #:clone-dir "/home/john"
+                                       #:notes-roam-dir
                                        "/home/john/notes/roam")))
 (test-end)

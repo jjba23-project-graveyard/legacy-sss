@@ -22,7 +22,7 @@
   #:use-module (sss palette))
 
 (begin
-  (define* (sss-foot-config #:key sss-active-palette)
+  (define* (sss-foot-config #:key active-palette)
     `((font . "Adwaita Mono:size=11") (dpi-aware . "no")
       (pad . "14x14")
       (bell (urgent . "no")
@@ -31,10 +31,10 @@
       (scrollback (lines . "1000000"))
       (colors (alpha . "0.9")
               (background unquote
-                          (string-drop (sss-get-color sss-active-palette
+                          (string-drop (sss-get-color active-palette
                                                       'background) 1))
               (foreground unquote
-                          (string-drop (sss-get-color sss-active-palette
+                          (string-drop (sss-get-color active-palette
                                                       'text) 1)))
       (search-bindings (cancel . "Control+g Control+Shift+c Escape"))
       (url-bindings (cancel . "Control+g Control+Shift+c Escape"))

@@ -21,26 +21,26 @@
   #:use-module (sss process))
 
 (begin
-  (define* (sss-qt6ct-config #:key sss-active-palette)
+  (define* (sss-qt6ct-config #:key active-palette)
     (string-append "[Appearance]\n"
                    (mk-kv-conf-lines `((color_scheme_path . "/run/current-system/profile/share/qt6ct/colors/airy.conf")
                                        (custom_palette . false)
                                        (icon_theme unquote
                                                    (cond
                                                      ((equal? 'sss-palette-ef-cyprus
-                                                       sss-active-palette)
+                                                              active-palette)
                                                       "Yaru-sage")
                                                      ((equal? 'sss-palette-heavy-metal
-                                                       sss-active-palette)
+                                                              active-palette)
                                                       "Yaru-red-dark")
                                                      ((equal? 'sss-palette-ef-dream
-                                                       sss-active-palette)
+                                                              active-palette)
                                                       "Yaru-magenta-dark")
                                                      ((equal? 'sss-palette-ef-autumn
-                                                       sss-active-palette)
+                                                              active-palette)
                                                       "Yaru-dark")
                                                      ((equal? 'sss-palette-solarized-light
-                                                       sss-active-palette)
+                                                              active-palette)
                                                       "Yaru")
                                                      (else "Yaru-sage-dark")))
                                        (standard_dialogs . default)
@@ -65,26 +65,26 @@
   (export sss-qt6ct-config))
 
 (begin
-  (define* (sss-qt5ct-config #:key sss-active-palette)
+  (define* (sss-qt5ct-config #:key active-palette)
     (string-append "[Appearance]\n"
                    (mk-kv-conf-lines `((color_scheme_path . "/run/current-system/profile/share/qt6ct/colors/airy.conf")
                                        (custom_palette . false)
                                        (icon_theme unquote
                                                    (cond
                                                      ((equal? 'sss-palette-ef-cyprus
-                                                       sss-active-palette)
+                                                              active-palette)
                                                       "Yaru-sage")
                                                      ((equal? 'sss-palette-heavy-metal
-                                                       sss-active-palette)
+                                                              active-palette)
                                                       "Yaru-red-dark")
                                                      ((equal? 'sss-palette-ef-dream
-                                                       sss-active-palette)
+                                                              active-palette)
                                                       "Yaru-magenta-dark")
                                                      ((equal? 'sss-palette-ef-autumn
-                                                       sss-active-palette)
+                                                              active-palette)
                                                       "Yaru-dark")
                                                      ((equal? 'sss-palette-solarized-light
-                                                       sss-active-palette)
+                                                              active-palette)
                                                       "Yaru")
                                                      (else "Yaru-sage-dark")))
                                        (standard_dialogs . default)

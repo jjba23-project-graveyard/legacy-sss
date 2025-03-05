@@ -73,7 +73,7 @@
   (export sss-fish-config))
 
 (begin
-  (define* (sss-fish-config-service #:key sss-clone-dir)
-    (string-join (sss-fish-config #:sss-clone-dir sss-clone-dir) "\n"))
+  (define* (sss-fish-config-service #:key clone-dir)
+    (string-join (sss-fish-config #:sss-clone-dir clone-dir) "\n"))
   (export sss-fish-config-service))
 

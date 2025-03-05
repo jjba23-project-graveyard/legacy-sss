@@ -23,12 +23,12 @@
 
 ;; Environment variables for a user, plug into SSS
 (begin
-  (define* (sss-home-vars #:key sss-clone-dir sss-lang)
+  (define* (sss-home-vars #:key clone-dir lang)
     `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale") ("LANG" unquote
                                                            (format #f
                                                                    "~a.UTF-8"
-                                                                   sss-lang))
-      ("LANGUAGE" unquote sss-lang)
+                                                                   lang))
+      ("LANGUAGE" unquote lang)
       ("XDG_SESSION_TYPE" . "wayland")
       ("MOZ_ENABLE_WAYLAND" . "1")
       ("QT_QPA_PLATFORM" . "wayland")
@@ -52,15 +52,15 @@
        (format #f
         "$XDG_DATA_DIRS:$HOME/.nix-profile/share:$HOME/.local/share/flatpak/exports/share"))
       ("INFOPATH" unquote
-       (format #f "$INFOPATH:~a/docs/Manual" sss-clone-dir))
+       (format #f "$INFOPATH:~a/docs/Manual" clone-dir))
       ("DOCKER_HOST" . "unix:///tmp/podman.sock")))
   (export sss-home-vars))
 
 ;; Environment variables Guix service for a user, plug into SSS
 (begin
-  (define* (sss-home-vars-service #:key sss-clone-dir sss-lang)
-    (simple-service 'some-useful-env-vars-service
+  (define* (sss-home-vars-service #:key clone-dir lang)
+    (simple-service 'sss-home-vars-service
                     home-environment-variables-service-type
-                    (sss-home-vars #:sss-clone-dir sss-clone-dir
-                                   #:sss-lang sss-lang)))
+                    (sss-home-vars #:clone-dir clone-dir
+                                   #:lang lang)))
   (export sss-home-vars-service))

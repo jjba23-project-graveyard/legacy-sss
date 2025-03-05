@@ -20,22 +20,21 @@
   #:use-module (sss palette))
 
 (begin
-  (define* (sss-mako-config #:key sss-active-palette)
+  (define* (sss-mako-config #:key active-palette)
     `((sort . "-time") (max-history . 7)
       (on-button-left . dismiss)
       (on-button-right . invoke-default-action)
       (background-color unquote
                         (string-upcase (format #f "~abb"
-                                               (sss-get-color
-                                                sss-active-palette
-                                                'background))))
+                                               (sss-get-color active-palette
+                                                              'background))))
       (border-color unquote
                     (string-upcase (format #f "~abb"
-                                           (sss-get-color sss-active-palette
+                                           (sss-get-color active-palette
                                                           'primary))))
       (text-color unquote
                   (string-upcase (format #f "~abb"
-                                         (sss-get-color sss-active-palette
+                                         (sss-get-color active-palette
                                                         'text))))
       (font . "Adwaita Mono 12")
       (width . 420)

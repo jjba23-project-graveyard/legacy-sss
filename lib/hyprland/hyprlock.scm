@@ -23,14 +23,14 @@
   #:use-module (sss hyprland hyprlang))
 
 (begin
-  (define* (sss-hyprlock-config #:key sss-clone-dir)
+  (define* (sss-hyprlock-config #:key clone-dir)
     (let* ((serialized-img (serialize-hypr-section #:section 'image
                                                    #:settings `((monitor . "")
                                                                 (path unquote
                                                                       (format
-                                                                       #f
-                                                                       "~a/resources/img/sss.png"
-                                                                       sss-clone-dir))
+                                                                              #f
+                                                                              "~a/resources/img/sss.png"
+                                                                              clone-dir))
                                                                 (position . "0, 230")
                                                                 (rounding . "-1")
                                                                 (size . "200")

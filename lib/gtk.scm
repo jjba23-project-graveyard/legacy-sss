@@ -22,42 +22,38 @@
   #:use-module (sss palette))
 
 (begin
-  (define* (sss-gtk3-config #:key sss-active-palette
+  (define* (sss-gtk3-config #:key active-palette
                             (fixed-theme #f)
                             (fixed-icon-theme #f))
     `((gtk-icon-theme-name unquote
                            (cond
                              ((not (equal? #f fixed-icon-theme))
                               fixed-icon-theme)
-                             ((equal? 'sss-palette-ef-cyprus
-                                      sss-active-palette)
+                             ((equal? 'sss-palette-ef-cyprus active-palette)
                               "Yaru-sage")
-                             ((equal? 'sss-palette-ef-autumn
-                                      sss-active-palette)
+                             ((equal? 'sss-palette-ef-autumn active-palette)
                               "Yaru-dark")
-                             ((equal? 'sss-palette-heavy-metal
-                                      sss-active-palette)
+                             ((equal? 'sss-palette-heavy-metal active-palette)
                               "Yaru-red-dark")
-                             ((equal? 'sss-palette-ef-dream sss-active-palette)
+                             ((equal? 'sss-palette-ef-dream active-palette)
                               "Yaru-magenta-dark")
                              ((equal? 'sss-palette-solarized-light
-                                      sss-active-palette)
+                                      active-palette)
                               "Yaru")
                              (else "Yaru-sage-dark")))
       (gtk-theme-name unquote
                       (cond
                         ((not (equal? #f fixed-theme))
                          fixed-theme)
-                        ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                        ((equal? 'sss-palette-ef-cyprus active-palette)
                          "Yaru-sage")
-                        ((equal? 'sss-palette-heavy-metal sss-active-palette)
+                        ((equal? 'sss-palette-heavy-metal active-palette)
                          "Yaru-red-dark")
-                        ((equal? 'sss-palette-ef-autumn sss-active-palette)
+                        ((equal? 'sss-palette-ef-autumn active-palette)
                          "Yaru-dark")
-                        ((equal? 'sss-palette-ef-dream sss-active-palette)
+                        ((equal? 'sss-palette-ef-dream active-palette)
                          "Yaru-magenta-dark")
-                        ((equal? 'sss-palette-solarized-light
-                                 sss-active-palette)
+                        ((equal? 'sss-palette-solarized-light active-palette)
                          "Yaru")
                         (else "Yaru-sage-dark")))
       (gtk-font-name . "Inter 11")
@@ -69,54 +65,50 @@
       (gtk-application-prefer-dark-theme unquote
                                          (cond
                                            ((equal? 'sss-palette-ef-cyprus
-                                                    sss-active-palette)
+                                                    active-palette)
                                             0)
                                            ((equal? 'sss-palette-ef-dream
-                                                    sss-active-palette)
+                                                    active-palette)
                                             1)
                                            ((equal? 'sss-palette-solarized-light
-                                                    sss-active-palette)
+                                                    active-palette)
                                             0)
                                            (else 1)))))
   (export sss-gtk3-config))
 
 (begin
-  (define* (sss-gtk4-config #:key sss-active-palette
+  (define* (sss-gtk4-config #:key active-palette
                             (fixed-theme #f)
                             (fixed-icon-theme #f))
     `((gtk-icon-theme-name unquote
                            (cond
                              ((not (equal? #f fixed-icon-theme))
                               fixed-icon-theme)
-                             ((equal? 'sss-palette-ef-cyprus
-                                      sss-active-palette)
+                             ((equal? 'sss-palette-ef-cyprus active-palette)
                               "Yaru-sage")
-                             ((equal? 'sss-palette-heavy-metal
-                                      sss-active-palette)
+                             ((equal? 'sss-palette-heavy-metal active-palette)
                               "Yaru-red-dark")
-                             ((equal? 'sss-palette-ef-autumn
-                                      sss-active-palette)
+                             ((equal? 'sss-palette-ef-autumn active-palette)
                               "Yaru-dark")
-                             ((equal? 'sss-palette-ef-dream sss-active-palette)
+                             ((equal? 'sss-palette-ef-dream active-palette)
                               "Yaru-magenta-dark")
                              ((equal? 'sss-palette-solarized-light
-                                      sss-active-palette)
+                                      active-palette)
                               "Yaru")
                              (else "Yaru-sage-dark")))
       (gtk-theme-name unquote
                       (cond
                         ((not (equal? #f fixed-theme))
                          fixed-theme)
-                        ((equal? 'sss-palette-ef-cyprus sss-active-palette)
+                        ((equal? 'sss-palette-ef-cyprus active-palette)
                          "Yaru-sage")
-                        ((equal? 'sss-palette-heavy-metal sss-active-palette)
+                        ((equal? 'sss-palette-heavy-metal active-palette)
                          "Yaru-red-dark")
-                        ((equal? 'sss-palette-ef-autumn sss-active-palette)
+                        ((equal? 'sss-palette-ef-autumn active-palette)
                          "Yaru-dark")
-                        ((equal? 'sss-palette-ef-dream sss-active-palette)
+                        ((equal? 'sss-palette-ef-dream active-palette)
                          "Yaru-magenta-dark")
-                        ((equal? 'sss-palette-solarized-light
-                                 sss-active-palette)
+                        ((equal? 'sss-palette-solarized-light active-palette)
                          "Yaru")
                         (else "Yaru-sage-dark")))
       (gtk-font-name . "Inter 11")
@@ -127,13 +119,13 @@
       (gtk-application-prefer-dark-theme unquote
                                          (cond
                                            ((equal? 'sss-palette-ef-cyprus
-                                                    sss-active-palette)
+                                                    active-palette)
                                             0)
                                            ((equal? 'sss-palette-ef-dream
-                                                    sss-active-palette)
+                                                    active-palette)
                                             1)
                                            ((equal? 'sss-palette-solarized-light
-                                                    sss-active-palette)
+                                                    active-palette)
                                             0)
                                            (else 1)))))
   (export sss-gtk4-config))

@@ -30,7 +30,7 @@
   `((PS1 . "${grn}\"\\u@\\h \\w${GUIX_ENVIRONMENT:+ [env]} λ\"${clr}\"  \"")))
 
 (begin
-  (define* (sss-bash-aliases #:key sss-clone-dir)
+  (define* (sss-bash-aliases #:key clone-dir)
     `((".." . "cd ..;pwd") ("..." . "cd ../..;pwd")
       ("...." . "cd ../../..;pwd")
       (c . "clear")
@@ -42,27 +42,27 @@
       (e . "emacsclient -t")
       (vanilla-emacs . "emacs -Q")
       (fr unquote
-          (format #f "cd ~a && make fr" sss-clone-dir))
+          (format #f "cd ~a && make fr" clone-dir))
       (sr unquote
-          (format #f "cd ~a && make sr" sss-clone-dir))
+          (format #f "cd ~a && make sr" clone-dir))
       (jr unquote
-          (format #f "cd ~a && make jr" sss-clone-dir))
+          (format #f "cd ~a && make jr" clone-dir))
       (pm unquote
-          (format #f "cd ~a && make publish-manual" sss-clone-dir))
+          (format #f "cd ~a && make publish-manual" clone-dir))
       (npi unquote
-           (format #f "cd ~a && make npi" sss-clone-dir))
+           (format #f "cd ~a && make npi" clone-dir))
       (npu unquote
-           (format #f "cd ~a && make npu" sss-clone-dir))
+           (format #f "cd ~a && make npu" clone-dir))
       (fpi unquote
-           (format #f "cd ~a && make fpi" sss-clone-dir))
+           (format #f "cd ~a && make fpi" clone-dir))
       (fpu unquote
-           (format #f "cd ~a && make fpu" sss-clone-dir))
+           (format #f "cd ~a && make fpu" clone-dir))
       (scala-dev unquote
                  (format #f "nix develop ~a/resources/flakes/scala-dev/"
-                         sss-clone-dir))
+                         clone-dir))
       (haskell-dev unquote
                    (format #f "nix develop ~a/resources/flakes/haskell-dev/"
-                           sss-clone-dir))
+                           clone-dir))
       (docker . "podman")
       (docker-compose . "podman-compose")
       (podman-unix-socket . "podman system service --time=0 unix:///tmp/podman.sock")
@@ -106,23 +106,23 @@
             (else (cdr f)))))
 
 (begin
-  (define* (sss-bash-config #:key sss-clone-dir)
+  (define* (sss-bash-config #:key clone-dir)
     (append (map serialize-bash-vars sss-bash-vars)
             (map serialize-bash-exports sss-bash-exports)
             (map serialize-bash-function sss-bash-functions)
             (map serialize-bash-alias
-                 (sss-bash-aliases #:sss-clone-dir sss-clone-dir))
+                 (sss-bash-aliases #:clone-dir clone-dir))
             (map serialize-bash-path-appends sss-bash-path-appends)
             sss-bash-postlude))
   (export sss-bash-config))
 
 (begin
-  (define* (sss-bash-service #:key sss-clone-dir)
+  (define* (sss-bash-service #:key clone-dir)
     (simple-service 'sss-fancy-bash home-bash-service-type
                     (home-bash-extension (environment-variables '())
                                          (bashrc `(,(plain-file "bashrc.sh"
                                                                 (string-join (sss-bash-config
-                                                                              #:sss-clone-dir
-                                                                              sss-clone-dir)
+                                                                              #:clone-dir
+                                                                              clone-dir)
                                                                  "\n")))))))
   (export sss-bash-service))

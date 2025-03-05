@@ -36,12 +36,12 @@
 @theme \"./sss-theme.rasi\""))
 
 (begin
-  (define* (sss-rofi-theme #:key sss-active-palette)
+  (define* (sss-rofi-theme #:key active-palette)
     `(("*" (foreground unquote
-                       (sss-get-color sss-active-palette
+                       (sss-get-color active-palette
                                       'text))
        (backlight unquote
-                  (sss-hex-to-rgba (sss-get-color sss-active-palette
+                  (sss-hex-to-rgba (sss-get-color active-palette
                                                   'background)
                                    #:alpha 0.8))
        (background-color . "transparent")
@@ -101,7 +101,7 @@
        (border-color . "@foreground")
        (border-radius . "16px")
        (background-color unquote
-                         (sss-hex-to-rgba (sss-get-color sss-active-palette
+                         (sss-hex-to-rgba (sss-get-color active-palette
                                                          'background)
                                           #:alpha 0.8))
        (dynamic . "false")
@@ -109,13 +109,13 @@
       ("element selected.normal" (background-color . "@magenta")
        (text-color . "@black"))
       ("inputbar" (color unquote
-                         (sss-get-color sss-active-palette
+                         (sss-get-color active-palette
                                         'text))
        (padding . "11px")
        (margin-bottom . "6px")
        (border-radius . "16px")
        (background-color unquote
-                         (sss-hex-to-rgba (sss-get-color sss-active-palette
+                         (sss-hex-to-rgba (sss-get-color active-palette
                                                          'background-l)
                                           #:alpha 0.9)))))
   (export sss-rofi-theme))

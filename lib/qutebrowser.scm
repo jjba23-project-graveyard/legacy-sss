@@ -22,19 +22,19 @@
   #:use-module (sss palette))
 
 (begin
-  (define* (sss-qutebrowser-palette #:key sss-active-palette)
+  (define* (sss-qutebrowser-palette #:key active-palette)
     `((bg-default unquote
-                  (sss-get-color sss-active-palette
+                  (sss-get-color active-palette
                                  'background))
       (bg-lighter unquote
-                  (sss-get-color sss-active-palette
+                  (sss-get-color active-palette
                                  'background-l))
       (bg-selection . "#3e4451")
       (fg-disabled unquote
-                   (sss-get-color sss-active-palette
+                   (sss-get-color active-palette
                                   'text))
       (fg-default unquote
-                  (sss-get-color sss-active-palette
+                  (sss-get-color active-palette
                                  'text))
       (bg-lightest . "#c8ccd4")
       (fg-error . "#e06c75")
@@ -42,7 +42,7 @@
       (fg-matched-text . "#98c379")
       (bg-passthrough-mode . "#56b6c2")
       (bg-insert-mode unquote
-                      (sss-get-color sss-active-palette
+                      (sss-get-color active-palette
                                      'primary))
       (bg-warning . "#d19a66")))
   (export sss-qutebrowser-palette))
@@ -408,10 +408,10 @@
                               (cdr e)
                               (car e))) alist) "\n"))
 
-(define* (sss-qutebrowser-apply-color #:key sss-active-palette k color)
+(define* (sss-qutebrowser-apply-color #:key active-palette k color)
   (format #f "c.colors.~a = ~s\n" k
-          (assq-ref (sss-qutebrowser-palette #:sss-active-palette
-                                             sss-active-palette) color)))
+          (assq-ref (sss-qutebrowser-palette #:active-palette active-palette)
+                    color)))
 
 (define (serialize-qutebrowser-bindings alist)
   (map (lambda (e)
@@ -427,7 +427,7 @@
   (format #f "config.set('~a', ~a)" opt val))
 
 (begin
-  (define* (sss-qutebrowser-config #:key sss-active-palette)
+  (define* (sss-qutebrowser-config #:key active-palette)
     (string-join (append `("config = config" "c = c"
                            "config.load_autoconfig(False)"
                            ,(sss-qutebrowser-set-config-opt
@@ -453,10 +453,11 @@
                            ,(sss-qutebrowser-commands-bindings 'hint
                              sss-qutebrowser-hint-bindings))
                          (map (lambda (e)
-                                (sss-qutebrowser-apply-color
-                                 #:sss-active-palette sss-active-palette
-                                 #:k (car e)
-                                 #:color (car (cdr e)))) sss-qutebrowser-theme))
-                 "\n"))
+                                (sss-qutebrowser-apply-color #:active-palette
+                                                             active-palette
+                                                             #:k (car e)
+                                                             #:color (car (cdr
+                                                                           e))))
+                              sss-qutebrowser-theme)) "\n"))
 
   (export sss-qutebrowser-config))

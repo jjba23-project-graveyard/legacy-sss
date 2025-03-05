@@ -21,9 +21,9 @@
 
 ;; Define a SSH configuration service for a SSS user
 (begin
-  (define* (sss-ssh-service #:key (ssh-hosts '())
-                            (ssh-authorized-keys '()))
+  (define* (sss-ssh-service #:key (hosts '())
+                            (authorized-keys '()))
     (service home-openssh-service-type
-             (home-openssh-configuration (hosts ssh-hosts)
-                                         (authorized-keys ssh-authorized-keys))))
+             (home-openssh-configuration (hosts hosts)
+                                         (authorized-keys authorized-keys))))
   (export sss-ssh-service))

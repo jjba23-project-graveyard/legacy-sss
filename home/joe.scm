@@ -105,7 +105,7 @@
                                                            (string-append
                                                             "[Settings]\n"
                                                             (mk-kv-conf-lines (sss-gtk3-config
-                                                                               #:sss-active-palette
+                                                                               #:active-palette
                                                                                sss-active-palette)))))
 
              ;; GTK 4 settings
@@ -113,7 +113,7 @@
                                                           (string-append
                                                            "[Settings]\n"
                                                            (mk-kv-conf-lines (sss-gtk4-config
-                                                                              #:sss-active-palette
+                                                                              #:active-palette
                                                                               sss-active-palette)))))
 
              ;; Guix channels configuration
@@ -163,7 +163,7 @@
              ;; Rofi styling
              (".config/rofi/sss-theme.rasi" ,(plain-file "sss-theme.rasi"
                                                          (mk-css-conf-lines (sss-rofi-theme
-                                                                             #:sss-active-palette
+                                                                             #:active-palette
                                                                              sss-active-palette))))
 
              ;; Waybar configuration (for status bar)
@@ -181,7 +181,7 @@
              ;; Waybar styling
              (".config/waybar/style.css" ,(plain-file "waybar.css"
                                                       (mk-css-conf-lines (sss-waybar-css
-                                                                          #:sss-active-palette
+                                                                          #:active-palette
                                                                           sss-active-palette))))
              ;; Waybar Power menu from Scheme to XML format
              (".config/waybar/power_menu.xml" ,(plain-file "power_menu.xml"
@@ -202,7 +202,7 @@
              ;; Foot terminal configuration
              (".config/foot/foot.ini" ,(plain-file "foot.ini"
                                                    (mk-rec-kv-conf-lines (sss-foot-config
-                                                                          #:sss-active-palette
+                                                                          #:active-palette
                                                                           sss-active-palette))))
 
              ;; Kvantum theme configuration
@@ -232,13 +232,13 @@
              ;; Qt6 configuration
              (".config/qt6ct/qt6ct.conf" ,(plain-file "qt6ct.conf"
                                                       (sss-qt6ct-config
-                                                       #:sss-active-palette
+                                                       #:active-palette
                                                        sss-active-palette)))
 
              ;; Qt5 configuration
              (".config/qt5ct/qt5ct.conf" ,(plain-file "qt5ct.conf"
                                                       (sss-qt5ct-config
-                                                       #:sss-active-palette
+                                                       #:active-palette
                                                        sss-active-palette)))
 
              ;; Conky config
@@ -247,7 +247,7 @@
              ;; Mako (notification daemon) configuration
              (".config/mako/config" ,(plain-file "config"
                                                  (mk-kv-conf-lines (sss-mako-config
-                                                                    #:sss-active-palette
+                                                                    #:active-palette
                                                                     sss-active-palette))))
 
              ;; Enchant spell checker configuration
@@ -276,12 +276,12 @@
                                                          #:with-shadow #t)))
              (".config/hypr/hyprlock.conf" ,(plain-file "hyprlock.conf"
                                                         (sss-hyprlock-config
-                                                         #:sss-clone-dir
+                                                         #:clone-dir
                                                          sss-clone-dir)))
              ;; Qutebrowser configurations (web browser)
              (".config/qutebrowser/config.py" ,(plain-file "config.py"
                                                            (sss-qutebrowser-config
-                                                            #:sss-active-palette
+                                                            #:active-palette
                                                             sss-active-palette)))
              (".config/qutebrowser/bookmarks/urls" ,(plain-file "urls"
                                                                 (serialize-qutebrowser-urls
@@ -298,7 +298,7 @@
              ;; Fish shell configuration
              (".config/fish/config.fish" ,(plain-file "config.fish"
                                                       (sss-fish-config-service
-                                                       #:sss-clone-dir
+                                                       #:clone-dir
                                                        sss-clone-dir)))
              ;; Emacs initialization file
              (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))
@@ -313,9 +313,8 @@
                                                      #:user-email
                                                      "jjbigorra@gmail.com"
                                                      #:user-initials "JJBA"
-                                                     #:sss-clone-dir
-                                                     sss-clone-dir
-                                                     #:sss-notes-roam-dir
+                                                     #:clone-dir sss-clone-dir
+                                                     #:notes-roam-dir
                                                      "$HOME/Ontwikkeling/Persoonlijk/private-notes/Roam")))
              ;; Emacs early initialization file
              (".emacs.d/early-init.el" ,(local-file
@@ -327,10 +326,10 @@
   (packages (list pfetch))
   (services
    (list sss-home-files-service
-         (sss-ssh-service #:ssh-hosts joe-ssh-hosts)
-         (sss-home-vars-service #:sss-clone-dir sss-clone-dir
-                                #:sss-lang sss-lang)
-         (sss-bash-service #:sss-clone-dir sss-clone-dir)
+         (sss-ssh-service #:hosts joe-ssh-hosts)
+         (sss-home-vars-service #:clone-dir sss-clone-dir
+                                #:lang sss-lang)
+         (sss-bash-service #:clone-dir sss-clone-dir)
          sss-openpgp-conf
          (service home-dbus-service-type)
          (service home-pipewire-service-type)
