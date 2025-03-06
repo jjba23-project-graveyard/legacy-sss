@@ -54,14 +54,23 @@ loads."
 (defvar *my-search-engines* nil)
 (setf *my-search-engines*
       (list
-       '("ecosia" "https://www.ecosia.org/?method=index&q=~a" "https://www.ecosia.org/")
+       
        ;; '("quickdocs" "http://quickdocs.org/search?q=~a" "http://quickdocs.org/")
        '("wiki" "https://en.wikipedia.org/w/index.php?search=~a" "https://en.wikipedia.org/")
        ;; '("define" "https://en.wiktionary.org/w/index.php?search=~a" "https://en.wiktionary.org/")
        ;; '("python3" "https://docs.python.org/3/search.html?q=~a" "https://docs.python.org/3")
        ;; '("doi" "https://dx.doi.org/~a" "https://dx.doi.org/")
+       '("duckduckgo" "https://www.duckduckgo.org/?q=~a" "https://www.duckduckgo.org/")
+       '("ecosia" "https://www.ecosia.org/?method=index&q=~a" "https://www.ecosia.org/")
        ))
 
+(define-configuration context-buffer
+  "Go through the search engines above and make-search-engine out of them."
+  ((search-engines
+    (append
+     (mapcar (lambda (engine) (apply 'make-search-engine engine))
+             *my-search-engines*)
+     %slot-default%))))
 
 (define-configuration browser
   ;; Enable --remote --eval code evaluation.
