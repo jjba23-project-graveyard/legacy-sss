@@ -281,6 +281,13 @@
                                                       (sss-fish-config-service
                                                        #:clone-dir
                                                        sss-clone-dir)))
+             ;; Nyxt browser
+             (".config/nyxt/config.lisp" ,(local-file
+                                           "../lib/nyxt/config.lisp"))
+             (".config/nyxt/dark-reader.lisp" ,(local-file
+                                                "../lib/nyxt/dark-reader.lisp"))
+             (".config/nyxt/bookmarks.lisp" ,(local-file
+                                              "../lib/nyxt/bookmarks.lisp"))
              ;; Emacs initialization file
              (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))
              ;; Emacs bridge with SSS
