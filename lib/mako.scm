@@ -36,7 +36,7 @@
                   (string-upcase (format #f "~abb"
                                          (sss-get-color active-palette
                                                         'text))))
-      (font . "Adwaita Mono 12")
+      (font . "Adwaita Sans 11")
       (width . 420)
       (icons . 1)
       (default-timeout . 12000)

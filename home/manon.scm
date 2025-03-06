@@ -17,7 +17,9 @@
 
 ;; Code:
 
-(use-modules (gnu system file-systems))
+(use-modules (gnu)
+             (gnu bootloader)
+             (gnu system file-systems))
 
 ;; load SSS defaults
 (load "../system/sss-defaults.scm")
