@@ -17,6 +17,10 @@
 
 ;; Code:
 
+(use-modules (gnu)
+             (gnu bootloader)
+             (gnu system file-systems))
+
 ;;;
 ;;; SSS defaults section
 ;;;
