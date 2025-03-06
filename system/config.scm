@@ -198,11 +198,7 @@
   (timezone sss-timezone)
   (locale (format #f "~a.utf8" sss-lang))
   (keyboard-layout (keyboard-layout sss-keyboard-layout))
-
-  (bootloader (bootloader-configuration
-                (bootloader grub-efi-bootloader)
-                (targets '("/boot/efi"))))
-
+  (bootloader sss-bootloader-configuration)
   (kernel linux)
   (initrd microcode-initrd)
   (firmware (list linux-firmware))
@@ -210,12 +206,9 @@
                             (sss-sudoers)))
 
   (file-systems (append sss-filesystems %base-file-systems))
-
   (users sss-users)
-
   (packages (append (sss-system-packages #:per-host-packages
                                          sss-per-host-packages) %base-packages))
-
   (services
    (cons* (service nix-service-type)
           (service power-profiles-daemon-service-type)

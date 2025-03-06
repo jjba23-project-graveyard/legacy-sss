@@ -44,6 +44,12 @@
 (define sss-hostname
   "gnusystem")
 
+;; bootloader configuration
+(define sss-bootloader-configuration
+  (bootloader-configuration
+    (bootloader grub-efi-bootloader)
+    (targets '("/boot/efi"))))
+
 ;; location where you cloned SSS Git repository
 (define sss-clone-dir
   "$HOME/Ontwikkeling/Persoonlijk/sss")

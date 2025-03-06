@@ -186,6 +186,12 @@ Find here a reference configuration with what is required.
            (mount-point "/boot/efi")
            (type "vfat"))))
 
+;; bootloader configuration
+(define sss-bootloader-configuration
+  (bootloader-configuration
+    (bootloader grub-efi-bootloader)
+    (targets '("/boot/efi"))))
+
   ;; packages that should only be installed in the current host
   ;; or (define sss-per-host-packages '())
   (define sss-per-host-packages '(
