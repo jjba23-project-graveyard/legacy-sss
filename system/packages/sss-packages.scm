@@ -318,7 +318,7 @@
         evince
 
         qemu
-
+        inkscape
         obs
         libreoffice
         gimp
