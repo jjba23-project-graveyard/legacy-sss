@@ -96,9 +96,11 @@
                        "gsettings set org.gnome.desktop.interface font-name 'Inter'"))))
     xs))
 
-(define* (hypr-input #:key keyboard-layout)
+(define* (hypr-input #:key keyboard-layout caps-to-ctrl)
   `((follow_mouse . 1) (kb_layout unquote keyboard-layout)
-    (kb_options . "caps:ctrl_modifier")
+    ,(if caps-to-ctrl
+         `(kb_options . "caps:ctrl_modifier")
+         `(kb_options . ""))
     (touchpad (disable_while_typing . true)
               (natural_scroll . false)
               (scroll_factor . "1.0")
@@ -306,7 +308,9 @@
            (startup-programs (hypr-startup-programs #:active-palette
                                                     active-palette
                                                     #:wallpaper-setter
-                                                    wallpaper-setter))
+                                                    wallpaper-setter
+                                                    #:extra-startups
+                                                    extra-startups))
            (serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hypr-setting 'exec-once
                                                 startup-item))
@@ -314,7 +318,9 @@
            (serialized-input (serialize-hypr-section #:section 'input
                                                      #:settings (hypr-input
                                                                  #:keyboard-layout
-                                                                 keyboard-layout)))
+                                                                 keyboard-layout
+                                                                 #:caps-to-ctrl
+                                                                 keyboard-caps-to-ctrl)))
            (serialized-general (serialize-hypr-section #:section 'general
                                                        #:settings (hypr-general
                                                                    #:active-palette

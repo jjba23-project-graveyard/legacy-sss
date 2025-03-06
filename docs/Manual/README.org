@@ -246,7 +246,7 @@ Find here a reference configuration with what is required.
   ;; Flatpak packages to install
   (define sss-flatpak-pkgs '("app.drey.Warp" "com.usebottles.bottles"))
 
-  ;; Additional Labwc startup commands on per-host basis
+  ;; Additional Labwc startup commands on per-host basis, byt default '() , see example:
   (define sss-labwc-extra-startups
   '("wlr-randr --output eDP-1 --scale 1.5  >/dev/null 2>&1 &"))
 
@@ -258,6 +258,11 @@ Find here a reference configuration with what is required.
   ;;
   (define sss-hyprland-monitors
   '("monitor = , preferred, auto, 1"))
+
+  ;; Additional Hyprland startup commands on per-host basis, by default '() , see example:
+  (define sss-hyprland-extra-startups
+  '("sudo warp-svc" "sudo mkdir -p /usr/share/warp/images"
+    "sleep 1 && warp-taskbar"))
 
 
 #+end_src
