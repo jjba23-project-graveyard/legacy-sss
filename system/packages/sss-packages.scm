@@ -67,6 +67,7 @@
                      kde
                      gcc
                      firmware
+                     graphics
                      aspell
                      gdb
                      rust-apps
@@ -346,6 +347,8 @@
         powertop
         ffmpegthumbs
         xarchiver
+
+        blender
 
         gnome-calendar
 
