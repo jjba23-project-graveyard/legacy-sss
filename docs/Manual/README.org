@@ -150,6 +150,20 @@ There are more palettes though, see per-host section for more.
 [[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-05-5.png]]
 
 
+------
+
+* Videos about SSS (Supreme Sexp System)
+
+Some tutorials, conversations and videos have been made about SSS, some more up to date than others:
+
+<2025-03-06 do>
+
+SSS/GNU - Supreme Sexp System Installation Demo - How to install Joe's riced up Guix system @ virtual machine
+
+https://youtu.be/wZUes_10US8
+
+-----
+
 * Per host - per-host.scm
 
 It is *REQUIRED* to include a ~per-host.scm~ in the root of this project, which is excluded from Git, and will determine certain settings for your own machine.
