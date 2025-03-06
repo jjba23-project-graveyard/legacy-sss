@@ -384,6 +384,7 @@
 
         libltdl
         libtool
+        zlib
 
         (sss/x86-only-pkg architecture "nyxt")
 

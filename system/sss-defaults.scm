@@ -82,6 +82,7 @@
     "vscode-langservers-extracted"
     "nwg-look"
     "krew"
+    "cloudflare-warp"
     "mermaid-cli"
     "jetbrains.idea-community"
     "nixfmt"
