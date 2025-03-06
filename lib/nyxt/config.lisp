@@ -60,8 +60,8 @@ loads."
        ;; '("define" "https://en.wiktionary.org/w/index.php?search=~a" "https://en.wiktionary.org/")
        ;; '("python3" "https://docs.python.org/3/search.html?q=~a" "https://docs.python.org/3")
        ;; '("doi" "https://dx.doi.org/~a" "https://dx.doi.org/")
-       '("duckduckgo" "https://www.duckduckgo.org/?q=~a" "https://www.duckduckgo.org/")
-       '("ecosia" "https://www.ecosia.org/?method=index&q=~a" "https://www.ecosia.org/")
+       '("duckduckgo" "https://www.duckduckgo.org/search?q=~a" "https://www.duckduckgo.org/")
+       '("ecosia" "https://www.ecosia.org/search?method=index&q=~a" "https://www.ecosia.org/")
        ))
 
 (define-configuration context-buffer
@@ -75,6 +75,8 @@ loads."
 (define-configuration browser
   ;; Enable --remote --eval code evaluation.
   ((remote-execution-p t)
+   (theme theme:+dark-theme+ :doc "Setting dark theme.
+The default is theme:+light-theme+.")
    (external-editor-program
     (list "emacsclient" "-c" "-a" "" "-F"
           "((font . \"Adwaita Mono-16\") (vertical-scroll-bars) (tool-bar-lines) (menu-bar-lines))"))

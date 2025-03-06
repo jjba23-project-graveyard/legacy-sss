@@ -263,7 +263,7 @@
                                        #:subtitle "Copied screenshot of area!")))
              (exec-bind #:mod "s"
                         #:bind "I"
-                        #:cmd "icecat")
+                        #:cmd "nyxt")
              (exec-bind #:mod "s-S"
                         #:bind "I"
                         #:cmd "google-chrome")
