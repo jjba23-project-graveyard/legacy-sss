@@ -67,10 +67,10 @@ loads."
 (define-configuration context-buffer
   "Go through the search engines above and make-search-engine out of them."
   ((search-engines
-    (append
-     (mapcar (lambda (engine) (apply 'make-search-engine engine))
-             *my-search-engines*)
-     %slot-default%))))
+    (append %slot-default%
+            (mapcar
+             (lambda (engine) (apply 'make-search-engine engine))
+             *my-search-engines*)))))
 
 (define-configuration browser
   ;; Enable --remote --eval code evaluation.
