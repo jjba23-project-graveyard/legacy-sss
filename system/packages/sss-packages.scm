@@ -381,7 +381,7 @@
         cmatrix
 
         pkg-config
-
+        fyi
         bluez
         blueman
         hplip

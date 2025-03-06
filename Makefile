@@ -57,7 +57,7 @@ endef
 
 # sss-notify: Sends success desktop notifications (if available).
 define sss-notify-success
-	@-notify-send -i /run/current-system/profile/share/icons/Yaru/32x32/actions/dialog-yes.png $(1) $(2) >/dev/null 2>&1
+	@-fyi -i /run/current-system/profile/share/icons/Yaru/32x32/actions/dialog-yes.png $(1) $(2) >/dev/null 2>&1
 endef
 
 # Targets
