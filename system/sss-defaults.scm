@@ -93,6 +93,7 @@
     "lua"
     "lua52Packages.lua-lsp"
     "pitivi"
+    "lightworks"
     "awscli"))
 
 ;; Flatpak remotes to add to a user

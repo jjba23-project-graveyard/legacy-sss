@@ -66,6 +66,7 @@
                      multiprecision
                      kde
                      gcc
+                     firmware
                      aspell
                      gdb
                      rust-apps
@@ -385,6 +386,7 @@
         libltdl
         libtool
         zlib
+        ovmf-x86-64
 
         (sss/x86-only-pkg architecture "nyxt")
 
