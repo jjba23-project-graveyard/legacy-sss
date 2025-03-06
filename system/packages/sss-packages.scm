@@ -233,7 +233,7 @@
 (define sss-dev-packages
   (list (specification->package "openjdk@21.0.2")
         (specification->package "node@22.12.0")
-        (specification->package "python") cl-asdf))
+        (specification->package "python") cl-asdf sbcl))
 
 (define sss-coreutils
   (list htop
