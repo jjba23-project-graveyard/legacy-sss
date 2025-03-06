@@ -885,7 +885,11 @@ According to size, color and font family"
   :ensure (:host github :repo "dougm/goflymake" :branch "master")
   :demand t)
 
-
+(use-package sly
+  :ensure (:host github :repo "joaotavora/sly" :branch "master")
+  :demand t
+  :init
+  (setq inferior-lisp-program "/run/current-system/profile/bin/sbcl"))
 
 ;; ====== SSS Emacs-Lisp functions ======
 
