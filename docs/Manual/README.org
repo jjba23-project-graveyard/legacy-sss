@@ -720,6 +720,26 @@ A: Try with ~gpg --pinentry-mode loopback --full-gen-key~. Otherwise try other o
 
 -----
 
+* Nyxt browser
+
+Nyxt is a fantastic web browser, entirely customizable, and in Emacs-spirit. It is a great fit for SSS.
+
+Before you start Nyxt, you need to perform a one-time action:
+
+Refer to quicklisp.org for more details and download links:
+
+You only need to load quicklisp.lisp once to install Quicklisp. See Loading After Installation for how to load the installed Quicklisp into your Lisp session after the initial installation.
+
+Here's an example installation session on SBCL:
+#+begin_example
+  $ curl -O https://beta.quicklisp.org/quicklisp.lisp
+  $ sbcl --load quicklisp.lisp
+  (quicklisp-quickstart:install)
+#+end_example
+
+
+-----
+
 * WM keybindings
 
 Find here the Hyprland keybindings. I usually use these bindings in other WMs too.
