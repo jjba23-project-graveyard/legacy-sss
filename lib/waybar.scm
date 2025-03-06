@@ -194,7 +194,7 @@
     (margin-bottom . "6px")
     (margin-left . "4px")
     (margin-right . "4px")
-    (font-size . "10pt")
+    (font-size . "9pt")
     (padding-left . "10px")
     (padding-right . "10px")
     (border-radius . "16px")))
