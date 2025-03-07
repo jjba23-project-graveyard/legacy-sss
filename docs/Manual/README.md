@@ -1,50 +1,55 @@
 
 # Table of Contents
 
--   [What lies here?](#orgda66a1a)
-    -   [An operating system (OS) configured in Lisp (Guile Scheme)](#orgd8e6697)
-    -   [Joe's Emacs configuration](#org53973e3)
-    -   [Universal session](#orge276871)
--   [Why ?](#org0ef1994)
--   [What is Guix](#orgb40f705)
--   [On Non-free software](#org737ecc8)
--   [Keyboard Terminology](#orgf435af4)
--   [How this manual works](#org0d05c1e)
--   [Customizing SSS](#org8546fee)
--   [Showcase](#org1ee8f09)
--   [Videos about SSS (Supreme Sexp System)](#org44c15bf)
--   [Per host - per-host.scm](#orgefd73d5)
--   [Bootstrapping](#org724e55a)
-    -   [Guix Install tips](#orgac70f7d)
-    -   [Installing SSS on Guix](#org0a66729)
-        -   [Adding channels](#org34b8d5c)
-        -   [Keeping SSS updated](#org0ea2466)
-        -   [Installation of SSS](#orgf00ab8e)
--   [login managers, and login screen](#org57c4467)
--   [Nix profile](#org83d7b88)
--   [Flatpaks](#orge38dd5b)
--   [SSS Project](#org70fc026)
--   [System audio](#org0d80329)
--   [Wallpapers](#org445867a)
--   [Nyxt browser](#org5865842)
--   [Git](#org10e4e98)
--   [Disk space](#org504a57e)
--   [Bluetooth](#org288dcdc)
--   [Virtualization](#org5b015ec)
--   [Mime types](#org00ab5e6)
--   [Troubleshooting FAQ](#orgae4f4cc)
--   [WM keybindings](#org6c5a1a5)
-    -   [General keybindings](#org9d542c2)
-    -   [Application keybindings](#org46920f1)
-    -   [More keybindings](#org55e1c03)
--   [Emacs keybindings](#orga4c0287)
-    -   [General non-vanilla bindings](#org3225926)
-    -   [SSS specific keybindings](#org8c3734a)
--   [SSS project](#org7be8354)
--   [Glossary](#org09cc2f5)
--   [Acronyms](#org0919a1f)
--   [User Management](#orge3b236f)
--   [Inheriting an SSS/GNU system](#orgb3c6e8e)
+-   [What lies here?](#org94a8a64)
+    -   [An operating system (OS) configured in Lisp (Guile Scheme)](#org600e5bb)
+    -   [Joe's Emacs configuration](#org8bfba18)
+    -   [Universal session](#org97edf52)
+-   [Why ?](#orga41a80b)
+-   [What is Guix](#org112c48b)
+-   [On Non-free software](#orgae9d5e7)
+-   [Keyboard Terminology](#orge02f1e2)
+-   [How this manual works](#org0595687)
+-   [Customizing SSS](#org0d65e09)
+-   [Showcase](#org3970c16)
+-   [Videos about SSS (Supreme Sexp System)](#orgfaa2161)
+-   [Per host - per-host.scm](#org705beae)
+-   [Bootstrapping](#org40c855d)
+    -   [Guix Install tips](#org4365886)
+    -   [Installing SSS on Guix](#org56a02d3)
+        -   [Adding channels](#org574e3db)
+        -   [Keeping SSS updated](#orgcada712)
+        -   [Installation of SSS](#org553c6c1)
+-   [login managers, and login screen](#org8424b3c)
+-   [Nix profile](#org26abb52)
+-   [For  computer scientists](#org3239c98)
+    -   [Development environments, manifests and flakes](#org0949328)
+        -   [Guix and manifests](#org611c196)
+        -   [Nix and flakes](#orgf3a1a01)
+-   [Flatpaks](#org9fae4a7)
+-   [SSS Project](#org82a46ca)
+-   [System audio](#org2fa2c48)
+-   [Wallpapers](#org97b6db8)
+-   [Nyxt browser](#org6fa7ec1)
+-   [Git](#orgf8fd940)
+-   [Disk space](#org5374bc3)
+-   [Bluetooth](#orgf9697ca)
+-   [Virtualization](#orgca76b91)
+-   [Mime types](#org119f383)
+-   [Troubleshooting FAQ](#orgbfe3078)
+-   [WM keybindings](#org4b3caa4)
+    -   [General keybindings](#org6339021)
+    -   [Application keybindings](#orgccdb4c7)
+    -   [More keybindings](#orgc87e7a1)
+-   [Emacs keybindings](#org23a9cde)
+    -   [General non-vanilla bindings](#org5386c84)
+    -   [SSS specific keybindings](#org0d1ac87)
+    -   [More bindings](#org0e7b046)
+-   [SSS project](#org2d3ac97)
+-   [Glossary](#orgd47c4a5)
+-   [Acronyms](#orgee92d65)
+-   [User Management](#org690014f)
+-   [Postume: Inheriting an SSS/GNU system](#org48edbf0)
 
 ![img](https://jointhefreeworld.org/static-assets/badges/GNU-Guix-c48702.png) ![img](https://jointhefreeworld.org/static-assets/badges/Scheme-Guile-d0730f.png) ![img](https://jointhefreeworld.org/static-assets/badges/Wayland-Hyprland-6a6aff.png) ![img](https://jointhefreeworld.org/static-assets/badges/Emacs-30-a8516e.png)  ![img](https://jointhefreeworld.org/static-assets/badges/Shell-Fish-2fffb2.png) 
 
@@ -69,12 +74,12 @@ I would appreciate if you write your findings when using SSS and if you can, for
 It is recommended to use tagged releases of SSS, as those are considered as stable by the developers.
 
 
-<a id="orgda66a1a"></a>
+<a id="org94a8a64"></a>
 
 # What lies here?
 
 
-<a id="orgd8e6697"></a>
+<a id="org600e5bb"></a>
 
 ## An operating system (OS) configured in Lisp (Guile Scheme)
 
@@ -96,7 +101,7 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
     and more&#x2026;.
 
 
-<a id="org53973e3"></a>
+<a id="org8bfba18"></a>
 
 ## Joe's Emacs configuration
 
@@ -106,7 +111,7 @@ An operating system unto itself.
 -   Dev setup for: Scheme, Scala, Haskell, Lisp, Rust, Python, Shell, Nix, Golang and more
 
 
-<a id="orge276871"></a>
+<a id="org97edf52"></a>
 
 ## Universal session
 
@@ -114,7 +119,7 @@ I also include a (work in progress) Windows-like session for "non-geek" users, w
 This session uses labwc compositor and waybar.
 
 
-<a id="org0ef1994"></a>
+<a id="orga41a80b"></a>
 
 # Why ?
 
@@ -143,7 +148,7 @@ Some commands in the `Makefile` are more geared towards `joe` since we assume a 
 The system and home folders of users are managed independently of each other, in quite a loosely coupled manner.
 
 
-<a id="orgb40f705"></a>
+<a id="org112c48b"></a>
 
 # What is Guix
 
@@ -154,7 +159,7 @@ While you can install GNU Guix on top of an existing GNU/Linux system where it c
 I highly recommend refering to and studying the Guix reference manual, it's a super valuable source of knowledge: <https://guix.gnu.org/manual/en/html_node/>.
 
 
-<a id="org737ecc8"></a>
+<a id="orgae9d5e7"></a>
 
 # On Non-free software
 
@@ -166,7 +171,7 @@ This means, among other things that SSS:
 -   includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
 
-<a id="orgf435af4"></a>
+<a id="orge02f1e2"></a>
 
 # Keyboard Terminology
 
@@ -215,7 +220,7 @@ When keybindings (shortcurts) are defined, the following legend applies (a la Em
 </table>
 
 
-<a id="org0d05c1e"></a>
+<a id="org0595687"></a>
 
 # How this manual works
 
@@ -227,7 +232,7 @@ I write my documents in Org format from Emacs and export them for your convenien
 -   Run `C-c # m` from Emacs, which runs lib/sss-manual.el, exporting the Org document to several other formats (LaTEX, PDF, HTML, Markdown, etc.)
 
 
-<a id="org8546fee"></a>
+<a id="org0d65e09"></a>
 
 # Customizing SSS
 
@@ -240,7 +245,7 @@ There are more palettes though, see per-host section for more.
 ---
 
 
-<a id="org1ee8f09"></a>
+<a id="org3970c16"></a>
 
 # Showcase
 
@@ -257,7 +262,7 @@ There are more palettes though, see per-host section for more.
 ---
 
 
-<a id="org44c15bf"></a>
+<a id="orgfaa2161"></a>
 
 # Videos about SSS (Supreme Sexp System)
 
@@ -272,7 +277,7 @@ SSS/GNU - Supreme Sexp System Installation Demo - How to install Joe's riced up 
 ---
 
 
-<a id="orgefd73d5"></a>
+<a id="org705beae"></a>
 
 # Per host - per-host.scm
 
@@ -396,7 +401,7 @@ Find here a reference configuration with what is required.
 ---
 
 
-<a id="org724e55a"></a>
+<a id="org40c855d"></a>
 
 # Bootstrapping
 
@@ -432,7 +437,7 @@ It is highly recommended to first become familiar with SSS and Guix via a *throw
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
 
-<a id="orgac70f7d"></a>
+<a id="org4365886"></a>
 
 ## Guix Install tips
 
@@ -454,14 +459,14 @@ After having installed things using the guided Guix installer, or via the comman
 I would recommend to then use a web browser and visit the web version of this manual: <https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual>.
 
 
-<a id="org0a66729"></a>
+<a id="org56a02d3"></a>
 
 ## Installing SSS on Guix
 
 Once you have a working Guix base installation on your machine, you are ready to go about installing SSS.
 
 
-<a id="org34b8d5c"></a>
+<a id="org574e3db"></a>
 
 ### Adding channels
 
@@ -480,7 +485,7 @@ Add `nonguix` in your channels file (`$HOME/.config/guix/channels.scm`). This wi
 After adding the channel, perform a `guix pull` from your user account (**no sudo or root**) and let all channels get updated.
 
 
-<a id="org0ea2466"></a>
+<a id="orgcada712"></a>
 
 ### Keeping SSS updated
 
@@ -489,7 +494,7 @@ You should every now and then update the SSS repo with `git pull`. You also shou
 Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
 
 
-<a id="orgf00ab8e"></a>
+<a id="org553c6c1"></a>
 
 ### Installation of SSS
 
@@ -523,7 +528,7 @@ You might at this point want to reset the font cache for the system and user.
 You can then reboot and you should be greeted by a simple TTY.
 
 
-<a id="org57c4467"></a>
+<a id="org8424b3c"></a>
 
 # login managers, and login screen
 
@@ -539,7 +544,7 @@ If you run traditional X11 sessions, you *could* choose to do startx instead of 
 ---
 
 
-<a id="org83d7b88"></a>
+<a id="org26abb52"></a>
 
 # Nix profile
 
@@ -592,7 +597,159 @@ Installing all wanted Nix packages can be done with `make npi` for example and u
 ---
 
 
-<a id="orge38dd5b"></a>
+<a id="org3239c98"></a>
+
+# For  computer scientists
+
+
+<a id="org0949328"></a>
+
+## Development environments, manifests and flakes
+
+I would encourage that all your software projects have a reproducible build process, and preferably use **Guix** or Nix to declare a `manifest.scm` or `flake.nix`.
+
+This way, and leveraging `direnv` and `.envrc` we can enter in our editor (Emacs, VSCode, IntelliJ&#x2026;) in a reproducible build environment and dependencies.
+
+
+<a id="org611c196"></a>
+
+### Guix and manifests
+
+Using Guix is fantastic , and for me it's my first choice to build software with:
+
+    (use-modules (guix packages)
+                 (gnu)
+                 ;;;
+                 ;;; ...
+                 ;;;
+                 (gnu packages autotools)
+                 ((guix licenses)
+                  #:prefix license:))
+    
+    (define-public guile-uuid
+      (let ((commit "64002d74025f577e1eeea7bc51218a2c7929631f")
+            (revision "0"))
+        (package
+          (name "guile-uuid")
+          (version (git-version "0.0.0" revision commit))
+          (source
+           (origin
+             (method git-fetch)
+             (uri (git-reference
+                   (url "https://codeberg.org/elb/guile-uuid.git")
+                   (commit commit)))
+             (file-name (git-file-name name version))
+             (sha256
+              (base32 "1q6dqm2hzq75aa5mrrwgqdml864pdrxc98j7pyj1y0827phnzjfj"))))
+          (build-system guile-build-system)
+          (native-inputs (list guile-3.0
+                               (specification->package "guile-gcrypt")))
+          (home-page "https://codeberg.org/elb/guile-uuid")
+          (synopsis
+           "Guile-UUID is a UUID generation and manipulation module for GNU Guile.")
+          (description
+           "This package implements RFC 9562 UUIDs, and can generate versions 1 and 3–8 from that specification.
+            It provides parsing for UUIDs in standard hex-and-dash format of any variant and version.
+            It can also query the variant and version of UUIDs from the RFC.
+            Simple routines for converting between binary and hex-and-dash string UUIDs are included.")
+          (license license:gpl3+))))
+    
+    (define-public guile-hygguile
+      (let ((commit "4b9989caa65ebacf56c0e48df68f812daf254e71")
+            (base32-sha-signature
+             "1r5i9fcc4syf4p7xr1b7ml5v93pnkmxn2dy0m1qyvd6y2vbbhxjf")
+            (revision "0"))
+        (package
+          (name "guile-hygguile")
+          (version (git-version "0.0.0" revision commit))
+          (source
+           (origin
+             (method git-fetch)
+             (uri (git-reference
+                   (url "https://codeberg.org/jjba23/hygguile.git")
+                   (commit commit)))
+             (file-name (git-file-name name version))
+             (sha256
+              (base32 base32-sha-signature))))
+          (build-system guile-build-system)
+          (native-inputs (list guile-3.0))
+          (arguments
+           (list
+            #:source-directory "src"))
+          (home-page "https://codeberg.org/jjba23/hygguile")
+          (synopsis
+           "SXML and TailwindCSS UI component library for Lisp (Guile Scheme) software projects")
+          (description
+           "Cozy and professional user-interfaces for everyone.
+            SXML and TailwindCSS UI component library for Lisp (Guile Scheme) software projects.
+            hygge + guile = hygguile")
+          (license license:lgpl3+))))
+    
+    (packages->manifest (list (specification->package "make")
+                              (specification->package "gettext")
+                              guile-next
+                              guile-uuid
+                              guile-ares-rs
+                              artanis
+                              guile-hygguile
+                              guile-dbi
+                              guile-dbd-sqlite3))
+
+
+<a id="orgf3a1a01"></a>
+
+### Nix and flakes
+
+Using Nix (and flakes) allows one to quickly spin up and manage multiple reproducible development environments, as well as development shells.
+
+Read more about Nix here: <https://nixos.org/>.
+
+In a nutshell you get a "per project" isolated environment, allowing you to for example seamlessly switch between Scala versions for different projects.
+
+You can search for packages (80k+) here: <https://search.nixos.org/packages>.
+
+With this setup you don't need to install things globally, just on a per project level, allowing more flexibility and reproducibility.
+
+See here how a simple Scala 2.13 development flake looks like.
+
+      {
+      inputs = {
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+        systems.url = "github:nix-systems/default";
+      };
+      outputs = { systems, nixpkgs, ... }:
+        let
+          eachSystem = f:
+            nixpkgs.lib.genAttrs (import systems)
+            (system: f nixpkgs.legacyPackages.${system});
+        in {
+          devShells = eachSystem (pkgs: {
+            default = pkgs.mkShell {
+              buildInputs = with pkgs; [
+                scala_2_13
+                jdk21
+                metals
+                sbt
+                scalafmt
+                scalafix
+                scala-cli
+                coursier
+              ];
+            };
+          });
+        };
+    }
+
+In order to use this flake, you can use direnv: <https://github.com/direnv/direnv> and combine it with a `.envrc` to allow your editor to enter this isolated environment.
+
+Assuming you place the Nix flake above at the root of a repo, at `flake.nix`, you can have a `.envrc` file with the contents:
+
+    use flake
+
+You will then just do a one time `direnv allow` and now your editor will magically load the right env variables and tools from the environment.
+
+
+<a id="org9fae4a7"></a>
 
 # Flatpaks
 
@@ -603,7 +760,7 @@ You can find these scripts and the list file at `system/scripts` in this repo an
 Installing all wanted Flatpak packages can be done with `make fpi` for example and updating them with `make fpu`.
 
 
-<a id="org70fc026"></a>
+<a id="org82a46ca"></a>
 
 # SSS Project
 
@@ -616,7 +773,7 @@ Find the backlog and [project management of SSS here](../project-management.md).
 ---
 
 
-<a id="org0d80329"></a>
+<a id="org2fa2c48"></a>
 
 # System audio
 
@@ -629,7 +786,7 @@ You will also want to set the `RTC_USE_PIPEWIRE` variable to `true`. This is alr
 ---
 
 
-<a id="org445867a"></a>
+<a id="org97b6db8"></a>
 
 # Wallpapers
 
@@ -640,7 +797,7 @@ This uses swww and thus can load animated images as well and do fancy transition
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
 
-<a id="org5865842"></a>
+<a id="org6fa7ec1"></a>
 
 # Nyxt browser
 
@@ -670,7 +827,7 @@ You are then ready to start the Nyxt browser, all configuration should work well
 ---
 
 
-<a id="org10e4e98"></a>
+<a id="orgf8fd940"></a>
 
 # Git
 
@@ -686,7 +843,7 @@ My settings are:
 ---
 
 
-<a id="org504a57e"></a>
+<a id="org5374bc3"></a>
 
 # Disk space
 
@@ -712,7 +869,7 @@ If you'd like to find the largest files in your disk, here’s an example comman
 ---
 
 
-<a id="org288dcdc"></a>
+<a id="orgf9697ca"></a>
 
 # Bluetooth
 
@@ -752,7 +909,7 @@ The real best way to manage your bluetooth is using the bluetoothctl shell. That
 ---
 
 
-<a id="org5b015ec"></a>
+<a id="orgca76b91"></a>
 
 # Virtualization
 
@@ -811,7 +968,7 @@ After saving/applying this new static route, external connectivity should work f
 ---
 
 
-<a id="org00ab5e6"></a>
+<a id="org119f383"></a>
 
 # Mime types
 
@@ -847,7 +1004,7 @@ At `~/.config/mimeapps.list` you get this:
 ---
 
 
-<a id="orgae4f4cc"></a>
+<a id="orgbfe3078"></a>
 
 # Troubleshooting FAQ
 
@@ -881,7 +1038,7 @@ A: Try with `gpg --pinentry-mode loopback --full-gen-key`. Otherwise try other o
 ---
 
 
-<a id="org6c5a1a5"></a>
+<a id="org4b3caa4"></a>
 
 # WM keybindings
 
@@ -889,7 +1046,7 @@ Find here the Hyprland keybindings. I usually use these bindings in other WMs to
 Labwc session has a a more windows-like style of bindings.
 
 
-<a id="org9d542c2"></a>
+<a id="org6339021"></a>
 
 ## General keybindings
 
@@ -951,7 +1108,7 @@ Labwc session has a a more windows-like style of bindings.
 </table>
 
 
-<a id="org46920f1"></a>
+<a id="orgccdb4c7"></a>
 
 ## Application keybindings
 
@@ -977,7 +1134,7 @@ Labwc session has a a more windows-like style of bindings.
 
 <tr>
 <td class="org-left"><code>s-i</code></td>
-<td class="org-left">Open a Web Browser (IceCat)</td>
+<td class="org-left">Open a Web Browser (Nyxt)</td>
 </tr>
 
 <tr>
@@ -986,13 +1143,8 @@ Labwc session has a a more windows-like style of bindings.
 </tr>
 
 <tr>
-<td class="org-left"><code>s-RET</code></td>
-<td class="org-left">Open a terminal emulator (Foot)</td>
-</tr>
-
-<tr>
 <td class="org-left"><code>s-t</code></td>
-<td class="org-left"><i>idem</i></td>
+<td class="org-left">Open a terminal emulator (Foot)</td>
 </tr>
 
 <tr>
@@ -1013,7 +1165,7 @@ Labwc session has a a more windows-like style of bindings.
 </table>
 
 
-<a id="org55e1c03"></a>
+<a id="orgc87e7a1"></a>
 
 ## More keybindings
 
@@ -1062,12 +1214,12 @@ Labwc session has a a more windows-like style of bindings.
 ---
 
 
-<a id="orga4c0287"></a>
+<a id="org23a9cde"></a>
 
 # Emacs keybindings
 
 
-<a id="org3225926"></a>
+<a id="org5386c84"></a>
 
 ## General non-vanilla bindings
 
@@ -1104,7 +1256,7 @@ Labwc session has a a more windows-like style of bindings.
 </table>
 
 
-<a id="org8c3734a"></a>
+<a id="org0d1ac87"></a>
 
 ## SSS specific keybindings
 
@@ -1130,17 +1282,354 @@ Labwc session has a a more windows-like style of bindings.
 
 <tr>
 <td class="org-left"><code>C-c # j</code></td>
-<td class="org-left">Perform a joe rebuild</td>
+<td class="org-left">Perform a user (joe) rebuild</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>C-c # f</code></td>
-<td class="org-left">Perform a system + joe rebuild</td>
+<td class="org-left">Perform a system + user (joe) rebuild</td>
 </tr>
 
 <tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left"><code>C-c # m</code></td>
+<td class="org-left">Publish SSS manual locally</td>
+</tr>
+</tbody>
+</table>
+
+
+<a id="org0e7b046"></a>
+
+## More bindings
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">keybind</th>
+<th scope="col" class="org-left">command</th>
+<th scope="col" class="org-left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-x C-f</td>
+<td class="org-left">find-file</td>
+<td class="org-left">Open a file.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x C-s</td>
+<td class="org-left">save-buffer</td>
+<td class="org-left">Save the current buffer.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x C-w</td>
+<td class="org-left">write-file</td>
+<td class="org-left">Save the current buffer to a different file.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x C-b</td>
+<td class="org-left">list-buffers</td>
+<td class="org-left">List open buffers.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-g</td>
+<td class="org-left">keyboard-quit</td>
+<td class="org-left">Cancel the current command.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x k</td>
+<td class="org-left">kill-buffer</td>
+<td class="org-left">Kill (close) the current buffer.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x C-c</td>
+<td class="org-left">save-buffers-kill-emacs</td>
+<td class="org-left">Save all buffers and exit Emacs.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-y</td>
+<td class="org-left">yank</td>
+<td class="org-left">Paste the most recently killed (cut or copied) text.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-w</td>
+<td class="org-left">kill-region</td>
+<td class="org-left">Cut the selected region.</td>
+</tr>
+
+<tr>
+<td class="org-left">M-w</td>
+<td class="org-left">kill-ring-save</td>
+<td class="org-left">Copy the selected region.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-k</td>
+<td class="org-left">kill-line</td>
+<td class="org-left">Cut the text from the cursor to the end of the line.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-d</td>
+<td class="org-left">delete-char</td>
+<td class="org-left">Delete the character under the cursor.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-a</td>
+<td class="org-left">beginning-of-line</td>
+<td class="org-left">Move the cursor to the beginning of the line.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-e</td>
+<td class="org-left">end-of-line</td>
+<td class="org-left">Move the cursor to the end of the line.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-p</td>
+<td class="org-left">previous-line</td>
+<td class="org-left">Move the cursor to the previous line.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-n</td>
+<td class="org-left">next-line</td>
+<td class="org-left">Move the cursor to the next line.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-f</td>
+<td class="org-left">forward-char</td>
+<td class="org-left">Move the cursor forward one character.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-b</td>
+<td class="org-left">backward-char</td>
+<td class="org-left">Move the cursor backward one character.</td>
+</tr>
+
+<tr>
+<td class="org-left">M-f</td>
+<td class="org-left">forward-word</td>
+<td class="org-left">Move the cursor forward one word.</td>
+</tr>
+
+<tr>
+<td class="org-left">M-b</td>
+<td class="org-left">backward-word</td>
+<td class="org-left">Move the cursor backward one word.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-v</td>
+<td class="org-left">scroll-up-command</td>
+<td class="org-left">Scroll the buffer up one screen.</td>
+</tr>
+
+<tr>
+<td class="org-left">M-v</td>
+<td class="org-left">scroll-down-command</td>
+<td class="org-left">Scroll the buffer down one screen.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-s</td>
+<td class="org-left">isearch-forward</td>
+<td class="org-left">Incremental search forward.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-r</td>
+<td class="org-left">isearch-backward</td>
+<td class="org-left">Incremental search backward.</td>
+</tr>
+
+<tr>
+<td class="org-left">M-x</td>
+<td class="org-left">execute-extended-command</td>
+<td class="org-left">Execute an extended command (by name).</td>
+</tr>
+
+<tr>
+<td class="org-left">C-h k</td>
+<td class="org-left">describe-key</td>
+<td class="org-left">Describe a key binding.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-h f</td>
+<td class="org-left">describe-function</td>
+<td class="org-left">Describe a function.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-h v</td>
+<td class="org-left">describe-variable</td>
+<td class="org-left">Describe a variable.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-h m</td>
+<td class="org-left">describe-mode</td>
+<td class="org-left">Describe the current major mode.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-h i</td>
+<td class="org-left">info</td>
+<td class="org-left">Open the Emacs Info manual.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x 2</td>
+<td class="org-left">split-window-below</td>
+<td class="org-left">Split the current window horizontally.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x 3</td>
+<td class="org-left">split-window-right</td>
+<td class="org-left">Split the current window vertically.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x 0</td>
+<td class="org-left">delete-window</td>
+<td class="org-left">Delete the current window.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x 1</td>
+<td class="org-left">delete-other-windows</td>
+<td class="org-left">Delete all other windows.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x o</td>
+<td class="org-left">other-window</td>
+<td class="org-left">Switch to the next window.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-l</td>
+<td class="org-left">recenter-top-bottom</td>
+<td class="org-left">Recenter the current line in the window.</td>
+</tr>
+
+<tr>
+<td class="org-left">M-g g</td>
+<td class="org-left">goto-line</td>
+<td class="org-left">Go to a specific line number.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x u</td>
+<td class="org-left">undo</td>
+<td class="org-left">Undo the last change.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-/</td>
+<td class="org-left">redo</td>
+<td class="org-left">Redo the last undone change.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-j</td>
+<td class="org-left">newline</td>
+<td class="org-left">Insert a newline.</td>
+</tr>
+
+<tr>
+<td class="org-left">TAB</td>
+<td class="org-left">indent-for-tab-command</td>
+<td class="org-left">Indent the current line (or region).</td>
+</tr>
+
+<tr>
+<td class="org-left">M-TAB</td>
+<td class="org-left">completion-at-point</td>
+<td class="org-left">Attempt completion at point.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-t</td>
+<td class="org-left">transpose-chars</td>
+<td class="org-left">Transpose the characters around point.</td>
+</tr>
+
+<tr>
+<td class="org-left">M-t</td>
+<td class="org-left">transpose-words</td>
+<td class="org-left">Transpose the words around point.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x C-l</td>
+<td class="org-left">downcase-region</td>
+<td class="org-left">Convert the selected region to lowercase.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x C-u</td>
+<td class="org-left">upcase-region</td>
+<td class="org-left">Convert the selected region to uppercase.</td>
+</tr>
+
+<tr>
+<td class="org-left">M-u</td>
+<td class="org-left">upcase-word</td>
+<td class="org-left">Uppercase the word at point.</td>
+</tr>
+
+<tr>
+<td class="org-left">M-l</td>
+<td class="org-left">downcase-word</td>
+<td class="org-left">Lowercase the word at point.</td>
+</tr>
+
+<tr>
+<td class="org-left">M-c</td>
+<td class="org-left">capitalize-word</td>
+<td class="org-left">Capitalize the word at point.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x h</td>
+<td class="org-left">mark-whole-buffer</td>
+<td class="org-left">Select the entire buffer.</td>
+</tr>
+
+<tr>
+<td class="org-left">C-v</td>
+<td class="org-left">scroll-down</td>
+<td class="org-left">Scroll down in the buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">M-v</td>
+<td class="org-left">scroll-up</td>
+<td class="org-left">Scroll up in the buffer</td>
 </tr>
 </tbody>
 </table>
@@ -1148,7 +1637,7 @@ Labwc session has a a more windows-like style of bindings.
 ---
 
 
-<a id="org7be8354"></a>
+<a id="org2d3ac97"></a>
 
 # SSS project
 
@@ -1161,7 +1650,7 @@ Find here the Backlog and Kanban boards for SSS: <https://lucidplan.jointhefreew
 ---
 
 
-<a id="org09cc2f5"></a>
+<a id="orgd47c4a5"></a>
 
 # Glossary
 
@@ -1180,7 +1669,7 @@ Find here the Backlog and Kanban boards for SSS: <https://lucidplan.jointhefreew
 ---
 
 
-<a id="org0919a1f"></a>
+<a id="orgee92d65"></a>
 
 # Acronyms
 
@@ -1196,7 +1685,7 @@ Find here the Backlog and Kanban boards for SSS: <https://lucidplan.jointhefreew
 ---
 
 
-<a id="orge3b236f"></a>
+<a id="org690014f"></a>
 
 # User Management
 
@@ -1207,9 +1696,9 @@ When everything is in place, add a password to the user with `sudo passwd <user>
 ---
 
 
-<a id="orgb3c6e8e"></a>
+<a id="org48edbf0"></a>
 
-# Inheriting an SSS/GNU system
+# Postume: Inheriting an SSS/GNU system
 
 While we may not like thinking about these situations, life has an expiry date for us all, and as such we should prepare for a day when we are no more.
 
