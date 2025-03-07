@@ -38,12 +38,13 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 - Fish shell configuration
 - Conky configuration  
 - Foot terminal emulator
-- Rofi application launcher
 - Waybar configuration and style
+- Rofi application launcher
 - Mako configuration and style
 - multi-user Git configuration setup (work/personal)
-- Qutebrowser configurations
-- Multi user configurations
+- Nyxt browser configuration
+- Qutebrowser configuration
+- Multi user configuration
 
   and more....
   
@@ -52,9 +53,7 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 An operating system unto itself.
 
 - Advanced Emacs configurations with Emacs Lisp + Elpaca
-- Dev setup for: Scheme, Scala, Haskell, Lisp, Python, Shell, Nix, Golang and more
-
-Note: Screenshot below might be outdated and no longer representative of the current, ever-changing state of SSS.
+- Dev setup for: Scheme, Scala, Haskell, Lisp, Rust, Python, Shell, Nix, Golang and more
 
 
 
@@ -515,6 +514,36 @@ This uses swww and thus can load animated images as well and do fancy transition
 
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
+* Nyxt browser
+
+Nyxt is a fantastic web browser, infinitely extensible, and in Emacs-spirit. It is a great fit for SSS.
+
+Find more about Nyxt here: https://nyxt.atlas.engineer/
+
+Before you start Nyxt, you need to perform a one-time action so as to allow the SSS Nyxt config to work properly.
+
+What we need is Quicklisp (refer to https://quicklisp.org for more details).
+
+You only need to load ~quicklisp.lisp~ once to install Quicklisp.
+
+Here's an example installation session on SBCL:
+#+begin_example
+curl -O https://beta.quicklisp.org/quicklisp.lisp
+sbcl --load quicklisp.lisp
+#+end_example
+
+You will then, if all went well, be inside a Common Lisp REPL.
+Here, all you need to do is type the following commands, each followed by ENTER:
+
+#+begin_src lisp
+  (quicklisp-quickstart:install)
+  (quit)
+#+end_src
+
+You are then ready to start the Nyxt browser, all configuration should work well from then on.
+
+-----
+
 * Git
 
 Joe's account is automatically configured with a multi-user Git setup. See ~lib/git.scm~.
@@ -717,26 +746,6 @@ You can optionally do a ~guix pull~ now to see if maybe a new version of things 
 Q: I am unable to generate  a GPG key! I get errors about pin-item or pinentry!
 
 A: Try with ~gpg --pinentry-mode loopback --full-gen-key~. Otherwise try other options and check you have the right pinentry programs installed.
-
------
-
-* Nyxt browser
-
-Nyxt is a fantastic web browser, entirely customizable, and in Emacs-spirit. It is a great fit for SSS.
-
-Before you start Nyxt, you need to perform a one-time action:
-
-Refer to quicklisp.org for more details and download links:
-
-You only need to load quicklisp.lisp once to install Quicklisp. See Loading After Installation for how to load the installed Quicklisp into your Lisp session after the initial installation.
-
-Here's an example installation session on SBCL:
-#+begin_example
-  $ curl -O https://beta.quicklisp.org/quicklisp.lisp
-  $ sbcl --load quicklisp.lisp
-  (quicklisp-quickstart:install)
-#+end_example
-
 
 -----
 

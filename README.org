@@ -50,12 +50,13 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 - Fish shell configuration
 - Conky configuration  
 - Foot terminal emulator
-- Rofi application launcher
 - Waybar configuration and style
+- Rofi application launcher
 - Mako configuration and style
 - multi-user Git configuration setup (work/personal)
-- Qutebrowser configurations
-- Multi user configurations
+- Nyxt browser configuration  
+- Qutebrowser configuration
+- Multi user configuration
 
   and more....
   
