@@ -40,13 +40,13 @@
   '())
 
 (define-public sss-mime-default-applications
-  '((application/pdf org.gnome.Evince google-chrome icecat)
-    (text/html google-chrome icecat emacsclient)
+  '((application/pdf org.gnome.Evince icecat google-chrome)
+    (text/html icecat google-chrome emacsclient)
     (text/plain emacsclient geany)
     (text/xml emacsclient geany)
-    (image/png org.gnome.gThumb google-chrome icecat feh)
-    (image/jpg org.gnome.gThumb google-chrome icecat feh)
-    (image/jpeg org.gnome.gThumb google-chrome icecat feh)))
+    (image/png org.gnome.gThumb icecat google-chrome feh)
+    (image/jpg org.gnome.gThumb icecat google-chrome feh)
+    (image/jpeg org.gnome.gThumb icecat google-chrome feh)))
 
 (begin
   (define (make-mime-row r)
