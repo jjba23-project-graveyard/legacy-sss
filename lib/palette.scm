@@ -58,6 +58,14 @@
               alpha)))
   (export sss-hex-to-rgba))
 
+(define-public sss-palette-ef-dream
+  `((primary . "#675072") (primary-l . "#b0a0cf")
+    (primary-d . "#a0a0cf")
+    (text . "#efd5c5")
+    (text-l . "#dec4b4")
+    (background . "#232025")
+    (background-l . "#322f34")))
+
 (define-public sss-palette-ef-bio
   `((primary . "#00552f") (primary-l . "#3fb83f")
     (primary-d . "#0a4425")
@@ -81,14 +89,6 @@
     (text-l . "#cfbcba")
     (background . "#26211d")
     (background-l . "#36322f")))
-
-(define-public sss-palette-ef-dream
-  `((primary . "#675072") (primary-l . "#b0a0cf")
-    (primary-d . "#a0a0cf")
-    (text . "#efd5c5")
-    (text-l . "#dec4b4")
-    (background . "#232025")
-    (background-l . "#322f34")))
 
 (define-public sss-palette-solarized-light
   `((primary . "#e89149") (primary-l . "#f5883f")
