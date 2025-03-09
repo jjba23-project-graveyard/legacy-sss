@@ -110,6 +110,11 @@
             (hypr-translate-bind bind) dispatch))
   (export special-bind))
 
+(begin
+  (define* (hypr-window-rule #:key action class)
+    (format #f "~a, class:~a" action class))
+  (export hypr-window-rule))
+
 ;; ====== module tests ======
 
 (test-begin "hyprlang tests")

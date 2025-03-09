@@ -144,6 +144,8 @@
   `((disable_hypr_logo . true) (disable_splash_rendering . true)
     (font_family . "Adwaita Sans")))
 
+;;
+
 (define hypr-media-binds
   (map (lambda (kb)
          (serialize-hypr-setting (car kb)
@@ -297,7 +299,9 @@
                                 monitors
                                 (extra-startups '())
                                 (with-blur #f)
-                                (with-shadow #f))
+                                (with-shadow #f)
+                                (window-rules (list (hypr-window-rule #:action 'float
+                                                     #:class "pavucontrol"))))
     (let* ((wall (hypr-wallpaper #:active-palette active-palette
                                  #:clone-dir clone-dir))
            (wallpaper-setter (format #f
@@ -338,6 +342,10 @@
                                                              #:wallpaper-setter
                                                              wallpaper-setter)
                                                  "\n"))
+           (serialized-window-rules (string-join (map (lambda (r)
+                                                        (serialize-hypr-setting 'windowrulev2
+                                                         r)) window-rules)
+                                                 "\n"))
            (config-lines (append `("# ====== SSS Hypr configuration ======"
                                    "#"
                                    "# auto-generated file, DO NOT EDIT!"
@@ -359,6 +367,8 @@
                                    ,serialized-animations)
                                  `("" "# ====== Key bindings ======"
                                    ,serialized-key-bindings)
+                                 `("" "# ====== Window rules ======"
+                                   ,serialized-window-rules)
                                  `(""
                                    "# ====== End of SSS Hyprland configuration ======"
                                    ""))))
