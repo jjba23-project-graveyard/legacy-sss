@@ -103,16 +103,16 @@
                         (all-outputs . #t)
                         (warp-on-scroll . #f)
                         (format . "{icon}")
-                        (format-icons ("1" . "I")
-                                      ("2" . "II")
-                                      ("3" . "III")
-                                      ("4" . "IV")
-                                      ("5" . "V")
-                                      ("6" . "VI")
-                                      ("7" . "VII")
-                                      ("8" . "VIII")
-                                      ("9" . "IX")
-                                      ("10" . "X")
+                        (format-icons ("1" . "1")
+                                      ("2" . "2")
+                                      ("3" . "3")
+                                      ("4" . "4")
+                                      ("5" . "5")
+                                      ("6" . "6")
+                                      ("7" . "7")
+                                      ("8" . "8")
+                                      ("9" . "9")
+                                      ("10" . "10")
                                       ("default" . "\uf111"))))
 
 (define sss-waybar-clock
@@ -219,7 +219,7 @@
                                     'text)))
       ("#workspaces" unquote
        (button-css #:active-palette active-palette))
-      ("#workspaces button" (font-size . "12pt"))
+      ("#workspaces button" (font-size . "9pt"))
       ("#power-profiles-daemon" unquote
        (button-css #:active-palette active-palette))
       ("#custom-power" unquote

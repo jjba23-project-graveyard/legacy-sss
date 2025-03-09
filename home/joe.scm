@@ -280,7 +280,9 @@
              (".config/fish/config.fish" ,(plain-file "config.fish"
                                                       (sss-fish-config-service
                                                        #:clone-dir
-                                                       sss-clone-dir)))
+                                                       sss-clone-dir
+                                                       #:active-palette
+                                                       sss-active-palette)))
              ;; Nyxt browser
              (".config/nyxt/config.lisp" ,(local-file
                                            "../lib/nyxt/config.lisp"))

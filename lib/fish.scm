@@ -23,7 +23,7 @@
           (car a)
           (cdr a)))
 
-(define* (sss-fish-abbreviations #:key sss-clone-dir)
+(define* (sss-fish-abbreviations #:key clone-dir)
   `((c . "clear") (h . "history")
     (tree . "tree --dirsfirst -F")
     (mkdir . "mkdir -p -v")
@@ -32,48 +32,146 @@
     (e . "emacsclient -t")
     (vanilla-emacs . "emacs -Q")
     (fr unquote
-        (format #f "cd ~a && make fr" sss-clone-dir))
+        (format #f "cd ~a && make fr" clone-dir))
     (sr unquote
-        (format #f "cd ~a && make sr" sss-clone-dir))
+        (format #f "cd ~a && make sr" clone-dir))
     (jr unquote
-        (format #f "cd ~a && make jr" sss-clone-dir))
+        (format #f "cd ~a && make jr" clone-dir))
     (pm unquote
-        (format #f "cd ~a && make publish-manual" sss-clone-dir))
+        (format #f "cd ~a && make publish-manual" clone-dir))
     (npi unquote
-         (format #f "cd ~a && make npi" sss-clone-dir))
+         (format #f "cd ~a && make npi" clone-dir))
     (npu unquote
-         (format #f "cd ~a && make npu" sss-clone-dir))
+         (format #f "cd ~a && make npu" clone-dir))
     (fpi unquote
-         (format #f "cd ~a && make fpi" sss-clone-dir))
+         (format #f "cd ~a && make fpi" clone-dir))
     (fpu unquote
-         (format #f "cd ~a && make fpu" sss-clone-dir))
+         (format #f "cd ~a && make fpu" clone-dir))
     (scala-dev unquote
                (format #f "nix develop ~a/resources/flakes/scala-dev/"
-                       sss-clone-dir))
+                       clone-dir))
     (haskell-dev unquote
                  (format #f "nix develop ~a/resources/flakes/haskell-dev/"
-                         sss-clone-dir))
+                         clone-dir))
     (docker . "podman")
     (docker-compose . "podman-compose")
     (podman-unix-socket . "podman system service --time=0 unix:///tmp/podman.sock")
     (gui . "hyprland")
     (find-largest-files . "du -h -x -s -- * | sort -r -h | head -20")))
 
+(define (fish-color-for-palette active-palette)
+  (cond
+    ((eq? 'sss-palette-ef-dream active-palette)
+     'magenta)
+    ((eq? 'sss-palette-ef-bio active-palette)
+     'green)
+    ((eq? 'sss-palette-heavy-metal active-palette)
+     'red)
+    ((eq? 'sss-palette-ef-cyprus active-palette)
+     'green)
+    ((eq? 'sss-palette-ef-autumn active-palette)
+     'yellow)
+    ((eq? 'sss-palette-solarized-light active-palette)
+     'yellow)
+    (else 'magenta)))
+
+(define* (shell-greeting #:key active-palette)
+  `(,(format #f "set_color -o ~a"
+             (fish-color-for-palette active-palette))
+    "echo \"Welcome to SSS/GNU - the Supreme Sexp System\"" "echo \"\""
+    "set_color normal"))
+
+(define* (serialize-fish-greeting #:key active-palette)
+  (format #f "function fish_greeting\n    ~a\nend"
+          (string-join (shell-greeting #:active-palette active-palette)
+                       "\n    ")))
+
+(define* (shell-prompt #:key active-palette)
+  `("set -l last_status $status"
+
+    ,(format #f "set_color -o ~a"
+             (fish-color-for-palette active-palette))
+    "echo -n \"$USER@\"(hostname)"
+    "set_color normal"
+
+    "echo -n ': '"
+
+    ;; PWD
+    "set_color $fish_color_cwd"
+    "echo -n (prompt_pwd)"
+    "set_color normal"
+
+    "set -q __fish_git_prompt_showdirtystate"
+    "or set -g __fish_git_prompt_showdirtystate 1"
+    "set -q __fish_git_prompt_showuntrackedfiles"
+    "or set -g __fish_git_prompt_showuntrackedfiles 1"
+    "set -q __fish_git_prompt_showcolorhints"
+    "or set -g __fish_git_prompt_showcolorhints 1"
+    "set -q __fish_git_prompt_color_untrackedfiles"
+    "or set -g __fish_git_prompt_color_untrackedfiles yellow"
+    "set -q __fish_git_prompt_char_untrackedfiles"
+    "or set -g __fish_git_prompt_char_untrackedfiles '?'"
+    "set -q __fish_git_prompt_color_invalidstate"
+    "or set -g __fish_git_prompt_color_invalidstate red"
+    "set -q __fish_git_prompt_char_invalidstate"
+    "or set -g __fish_git_prompt_char_invalidstate '!'"
+    "set -q __fish_git_prompt_color_dirtystate"
+    "or set -g __fish_git_prompt_color_dirtystate blue"
+    "set -q __fish_git_prompt_char_dirtystate"
+    "or set -g __fish_git_prompt_char_dirtystate '*'"
+    "set -q __fish_git_prompt_char_stagedstate"
+    "or set -g __fish_git_prompt_char_stagedstate '✚'"
+    "set -q __fish_git_prompt_color_cleanstate"
+    "or set -g __fish_git_prompt_color_cleanstate green"
+    "set -q __fish_git_prompt_char_cleanstate"
+    "or set -g __fish_git_prompt_char_cleanstate '✓'"
+    "set -q __fish_git_prompt_color_stagedstate"
+    "or set -g __fish_git_prompt_color_stagedstate yellow"
+    "set -q __fish_git_prompt_color_branch_dirty"
+    "or set -g __fish_git_prompt_color_branch_dirty red"
+    "set -q __fish_git_prompt_color_branch_staged"
+    "or set -g __fish_git_prompt_color_branch_staged yellow"
+    "set -q __fish_git_prompt_color_branch"
+    "or set -g __fish_git_prompt_color_branch green"
+    "set -q __fish_git_prompt_char_stateseparator"
+    "or set -g __fish_git_prompt_char_stateseparator '⚡'"
+    "fish_vcs_prompt ': %s'"
+    "echo"
+
+    "if not test $last_status -eq 0"
+    "set_color $fish_color_error"
+    "end"
+
+    "echo -n 'λ '"
+    "set_color normal"))
+
+(define* (serialize-fish-prompt prompt)
+  (format #f "function fish_prompt\n    ~a\nend"
+          (string-join prompt "\n    ")))
+
 (begin
-  (define* (sss-fish-config #:key sss-clone-dir)
+  (define* (sss-fish-config #:key clone-dir active-palette)
     (append `("#
 # SSS - Supreme Sexp System - fish configurations
 #
+# auto-generated file! do not edit!
+#
 "
               ;; turn on the Emacs-style keybindings for the shell
-              "fish_default_key_bindings")
+              "fish_default_key_bindings" "")
             ;; abbreviations (a much better approach than aliases)
             (map serialize-fish-abbreviation
-                 (sss-fish-abbreviations #:sss-clone-dir sss-clone-dir))))
+                 (sss-fish-abbreviations #:clone-dir clone-dir))
+            `("")
+            (list (serialize-fish-greeting #:active-palette active-palette))
+            `("")
+            (list (serialize-fish-prompt (shell-prompt #:active-palette
+                                                       active-palette)))))
   (export sss-fish-config))
 
 (begin
-  (define* (sss-fish-config-service #:key clone-dir)
-    (string-join (sss-fish-config #:sss-clone-dir clone-dir) "\n"))
+  (define* (sss-fish-config-service #:key clone-dir active-palette)
+    (string-join (sss-fish-config #:clone-dir clone-dir
+                                  #:active-palette active-palette) "\n"))
   (export sss-fish-config-service))
 
