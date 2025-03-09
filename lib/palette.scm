@@ -16,7 +16,8 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss palette)
-  #:use-module (gnu))
+  #:use-module (gnu)
+  #:use-module (srfi srfi-64))
 
 (define-public (sss-get-color palette sym)
   (let ((p (cond
@@ -105,3 +106,34 @@
     (text-l . "#efd5c5")
     (background . "#111111")
     (background-l . "#222522")))
+
+(test-begin "sss-palette tests")
+
+;; Test color retrieval
+(test-equal "Retrieve primary color from ef-dream palette" "#675072"
+            (sss-get-color 'sss-palette-ef-dream
+                           'primary))
+
+(test-equal "Retrieve text color from ef-bio palette" "#dfefe6"
+            (sss-get-color 'sss-palette-ef-bio
+                           'text))
+
+(test-equal "Retrieve background-l color from ef-cyprus palette" "#f0ece0"
+            (sss-get-color 'sss-palette-ef-cyprus
+                           'background-l))
+
+;; Test default palette selection
+(test-equal "Retrieve primary color from default palette (ef-dream)" "#675072"
+            (sss-get-color 'unknown-palette
+                           'primary))
+
+;; Test sss-hex-to-rgba conversion
+(test-equal "Convert hex #ff5733 to rgba" "rgba(255, 87, 51, 1)"
+            (sss-hex-to-rgba "#ff5733"))
+
+(test-equal "Convert hex #008080 to rgba with alpha 0.5"
+            "rgba(0, 128, 128, 0.5)"
+            (sss-hex-to-rgba "#008080"
+                             #:alpha 0.5))
+
+(test-end)

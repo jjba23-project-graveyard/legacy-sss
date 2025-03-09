@@ -18,14 +18,8 @@
 (use-modules (ice-9 rdelim))
 (use-modules (srfi srfi-64))
 
-(define (run-test file)
-  (display "Running: ")
-  (display file)
-  (newline)
-  (primitive-load file))
+(define xs
+  '("lib/palette.scm" "lib/emacs-bridge.scm" "lib/hyprland/hyprlang.scm"))
 
-(define (run-all-tests)
-  (for-each run-test
-            '("lib/emacs-bridge.scm" "lib/hyprland/hyprlang.scm")))
-
-(run-all-tests)
+(for-each (lambda (x)
+            (load x)) xs)

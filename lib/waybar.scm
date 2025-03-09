@@ -148,7 +148,7 @@
           (modules-right (if labwc-session
                              #(pulseaudio power-profiles-daemon cpu memory backlight keyboard-state battery custom/power tray)
                              #(pulseaudio power-profiles-daemon cpu memory backlight keyboard-state battery custom/power tray))))
-      `((position . bottom) (height . 42)
+      `((position . bottom) (height . 38)
         (modules-left unquote modules-left)
         (modules-center)
         (modules-right unquote modules-right)
@@ -185,16 +185,21 @@
                 (sss-hex-to-rgba (sss-get-color active-palette
                                                 'background)
                                  #:alpha 0.7))
+    (border unquote
+            (format #f "1px solid ~a"
+                    (sss-hex-to-rgba (sss-get-color active-palette
+                                                    'background-l)
+                                     #:alpha 0.9)))
     (color unquote
            (sss-hex-to-rgba (sss-get-color active-palette
                                            'text-l)
                             #:alpha 1))
     (font-weight . 700)
-    (margin-top . "6px")
-    (margin-bottom . "6px")
+    (margin-top . "4px")
+    (margin-bottom . "4px")
     (margin-left . "4px")
     (margin-right . "4px")
-    (font-size . "9pt")
+    (font-size . "10pt")
     (padding-left . "10px")
     (padding-right . "10px")
     (border-radius . "16px")))
@@ -259,8 +264,8 @@
        (color unquote
               (sss-get-color active-palette
                              'background))
-       (margin-top . "6px")
-       (margin-bottom . "6px")
+       (margin-top . "4px")
+       (margin-bottom . "4px")
        (transition . none))
       ("#workspaces button.focused" (color unquote
                                            (sss-get-color active-palette
@@ -277,7 +282,8 @@
        (margin . 0)
        (opacity . 0))
       ("#tray" unquote
-       (button-css #:active-palette active-palette))
+       (append (button-css #:active-palette active-palette)
+               '((transition . "all .3s ease"))))
       ("#keyboard-state" (font-size . "9pt"))
       ("#pulseaudio" unquote
        (button-css #:active-palette active-palette))

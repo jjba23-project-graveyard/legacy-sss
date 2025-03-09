@@ -30,6 +30,7 @@
     (ll . "ls -lAh --group-directories-first")
     (l . "ls -lAh --group-directories-first")
     (e . "emacsclient -t")
+    (k . "pkill")
     (vanilla-emacs . "emacs -Q")
     (fr unquote
         (format #f "cd ~a && make fr" clone-dir))
