@@ -300,22 +300,28 @@
                                 (extra-startups '())
                                 (with-blur #f)
                                 (with-shadow #f)
+
+                                (wallpaper-setter (format #f
+                                                          (string-append
+                                                           "swww img ~a"
+                                                           " --transition-step 12"
+                                                           " --transition-fps 60"
+                                                           " --transition-type center")
+                                                          (hypr-wallpaper
+                                                           #:active-palette
+                                                           active-palette
+                                                           #:clone-dir
+                                                           clone-dir)))
+                                (startup-programs (hypr-startup-programs
+                                                   #:active-palette
+                                                   active-palette
+                                                   #:wallpaper-setter
+                                                   wallpaper-setter
+                                                   #:extra-startups
+                                                   extra-startups))
                                 (window-rules (list (hypr-window-rule #:action 'float
                                                      #:class "pavucontrol"))))
-    (let* ((wall (hypr-wallpaper #:active-palette active-palette
-                                 #:clone-dir clone-dir))
-           (wallpaper-setter (format #f
-                                     (string-append "swww img ~a"
-                                      " --transition-step 12"
-                                      " --transition-fps 60"
-                                      " --transition-type center") wall))
-           (startup-programs (hypr-startup-programs #:active-palette
-                                                    active-palette
-                                                    #:wallpaper-setter
-                                                    wallpaper-setter
-                                                    #:extra-startups
-                                                    extra-startups))
-           (serialized-startup-programs (map (lambda (startup-item)
+    (let* ((serialized-startup-programs (map (lambda (startup-item)
                                                (serialize-hypr-setting 'exec-once
                                                 startup-item))
                                              startup-programs))
