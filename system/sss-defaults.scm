@@ -88,6 +88,7 @@
     "sbt"
     "scala_2_13"
     "scala-cli"
+    "onefetch"
     "postman"
     "vscode-langservers-extracted"
     "nwg-look"
@@ -102,7 +103,7 @@
     "deadnix"
     "lua"
     "lua52Packages.lua-lsp"
-    "pitivi"
+    "wesnoth"
     "awscli"))
 
 ;; Flatpak remotes to add to a user
