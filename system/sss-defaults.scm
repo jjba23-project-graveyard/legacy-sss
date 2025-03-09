@@ -103,7 +103,6 @@
     "deadnix"
     "lua"
     "lua52Packages.lua-lsp"
-    "wesnoth"
     "awscli"))
 
 ;; Flatpak remotes to add to a user
