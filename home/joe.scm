@@ -120,6 +120,8 @@
                                      #:with-shadow #t)
                    (sss-mime-svc)
                    (sss-nyxt-svc)
+                   (sss-fish-svc #:clone-dir sss-clone-dir
+                                 #:palette sss-active-palette)
                    `(
                      
                      ;; Guix channels configuration
@@ -193,13 +195,6 @@
                      (".config/containers/policy.json" ,(plain-file
                                                          "policy.json"
                                                          "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
-                     ;; Fish shell configuration
-                     (".config/fish/config.fish" ,(plain-file "config.fish"
-                                                              (sss-fish-config-service
-                                                               #:clone-dir
-                                                               sss-clone-dir
-                                                               #:active-palette
-                                                               sss-active-palette)))
 
                      ;; Emacs initialization file
                      (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))

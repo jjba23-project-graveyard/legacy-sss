@@ -60,38 +60,37 @@
     (gui . "hyprland")
     (find-largest-files . "du -h -x -s -- * | sort -r -h | head -20")))
 
-(define (fish-color-for-palette active-palette)
+(define (fish-color-for-palette palette)
   (cond
-    ((eq? 'sss-palette-ef-dream active-palette)
+    ((eq? 'sss-palette-ef-dream palette)
      'magenta)
-    ((eq? 'sss-palette-ef-bio active-palette)
+    ((eq? 'sss-palette-ef-bio palette)
      'green)
-    ((eq? 'sss-palette-heavy-metal active-palette)
+    ((eq? 'sss-palette-heavy-metal palette)
      'red)
-    ((eq? 'sss-palette-ef-cyprus active-palette)
+    ((eq? 'sss-palette-ef-cyprus palette)
      'green)
-    ((eq? 'sss-palette-ef-autumn active-palette)
+    ((eq? 'sss-palette-ef-autumn palette)
      'yellow)
-    ((eq? 'sss-palette-solarized-light active-palette)
+    ((eq? 'sss-palette-solarized-light palette)
      'yellow)
     (else 'magenta)))
 
-(define* (shell-greeting #:key active-palette)
+(define* (shell-greeting #:key palette)
   `(,(format #f "set_color -o ~a"
-             (fish-color-for-palette active-palette))
+             (fish-color-for-palette palette))
     "echo \"Welcome to SSS/GNU - the Supreme Sexp System\"" "echo \"\""
     "set_color normal"))
 
-(define* (serialize-fish-greeting #:key active-palette)
+(define* (serialize-fish-greeting #:key palette)
   (format #f "function fish_greeting\n    ~a\nend"
-          (string-join (shell-greeting #:active-palette active-palette)
-                       "\n    ")))
+          (string-join (shell-greeting #:palette palette) "\n    ")))
 
-(define* (shell-prompt #:key active-palette)
+(define* (shell-prompt #:key palette)
   `("set -l last_status $status"
 
     ,(format #f "set_color -o ~a"
-             (fish-color-for-palette active-palette))
+             (fish-color-for-palette palette))
     "echo -n \"$USER@\"(hostname)"
     "set_color normal"
 
@@ -152,7 +151,7 @@
           (string-join prompt "\n    ")))
 
 (begin
-  (define* (sss-fish-config #:key clone-dir active-palette)
+  (define* (sss-fish-config #:key clone-dir palette)
     (append `("#
 # SSS - Supreme Sexp System - fish configurations
 #
@@ -165,15 +164,18 @@
             (map serialize-fish-abbreviation
                  (sss-fish-abbreviations #:clone-dir clone-dir))
             `("")
-            (list (serialize-fish-greeting #:active-palette active-palette))
+            (list (serialize-fish-greeting #:palette palette))
             `("")
-            (list (serialize-fish-prompt (shell-prompt #:active-palette
-                                                       active-palette)))))
+            (list (serialize-fish-prompt (shell-prompt #:palette palette)))))
   (export sss-fish-config))
 
 (begin
-  (define* (sss-fish-config-service #:key clone-dir active-palette)
-    (string-join (sss-fish-config #:clone-dir clone-dir
-                                  #:active-palette active-palette) "\n"))
-  (export sss-fish-config-service))
+  (define* (sss-fish-svc #:key clone-dir palette)
+    `((".config/fish/config.fish" ,(plain-file "config.fish"
+                                               (string-join (sss-fish-config
+                                                             #:clone-dir
+                                                             clone-dir
+                                                             #:palette palette)
+                                                            "\n")))))
+  (export sss-fish-svc))
 
