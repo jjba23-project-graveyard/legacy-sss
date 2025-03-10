@@ -129,3 +129,25 @@
                                             0)
                                            (else 1)))))
   (export sss-gtk4-config))
+
+(begin
+  (define* (sss-gtk3-svc #:key active-palette)
+    `(".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
+                                                  (string-append
+                                                   "[Settings]\n"
+                                                   (mk-kv-conf-lines
+                                                    (sss-gtk3-config
+                                                     #:active-palette
+                                                     sss-active-palette))))))
+  (export sss-gtk3-svc))
+
+(begin
+  (define* (sss-gtk4-svc #:key active-palette)
+    `(".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
+                                                  (string-append
+                                                   "[Settings]\n"
+                                                   (mk-kv-conf-lines
+                                                    (sss-gtk4-config
+                                                     #:active-palette
+                                                     sss-active-palette))))))
+  (export sss-gtk4-svc))

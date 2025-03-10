@@ -228,19 +228,19 @@
         tree-sitter-javascript))
 
 (define sss-terminal-emulator-packages
-  (list foot konsole xfce4-terminal))
+  (list foot kitty xfce4-terminal))
 
 (define sss-dev-packages
-  (list (specification->package "openjdk@21.0.2")
-        (specification->package "node@22.12.0")
-        (specification->package "python") cl-asdf sbcl))
+  (list (specification->package "openjdk@21")
+        (specification->package "node@22")
+        (specification->package "python@3") cl-asdf sbcl))
 
 (define sss-coreutils
   (list htop
+        btop
         emacs-next-pgtk
         vim
         git
-        neovim
         openssh
         openssl
         clang
