@@ -58,7 +58,6 @@
              (sss git)
              (sss vars)
              (sss mako)
-             (sss byggsteg)
              (sss enchant)
              (sss fontconfig)
              (sss bash)
