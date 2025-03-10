@@ -58,6 +58,7 @@
              (sss vars)
              (sss mako)
              (sss enchant)
+             (sss nix)
              (sss fontconfig)
              (sss hyprland hyprlang)
              (sss hyprland hyprland)
@@ -73,7 +74,7 @@
              (sss waybar)
              (sss rofi)
              (sss ssh)
-             (sss bridge emacs)
+             (sss emacs)
              (sss qutebrowser))
 
 (define joe-ssh-hosts
@@ -118,28 +119,25 @@
                                      sss-hyprland-extra-startups
                                      #:with-blur #t
                                      #:with-shadow #t)
+                   (sss-hyprlock-svc #:clone-dir sss-clone-dir)
                    (sss-mime-svc)
                    (sss-nyxt-svc)
                    (sss-fish-svc #:clone-dir sss-clone-dir
                                  #:palette sss-active-palette)
                    (sss-mako-svc #:palette sss-active-palette)
                    (sss-qutebrowser-svc #:palette sss-active-palette)
-                   `(
-                     
-                     ;; Guix channels configuration
-                     (".config/guix/channels.scm" ,(local-file
-                                                    "../lib/channels.scm"))
-
-                     ;; Nix configuration
-                     ;; Nix configuration with experimental features
-                     (".config/nix/nix.conf" ,(plain-file "nix.conf"
-                                                          (mk-rec-kv-conf-lines `
-                                                           ((experimental-features . "nix-command flakes"))
-                                                           #:template
-                                                           spaced-equal-conf-pair)))
-                     ;; Loads Nixpkgs configuration locally
-                     (".config/nixpkgs/config.nix" ,(local-file
-                                                     "../lib/nix/nixpkgs.nix"))
+                   (sss-emacs-svc #:palette sss-active-palette
+                    #:user-name "Joe"
+                    #:user-full-name "Josep Bigorra"
+                    #:user-initials "JJBA"
+                    #:user-email "jjbigorra@gmail.com"
+                    #:clone-dir sss-clone-dir
+                    #:notes-roam-dir
+                    "$HOME/Ontwikkeling/Persoonlijk/private-notes/Roam")
+                   (sss-nix-svc)
+                   `( ;Guix channels configuration
+                      (".config/guix/channels.scm" ,(local-file
+                                                     "../lib/channels.scm"))
 
                      ;; XDG desktop portal configuration (for flatpak apps)
                      (".config/xdg-desktop-portal/portals.conf" ,(plain-file
@@ -166,13 +164,6 @@
                      (".config/enchant/en_US.dic" ,(plain-file "en_US.dic"
                                                                (mk-lines
                                                                 sss-enchant-dict-en)))
-                     ;; Hyprland configuration
-                     
-                     (".config/hypr/hyprlock.conf" ,(plain-file
-                                                     "hyprlock.conf"
-                                                     (sss-hyprlock-config
-                                                      #:clone-dir
-                                                      sss-clone-dir)))
 
                      ;; Containers configuration (for Docker, Podman, etc.)
                      ;; Specifies container registries
@@ -184,27 +175,7 @@
                                                          "policy.json"
                                                          "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
 
-                     ;; Emacs initialization file
-                     (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))
-                     ;; Emacs bridge with SSS
-                     (".emacs.d/sss-bridge.el" ,(plain-file "sss-bridge.el"
-                                                            (sss-bridge-emacs
-                                                             #:active-palette
-                                                             sss-active-palette
-                                                             #:user-name "Joe"
-                                                             #:user-full-name
-                                                             "Josep Bigorra"
-                                                             #:user-email
-                                                             "jjbigorra@gmail.com"
-                                                             #:user-initials
-                                                             "JJBA"
-                                                             #:clone-dir
-                                                             sss-clone-dir
-                                                             #:notes-roam-dir
-                                                             "$HOME/Ontwikkeling/Persoonlijk/private-notes/Roam")))
-                     ;; Emacs early initialization file
-                     (".emacs.d/early-init.el" ,(local-file
-                                                 "../lib/emacs/early-init.el"))))))
+                     ))))
 
 ;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")

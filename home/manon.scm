@@ -70,7 +70,6 @@
              (sss waybar)
              (sss rofi)
              (sss ssh)
-             (sss bridge emacs)
              (sss labwc)
              (sss qutebrowser))
 

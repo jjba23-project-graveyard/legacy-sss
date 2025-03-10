@@ -19,6 +19,7 @@
 (load "./hyprlang.scm")
 
 (define-module (sss hyprland hyprlock)
+  #:use-module (gnu)
   #:use-module (sss palette)
   #:use-module (sss hyprland hyprlang))
 
@@ -110,3 +111,10 @@
       
       (string-join config-lines "\n")))
   (export sss-hyprlock-config))
+
+(begin
+  (define* (sss-hyprlock-svc #:key clone-dir)
+    `((".config/hypr/hyprlock.conf" ,(plain-file "hyprlock.conf"
+                                                 (sss-hyprlock-config
+                                                  #:clone-dir clone-dir)))))
+  (export sss-hyprlock-svc))
