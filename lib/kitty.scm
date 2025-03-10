@@ -30,11 +30,28 @@
       (bold_font . auto)
       (italic_font . auto)
       (bold_italic_font . auto)
+      (scrollback_lines . 2000000)
+      (enable_audio_bell . no)
+      (foreground unquote
+                  (sss-get-color palette
+                                 'text))
+      (background unquote
+                  (sss-get-color palette
+                                 'background))
+      (background_opacity . "0.8")
       (cursor unquote
               (sss-get-color palette
                              'primary))
       (cursor_shape . block)
-      (cursor_text_color . background)))
+      (cursor_text_color . background)
+      (clear_all_shortcuts . yes)
+      (window_padding_width . "10.0")
+      ("map alt+w" . copy_to_clipboard)
+      ("map ctrl+y" . paste_from_clipboard)
+      ("map alt+<" . scroll_home)
+      ("map alt+>" . scroll_end)
+      ("map alt+v" . scroll_page_up)
+      ("map ctrl+v" . scroll_page_down)))
   (export sss-kitty-config))
 
 (begin

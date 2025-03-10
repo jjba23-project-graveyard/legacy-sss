@@ -108,6 +108,15 @@
                    (sss-waybar-svc #:palette sss-active-palette)
                    (sss-rofi-svc #:palette sss-active-palette)
                    (sss-foot-svc #:palette sss-active-palette)
+                   (sss-hyprland-svc #:palette sss-active-palette
+                                     #:clone-dir sss-clone-dir
+                                     #:keyboard-layout sss-keyboard-layout
+                                     #:caps-to-ctrl sss-keyboard-caps-to-ctrl
+                                     #:monitors sss-hyprland-monitors
+                                     #:extra-startups
+                                     sss-hyprland-extra-startups
+                                     #:with-blur #t
+                                     #:with-shadow #t)
                    `(
                      
                      ;; Guix channels configuration
@@ -166,23 +175,7 @@
                                                                (mk-lines
                                                                 sss-enchant-dict-en)))
                      ;; Hyprland configuration
-                     (".config/hypr/hyprland.conf" ,(plain-file
-                                                     "hyprland.conf"
-                                                     (sss-hyprland-config
-                                                      #:clone-dir
-                                                      sss-clone-dir
-                                                      #:keyboard-layout
-                                                      sss-keyboard-layout
-                                                      #:keyboard-caps-to-ctrl
-                                                      sss-keyboard-caps-to-ctrl
-                                                      #:active-palette
-                                                      sss-active-palette
-                                                      #:monitors
-                                                      sss-hyprland-monitors
-                                                      #:extra-startups
-                                                      sss-hyprland-extra-startups
-                                                      #:with-blur #t
-                                                      #:with-shadow #t)))
+                     
                      (".config/hypr/hyprlock.conf" ,(plain-file
                                                      "hyprlock.conf"
                                                      (sss-hyprlock-config
