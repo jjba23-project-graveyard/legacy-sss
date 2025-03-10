@@ -66,6 +66,7 @@
              (sss containers)
              (sss portals)
              (sss qt)
+             (sss channels)
              (sss mime)
              (sss openpgp)
              (sss waybar)
