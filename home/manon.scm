@@ -62,6 +62,8 @@
              (sss fontconfig)
              (sss bash)
              (sss gtk)
+             (sss nix)
+             (sss containers)
              (sss portals)
              (sss qt)
              (sss mime)
