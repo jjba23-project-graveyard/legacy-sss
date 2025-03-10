@@ -143,7 +143,6 @@
                             (hyprland-session #f)
                             (labwc-session #f)
                             (with-memory #f)
-                            (with-taskbar #f)
                             (with-numlock #f)
                             (with-capslock #f))
     (let ((modules-left (if labwc-session
@@ -158,8 +157,8 @@
         (modules-right unquote modules-right)
         ,(sss-waybar-start-button)
         ,(cond
-           (hyprland-session sss-waybar-hyprland-workspaces)
-           (else `(hyprland/workspaces . null)))
+          (hyprland-session sss-waybar-hyprland-workspaces)
+          (else `(hyprland/workspaces . null)))
         (keyboard-state (numlock unquote with-numlock)
                         (capslock unquote with-capslock)
                         (format . "{name} {icon} ")
@@ -172,9 +171,9 @@
              (tooltip . #f)
              (on-click . "gnome-system-monitor"))
         ,(cond
-           (with-memory `(memory (format . "{}% \uf0c9")
-                                 (on-click . "gnome-system-monitor")))
-           (else `(memory . null)))
+          (with-memory `(memory (format . "{}% \uf0c9")
+                                (on-click . "gnome-system-monitor")))
+          (else `(memory . null)))
         ,sss-waybar-backlight
         ,sss-waybar-battery
         ,sss-waybar-battery-2
@@ -298,20 +297,21 @@
   (export sss-waybar-css))
 
 (begin
-  (define* (sss-waybar-svc #:key palette with-memory labwc-session hyprland-session)
+  (define* (sss-waybar-svc #:key palette with-memory labwc-session
+                           hyprland-session)
     `( ;Waybar configuration (for status bar)
-      (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
-                                                  (scm->json-string (sss-waybar-conf
-                                                                     #:palette
-                                                                     palette
-                                                                     #:labwc-session
-                                                                     labwc-session
-                                                                     #:hyprland-session
-                                                                     hyprland-session
-                                                                     #:with-memory
-                                                                     with-memory)
-                                                                    #:pretty
-                                                                    #t)))
+       (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
+                                                   (scm->json-string (sss-waybar-conf
+                                                                      #:palette
+                                                                      palette
+                                                                      #:labwc-session
+                                                                      labwc-session
+                                                                      #:hyprland-session
+                                                                      hyprland-session
+                                                                      #:with-memory
+                                                                      with-memory)
+                                                                     #:pretty
+                                                                     #t)))
 
       ;; Waybar styling
       (".config/waybar/style.css" ,(plain-file "waybar.css"
