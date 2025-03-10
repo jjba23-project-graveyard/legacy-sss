@@ -66,6 +66,7 @@
              (sss mime)
              (sss fish)
              (sss gtk)
+             (sss nyxt)
              (sss portals)
              (sss qt)
              (sss openpgp)
@@ -117,6 +118,8 @@
                                      sss-hyprland-extra-startups
                                      #:with-blur #t
                                      #:with-shadow #t)
+                   (sss-mime-svc)
+                   (sss-nyxt-svc)
                    `(
                      
                      ;; Guix channels configuration
@@ -141,15 +144,6 @@
                                                                    "[preferred]\n"
                                                                    (mk-kv-conf-lines
                                                                     sss-portals-config))))
-
-                     (".config/mimeapps.list" ,(plain-file "mimeapps.list"
-                                                           (sss-mimeapps-list-file
-                                                            #:added-associations
-                                                            sss-mime-added-associations
-                                                            #:removed-associations
-                                                            sss-mime-removed-associations
-                                                            #:default-applications
-                                                            sss-mime-default-applications)))
 
                      ;; Qt6 configuration
                      (".config/qt6ct/qt6ct.conf" ,(plain-file "qt6ct.conf"
@@ -206,13 +200,7 @@
                                                                sss-clone-dir
                                                                #:active-palette
                                                                sss-active-palette)))
-                     ;; Nyxt browser
-                     (".config/nyxt/config.lisp" ,(local-file
-                                                   "../lib/nyxt/config.lisp"))
-                     (".config/nyxt/dark-reader.lisp" ,(local-file
-                                                        "../lib/nyxt/dark-reader.lisp"))
-                     (".config/nyxt/bookmarks.lisp" ,(local-file
-                                                      "../lib/nyxt/bookmarks.lisp"))
+
                      ;; Emacs initialization file
                      (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))
                      ;; Emacs bridge with SSS

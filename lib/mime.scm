@@ -70,3 +70,16 @@
                    ,(mime-renderer default-applications)) "\n"))
   (export sss-mimeapps-list-file))
 
+(begin
+  (define* (sss-mime-svc #:key (added-associations sss-mime-added-associations)
+                         (removed-associations sss-mime-removed-associations)
+                         (default-applications sss-mime-default-applications))
+    `((".config/mimeapps.list" ,(plain-file "mimeapps.list"
+                                            (sss-mimeapps-list-file
+                                             #:added-associations
+                                             added-associations
+                                             #:removed-associations
+                                             removed-associations
+                                             #:default-applications
+                                             default-applications)))))
+  (export sss-mime-svc))
