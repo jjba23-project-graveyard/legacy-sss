@@ -122,6 +122,7 @@
                    (sss-nyxt-svc)
                    (sss-fish-svc #:clone-dir sss-clone-dir
                                  #:palette sss-active-palette)
+                   (sss-mako-svc #:palette sss-active-palette)
                    `(
                      
                      ;; Guix channels configuration
@@ -156,12 +157,6 @@
                      ;; Conky config
                      (".config/conky/conky.conf" ,(local-file
                                                    "../lib/conky/conky.lua"))
-
-                     ;; Mako (notification daemon) configuration
-                     (".config/mako/config" ,(plain-file "config"
-                                                         (mk-kv-conf-lines (sss-mako-config
-                                                                            #:active-palette
-                                                                            sss-active-palette))))
 
                      ;; Enchant spell checker configuration
                      ;; Enchant dictionary ordering
