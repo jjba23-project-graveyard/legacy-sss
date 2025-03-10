@@ -25,7 +25,7 @@
 
 (define* (notify-cmd #:key title subtitle)
   (format #f
-          (string-append "notify-send -i"
+          (string-append "fyi -i"
            " /run/current-system/profile/share/icons/Yaru/32x32/actions/dialog-yes.png"
            " \"~a\" \"~a\"" " >/dev/null 2>&1") title subtitle))
 

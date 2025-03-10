@@ -32,11 +32,12 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 ** An operating system (OS) configured in Lisp (Guile Scheme)
 
 - GNU Guix system configuration
-- Hyprland configuration (complete ⭐ 🎊)
+- Hyprland configuration
 - 🎨 Theme palettes that affect the entire system
 - Labwc configuration (work-in progress)
 - Fish shell configuration
-- Conky configuration  
+- Conky configuration
+- Kitty terminal emulator
 - Foot terminal emulator
 - Waybar configuration and style
 - Rofi application launcher
@@ -44,6 +45,7 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 - multi-user Git configuration setup (work/personal)
 - Nyxt browser configuration
 - Qutebrowser configuration
+- Fastfetch configuration
 - Multi user configuration
 
   and more....

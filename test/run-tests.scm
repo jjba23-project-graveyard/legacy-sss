@@ -19,7 +19,7 @@
 (use-modules (srfi srfi-64))
 
 (define xs
-  '("lib/palette.scm" "lib/emacs-bridge.scm" "lib/hyprland/hyprlang.scm"))
+  '("../lib/palette.scm" "../lib/emacs.scm" "../lib/hyprland/hyprlang.scm"))
 
 (for-each (lambda (x)
             (load x)) xs)
