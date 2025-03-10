@@ -48,9 +48,7 @@
              (gnu home services gnupg)
              (gnu home services shepherd)
              (gnu home services sound)
-             (gnu home services desktop)
-             (json)
-             (sxml simple))
+             (gnu home services desktop))
 
 ;; Load SSS modules
 (use-modules (sss process)
@@ -103,11 +101,13 @@
 ;; Define user's home files (a.k.a. dotfiles)
 (define sss-home-files-service
   (service home-files-service-type
-           (append (sss-kitty-svc #:active-palette sss-active-palette)
-                   (sss-gtk3-svc #:active-palette sss-active-palette)
-                   (sss-gtk4-svc #:active-palette sss-active-palette)
+           (append (sss-kitty-svc #:palette sss-active-palette)
+                   (sss-gtk3-svc #:palette sss-active-palette)
+                   (sss-gtk4-svc #:palette sss-active-palette)
                    (sss-git-svc)
-                   (sss-waybar-svc #:active-palette sss-active-palette)
+                   (sss-waybar-svc #:palette sss-active-palette)
+                   (sss-rofi-svc #:palette sss-active-palette)
+                   (sss-foot-svc #:palette sss-active-palette)
                    `(
                      
                      ;; Guix channels configuration
@@ -125,16 +125,6 @@
                      (".config/nixpkgs/config.nix" ,(local-file
                                                      "../lib/nix/nixpkgs.nix"))
 
-                     ;; Rofi config
-                     (".config/rofi/config.rasi" ,(plain-file "config.rasi"
-                                                              sss-rofi-config))
-                     ;; Rofi styling
-                     (".config/rofi/sss-theme.rasi" ,(plain-file
-                                                      "sss-theme.rasi"
-                                                      (mk-css-conf-lines (sss-rofi-theme
-                                                                          #:active-palette
-                                                                          sss-active-palette))))
-
                      ;; XDG desktop portal configuration (for flatpak apps)
                      (".config/xdg-desktop-portal/portals.conf" ,(plain-file
                                                                   "portals.conf"
@@ -142,13 +132,6 @@
                                                                    "[preferred]\n"
                                                                    (mk-kv-conf-lines
                                                                     sss-portals-config))))
-
-                     ;; Foot terminal configuration
-                     (".config/foot/foot.ini" ,(plain-file "foot.ini"
-                                                           (mk-rec-kv-conf-lines
-                                                            (sss-foot-config
-                                                             #:active-palette
-                                                             sss-active-palette))))
 
                      (".config/mimeapps.list" ,(plain-file "mimeapps.list"
                                                            (sss-mimeapps-list-file

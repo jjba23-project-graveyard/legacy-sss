@@ -25,24 +25,24 @@
   #:use-module (sss process))
 
 (begin
-  (define* (sss-kitty-config #:key active-palette)
+  (define* (sss-kitty-config #:key palette)
     `((font_family . "Adwaita Mono") (font_size . "11.0")
       (bold_font . auto)
       (italic_font . auto)
       (bold_italic_font . auto)
       (cursor unquote
-              (sss-get-color active-palette
+              (sss-get-color palette
                              'primary))
       (cursor_shape . block)
       (cursor_text_color . background)))
   (export sss-kitty-config))
 
 (begin
-  (define* (sss-kitty-svc #:key active-palette)
+  (define* (sss-kitty-svc #:key palette)
     `((".config/kitty/kitty.conf" ,(plain-file "kitty.conf"
                                                (mk-rec-kv-conf-lines (sss-kitty-config
-                                                                      #:active-palette
-                                                                      active-palette)
+                                                                      #:palette
+                                                                      palette)
                                                                      #:template
                                                                      "~a ~a\n")))))
   (export sss-kitty-svc))
