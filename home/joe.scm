@@ -107,6 +107,7 @@
                    (sss-gtk3-svc #:active-palette sss-active-palette)
                    (sss-gtk4-svc #:active-palette sss-active-palette)
                    (sss-git-svc)
+                   (sss-waybar-svc #:active-palette sss-active-palette)
                    `(
                      
                      ;; Guix channels configuration
@@ -133,34 +134,6 @@
                                                       (mk-css-conf-lines (sss-rofi-theme
                                                                           #:active-palette
                                                                           sss-active-palette))))
-
-                     ;; Waybar configuration (for status bar)
-                     (".config/waybar/config.jsonc" ,(plain-file
-                                                      "config.jsonc"
-                                                      (scm->json-string (sss-waybar-conf
-                                                                         #:active-palette
-                                                                         sss-active-palette
-                                                                         #:hyprland-session
-                                                                         #t
-                                                                         #:with-memory
-                                                                         #t)
-                                                                        #:pretty
-                                                                        #t)))
-
-                     ;; Waybar styling
-                     (".config/waybar/style.css" ,(plain-file "waybar.css"
-                                                              (mk-css-conf-lines
-                                                               (sss-waybar-css
-                                                                #:active-palette
-                                                                sss-active-palette))))
-                     ;; Waybar Power menu from Scheme to XML format
-                     (".config/waybar/power_menu.xml" ,(plain-file
-                                                        "power_menu.xml"
-                                                        (with-output-to-string (lambda ()
-                                                                                 
-                                                                                 
-                                                                                 (sxml->xml
-                                                                                  sss-waybar-power-menu)))))
 
                      ;; XDG desktop portal configuration (for flatpak apps)
                      (".config/xdg-desktop-portal/portals.conf" ,(plain-file

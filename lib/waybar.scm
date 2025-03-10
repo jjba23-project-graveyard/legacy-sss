@@ -16,10 +16,14 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (load "./palette.scm")
+(load "./process.scm")
 
 (define-module (sss waybar)
   #:use-module (gnu)
-  #:use-module (sss palette))
+  #:use-module (sss palette)
+  #:use-module (sss process)
+  #:use-module (sxml simple)
+  #:use-module (json))
 
 ;; Waybar power menu, encoding XML as Scheme - SXML - s-expressions
 (define-public sss-waybar-power-menu
@@ -293,3 +297,30 @@
        (button-css #:active-palette active-palette))))
 
   (export sss-waybar-css))
+
+(begin
+  (define* (sss-waybar-svc #:key active-palette)
+    `( ;Waybar configuration (for status bar)
+       (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
+                                                   (scm->json-string (sss-waybar-conf
+                                                                      #:active-palette
+                                                                      active-palette
+                                                                      #:hyprland-session
+                                                                      #t
+                                                                      #:with-memory
+                                                                      #t)
+                                                                     #:pretty
+                                                                     #t)))
+
+      ;; Waybar styling
+      (".config/waybar/style.css" ,(plain-file "waybar.css"
+                                               (mk-css-conf-lines (sss-waybar-css
+                                                                   #:active-palette
+                                                                   active-palette))))
+      ;; Waybar Power menu from Scheme to XML format
+      (".config/waybar/power_menu.xml" ,(plain-file "power_menu.xml"
+                                                    (with-output-to-string (lambda ()
+                                                                             
+                                                                             (sxml->xml
+                                                                              sss-waybar-power-menu)))))))
+  (export sss-waybar-svc))
