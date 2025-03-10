@@ -15,8 +15,20 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(load "./process.scm")
+
 (define-module (sss enchant)
-  #:use-module (gnu))
+  #:use-module (gnu)
+  #:use-module (sss process))
+
+(begin
+  (define* (sss-enchant-svc #:key (ordering sss-enchant-ordering)
+                            (en-dict sss-enchant-dict-en))
+    `((".enchant" ,(plain-file "enchant"
+                               (mk-lines ordering)))
+      (".config/enchant/en_US.dic" ,(plain-file "en_US.dic"
+                                                (mk-lines en-dict)))))
+  (export sss-enchant-svc))
 
 ;; Enchant uses global and per-user ordering files named enchant.ordering to decide
 ;; which spelling provider to use for particular languages. The per-user file takes precedence.

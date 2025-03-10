@@ -24,11 +24,11 @@
   (log-exprs sss-lang
              sss-timezone
              sss-keyboard-layout
-             sss-keyboard-caps-to-ctrl
+             sss-caps-to-ctrl
              sss-hostname
              sss-clone-dir
              sss-per-host-packages
-             sss-active-palette
+             sss-palette
              sss-nixpkgs
              sss-flatpak-user-remotes
              sss-flatpak-pkgs))

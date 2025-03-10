@@ -15,26 +15,29 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(load "./process.scm")
+
 (define-module (sss mako)
   #:use-module (gnu)
-  #:use-module (sss palette))
+  #:use-module (sss palette)
+  #:use-module (sss process))
 
 (begin
-  (define* (sss-mako-config #:key active-palette)
+  (define* (sss-mako-config #:key palette)
     `((sort . "-time") (max-history . 7)
       (on-button-left . dismiss)
       (on-button-right . invoke-default-action)
       (background-color unquote
                         (string-upcase (format #f "~abb"
-                                               (sss-get-color active-palette
+                                               (sss-get-color palette
                                                               'background))))
       (border-color unquote
                     (string-upcase (format #f "~abb"
-                                           (sss-get-color active-palette
+                                           (sss-get-color palette
                                                           'primary))))
       (text-color unquote
                   (string-upcase (format #f "~abb"
-                                         (sss-get-color active-palette
+                                         (sss-get-color palette
                                                         'text))))
       (font . "Adwaita Sans 11")
       (width . 420)
@@ -43,3 +46,10 @@
       (ignore-timeout . 1)
       (border-radius . 10)))
   (export sss-mako-config))
+
+(begin
+  (define* (sss-mako-svc #:key palette)
+    `((".config/mako/config" ,(plain-file "config"
+                                          (mk-kv-conf-lines (sss-mako-config
+                                                             #:palette palette))))))
+  (export sss-mako-svc))

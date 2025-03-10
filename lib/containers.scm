@@ -15,11 +15,19 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(use-modules (ice-9 rdelim))
-(use-modules (srfi srfi-64))
+(define-module (sss containers)
+  #:use-module (gnu)
+  #:use-module (json))
 
-(define xs
-  '("lib/palette.scm" "lib/emacs-bridge.scm" "lib/hyprland/hyprlang.scm"))
-
-(for-each (lambda (x)
-            (load x)) xs)
+(begin
+  (define* (sss-containers-svc)
+    `((".config/containers/registries.conf" ,(plain-file "registries.conf"
+                                              "unqualified-search-registries = [
+       'docker.io',
+       'registry.fedoraproject.org',
+       'registry.access.redhat.com',
+       'registry.centos.org']"))
+      
+      (".config/containers/policy.json" ,(plain-file "policy.json"
+                                                     (scm->json-string `((default . #(((type . insecureAcceptAnything))))))))))
+  (export sss-containers-svc))

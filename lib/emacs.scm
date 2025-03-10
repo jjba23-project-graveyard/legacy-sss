@@ -15,14 +15,12 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-;; (load "./palette.scm")
-
-(define-module (sss bridge emacs)
+(define-module (sss emacs)
   #:use-module (gnu)
   #:use-module (srfi srfi-64))
 
 (begin
-  (define* (sss-bridge-emacs #:key active-palette
+  (define* (sss-bridge-emacs #:key palette
                              user-name
                              user-full-name
                              user-email
@@ -44,19 +42,19 @@
                             (format #f "\"~a\"" notes-roam-dir))
         (sss-emacs-theme unquote
                          (cond
-                           ((equal? active-palette
+                           ((equal? palette
                                     'sss-palette-ef-dream)
                             "'ef-dream")
-                           ((equal? active-palette
+                           ((equal? palette
                                     'sss-palette-ef-cyprus)
                             "'ef-cyprus")
-                           ((equal? active-palette
+                           ((equal? palette
                                     'sss-palette-ef-autumn)
                             "'ef-autumn")
-                           ((equal? active-palette
+                           ((equal? palette
                                     'sss-palette-heavy-metal)
                             "'ef-tritanopia-dark")
-                           ((equal? active-palette
+                           ((equal? palette
                                     'sss-palette-solarized-light)
                             "'solarized-light")
                            (else "'ef-bio")))))
@@ -71,6 +69,38 @@
                              (display ")\n"))))
   (export sss-bridge-emacs))
 
+(begin
+  (define* (sss-emacs-svc #:key palette
+                          user-name
+                          user-full-name
+                          user-email
+                          user-initials
+                          clone-dir
+                          notes-roam-dir)
+    `((".emacs.d/init.el" ,(local-file "./emacs/init.el"))
+      
+      (".emacs.d/sss-bridge.el" ,(plain-file "sss-bridge.el"
+                                             (sss-bridge-emacs #:palette
+                                                               palette
+                                                               #:user-name
+                                                               user-name
+                                                               #:user-full-name
+                                                               user-full-name
+                                                               #:user-email
+                                                               user-email
+                                                               #:user-initials
+                                                               user-initials
+                                                               #:clone-dir
+                                                               clone-dir
+                                                               #:notes-roam-dir
+                                                               notes-roam-dir)))
+
+      (".emacs.d/early-init.el" ,(local-file "./emacs/early-init.el"))
+      (".emacs.d/templates" ,(local-file "./emacs/templates"))))
+  (export sss-emacs-svc))
+
+;; ====== module tests ======
+
 (test-begin "Emacs bridge tests")
 (test-assert "bridge is correctly computed"
              (equal? (string-append "(setq-default
@@ -83,7 +113,7 @@
                       "    sss-notes-roam-dir \"/home/john/notes/roam\"
 "
                       "    sss-emacs-theme 'ef-bio)\n")
-                     (sss-bridge-emacs #:active-palette 'ef-dream
+                     (sss-bridge-emacs #:palette 'ef-dream
                                        #:user-name "John"
                                        #:user-full-name "John Doe"
                                        #:user-email "john@doe.com"

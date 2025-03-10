@@ -21,26 +21,26 @@
   #:use-module (sss process))
 
 (begin
-  (define* (sss-qt6ct-config #:key active-palette)
+  (define* (sss-qt6ct-config #:key palette)
     (string-append "[Appearance]\n"
                    (mk-kv-conf-lines `((color_scheme_path . "/run/current-system/profile/share/qt6ct/colors/airy.conf")
                                        (custom_palette . false)
                                        (icon_theme unquote
                                                    (cond
                                                      ((equal? 'sss-palette-ef-cyprus
-                                                              active-palette)
+                                                              palette)
                                                       "Yaru-sage")
                                                      ((equal? 'sss-palette-heavy-metal
-                                                              active-palette)
+                                                              palette)
                                                       "Yaru-red-dark")
                                                      ((equal? 'sss-palette-ef-dream
-                                                              active-palette)
+                                                              palette)
                                                       "Yaru-magenta-dark")
                                                      ((equal? 'sss-palette-ef-autumn
-                                                              active-palette)
+                                                              palette)
                                                       "Yaru-dark")
                                                      ((equal? 'sss-palette-solarized-light
-                                                              active-palette)
+                                                              palette)
                                                       "Yaru")
                                                      (else "Yaru-sage-dark")))
                                        (standard_dialogs . default)))
@@ -63,3 +63,9 @@
                                        (wheel_scroll_lines . 3)))))
   (export sss-qt6ct-config))
 
+(begin
+  (define* (sss-qt6-svc #:key palette)
+    `((".config/qt6ct/qt6ct.conf" ,(plain-file "qt6ct.conf"
+                                               (sss-qt6ct-config #:palette
+                                                                 palette)))))
+  (export sss-qt6-svc))

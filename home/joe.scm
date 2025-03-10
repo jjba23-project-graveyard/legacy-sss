@@ -48,280 +48,96 @@
              (gnu home services gnupg)
              (gnu home services shepherd)
              (gnu home services sound)
-             (gnu home services desktop)
-             (json)
-             (sxml simple))
+             (gnu home services desktop))
 
 ;; Load SSS modules
 (use-modules (sss process)
              (sss foot)
+             (sss kitty)
              (sss git)
              (sss vars)
              (sss mako)
+             (sss channels)
+             (sss fastfetch)
+             (sss conky)
              (sss enchant)
+             (sss nix)
              (sss fontconfig)
              (sss hyprland hyprlang)
              (sss hyprland hyprland)
              (sss hyprland hyprlock)
              (sss bash)
+             (sss containers)
              (sss mime)
              (sss fish)
              (sss gtk)
+             (sss nyxt)
              (sss portals)
              (sss qt)
              (sss openpgp)
              (sss waybar)
              (sss rofi)
              (sss ssh)
-             (sss bridge emacs)
+             (sss emacs)
              (sss qutebrowser))
 
-(define joe-ssh-hosts
-  (list (openssh-host (name "wolk-jjba")
-                      (user "joe")
-                      (host-name "37.60.232.48")
-                      (port 2323)
-                      (identity-file "~/.ssh/wolk-jjba"))
-        (openssh-host (name "personal.github.com")
-                      (user "joe")
-                      (host-name "github.com")
-                      (identity-file "~/.ssh/gitlab_prive"))
-        (openssh-host (name "gitlab.com")
-                      (user "joe")
-                      (host-name "gitlab.com")
-                      (identity-file "~/.ssh/gitlab_prive"))
-        (openssh-host (name "codeberg.org")
-                      (user "joe")
-                      (host-name "codeberg.org")
-                      (identity-file "~/.ssh/gitlab_prive"))
-        (openssh-host (name "work.github.com")
-                      (user "joe")
-                      (host-name "github.com")
-                      (identity-file "~/.ssh/work_id"))))
-
-;; Define user's home files (a.k.a. dotfiles)
 (define sss-home-files-service
   (service home-files-service-type
-           `( ;GTK 3 settings
-              (".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
-                                                           (string-append
-                                                            "[Settings]\n"
-                                                            (mk-kv-conf-lines (sss-gtk3-config
-                                                                               #:active-palette
-                                                                               sss-active-palette)))))
-
-             ;; GTK 4 settings
-             (".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
-                                                          (string-append
-                                                           "[Settings]\n"
-                                                           (mk-kv-conf-lines (sss-gtk4-config
-                                                                              #:active-palette
-                                                                              sss-active-palette)))))
-
-             ;; Guix channels configuration
-             (".config/guix/channels.scm" ,(local-file "../lib/channels.scm"))
-
-             ;; Git configuration
-             ;; Global Git configuration
-             (".gitconfig" ,(plain-file "gitconfig.ini"
-                                        (mk-rec-kv-conf-lines sss-gitconfig
-                                         #:template spaced-equal-conf-pair)))
-             ;; Personal Git configuration
-             (".gitconfig-personal" ,(plain-file "gitconfig-personal.ini"
-                                                 (mk-rec-kv-conf-lines
-                                                  sss-gitconfig-personal
-                                                  #:template
-                                                  spaced-equal-conf-pair)))
-             ;; Work Git configuration
-             (".gitconfig-work" ,(plain-file "gitconfig-work.ini"
-                                             (mk-rec-kv-conf-lines
-                                              sss-gitconfig-work
-                                              #:template
-                                              spaced-equal-conf-pair)))
-
-             ;; Global Git ignore and message configuration
-             (".gitignore-global" ,(plain-file "gitignore-global"
-                                               (mk-lines sss-gitignore-global)))
-             ;; Personal Git commit message template
-             (".gitmessage-personal" ,(plain-file "gitmessage-personal"
-                                                  sss-gitmessage-personal))
-             ;; Work-related Git commit message template
-             (".gitmessage-work" ,(plain-file "gitmessage-work"
-                                              sss-gitmessage-work))
-
-             ;; Nix configuration
-             ;; Nix configuration with experimental features
-             (".config/nix/nix.conf" ,(plain-file "nix.conf"
-                                                  (mk-rec-kv-conf-lines `((experimental-features . "nix-command flakes"))
-                                                   #:template
-                                                   spaced-equal-conf-pair)))
-             ;; Loads Nixpkgs configuration locally
-             (".config/nixpkgs/config.nix" ,(local-file
-                                             "../lib/nix/nixpkgs.nix"))
-
-             ;; Rofi config
-             (".config/rofi/config.rasi" ,(plain-file "config.rasi"
-                                                      sss-rofi-config))
-             ;; Rofi styling
-             (".config/rofi/sss-theme.rasi" ,(plain-file "sss-theme.rasi"
-                                                         (mk-css-conf-lines (sss-rofi-theme
-                                                                             #:active-palette
-                                                                             sss-active-palette))))
-
-             ;; Waybar configuration (for status bar)
-             (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
-                                                         (scm->json-string (sss-waybar-conf
-                                                                            #:active-palette
-                                                                            sss-active-palette
-                                                                            #:hyprland-session
-                                                                            #t
-                                                                            #:with-memory
-                                                                            #t)
-                                                                           #:pretty
-                                                                           #t)))
-
-             ;; Waybar styling
-             (".config/waybar/style.css" ,(plain-file "waybar.css"
-                                                      (mk-css-conf-lines (sss-waybar-css
-                                                                          #:active-palette
-                                                                          sss-active-palette))))
-             ;; Waybar Power menu from Scheme to XML format
-             (".config/waybar/power_menu.xml" ,(plain-file "power_menu.xml"
-                                                           (with-output-to-string (lambda ()
-                                                                                    
-                                                                                    
-                                                                                    (sxml->xml
-                                                                                     sss-waybar-power-menu)))))
-
-             ;; XDG desktop portal configuration (for flatpak apps)
-             (".config/xdg-desktop-portal/portals.conf" ,(plain-file
-                                                          "portals.conf"
-                                                          (string-append
-                                                           "[preferred]\n"
-                                                           (mk-kv-conf-lines
-                                                            sss-portals-config))))
-
-             ;; Foot terminal configuration
-             (".config/foot/foot.ini" ,(plain-file "foot.ini"
-                                                   (mk-rec-kv-conf-lines (sss-foot-config
-                                                                          #:active-palette
-                                                                          sss-active-palette))))
-
-             (".config/mimeapps.list" ,(plain-file "mimeapps.list"
-                                                   (sss-mimeapps-list-file
-                                                    #:added-associations
-                                                    sss-mime-added-associations
-                                                    #:removed-associations
-                                                    sss-mime-removed-associations
-                                                    #:default-applications
-                                                    sss-mime-default-applications)))
-
-             ;; Qt6 configuration
-             (".config/qt6ct/qt6ct.conf" ,(plain-file "qt6ct.conf"
-                                                      (sss-qt6ct-config
-                                                       #:active-palette
-                                                       sss-active-palette)))
-
-             ;; Conky config
-             (".config/conky/conky.conf" ,(local-file "../lib/conky/conky.lua"))
-
-             ;; Mako (notification daemon) configuration
-             (".config/mako/config" ,(plain-file "config"
-                                                 (mk-kv-conf-lines (sss-mako-config
-                                                                    #:active-palette
-                                                                    sss-active-palette))))
-
-             ;; Enchant spell checker configuration
-             ;; Enchant dictionary ordering
-             (".enchant" ,(plain-file "enchant"
-                                      (mk-lines sss-enchant-ordering)))
-             (".config/enchant/en_US.dic" ,(plain-file "en_US.dic"
-                                                       (mk-lines
-                                                        sss-enchant-dict-en)))
-             ;; Hyprland configuration
-             (".config/hypr/hyprland.conf" ,(plain-file "hyprland.conf"
-                                                        (sss-hyprland-config
-                                                         #:clone-dir
-                                                         sss-clone-dir
-                                                         #:keyboard-layout
-                                                         sss-keyboard-layout
-                                                         #:keyboard-caps-to-ctrl
-                                                         sss-keyboard-caps-to-ctrl
-                                                         #:active-palette
-                                                         sss-active-palette
-                                                         #:monitors
-                                                         sss-hyprland-monitors
-                                                         #:extra-startups
-                                                         sss-hyprland-extra-startups
-                                                         #:with-blur #t
-                                                         #:with-shadow #t)))
-             (".config/hypr/hyprlock.conf" ,(plain-file "hyprlock.conf"
-                                                        (sss-hyprlock-config
-                                                         #:clone-dir
-                                                         sss-clone-dir)))
-             ;; Qutebrowser configurations (web browser)
-             (".config/qutebrowser/config.py" ,(plain-file "config.py"
-                                                           (sss-qutebrowser-config
-                                                            #:active-palette
-                                                            sss-active-palette)))
-             (".config/qutebrowser/bookmarks/urls" ,(plain-file "urls"
-                                                                (serialize-qutebrowser-urls
-                                                                 sss-qutebrowser-bookmarks)))
-
-             ;; Containers configuration (for Docker, Podman, etc.)
-             ;; Specifies container registries
-             (".config/containers/registries.conf" ,(plain-file
-                                                     "registries.conf"
-                                                     "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
-             ;; Container security policy
-             (".config/containers/policy.json" ,(plain-file "policy.json"
-                                                 "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
-             ;; Fish shell configuration
-             (".config/fish/config.fish" ,(plain-file "config.fish"
-                                                      (sss-fish-config-service
-                                                       #:clone-dir
-                                                       sss-clone-dir
-                                                       #:active-palette
-                                                       sss-active-palette)))
-             ;; Nyxt browser
-             (".config/nyxt/config.lisp" ,(local-file
-                                           "../lib/nyxt/config.lisp"))
-             (".config/nyxt/dark-reader.lisp" ,(local-file
-                                                "../lib/nyxt/dark-reader.lisp"))
-             (".config/nyxt/bookmarks.lisp" ,(local-file
-                                              "../lib/nyxt/bookmarks.lisp"))
-             ;; Emacs initialization file
-             (".emacs.d/init.el" ,(local-file "../lib/emacs/init.el"))
-             ;; Emacs bridge with SSS
-             (".emacs.d/sss-bridge.el" ,(plain-file "sss-bridge.el"
-                                                    (sss-bridge-emacs
-                                                     #:active-palette
-                                                     sss-active-palette
-                                                     #:user-name "Joe"
-                                                     #:user-full-name
-                                                     "Josep Bigorra"
-                                                     #:user-email
-                                                     "jjbigorra@gmail.com"
-                                                     #:user-initials "JJBA"
-                                                     #:clone-dir sss-clone-dir
-                                                     #:notes-roam-dir
-                                                     "$HOME/Ontwikkeling/Persoonlijk/private-notes/Roam")))
-             ;; Emacs early initialization file
-             (".emacs.d/early-init.el" ,(local-file
-                                         "../lib/emacs/early-init.el")))))
+           (append (sss-kitty-svc #:palette sss-palette)
+                   (sss-gtk3-svc #:palette sss-palette)
+                   (sss-gtk4-svc #:palette sss-palette)
+                   (sss-git-svc)
+                   (sss-waybar-svc #:palette sss-palette
+                                   #:with-memory #t
+                                   #:hyprland-session #t)
+                   (sss-rofi-svc #:palette sss-palette)
+                   (sss-foot-svc #:palette sss-palette)
+                   (sss-hyprland-svc #:palette sss-palette
+                                     #:clone-dir sss-clone-dir
+                                     #:keyboard-layout sss-keyboard-layout
+                                     #:caps-to-ctrl sss-caps-to-ctrl
+                                     #:monitors sss-hyprland-monitors
+                                     #:extra-startups
+                                     sss-hyprland-extra-startups
+                                     #:with-blur #t
+                                     #:with-shadow #t)
+                   (sss-hyprlock-svc #:clone-dir sss-clone-dir)
+                   (sss-mime-svc)
+                   (sss-nyxt-svc)
+                   (sss-fastfetch-svc #:clone-dir sss-clone-dir)
+                   (sss-fish-svc #:clone-dir sss-clone-dir
+                                 #:palette sss-palette)
+                   (sss-mako-svc #:palette sss-palette)
+                   (sss-qutebrowser-svc #:palette sss-palette)
+                   (sss-emacs-svc #:palette sss-palette
+                    #:user-name "Joe"
+                    #:user-full-name "Josep Bigorra"
+                    #:user-initials "JJBA"
+                    #:user-email "jjbigorra@gmail.com"
+                    #:clone-dir sss-clone-dir
+                    #:notes-roam-dir
+                    "$HOME/Ontwikkeling/Persoonlijk/private-notes/Roam")
+                   (sss-nix-svc)
+                   (sss-qt6-svc #:palette sss-palette)
+                   (sss-containers-svc)
+                   (sss-conky-svc)
+                   (sss-portals-svc)
+                   (sss-enchant-svc))))
 
 ;; Configure user's Guix home environment
-(display "\n>>= configuring home environment...\n")
+(display "
+>>= configuring Joe's home environment...
+")
 (home-environment
-  (packages (list pfetch))
   (services
    (list sss-home-files-service
-         (sss-ssh-service #:hosts joe-ssh-hosts)
+         (sss-ssh-service)
          (sss-home-vars-service #:clone-dir sss-clone-dir
                                 #:lang sss-lang)
          (sss-bash-service #:clone-dir sss-clone-dir)
          sss-openpgp-conf
          (service home-dbus-service-type)
          (service home-pipewire-service-type)
-         sss-fontconfig-service-type)))
+         sss-fontconfig-service-type
+         sss-channels-service)))
 

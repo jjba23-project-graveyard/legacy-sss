@@ -16,10 +16,14 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (load "./palette.scm")
+(load "./process.scm")
 
 (define-module (sss waybar)
   #:use-module (gnu)
-  #:use-module (sss palette))
+  #:use-module (sss palette)
+  #:use-module (sss process)
+  #:use-module (sxml simple)
+  #:use-module (json))
 
 ;; Waybar power menu, encoding XML as Scheme - SXML - s-expressions
 (define-public sss-waybar-power-menu
@@ -121,7 +125,7 @@
           (tooltip-format . "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>")
           (interval . 60)))
 
-(define* (sss-waybar-taskbar #:key active-palette)
+(define* (sss-waybar-taskbar #:key palette)
   `(wlr/taskbar (format . "{icon} {title:.28}")
                 (icon-size . 16)
                 (icon-theme . "Yaru")
@@ -135,11 +139,10 @@
 
 ;; My WayBar configurations, defined in Guile Scheme, a status bar with a detailed, modular setup.
 (begin
-  (define* (sss-waybar-conf #:key active-palette
+  (define* (sss-waybar-conf #:key palette
                             (hyprland-session #f)
                             (labwc-session #f)
                             (with-memory #f)
-                            (with-taskbar #f)
                             (with-numlock #f)
                             (with-capslock #f))
     (let ((modules-left (if labwc-session
@@ -175,23 +178,23 @@
         ,sss-waybar-battery
         ,sss-waybar-battery-2
         ,sss-waybar-power-profiles
-        ,(sss-waybar-taskbar #:active-palette active-palette)
+        ,(sss-waybar-taskbar #:palette palette)
         ,sss-waybar-audio-icon
         ,sss-waybar-power-button)))
   (export sss-waybar-conf))
 
-(define* (button-css #:key active-palette)
+(define* (button-css #:key palette)
   `((background unquote
-                (sss-hex-to-rgba (sss-get-color active-palette
+                (sss-hex-to-rgba (sss-get-color palette
                                                 'background)
                                  #:alpha 0.7))
     (border unquote
             (format #f "1px solid ~a"
-                    (sss-hex-to-rgba (sss-get-color active-palette
+                    (sss-hex-to-rgba (sss-get-color palette
                                                     'background-l)
                                      #:alpha 0.9)))
     (color unquote
-           (sss-hex-to-rgba (sss-get-color active-palette
+           (sss-hex-to-rgba (sss-get-color palette
                                            'text-l)
                             #:alpha 1))
     (font-weight . 700)
@@ -215,81 +218,110 @@
 ;; - Dynamic colors fetched from `sss-get-color` for consistency with theme settings.
 ;; - Use of transition effects and alpha blending to enhance UI responsiveness.
 (begin
-  (define* (sss-waybar-css #:key active-palette)
+  (define* (sss-waybar-css #:key palette)
     `((module (background . transparent)
               (font-family . "FontAwesome, Adwaita Sans")
               (font-weight . 500)
               (color unquote
-                     (sss-get-color active-palette
+                     (sss-get-color palette
                                     'text)))
       ("#workspaces" unquote
-       (button-css #:active-palette active-palette))
+       (button-css #:palette palette))
       ("#workspaces button" (font-size . "9pt"))
       ("#power-profiles-daemon" unquote
-       (button-css #:active-palette active-palette))
+       (button-css #:palette palette))
       ("#custom-power" unquote
-       (button-css #:active-palette active-palette))
+       (button-css #:palette palette))
       ("#battery" unquote
-       (button-css #:active-palette active-palette))
+       (button-css #:palette palette))
       ("#backlight" unquote
-       (button-css #:active-palette active-palette))
+       (button-css #:palette palette))
       ("#clock" unquote
-       (button-css #:active-palette active-palette))
+       (button-css #:palette palette))
       ("window#waybar" (background unquote
-                                   (sss-hex-to-rgba (sss-get-color
-                                                     active-palette
-                                                     'background)
+                                   (sss-hex-to-rgba (sss-get-color palette
+                                                                   'background)
                                                     #:alpha 0.0))
        (padding . "8px")
        (font-family . "FontAwesome, Adwaita Sans")
        (color unquote
-              (sss-get-color active-palette
+              (sss-get-color palette
                              'text)))
       (tooltip (background unquote
-                           (sss-get-color active-palette
+                           (sss-get-color palette
                                           'background-l))
                (border-radius . 0))
       ("#custom-sss-waybar-start-button" unquote
-       (button-css #:active-palette active-palette))
+       (button-css #:palette palette))
       ("#workspaces" (padding-right . 0))
       ("#workspaces button" (padding . "4px")
        (font-weight . 700)
        (color unquote
-              (sss-get-color active-palette
+              (sss-get-color palette
                              'text)))
       ("#workspaces button.active" (background unquote
-                                               (sss-get-color active-palette
+                                               (sss-get-color palette
                                                               'primary-l))
        (border-radius . "10px")
        (color unquote
-              (sss-get-color active-palette
+              (sss-get-color palette
                              'background))
        (margin-top . "4px")
        (margin-bottom . "4px")
        (transition . none))
       ("#workspaces button.focused" (color unquote
-                                           (sss-get-color active-palette
+                                           (sss-get-color palette
                                                           'primary-l)))
       ("#workspaces button.urgent" (color . "#ef6560"))
       ("#workspaces button.hover" (color unquote
-                                         (sss-get-color active-palette
+                                         (sss-get-color palette
                                                         'text))
        (background unquote
-                   (sss-hex-to-rgba (sss-get-color active-palette
+                   (sss-hex-to-rgba (sss-get-color palette
                                                    'background)
                                     #:alpha 0.7)))
       ("window#waybar.empty #window" (padding . 0)
        (margin . 0)
        (opacity . 0))
       ("#tray" unquote
-       (append (button-css #:active-palette active-palette)
+       (append (button-css #:palette palette)
                '((transition . "all .3s ease"))))
       ("#keyboard-state" (font-size . "9pt"))
       ("#pulseaudio" unquote
-       (button-css #:active-palette active-palette))
+       (button-css #:palette palette))
       ("#cpu" unquote
-       (button-css #:active-palette active-palette))
+       (button-css #:palette palette))
       ("#memory" unquote
-       (button-css #:active-palette active-palette))))
+       (button-css #:palette palette))))
 
   (export sss-waybar-css))
+
+(begin
+  (define* (sss-waybar-svc #:key palette with-memory labwc-session
+                           hyprland-session)
+    `( ;Waybar configuration (for status bar)
+       (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
+                                                   (scm->json-string (sss-waybar-conf
+                                                                      #:palette
+                                                                      palette
+                                                                      #:labwc-session
+                                                                      labwc-session
+                                                                      #:hyprland-session
+                                                                      hyprland-session
+                                                                      #:with-memory
+                                                                      with-memory)
+                                                                     #:pretty
+                                                                     #t)))
+
+      ;; Waybar styling
+      (".config/waybar/style.css" ,(plain-file "waybar.css"
+                                               (mk-css-conf-lines (sss-waybar-css
+                                                                   #:palette
+                                                                   palette))))
+      ;; Waybar Power menu from Scheme to XML format
+      (".config/waybar/power_menu.xml" ,(plain-file "power_menu.xml"
+                                                    (with-output-to-string (lambda ()
+                                                                             
+                                                                             (sxml->xml
+                                                                              sss-waybar-power-menu)))))))
+  (export sss-waybar-svc))

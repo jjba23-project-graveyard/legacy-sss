@@ -19,66 +19,64 @@
 (load "./hyprlang.scm")
 
 (define-module (sss hyprland hyprland)
+  #:use-module (gnu)
   #:use-module (sss palette)
   #:use-module (sss hyprland hyprlang))
 
 (define* (notify-cmd #:key title subtitle)
   (format #f
-          (string-append "notify-send -i"
+          (string-append "fyi -i"
            " /run/current-system/profile/share/icons/Yaru/32x32/actions/dialog-yes.png"
            " \"~a\" \"~a\"" " >/dev/null 2>&1") title subtitle))
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
-  (define* (hypr-wallpaper #:key clone-dir active-palette)
+  (define* (hypr-wallpaper #:key clone-dir palette)
     (cond
-      ((equal? 'sss-palette-ef-cyprus active-palette)
+      ((equal? 'sss-palette-ef-cyprus palette)
        (format #f "~a/resources/wallpapers/some-forest.jpg" clone-dir))
-      ((equal? 'sss-palette-ef-dream active-palette)
+      ((equal? 'sss-palette-ef-dream palette)
        (format #f "~a/resources/wallpapers/1362745.png" clone-dir))
-      ((equal? 'sss-palette-heavy-metal active-palette)
+      ((equal? 'sss-palette-heavy-metal palette)
        (format #f "~a/resources/wallpapers/heavy-wall3.jpg" clone-dir))
-      ((equal? 'sss-palette-solarized-light active-palette)
+      ((equal? 'sss-palette-solarized-light palette)
        (format #f "~a/resources/wallpapers/ofcoisp7abfe1.jpeg" clone-dir))
-      ((equal? 'sss-palette-ef-autumn active-palette)
+      ((equal? 'sss-palette-ef-autumn palette)
        (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" clone-dir))
       (else (format #f "~a/resources/wallpapers/some-forest.jpg" clone-dir))))
   (export hypr-wallpaper))
 
-(define* (hypr-startup-programs #:key active-palette
+(define* (hypr-startup-programs #:key palette
                                 (wallpaper-setter "")
                                 (extra-startups '()))
   (let* ((gtk-theme-name (cond
-                           ((equal? 'sss-palette-ef-cyprus active-palette)
+                           ((equal? 'sss-palette-ef-cyprus palette)
                             "Yaru-sage")
-                           ((equal? 'sss-palette-heavy-metal active-palette)
+                           ((equal? 'sss-palette-heavy-metal palette)
                             "Yaru-red-dark")
-                           ((equal? 'sss-palette-ef-dream active-palette)
+                           ((equal? 'sss-palette-ef-dream palette)
                             "Yaru-magenta-dark")
-                           ((equal? 'sss-palette-ef-autumn active-palette)
+                           ((equal? 'sss-palette-ef-autumn palette)
                             "Yaru-dark")
-                           ((equal? 'sss-palette-solarized-light
-                                    active-palette)
+                           ((equal? 'sss-palette-solarized-light palette)
                             "Yaru")
                            (else "Yaru-sage-dark")))
          (icon-theme-name (cond
-                            ((equal? 'sss-palette-ef-cyprus active-palette)
+                            ((equal? 'sss-palette-ef-cyprus palette)
                              "Yaru-sage")
-                            ((equal? 'sss-palette-heavy-metal active-palette)
+                            ((equal? 'sss-palette-heavy-metal palette)
                              "Yaru-red-dark")
-                            ((equal? 'sss-palette-ef-dream active-palette)
+                            ((equal? 'sss-palette-ef-dream palette)
                              "Yaru-magenta-dark")
-                            ((equal? 'sss-palette-ef-autumn active-palette)
+                            ((equal? 'sss-palette-ef-autumn palette)
                              "Yaru-dark")
-                            ((equal? 'sss-palette-solarized-light
-                                     active-palette)
+                            ((equal? 'sss-palette-solarized-light palette)
                              "Yaru")
                             (else "Yaru-sage-dark")))
          (xs (append extra-startups
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
                        "waybar"
-                       "foot -s"
                        ,(format #f "swww-daemon & sleep 1 && ~a"
                                 wallpaper-setter)
                        "emacs --daemon"
@@ -106,7 +104,7 @@
               (scroll_factor . "1.0")
               (tap-to-click . true))))
 
-(define* (hypr-general #:key active-palette)
+(define* (hypr-general #:key palette)
   `((border_size . 2) (no_border_on_floating . false)
     (gaps_in . 8)
     (gaps_out . 16)
@@ -114,7 +112,7 @@
     (resize_on_border . true)
     ("col.active_border" unquote
      (format #f "0xff~a"
-             (string-drop (sss-get-color active-palette
+             (string-drop (sss-get-color palette
                                          'primary) 1)))))
 
 (define hypr-gestures
@@ -222,7 +220,7 @@
                         #:cmd "hyprlock")
              (exec-bind #:mod "s"
                         #:bind "T"
-                        #:cmd "footclient fish")
+                        #:cmd "kitty --detach fish")
              (exec-bind #:mod "s"
                         #:bind "slash"
                         #:cmd "rofi -show drun")
@@ -294,8 +292,8 @@
 (begin
   (define* (sss-hyprland-config #:key clone-dir
                                 keyboard-layout
-                                keyboard-caps-to-ctrl
-                                active-palette
+                                caps-to-ctrl
+                                palette
                                 monitors
                                 (extra-startups '())
                                 (with-blur #f)
@@ -308,13 +306,11 @@
                                                            " --transition-fps 60"
                                                            " --transition-type center")
                                                           (hypr-wallpaper
-                                                           #:active-palette
-                                                           active-palette
+                                                           #:palette palette
                                                            #:clone-dir
                                                            clone-dir)))
                                 (startup-programs (hypr-startup-programs
-                                                   #:active-palette
-                                                   active-palette
+                                                   #:palette palette
                                                    #:wallpaper-setter
                                                    wallpaper-setter
                                                    #:extra-startups
@@ -330,11 +326,11 @@
                                                                  #:keyboard-layout
                                                                  keyboard-layout
                                                                  #:caps-to-ctrl
-                                                                 keyboard-caps-to-ctrl)))
+                                                                 caps-to-ctrl)))
            (serialized-general (serialize-hypr-section #:section 'general
                                                        #:settings (hypr-general
-                                                                   #:active-palette
-                                                                   active-palette)))
+                                                                   #:palette
+                                                                   palette)))
            (serialized-decoration (serialize-hypr-section #:section 'decoration
                                                           #:settings (hypr-decoration
                                                                       #:with-blur
@@ -382,3 +378,25 @@
       (string-join config-lines "\n")))
   (export sss-hyprland-config))
 
+(begin
+  (define* (sss-hyprland-svc #:key palette
+                             clone-dir
+                             keyboard-layout
+                             caps-to-ctrl
+                             monitors
+                             extra-startups
+                             with-blur
+                             with-shadow)
+    `((".config/hypr/hyprland.conf" ,(plain-file "hyprland.conf"
+                                                 (sss-hyprland-config
+                                                  #:clone-dir clone-dir
+                                                  #:keyboard-layout
+                                                  keyboard-layout
+                                                  #:caps-to-ctrl caps-to-ctrl
+                                                  #:palette palette
+                                                  #:monitors monitors
+                                                  #:extra-startups
+                                                  extra-startups
+                                                  #:with-blur with-blur
+                                                  #:with-shadow with-shadow)))))
+  (export sss-hyprland-svc))

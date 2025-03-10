@@ -44,11 +44,12 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 ** An operating system (OS) configured in Lisp (Guile Scheme)
 
 - GNU Guix system configuration
-- Hyprland configuration (complete ⭐ 🎊)
+- Hyprland configuration
 - 🎨 Theme palettes that affect the entire system
 - Labwc configuration (work-in progress)
 - Fish shell configuration
-- Conky configuration  
+- Conky configuration
+- Kitty terminal emulator
 - Foot terminal emulator
 - Waybar configuration and style
 - Rofi application launcher
@@ -56,6 +57,7 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 - multi-user Git configuration setup (work/personal)
 - Nyxt browser configuration  
 - Qutebrowser configuration
+- Fastfetch configuration
 - Multi user configuration
 
   and more....

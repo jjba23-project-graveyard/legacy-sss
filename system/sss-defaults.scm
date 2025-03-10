@@ -41,7 +41,7 @@
   "us")
 
 ;; caps to control enabled
-(define sss-keyboard-caps-to-ctrl
+(define sss-caps-to-ctrl
   #t)
 
 ;; system hostname
@@ -62,14 +62,14 @@
 (define sss-per-host-packages
   '())
 
-;; active system color palette (overridden by per-host)
+;; color palette (overridden by per-host)
 ;;   - sss-palette-ef-bio
 ;;   - sss-palette-ef-cyprus
 ;;   - sss-palette-ef-dream
 ;;   - sss-palette-heavy-metal
 ;;   - sss-palette-solarized-light
 ;;   - sss-palette-ef-autumn
-(define sss-active-palette
+(define sss-palette
   'sss-palette-ef-dream)
 
 ;; Nix packages to install

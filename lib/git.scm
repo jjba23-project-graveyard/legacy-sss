@@ -15,11 +15,15 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(load "./process.scm")
+
 (define-module (sss git)
-  #:use-module (gnu))
+  #:use-module (gnu)
+  #:use-module (sss process))
 
 ;; I enjoy having a default commit message, and I overwrite it
 ;; sometimes when the commit is meaningful, otherwise I use it
+;; \xad is an invisible - character
 (define-public sss-gitmessage-personal
   "\xad")
 (define-public sss-gitmessage-work
@@ -59,3 +63,34 @@
      ("  path" . "~/.gitconfig-personal"))
     ("includeIf \"gitdir:~/Ontwikkeling/Scratch/\""
      ("  path" . "~/.gitconfig-personal"))))
+
+(begin
+  (define* (sss-git-svc #:key (gitconfig sss-gitconfig)
+                        (gitconfig-personal sss-gitconfig-personal)
+                        (gitconfig-work sss-gitconfig-work)
+                        (gitignore-global sss-gitignore-global)
+                        (gitmessage-personal sss-gitmessage-personal)
+                        (gitmessage-work sss-gitmessage-work))
+    `( ;Global Git configuration
+       (".gitconfig" ,(plain-file "gitconfig.ini"
+                                  (mk-rec-kv-conf-lines gitconfig
+                                   #:template spaced-equal-conf-pair)))
+      ;; Personal Git configuration
+      (".gitconfig-personal" ,(plain-file "gitconfig-personal.ini"
+                                          (mk-rec-kv-conf-lines
+                                           gitconfig-personal
+                                           #:template spaced-equal-conf-pair)))
+      ;; Work Git configuration
+      (".gitconfig-work" ,(plain-file "gitconfig-work.ini"
+                                      (mk-rec-kv-conf-lines gitconfig-work
+                                       #:template spaced-equal-conf-pair)))
+
+      ;; Global Git ignore and message configuration
+      (".gitignore-global" ,(plain-file "gitignore-global"
+                                        (mk-lines gitignore-global)))
+      ;; Personal Git commit message template
+      (".gitmessage-personal" ,(plain-file "gitmessage-personal"
+                                           gitmessage-personal))
+      ;; Work-related Git commit message template
+      (".gitmessage-work" ,(plain-file "gitmessage-work" gitmessage-work))))
+  (export sss-git-svc))
