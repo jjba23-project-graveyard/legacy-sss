@@ -106,44 +106,12 @@
            (append (sss-kitty-svc #:active-palette sss-active-palette)
                    (sss-gtk3-svc #:active-palette sss-active-palette)
                    (sss-gtk4-svc #:active-palette sss-active-palette)
+                   (sss-git-svc)
                    `(
-
+                     
                      ;; Guix channels configuration
                      (".config/guix/channels.scm" ,(local-file
                                                     "../lib/channels.scm"))
-
-                     ;; Git configuration
-                     ;; Global Git configuration
-                     (".gitconfig" ,(plain-file "gitconfig.ini"
-                                                (mk-rec-kv-conf-lines
-                                                 sss-gitconfig
-                                                 #:template
-                                                 spaced-equal-conf-pair)))
-                     ;; Personal Git configuration
-                     (".gitconfig-personal" ,(plain-file
-                                              "gitconfig-personal.ini"
-                                              (mk-rec-kv-conf-lines
-                                               sss-gitconfig-personal
-                                               #:template
-                                               spaced-equal-conf-pair)))
-                     ;; Work Git configuration
-                     (".gitconfig-work" ,(plain-file "gitconfig-work.ini"
-                                                     (mk-rec-kv-conf-lines
-                                                      sss-gitconfig-work
-                                                      #:template
-                                                      spaced-equal-conf-pair)))
-
-                     ;; Global Git ignore and message configuration
-                     (".gitignore-global" ,(plain-file "gitignore-global"
-                                                       (mk-lines
-                                                        sss-gitignore-global)))
-                     ;; Personal Git commit message template
-                     (".gitmessage-personal" ,(plain-file
-                                               "gitmessage-personal"
-                                               sss-gitmessage-personal))
-                     ;; Work-related Git commit message template
-                     (".gitmessage-work" ,(plain-file "gitmessage-work"
-                                                      sss-gitmessage-work))
 
                      ;; Nix configuration
                      ;; Nix configuration with experimental features
@@ -266,12 +234,12 @@
                                                       sss-clone-dir)))
                      ;; Qutebrowser configurations (web browser)
                      (".config/qutebrowser/config.py" ,(plain-file "config.py"
-                                                                   (sss-qutebrowser-config
-                                                                    #:active-palette
-                                                                    sss-active-palette)))
+                                                        (sss-qutebrowser-config
+                                                         #:active-palette
+                                                         sss-active-palette)))
                      (".config/qutebrowser/bookmarks/urls" ,(plain-file "urls"
-                                                                        (serialize-qutebrowser-urls
-                                                                         sss-qutebrowser-bookmarks)))
+                                                             (serialize-qutebrowser-urls
+                                                              sss-qutebrowser-bookmarks)))
 
                      ;; Containers configuration (for Docker, Podman, etc.)
                      ;; Specifies container registries

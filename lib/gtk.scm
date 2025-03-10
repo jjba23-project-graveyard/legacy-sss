@@ -16,10 +16,11 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (load "./palette.scm")
-
+(load "./process.scm")
 (define-module (sss gtk)
   #:use-module (gnu)
-  #:use-module (sss palette))
+  #:use-module (sss palette)
+  #:use-module (sss process))
 
 (begin
   (define* (sss-gtk3-config #:key active-palette
@@ -132,22 +133,20 @@
 
 (begin
   (define* (sss-gtk3-svc #:key active-palette)
-    `(".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
-                                                  (string-append
-                                                   "[Settings]\n"
-                                                   (mk-kv-conf-lines
-                                                    (sss-gtk3-config
-                                                     #:active-palette
-                                                     sss-active-palette))))))
+    `((".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
+                                                   (string-append
+                                                    "[Settings]\n"
+                                                    (mk-kv-conf-lines (sss-gtk3-config
+                                                                       #:active-palette
+                                                                       active-palette)))))))
   (export sss-gtk3-svc))
 
 (begin
   (define* (sss-gtk4-svc #:key active-palette)
-    `(".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
-                                                  (string-append
-                                                   "[Settings]\n"
-                                                   (mk-kv-conf-lines
-                                                    (sss-gtk4-config
-                                                     #:active-palette
-                                                     sss-active-palette))))))
+    `((".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
+                                                   (string-append
+                                                    "[Settings]\n"
+                                                    (mk-kv-conf-lines (sss-gtk4-config
+                                                                       #:active-palette
+                                                                       active-palette)))))))
   (export sss-gtk4-svc))
