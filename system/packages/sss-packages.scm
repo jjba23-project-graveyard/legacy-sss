@@ -377,7 +377,7 @@
 
         (sss/x86-only-pkg architecture "ghcid")
 
-        neofetch
+        fastfetch
         cmatrix
 
         pkg-config
