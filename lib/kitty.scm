@@ -24,34 +24,49 @@
   #:use-module (sss palette)
   #:use-module (sss process))
 
+;; TODO allow defining bindings in an Emacs-like way
+;; so C instead of ctrl, M instead of alt
+(define sss-kitty-keybindings
+  `(("ctrl+equal" . "change_font_size all +1.0")
+    ("ctrl+plus" . "change_font_size all +1.0")
+    ("ctrl+underscore" . "change_font_size all -1.0")
+    ("ctrl+minus" . "change_font_size all -1.0")
+    ("alt+w" . copy_to_clipboard)
+    ("ctrl+y" . paste_from_clipboard)
+    ("alt+<" . scroll_home)
+    ("alt+>" . scroll_end)
+    ("alt+v" . scroll_page_up)
+    ("ctrl+v" . scroll_page_down)))
+
+(define (serialize-kitty-binding b)
+  `(,(format #f "map ~a"
+             (car b)) unquote
+    (cdr b)))
+
 (begin
   (define* (sss-kitty-config #:key palette)
-    `((font_family . "Adwaita Mono") (font_size . "11.0")
-      (bold_font . auto)
-      (italic_font . auto)
-      (bold_italic_font . auto)
-      (scrollback_lines . 2000000)
-      (enable_audio_bell . no)
-      (foreground unquote
-                  (sss-get-color palette
-                                 'text))
-      (background unquote
-                  (sss-get-color palette
-                                 'background))
-      (background_opacity . "0.8")
-      (cursor unquote
-              (sss-get-color palette
-                             'primary))
-      (cursor_shape . block)
-      (cursor_text_color . background)
-      (clear_all_shortcuts . yes)
-      (window_padding_width . "10.0")
-      ("map alt+w" . copy_to_clipboard)
-      ("map ctrl+y" . paste_from_clipboard)
-      ("map alt+<" . scroll_home)
-      ("map alt+>" . scroll_end)
-      ("map alt+v" . scroll_page_up)
-      ("map ctrl+v" . scroll_page_down)))
+    (append `((clear_all_shortcuts . yes))
+            (map (lambda (b)
+                   (serialize-kitty-binding b)) sss-kitty-keybindings)
+            `((font_family . "Adwaita Mono") (font_size . "11.0")
+              (bold_font . auto)
+              (italic_font . auto)
+              (bold_italic_font . auto)
+              (scrollback_lines . 2000000)
+              (enable_audio_bell . no)
+              (foreground unquote
+                          (sss-get-color palette
+                                         'text))
+              (background unquote
+                          (sss-get-color palette
+                                         'background))
+              (background_opacity . "0.8")
+              (cursor unquote
+                      (sss-get-color palette
+                                     'primary))
+              (cursor_shape . block)
+              (cursor_text_color . background)
+              (window_padding_width . "10.0"))))
   (export sss-kitty-config))
 
 (begin

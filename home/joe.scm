@@ -58,6 +58,7 @@
              (sss vars)
              (sss mako)
              (sss channels)
+             (sss fastfetch)
              (sss conky)
              (sss enchant)
              (sss nix)
@@ -103,6 +104,7 @@
                    (sss-hyprlock-svc #:clone-dir sss-clone-dir)
                    (sss-mime-svc)
                    (sss-nyxt-svc)
+                   (sss-fastfetch-svc #:clone-dir sss-clone-dir)
                    (sss-fish-svc #:clone-dir sss-clone-dir
                                  #:palette sss-palette)
                    (sss-mako-svc #:palette sss-palette)
