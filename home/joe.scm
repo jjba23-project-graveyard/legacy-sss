@@ -64,6 +64,7 @@
              (sss hyprland hyprland)
              (sss hyprland hyprlock)
              (sss bash)
+             (sss containers)
              (sss mime)
              (sss fish)
              (sss gtk)
@@ -135,6 +136,8 @@
                     #:notes-roam-dir
                     "$HOME/Ontwikkeling/Persoonlijk/private-notes/Roam")
                    (sss-nix-svc)
+                   (sss-qt6-svc #:palette sss-active-palette)
+                   (sss-containers-svc)
                    `( ;Guix channels configuration
                       (".config/guix/channels.scm" ,(local-file
                                                      "../lib/channels.scm"))
@@ -147,12 +150,6 @@
                                                                    (mk-kv-conf-lines
                                                                     sss-portals-config))))
 
-                     ;; Qt6 configuration
-                     (".config/qt6ct/qt6ct.conf" ,(plain-file "qt6ct.conf"
-                                                              (sss-qt6ct-config
-                                                               #:active-palette
-                                                               sss-active-palette)))
-
                      ;; Conky config
                      (".config/conky/conky.conf" ,(local-file
                                                    "../lib/conky/conky.lua"))
@@ -164,16 +161,6 @@
                      (".config/enchant/en_US.dic" ,(plain-file "en_US.dic"
                                                                (mk-lines
                                                                 sss-enchant-dict-en)))
-
-                     ;; Containers configuration (for Docker, Podman, etc.)
-                     ;; Specifies container registries
-                     (".config/containers/registries.conf" ,(plain-file
-                                                             "registries.conf"
-                                                             "unqualified-search-registries = ['docker.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']"))
-                     ;; Container security policy
-                     (".config/containers/policy.json" ,(plain-file
-                                                         "policy.json"
-                                                         "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))
 
                      ))))
 
