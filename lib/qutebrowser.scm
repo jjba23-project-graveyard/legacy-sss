@@ -16,25 +16,27 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (load "./palette.scm")
+(load "./process.scm")
 
 (define-module (sss qutebrowser)
   #:use-module (gnu)
-  #:use-module (sss palette))
+  #:use-module (sss palette)
+  #:use-module (sss process))
 
 (begin
-  (define* (sss-qutebrowser-palette #:key active-palette)
+  (define* (sss-qutebrowser-palette #:key palette)
     `((bg-default unquote
-                  (sss-get-color active-palette
+                  (sss-get-color palette
                                  'background))
       (bg-lighter unquote
-                  (sss-get-color active-palette
+                  (sss-get-color palette
                                  'background-l))
       (bg-selection . "#3e4451")
       (fg-disabled unquote
-                   (sss-get-color active-palette
+                   (sss-get-color palette
                                   'text))
       (fg-default unquote
-                  (sss-get-color active-palette
+                  (sss-get-color palette
                                  'text))
       (bg-lightest . "#c8ccd4")
       (fg-error . "#e06c75")
@@ -42,7 +44,7 @@
       (fg-matched-text . "#98c379")
       (bg-passthrough-mode . "#56b6c2")
       (bg-insert-mode unquote
-                      (sss-get-color active-palette
+                      (sss-get-color palette
                                      'primary))
       (bg-warning . "#d19a66")))
   (export sss-qutebrowser-palette))
@@ -408,10 +410,9 @@
                               (cdr e)
                               (car e))) alist) "\n"))
 
-(define* (sss-qutebrowser-apply-color #:key active-palette k color)
+(define* (sss-qutebrowser-apply-color #:key palette k color)
   (format #f "c.colors.~a = ~s\n" k
-          (assq-ref (sss-qutebrowser-palette #:active-palette active-palette)
-                    color)))
+          (assq-ref (sss-qutebrowser-palette #:palette palette) color)))
 
 (define (serialize-qutebrowser-bindings alist)
   (map (lambda (e)
@@ -427,7 +428,7 @@
   (format #f "config.set('~a', ~a)" opt val))
 
 (begin
-  (define* (sss-qutebrowser-config #:key active-palette)
+  (define* (sss-qutebrowser-config #:key palette)
     (string-join (append `("config = config" "c = c"
                            "config.load_autoconfig(False)"
                            ,(sss-qutebrowser-set-config-opt
@@ -453,11 +454,21 @@
                            ,(sss-qutebrowser-commands-bindings 'hint
                              sss-qutebrowser-hint-bindings))
                          (map (lambda (e)
-                                (sss-qutebrowser-apply-color #:active-palette
-                                                             active-palette
+                                (sss-qutebrowser-apply-color #:palette palette
                                                              #:k (car e)
                                                              #:color (car (cdr
                                                                            e))))
                               sss-qutebrowser-theme)) "\n"))
 
   (export sss-qutebrowser-config))
+
+(begin
+  (define* (sss-qutebrowser-svc #:key palette
+                                (bookmarks sss-qutebrowser-bookmarks))
+    `((".config/qutebrowser/config.py" ,(plain-file "config.py"
+                                                    (sss-qutebrowser-config
+                                                     #:palette palette)))
+      (".config/qutebrowser/bookmarks/urls" ,(plain-file "urls"
+                                                         (serialize-qutebrowser-urls
+                                                          bookmarks)))))
+  (export sss-qutebrowser-svc))

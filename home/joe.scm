@@ -123,6 +123,7 @@
                    (sss-fish-svc #:clone-dir sss-clone-dir
                                  #:palette sss-active-palette)
                    (sss-mako-svc #:palette sss-active-palette)
+                   (sss-qutebrowser-svc #:palette sss-active-palette)
                    `(
                      
                      ;; Guix channels configuration
@@ -172,14 +173,6 @@
                                                      (sss-hyprlock-config
                                                       #:clone-dir
                                                       sss-clone-dir)))
-                     ;; Qutebrowser configurations (web browser)
-                     (".config/qutebrowser/config.py" ,(plain-file "config.py"
-                                                        (sss-qutebrowser-config
-                                                         #:active-palette
-                                                         sss-active-palette)))
-                     (".config/qutebrowser/bookmarks/urls" ,(plain-file "urls"
-                                                             (serialize-qutebrowser-urls
-                                                              sss-qutebrowser-bookmarks)))
 
                      ;; Containers configuration (for Docker, Podman, etc.)
                      ;; Specifies container registries
