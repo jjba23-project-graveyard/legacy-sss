@@ -16,10 +16,17 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss portals)
-  #:use-module (gnu))
+  #:use-module (gnu)
+  #:use-module (sss process))
 
-(define-public sss-portals-config
-  '(("default" . "hyprland")
-    ("org.freedesktop.impl.portal.Screenshot" . "hyprland")
-    ("org.freedesktop.impl.portal.ScreenCast" . "hyprland")
-    ("org.freedesktop.impl.portal.FileChooser" . "hyprland")))
+(begin
+  (define* (sss-portals-svc #:key (portals '((default . hyprland)
+                                             (org.freedesktop.impl.portal.Screenshot . hyprland)
+                                             (org.freedesktop.impl.portal.ScreenCast . hyprland)
+                                             (org.freedesktop.impl.portal.FileChooser . hyprland))))
+    `((".config/xdg-desktop-portal/portals.conf" ,(plain-file "portals.conf"
+                                                              (string-append
+                                                               "[preferred]\n"
+                                                               (mk-kv-conf-lines
+                                                                portals))))))
+  (export sss-portals-svc))

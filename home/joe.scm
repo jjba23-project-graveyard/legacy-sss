@@ -57,6 +57,8 @@
              (sss git)
              (sss vars)
              (sss mako)
+             (sss channels)
+             (sss conky)
              (sss enchant)
              (sss nix)
              (sss fontconfig)
@@ -78,30 +80,6 @@
              (sss emacs)
              (sss qutebrowser))
 
-(define joe-ssh-hosts
-  (list (openssh-host (name "wolk-jjba")
-                      (user "joe")
-                      (host-name "37.60.232.48")
-                      (port 2323)
-                      (identity-file "~/.ssh/wolk-jjba"))
-        (openssh-host (name "personal.github.com")
-                      (user "joe")
-                      (host-name "github.com")
-                      (identity-file "~/.ssh/gitlab_prive"))
-        (openssh-host (name "gitlab.com")
-                      (user "joe")
-                      (host-name "gitlab.com")
-                      (identity-file "~/.ssh/gitlab_prive"))
-        (openssh-host (name "codeberg.org")
-                      (user "joe")
-                      (host-name "codeberg.org")
-                      (identity-file "~/.ssh/gitlab_prive"))
-        (openssh-host (name "work.github.com")
-                      (user "joe")
-                      (host-name "github.com")
-                      (identity-file "~/.ssh/work_id"))))
-
-;; Define user's home files (a.k.a. dotfiles)
 (define sss-home-files-service
   (service home-files-service-type
            (append (sss-kitty-svc #:palette sss-active-palette)
@@ -138,31 +116,9 @@
                    (sss-nix-svc)
                    (sss-qt6-svc #:palette sss-active-palette)
                    (sss-containers-svc)
-                   `( ;Guix channels configuration
-                      (".config/guix/channels.scm" ,(local-file
-                                                     "../lib/channels.scm"))
-
-                     ;; XDG desktop portal configuration (for flatpak apps)
-                     (".config/xdg-desktop-portal/portals.conf" ,(plain-file
-                                                                  "portals.conf"
-                                                                  (string-append
-                                                                   "[preferred]\n"
-                                                                   (mk-kv-conf-lines
-                                                                    sss-portals-config))))
-
-                     ;; Conky config
-                     (".config/conky/conky.conf" ,(local-file
-                                                   "../lib/conky/conky.lua"))
-
-                     ;; Enchant spell checker configuration
-                     ;; Enchant dictionary ordering
-                     (".enchant" ,(plain-file "enchant"
-                                              (mk-lines sss-enchant-ordering)))
-                     (".config/enchant/en_US.dic" ,(plain-file "en_US.dic"
-                                                               (mk-lines
-                                                                sss-enchant-dict-en)))
-
-                     ))))
+                   (sss-conky-svc)
+                   (sss-portals-svc)
+                   (sss-enchant-svc))))
 
 ;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")
@@ -170,12 +126,13 @@
   (packages (list pfetch))
   (services
    (list sss-home-files-service
-         (sss-ssh-service #:hosts joe-ssh-hosts)
+         (sss-ssh-service)
          (sss-home-vars-service #:clone-dir sss-clone-dir
                                 #:lang sss-lang)
          (sss-bash-service #:clone-dir sss-clone-dir)
          sss-openpgp-conf
          (service home-dbus-service-type)
          (service home-pipewire-service-type)
-         sss-fontconfig-service-type)))
+         sss-fontconfig-service-type
+         sss-channels-service)))
 
