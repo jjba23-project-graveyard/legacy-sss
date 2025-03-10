@@ -41,3 +41,11 @@
                              "\n")))
 
   (export labwc-autostart))
+
+(begin
+  (define* (sss-labwc-svc #:key extra-startups)
+    `((".config/labwc/rc.xml" ,labwc-rc)
+      (".config/labwc/menu.xml" ,labwc-menu)
+      (".config/labwc/autostart" ,(labwc-autostart #:extra-startups
+                                                   extra-startups))))
+  (export sss-labwc-svc))

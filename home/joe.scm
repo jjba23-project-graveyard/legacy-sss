@@ -86,7 +86,11 @@
                    (sss-gtk3-svc #:palette sss-active-palette)
                    (sss-gtk4-svc #:palette sss-active-palette)
                    (sss-git-svc)
-                   (sss-waybar-svc #:palette sss-active-palette)
+                   (sss-waybar-svc #:palette sss-active-palette
+                                   #:with-memory
+                                   #t
+                                   #:hyprland-session
+                                   #t)
                    (sss-rofi-svc #:palette sss-active-palette)
                    (sss-foot-svc #:palette sss-active-palette)
                    (sss-hyprland-svc #:palette sss-active-palette
@@ -106,13 +110,13 @@
                    (sss-mako-svc #:palette sss-active-palette)
                    (sss-qutebrowser-svc #:palette sss-active-palette)
                    (sss-emacs-svc #:palette sss-active-palette
-                    #:user-name "Joe"
-                    #:user-full-name "Josep Bigorra"
-                    #:user-initials "JJBA"
-                    #:user-email "jjbigorra@gmail.com"
-                    #:clone-dir sss-clone-dir
-                    #:notes-roam-dir
-                    "$HOME/Ontwikkeling/Persoonlijk/private-notes/Roam")
+                                  #:user-name "Joe"
+                                  #:user-full-name "Josep Bigorra"
+                                  #:user-initials "JJBA"
+                                  #:user-email "jjbigorra@gmail.com"
+                                  #:clone-dir sss-clone-dir
+                                  #:notes-roam-dir
+                                  "$HOME/Ontwikkeling/Persoonlijk/private-notes/Roam")
                    (sss-nix-svc)
                    (sss-qt6-svc #:palette sss-active-palette)
                    (sss-containers-svc)
@@ -123,16 +127,15 @@
 ;; Configure user's Guix home environment
 (display "\n>>= configuring home environment...\n")
 (home-environment
-  (packages (list pfetch))
-  (services
-   (list sss-home-files-service
-         (sss-ssh-service)
-         (sss-home-vars-service #:clone-dir sss-clone-dir
-                                #:lang sss-lang)
-         (sss-bash-service #:clone-dir sss-clone-dir)
-         sss-openpgp-conf
-         (service home-dbus-service-type)
-         (service home-pipewire-service-type)
-         sss-fontconfig-service-type
-         sss-channels-service)))
+ (services
+  (list sss-home-files-service
+        (sss-ssh-service)
+        (sss-home-vars-service #:clone-dir sss-clone-dir
+                               #:lang sss-lang)
+        (sss-bash-service #:clone-dir sss-clone-dir)
+        sss-openpgp-conf
+        (service home-dbus-service-type)
+        (service home-pipewire-service-type)
+        sss-fontconfig-service-type
+        sss-channels-service)))
 

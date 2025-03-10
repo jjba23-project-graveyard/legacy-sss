@@ -298,18 +298,20 @@
   (export sss-waybar-css))
 
 (begin
-  (define* (sss-waybar-svc #:key palette)
+  (define* (sss-waybar-svc #:key palette with-memory labwc-session hyprland-session)
     `( ;Waybar configuration (for status bar)
-       (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
-                                                   (scm->json-string (sss-waybar-conf
-                                                                      #:palette
-                                                                      palette
-                                                                      #:hyprland-session
-                                                                      #t
-                                                                      #:with-memory
-                                                                      #t)
-                                                                     #:pretty
-                                                                     #t)))
+      (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
+                                                  (scm->json-string (sss-waybar-conf
+                                                                     #:palette
+                                                                     palette
+                                                                     #:labwc-session
+                                                                     labwc-session
+                                                                     #:hyprland-session
+                                                                     hyprland-session
+                                                                     #:with-memory
+                                                                     with-memory)
+                                                                    #:pretty
+                                                                    #t)))
 
       ;; Waybar styling
       (".config/waybar/style.css" ,(plain-file "waybar.css"
