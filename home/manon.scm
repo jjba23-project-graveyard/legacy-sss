@@ -73,24 +73,24 @@
              (sss labwc)
              (sss qutebrowser))
 
-;; Define user's home files (a.k.a. dotfiles)
 (define sss-home-files-service
   (service home-files-service-type
-           (append (sss-gtk3-svc #:palette sss-active-palette)
-                   (sss-gtk4-svc #:palette sss-active-palette)
+           (append (sss-gtk3-svc #:palette sss-palette)
+                   (sss-gtk4-svc #:palette sss-palette)
                    (sss-nix-svc)
-                   (sss-rofi-svc #:palette sss-active-palette)
+                   (sss-rofi-svc #:palette sss-palette)
                    (sss-mime-svc)
-                   (sss-waybar-svc #:palette sss-active-palette
+                   (sss-waybar-svc #:palette sss-palette
                                    #:with-memory #f
                                    #:labwc-session #t)
                    (sss-portals-svc)
-                   (sss-mako-svc #:palette sss-active-palette)
+                   (sss-mako-svc #:palette sss-palette)
                    (sss-containers-svc)
                    (sss-labwc-svc #:extra-startups sss-labwc-extra-startups))))
 
-;; Configure user's Guix home environment
-(display "\n>>= configuring home environment...\n")
+(display "
+>>= configuring Manon's home environment...
+")
 (home-environment
   (services
    (list sss-home-files-service

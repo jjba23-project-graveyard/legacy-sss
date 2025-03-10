@@ -182,7 +182,7 @@ Find here a reference configuration with what is required.
   (define sss-keyboard-layout "us")
 
   ;; caps to control enabled
-  (define sss-keyboard-caps-to-ctrl
+  (define sss-caps-to-ctrl
     #t)
 
   ;; system hostname
@@ -234,7 +234,7 @@ Find here a reference configuration with what is required.
   ;;   - sss-palette-solarized-light
   ;;   - sss-palette-ef-autumn
   ;;
-  (define-public sss-active-palette
+  (define-public sss-palette
     'sss-palette-ef-dream)
 
   ;; Nix packages to install

@@ -82,19 +82,19 @@
 
 (define sss-home-files-service
   (service home-files-service-type
-           (append (sss-kitty-svc #:palette sss-active-palette)
-                   (sss-gtk3-svc #:palette sss-active-palette)
-                   (sss-gtk4-svc #:palette sss-active-palette)
+           (append (sss-kitty-svc #:palette sss-palette)
+                   (sss-gtk3-svc #:palette sss-palette)
+                   (sss-gtk4-svc #:palette sss-palette)
                    (sss-git-svc)
-                   (sss-waybar-svc #:palette sss-active-palette
+                   (sss-waybar-svc #:palette sss-palette
                                    #:with-memory #t
                                    #:hyprland-session #t)
-                   (sss-rofi-svc #:palette sss-active-palette)
-                   (sss-foot-svc #:palette sss-active-palette)
-                   (sss-hyprland-svc #:palette sss-active-palette
+                   (sss-rofi-svc #:palette sss-palette)
+                   (sss-foot-svc #:palette sss-palette)
+                   (sss-hyprland-svc #:palette sss-palette
                                      #:clone-dir sss-clone-dir
                                      #:keyboard-layout sss-keyboard-layout
-                                     #:caps-to-ctrl sss-keyboard-caps-to-ctrl
+                                     #:caps-to-ctrl sss-caps-to-ctrl
                                      #:monitors sss-hyprland-monitors
                                      #:extra-startups
                                      sss-hyprland-extra-startups
@@ -104,10 +104,10 @@
                    (sss-mime-svc)
                    (sss-nyxt-svc)
                    (sss-fish-svc #:clone-dir sss-clone-dir
-                                 #:palette sss-active-palette)
-                   (sss-mako-svc #:palette sss-active-palette)
-                   (sss-qutebrowser-svc #:palette sss-active-palette)
-                   (sss-emacs-svc #:palette sss-active-palette
+                                 #:palette sss-palette)
+                   (sss-mako-svc #:palette sss-palette)
+                   (sss-qutebrowser-svc #:palette sss-palette)
+                   (sss-emacs-svc #:palette sss-palette
                     #:user-name "Joe"
                     #:user-full-name "Josep Bigorra"
                     #:user-initials "JJBA"
@@ -116,14 +116,16 @@
                     #:notes-roam-dir
                     "$HOME/Ontwikkeling/Persoonlijk/private-notes/Roam")
                    (sss-nix-svc)
-                   (sss-qt6-svc #:palette sss-active-palette)
+                   (sss-qt6-svc #:palette sss-palette)
                    (sss-containers-svc)
                    (sss-conky-svc)
                    (sss-portals-svc)
                    (sss-enchant-svc))))
 
 ;; Configure user's Guix home environment
-(display "\n>>= configuring home environment...\n")
+(display "
+>>= configuring Joe's home environment...
+")
 (home-environment
   (services
    (list sss-home-files-service

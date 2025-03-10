@@ -157,8 +157,8 @@
         (modules-right unquote modules-right)
         ,(sss-waybar-start-button)
         ,(cond
-          (hyprland-session sss-waybar-hyprland-workspaces)
-          (else `(hyprland/workspaces . null)))
+           (hyprland-session sss-waybar-hyprland-workspaces)
+           (else `(hyprland/workspaces . null)))
         (keyboard-state (numlock unquote with-numlock)
                         (capslock unquote with-capslock)
                         (format . "{name} {icon} ")
@@ -171,9 +171,9 @@
              (tooltip . #f)
              (on-click . "gnome-system-monitor"))
         ,(cond
-          (with-memory `(memory (format . "{}% \uf0c9")
-                                (on-click . "gnome-system-monitor")))
-          (else `(memory . null)))
+           (with-memory `(memory (format . "{}% \uf0c9")
+                                 (on-click . "gnome-system-monitor")))
+           (else `(memory . null)))
         ,sss-waybar-backlight
         ,sss-waybar-battery
         ,sss-waybar-battery-2
