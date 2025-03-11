@@ -98,11 +98,26 @@
                                      #:k "+"
                                      #:action 'IncreaseFontSize)
         (serialize-alacritty-binding #:mods "C"
+                                     #:k "-"
+                                     #:action 'DecreaseFontSize)
+        (serialize-alacritty-binding #:mods "C"
                                      #:k "V"
                                      #:action 'ScrollPageDown)
-        (serialize-alacritty-binding #:mods "Alt"
+        (serialize-alacritty-binding #:mods "M"
                                      #:k "V"
-                                     #:action 'ScrollPageUp)))
+                                     #:action 'ScrollPageUp)
+        (serialize-alacritty-binding #:mods "C"
+                                     #:k "S"
+                                     #:action 'SearchForward)
+        (serialize-alacritty-binding #:mods "C"
+                                     #:k "R"
+                                     #:action 'SearchBackward)
+        (serialize-alacritty-binding #:mods "M"
+                                     #:k "<"
+                                     #:action 'ScrollToTop)
+        (serialize-alacritty-binding #:mods "M"
+                                     #:k ">"
+                                     #:action 'ScrollToBottom)))
 
 (define* (sss-alacritty-config #:key palette)
   (append (list "" "[general]")
