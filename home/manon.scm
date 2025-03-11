@@ -95,13 +95,13 @@
 ")
 (home-environment
   (services
-   (list sss-home-files-service
-         (sss-home-vars-service #:clone-dir sss-clone-dir
-                                #:lang sss-lang)
-         (sss-bash-service #:clone-dir sss-clone-dir)
-         sss-openpgp-conf
-         (service home-dbus-service-type)
-         (service home-pipewire-service-type)
-         sss-fontconfig-service-type
-         sss-channels-service)))
+   (append (list sss-home-files-service
+                 (sss-home-vars-service #:clone-dir sss-clone-dir
+                                        #:lang sss-lang)
+                 (sss-bash-service #:clone-dir sss-clone-dir)
+                 sss-openpgp-conf
+                 (service home-dbus-service-type)
+                 (service home-pipewire-service-type)
+                 sss-fontconfig-service-type
+                 sss-channels-service) %base-home-services)))
 
