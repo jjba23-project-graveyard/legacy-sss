@@ -144,7 +144,7 @@ There are more palettes though, see per-host section for more.
 Note: Screenshots below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
 
-[[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-10.png]]
+[[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-11.png]]
 
 [[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-05-2.png]]
 
