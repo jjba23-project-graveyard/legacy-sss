@@ -112,10 +112,10 @@
         (serialize-alacritty-binding #:mods "M"
                                      #:k "V"
                                      #:action 'ScrollPageUp)
-        (serialize-alacritty-binding #:mods "C"
+        (serialize-alacritty-binding #:mods "M"
                                      #:k "S"
                                      #:action 'SearchForward)
-        (serialize-alacritty-binding #:mods "C"
+        (serialize-alacritty-binding #:mods "M"
                                      #:k "R"
                                      #:action 'SearchBackward)
         (serialize-alacritty-binding #:mods "M"
