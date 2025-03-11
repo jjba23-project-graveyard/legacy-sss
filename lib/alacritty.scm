@@ -53,24 +53,48 @@
 
 (define (serialize-alacritty-setting s)
   (let* ((val (cond
-                ((or (eq? 'true
-                          (cdr s))
-                     (eq? 'false
-                          (cdr s)))
-                 (cdr s))
-                ((and (string? (cdr s))
-                      (string-prefix? "{"
-                                      (cdr s)))
-                 (cdr s))
-                ((string? (cdr s))
-                 (format #f "\"~a\""
+               ((or (eq? 'true
+                         (cdr s))
+                    (eq? 'false
                          (cdr s)))
-                ((symbol? (cdr s))
-                 (format #f "\"~a\""
-                         (cdr s)))
-                (else (cdr s)))))
+                (cdr s))
+               ((and (string? (cdr s))
+                     (string-prefix? "{"
+                                     (cdr s)))
+                (cdr s))
+               ((string? (cdr s))
+                (format #f "\"~a\""
+                        (cdr s)))
+               ((symbol? (cdr s))
+                (format #f "\"~a\""
+                        (cdr s)))
+               (else (cdr s)))))
     (format #f "~a = ~a"
             (car s) val)))
+
+
+(begin
+  (define* (serialize-alacritty-binding #:key k mods action)
+    (format #f "{ key = \"~a\", mods = \"~a\", action = \"~a\"}" k mods action))
+  (export serialize-alacritty-binding))
+
+;; TODO allow defining bindings a la Emacs (C for Control, M for Alt)
+(define sss-alacritty-bindings
+  (list (serialize-alacritty-binding #:mods "Control"
+                                     #:k "Y"
+                                     #:action "Paste")
+        (serialize-alacritty-binding #:mods "Alt"
+                                     #:k "W"
+                                     #:action "Copy")
+        (serialize-alacritty-binding #:mods "Control"
+                                     #:k "+"
+                                     #:action "IncreaseFontSize")
+        (serialize-alacritty-binding #:mods "Control"
+                                     #:k "V"
+                                     #:action "ScrollPageDown")
+        (serialize-alacritty-binding #:mods "Alt"
+                                     #:k "V"
+                                     #:action "ScrollPageUp")))
 
 (define* (sss-alacritty-config #:key palette)
   (append (list "" "[general]")
@@ -85,7 +109,13 @@
           (map serialize-alacritty-setting sss-alacritty-terminal)
           (list "" "[colors.primary]")
           (map serialize-alacritty-setting
-               (sss-alacritty-colors-primary #:palette palette))))
+               (sss-alacritty-colors-primary #:palette palette))
+          (list ""
+                "[keyboard]"
+                "bindings = ["
+                (string-join sss-alacritty-bindings ",\n")
+                "]"
+                "")))
 
 (begin
   (define* (serialize-alacritty-config #:key config)

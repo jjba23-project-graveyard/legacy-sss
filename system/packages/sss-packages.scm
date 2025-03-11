@@ -376,7 +376,7 @@
         pamixer
 
         (sss/x86-only-pkg architecture "ghcid")
-
+        httpie
         fastfetch
         cmatrix
 
