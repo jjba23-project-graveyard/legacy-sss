@@ -27,8 +27,11 @@
              sss-caps-to-ctrl
              sss-hostname
              sss-clone-dir
-             sss-per-host-packages
              sss-palette
-             sss-nixpkgs
+             sss-hyprland-monitors
+             sss-hyprland-extra-startups
+             sss-labwc-extra-startups
              sss-flatpak-user-remotes
-             sss-flatpak-pkgs))
+             (length sss-flatpak-pkgs)
+             (length sss-per-host-packages)
+             (length sss-nixpkgs)))
