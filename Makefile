@@ -130,11 +130,12 @@ store-gc:
 	@sudo guix gc
 
 # Performs a full garbage collection across Guix and Nix stores.
-full-gc: 
-	@-sudo guix system delete-generations 1d
-	@-sudo guix gc
-	@-nix-store --gc
-	@-nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)"
+full-gc:
+	-guix home delete-generations 1d
+	-sudo guix system delete-generations 1d
+	-sudo guix gc
+	-nix-store --gc
+	-nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)"
 
 # Displays the logs for the Shepherd service manager.
 shepherd-logs:  
