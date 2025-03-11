@@ -97,7 +97,13 @@
         (serialize-alacritty-binding #:mods "C"
                                      #:k "+"
                                      #:action 'IncreaseFontSize)
+        (serialize-alacritty-binding #:mods "C-S"
+                                     #:k "+"
+                                     #:action 'IncreaseFontSize)
         (serialize-alacritty-binding #:mods "C"
+                                     #:k "-"
+                                     #:action 'DecreaseFontSize)
+        (serialize-alacritty-binding #:mods "C-S"
                                      #:k "-"
                                      #:action 'DecreaseFontSize)
         (serialize-alacritty-binding #:mods "C"
@@ -115,7 +121,13 @@
         (serialize-alacritty-binding #:mods "M"
                                      #:k "<"
                                      #:action 'ScrollToTop)
+        (serialize-alacritty-binding #:mods "M-S"
+                                     #:k "<"
+                                     #:action 'ScrollToTop)
         (serialize-alacritty-binding #:mods "M"
+                                     #:k ">"
+                                     #:action 'ScrollToBottom)
+        (serialize-alacritty-binding #:mods "M-S"
                                      #:k ">"
                                      #:action 'ScrollToBottom)))
 
