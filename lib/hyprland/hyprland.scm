@@ -221,10 +221,10 @@
                         #:cmd "hyprlock")
              (exec-bind #:mod "s"
                         #:bind "T"
-                        #:cmd "alacritty msg create-window -e fish")
+                        #:cmd "alacritty msg create-window || alacritty")
              (exec-bind #:mod "s"
                         #:bind "return"
-                        #:cmd "alacritty msg create-window -e fish")
+                        #:cmd "alacritty msg create-window || alacritty")
              (exec-bind #:mod "s"
                         #:bind "slash"
                         #:cmd "rofi -show drun")

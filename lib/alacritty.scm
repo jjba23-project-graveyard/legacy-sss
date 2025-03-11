@@ -34,7 +34,7 @@
     ))
 
 (define sss-alacritty-scrolling
-  `((history . 900000)))
+  `((history . 100000)))
 
 (define sss-alacritty-font
   `((normal . "{ family = \"Adwaita Mono\", style = \"Regular\" }")
@@ -53,25 +53,24 @@
 
 (define (serialize-alacritty-setting s)
   (let* ((val (cond
-               ((or (eq? 'true
-                         (cdr s))
-                    (eq? 'false
+                ((or (eq? 'true
+                          (cdr s))
+                     (eq? 'false
+                          (cdr s)))
+                 (cdr s))
+                ((and (string? (cdr s))
+                      (string-prefix? "{"
+                                      (cdr s)))
+                 (cdr s))
+                ((string? (cdr s))
+                 (format #f "\"~a\""
                          (cdr s)))
-                (cdr s))
-               ((and (string? (cdr s))
-                     (string-prefix? "{"
-                                     (cdr s)))
-                (cdr s))
-               ((string? (cdr s))
-                (format #f "\"~a\""
-                        (cdr s)))
-               ((symbol? (cdr s))
-                (format #f "\"~a\""
-                        (cdr s)))
-               (else (cdr s)))))
+                ((symbol? (cdr s))
+                 (format #f "\"~a\""
+                         (cdr s)))
+                (else (cdr s)))))
     (format #f "~a = ~a"
             (car s) val)))
-
 
 (begin
   (define* (serialize-alacritty-binding #:key k mods action)
