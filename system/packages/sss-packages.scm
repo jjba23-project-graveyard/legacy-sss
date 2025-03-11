@@ -48,6 +48,7 @@
                      gl
                      texinfo
                      cmake
+                     vnc
                      autotools
                      perl
                      linux
@@ -294,7 +295,7 @@
         pipewire
         nginx
         watchexec
-
+        remmina
         pavucontrol
 
         geany
