@@ -19,7 +19,7 @@ SSS strives to have all things configured via Lisp dialects when possible and co
 
 Note: Screenshots below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
-This screenshot is from version (v2.0.1):
+This screenshot is from version (v2.0.4):
 
 [[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-11.png]]
 
