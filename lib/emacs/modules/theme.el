@@ -48,6 +48,6 @@
   :config
   (cond ((equal sss-emacs-theme 'solarized-light) (load-theme sss-emacs-theme t))))
 
-(provide 'theme)
+(provide 'sss/theme)
 
 ;;; theme.el ends here

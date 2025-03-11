@@ -96,7 +96,16 @@
                                                                notes-roam-dir)))
 
       (".emacs.d/early-init.el" ,(local-file "./emacs/early-init.el"))
+      (".emacs.d/modules/common-lisp.el" ,(local-file
+                                           "./emacs/modules/common-lisp.el"))
+      (".emacs.d/modules/go.el" ,(local-file "./emacs/modules/go.el"))
+      (".emacs.d/modules/org.el" ,(local-file "./emacs/modules/org.el"))
+      (".emacs.d/modules/dashboard.el" ,(local-file
+                                         "./emacs/modules/dashboard.el"))
       (".emacs.d/modules/theme.el" ,(local-file "./emacs/modules/theme.el"))
+      (".emacs.d/modules/sss.el" ,(local-file "./emacs/modules/sss.el"))
+      (".emacs.d/modules/emacs-core.el" ,(local-file
+                                          "./emacs/modules/emacs-core.el"))
       (".emacs.d/templates" ,(local-file "./emacs/templates"))))
   (export sss-emacs-svc))
 
