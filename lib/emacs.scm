@@ -96,6 +96,7 @@
                                                                notes-roam-dir)))
 
       (".emacs.d/early-init.el" ,(local-file "./emacs/early-init.el"))
+      (".emacs.d/modules/theme.el" ,(local-file "./emacs/modules/theme.el"))
       (".emacs.d/templates" ,(local-file "./emacs/templates"))))
   (export sss-emacs-svc))
 
