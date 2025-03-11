@@ -22,7 +22,8 @@
   #:use-module (gnu)
   #:use-module (gnu home services)
   #:use-module (sss palette)
-  #:use-module (sss process))
+  #:use-module (sss process)
+  #:use-module (ice-9 string-fun))
 
 (define sss-alacritty-general
   `((live_config_reload . true) (ipc_socket . true)))
@@ -49,7 +50,7 @@
                                'background))))
 
 (define sss-alacritty-terminal
-  `((shell . "fish")))
+  `((shell . fish)))
 
 (define (serialize-alacritty-setting s)
   (let* ((val (cond
@@ -72,28 +73,36 @@
     (format #f "~a = ~a"
             (car s) val)))
 
+(define-public (translate-mods mods)
+  (let* ((with-p (string-replace-substring mods "-" "|"))
+         (with-c (string-replace-substring with-p "C" "Control"))
+         (with-m (string-replace-substring with-c "M" "Alt"))
+         (with-s (string-replace-substring with-m "S" "Shift"))
+         (translated (string-replace-substring with-s "s" "Super")))
+    translated))
+
 (begin
   (define* (serialize-alacritty-binding #:key k mods action)
-    (format #f "{ key = \"~a\", mods = \"~a\", action = \"~a\"}" k mods action))
+    (format #f "{ key = \"~a\", mods = \"~a\", action = \"~a\"}" k
+            (translate-mods mods) action))
   (export serialize-alacritty-binding))
 
-;; TODO allow defining bindings a la Emacs (C for Control, M for Alt)
 (define sss-alacritty-bindings
-  (list (serialize-alacritty-binding #:mods "Control"
+  (list (serialize-alacritty-binding #:mods "C"
                                      #:k "Y"
-                                     #:action "Paste")
-        (serialize-alacritty-binding #:mods "Alt"
+                                     #:action 'Paste)
+        (serialize-alacritty-binding #:mods "M"
                                      #:k "W"
-                                     #:action "Copy")
-        (serialize-alacritty-binding #:mods "Control"
+                                     #:action 'Copy)
+        (serialize-alacritty-binding #:mods "C"
                                      #:k "+"
-                                     #:action "IncreaseFontSize")
-        (serialize-alacritty-binding #:mods "Control"
+                                     #:action 'IncreaseFontSize)
+        (serialize-alacritty-binding #:mods "C"
                                      #:k "V"
-                                     #:action "ScrollPageDown")
+                                     #:action 'ScrollPageDown)
         (serialize-alacritty-binding #:mods "Alt"
                                      #:k "V"
-                                     #:action "ScrollPageUp")))
+                                     #:action 'ScrollPageUp)))
 
 (define* (sss-alacritty-config #:key palette)
   (append (list "" "[general]")
