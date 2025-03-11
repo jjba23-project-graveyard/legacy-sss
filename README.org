@@ -51,8 +51,9 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 - Labwc configuration (work-in progress)
 - Fish shell configuration
 - Conky configuration
-- Kitty terminal emulator
+- Alacritty terminal emulator  
 - Foot terminal emulator
+- Kitty terminal emulator 
 - Waybar configuration and style
 - Rofi application launcher
 - Mako configuration and style

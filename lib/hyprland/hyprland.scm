@@ -79,6 +79,7 @@
                        "waybar"
                        ,(format #f "swww-daemon & sleep 1 && ~a"
                                 wallpaper-setter)
+                       "alacritty --daemon"
                        "emacs --daemon"
                        "transmission-daemon"
                        "conky -d"
@@ -220,7 +221,10 @@
                         #:cmd "hyprlock")
              (exec-bind #:mod "s"
                         #:bind "T"
-                        #:cmd "kitty --detach fish")
+                        #:cmd "alacritty msg create-window -e fish")
+             (exec-bind #:mod "s"
+                        #:bind "return"
+                        #:cmd "alacritty msg create-window -e fish")
              (exec-bind #:mod "s"
                         #:bind "slash"
                         #:cmd "rofi -show drun")

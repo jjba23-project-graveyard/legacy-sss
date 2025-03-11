@@ -73,6 +73,7 @@
              (sss gtk)
              (sss nyxt)
              (sss portals)
+             (sss alacritty)
              (sss qt)
              (sss openpgp)
              (sss waybar)
@@ -91,6 +92,7 @@
                                    #:with-memory #t
                                    #:hyprland-session #t)
                    (sss-rofi-svc #:palette sss-palette)
+                   (sss-alacritty-svc #:palette sss-palette)
                    (sss-foot-svc #:palette sss-palette)
                    (sss-hyprland-svc #:palette sss-palette
                                      #:clone-dir sss-clone-dir
