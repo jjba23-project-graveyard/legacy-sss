@@ -23,13 +23,13 @@
 
 (define iter-vitae-channel
   (channel
-    (name 'iter-vitae)
-    (url "https://codeberg.org/jjba23/iter-vitae")
-    (branch "trunk")
-    (introduction
-     (make-channel-introduction "8bc75ce9577741282c0daf21d13aa4287663fe3f"
-                                (openpgp-fingerprint
-                                 "83BC 6E1C 8726 B8C2 97F8 D16E 24F4 6738 CE11 4AF6")))))
+   (name 'iter-vitae)
+   (url "https://codeberg.org/jjba23/iter-vitae.git")
+   (branch "trunk")
+   (introduction
+    (make-channel-introduction "738a940f72e9a0053272c75e550cb06b6726a5e0"
+                               (openpgp-fingerprint
+                                "83BC 6E1C 8726 B8C2 97F8 D16E 24F4 6738 CE11 4AF6")))))
 
 (define guix-gaming-games-channel
   (channel
