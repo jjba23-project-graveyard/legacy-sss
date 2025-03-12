@@ -21,16 +21,6 @@
   #:use-module (gnu home services guix)
   #:use-module (guix channels))
 
-(define iter-vitae-channel
-  (channel
-   (name 'iter-vitae)
-   (url "https://codeberg.org/jjba23/iter-vitae.git")
-   (branch "trunk")
-   (introduction
-    (make-channel-introduction "738a940f72e9a0053272c75e550cb06b6726a5e0"
-                               (openpgp-fingerprint
-                                "83BC 6E1C 8726 B8C2 97F8 D16E 24F4 6738 CE11 4AF6")))))
-
 (define guix-gaming-games-channel
   (channel
     (name 'guix-gaming-games)
@@ -49,8 +39,17 @@
                                 (openpgp-fingerprint
                                  "2A39 3FFF 68F4 EF7A 3D29 12AF 6F51 20A0 22FB B2D5")))))
 
+(define iter-vitae-channel
+  (channel
+    (name 'iter-vitae)
+    (url "https://codeberg.org/jjba23/iter-vitae.git")
+    (branch "trunk")
+    (introduction
+     (make-channel-introduction "738a940f72e9a0053272c75e550cb06b6726a5e0"
+                                (openpgp-fingerprint
+                                 "83BC 6E1C 8726 B8C2 97F8 D16E 24F4 6738 CE11 4AF6")))))
+
 (define-public sss-channels-service
   (simple-service 'sss-channels-service home-channels-service-type
-                  (list nonguix-channel guix-gaming-games-channel
-                        iter-vitae-channel)))
+                  (list nonguix-channel guix-gaming-games-channel)))
 
