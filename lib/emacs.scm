@@ -104,6 +104,8 @@
                                          "./emacs/modules/dashboard.el"))
       (".emacs.d/modules/theme.el" ,(local-file "./emacs/modules/theme.el"))
       (".emacs.d/modules/sss.el" ,(local-file "./emacs/modules/sss.el"))
+      (".emacs.d/modules/erc.el" ,(local-file "./emacs/modules/erc.el"))
+      (".emacs.d/modules/consult.el" ,(local-file "./emacs/modules/consult.el"))
       (".emacs.d/modules/emacs-core.el" ,(local-file
                                           "./emacs/modules/emacs-core.el"))
       (".emacs.d/templates" ,(local-file "./emacs/templates"))))
