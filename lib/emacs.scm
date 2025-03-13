@@ -139,4 +139,25 @@
                                        #:clone-dir "/home/john"
                                        #:notes-roam-dir
                                        "/home/john/notes/roam")))
+
+(test-assert "bridge is correctly computed with a different theme"
+             (equal? (string-append "(setq-default
+    user-personal-name \"John\"
+"
+                      "    user-personal-full-name \"John Doe\"\n"
+                      "    user-personal-email \"john@doe.com\"\n"
+                      "    user-personal-initials \"JD\"\n"
+                      "    sss-clone-dir \"/home/john\"\n"
+                      "    sss-notes-roam-dir \"/home/john/notes/roam\"
+"
+                      "    sss-emacs-theme 'everforest-hard-dark)
+")
+                     (sss-bridge-emacs #:palette 'sss-palette-everforest-dark
+                                       #:user-name "John"
+                                       #:user-full-name "John Doe"
+                                       #:user-email "john@doe.com"
+                                       #:user-initials "JD"
+                                       #:clone-dir "/home/john"
+                                       #:notes-roam-dir
+                                       "/home/john/notes/roam")))
 (test-end)
