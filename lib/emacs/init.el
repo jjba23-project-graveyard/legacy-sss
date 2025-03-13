@@ -163,7 +163,7 @@
 	 ("C-c f n" . tekengrootte-set-scale-nano)) 
   :hook ((tekengrootte-set-scale . (lambda () 
                                      (sss-set-base-faces)))) 
-  :after (ef-themes solarized-theme everforest)
+  :after (ef-themes solarized-theme)
   :config
   (defun sss-set-base-faces ()
     "Adjust the base Emacs faces to my preferences.
@@ -224,7 +224,7 @@ According to size, color and font family"
     (ignore-errors
       (set-face-attribute 'keycast-key nil                       
 		          :font sss-font-mono
-                          :background nil
+                          :background 'unspecified
                           :box nil
                           :height (tekengrootte-mk-font-size 0.9)))
     (ignore-errors
@@ -233,22 +233,22 @@ According to size, color and font family"
                           :height (tekengrootte-mk-font-size 0.8)))
     (ignore-errors
       (set-face-attribute 'dired-subtree-depth-1-face nil                       
-		          :background nil))
+		          :background 'unspecified))
     (ignore-errors
       (set-face-attribute 'dired-subtree-depth-2-face nil                       
-		          :background nil))
+		          :background 'unspecified))
     (ignore-errors
       (set-face-attribute 'dired-subtree-depth-3-face nil                       
-		          :background nil))
+		          :background 'unspecified))
     (ignore-errors
       (set-face-attribute 'dired-subtree-depth-4-face nil                       
-		          :background nil))
+		          :background 'unspecified))
     (ignore-errors
       (set-face-attribute 'dired-subtree-depth-5-face nil                       
-		          :background nil))
+		          :background 'unspecified))
     (ignore-errors
-      (set-face-attribute 'dired-subtree-depth-6-face nil                       
-		          :background nil))
+      (set-face-attribute 'dired-subtree-depth-6-face nil
+		          :background 'unspecified))
     )
   
   (sss-set-base-faces))
@@ -259,8 +259,7 @@ According to size, color and font family"
   :ensure t)
 
 
-
-;;(use-package package-lint :ensure t)
+(use-package package-lint :ensure t)
 
 (use-package python-black
   :ensure t
@@ -638,24 +637,23 @@ According to size, color and font family"
 	("C-c ! p" . flymake-show-project-diagnostics)
 	("C-c ! f" . flymake-mode)))
 
-;; (use-package jinx
-;;   :ensure nil
-;;   :demand t
-;;   :bind (("M-$" . jinx-correct)
-;;          ([remap ispell-word] . #'jinx-correct)
-;;          ("C-M-$" . jinx-languages))
-;;   :init
-;;   (setq jinx-languages "en_US nl_NL")
-;;   :config
-;;   (dolist (hook '(text-mode-hook
-;;                   prog-mode-hook
-;;                   conf-mode-hook
-;;                   org-mode-hook
-;;                   markdown-mode-hook))
-;;     (add-hook hook #'jinx-mode))
-;;   ;; or globally
-;;   ;;(add-hook 'emacs-startup-hook #'global-jinx-mode)
-;;   )
+(use-package jinx
+  :ensure (:host github :repo "minad/jinx" :branch "main")
+  :bind (("M-$" . jinx-correct)
+         ([remap ispell-word] . #'jinx-correct)
+         ("C-M-$" . jinx-languages))
+  :init
+  (setq jinx-languages "en_US nl_NL")
+  :config
+  (dolist (hook '(text-mode-hook
+                  prog-mode-hook
+                  conf-mode-hook
+                  org-mode-hook
+                  markdown-mode-hook))
+    (add-hook hook #'jinx-mode))
+  ;; or globally
+  ;;(add-hook 'emacs-startup-hook #'global-jinx-mode)
+  )
 
 
 ;; ====== emacs Multimedia System ======

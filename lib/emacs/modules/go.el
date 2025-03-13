@@ -37,9 +37,9 @@
               (setq indent-tabs-mode 1)
               (setq tab-width 4))))
 
-(use-package go-flymake
-  :ensure (:host github :repo "dougm/goflymake" :branch "master")
-  :demand t)
+;; (use-package go-flymake
+;;   :ensure (:host github :repo "dougm/goflymake" :branch "master")
+;;   :demand t)
 
 (provide 'sss/go)
 

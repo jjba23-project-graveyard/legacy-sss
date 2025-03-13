@@ -41,20 +41,17 @@
   "My personal main directory where to read music from."
   :type 'string)
 
-;; (defcustom sss-clone-dir nil
-;;   "The directory where the SSS (Supreme Sexp System) source code is located."
-;;   :type 'string
-;;   :group 'sss)
+(defcustom sss-clone-dir nil
+  "The directory where the SSS (Supreme Sexp System) source code is located."
+  :type 'string)
 
-;; (defcustom sss-notes-roam-dir nil
-;;   "The directory where the Org roam notes should be stored."
-;;   :type 'string
-;;   :group 'sss)
+(defcustom sss-notes-roam-dir nil
+  "The directory where the Org roam notes should be stored."
+  :type 'string)
 
-;; (defcustom sss-emacs-theme nil
-;;   "The name of the Emacs theme to use, acording to SSS palette."
-;;   :type 'symbol
-;;   :group 'sss)
+(defcustom sss-emacs-theme nil
+  "The name of the Emacs theme to use, acording to SSS palette."
+  :type 'symbol)
 
 (provide 'sss/sss)
 
