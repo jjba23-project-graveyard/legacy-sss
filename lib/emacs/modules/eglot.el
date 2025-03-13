@@ -32,7 +32,7 @@
 	 (haskell-mode . eglot-ensure)
 	 (markdown-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
-         (go-mode . eglot-ensure)         
+         (go-mode . eglot-ensure)
          (python-mode . eglot-ensure)
          (rust-mode . eglot-ensure)
          (yaml-mode . eglot-ensure)
@@ -53,7 +53,7 @@
         eglot-report-progress t
         eglot-extend-to-xref t
         eglot-autoreconnect t)
-  :config  
+  :config
   (add-to-list 'eglot-server-programs '(scala-ts-mode . ("metals")))
   (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nil")))
   (add-to-list 'eglot-server-programs '(markdown-mode . ("marksman")))

@@ -168,6 +168,7 @@
   (defun sss-set-base-faces ()
     "Adjust the base Emacs faces to my preferences.
 According to size, color and font family"
+    (interactive)
 
     (set-face-attribute 'window-divider nil
                         :foreground (ef-themes-get-color-value 'bg-alt)
