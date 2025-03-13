@@ -49,7 +49,7 @@
   (cond ((equal sss-emacs-theme 'solarized-light) (load-theme sss-emacs-theme t))))
 
 (use-package everforest
-  :ensure (:host sourcehut :repo "theorytoe/everforest-theme" :branch "master")
+  :ensure (:host github :repo "Theory-of-Everything/everforest-emacs" :branch "master")
   :config
   (cond ((equal sss-emacs-theme 'everforest-dark) (load-theme sss-emacs-theme t))
         ((equal sss-emacs-theme 'everforest-light) (load-theme sss-emacs-theme t))))
