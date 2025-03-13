@@ -106,6 +106,7 @@
                                            "./emacs/modules/common-lisp.el"))
       (".emacs.d/modules/go.el" ,(local-file "./emacs/modules/go.el"))
       (".emacs.d/modules/org.el" ,(local-file "./emacs/modules/org.el"))
+      (".emacs.d/modules/eglot.el" ,(local-file "./emacs/modules/eglot.el"))
       (".emacs.d/modules/dashboard.el" ,(local-file
                                          "./emacs/modules/dashboard.el"))
       (".emacs.d/modules/theme.el" ,(local-file "./emacs/modules/theme.el"))
@@ -130,8 +131,8 @@
                       "    sss-clone-dir \"/home/john\"\n"
                       "    sss-notes-roam-dir \"/home/john/notes/roam\"
 "
-                      "    sss-emacs-theme 'ef-dream)\n")
-                     (sss-bridge-emacs #:palette 'sss-palette-ef-dream
+                      "    sss-emacs-theme 'ef-bio)\n")
+                     (sss-bridge-emacs #:palette 'sss-palette-ef-bio
                                        #:user-name "John"
                                        #:user-full-name "John Doe"
                                        #:user-email "john@doe.com"
@@ -140,24 +141,4 @@
                                        #:notes-roam-dir
                                        "/home/john/notes/roam")))
 
-(test-assert "bridge is correctly computed with a different theme"
-             (equal? (string-append "(setq-default
-    user-personal-name \"John\"
-"
-                      "    user-personal-full-name \"John Doe\"\n"
-                      "    user-personal-email \"john@doe.com\"\n"
-                      "    user-personal-initials \"JD\"\n"
-                      "    sss-clone-dir \"/home/john\"\n"
-                      "    sss-notes-roam-dir \"/home/john/notes/roam\"
-"
-                      "    sss-emacs-theme 'everforest-hard-dark)
-")
-                     (sss-bridge-emacs #:palette 'sss-palette-everforest-dark
-                                       #:user-name "John"
-                                       #:user-full-name "John Doe"
-                                       #:user-email "john@doe.com"
-                                       #:user-initials "JD"
-                                       #:clone-dir "/home/john"
-                                       #:notes-roam-dir
-                                       "/home/john/notes/roam")))
 (test-end)

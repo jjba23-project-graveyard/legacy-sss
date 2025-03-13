@@ -29,7 +29,7 @@
 ;; ====== Package manager ======
 
 ;; Install the Elpaca package manager
-(defvar elpaca-installer-version 0.9)
+(defvar elpaca-installer-version 0.10)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
@@ -44,7 +44,7 @@
   (add-to-list 'load-path (if (file-exists-p build) build repo))
   (unless (file-exists-p repo)
     (make-directory repo t)
-    (when (< emacs-major-version 28) (require 'subr-x))
+    (when (<= emacs-major-version 28) (require 'subr-x))
     (condition-case-unless-debug err
         (if-let* ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
                   ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
@@ -107,6 +107,7 @@
 (load-user-file "modules/emacs-core.el")
 (load-user-file "modules/erc.el")
 (load-user-file "modules/consult.el")
+(load-user-file "modules/eglot.el")
 
 
 (use-package git-riddance 
@@ -162,7 +163,7 @@
 	 ("C-c f n" . tekengrootte-set-scale-nano)) 
   :hook ((tekengrootte-set-scale . (lambda () 
                                      (sss-set-base-faces)))) 
-  :after (ef-themes solarized-theme)
+  :after (ef-themes solarized-theme everforest)
   :config
   (defun sss-set-base-faces ()
     "Adjust the base Emacs faces to my preferences.
@@ -171,7 +172,6 @@ According to size, color and font family"
     (set-face-attribute 'window-divider nil
                         :foreground (ef-themes-get-color-value 'bg-alt)
                         :background (ef-themes-get-color-value 'bg-alt))
-    
     (set-face-attribute 'default nil 
 		        :height (round (tekengrootte-mk-font-size 114)) 
 		        :font sss-font-mono)
@@ -258,89 +258,9 @@ According to size, color and font family"
 (use-package rust-mode
   :ensure t)
 
-(use-package eglot
-  :ensure nil
-  :hook ((scala-ts-mode . eglot-ensure)
-	 (sh-mode . eglot-ensure)
-	 (haskell-mode . eglot-ensure)
-	 (markdown-mode . eglot-ensure)
-         (nix-ts-mode . eglot-ensure)
-         (go-mode . eglot-ensure)         
-         (python-mode . eglot-ensure)
-         (rust-mode . eglot-ensure)
-         (yaml-mode . eglot-ensure)
-         (yaml-ts-mode . eglot-ensure)
-         (before-save . eglot-format-buffer))
-  :bind (("C-c i i" . eglot-find-implementation)
-	 ("C-c i e" . eglot)
-	 ("C-c i k" . eglot-shutdown-all)
-	 ("C-c i r" . eglot-rename)
-	 ("C-c i x" . eglot-reconnect)
-	 ("C-c i a" . eglot-code-actions)
-	 ("C-c i m" . eglot-menu)
-	 ("C-c i f" . eglot-format-buffer)
-	 ("C-c i h" . eglot-inlay-hints-mode))
-  :config  
-  (add-to-list 'eglot-server-programs '(scala-ts-mode . ("metals")))
-  (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nil")))
-  (add-to-list 'eglot-server-programs '(markdown-mode . ("marksman")))
-  
-  (setq-default eglot-workspace-configuration
-                '(
-                  :metals ( :autoImportBuild t
-                            :superMethodLensesEnabled t
-                            :showInferredType t
-                            :enableSemanticHighlighting t
-                            :inlayHints ( :inferredTypes (:enable t )
-                                          :implicitArguments (:enable nil)
-                                          :implicitConversions (:enable nil )
-                                          :typeParameters (:enable t )
-                                          :hintsInPatternMatch (:enable nil )))
-                  :haskell (:formattingProvider "ormolu")
-                  :rust-analyzer (:cargo (:sysroot "discover"
-                                                   :features "all"
-                                                   :buildScripts (:enable t))
-                                         :diagnostics (:disabled ["macro-error"])
-                                         :procMacro (:enable t))
-                  :yaml ( :format (:enable t)
-                          :validate t
-                          :hover t
-                          :completion t
-                          :schemas (
-                                    https://codeberg.org/jjba23/pop-test/raw/branch/trunk/resources/json-schema/pop-test.json ["golden-test.yaml" "golden-test.yml" "pop-test.yaml" "pop-test.yml"]
-                                    https://raw.githubusercontent.com/Vandebron/gh-mpyl/refs/heads/main/src/mpyl/schema/project.schema.yml ["project.yml"]
-                                    https://json.schemastore.org/yamllint.json ["/*.yml"])
-                          :schemaStore (:enable t))
-                  :nil (:formatting (:command ["nixfmt"]))))
-
-  (setq eglot-autoshutdown t
-        eglot-confirm-server-edits nil
-        eglot-report-progress t
-        eglot-extend-to-xref t
-        eglot-autoreconnect t)
-
-  (add-hook 'eglot-managed-mode-hook
-            (lambda ()
-              ;; Show flymake diagnostics first.
-              (setq eldoc-documentation-functions
-                    (cons #'flymake-eldoc-function
-                          (remove #'flymake-eldoc-function eldoc-documentation-functions)))
-              ;; Show all eldoc feedback.
-              (setq eldoc-documentation-strategy #'eldoc-documentation-compose)))
-
-  (setq python-flymake-command '("~/.local/bin/flake8" "-") )           
-  (add-hook 'eglot-managed-mode-hook
-            (lambda ()
-              (when (or (derived-mode-p 'python-mode)
-                        (derived-mode-p 'python-ts-mode))
-                (add-hook 'flymake-diagnostic-functions 
-                          'python-flymake nil t)
-                (flymake-start))))
-
-  )
 
 
-(use-package package-lint :ensure t)
+;;(use-package package-lint :ensure t)
 
 (use-package python-black
   :ensure t
@@ -718,27 +638,27 @@ According to size, color and font family"
 	("C-c ! p" . flymake-show-project-diagnostics)
 	("C-c ! f" . flymake-mode)))
 
-(use-package jinx
-  :ensure nil
-  :demand t
-  :bind (("M-$" . jinx-correct)
-         ([remap ispell-word] . #'jinx-correct)
-         ("C-M-$" . jinx-languages))
-  :init
-  (setq jinx-languages "en_US nl_NL")
-  :config
-  (dolist (hook '(text-mode-hook
-                  prog-mode-hook
-                  conf-mode-hook
-                  org-mode-hook
-                  markdown-mode-hook))
-    (add-hook hook #'jinx-mode))
-  ;; or globally
-  ;;(add-hook 'emacs-startup-hook #'global-jinx-mode)
-  )
+;; (use-package jinx
+;;   :ensure nil
+;;   :demand t
+;;   :bind (("M-$" . jinx-correct)
+;;          ([remap ispell-word] . #'jinx-correct)
+;;          ("C-M-$" . jinx-languages))
+;;   :init
+;;   (setq jinx-languages "en_US nl_NL")
+;;   :config
+;;   (dolist (hook '(text-mode-hook
+;;                   prog-mode-hook
+;;                   conf-mode-hook
+;;                   org-mode-hook
+;;                   markdown-mode-hook))
+;;     (add-hook hook #'jinx-mode))
+;;   ;; or globally
+;;   ;;(add-hook 'emacs-startup-hook #'global-jinx-mode)
+;;   )
 
 
-;; ====== Emacs Multimedia System ======
+;; ====== emacs Multimedia System ======
 
 (use-package emms
   :ensure t
@@ -779,20 +699,5 @@ According to size, color and font family"
     (revert-buffer :ignore-auto :noconfirm)
     (message "formatted current buffer with Guix style")
     ))
-
-;; ====== Emacs built-in features ======
-
-
-(use-package which-key 
-  :ensure nil
-  :config
-  (setq which-key-sort-order 'which-key-key-order-alpha	
-	which-key-max-description-length 35)
-  (setq-default which-key-idle-delay 0.4) 
-  (which-key-setup-minibuffer)
-  (which-key-mode))
-
-
-
 
 ;;; init.el ends here

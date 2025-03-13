@@ -76,6 +76,10 @@
      'yellow)
     ((eq? 'sss-palette-solarized-light palette)
      'yellow)
+    ((eq? 'sss-palette-everforest-dark palette)
+     'green)
+    ((eq? 'sss-palette-everforest-light palette)
+     'yellow)
     (else 'magenta)))
 
 (define* (shell-greeting #:key palette)

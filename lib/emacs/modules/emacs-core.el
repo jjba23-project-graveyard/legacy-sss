@@ -25,6 +25,16 @@
 
 ;;; Code:
 
+
+(use-package which-key
+  :ensure nil
+  :config
+  (setq which-key-sort-order 'which-key-key-order-alpha
+	which-key-max-description-length 35)
+  (setq-default which-key-idle-delay 0.4) 
+  (which-key-setup-minibuffer)
+  (which-key-mode))
+
 (use-package emacs 
   :ensure nil 
   :bind (("C-x C-b" . ibuffer) 
@@ -70,8 +80,8 @@
   (delete-selection-mode +1)
 
   (ignore-errors
-    (set-frame-parameter nil 'alpha-background 86) 
-    (add-to-list 'default-frame-alist '(alpha-background . 86)))
+    (set-frame-parameter nil 'alpha-background 85) 
+    (add-to-list 'default-frame-alist '(alpha-background . 85)))
   
   (when (fboundp 'windmove-default-keybindings) 
     (windmove-default-keybindings))
@@ -82,7 +92,9 @@
   (global-prettify-symbols-mode +1)
 
   (setq initial-buffer-choice
-        (lambda () (welkomscherm) (get-buffer welkomscherm-buffer-name)))
+        (lambda () (ignore-errors
+                (welkomscherm)
+                (get-buffer welkomscherm-buffer-name))))
   
   (recentf-mode 1)
   (setq recentf-max-menu-items 100
