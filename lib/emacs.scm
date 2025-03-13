@@ -130,8 +130,8 @@
                       "    sss-clone-dir \"/home/john\"\n"
                       "    sss-notes-roam-dir \"/home/john/notes/roam\"
 "
-                      "    sss-emacs-theme 'ef-bio)\n")
-                     (sss-bridge-emacs #:palette 'ef-dream
+                      "    sss-emacs-theme 'ef-dream)\n")
+                     (sss-bridge-emacs #:palette 'sss-palette-ef-dream
                                        #:user-name "John"
                                        #:user-full-name "John Doe"
                                        #:user-email "john@doe.com"
