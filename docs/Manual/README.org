@@ -33,7 +33,7 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 
 - GNU Guix system configuration
 - Hyprland configuration
-- 🎨 Theme palettes that affect the entire system
+- 🎨 Theme palettes that affect the entire system (ef-themes, solarized-light, everforest dark and light)
 - Labwc configuration (work-in progress)
 - Fish shell configuration
 - Conky configuration
@@ -53,9 +53,9 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
   
 ** Joe's Emacs configuration
 
-An operating system unto itself.
+An operating system unto itself 🐂.
 
-- Advanced Emacs configurations with Emacs Lisp + Elpaca
+- Advanced and modular Emacs configurations with Emacs Lisp + Elpaca
 - Dev setup for: Scheme, Scala, Haskell, Lisp, Rust, Python, Shell, Nix, Golang and more
 
 
