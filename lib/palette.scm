@@ -17,36 +17,29 @@
 
 (define-module (sss palette)
   #:use-module (gnu)
+  #:use-module (ice-9 match)
   #:use-module (srfi srfi-64))
 
+(let ((l '(hello (world))))
+  (match l
+     ;<- the input object
+    (('hello (who))
+      ;<- the pattern
+     who)))
+ ;; <- the expression evaluated upon matching
+
 (define-public (sss-get-color palette sym)
-  (let ((p (cond
-            ((eq? palette
-                  'sss-palette-ef-dream)
-             sss-palette-ef-dream)
-            ((eq? palette
-                  'sss-palette-ef-bio)
-             sss-palette-ef-bio)
-            ((eq? palette
-                  'sss-palette-heavy-metal)
-             sss-palette-heavy-metal)
-            ((eq? palette
-                  'sss-palette-ef-cyprus)
-             sss-palette-ef-cyprus)
-            ((eq? palette
-                  'sss-palette-ef-autumn)
-             sss-palette-ef-autumn)
-            ((eq? palette
-                  'sss-palette-solarized-light)
-             sss-palette-solarized-light)
-            ((eq? palette
-                  'sss-palette-everforest-light)
-             sss-palette-everforest-light)
-            ((eq? palette
-                  'sss-palette-everforest-dark)
-             sss-palette-everforest-dark)
-            (else sss-palette-ef-dream))))
-    (cdr (assoc sym p))))
+  (match palette
+    ('sss-palette-ef-bio (cdr (assoc sym sss-palette-ef-bio)))
+    ('sss-palette-ef-dream (cdr (assoc sym sss-palette-ef-dream)))
+    ('sss-palette-heavy-metal (cdr (assoc sym sss-palette-heavy-metal)))
+    ('sss-palette-ef-cyprus (cdr (assoc sym sss-palette-ef-cyprus)))
+    ('sss-palette-ef-autumn (cdr (assoc sym sss-palette-ef-autumn)))
+    ('sss-palette-solarized-light (cdr (assoc sym sss-palette-solarized-light)))
+    ('sss-palette-everforest-light (cdr (assoc sym
+                                               sss-palette-everforest-light)))
+    ('sss-palette-everforest-dark (cdr (assoc sym sss-palette-everforest-dark)))
+    (_ (cdr (assoc sym sss-palette-ef-dream)))))
 
 (begin
   (define (hex-to-decimal n)
@@ -114,8 +107,7 @@
     (background-l . "#222522")))
 
 (define-public sss-palette-everforest-dark
-  `((primary . "#a7c080")
-    (primary-l . "#b8d191")
+  `((primary . "#a7c080") (primary-l . "#b8d191")
     (primary-d . "#96b070")
     (text . "#d3c6aa")
     (text-l . "#e4d7bb")
@@ -123,8 +115,7 @@
     (background-l . "#1e2326")))
 
 (define-public sss-palette-everforest-light
-  `((primary . "#dfa000")
-    (primary-l . "#efb111")
+  `((primary . "#dfa000") (primary-l . "#efb111")
     (primary-d . "#cd9000")
     (text . "#4b5961")
     (text-l . "#5c6a72")
@@ -158,11 +149,10 @@
             (sss-get-color 'sss-palette-everforest-dark
                            'background))
 
-(test-equal "Retrieve background color from everforest-light palette" "#f3ead3"
+(test-equal "Retrieve background color from everforest-light palette"
+            "#f3ead3"
             (sss-get-color 'sss-palette-everforest-light
                            'background))
-
-
 
 ;; Test default palette selection
 (test-equal "Retrieve primary color from default palette (ef-dream)" "#675072"
