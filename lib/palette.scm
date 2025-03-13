@@ -115,8 +115,8 @@
     (background-l . "#1e2326")))
 
 (define-public sss-palette-everforest-light
-  `((primary . "#dfa000") (primary-l . "#efb111")
-    (primary-d . "#cd9000")
+  `((primary . "#a7c080") (primary-l . "#b8d191")
+    (primary-d . "#96b070")
     (text . "#4b5961")
     (text-l . "#5c6a72")
     (background . "#f3ead3")

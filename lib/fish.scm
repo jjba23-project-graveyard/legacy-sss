@@ -79,7 +79,7 @@
     ((eq? 'sss-palette-everforest-dark palette)
      'green)
     ((eq? 'sss-palette-everforest-light palette)
-     'yellow)
+     'green)
     (else 'magenta)))
 
 (define* (shell-greeting #:key palette)
