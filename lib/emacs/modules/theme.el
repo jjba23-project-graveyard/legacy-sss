@@ -48,6 +48,13 @@
   :config
   (cond ((equal sss-emacs-theme 'solarized-light) (load-theme sss-emacs-theme t))))
 
+(use-package everforest
+  :ensure (:host sourcehut :repo "theorytoe/everforest-theme" :branch "master")
+  :config
+  (cond ((equal sss-emacs-theme 'everforest-dark) (load-theme sss-emacs-theme t))
+        ((equal sss-emacs-theme 'everforest-light) (load-theme sss-emacs-theme t))))
+
+
 (provide 'sss/theme)
 
 ;;; theme.el ends here

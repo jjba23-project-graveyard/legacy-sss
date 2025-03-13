@@ -22,11 +22,11 @@
 
 (let ((l '(hello (world))))
   (match l
-     ;<- the input object
+    ;; <- the input object
     (('hello (who))
-      ;<- the pattern
+     ;; <- the pattern
      who)))
- ;; <- the expression evaluated upon matching
+;; <- the expression evaluated upon matching
 
 (define-public (sss-get-color palette sym)
   (match palette

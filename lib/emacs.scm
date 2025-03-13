@@ -55,6 +55,12 @@
                                     'sss-palette-heavy-metal)
                             "'ef-tritanopia-dark")
                            ((equal? palette
+                                    'sss-palette-everforest-dark)
+                            "'everforest-hard-dark")
+                           ((equal? palette
+                                    'sss-palette-everforest-light)
+                            "'everforest-hard-light")
+                           ((equal? palette
                                     'sss-palette-solarized-light)
                             "'solarized-light")
                            (else "'ef-bio")))))
