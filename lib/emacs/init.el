@@ -250,6 +250,18 @@ According to size, color and font family"
     (ignore-errors
       (set-face-attribute 'dired-subtree-depth-6-face nil
 		          :background 'unspecified))
+
+    (ignore-errors
+      (cond ((equal sss-emacs-theme 'everforest-hard-dark)
+             (progn
+               (set-face-attribute 'mode-line nil
+                                   :box 'unspecified
+                                   :foreground "#2b3339"
+                                   :background "#96b070")
+               (set-face-attribute 'mode-line-active nil
+                                   :box 'unspecified
+                                   :foreground "#2b3339"
+                                   :background "#96b070")))))
     )
   
   (sss-set-base-faces))
