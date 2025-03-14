@@ -232,25 +232,8 @@ According to size, color and font family"
       (set-face-attribute 'keycast-command nil                       
 		          :font sss-font-mono
                           :height (tekengrootte-mk-font-size 0.8)))
-    (ignore-errors
-      (set-face-attribute 'dired-subtree-depth-1-face nil                       
-		          :background 'unspecified))
-    (ignore-errors
-      (set-face-attribute 'dired-subtree-depth-2-face nil                       
-		          :background 'unspecified))
-    (ignore-errors
-      (set-face-attribute 'dired-subtree-depth-3-face nil                       
-		          :background 'unspecified))
-    (ignore-errors
-      (set-face-attribute 'dired-subtree-depth-4-face nil                       
-		          :background 'unspecified))
-    (ignore-errors
-      (set-face-attribute 'dired-subtree-depth-5-face nil                       
-		          :background 'unspecified))
-    (ignore-errors
-      (set-face-attribute 'dired-subtree-depth-6-face nil
-		          :background 'unspecified))
 
+    ;; ====== Theme specific tweaks ======
     (ignore-errors
       (cond ((equal sss-emacs-theme 'everforest-hard-dark)
              (progn
@@ -261,7 +244,15 @@ According to size, color and font family"
                (set-face-attribute 'mode-line-active nil
                                    :box 'unspecified
                                    :foreground "#2b3339"
-                                   :background "#96b070")))))
+                                   :background "#96b070")
+               (set-face-attribute 'dired-directory nil
+                                   :inherit '(font-lock-string-face))))))
+
+    ;; ====== Final tweaks ======
+    (set-face-attribute 'mode-line-active nil
+                        :box `(:line-width 3 :color ,(face-attribute 'mode-line-active :background)))
+    (set-face-attribute 'mode-line-inactive nil
+                        :box `(:line-width 3 :color ,(face-attribute 'mode-line-inactive :background)))
     )
   
   (sss-set-base-faces))
@@ -270,7 +261,6 @@ According to size, color and font family"
 
 (use-package rust-mode
   :ensure t)
-
 
 (use-package package-lint :ensure t)
 
@@ -466,7 +456,20 @@ According to size, color and font family"
 (use-package dired-hacks-utils :ensure t)
 
 (use-package dired-subtree 
-  :ensure t  
+  :ensure t
+  :config
+  (set-face-attribute 'dired-subtree-depth-1-face nil                       
+		      :background 'unspecified)
+  (set-face-attribute 'dired-subtree-depth-2-face nil                       
+		      :background 'unspecified)
+  (set-face-attribute 'dired-subtree-depth-3-face nil                       
+		      :background 'unspecified)
+  (set-face-attribute 'dired-subtree-depth-4-face nil                       
+		      :background 'unspecified)
+  (set-face-attribute 'dired-subtree-depth-5-face nil                       
+		      :background 'unspecified)
+  (set-face-attribute 'dired-subtree-depth-6-face nil
+		      :background 'unspecified)
   :bind (:map dired-mode-map (("<mouse-1>" . dired-subtree-toggle)
                               ("<TAB>" . dired-subtree-toggle) 
                               ("C-<tab>" . dired-subtree-toggle) 
