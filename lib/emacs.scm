@@ -115,6 +115,7 @@
       (".emacs.d/modules/consult.el" ,(local-file "./emacs/modules/consult.el"))
       (".emacs.d/modules/emacs-core.el" ,(local-file
                                           "./emacs/modules/emacs-core.el"))
+      (".emacs.d/modules/dev.el" ,(local-file "./emacs/modules/dev.el"))
       (".emacs.d/templates" ,(local-file "./emacs/templates"))))
   (export sss-emacs-svc))
 

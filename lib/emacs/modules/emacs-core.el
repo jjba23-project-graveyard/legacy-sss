@@ -35,6 +35,16 @@
   (which-key-setup-minibuffer)
   (which-key-mode))
 
+(defun new-frame-setup (frame)
+  (if (display-graphic-p frame)
+      (progn
+	(message "window system")
+	(tekengrootte-set-scale-small)
+
+	)
+    (message "not a window system")
+    ))
+
 (use-package emacs 
   :ensure nil 
   :bind (("C-x C-b" . ibuffer) 
