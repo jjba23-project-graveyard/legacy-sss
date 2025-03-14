@@ -249,10 +249,12 @@ According to size, color and font family"
                                    :inherit '(font-lock-string-face))))))
 
     ;; ====== Final tweaks ======
-    (set-face-attribute 'mode-line-active nil
-                        :box `(:line-width 3 :color ,(face-attribute 'mode-line-active :background)))
-    (set-face-attribute 'mode-line-inactive nil
-                        :box `(:line-width 3 :color ,(face-attribute 'mode-line-inactive :background)))
+    (ignore-errors
+      (set-face-attribute 'mode-line-active nil
+                          :box `(:line-width 3 :color ,(face-attribute 'mode-line-active :background))))
+    (ignore-errors
+      (set-face-attribute 'mode-line-inactive nil
+                          :box `(:line-width 3 :color ,(face-attribute 'mode-line-inactive :background))))
     )
   
   (sss-set-base-faces))
