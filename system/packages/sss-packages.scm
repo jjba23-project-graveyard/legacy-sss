@@ -304,6 +304,7 @@
 
         gnome-font-viewer
         gnome-characters
+        gnome-clocks
 
         xz
 

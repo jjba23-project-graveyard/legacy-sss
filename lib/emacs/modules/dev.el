@@ -101,9 +101,10 @@
   :ensure t
   :commands (fancy-compilation-mode)
   :config
-  (setq fancy-compilation-override-colors nil)
-  (with-eval-after-load 'compile
-    (fancy-compilation-mode)))
+  (setq fancy-compilation-override-colors nil))
+
+(with-eval-after-load 'compile
+  (fancy-compilation-mode))
 
 (provide 'sss/dev)
 
