@@ -67,6 +67,8 @@ An operating system unto itself 🐂.
 I also include a (work in progress) Windows-like session for "non-geek" users, with "normal floating windows".
 This session uses labwc compositor and waybar.
 
+-----
+
 * Why ?
 
 Find the divine sayings, and the destined computer configurations, all my Guix, Scheme, Hyprland, and Emacs Lisp and more configurations here for learning you a fully Lisp machine with GNU/Linux for a great good.
@@ -153,8 +155,6 @@ Note: Screenshots below might be outdated and no longer representative of the cu
 [[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-05-3.png]]
 
 [[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-05-4.png]]
-
-[[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-05-5.png]]
 
 
 ------
@@ -332,8 +332,6 @@ It is highly recommended to first become familiar with SSS and Guix via a /throw
 
 SSS strives to be completely cross-architecture and should work well everywhere. That being said, as of the latest manual, x86-64 is the preferred architecture.
 
-** Guix Install tips
-
 If your system doesn't boot due to lack of drivers, it can be useful to add the ~nomodeset~ option after ~quiet~ in the GRUB menu, by editing the boot "command" of the latest entry.
 
 If you are on aarch64/arm64, or other more niche architectures, then you might need to put in some more work to get an installer image, and to get it working, likely having to generate an ISO image yourself to install Guix or a qcow2 virtual machine.
@@ -351,11 +349,23 @@ After having installed things using the guided Guix installer, or via the comman
 
 I would recommend to then use a web browser and visit the web version of this manual: https://codeberg.org/jjba23/sss/src/branch/trunk/docs/Manual.
 
-** Installing SSS on Guix
-
 Once you have a working Guix base installation on your machine, you are ready to go about installing SSS.
 
-*** Adding channels
+-----
+
+** User Management
+
+SSS works by programatically define users via code.
+
+You should create users by tweaking the Scheme code (more specifically ~system/users.scm~ and ~lib/sudoers.scm~ ) and you should also create a Guix home file (~home/<user>.scm~) if you want to use the home services SSS provides.
+
+When everything is in place, if it's a new user, you can add a password to the user with ~sudo passwd <user>~. If this user was created by the Guix install then this will already be done for you.
+
+⚠️ You shouldn't create users manually with ~useradd~ or the likes, and sudoers should also be managed from Scheme code, not by manually editing ~/etc/sudoers~. If you do these things manually, Guix will reset them at next reboot or reconfigure.
+
+-----
+
+** Adding channels
 
 Add ~nonguix~ in your channels file (=$HOME/.config/guix/channels.scm=). This will later be overwritten by SSS.
 
@@ -374,18 +384,11 @@ Add ~nonguix~ in your channels file (=$HOME/.config/guix/channels.scm=). This wi
 
 After adding the channel, perform a ~guix pull~ from your user account (*no sudo or root*) and let all channels get updated.
 
-*** Keeping SSS updated
-
-You should every now and then update the SSS repo with ~git pull~. You also should regularly do a ~guix pull~ from your regular user, and then rebuild this system with the root user (~make sr~).
-
-Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
-
-
-*** Installation of SSS
+** Installation of SSS
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
 
-You can do this with ~guix shell make git icecat~. Icecat will be used for you to browse temporarily and install SSS.
+You can do this with ~guix shell make git icecat~. Icecat will be used for you to browse temporarily to Codeberg and download and install SSS.
 
 Then proceed to clone SSS with ~git clone https://codeberg.org/jjba23/sss.git~ to your favourite location. This location will need to be added to ~per-host.scm~.
 
@@ -414,8 +417,17 @@ sudo fc-cache -frv
 
 You can then reboot and you should be greeted by a simple TTY.
 
+-----
 
-* login managers, and login screen
+** Keeping SSS updated
+
+You should every now and then update the SSS repo with ~git pull~. You also should regularly do a ~guix pull~ from your regular user, and then rebuild this system with the root user (~make sr~).
+
+Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
+
+--------
+
+** Login managers, and login screen
 
 SSS uses *no login managers* like GDM or SDDM. Simply login to the TTY and start your favorite GUI (or not).
 That being said, feel free to use your own.
@@ -739,40 +751,7 @@ du -ah / | sort -rh | head -n 20
 
 * Bluetooth
 
-The real best way to manage your bluetooth is using the bluetoothctl shell. That being said SSS comes with a GUI graphical interface to manage Bluetooth. You can also go low-level, and programatically connect to your devices, setup shortcuts for "favourite" connections, and much more.
-
-#+begin_src shell
-  # Run bluetoothctl in a shell
-  user@host $ bluetoothctl
-  #
-  # Waiting to connect to bluetoothd...[bluetooth]# Agent registered
-  # [bluetooth]# hci0 new_settings: powered bondable ssp br/edr le secure-conn cis-central cis-peripheral 
-  # [bluetooth]# [CHG] Controller C8:A3:E8:76:98:80 Pairable: yes
-  # [bluetooth]# AdvertisementMonitor path registered
-  # [bluetooth]#
-
-  #  help
-
-  # then turn your bluethooth on:
-  #  power on
-  #
-  # [bluetooth]# Changing power on succeeded
-
-  # scan for devices around you:
-  #  scan on
-  #
-  # [bluetooth]# SetDiscoveryFilter success
-  # [bluetooth]# Discovery started
-  # [bluetooth]# [CHG] Controller C8:A3:E8:76:98:80 Discovering: yes
-  # [bluetooth]# [NEW] Device 52:B7:C5:C2:54:3A 52-B7-C5-C2-54-3A
-  # [bluetooth]# [NEW] Device 4B:C8:1D:17:55:A6 4B-C8-1D-17-55-A6
-  # [bluetooth]# [NEW] Device 27:9F:3F:70:13:71 27-9F-3F-70-13-71
-  # [bluetooth]# [NEW] Device E3:FE:C8:39:99:36 Wahoo KICKR 6F8D
-
-  # pair C0:23:8D:57:73:CF 
-
-  # exit
-#+end_src
+The real best way to manage your bluetooth is using the bluetoothctl shell. That being said SSS comes with a GUI graphical interface to manage Bluetooth. You can also go low-level, and programatically connect to your devices, setup shortcuts for "favourite" connections, and much more with ~bluetoothctl~.
 
 ------
 
@@ -784,55 +763,7 @@ I'd recommend for most cases to simply use the GUI to create a new NAT network, 
 
 If you want two-way traffic, and your machine is connected wirelessly to the network, you won’t be able to use a true network bridge.
 
-In this case, the next best option is to use a virtual bridge with static routing and to configure a libvirt-powered virtual machine to use it (via the virt-manager GUI for example). This is similar to the default mode of operation of QEMU/libvirt, except that instead of using NAT (Network Address Translation), it relies on static routes to join the VM (virtual machine) IP address to the LAN (local area network). This provides two-way connectivity to and from the virtual machine, which is needed for exposing services hosted on the virtual machine.
-
-A virtual network bridge consists of a few components/configurations, such as a TUN (network tunnel) interface, DHCP server (dnsmasq) and firewall rules (iptables). The virsh command, provided by the libvirt package, makes it very easy to create a virtual bridge. You first need to choose a network subnet for your virtual bridge; if your home LAN is in the ‘192.168.1.0/24’ network, you could opt to use e.g. ‘192.168.2.0/24’. Define an XML file, e.g. /tmp/virbr0.xml, containing the following:
-
-#+begin_src xml
-  <network>
-    <name>virbr0</name>
-    <bridge name="virbr0" />
-    <forward mode="route"/>
-    <ip address="192.168.2.0" netmask="255.255.255.0">
-      <dhcp>
-        <range start="192.168.2.1" end="192.168.2.254"/>
-      </dhcp>
-    </ip>
-  </network>
-#+end_src
-
-Then create and configure the interface using the virsh command, as root:
-
-#+begin_src shell
-  virsh net-define /tmp/virbr0.xml
-  virsh net-autostart virbr0
-  virsh net-start virbr0
-#+end_src
-
-The ‘virbr0’ interface should now be visible e.g. via the ‘ip address’ command. It will be automatically started every time your libvirt virtual machine is started.
-
-If you configured your virtual machine to use your newly created ‘virbr0’ virtual bridge interface, it should already receive an IP via DHCP such as ‘192.168.2.15’ and be reachable from the server hosting it, e.g. via ‘ping 192.168.2.15’. There’s one last configuration needed so that the VM can reach the external network: adding static routes to the network’s router.
-
-In this example, the LAN network is ‘192.168.1.0/24’ and the router configuration web page may be accessible via e.g. the http://192.168.1.1 page. On a router running the libreCMC firmware, you would navigate to the Network → Static Routes page (https://192.168.1.1/cgi-bin/luci/admin/network/routes), and you would add a new entry to the ‘Static IPv4 Routes’ with the following information:
-
-‘Interface’
-lan
-
-‘Target’
-192.168.2.0
-
-‘IPv4-Netmask’
-255.255.255.0
-
-‘IPv4-Gateway’
-server-ip
-
-‘Route type’
-unicast
-
-where server-ip is the IP address of the machine hosting the VMs, which should be static.
-
-After saving/applying this new static route, external connectivity should work from within your VM; you can e.g. run ‘ping gnu.org’ to verify that it functions correctly.
+In this case, the next best option is to use a virtual bridge with static routing and to configure a libvirt-powered virtual machine to use it (via the virt-manager GUI for example).
 
 -------
 
@@ -864,7 +795,6 @@ If there are multiple applications, they are tried in order.
 
 At ~~/.config/mimeapps.list~ you get this:
 #+begin_example
-
 [Default Applications]
 application/pdf=evince.desktop;icecat.desktop
 text/html=icecat.desktop;emacsclient.desktop
@@ -1067,14 +997,6 @@ Find here the Backlog and Kanban boards for SSS: https://lucidplan.jointhefreewo
 - **DBus**: Desktop Bus (inter-process communication system)
 - **RTC**: Real-Time Communication
 
-
---------
-
-* User Management
-
-SSS uses standard GNU/Linux user management tools. You should create users by tweaking the Scheme code of Guix config (~config.scm~) and optionally you can also create a Guix home file (~home/<user>.scm~).
-
-When everything is in place, add a password to the user with ~sudo passwd <user>~.
 
 ------
 
