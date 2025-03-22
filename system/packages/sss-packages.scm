@@ -229,7 +229,7 @@
         tree-sitter-javascript))
 
 (define sss-terminal-emulator-packages
-  (list foot alacritty kitty xfce4-terminal))
+  (list foot alacritty xfce4-terminal))
 
 (define sss-dev-packages
   (list (specification->package "openjdk@21")

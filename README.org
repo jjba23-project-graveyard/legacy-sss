@@ -44,7 +44,6 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 - Conky configuration
 - Alacritty terminal emulator  
 - Foot terminal emulator
-- Kitty terminal emulator 
 - Waybar configuration and style
 - Rofi application launcher
 - Mako configuration and style

@@ -233,7 +233,7 @@
                         #:cmd "alacritty msg create-window || alacritty")
              (exec-bind #:mod "s"
                         #:bind "slash"
-                        #:cmd "rofi -show drun")
+                        #:cmd "rofi -show drun -icon-theme \"Papirus\"")
              (exec-bind #:mod "s-S"
                         #:bind "B"
                         #:cmd wallpaper-setter)

@@ -53,7 +53,6 @@
 ;; Load SSS modules
 (use-modules (sss process)
              (sss foot)
-             (sss kitty)
              (sss git)
              (sss vars)
              (sss mako)
@@ -84,8 +83,7 @@
 
 (define sss-home-files-service
   (service home-files-service-type
-           (append (sss-kitty-svc #:palette sss-palette)
-                   (sss-gtk3-svc #:palette sss-palette)
+           (append (sss-gtk3-svc #:palette sss-palette)
                    (sss-gtk4-svc #:palette sss-palette)
                    (sss-git-svc)
                    (sss-waybar-svc #:palette sss-palette
