@@ -23,19 +23,25 @@
   #:use-module (sss palette)
   #:use-module (sss process))
 
+(define-public sss-rofi-font
+  "Adwaita Sans")
+
+(define-public sss-rofi-icon-theme
+  "Adwaita Sans")
+
 (define-public sss-rofi-config
-  (string-append "configuration {
-    font: \"Adwaita Mono 14\";
+  (format #f "configuration {
+    font: \"~a 14\";
     show-icons: true;
-    icon-theme:	\"Yaru\";
+    icon-theme:	\"~a\";
     display-drun: \"\";
-    disable-history:false;
+    disable-history: false;
     fullscreen: false;
     hide-scrollbar: false;
     sidebar-mode: false;
 }
 
-@theme \"./sss-theme.rasi\""))
+@theme \"./sss-theme.rasi\"" sss-rofi-font sss-rofi-icon-theme))
 
 (begin
   (define* (sss-rofi-theme #:key palette)
@@ -47,28 +53,9 @@
                                                   'background)
                                    #:alpha 0.8))
        (background-color . "transparent")
-       (dark . "#1c1c1c")
-       (black . "#3d352a")
-       (lightblack . "#554444")
-       (tlightblack . "#554444cc")
-       (transparent . "rgba(0,0,0,0)")
-       (red . "#cd5c5c")
-       (lightred . "#cc5533")
-       (green . "#86af80")
-       (lightgreen . "#88cc22")
-       (yellow . "#e8ae5b")
-       (lightyellow . "#ffa75d")
-       (blue . "#6495ed")
-       (lightblue . "#87ceeb")
-       (magenta . "#deb887")
-       (lightmagenta . "#996600")
-       (cyan . "#b0c4de")
-       (tcyan . "#ccb0c4de")
-       (lightcyan . "#b0c4de")
-       (white . "#bbaa99")
-       (lightwhite . "#ddccbb")
        (highlight . "underline bold #ffffff")
-       (font . "\"Adwaita Mono 14\""))
+       (font unquote
+             (format #f "\"~a 14\"" sss-rofi-font)))
       ("window" (location . "center")
        (anchor . "center")
        (transparency . "\"real\"")
@@ -76,16 +63,16 @@
        (border . "0px")
        (border-radius . "12px")
        (spacing . "0")
-       (color . "@magenta")
-       (background-color . "@transparent")
+       (background-color . "transparent")
        (orientation . "horizontal")
        (children . "[ mainbox ]"))
-      ("message" (font . "\"Adwaita Mono 14\"")
-       (color . "@white")
-       (border-color . "@foreground")
+      ("message" (font unquote
+                       (format #f "\"~a 14\"" sss-rofi-font))
        (border . "0px 2px 2px 2px")
-       (padding . "5px")
-       (background-color . "@tcyan"))
+       (color unquote
+              (sss-get-color palette
+                             'text))
+       (padding . "5px"))
       ("mainbox" (spacing . "0")
        (children . "[ inputbar, message, listview ]"))
       ("entry,prompt,case-indicator" (text-font . "inherit")
@@ -95,12 +82,11 @@
        (vertical-align . "0.5")
        (border-radius . "2px")
        (background-color . "transparent")
-       (color . "@foreground")
+       (text-color unquote
+                   (sss-get-color palette
+                                  'text))
        (font . "inherit"))
-      ("element-text" (background-color . "inherit")
-       (text-color . "inherit"))
       ("listview" (padding . "8px")
-       (border-color . "@foreground")
        (border-radius . "16px")
        (background-color unquote
                          (sss-hex-to-rgba (sss-get-color palette
@@ -108,8 +94,19 @@
                                           #:alpha 0.8))
        (dynamic . "false")
        (lines . "20"))
-      ("element selected.normal" (background-color . "@magenta")
-       (text-color . "@black"))
+      ("element-text" (text-color unquote
+                                  (sss-get-color palette
+                                                 'text)))
+      ("element selected" (highlight . none)
+       (text-color unquote
+                   (sss-get-color palette
+                                  'background))
+       (background-color unquote
+                         (sss-hex-to-rgba (sss-get-color palette
+                                                         'primary)
+                                          #:alpha 0.5))
+       (border-radius . "4px"))
+      ("element-icon" (size . "1.1em"))
       ("inputbar" (color unquote
                          (sss-get-color palette
                                         'text))
@@ -131,87 +128,3 @@
                                                                       #:palette
                                                                       palette))))))
   (export sss-rofi-svc))
-
-;; inputbar {
-;;           color: @lightgreen;
-;;                  padding: 11px;
-;;                  background-color: @tlightblack;
-;;                  border: 2px 2px 2px 2px;
-;;                  border-radius:  15px 15px 0px 0px;
-;;                  border-color: @foreground;
-;;                  font: "Source Code Pro 18";
-;;                  }
-
-;; prompt {
-;;         margin:     0px 0.3em 0em 0em ;
-;;                     }
-;; listview {
-;;                    border-radius: 0px 0px 15px 15px;
-;;                    border: 0px 2px 2px 2px;
-
-;;                    }
-
-;; element selected.normal {
-;;                          background-color: @blue;
-;;                                            }
-;; element normal active {
-;;                        foreground: @lightblue;
-;;                                    }
-;; element normal urgent {
-;;                        foreground: @lightred;
-;;                                    }
-;; element alternate normal {
-;;                           }
-;; element alternate active {
-;;                           foreground: @lightblue;
-;;                                       }
-;; element alternate urgent {
-;;                           foreground: @lightred;
-;;                                       }
-;; element selected active {
-;;                          background-color: @lightblue;
-;;                                            foreground: @dark;
-;;                                            }
-;; element selected urgent {
-;;                          background-color: @lightred;
-;;                                            foreground: @dark;
-;;                                            }
-;; element normal normal {
-
-;;                        }
-;; vertb {
-;;        expand: false;
-;;                children: [ dummy0, mode-switcher, dummy1  ];
-;;                }
-;; dummy0,  dummy1 {
-;;                  expand: true;
-;;                          }
-;; mode-switcher {
-;;                expand: false;
-;;                        orientation: vertical;
-;;                        spacing: 0px;
-;;                        border: 0px 0px 0px 0px;
-;;                        }
-;; button {
-;;         font: "FontAwesome 22";
-;;               padding: 6px;
-;;               border: 2px 0px 2px 2px;
-;;               border-radius: 4px 0px 0px 4px;
-;;               background-color: @tlightblack;
-;;               border-color: @foreground;
-;;               color: @foreground;
-;;               horizontal-align: 0.5;
-;;               }
-;; button selected normal {
-;;                         color: @dark;
-;;                                border: 2px 0px 2px 2px;
-;;                                background-color: @backlight;
-;;                                border-color: @foreground;
-;;                                }
-;; error-message {
-;;                expand: true;
-;;                        background-color: red;
-;;                        border-color: darkred;
-;;                        border: 2px;
-;;                        padding: 1em;
-;;                        }
