@@ -182,7 +182,7 @@
 
         waybar-experimental
         wmenu
-        swww
+        hyprpaper
 
         mako
         wev
