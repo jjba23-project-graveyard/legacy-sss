@@ -201,4 +201,4 @@ repl:
 # Unit tests
 test:
 	guix shell -m manifest.scm -- guile --fresh-auto-compile test/run-tests.scm | \
-		guile test/colorize-tests.scm
+		guile --fresh-auto-compile test/colorize-tests.scm
