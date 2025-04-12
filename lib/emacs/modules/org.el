@@ -43,9 +43,6 @@
   (org-src-tab-acts-natively t)
   (org-edit-src-content-indentation 0)
   :config
-  (font-lock-add-keywords 'org-mode
-                          '(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   (defun sss-org-mode ()
     (variable-pitch-mode 1)
     (org-modern-mode)
