@@ -38,7 +38,7 @@
   (org-hide-emphasis-markers t)
   (org-hide-leading-stars t)
   (org-pretty-entities t)
-  (org-link-descriptive nil)
+  (org-link-descriptive t)
   (org-src-fontify-natively t)
   (org-src-tab-acts-natively t)
   (org-edit-src-content-indentation 0)
