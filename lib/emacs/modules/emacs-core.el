@@ -72,7 +72,6 @@
   (setq treesit-font-lock-level 4
 	ring-bell-function #'ignore
 	frame-resize-pixelwise t
-	inhibit-startup-message t
         completion-cycle-threshold 3
 	tab-always-indent 'complete
 	text-mode-ispell-word-completion nil
@@ -84,9 +83,6 @@
   (savehist-mode 1)
   (save-place-mode 1)
   (global-auto-revert-mode 1)
-  (tool-bar-mode -1) 
-  (scroll-bar-mode -1) 
-  (menu-bar-mode -1) 
   (delete-selection-mode +1)
 
   (ignore-errors
