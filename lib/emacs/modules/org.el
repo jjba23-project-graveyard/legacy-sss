@@ -32,18 +32,27 @@
   :bind (:map org-mode-map 
               ("C-c #" . nil))
   :bind (("C-c l v" . org-toggle-link-display))
-  :init
-  (setq org-todo-keywords '((sequence "TODO" "WIP" "REVIEWING" "|" "DONE")))
-  (setq org-log-done 'time)
-  (setq org-hide-emphasis-markers t)
-  (setq org-link-descriptive nil)
-  :config  
+  :custom
+  (org-todo-keywords '((sequence "TODO" "WIP" "REVIEWING" "|" "DONE")))
+  (org-log-done 'time)
+  (org-hide-emphasis-markers t)
+  (org-hide-leading-stars t)
+  (org-pretty-entities t)
+  (org-link-descriptive nil)
+  (org-src-fontify-natively t)
+  (org-src-tab-acts-natively t)
+  (org-edit-src-content-indentation 0)
+  :config
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   (defun sss-org-mode ()
-    (variable-pitch-mode 0)
+    (variable-pitch-mode 1)
     (org-modern-mode)
     (org-indent-mode)
     (auto-fill-mode 0)
-    (org-restart-font-lock)))
+    (org-restart-font-lock)
+    (olivetti-mode)))
 
 (use-package org-modern
   :ensure t

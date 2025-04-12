@@ -41,3 +41,6 @@
   (ignore-errors
     (add-hook 'consult-after-jump-hook #'pulsar-recenter-top)
     (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry)))
+
+(use-package olivetti
+  :ensure t)
