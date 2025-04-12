@@ -92,8 +92,8 @@
                   emacs-core))
   (define (serialize-sss-emacs-module mod)
     `(,(format #f ".emacs.d/modules/~a.el" mod) ,(local-file (format #f
-                                                                     "./lib/emacs/modules/~a.el"
-                                                                     mod))))
+                                                              "./lib/emacs/modules/~a.el"
+                                                              mod))))
   (define* (sss-emacs-svc #:key palette
                           user-name
                           user-full-name
