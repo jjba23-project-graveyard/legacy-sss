@@ -76,6 +76,9 @@
 	tab-always-indent 'complete
 	text-mode-ispell-word-completion nil
         vc-follow-symlinks t
+        read-file-name-completion-ignore-case t
+        read-buffer-completion-ignore-case t
+        completion-ignore-case t
         use-dialog-box nil
 	delete-by-moving-to-trash t
 	tab-width 2)
