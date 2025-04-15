@@ -199,6 +199,22 @@
              (special-bind #:mod "s-S"
                            #:bind "Q"
                            #:dispatch 'exit)
+             (hypr-bind #:mod "s"
+                        #:bind "Left"
+                        #:cmd 'l
+                        #:dispatch 'movefocus)
+             (hypr-bind #:mod "s"
+                        #:bind "Right"
+                        #:cmd 'r
+                        #:dispatch 'movefocus)
+             (hypr-bind #:mod "s"
+                        #:bind "Down"
+                        #:cmd 'd
+                        #:dispatch 'movefocus)
+             (hypr-bind #:mod "s"
+                        #:bind "Up"
+                        #:cmd 'u
+                        #:dispatch 'movefocus)
 
              (special-bind #:mod "s-S"
                            #:bind "L"
