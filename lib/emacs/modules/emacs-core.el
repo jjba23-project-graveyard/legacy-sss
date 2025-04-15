@@ -45,10 +45,12 @@
             (progn
               (message "initializing SSS UI scaling for first frame")
               (tekengrootte-set-scale-small)
-              (setq sss-emacs-is-first-frame nil))))
+              (setq sss-emacs-is-first-frame nil)))
+        (sss-set-base-faces))
     (progn
       (message "not a window system")
-      (setq sss-emacs-is-first-frame nil))
+      (setq sss-emacs-is-first-frame nil)
+      (sss-set-base-faces))
     ))
 
 (use-package emacs 
