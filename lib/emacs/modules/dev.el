@@ -2,10 +2,6 @@
 
 ;; Copyright (C) 2025 Josep Bigorra
 
-;; Author: Josep Bigorra <jjbigorra@gmail.com>
-;; Maintainer: Josep Bigorra <jjbigorra@gmail.com>
-;; URL: https://codeberg.org/jjba23/sss
-
 ;; sss is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
@@ -114,6 +110,22 @@
 
 (with-eval-after-load 'compile
   (fancy-compilation-mode))
+
+(use-package markdown-mode 
+  :ensure t 
+  :mode "\\.md\\'"
+  :hook ((markdown-mode . sss-markdown-mode))
+  :config
+  (defun sss-markdown-mode ()
+    (variable-pitch-mode 0)
+    (auto-fill-mode 0)
+    (visual-line-mode 1)
+    (set-face-attribute 'markdown-code-face nil                       
+		        :font sss-font-mono
+                        :height (tekengrootte-mk-font-size 1.05))
+    (set-face-attribute 'markdown-pre-face nil                       
+		        :font sss-font-mono
+                        :height (tekengrootte-mk-font-size 1.15))))
 
 (provide 'sss/dev)
 
