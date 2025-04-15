@@ -35,14 +35,20 @@
   (which-key-setup-minibuffer)
   (which-key-mode))
 
+(setq sss-emacs-is-first-frame t)
+
 (defun new-frame-setup (frame)
   (if (display-graphic-p frame)
       (progn
 	(message "window system")
-	(tekengrootte-set-scale-small)
-
-	)
-    (message "not a window system")
+	(if sss-emacs-is-first-frame
+            (progn
+              (message "initializing SSS UI scaling for first frame")
+              (tekengrootte-set-scale-small)
+              (setq sss-emacs-is-first-frame nil))))
+    (progn
+      (message "not a window system")
+      (setq sss-emacs-is-first-frame nil))
     ))
 
 (use-package emacs 

@@ -1,4 +1,4 @@
-;;; init.el --- Custom editor configuration for SSS -*- lexical-binding: t -*-
+;;; init.el --- Custom Emacs configuration for SSS -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2025 Josep Bigorra
 
@@ -100,7 +100,7 @@
 (load-user-file "sss-bridge.el")
 
 ;; Load more user modules
-(setq sss-emacs-modules '(dashboard common-lisp go org theme
+(setq sss-emacs-modules '(dashboard common-lisp go org theme shell
                                     emacs-core erc consult eglot dev music ui maps))
 (mapc (lambda(f) (load-user-file (format "modules/%s.el" f))) sss-emacs-modules)
 
