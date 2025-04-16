@@ -108,7 +108,14 @@
                                          (unknown . "?") (ignored . "i")))
   (diff-hl-margin-mode)
   (ignore-errors
-    (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)))
+    (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
+  (ignore-errors
+    (set-face-attribute 'diff-hl-change nil
+                        :background 'unspecified)
+    (set-face-attribute 'diff-hl-insert nil
+                        :background 'unspecified)
+    (set-face-attribute 'diff-hl-delete nil
+                        :background 'unspecified)))
 
 (with-eval-after-load 'compile
   (fancy-compilation-mode))
