@@ -103,7 +103,6 @@
   :ensure t
   :config
   (global-diff-hl-mode)
-  (diff-hl-dired-mode)
   (setopt diff-hl-margin-symbols-alist '((insert . "+") (delete . "-") (change . "~")
                                          (unknown . "?") (ignored . "i")))
   (diff-hl-margin-mode)
