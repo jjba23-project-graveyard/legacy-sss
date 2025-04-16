@@ -107,7 +107,9 @@
                                          (unknown . "?") (ignored . "i")))
   (diff-hl-margin-mode)
   (ignore-errors
-    (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
+    (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+    (add-hook 'dired-mode-hook
+              (lambda () (diff-hl-dired-mode))))
   (ignore-errors
     (set-face-attribute 'diff-hl-change nil
                         :background 'unspecified)
