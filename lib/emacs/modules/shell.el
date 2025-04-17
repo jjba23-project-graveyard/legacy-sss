@@ -53,6 +53,30 @@ directory to make multiple eshell windows easier."
   (eshell-send-input)
   (delete-window))
 
+(defun fish-path (path max-len)
+  "Return a potentially trimmed-down version of the directory PATH, replacing
+parent directories with their initial characters to try to get the character
+length of PATH (sans directory slashes) down to MAX-LEN."
+  (let* ((components (split-string (abbreviate-file-name path) "/"))
+         (len (+ (1- (length components))
+                 (cl-reduce '+ components :key 'length)))
+         (str ""))
+    (while (and (> len max-len)
+                (cdr components))
+      (setq str (concat str
+                        (cond ((= 0 (length (car components))) "/")
+                              ((= 1 (length (car components)))
+                               (concat (car components) "/"))
+                              (t
+                               (if (string= "."
+                                            (string (elt (car components) 0)))
+                                   (concat (substring (car components) 0 2)
+                                           "/")
+                                 (string (elt (car components) 0) ?/)))))
+            len (- len (1- (length (car components))))
+            components (cdr components)))
+    (concat str (cl-reduce (lambda (a b) (concat a "/" b)) components))))
+
 (defun sss-eshell-prompt ()
   (defun with-face (str &rest face-plist)
     (propertize str 'face face-plist))
@@ -62,7 +86,9 @@ directory to make multiple eshell windows easier."
    "@"
    (with-face (system-name) :inherit 'font-lock-function-name-face)
    ": "
-   (with-face (eshell/pwd) :inherit 'font-lock-function-name-face)
+   (with-face (if (string= (eshell/pwd) (getenv "HOME"))
+	          "~" (fish-path (eshell/pwd) 36))
+              :inherit 'font-lock-function-name-face)
    ": "
    (with-face
     (or (ignore-errors (git-prompt-branch-name)) "")
@@ -73,9 +99,10 @@ directory to make multiple eshell windows easier."
      "λ")
    " "))
 
+(setopt eshell-prompt-regexp "^[^#λ\n]*[#λ] ")
 (setopt eshell-prompt-function 'sss-eshell-prompt)
 (setopt eshell-highlight-prompt nil)
-(setopt eshell-banner-message "Welcome to SSS/GNU - the Supreme Sexp System\n\n")
+(setopt eshell-banner-message "Welcome to SSS/GNU - the Supreme Sexp System\n")
 
 (global-set-key (kbd "C-!") 'eshell-here)
 
