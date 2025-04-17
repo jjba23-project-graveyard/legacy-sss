@@ -106,7 +106,9 @@
 (use-package dagboek
   :ensure (:host codeberg :repo "jjba23/dagboek.el" :branch "trunk")
   :bind (("C-c ; v" . dagboek-today-entry)
-         ("C-c ; g" . dagboek-yesterday-entry)))
+         ("C-c ; g" . dagboek-yesterday-entry))
+  :custom
+  (dagboek-entry-location "~/hacking/private-notes/diary"))
 
 (use-package keycast
   :ensure t
