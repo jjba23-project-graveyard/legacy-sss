@@ -43,10 +43,7 @@ directory to make multiple eshell windows easier."
     (split-window-vertically (- height))
     (other-window 1)
     (eshell "new")
-    (rename-buffer (concat "*eshell: " name "*"))
-
-    (insert (concat "ls"))
-    (eshell-send-input)))
+    (rename-buffer (concat "*eshell: " name "*"))))
 
 (defun eshell/x ()
   (insert "exit")
