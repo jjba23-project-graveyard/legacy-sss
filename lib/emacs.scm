@@ -78,20 +78,24 @@
 
 (begin
   (define sss-emacs-modules
-    '(common-lisp go
-                  org
-                  eglot
+    '(common-lisp consult
                   dashboard
-                  music
-                  theme
-                  sss
-                  erc
-                  consult
-                  shell
                   dev
-                  ui
+                  dired
+                  eglot
+                  emacs-core
+                  erc
+                  go
+                  libs
                   maps
-                  emacs-core))
+                  misc
+                  music
+                  org
+                  search
+                  shell
+                  sss
+                  theme
+                  ui))
   (define* (serialize-sss-emacs-module #:key clone-dir mod)
     `(,(format #f ".emacs.d/modules/~a.el" mod) ,(local-file (format #f
                                                               "~a/lib/emacs/modules/~a.el"

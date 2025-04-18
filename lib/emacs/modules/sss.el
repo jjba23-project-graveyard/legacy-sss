@@ -49,6 +49,50 @@
   "The name of the Emacs theme to use, acording to SSS palette."
   :type 'symbol)
 
+(defun sss-joe-reconfigure ()
+  "Rebuild GNU Guix Joe's configs."
+  (interactive)
+  (let ((default-directory (string-replace "$HOME" "~" sss-clone-dir)))
+    (async-shell-command "make jr")))
+
+(defun sss-publish-manual ()
+  "Rebuild GNU Guix Joe's config manual."
+  (interactive)
+  (let ((default-directory (string-replace "$HOME" "~" sss-clone-dir)))
+    (async-shell-command "make publish-manual")))
+
+(defun sss-full-reconfigure ()
+  "Fully Rebuild GNU Guix Joe's configs and Joe's user."
+  (interactive)
+  (let ((default-directory (string-replace "$HOME" "~" sss-clone-dir)))
+    (async-shell-command "make fr")))
+
+(defun sss-sys-reconfigure ()
+  "Rebuild GNU Guix Joe's configs."
+  (interactive)
+  (let ((default-directory (string-replace "$HOME" "~" sss-clone-dir)))
+    (async-shell-command "make sr")))
+
+(defun sss-sys-update ()
+  "Update GNU Guix packages."
+  (interactive)
+  (let ((default-directory (string-replace "$HOME" "~" sss-clone-dir)))
+    (async-shell-command "make update")))
+
+(defun sss-uuidgen ()
+  (interactive)
+  (let ((uid (string-replace "\n" "" (shell-command-to-string "uuidgen"))))
+    (message (format "generated UUID: %s" uid))
+    (kill-new uid)))
+
+(defun sss-guix-fmt ()
+  (interactive)
+  (let ((path (file-truename buffer-file-name)))
+    (message "formatting current buffer with Guix style")
+    (shell-command (format "guix style -f %s" path))
+    (revert-buffer :ignore-auto :noconfirm)
+    (message "formatted current buffer with Guix style")))
+
 (provide 'sss/sss)
 
 ;;; sss.el ends here

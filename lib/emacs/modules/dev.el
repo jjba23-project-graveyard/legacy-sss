@@ -140,6 +140,11 @@
 (use-package request
   :ensure t)
 
+(use-package flymake-collection 
+  :ensure t 
+  :hook ((after-init . flymake-collection-hook-setup) 
+         (emacs-lisp-mode . flymake-mode)))
+
 (provide 'sss/dev)
 
 ;;; dev.el ends here

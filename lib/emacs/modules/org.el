@@ -84,6 +84,9 @@
   (org-roam-db-autosync-mode)
   (org-roam-setup))
 
+(use-package ob-http :ensure t)
+
+(use-package ob-mermaid :ensure t)
 
 (provide 'sss/org)
 
