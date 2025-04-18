@@ -85,6 +85,9 @@
     (message (format "generated UUID: %s" uid))
     (kill-new uid)))
 
+(defun sss-uuidgen-string ()
+  (string-replace "\n" "" (shell-command-to-string "uuidgen")))
+
 (defun sss-guix-fmt ()
   (interactive)
   (let ((path (file-truename buffer-file-name)))
@@ -92,6 +95,15 @@
     (shell-command (format "guix style -f %s" path))
     (revert-buffer :ignore-auto :noconfirm)
     (message "formatted current buffer with Guix style")))
+
+(defun sss-new-buffer-with-json (buffer-name data)
+  (get-buffer-create buffer-name)
+  (with-current-buffer buffer-name
+    (insert data)
+    (js-json-mode)
+    (ignore-errors
+      (json-pretty-print-buffer-ordered)))
+  (switch-to-buffer buffer-name))
 
 (provide 'sss/sss)
 
