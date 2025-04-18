@@ -103,7 +103,7 @@
     (ignore-errors
       (js-json-mode)
       (json-pretty-print-buffer-ordered))
-    (scroll-down))
+    (scroll-down 10000))
   (switch-to-buffer buffer-name))
 
 (provide 'sss/sss)
