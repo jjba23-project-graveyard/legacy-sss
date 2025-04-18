@@ -36,6 +36,7 @@
 
 (load "../lib/process.scm")
 (load "../lib/sudoers.scm")
+(load "../lib/nftables.scm")
 
 ;; load system packages and definitions
 (load "./packages/conky.scm")
@@ -45,7 +46,8 @@
 ;; load system users
 (load "./users.scm")
 
-(use-modules (sss packages))
+(use-modules (sss packages)
+             (sss nftables))
 
 (use-service-modules networking
                      desktop
@@ -116,13 +118,6 @@
                     ("subgid" ,(plain-file "subgid"
                                            (string-append "joe"
                                                           ":100000:65536\n"))))))
-
-;; Setup firewall via iptables
-;;
-;; TODO harden security
-(define sss-iptables
-  (service iptables-service-type
-           (iptables-configuration)))
 
 (define* (sss-desktop-services-for-system #:optional (system (or (%current-target-system)
                                                                  (%current-system))))
@@ -212,7 +207,7 @@
   (services
    (cons* (service nix-service-type)
           (service power-profiles-daemon-service-type)
-          sss-iptables
+          (sss-nftables-svc)
           sss-subuid
           (service screen-locker-service-type
                    (screen-locker-configuration (name "hyprlock")
