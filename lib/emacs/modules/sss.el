@@ -102,9 +102,9 @@
     (insert data)
     (ignore-errors
       (js-json-mode)
-      (json-pretty-print-buffer-ordered))
-    (scroll-down 10000))
-  (switch-to-buffer buffer-name))
+      (json-pretty-print-buffer-ordered)))
+  (switch-to-buffer buffer-name)
+  (scroll-down 10000))
 
 (provide 'sss/sss)
 
