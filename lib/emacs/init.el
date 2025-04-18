@@ -229,5 +229,12 @@
   (add-hook 'completion-at-point-functions #'cape-history)
   (add-hook 'completion-at-point-functions #'cape-elisp-block))
 
+;; tramp remote guix systems (wolk-jjba)
+;;
+;; (add-to-list 'tramp-remote-path "/run/current-system/profile/bin/")
+;; (setq shell-prompt-pattern "^[^λω#$%>]*[#λω$%>] *")
+;; /ssh:wolk-jjba:/home/joe/.bash_history
+;;
+
 
 ;;; init.el ends here
