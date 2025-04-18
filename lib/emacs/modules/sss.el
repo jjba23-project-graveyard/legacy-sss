@@ -100,9 +100,10 @@
   (get-buffer-create buffer-name)
   (with-current-buffer buffer-name
     (insert data)
-    (js-json-mode)
     (ignore-errors
-      (json-pretty-print-buffer-ordered)))
+      (js-json-mode)
+      (json-pretty-print-buffer-ordered))
+    (scroll-down))
   (switch-to-buffer buffer-name))
 
 (provide 'sss/sss)
