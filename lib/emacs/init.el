@@ -1,4 +1,5 @@
 ;;; init.el --- Custom Emacs configuration for SSS -*- lexical-binding: t -*-
+
 ;; Copyright © Josep Bigorra <jjbigorra@gmail.com>
 
 ;; sss is free software: you can redistribute it and/or modify
