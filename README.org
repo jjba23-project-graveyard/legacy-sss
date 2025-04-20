@@ -72,7 +72,6 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 - Org format [[file:docs/Manual/README.org]]
 - Online HTML: [[https://jointhefreeworld.org/manuals/sss/index.html]] 
 - HTML format [[file:docs/Manual/README.html]]
-- Markdown format [[file:docs/Manual/README.md]]  
 
 
 
