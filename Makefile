@@ -186,7 +186,7 @@ fpu:  # Updates Flatpak packages
 deploy:
 	mkdir -pv $(DEPLOY_WWW)/manuals/sss
 	rm -rfv $(DEPLOY_WWW)/manuals/sss/index.html
-	cp -rfv docs/Manual/en-GB.html $(DEPLOY_WWW)/manuals/sss/index.html
+	cp -rfv docs/manual/en-GB.html $(DEPLOY_WWW)/manuals/sss/index.html
 
 # repl: Start a Guile Scheme development REPL
 # Development REPL
