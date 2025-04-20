@@ -32,7 +32,7 @@
   :demand t)
 
 (use-package compat
-  :ensure (:host github :repo "emacs-compat/compat" :branch "main"))
+  :ensure (:host github :repo "emacs-compat/compat" :branch "main" :ref "bfc0a46"))
 
 (provide 'sss/libs)
 

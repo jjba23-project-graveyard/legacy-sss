@@ -197,3 +197,15 @@ repl:
 test:
 	guix shell -m manifest.scm -- guile --fresh-auto-compile test/run-tests.scm | \
 		guile --fresh-auto-compile test/colorize-tests.scm
+
+full-reset-emacs:
+	-pkill emacs
+	-pkill emacsclient
+	-rm -rf ~/.emacs.d/auto-save-list
+	-rm -rf ~/.emacs.d/elpa
+	-rm -rf ~/.emacs.d/elpaca
+	-rm -rf ~/.emacs.d/history
+	-rm -rf ~/.emacs.d/org-roam.db
+	-rm -rf ~/.emacs.d/tramp
+	-rm -rf ~/.emacs.d/recentf
+	-emacs --daemon
