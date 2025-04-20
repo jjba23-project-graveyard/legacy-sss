@@ -624,6 +624,16 @@ du -ah / | sort -rh | head -n 20
 
 The real best way to manage your bluetooth is using the bluetoothctl shell. That being said SSS comes with a GUI graphical interface to manage Bluetooth. You can also go low-level, and programatically connect to your devices, setup shortcuts for "favourite" connections, and much more with ~bluetoothctl~.
 
+-----
+
+* Firewall
+
+By default, the Supreme Sexp System (SSS) chooses the sane default firewall settings for a "desktop" or "laptop" computer.
+
+This means rejecting any incoming network calls by default, only accepting ~ping~ requests and calls that originate from the machine itself (loopback device). This allows security, and developing software in the same machine as well (test local ports, expose services, etc.)
+
+Adding SSH access or other network capabilities is done by tweaking the ~iptables~ of SSS (in Scheme code).
+
 ------
 
 * Virtualization
