@@ -27,6 +27,8 @@
 :FORWARD ACCEPT
 :OUTPUT ACCEPT
 -A INPUT -i lo -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A OUTPUT -p icmp -j ACCEPT
 -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 -A INPUT -j REJECT --reject-with icmp-port-unreachable
 COMMIT
@@ -37,6 +39,8 @@ COMMIT
 :FORWARD ACCEPT
 :OUTPUT ACCEPT
 -A INPUT -i lo -j ACCEPT
+-A INPUT -p icmpv6 -j ACCEPT
+-A OUTPUT -p icmpv6 -j ACCEPT
 -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 -A INPUT -j REJECT --reject-with icmp6-port-unreachable
 COMMIT
