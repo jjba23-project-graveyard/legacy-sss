@@ -220,6 +220,37 @@ interactive development and testing."
                                (kill-matching-buffers-no-ask buf-name))))
                          (async-shell-to-buffer cmd buf-name)))))
 
+(defun sss-project-start-test ()
+  "Start the test suite for the current project using `make test`.
+
+This command attempts to locate the root directory of the current project
+and then executes `make test` within that directory in an asynchronous
+shell process. The output of the test execution will be displayed in a
+dedicated buffer named \"test:PROJECT-ROOT\", where PROJECT-ROOT is the
+name of the project's root directory.
+
+It uses `sss-do-in-project` to identify the project root. Before
+running the `make` command, it prints a separator and a message
+indicating the start of the testing process, along with the project
+directory, in the output buffer. If a buffer with the same name
+already exists, it is automatically closed without prompting.
+
+This command is intended to easily initiate the project's test suite,
+as defined by a `Makefile` with a `test` target, facilitating the
+process of verifying the project's functionality."
+  (interactive)
+  (sss-do-in-project (lambda(root-dir)
+                       (let* ((sep "==============================================")
+                              (msg (format "%s\nstarting tests for %s\n%s\n" sep root-dir sep))
+                              (cmd (format "echo \"%s\" && cd %s && make test" msg root-dir))
+                              (buf-name (format "test:%s" root-dir)))
+                         (ignore-errors
+                           (with-current-buffer buf-name
+                             (progn
+                               (set-buffer-modified-p nil)
+                               (kill-matching-buffers-no-ask buf-name))))
+                         (async-shell-to-buffer cmd buf-name)))))
+
 
 (defun sss-guix-fmt ()
   "Format the current buffer in place using `guix style`.
