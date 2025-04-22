@@ -69,6 +69,7 @@
          ("C-c # m" . sss-publish-manual)
          ("C-c # f" . sss-full-reconfigure)
          ("C-c w r" . sss-project-start-repl-process)
+         ("C-c w f" . sss-project-fmt)
          ("C-c w d" . sss-project-start-dev))
   :hook ((text-mode . visual-line-mode))
   :config  
@@ -82,18 +83,18 @@
   (setq compilation-always-kill t)
   
   (setq treesit-font-lock-level 4
-	      ring-bell-function #'ignore
-	      frame-resize-pixelwise t
+	ring-bell-function #'ignore
+	frame-resize-pixelwise t
         completion-cycle-threshold 3
-	      tab-always-indent 'complete
-	      text-mode-ispell-word-completion nil
+	tab-always-indent 'complete
+	text-mode-ispell-word-completion nil
         vc-follow-symlinks t
         read-file-name-completion-ignore-case t
         read-buffer-completion-ignore-case t
         completion-ignore-case t
         use-dialog-box nil
-	      delete-by-moving-to-trash t
-	      tab-width 2)
+	delete-by-moving-to-trash t
+	tab-width 2)
   
   (savehist-mode 1)
   (save-place-mode 1)
