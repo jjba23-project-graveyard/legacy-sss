@@ -67,7 +67,9 @@
          ("C-c # s" . sss-sys-reconfigure)
          ("C-c # u" . sss-sys-update)
          ("C-c # m" . sss-publish-manual)
-         ("C-c # f" . sss-full-reconfigure))
+         ("C-c # f" . sss-full-reconfigure)
+         ("C-c w r" . sss-project-start-repl)
+         ("C-c w d" . sss-project-start-dev))
   :hook ((text-mode . visual-line-mode))
   :config  
   (setq-default line-spacing 6

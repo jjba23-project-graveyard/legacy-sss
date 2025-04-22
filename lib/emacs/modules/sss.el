@@ -88,6 +88,44 @@
 (defun sss-uuidgen-string ()
   (string-replace "\n" "" (shell-command-to-string "uuidgen")))
 
+(defun sss-do-in-project (f)
+  (funcall f (vc-root-dir)))
+
+(defun async-shell-to-buffer (cmd buf-name)
+  (let ((output-buffer (generate-new-buffer buf-name)))
+    (async-shell-command cmd output-buffer output-buffer)))
+
+(defun sss-project-start-repl ()
+  "Start a REPL for the current project with `make repl'"
+  (interactive)
+  (sss-do-in-project (lambda(root-dir)
+                       (let* ((sep "==============================================")
+                              (msg (format "%s\nstarting a project REPL for %s\n%s\n" sep root-dir sep))
+                              (cmd (format "echo \"%s\" && cd %s && make repl" msg root-dir))
+                              (buf-name (format "repl:%s" root-dir)))
+                         (ignore-errors
+                           (with-current-buffer buf-name
+                             (progn
+                               (set-buffer-modified-p nil)
+                               (kill-matching-buffers-no-ask buf-name))))
+                         (async-shell-to-buffer cmd buf-name)))))
+
+(defun sss-project-start-dev ()
+  "Start a dev session for the current project with `make dev'"
+  (interactive)
+  (sss-do-in-project (lambda(root-dir)
+                       (let* ((sep "==============================================")
+                              (msg (format "%s\nstarting a dev session for %s\n%s\n" sep root-dir sep))
+                              (cmd (format "echo \"%s\" && cd %s && make dev" msg root-dir))
+                              (buf-name (format "dev:%s" root-dir)))
+                         (ignore-errors
+                           (with-current-buffer buf-name
+                             (progn
+                               (set-buffer-modified-p nil)
+                               (kill-matching-buffers-no-ask buf-name))))
+                         (async-shell-to-buffer cmd buf-name)))))
+
+
 (defun sss-guix-fmt ()
   (interactive)
   (let ((path (file-truename buffer-file-name)))
