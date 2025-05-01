@@ -51,6 +51,7 @@
         eglot-autoreconnect t)
   :config
   (setq eglot-server-programs (assq-delete-all 'scala-mode eglot-server-programs))
+  (setq eglot-server-programs (assq-delete-all 'scala-ts-mode eglot-server-programs))
   (add-to-list 'eglot-server-programs '(scala-mode . ("metals" "-Dmetals.http=on")))
   (add-to-list 'eglot-server-programs '(scala-ts-mode . ("metals" "-Dmetals.http=on")))
   (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nil")))
