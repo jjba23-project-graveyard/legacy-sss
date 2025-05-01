@@ -58,7 +58,7 @@
   
   (setq-default eglot-workspace-configuration
                 '(
-                  :metals ( :autoImportBuild t
+                  :metals ( :autoImportBuild "all"
                             :superMethodLensesEnabled t
                             :showInferredType t
                             :enableSemanticHighlighting t
@@ -66,7 +66,8 @@
                                           :implicitArguments (:enable nil)
                                           :implicitConversions (:enable nil )
                                           :typeParameters (:enable t )
-                                          :hintsInPatternMatch (:enable nil )))
+                                          :hintsInPatternMatch (:enable nil ))
+                            :bloopJvmProperties ["-Xmx2G"])
                   :haskell (:formattingProvider "ormolu")
                   :rust-analyzer (:cargo (:sysroot "discover"
                                                    :features "all"
