@@ -155,8 +155,6 @@
   (list fontconfig
         font-google-roboto
         font-google-noto-emoji
-        font-recursive
-        font-microsoft-cascadia
         font-adwaita
         font-liberation
         font-dejavu
@@ -190,7 +188,6 @@
 
         ;; Wayland portals
         xdg-desktop-portal
-        ;; xdg-desktop-portal-wlr
         xdg-desktop-portal-hyprland
         xdg-desktop-portal-gtk
 
@@ -267,9 +264,7 @@
   (list papirus-icon-theme
         yaru-theme
         numix-gtk-theme
-        delft-icon-theme
         gnome-themes-standard
-        gnome-themes-extra
         adwaita-icon-theme))
 
 (define sss-latex-packages
@@ -389,7 +384,7 @@
         stress
         stress-ng
 
-        ;; (sss/x86-only-pkg architecture "nyxt")
+        (sss/x86-only-pkg architecture "nyxt")
         
         autoconf
         automake
