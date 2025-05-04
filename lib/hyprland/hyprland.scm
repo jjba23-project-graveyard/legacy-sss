@@ -70,6 +70,7 @@
                        "emacs --daemon"
                        "transmission-daemon"
                        "podman system service --time=0 unix:///tmp/podman.sock"
+                       "gsettings set org.gnome.desktop.interface gtk-key-theme \"Emacs\""
                        ,(format #f
                          "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
                          gtk-theme-name)
