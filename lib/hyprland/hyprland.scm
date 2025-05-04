@@ -34,20 +34,6 @@
 (define* (hypr-startup-programs #:key palette
                                 (extra-startups '()))
   (let* ((gtk-theme-name (cond
-                          ((equal? 'sss-palette-ef-cyprus palette)
-                           "Yaru-sage")
-                          ((equal? 'sss-palette-heavy-metal palette)
-                           "Yaru-red-dark")
-                          ((equal? 'sss-palette-ef-dream palette)
-                           "Yaru-magenta-dark")
-                          ((equal? 'sss-palette-ef-autumn palette)
-                           "Yaru-dark")
-                          ((equal? 'sss-palette-solarized-light palette)
-                           "Yaru")
-                          ((equal? 'sss-palette-everforest-light palette)
-                           "Yaru-sage")
-                          (else "Yaru-sage-dark")))
-         (icon-theme-name (cond
                            ((equal? 'sss-palette-ef-cyprus palette)
                             "Yaru-sage")
                            ((equal? 'sss-palette-heavy-metal palette)
@@ -61,6 +47,20 @@
                            ((equal? 'sss-palette-everforest-light palette)
                             "Yaru-sage")
                            (else "Yaru-sage-dark")))
+         (icon-theme-name (cond
+                            ((equal? 'sss-palette-ef-cyprus palette)
+                             "Yaru-sage")
+                            ((equal? 'sss-palette-heavy-metal palette)
+                             "Yaru-red-dark")
+                            ((equal? 'sss-palette-ef-dream palette)
+                             "Yaru-magenta-dark")
+                            ((equal? 'sss-palette-ef-autumn palette)
+                             "Yaru-dark")
+                            ((equal? 'sss-palette-solarized-light palette)
+                             "Yaru")
+                            ((equal? 'sss-palette-everforest-light palette)
+                             "Yaru-sage")
+                            (else "Yaru-sage-dark")))
          (xs (append extra-startups
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
@@ -71,11 +71,11 @@
                        "transmission-daemon"
                        "podman system service --time=0 unix:///tmp/podman.sock"
                        ,(format #f
-                                "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
-                                gtk-theme-name)
+                         "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
+                         gtk-theme-name)
                        ,(format #f
-                                "gsettings set org.gnome.desktop.interface icon-theme '~a'"
-                                icon-theme-name)
+                         "gsettings set org.gnome.desktop.interface icon-theme '~a'"
+                         icon-theme-name)
                        "gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'"
                        "gsettings set org.gnome.desktop.interface cursor-size 24"
                        "gsettings set org.gnome.desktop.interface font-name 'Adwaita Sans'"))))

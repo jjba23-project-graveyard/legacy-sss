@@ -261,10 +261,7 @@
         xorg-server))
 
 (define sss-theme-packages
-  (list papirus-icon-theme
-        yaru-theme
-        numix-gtk-theme
-        gnome-themes-standard
+  (list papirus-icon-theme yaru-theme numix-gtk-theme gnome-themes-standard
         adwaita-icon-theme))
 
 (define sss-latex-packages
@@ -385,7 +382,7 @@
         stress-ng
 
         (sss/x86-only-pkg architecture "nyxt")
-        
+
         autoconf
         automake
 
