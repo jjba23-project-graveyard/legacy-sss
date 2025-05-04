@@ -22,7 +22,6 @@
   #:use-module (nongnu packages chrome)
   #:use-module (nongnu packages music)
   #:use-module (gnu services nix)
-  #:use-module (sss packages conky)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
@@ -172,7 +171,6 @@
 (define sss-wm-packages
   (list rofi-wayland
         fzf
-        sss-conky
 
         slurp
 
@@ -305,8 +303,6 @@
         xz
 
         gtk
-
-        qutebrowser
 
         binutils
 
