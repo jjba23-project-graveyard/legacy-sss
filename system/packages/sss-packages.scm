@@ -456,46 +456,6 @@
 (define sss-emacs-packages
   (list emacs-jinx))
 
-(define-public hyprlock
-  (package
-    (name "hyprlock")
-    (version "0.7.0")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/hyprwm/hyprlock")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "03ivr5nsjwiwvpdxpjnldwawy8sx8qgwhs57242xkb0zz0w0gvsk"))))
-    (build-system cmake-build-system)
-    (arguments
-     (list
-      #:tests? #f
-      #:cmake cmake-3.30)) ;No tests.
-    (native-inputs (list gcc-14 pkg-config))
-    (inputs (list hyprlang
-                  hyprutils
-                  hyprgraphics
-                  sdbus-c++
-                  wayland
-                  wayland-protocols
-                  mesa
-                  libwebp
-                  (specification->package "libjpeg")
-                  libxkbcommon
-                  hyprwayland-scanner
-                  egl-wayland
-                  cairo
-                  linux-pam
-                  pango))
-    (home-page "https://github.com/hyprwm/hyprlock")
-    (synopsis "Hyprland's lock screen")
-    (description
-     "Hyprland's simple, yet multi-threaded and GPU-accelerated screen locking utility.")
-    (license license:bsd-3)))
-
 (define sss-hypr-packages
   (list hyprland hypridle grimblast hyprcursor hyprlock))
 
