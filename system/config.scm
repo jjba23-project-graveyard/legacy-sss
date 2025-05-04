@@ -41,7 +41,6 @@
 
 ;; load system packages and definitions
 (load "./packages/conky.scm")
-(load "./packages/fonts.scm")
 (load "./packages/sss-packages.scm")
 
 ;; load system users

@@ -23,7 +23,6 @@
   #:use-module (nongnu packages music)
   #:use-module (gnu services nix)
   #:use-module (sss packages conky)
-  #:use-module (sss packages fonts)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
   #:use-module (guix build-system copy)
@@ -159,17 +158,12 @@
         font-google-noto-emoji
         font-recursive
         font-microsoft-cascadia
-        font-victor-mono
-        font-jetbrains-mono
-        font-intel-one-mono
         font-adwaita
-        font-inter
         font-liberation
         font-dejavu
         font-microsoft-web-core-fonts
         font-awesome
         font-fira-code
-        font-monaspace
         font-google-noto))
 
 (define sss-normie-packages
