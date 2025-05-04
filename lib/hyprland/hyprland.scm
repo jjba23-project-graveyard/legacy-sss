@@ -79,7 +79,7 @@
                          icon-theme-name)
                        "gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'"
                        "gsettings set org.gnome.desktop.interface cursor-size 24"
-                       "gsettings set org.gnome.desktop.interface font-name 'Inter'"))))
+                       "gsettings set org.gnome.desktop.interface font-name 'Adwaita Sans'"))))
     xs))
 
 (define* (hypr-input #:key keyboard-layout caps-to-ctrl)
