@@ -42,6 +42,7 @@
 (use-package-modules freedesktop
                      base
                      lxqt
+                     chromium
                      package-management
                      parallel
                      web
@@ -58,6 +59,7 @@
                      mpd
                      android
                      xfce
+                     engineering
                      cpp
                      python-xyz
                      commencement
@@ -415,9 +417,10 @@
 
         drill
         android-file-transfer
+        freecad
 
         (specification->package "gettext")
-
+        (specification->package "ungoogled-chromium-wayland")
         (sss/x86-only-pkg architecture "google-chrome-stable")
         (sss/x86-only-pkg architecture "reaper")
         (sss/x86-only-pkg architecture "stellarium")
