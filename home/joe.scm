@@ -70,7 +70,6 @@
              (sss mime)
              (sss fish)
              (sss gtk)
-             (sss nyxt)
              (sss portals)
              (sss alacritty)
              (sss qt)
@@ -104,7 +103,6 @@
                    (sss-hyprpaper-svc #:clone-dir sss-clone-dir
                                       #:palette sss-palette)
                    (sss-mime-svc)
-                   (sss-nyxt-svc)
                    (sss-fastfetch-svc #:clone-dir sss-clone-dir)
                    (sss-fish-svc #:clone-dir sss-clone-dir
                                  #:palette sss-palette)
