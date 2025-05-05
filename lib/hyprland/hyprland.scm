@@ -307,7 +307,7 @@
                         #:cmd "icecat")
              (exec-bind #:mod "s-S"
                         #:bind "I"
-                        #:cmd "google-chrome")
+                        #:cmd "chromium")
              (exec-bind #:mod "s"
                         #:bind "B"
                         #:cmd "thunar")
