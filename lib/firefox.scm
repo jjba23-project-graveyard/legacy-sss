@@ -30,9 +30,9 @@
   (define (userjs-value-quoting v)
     (cond
       ((string? v)
-       (format #f "\"~a\"" v))
+       (format #f "`~a`" v))
       ((symbol? v)
-       (format #f "\"~a\"" v))
+       (format #f "`~a`" v))
       ((eq? #t v)
        "true")
       ((eq? #f v)
