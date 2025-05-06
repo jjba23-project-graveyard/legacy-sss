@@ -71,10 +71,125 @@
     ;; media cache
     (media.memory_cache_max_size . 65536)
     (media.cache_readahead_limit . 7200)
-    (media.cache_resume_threshold . 3600)))
+    (media.cache_resume_threshold . 3600)
+    ;; image cache
+    (image.mem.decode_bytes_at_a_time . 32768)
+    ;; network
+    (network.http.max-connections . 1800)
+    (network.http.max-persistence-connections-per-server . 10)
+    (network.http.max-urgent-start-excessive-connections-per-host . 5)
+    (network.http.pacing.requests.enabled . #f)
+    (network.dnsCacheExpiration . 3600)
+    (network.ssl_tokens_cache_capacity . 10240)
+    ;; speculative loading
+    (network.dsn.disablePrefetch . #t)
+    (network.dns.disablePrefetchFromHTTPS . #t)
+    (network.prefetch-next . #f)
+    (network.predictor.enabled . #f)
+    (network.predictor.enable-prefetch . #f)
+    ;; experimental
+    (layout.css.grid-template-masonry-value.enabled . #t)))
 
 (define sss-icecat-userjs-securefox
-  '((browser.contentblocking.category . strict)))
+  '(
+    
+    ;; TRACKING PROTECTION
+    (browser.contentblocking.category . strict)
+    (browser.download.start_downloads_in_tmp_dir . #t)
+    (browser.helperApps.deleteTempFileOnExit . #t)
+    (browser.uitour.enabled . #f)
+    (privacy.globalprivacycontrol.enabled . #t)
+
+    ;; OCSP & CERTS / HPKP
+    (security.OCSP.enabled . 0)
+    (security.pki.crlite_mode . 2)
+
+    ;; SSL / TLS
+    (security.ssl.treat_unsafe_negotiation_as_broken . #t)
+    (browser.xul.error_pages.expert_bad_cert . #t)
+    (security.tls.enable_0rtt_data . #f)
+
+    ;; DISK AVOIDANCE
+    (browser.privatebrowsing.forceMediaMemoryCache . #t)
+    (browser.sessionstore.interval . 60000)
+
+    ;; SHUTDOWN & SANITIZING
+    (browser.privatebrowsing.resetPBM.enabled . #t)
+    (privacy.history.custom . #t)
+
+    ;; SEARCH / URL BAR
+    (browser.urlbar.trimHttps . #t)
+    (browser.urlbar.untrimOnUserInteraction.featureGate . #t)
+    (browser.search.separatePrivateDefault.ui.enabled . #t)
+    (browser.urlbar.update2.engineAliasRefresh . #t)
+    (browser.search.suggest.enabled . #f)
+    (browser.urlbar.quicksuggest.enabled . #f)
+    (browser.urlbar.groupLabels.enabled . #f)
+    (browser.formfill.enable . #f)
+    (network.IDN_show_punycode . #t)
+
+    ;; PASSWORDS
+    (signon.formlessCapture.enabled . #f)
+    (signon.privateBrowsingCapture.enabled . #f)
+    (network.auth.subresource-http-auth-allow . 1)
+    (editor.truncate_user_pastes . #f)
+
+    ;; MIXED CONTENT + CROSS-SITE
+    (security.mixed_content.block_display_content . #t)
+    (pdfjs.enableScripting . #f)
+
+    ;; EXTENSIONS
+    (extensions.enabledScopes . 5)
+
+    ;; HEADERS / REFERERS
+    (network.http.referer.XOriginTrimmingPolicy . 2)
+
+    ;; CONTAINERS
+    (privacy.userContext.ui.enabled . #t)
+
+    ;; SAFE BROWSING
+    (browser.safebrowsing.downloads.remote.enabled . #f)
+
+    ;; MOZILLA
+    (permissions.default.desktop-notification . 2)
+    (permissions.default.geo . 2)
+    (geo.provider.network.url . "https://beacondb.net/v1/geolocate")
+    (browser.search.update . #f)
+    (permissions.manager.defaultsUrl . "")
+
+    ;; TELEMETRY
+    (datareporting.policy.dataSubmissionEnabled . #f)
+    (datareporting.healthreport.uploadEnabled . #f)
+    (toolkit.telemetry.unified . #f)
+    (toolkit.telemetry.enabled . #f)
+    (toolkit.telemetry.server . "data:,")
+    (toolkit.telemetry.archive.enabled . #f)
+    (toolkit.telemetry.newProfilePing.enabled . #f)
+    (toolkit.telemetry.shutdownPingSender.enabled . #f)
+    (toolkit.telemetry.updatePing.enabled . #f)
+    (toolkit.telemetry.bhrPing.enabled . #f)
+    (toolkit.telemetry.firstShutdownPing.enabled . #f)
+    (toolkit.telemetry.coverage.opt-out . #t)
+    (toolkit.coverage.opt-out . #t)
+    (toolkit.coverage.endpoint.base . "")
+    (browser.newtabpage.activity-stream.feeds.telemetry . #f)
+    (browser.newtabpage.activity-stream.telemetry . #f)
+
+    ;; EXPERIMENTS
+    (app.shield.optoutstudies.enabled . #f)
+    (app.normandy.enabled . #f)
+    (app.normandy.api_url . "")
+
+    ;; CRASH REPORTS
+    (breakpad.reportURL . "")
+    (browser.tabs.crashReporting.sendReport . #f)
+
+    ;; DETECTION
+    (captivedetect.canonicalURL . "")
+    (network.captive-portal-service.enabled . #f)
+    (network.connectivity-service.enabled . #f)
+
+    ))
 
 (define sss-icecat-userjs-config
   (map serialize-icecat-userjs-setting
