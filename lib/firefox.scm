@@ -15,15 +15,15 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(define-module (sss icecat)
+(define-module (sss firefox)
   #:use-module (gnu))
 
-(define (serialize-icecat-ini-setting s)
+(define (serialize-firefox-ini-setting s)
   (format #f "~a=~a"
           (car s)
           (cdr s)))
 
-(define (serialize-icecat-userjs-setting s)
+(define (serialize-firefox-userjs-setting s)
   (define (userjs-value-quoting v)
     (cond
       ((string? v)
@@ -40,28 +40,28 @@
           (userjs-value-quoting (car s))
           (userjs-value-quoting (cdr s))))
 
-(define sss-icecat-profile-default
+(define sss-firefox-profile-default
   `((Name . default) (Path . "qwexsrf7.default")
     (IsRelative . 1)
     (Default . 0)))
 
-(define sss-icecat-profile-sss
+(define sss-firefox-profile-sss
   `((Name . sss) (Path . sss)
     (IsRelative . 1)
     (Default . 1)))
 
-(define sss-icecat-profile-general
+(define sss-firefox-profile-general
   `((StartWithLastProfile . 1) (Version . 2)))
 
-(define sss-icecat-profiles-config
+(define sss-firefox-profiles-config
   (append (list "" "[Profile0]")
-          (map serialize-icecat-ini-setting sss-icecat-profile-default)
+          (map serialize-firefox-ini-setting sss-firefox-profile-default)
           (list "" "[Profile1]")
-          (map serialize-icecat-ini-setting sss-icecat-profile-sss)
+          (map serialize-firefox-ini-setting sss-firefox-profile-sss)
           (list "" "[General]")
-          (map serialize-icecat-ini-setting sss-icecat-profile-general)))
+          (map serialize-firefox-ini-setting sss-firefox-profile-general)))
 
-(define sss-icecat-userjs-fastfox
+(define sss-firefox-userjs-fastfox
   '((content.notify.interval . 100000)
     ;; gfx
     (gfx.canvas.accelerated.cache-size . 512)
@@ -90,7 +90,7 @@
     ;; experimental
     (layout.css.grid-template-masonry-value.enabled . #t)))
 
-(define sss-icecat-userjs-securefox
+(define sss-firefox-userjs-securefox
   '(
     
     ;; TRACKING PROTECTION
@@ -189,10 +189,10 @@
     (network.captive-portal-service.enabled . #t)
     (network.connectivity-service.enabled . #t)))
 
-(define sss-icecat-userjs-peskyfox
+(define sss-firefox-userjs-peskyfox
   '(
     
-    ;; IceCat UI
+    ;; Firefox UI
     (browser.privatebrowsing.vpnpromourl . "")
     (extensions.getAddons.showPane . #f)
     (extensions.htmlaboutaddons.recommendations.enabled . #f)
@@ -246,20 +246,20 @@
 
     ))
 
-(define sss-icecat-userjs-config
-  (map serialize-icecat-userjs-setting
-       (append sss-icecat-userjs-fastfox sss-icecat-userjs-securefox
-               sss-icecat-userjs-peskyfox)))
+(define sss-firefox-userjs-config
+  (map serialize-firefox-userjs-setting
+       (append sss-firefox-userjs-fastfox sss-firefox-userjs-securefox
+               sss-firefox-userjs-peskyfox)))
 
 (begin
-  (define* (sss-icecat-svc)
-    `((".mozilla/icecat/profiles.ini" ,(plain-file "profiles.ini"
+  (define* (sss-firefox-svc)
+    `((".mozilla/firefox/profiles.ini" ,(plain-file "profiles.ini"
+                                                    (string-join
+                                                     sss-firefox-profiles-config
+                                                     "\n")))
+      (".mozilla/firefox/sss/user.js" ,(plain-file "user.js"
                                                    (string-join
-                                                    sss-icecat-profiles-config
-                                                    "\n")))
-      (".mozilla/icecat/sss/user.js" ,(plain-file "user.js"
-                                                  (string-join
-                                                   sss-icecat-userjs-config
-                                                   "\n")))))
-  (export sss-icecat-svc))
+                                                    sss-firefox-userjs-config
+                                                    "\n")))))
+  (export sss-firefox-svc))
 

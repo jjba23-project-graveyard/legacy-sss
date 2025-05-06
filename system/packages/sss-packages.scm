@@ -267,7 +267,7 @@
   (list spotifyd lilypond ardour))
 
 (define sss-browser-packages
-  (list icecat icedove))
+  (list (specification->package "firefox") (specification->package "ungoogled-chromium-wayland")))
 
 (define sss-qt-packages
   (list qtwayland qt6ct qtsvg))
@@ -353,7 +353,7 @@
         transmission-remote-gtk
         tree
         tumbler
-        (specification->package "ungoogled-chromium-wayland")
+        (specification->package "thunderbird")
         unixodbc
         virt-manager
         watchexec
