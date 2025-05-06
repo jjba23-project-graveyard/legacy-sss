@@ -18,6 +18,7 @@
 (define-module (sss firefox)
   #:use-module (gnu)
   #:use-module (sxml simple)
+  #:use-module (json)
   #:use-module (sss process))
 
 (define (serialize-firefox-ini-setting s)
@@ -190,8 +191,21 @@
     (network.captive-portal-service.enabled . #t)
     (network.connectivity-service.enabled . #t)))
 
+(define sss-firefox-ui-customization
+  `((placements (widget-overflow-fixed-list . #())
+                (unified-extensions-area . #())
+                (nav-bar . #(firefox-view-button alltabs-button reset-pbm-toolbar-button unified-extensions-button bookmarks-menu-button home-button developer-button customizableui-special-spring2 back-button forward-button urlbar-container customizableui-special-spring3 vertical-spacer sidebar-button find-button history-panelmenu downloads-button))
+                (toolbar-menubar . #(menubar-items))
+                (TabsToolbar . #())
+                (vertical-tabs . #(tabbrowser-tabs))
+                (PersonalToolbar . #(import-button personal-bookmarks)))
+    (seen . #(reset-pbm-toolbar-button developer-button))
+    (dirtyAreaCache . #(nav-bar TabsToolbar vertical-tabs PersonalToolbar toolbar-menubar))
+    (currentVersion . 22)
+    (newElementCount . 3)))
+
 (define sss-firefox-userjs-peskyfox
-  '(
+  `(
     
     ;; Firefox UI
     (browser.privatebrowsing.vpnpromourl . "")
@@ -206,6 +220,9 @@
     (browser.aboutwelcome.enabled . #f)
     (browser.profiles.enabled . #t)
     (browser.ml.chat.enabled . #f)
+    (browser.uiCustomization.state unquote
+                                   (scm->json-string
+                                    sss-firefox-ui-customization))
 
     ;; Sidebar
     (sidebar.main.tools . "history,bookmarks")
