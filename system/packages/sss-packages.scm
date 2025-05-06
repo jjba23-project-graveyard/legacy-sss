@@ -354,7 +354,7 @@
         transmission
         transmission-remote-gtk
         tree
-        tumbler        
+        tumbler
         unixodbc
         virt-manager
         watchexec
