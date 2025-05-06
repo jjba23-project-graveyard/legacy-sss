@@ -236,6 +236,7 @@
     (browser.download.open_pdf_attachments_inline . #t)
 
     ;; Tab behavior
+    (sidebar.verticalTabs . #t)
     (browser.bookmarks.openInTabClosesMenu . #f)
     (browser.menu.showViewImageInfo . #t)
     (findbar.highlightAll . #t)
