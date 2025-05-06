@@ -80,6 +80,8 @@
 (define sss-nixpkgs
   '("yaml-language-server" "bash-language-server"
     "discord"
+    "papirus-folders"
+    "typescript-language-server"
     "spotify"
     "jdt-language-server"
     "nil"
