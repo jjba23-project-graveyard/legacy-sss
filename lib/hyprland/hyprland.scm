@@ -311,7 +311,7 @@
                         #:cmd "google-chrome-beta")
              (exec-bind #:mod "s"
                         #:bind "B"
-                        #:cmd "thunar")
+                        #:cmd "nemo")
 
              (hypr-bind #:mod "s-S"
                         #:bind "space"

@@ -47,6 +47,7 @@
                      bash
                      bittorrent
                      chromium
+                     cinnamon
                      cmake
                      commencement
                      compression
@@ -326,7 +327,7 @@
         lxsession
         mpv
         mpv-mpris
-        nautilus
+        nemo
         netcat
         nginx
         obs
@@ -349,7 +350,6 @@
         stress
         stress-ng
         sysstat
-        thunar
         tmon
         transmission
         transmission-remote-gtk
