@@ -205,6 +205,13 @@
     (browser.aboutConfig.showWarning . #f)
     (browser.aboutwelcome.enabled . #f)
     (browser.profiles.enabled . #t)
+    (browser.ml.chat.enabled . #f)
+
+    ;; Sidebar
+    (sidebar.main.tools . "history,bookmarks")
+    (sidebar.new-sidebar.has-used . #t)
+    (sidebar.revamp . #t)
+    (sidebar.verticalTabs . #t)
 
     ;; Theme adjustments
     (toolkit.legacyUserProfileCustomizations.stylesheets . #t)
@@ -217,6 +224,7 @@
     (full-screen-api.warning.timeout . 0)
 
     ;; Url bar
+    (browser.toolbars.bookmarks.visibility . always)
     (browser.urlbar.unitConversion.enabled . #t)
     (browser.urlbar.trending.featureGate . #f)
     (dom.text_fragments.create_text_fragment.enabled . #t)
@@ -237,7 +245,6 @@
     (browser.download.open_pdf_attachments_inline . #t)
 
     ;; Tab behavior
-    (sidebar.verticalTabs . #t)
     (browser.bookmarks.openInTabClosesMenu . #f)
     (browser.menu.showViewImageInfo . #t)
     (findbar.highlightAll . #t)
