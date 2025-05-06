@@ -23,6 +23,23 @@
           (car s)
           (cdr s)))
 
+(define (serialize-icecat-userjs-setting s)
+  (define (userjs-value-quoting v)
+    (cond
+      ((string? v)
+       (format #f "\"~a\"" v))
+      ((symbol? v)
+       (format #f "\"~a\"" v))
+      ((eq? #t v)
+       "true")
+      ((eq? #f v)
+       "false")
+      (else v)))
+  (write (car s))
+  (format #f "user_pref(~a, ~a);"
+          (userjs-value-quoting (car s))
+          (userjs-value-quoting (cdr s))))
+
 (define sss-icecat-profile-default
   `((Name . default) (Path . "qwexsrf7.default")
     (IsRelative . 1)
@@ -44,11 +61,34 @@
           (list "" "[General]")
           (map serialize-icecat-ini-setting sss-icecat-profile-general)))
 
+(define sss-icecat-userjs-fastfox
+  '((content.notify.interval . 100000)
+    ;; gfx
+    (gfx.canvas.accelerated.cache-size . 512)
+    (gfx.content.skia-font-cache-size . 20)
+    ;; disk cache
+    (browser.cache.disk.enable . #f)
+    ;; media cache
+    (media.memory_cache_max_size . 65536)
+    (media.cache_readahead_limit . 7200)
+    (media.cache_resume_threshold . 3600)))
+
+(define sss-icecat-userjs-securefox
+  '((browser.contentblocking.category . strict)))
+
+(define sss-icecat-userjs-config
+  (map serialize-icecat-userjs-setting
+       (append sss-icecat-userjs-fastfox sss-icecat-userjs-securefox)))
+
 (begin
   (define* (sss-icecat-svc)
     `((".mozilla/icecat/profiles.ini" ,(plain-file "profiles.ini"
                                                    (string-join
                                                     sss-icecat-profiles-config
                                                     "\n")))
-      (".mozilla/icecat/sss/user.js" ,(local-file "icecat/user.js"))))
+      (".mozilla/icecat/sss/user.js" ,(plain-file "user.js"
+                                                  (string-join
+                                                   sss-icecat-userjs-config
+                                                   "\n")))))
   (export sss-icecat-svc))
+
