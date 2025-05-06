@@ -186,14 +186,70 @@
 
     ;; DETECTION
     (captivedetect.canonicalURL . "")
-    (network.captive-portal-service.enabled . #f)
-    (network.connectivity-service.enabled . #f)
+    (network.captive-portal-service.enabled . #t)
+    (network.connectivity-service.enabled . #t)))
+
+(define sss-icecat-userjs-peskyfox
+  '(
+    
+    ;; IceCat UI
+    (browser.privatebrowsing.vpnpromourl . "")
+    (extensions.getAddons.showPane . #f)
+    (extensions.htmlaboutaddons.recommendations.enabled . #f)
+    (browser.discovery.enabled . #f)
+    (browser.shell.checkDefaultBrowser . #f)
+    (browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons . #f)
+    (browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features . #f)
+    (browser.preferences.moreFromMozilla . #f)
+    (browser.aboutConfig.showWarning . #f)
+    (browser.aboutwelcome.enabled . #f)
+    (browser.profiles.enabled . #t)
+
+    ;; Theme adjustments
+    (toolkit.legacyUserProfileCustomizations.stylesheets . #t)
+    (browser.compactmode.show . #t)
+    (browser.privateWindowSeparation.enabled . #f)
+
+    ;; Fullscreen notice
+    (full-screen-api.transition-duration.enter . "0 0")
+    (full-screen-api.transition-duration.leave . "0 0")
+    (full-screen-api.warning.timeout . 0)
+
+    ;; Url bar
+    (browser.urlbar.unitConversion.enabled . #t)
+    (browser.urlbar.trending.featureGate . #f)
+    (dom.text_fragments.create_text_fragment.enabled . #t)
+
+    ;; New tab page
+    (browser.newtabpage.activity-stream.default.sites . "")
+    (browser.newtabpage.activity-stream.showSponsoredTopSites . #f)
+    (browser.newtabpage.activity-stream.feeds.section.topstories . #f)
+    (browser.newtabpage.activity-stream.showSponsored . #f)
+
+    ;; Pocket
+    (extensions.pocket.enabled . #f)
+
+    ;; Downloads
+    (browser.download.manager.addToRecentDocs . #f)
+
+    ;; PDF
+    (browser.download.open_pdf_attachments_inline . #t)
+
+    ;; Tab behavior
+    (browser.bookmarks.openInTabClosesMenu . #f)
+    (browser.menu.showViewImageInfo . #t)
+    (findbar.highlightAll . #t)
+    (layout.word_select.eat_space_to_next_word . #f)
+
+    ;; Wallet
+    (wallet.enabled . #f)
 
     ))
 
 (define sss-icecat-userjs-config
   (map serialize-icecat-userjs-setting
-       (append sss-icecat-userjs-fastfox sss-icecat-userjs-securefox)))
+       (append sss-icecat-userjs-fastfox sss-icecat-userjs-securefox
+               sss-icecat-userjs-peskyfox)))
 
 (begin
   (define* (sss-icecat-svc)
