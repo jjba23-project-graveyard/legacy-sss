@@ -307,7 +307,7 @@
                         #:cmd "firefox")
              (exec-bind #:mod "s-S"
                         #:bind "I"
-                        #:cmd "google-chrome")
+                        #:cmd "google-chrome-beta")
              (exec-bind #:mod "s"
                         #:bind "B"
                         #:cmd "thunar")
