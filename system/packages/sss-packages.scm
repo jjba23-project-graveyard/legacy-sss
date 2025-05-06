@@ -267,7 +267,8 @@
   (list spotifyd lilypond ardour))
 
 (define sss-browser-packages
-  (list (specification->package "firefox") (specification->package "ungoogled-chromium-wayland")))
+  (list (specification->package "firefox")
+        (specification->package "google-chrome-beta")))
 
 (define sss-qt-packages
   (list qtwayland qt6ct qtsvg))
@@ -315,6 +316,7 @@
         gtk
         hplip
         httpie
+        icedove
         imagemagick
         inkscape
         jq
@@ -352,8 +354,7 @@
         transmission
         transmission-remote-gtk
         tree
-        tumbler
-        (specification->package "thunderbird")
+        tumbler        
         unixodbc
         virt-manager
         watchexec

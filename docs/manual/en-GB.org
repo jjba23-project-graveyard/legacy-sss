@@ -562,6 +562,14 @@ This is currently done with hyprpaper.
 
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
+* Firefox custom declarative configurations
+
+I like to declaratively customize and configure my software, and my web browsers of course too.
+
+With Firefox (from nongnu) I like to configure it in Lisp (Guile Scheme) code, generating ~user.js~ , ~userChrome.css~ and more, to customize, harden and optimize it.
+
+See ~lib/firefox.scm~ for more.
+
 * Nyxt browser (experimental)
 
 Nyxt is a fantastic web browser, infinitely extensible, and in Emacs-spirit. It is a great fit for SSS. I am currently experimenting with it, since it's not production-ready yet. I for now am content with GNU IceCat and Ungoogle Chromium.
