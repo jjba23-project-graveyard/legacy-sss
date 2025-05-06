@@ -359,6 +359,7 @@
         virt-manager
         watchexec
         xarchiver
+        xdg-user-dirs
         xf86-input-libinput
         xf86-video-fbdev
         xxd

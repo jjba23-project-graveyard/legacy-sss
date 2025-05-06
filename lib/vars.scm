@@ -23,8 +23,9 @@
 
 ;; Environment variables for a user, plug into SSS
 (begin
-  (define* (sss-home-vars #:key clone-dir lang)
-    `(("GUIX_LOCPATH" . "$home/.guix-profile/lib/locale") ("LANG" unquote
+  (define* (sss-home-vars #:key (clone-dir "$HOME/hacking/sss")
+                          (lang "en_US"))
+    `(("GUIX_LOCPATH" . "$HOME/.guix-profile/lib/locale") ("LANG" unquote
                                                            (format #f
                                                                    "~a.UTF-8"
                                                                    lang))
@@ -50,7 +51,7 @@
        (format #f
         "$XDG_DATA_DIRS:$HOME/.nix-profile/share:$HOME/.local/share/flatpak/exports/share"))
       ("INFOPATH" unquote
-       (format #f "$INFOPATH:~a/docs/Manual" clone-dir))
+       (format #f "$INFOPATH:~a/docs/manual" clone-dir))
       ("DOCKER_HOST" . "unix:///tmp/podman.sock")))
   (export sss-home-vars))
 
