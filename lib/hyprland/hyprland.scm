@@ -48,19 +48,11 @@
                             "Yaru-sage")
                            (else "Yaru-sage-dark")))
          (icon-theme-name (cond
-                            ((equal? 'sss-palette-ef-cyprus palette)
-                             "Yaru-sage")
-                            ((equal? 'sss-palette-heavy-metal palette)
-                             "Yaru-red-dark")
-                            ((equal? 'sss-palette-ef-dream palette)
-                             "Yaru-magenta-dark")
-                            ((equal? 'sss-palette-ef-autumn palette)
-                             "Yaru-dark")
-                            ((equal? 'sss-palette-solarized-light palette)
-                             "Yaru")
-                            ((equal? 'sss-palette-everforest-light palette)
-                             "Yaru-sage")
-                            (else "Yaru-sage-dark")))
+                            ((or (equal? 'sss-palette-ef-cyprus palette)
+                                 (equal? 'sss-palette-everforest-light palette)
+                                 (equal? 'sss-palette-solarized-light palette))
+                             "Papirus-Light")
+                            (else "Papirus-Dark")))
          (xs (append extra-startups
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
