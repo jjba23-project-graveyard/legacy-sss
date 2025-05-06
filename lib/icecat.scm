@@ -16,11 +16,39 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss icecat)
-  #:use-module (gnu)
-  #:use-module (sss process))
+  #:use-module (gnu))
+
+(define (serialize-icecat-ini-setting s)
+  (format #f "~a=~a"
+          (car s)
+          (cdr s)))
+
+(define sss-icecat-profile-default
+  `((Name . default) (Path . "qwexsrf7.default")
+    (IsRelative . 1)
+    (Default . 0)))
+
+(define sss-icecat-profile-sss
+  `((Name . sss) (Path . sss)
+    (IsRelative . 1)
+    (Default . 1)))
+
+(define sss-icecat-profile-general
+  `((StartWithLastProfile . 1) (Version . 2)))
+
+(define sss-icecat-profiles-config
+  (append (list "" "[Profile0]")
+          (map serialize-icecat-ini-setting sss-icecat-profile-default)
+          (list "" "[Profile1]")
+          (map serialize-icecat-ini-setting sss-icecat-profile-sss)
+          (list "" "[General]")
+          (map serialize-icecat-ini-setting sss-icecat-profile-general)))
 
 (begin
   (define* (sss-icecat-svc)
-    `((".mozilla/icecat/profiles.ini" ,(local-file "icecat/profiles.ini"))
+    `((".mozilla/icecat/profiles.ini" ,(plain-file "profiles.ini"
+                                                   (string-join
+                                                    sss-icecat-profiles-config
+                                                    "\n")))
       (".mozilla/icecat/sss/user.js" ,(local-file "icecat/user.js"))))
   (export sss-icecat-svc))
