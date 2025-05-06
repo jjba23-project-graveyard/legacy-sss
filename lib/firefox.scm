@@ -17,6 +17,7 @@
 
 (define-module (sss firefox)
   #:use-module (gnu)
+  #:use-module (sxml simple)
   #:use-module (sss process))
 
 (define (serialize-firefox-ini-setting s)
@@ -36,7 +37,6 @@
       ((eq? #f v)
        "false")
       (else v)))
-  (write (car s))
   (format #f "user_pref(~a, ~a);"
           (userjs-value-quoting (car s))
           (userjs-value-quoting (cdr s))))
@@ -224,7 +224,7 @@
     (full-screen-api.warning.timeout . 0)
 
     ;; Url bar
-    (browser.toolbars.bookmarks.visibility . always)
+    (browser.toolbars.bookmarks.visibility . never)
     (browser.urlbar.unitConversion.enabled . #t)
     (browser.urlbar.trending.featureGate . #f)
     (dom.text_fragments.create_text_fragment.enabled . #t)
@@ -253,6 +253,11 @@
     ;; Wallet
     (wallet.enabled . #f)
 
+    ;; Bookmarks
+    (browser.bookmarks.file . "~/.mozilla/firefox/sss/user-bookmarks.html")
+    (browser.places.importBookmarksHTML . #t)
+    (browser.bookmarks.addedImportButton . #f)
+
     ))
 
 (define sss-firefox-userjs-config
@@ -265,6 +270,29 @@
     `(("*" (font-family . "\"Adwaita Sans\", sans-serif !important "))))
   (export sss-firefox-userchrome-css))
 
+(define (serialize-sss-firefox-bookmark b)
+  (cond
+    ((list? (cdr b))
+     `((dt (h3 ,(car b)))
+       (dl ,(map serialize-sss-firefox-bookmark
+                 (cdr b)))))
+    ((string? (cdr b))
+     `((dt (a (@ (href ,(cdr b)))
+              ,(car b)))))))
+
+(define sss-firefox-bookmarks
+  '(("jointhefreeworld"
+     ("jointhefreeworld.org" . "https://jointhefreeworld.org")
+     ("wikimusic" . "https://wikimusic.jointhefreeworld.org")
+     ("lucidplan" . "https://lucidplan.jointhefreeworld.org")
+     ("byggsteg" . "https://byggsteg.jointhefreeworld.org")
+     ("oculuslambda" . "https://oculuslambda.jointhefreeworld.org")
+     ("hygguile" . "https://hygguile.jointhefreeworld.org"))
+    ("jjba23 codeberg" . "https://codeberg.org/jjba23")))
+
+(define serialized-firefox-bookmarks
+  `(dl ,(map serialize-sss-firefox-bookmark sss-firefox-bookmarks)))
+
 (begin
   (define* (sss-firefox-svc #:key palette)
     `((".mozilla/firefox/profiles.ini" ,(plain-file "profiles.ini"
@@ -275,6 +303,11 @@
                                                    (string-join
                                                     sss-firefox-userjs-config
                                                     "\n")))
+      (".mozilla/firefox/sss/user-bookmarks.html" ,(plain-file
+                                                    "user-bookmarks.html"
+                                                    (with-output-to-string (lambda ()
+                                                                             (sxml->xml
+                                                                              serialized-firefox-bookmarks)))))
       (".mozilla/firefox/sss/chrome/userChrome.css" ,(plain-file
                                                       "userChrome.css"
                                                       (mk-css-conf-lines (sss-firefox-userchrome-css
