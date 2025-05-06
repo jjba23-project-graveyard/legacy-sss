@@ -562,13 +562,57 @@ This is currently done with hyprpaper.
 
 TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
 
+-----
+
 * Firefox custom declarative configurations
 
 I like to declaratively customize and configure my software, and my web browsers of course too.
 
-With Firefox (from nongnu) I like to configure it in Lisp (Guile Scheme) code, generating ~user.js~ , ~userChrome.css~ and more, to customize, harden and optimize it.
+With Firefox (from nonguix) I like to configure it in Lisp (Guile Scheme) code, generating ~user.js~ , ~userChrome.css~ and more, from Lisp code, to customize, harden and optimize it, all declaratively.
 
 See ~lib/firefox.scm~ for more.
+
+As for manual work needed for achieving Firefox Zen, we document several tips below:
+
+** Stick to SSS defaults when it comes to hardening
+
+If you need more then just go for Tor.
+
+** Recommended extensions
+
+*** TODO:  declarative extension installation and configuration via Guile Scheme and Guix
+
+[[https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search][uBlock Origin]]: Finally, an efficient wide-spectrum content blocker. Easy on CPU and memory.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/adaptive-tab-bar-colour/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Adaptive Tab Bar Color]]: Changes the color of Firefox theme to match the website’s appearance.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/search_by_image/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Search by Image]]: A powerful reverse image search tool, with support for various search engines, such as Google, Bing, Yandex, Baidu and TinEye.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/darkreader/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Dark Reader]]: Dark mode for every website. Take care of your eyes, use dark theme for night and daily browsing.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/copy-plaintext/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Copy PlainText]]: Copy Plain Text without any formatting
+
+[[https://addons.mozilla.org/en-US/firefox/addon/1password-x-password-manager/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search][1password]]: worth it if you have a license: The best way to experience 1Password in your browser. Easily sign in to sites, generate passwords, and store secure information, including logins, credit cards, notes, and more.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/emoji-sav/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Emoji]]: It permits just with a single click to copy an emoji. There is a search-box and the "Most used emojis" section (the first one). If you want to send feedback or report bug, please contact me
+
+[[https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Video DownloadHelper]]: Download videos from the web. Easy, smart, no tracking.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/to-google-translate/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][To Google Translate]]: Right-click a section of text and click the Translate icon next to it to text translate or listen to it in your language.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Privacy Badger]]: Automatically learns to block invisible trackers.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/view-page-archive/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Web Archives]]: View archived and cached versions of web pages on various search engines, such as the Wayback Machine and Archive․is.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/save-all-images-webextension/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Download All Images]]: Easily save images with a wide range of customization features, such as file size, dimensions, and image type.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/languagetool/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Language Tool]]: With this extension you can check text with the free style and grammar checker LanguageTool. It finds many errors that a simple spell checker cannot detect, like mixing up there/their, a/an, or repeating a word.
+
+[[https://addons.mozilla.org/en-US/firefox/addon/weather-extension/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][Weather Extension]]: The best way to see the weather right in your browser. Easier than looking outside!
+
+[[https://addons.mozilla.org/en-US/firefox/addon/user-agent-string-switcher/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][User Agent Switcher and Manager]]: Spoof websites trying to gather information about your web navigation—like your browser type and operating system—to deliver distinct content you may not want.
+
+
 
 * Nyxt browser (experimental)
 
@@ -915,7 +959,7 @@ This way, and leveraging ~direnv~ and ~.envrc~ we can enter in our editor (Emacs
 
 *** Guile Scheme hacking
 
-I can't think of a better setup than using Emacs, with good paren matching, smartparens, paredit if you like. Then you can use a nice Geiser install or as I do, Arei and Ares on Emacs. I usually like to use watchexec as well for hot reloading.
+I can't think of a better setup than using Emacs to work with Lisp languages, with good paren matching, structural editing, sexp aware,  smartparens, paredit if you like. Then you can use a nice REPL via Emacs, like Geiser, or as I do, Arei and Ares. I usually like to use  ~watchexec~ as well for hot reloading.
 
 *** Guix and manifests
 
