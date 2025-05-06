@@ -16,7 +16,8 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss firefox)
-  #:use-module (gnu))
+  #:use-module (gnu)
+  #:use-module (sss process))
 
 (define (serialize-firefox-ini-setting s)
   (format #f "~a=~a"
@@ -253,7 +254,12 @@
                sss-firefox-userjs-peskyfox)))
 
 (begin
-  (define* (sss-firefox-svc)
+  (define* (sss-firefox-userchrome-css #:key palette)
+    `(("*" (font-family . "\"Adwaita Sans\", sans-serif !important "))))
+  (export sss-firefox-userchrome-css))
+
+(begin
+  (define* (sss-firefox-svc #:key palette)
     `((".mozilla/firefox/profiles.ini" ,(plain-file "profiles.ini"
                                                     (string-join
                                                      sss-firefox-profiles-config
@@ -261,6 +267,11 @@
       (".mozilla/firefox/sss/user.js" ,(plain-file "user.js"
                                                    (string-join
                                                     sss-firefox-userjs-config
-                                                    "\n")))))
+                                                    "\n")))
+      (".mozilla/firefox/sss/chrome/userChrome.css" ,(plain-file
+                                                      "userChrome.css"
+                                                      (mk-css-conf-lines (sss-firefox-userchrome-css
+                                                                          #:palette
+                                                                          palette))))))
   (export sss-firefox-svc))
 

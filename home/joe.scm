@@ -104,7 +104,7 @@
                    (sss-hyprpaper-svc #:clone-dir sss-clone-dir
                                       #:palette sss-palette)
                    (sss-mime-svc)
-                   (sss-firefox-svc)
+                   (sss-firefox-svc #:palette sss-palette)
                    (sss-fastfetch-svc #:clone-dir sss-clone-dir)
                    (sss-fish-svc #:clone-dir sss-clone-dir
                                  #:palette sss-palette)
