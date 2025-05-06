@@ -25,15 +25,25 @@
 
 (begin
   (define* (sss-gtk3-config #:key palette
-                            (fixed-theme #f))
+                            (fixed-theme #f)
+                            (fixed-icon-theme #f))
     `((gtk-icon-theme-name unquote
                            (cond
-                             ((or (equal? 'sss-palette-ef-cyprus palette)
-                                  (equal? 'sss-palette-everforest-light
-                                          palette)
-                                  (equal? 'sss-palette-solarized-light palette))
-                              "Papirus-Light")
-                             (else "Papirus-Dark")))
+                             ((not (equal? #f fixed-icon-theme))
+                              fixed-icon-theme)
+                             ((equal? 'sss-palette-ef-cyprus palette)
+                              "Yaru-sage")
+                             ((equal? 'sss-palette-ef-autumn palette)
+                              "Yaru-dark")
+                             ((equal? 'sss-palette-heavy-metal palette)
+                              "Yaru-red-dark")
+                             ((equal? 'sss-palette-ef-dream palette)
+                              "Yaru-magenta-dark")
+                             ((equal? 'sss-palette-solarized-light palette)
+                              "Yaru")
+                             ((equal? 'sss-palette-everforest-light palette)
+                              "Yaru-sage")
+                             (else "Yaru-sage-dark")))
       (gtk-theme-name unquote
                       (cond
                         ((not (equal? #f fixed-theme))
@@ -54,7 +64,7 @@
       (gtk-font-name . "Adwaita Sans 11")
       (gtk-key-theme-name . "Emacs")
       (gtk-enable-event-sounds . 0)
-      (gtk-cursor-theme-name . "Adwaita")
+      (gtk-cursor-theme-name . "Yaru")
       (gtk-cursor-theme-size . 24)
       (gtk-enable-input-feedback-sounds . 0)
       (gtk-application-prefer-dark-theme unquote
@@ -76,15 +86,25 @@
 
 (begin
   (define* (sss-gtk4-config #:key palette
-                            (fixed-theme #f))
+                            (fixed-theme #f)
+                            (fixed-icon-theme #f))
     `((gtk-icon-theme-name unquote
                            (cond
-                             ((or (equal? 'sss-palette-ef-cyprus palette)
-                                  (equal? 'sss-palette-everforest-light
-                                          palette)
-                                  (equal? 'sss-palette-solarized-light palette))
-                              "Papirus-Light")
-                             (else "Papirus-Dark")))
+                             ((not (equal? #f fixed-icon-theme))
+                              fixed-icon-theme)
+                             ((equal? 'sss-palette-ef-cyprus palette)
+                              "Yaru-sage")
+                             ((equal? 'sss-palette-heavy-metal palette)
+                              "Yaru-red-dark")
+                             ((equal? 'sss-palette-ef-autumn palette)
+                              "Yaru-dark")
+                             ((equal? 'sss-palette-ef-dream palette)
+                              "Yaru-magenta-dark")
+                             ((equal? 'sss-palette-solarized-light palette)
+                              "Yaru")
+                             ((equal? 'sss-palette-everforest-light palette)
+                              "Yaru-sage")
+                             (else "Yaru-sage-dark")))
       (gtk-theme-name unquote
                       (cond
                         ((not (equal? #f fixed-theme))
@@ -104,7 +124,7 @@
                         (else "Yaru-sage-dark")))
       (gtk-font-name . "Adwaita Sans 11")
       (gtk-enable-event-sounds . 0)
-      (gtk-cursor-theme-name . "Adwaita")
+      (gtk-cursor-theme-name . "Yaru")
       (gtk-cursor-theme-size . 24)
       (gtk-enable-input-feedback-sounds . 0)
       (gtk-application-prefer-dark-theme unquote

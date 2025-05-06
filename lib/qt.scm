@@ -27,14 +27,25 @@
                                        (custom_palette . false)
                                        (icon_theme unquote
                                                    (cond
-                                                     ((or (equal? 'sss-palette-ef-cyprus
-                                                                  palette)
-                                                          (equal? 'sss-palette-everforest-light
-                                                                  palette)
-                                                          (equal? 'sss-palette-solarized-light
-                                                                  palette))
-                                                      "Papirus-Light")
-                                                     (else "Papirus-Dark")))
+                                                     ((equal? 'sss-palette-ef-cyprus
+                                                              palette)
+                                                      "Yaru-sage")
+                                                     ((equal? 'sss-palette-heavy-metal
+                                                              palette)
+                                                      "Yaru-red-dark")
+                                                     ((equal? 'sss-palette-ef-dream
+                                                              palette)
+                                                      "Yaru-magenta-dark")
+                                                     ((equal? 'sss-palette-ef-autumn
+                                                              palette)
+                                                      "Yaru-dark")
+                                                     ((equal? 'sss-palette-solarized-light
+                                                              palette)
+                                                      "Yaru")
+                                                     ((equal? 'sss-palette-everforest-light
+                                                              palette)
+                                                      "Yaru-sage")
+                                                     (else "Yaru-sage-dark")))
                                        (standard_dialogs . default)))
                    "\n[Fonts]\n"
                    (mk-kv-conf-lines `((fixed . "\"Adwaita Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")
