@@ -93,6 +93,9 @@ According to size, color and font family"
       (set-face-attribute 'markdown-code-face nil                       
 		          :font sss-font-mono
                           :height (tekengrootte-mk-font-size 0.95))
+      (set-face-attribute 'markdown-inline-code-face nil                       
+		          :font sss-font-mono
+                          :height (tekengrootte-mk-font-size 0.95))
       (set-face-attribute 'markdown-header-face-1 nil
                           :font sss-font-sans
                           :weight 'bold
