@@ -129,7 +129,8 @@
   (defun sss-markdown-mode ()
     (variable-pitch-mode 1)
     (auto-fill-mode 0)
-    (visual-line-mode 1)))
+    (visual-line-mode 1)
+    (ignore-errors (sss-set-base-faces))))
 
 (use-package request
   :ensure t)
