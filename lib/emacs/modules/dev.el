@@ -127,15 +127,9 @@
   :hook ((markdown-mode . sss-markdown-mode))
   :config
   (defun sss-markdown-mode ()
-    (variable-pitch-mode 0)
+    (variable-pitch-mode 1)
     (auto-fill-mode 0)
-    (visual-line-mode 1)
-    (set-face-attribute 'markdown-code-face nil                       
-		        :font sss-font-mono
-                        :height (tekengrootte-mk-font-size 1.05))
-    (set-face-attribute 'markdown-pre-face nil                       
-		        :font sss-font-mono
-                        :height (tekengrootte-mk-font-size 1.15))))
+    (visual-line-mode 1)))
 
 (use-package request
   :ensure t)
