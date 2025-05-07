@@ -89,7 +89,7 @@ According to size, color and font family"
     (ignore-errors
       (set-face-attribute 'markdown-pre-face nil
 		          :font sss-font-mono
-                          :height (tekengrootte-mk-font-size 0.85))
+                          :height (tekengrootte-mk-font-size 0.95))
       (set-face-attribute 'markdown-code-face nil                       
 		          :font sss-font-mono
                           :height (tekengrootte-mk-font-size 0.95))
@@ -126,7 +126,7 @@ According to size, color and font family"
 		          :font sss-font-mono)
       (set-face-attribute 'org-block nil
 		          :font sss-font-mono
-                          :height (tekengrootte-mk-font-size 0.85))
+                          :height (tekengrootte-mk-font-size 0.95))
       (set-face-attribute 'org-code nil                       
 		          :font sss-font-mono
                           :height (tekengrootte-mk-font-size 0.95))
