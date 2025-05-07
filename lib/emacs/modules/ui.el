@@ -95,7 +95,7 @@ According to size, color and font family"
 		          :font sss-font-mono)
       (set-face-attribute 'org-block nil
 		          :font sss-font-mono
-                          :height (tekengrootte-mk-font-size 1.05))
+                          :height (tekengrootte-mk-font-size 0.90))
       (set-face-attribute 'org-code nil                       
 		          :font sss-font-mono
                           :height (tekengrootte-mk-font-size 1.05))
