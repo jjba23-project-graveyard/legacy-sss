@@ -126,6 +126,7 @@
         recentf-max-saved-items 100)
 
   (global-hl-line-mode +1)
+  (setq-default cursor-type 'bar)
 
   (add-to-list 'after-make-frame-functions 'new-frame-setup t))
 
