@@ -36,7 +36,9 @@
 
 (use-package elmacro
   :ensure (:host github :repo "Silex/elmacro" :branch "master")
-  :demand t)
+  :demand t
+  :config
+  (elmacro-mode +1))
 
 (provide 'sss/libs)
 
