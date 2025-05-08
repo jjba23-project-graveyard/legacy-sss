@@ -34,6 +34,10 @@
 ;; (use-package compat
 ;;   :ensure (:host github :repo "emacs-compat/compat" :branch "main"))
 
+(use-package elmacro
+  :ensure (:host github :repo "Silex/elmacro" :branch "master")
+  :demand t)
+
 (provide 'sss/libs)
 
 ;;; libs.el ends here
