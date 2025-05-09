@@ -74,14 +74,23 @@
     (with-output-to-string (lambda ()
                              (for-each (lambda (v)
                                          (display (format #f
-                                                          "\n(defcustom ~a ~a\n  \"~a\"\n  :type '~a)\n"
+                                                          "
+(defcustom ~a ~a
+  \"~a\"
+  :type '~a)
+
+(setq ~a ~a)
+"
                                                           (car v)
                                                           (assoc-ref (cdr v)
                                                                      'value)
                                                           (assoc-ref (cdr v)
                                                                      'description)
                                                           (assoc-ref (cdr v)
-                                                                     'type))))
+                                                                     'type)
+                                                          (car v)
+                                                          (assoc-ref (cdr v)
+                                                                     'value))))
                                        sss-bridge-emacs-vars))))
   (export sss-bridge-emacs))
 
