@@ -37,8 +37,9 @@
 (define sss-alacritty-scrolling
   `((history . 100000)))
 
-(define sss-alacritty-font
-  `((normal . "{ family = \"Adwaita Mono\", style = \"Regular\" }")
+(define* (sss-alacritty-font #:key mono-font)
+  `((normal unquote
+            (format #f "{ family = \"~a\", style = \"Regular\" }" mono-font))
     (size . 11)))
 
 (define* (sss-alacritty-colors-primary #:key palette)
@@ -131,7 +132,7 @@
                                      #:k ">"
                                      #:action 'ScrollToBottom)))
 
-(define* (sss-alacritty-config #:key palette)
+(define* (sss-alacritty-config #:key palette mono-font)
   (append '("# ====== SSS Alacritty configuration ======" "#"
             "# auto-generated file, DO NOT EDIT!")
           (list "" "[general]")
@@ -141,7 +142,8 @@
           (list "" "[scrolling]")
           (map serialize-alacritty-setting sss-alacritty-scrolling)
           (list "" "[font]")
-          (map serialize-alacritty-setting sss-alacritty-font)
+          (map serialize-alacritty-setting
+               (sss-alacritty-font #:mono-font mono-font))
           (list "" "[terminal]")
           (map serialize-alacritty-setting sss-alacritty-terminal)
           (list "" "[colors.primary]")

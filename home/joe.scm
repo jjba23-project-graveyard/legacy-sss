@@ -87,10 +87,12 @@
                    (sss-gtk4-svc #:palette sss-palette)
                    (sss-git-svc)
                    (sss-waybar-svc #:palette sss-palette
+                                   #:sans-font sss-sans-font
                                    #:with-memory #t
                                    #:hyprland-session #t)
                    (sss-rofi-svc #:palette sss-palette)
-                   (sss-alacritty-svc #:palette sss-palette)
+                   (sss-alacritty-svc #:palette sss-palette
+                                      #:mono-font sss-mono-font)
                    (sss-foot-svc #:palette sss-palette)
                    (sss-hyprland-svc #:palette sss-palette
                                      #:clone-dir sss-clone-dir
@@ -118,7 +120,9 @@
                                   #:user-email "jjbigorra@gmail.com"
                                   #:clone-dir sss-clone-dir
                                   #:notes-roam-dir
-                                  "$HOME/hacking/private-notes/roam")
+                                  "$HOME/hacking/private-notes/roam"
+                                  #:sans-font sss-sans-font
+                                  #:mono-font sss-mono-font)
                    (sss-nix-svc)
                    (sss-qt6-svc #:palette sss-palette)
                    (sss-containers-svc)

@@ -30,7 +30,9 @@
                              user-email
                              user-initials
                              clone-dir
-                             notes-roam-dir)
+                             notes-roam-dir
+                             sans-font
+                             mono-font)
     (define sss-bridge-emacs-vars
       `((user-personal-name unquote
                             (format #f "\"~a\"" user-name))
@@ -44,6 +46,10 @@
                        (format #f "\"~a\"" clone-dir))
         (sss-notes-roam-dir unquote
                             (format #f "\"~a\"" notes-roam-dir))
+        (sss-font-mono unquote
+                       (format #f "\"~a\"" mono-font))
+        (sss-font-sans unquote
+                       (format #f "\"~a\"" sans-font))
         (sss-emacs-theme unquote
                          (sss-get-emacs-theme palette))))
 
@@ -92,7 +98,9 @@
                           user-email
                           user-initials
                           clone-dir
-                          notes-roam-dir)
+                          notes-roam-dir
+                          sans-font
+                          mono-font)
     (append `((".emacs.d/init.el" ,(local-file "./emacs/init.el"))
               
               (".emacs.d/sss-bridge.el" ,(plain-file "sss-bridge.el"
@@ -106,7 +114,9 @@
                                                       user-initials
                                                       #:clone-dir clone-dir
                                                       #:notes-roam-dir
-                                                      notes-roam-dir)))
+                                                      notes-roam-dir
+                                                      #:sans-font sans-font
+                                                      #:mono-font mono-font)))
 
               (".emacs.d/early-init.el" ,(local-file "./emacs/early-init.el"))
               (".emacs.d/templates" ,(local-file "./emacs/templates")))
