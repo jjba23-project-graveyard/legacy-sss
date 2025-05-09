@@ -162,9 +162,12 @@
   (export serialize-alacritty-config))
 
 (begin
-  (define* (sss-alacritty-svc #:key palette
-                              (config (sss-alacritty-config #:palette palette)))
+  (define* (sss-alacritty-svc #:key palette mono-font)
     `((".config/alacritty/alacritty.toml" ,(plain-file "alacritty.toml"
                                                        (serialize-alacritty-config
-                                                        #:config config)))))
+                                                        #:config (sss-alacritty-config
+                                                                  #:palette
+                                                                  palette
+                                                                  #:mono-font
+                                                                  mono-font))))))
   (export sss-alacritty-svc))
