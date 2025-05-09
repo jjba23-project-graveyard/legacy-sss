@@ -612,6 +612,7 @@ If you need more then just go for Tor.
 
 [[https://addons.mozilla.org/en-US/firefox/addon/user-agent-string-switcher/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured][User Agent Switcher and Manager]]: Spoof websites trying to gather information about your web navigation—like your browser type and operating system—to deliver distinct content you may not want.
 
+[[https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search][Firefox Multi-Account Containers]]: Firefox Multi-Account Containers lets you keep parts of your online life separated into color-coded tabs. Cookies are separated by container, allowing you to use the web with multiple accounts and integrate Mozilla VPN for an extra layer of privacy.
 
 
 * Nyxt browser (experimental)
