@@ -32,7 +32,8 @@
       (gtk-font-name . "Adwaita Sans 11")
       (gtk-key-theme-name . Emacs)
       (gtk-enable-event-sounds . 0)
-      (gtk-cursor-theme-name sss-get-cursor-theme palette)
+      (gtk-cursor-theme-name unquote
+                             (sss-get-cursor-theme palette))
       (gtk-cursor-theme-size . 24)
       (gtk-enable-input-feedback-sounds . 0)
       (gtk-application-prefer-dark-theme unquote
@@ -48,7 +49,8 @@
       (gtk-font-name . "Adwaita Sans 11")
       (gtk-key-theme-name . Emacs)
       (gtk-enable-event-sounds . 0)
-      (gtk-cursor-theme-name . "Yaru")
+      (gtk-cursor-theme-name unquote
+                             (sss-get-cursor-theme palette))
       (gtk-cursor-theme-size . 24)
       (gtk-enable-input-feedback-sounds . 0)
       (gtk-application-prefer-dark-theme unquote

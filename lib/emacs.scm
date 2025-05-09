@@ -42,29 +42,7 @@
         (sss-notes-roam-dir unquote
                             (format #f "\"~a\"" notes-roam-dir))
         (sss-emacs-theme unquote
-                         (cond
-                           ((equal? palette
-                                    'sss-palette-ef-dream)
-                            "'ef-dream")
-                           ((equal? palette
-                                    'sss-palette-ef-cyprus)
-                            "'ef-cyprus")
-                           ((equal? palette
-                                    'sss-palette-ef-autumn)
-                            "'ef-autumn")
-                           ((equal? palette
-                                    'sss-palette-heavy-metal)
-                            "'ef-tritanopia-dark")
-                           ((equal? palette
-                                    'sss-palette-everforest-dark)
-                            "'everforest-hard-dark")
-                           ((equal? palette
-                                    'sss-palette-everforest-light)
-                            "'everforest-hard-light")
-                           ((equal? palette
-                                    'sss-palette-solarized-light)
-                            "'solarized-light")
-                           (else "'ef-bio")))))
+                         (sss-get-emacs-theme palette))))
 
     (with-output-to-string (lambda ()
                              (display "(setq-default")

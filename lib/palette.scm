@@ -75,6 +75,18 @@
     ('sss-palette-everforest-dark "Yaru-sage-dark")
     (_ (raise-unknown-palette-exception palette))))
 
+(define-public (sss-get-emacs-theme palette)
+  (match palette
+    ('sss-palette-ef-bio "'ef-bio")
+    ('sss-palette-ef-dream "'ef-dream")
+    ('sss-palette-heavy-metal "'ef-tritanopia-dark")
+    ('sss-palette-ef-cyprus "'ef-cyprus")
+    ('sss-palette-ef-autumn "'ef-autumn")
+    ('sss-palette-solarized-light "'solarized-light")
+    ('sss-palette-everforest-light "'everforest-hard-light")
+    ('sss-palette-everforest-dark "'everforest-hard-dark")
+    (_ (raise-unknown-palette-exception palette))))
+
 (define-public (sss-get-cursor-theme palette)
   (match palette
     ('sss-palette-ef-bio "Yaru")

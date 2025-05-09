@@ -128,7 +128,8 @@
 (define* (sss-waybar-taskbar #:key palette)
   `(wlr/taskbar (format . "{icon} {title:.28}")
                 (icon-size . 16)
-                (icon-theme . "Yaru")
+                (icon-theme unquote
+                            (sss-get-icon-theme palette))
                 (tooltip-format . "{title}")
                 (on-click . "activate")
                 (on-click-middle . "minimize")))
