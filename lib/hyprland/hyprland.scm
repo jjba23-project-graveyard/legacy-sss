@@ -336,6 +336,11 @@
                                   #:palette palette)
           hypr-mouse-binds))
 
+;; hyprland: Hyprland is a 100% independent, dynamic tiling Wayland compositor that doesn't sacrifice on its looks.
+;; It provides the latest Wayland features, is highly customizable, has all the eyecandy, the most powerful plugins,
+;; easy IPC, much more QoL stuff than other compositors and more... 
+;;
+;; https://github.com/hyprwm/Hyprland
 (begin
   (define* (sss-hyprland-config #:key clone-dir
                                 keyboard-layout
@@ -382,7 +387,7 @@
                                                         (serialize-hypr-setting 'windowrulev2
                                                          r)) window-rules)
                                                  "\n"))
-           (config-lines (append `("# ====== SSS Hypr configuration ======"
+           (config-lines (append `("# ====== SSS Hyprland configuration ======"
                                    "#"
                                    "# auto-generated file, DO NOT EDIT!"
                                    ""

@@ -132,7 +132,9 @@
                                      #:action 'ScrollToBottom)))
 
 (define* (sss-alacritty-config #:key palette)
-  (append (list "" "[general]")
+  (append '("# ====== SSS Alacritty configuration ======" "#"
+            "# auto-generated file, DO NOT EDIT!")
+          (list "" "[general]")
           (map serialize-alacritty-setting sss-alacritty-general)
           (list "" "[window]")
           (map serialize-alacritty-setting sss-alacritty-window)
