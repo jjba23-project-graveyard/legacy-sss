@@ -112,7 +112,8 @@
                    (sss-fastfetch-svc #:clone-dir sss-clone-dir)
                    (sss-fish-svc #:clone-dir sss-clone-dir
                                  #:palette sss-palette)
-                   (sss-mako-svc #:palette sss-palette)
+                   (sss-mako-svc #:palette sss-palette
+                                 #:sans-font sss-sans-font)
                    (sss-emacs-svc #:palette sss-palette
                                   #:user-name "Joe"
                                   #:user-full-name "Josep Bigorra"
