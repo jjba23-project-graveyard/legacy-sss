@@ -129,11 +129,13 @@
 (display "
 >>= configuring Joe's home environment...
 ")
+
 (home-environment
   (services
    (append (list sss-home-files-service
                  (sss-ssh-service)
-                 (sss-home-vars-service #:clone-dir sss-clone-dir
+                 (sss-home-vars-service #:palette sss-palette
+                                        #:clone-dir sss-clone-dir
                                         #:lang sss-lang)
                  (sss-bash-service #:clone-dir sss-clone-dir)
                  sss-openpgp-conf
