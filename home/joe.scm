@@ -130,7 +130,6 @@
                    (sss-portals-svc)
                    (sss-enchant-svc))))
 
-
 (display "
 >>= configuring Joe's home environment...
 ")
