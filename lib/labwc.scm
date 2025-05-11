@@ -99,8 +99,8 @@
 (begin
   (define* (sss-labwc-svc #:key extra-startups)
     `((".config/labwc/rc.xml" ,labwc-rc)
-      (".config/labwc/menu.xml" ,(plan-file "menu.xml"
-                                            (sxml->xml labwc-menu)))
+      (".config/labwc/menu.xml" ,(plain-file "menu.xml"
+                                             (sxml->xml labwc-menu)))
       (".config/labwc/autostart" ,(labwc-autostart #:extra-startups
                                                    extra-startups))))
   (export sss-labwc-svc))
