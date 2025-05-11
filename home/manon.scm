@@ -64,6 +64,7 @@
              (sss gtk)
              (sss nix)
              (sss containers)
+             (sss hyprland hyprpaper)
              (sss portals)
              (sss qt)
              (sss channels)
