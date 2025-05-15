@@ -388,7 +388,16 @@ Find here a reference configuration with what is required.
 
 -----
 
+** Explaining certain choices
 
+*Q*: Why choose for Emacs-style keybindings in the power-user session?
+*A*: SSS puts a heavy emphasis on mnemonics and ease of use. Emacs keybindings are well documented, well known and are quite easy to remember thanks to mnemonics, as well as being quite ergonomic too, specially when combined with split keyboards and thumb clusters. In the universal session we choose for CUA-style keybindings to be familiar to most people.
+
+*Q*: Why choose to put Waybar at the bottom, when most rices put it at the top?
+*A*: SSS chooses to place the status bar at the bottom of the screen to minimize distractions. We mostly read things from top-left to top-right, and having a bar take that prominent space in the screen can be wasteful and distracting, and you end up looking at the clock or start button more often than the actual task you are working on. This is true for both the power-user session and the universal session (it might help for people that used Windows).
+
+
+-------
 
 
 ** User Management
