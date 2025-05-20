@@ -702,6 +702,12 @@ Then proceed to clone SSS with ~git clone --recursive https://codeberg.org/jjba2
 
 If ~digital-art-dreams~ (the wallpapers and so on) didn't get properly cloned to your destination, you can always ~cd~ into the SSS clone path, and then do a ~git submodule add https://codeberg.org/jjba23/digital-art-dreams.git submodules/digital-art-dreams~ and then a  ~git submodule update --init --recursive~.
 
+See more about Git submodules here:
+
+https://git-scm.com/book/en/v2/Git-Tools-Submodules
+
+---------------------
+
 You should have by now written an appropriate ~per-host.scm~ for your setup. See the above section on this topic.
 
 Enter the directory of SSS: ~cd sss~.
