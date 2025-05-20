@@ -78,7 +78,7 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 
 sss and all of its source code are free software, licensed under the GNU General Public License v3 (or newer at your convenience).
 
-https://www.gnu.org/licenses/gpl-3.0.nl.html
+https://www.gnu.org/licenses/gpl-3.0.html
 
 The documentation and examples, including this document, which are provided with sss, are all licensed under the GNU Free Documentation License v1.3 (or newer at your convenience).
 
