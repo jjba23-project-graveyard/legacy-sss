@@ -4,7 +4,7 @@
 #+language: en
 #+options: toc:nil num:nil
 
-[[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/scheme-guile.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/gnu-guix.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/license-gpl3+.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/gnu-emacs.svg]]
+[[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/scheme-guile.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/gnu-guix.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/license-gpl3+.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/gnu-emacs.svg]]  [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/shell-fish.svg]]  [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/shell-eshell.svg]]
 
 SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me help you achieve /GNUrvana/.
 
