@@ -16,24 +16,22 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (load "../palette.scm")
-(load "./hyprlang.scm")
 
-(define-module (sss hyprland hyprpaper)
+(define-module (sss wallpaper)
   #:use-module (gnu)
   #:use-module (ice-9 match)
   #:use-module (ice-9 exceptions)
   #:use-module (sss palette)
   #:use-module (gnu home services shepherd)
-  #:use-module (shepherd service timer)
-  #:use-module (sss hyprland hyprlang))
+  #:use-module (shepherd service timer))
 
 (use-service-modules shepherd)
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
-  (define* (sss-hypr-wallpapers #:key clone-dir palette)
+  (define* (sss-wallpapers #:key clone-dir palette)
     (let* ((wall-path (string-append clone-dir
-                       "/submodules/digital-art-dreams/wallpapers/sss"))
+                                     "/submodules/digital-art-dreams/wallpapers/sss"))
            (digital-art-dreams-sss-wallpaper (lambda (w)
                                                (format #f "~a/~a" wall-path w))))
       (match palette
@@ -62,33 +60,16 @@
                                             '("joshua.jpg"
                                               "PXL_20250326_193029385.MP.jpg")))
         (_ (raise-exception (make-exception-with-message (format #f
-                                                          "exception ocurred! unknown palette selected: ~a"
-                                                          palette)))))))
-  (export sss-hypr-wallpapers))
+                                                                 "exception ocurred! unknown palette selected: ~a"
+                                                                 palette)))))))
+  (export sss-wallpapers))
 
-;; hyprpaper: Hyprpaper is a blazing fast wallpaper utility for Hyprland
-;; with the ability to dynamically change wallpapers through sockets.
-;; It will work on all wlroots-based compositors, though.
-;;
-;; https://github.com/hyprwm/hyprpaper
-(begin
-  (define* (sss-hyprpaper-config #:key imgs)
-    (let* ((ipc `((ipc . true)))
-           (splash `((splash . false)))
-           (config-lines (map (lambda (l)
-                                (serialize-hypr-setting (car l)
-                                                        (cdr l)))
-                              (append splash ipc))))
-      (string-join (append `("# ====== SSS Hyprpaper configuration ======" "#"
-                             "# auto-generated file, DO NOT EDIT!" "")
-                           config-lines) "\n")))
-  (export sss-hyprpaper-config))
 
 (define (mk-random-wall-cmd walls)
   (let* ((wall-idx -1))
     (format #f
             (string-append "case $(( $(date +%s) % ~a )) in ~a esac; "
-             "echo \"$WALL\" && hyprctl --instance 0 hyprpaper reload \",$WALL\"")
+                           "pkill swaybg && echo \"$WALL\" && swaybg -i \"$WALL\"")
             (length walls)
             (string-join (map (lambda (w)
                                 (set! wall-idx
@@ -97,26 +78,23 @@
                               walls) " "))))
 
 (begin
-  (define* (sss-hyprpaper-svc #:key clone-dir palette)
-    (let* ((walls (sss-hypr-wallpapers #:clone-dir clone-dir
-                                       #:palette palette))
+  (define* (sss-wallpaper-svc #:key clone-dir palette)
+    (let* ((walls (sss-wallpapers #:clone-dir clone-dir
+                                  #:palette palette))
            (random-wall-cmd (mk-random-wall-cmd walls)))
-      `((".config/hypr/hyprpaper.conf" ,(plain-file "hyprpaper.conf"
-                                                    (sss-hyprpaper-config
-                                                     #:imgs walls)))
-        (".local/bin/sss-hyprpaper-random.sh" ,(plain-file
-                                                "sss-hyprpaper-random.sh"
+      `((".local/bin/sss-wallpaper-random.sh" ,(plain-file
+                                                "sss-wallpaper-random.sh"
                                                 random-wall-cmd)))))
-  (export sss-hyprpaper-svc))
+  (export sss-wallpaper-svc))
 
 (begin
-  (define* (sss-random-hyprpaper-service #:key username)
-    (simple-service 'sss-random-hyprpaper home-shepherd-service-type
-                    (list (shepherd-timer '(sss-random-hyprpaper)
+  (define* (sss-random-wallpaper-service #:key username)
+    (simple-service 'sss-random-wallpaper home-shepherd-service-type
+                    (list (shepherd-timer '(sss-random-wallpaper)
                                           #~(cron-string->calendar-event
                                              "*/2 * * * *")
                                           `("sh" ,(format #f
-                                                   "/home/~a/.local/bin/sss-hyprpaper-random.sh"
-                                                   username))))))
-  (export sss-random-hyprpaper-service))
+                                                          "/home/~a/.local/bin/sss-wallpaper-random.sh"
+                                                          username))))))
+  (export sss-random-wallpaper-service))
 

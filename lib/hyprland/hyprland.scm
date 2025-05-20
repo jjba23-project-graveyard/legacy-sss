@@ -17,13 +17,12 @@
 
 (load "../palette.scm")
 (load "./hyprlang.scm")
-(load "./hyprpaper.scm")
+
 
 (define-module (sss hyprland hyprland)
   #:use-module (gnu)
   #:use-module (sss palette)
-  #:use-module (sss hyprland hyprlang)
-  #:use-module (sss hyprland hyprpaper))
+  #:use-module (sss hyprland hyprlang))
 
 (define* (notify-cmd #:key title subtitle)
   (format #f
@@ -40,26 +39,24 @@
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
                        "waybar"
-                       ;; "herd enable sss-hyprpaper && herd start sss-hyprpaper"
-                       "hyprpaper"
+                       "herd trigger sss-random-wallpaper"
                        "alacritty --daemon"
                        "emacs --daemon"
                        "transmission-daemon"
                        "podman system service --time=0 unix:///tmp/podman.sock"
                        "gsettings set org.gnome.desktop.interface gtk-key-theme \"Emacs\""
                        ,(format #f
-                         "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
-                         gtk-theme-name)
+                                "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
+                                gtk-theme-name)
                        ,(format #f
-                         "gsettings set org.gnome.desktop.interface icon-theme '~a'"
-                         icon-theme-name)
+                                "gsettings set org.gnome.desktop.interface icon-theme '~a'"
+                                icon-theme-name)
                        ,(format #f
-                         "gsettings set org.gnome.desktop.interface cursor-theme '~a'"
-                         cursor-theme-name)
+                                "gsettings set org.gnome.desktop.interface cursor-theme '~a'"
+                                cursor-theme-name)
                        "gsettings set org.gnome.desktop.interface cursor-size 24"
                        "gsettings set org.gnome.desktop.interface font-name 'Adwaita Sans'"
-                       "xdg-user-dirs-update"
-                       "herd trigger sss-random-hyprpaper"))))
+                       "xdg-user-dirs-update"))))
     xs))
 
 (define* (hypr-input #:key keyboard-layout caps-to-ctrl)
@@ -227,7 +224,7 @@
                         #:cmd "hyprlock")
              (exec-bind #:mod "s-S"
                         #:bind "B"
-                        #:cmd "herd trigger sss-random-hyprpaper")
+                        #:cmd "herd trigger sss-random-wallpaper")
              (exec-bind #:mod "s"
                         #:bind "T"
                         #:cmd "alacritty msg create-window || alacritty")
@@ -373,7 +370,9 @@
                                    "# ====== Startup programs ======")
                                  serialized-startup-programs
                                  `("" "# ====== General configuration ======"
-                                   ,serialized-general)
+                                   ,serialized-general
+                                   ;; "debug:disable_logs = false"
+                                   )
                                  `("" "# ====== Input configuration ======"
                                    ,serialized-input)
                                  `(""
