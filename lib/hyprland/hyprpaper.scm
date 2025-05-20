@@ -98,7 +98,7 @@
   (let* ((wall-idx -1))
     (format #f
             (string-append "case $(( $(date +%s) % ~a )) in ~a esac; "
-             "echo \"$WALL\" && hyprctl hyprpaper reload \",$WALL\"")
+             "echo \"$WALL\" && hyprctl --instance 0 hyprpaper reload \",$WALL\"")
             (length walls)
             (string-join (map (lambda (w)
                                 (set! wall-idx
@@ -120,11 +120,13 @@
   (export sss-hyprpaper-svc))
 
 (begin
-  (define* sss-random-hyprpaper-service
+  (define* (sss-random-hyprpaper-service #:key username)
     (simple-service 'sss-random-hyprpaper home-shepherd-service-type
                     (list (shepherd-timer '(sss-random-hyprpaper)
                                           #~(cron-string->calendar-event
-                                             "*/5 * * * *")
-                                          '("sh $HOME/.config/hypr/sss-random-hyprpaper.sh")))))
+                                             "*/10 * * * *")
+                                          `("sh" ,(format #f
+                                                   "/home/~a/.config/hypr/sss-random-hyprpaper.sh"
+                                                   username))))))
   (export sss-random-hyprpaper-service))
 

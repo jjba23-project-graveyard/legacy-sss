@@ -147,7 +147,7 @@
                  (simple-service 'sss-home-cron-service
                                  home-mcron-service-type
                                  '())
-                 sss-random-hyprpaper-service
+                 (sss-random-hyprpaper-service #:username "joe")
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
                  sss-fontconfig-service-type

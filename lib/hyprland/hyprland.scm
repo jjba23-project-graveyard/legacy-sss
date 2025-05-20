@@ -225,11 +225,7 @@
                         #:cmd "hyprlock")
              (exec-bind #:mod "s-S"
                         #:bind "B"
-                        #:cmd (format #f "hyprctl hyprpaper reload ,~a"
-                                      (car (sss-hypr-wallpapers #:clone-dir
-                                                                clone-dir
-                                                                #:palette
-                                                                palette))))
+                        #:cmd "herd trigger sss-random-hyprpaper")
              (exec-bind #:mod "s"
                         #:bind "T"
                         #:cmd "alacritty msg create-window || alacritty")

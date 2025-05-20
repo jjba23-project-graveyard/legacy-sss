@@ -832,9 +832,9 @@ You will also want to set the ~RTC_USE_PIPEWIRE~ variable to ~true~. This is alr
 
 SSS automatically loads at startup a matching wallpaper for the currently enabled theme.
 
-This is currently done with hyprpaper.
+This is currently done with hyprpaper. SSS automatically loads a random wallpaper (within the palette) every 10 minutes.
 
-TODO: allow more dynamics and often changing of wallpapers, also random wallpaper script (but within theme)
+Pressing ~s-S b~ will select a random other wallpaper within the palette.
 
 -----
 
