@@ -32,43 +32,37 @@
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
   (define* (sss-hypr-wallpapers #:key clone-dir palette)
-    (match palette
-      ('sss-palette-ef-cyprus (list (format #f
-                                     "~a/submodules/digital-art-dreams/wallpapers/sss/some-forest.jpg"
-                                     clone-dir)))
-      ('sss-palette-ef-dream (list (format #f
-                                    "~a/submodules/digital-art-dreams/wallpapers/sss/1362745.png"
-                                    clone-dir)
-                                   (format #f
-                                    "~a/submodules/digital-art-dreams/wallpapers/sss/inazuma.jpg"
-                                    clone-dir)
-                                   (format #f
-                                    "~a/submodules/digital-art-dreams/wallpapers/sss/ei-chiyo.jpg"
-                                    clone-dir)
-                                   (format #f
-                                    "~a/submodules/digital-art-dreams/wallpapers/sss/diluc-tree.jpg"
-                                    clone-dir)))
-      ('sss-palette-heavy-metal (list (format #f
-                                       "~a/submodules/digital-art-dreams/wallpapers/sss/heavy-wall3.jpg"
-                                       clone-dir)))
-      ('sss-palette-solarized-light (list (format #f
-                                           "~a/submodules/digital-art-dreams/wallpapers/sss/PXL_20250326_193029385.MP.jpg"
-                                           clone-dir)))
-      ('sss-palette-ef-autumn (list (format #f
-                                     "~a/submodules/digital-art-dreams/wallpapers/sss/0mar2ygf59je1.jpeg"
-                                     clone-dir)))
-      ('sss-palette-ef-bio (list (format #f
-                                  "~a/submodules/digital-art-dreams/wallpapers/sss/some-forest.jpg"
-                                  clone-dir)))
-      ('sss-palette-everforest-dark (list (format #f
-                                           "~a/submodules/digital-art-dreams/wallpapers/sss/redwood-forest.jpg"
-                                           clone-dir)))
-      ('sss-palette-everforest-dark (list (format #f
-                                           "~a/submodules/digital-art-dreams/wallpapers/sss/joshua.jpg"
-                                           clone-dir)))
-      (_ (raise-exception (make-exception-with-message (format #f
-                                                        "exception ocurred! unknown palette selected: ~a"
-                                                        palette))))))
+    (let* ((wall-path (string-append clone-dir
+                       "/submodules/digital-art-dreams/wallpapers/sss"))
+           (digital-art-dreams-sss-wallpaper (lambda (w)
+                                               (format #f "~a/~a" wall-path w))))
+      (match palette
+        ('sss-palette-ef-cyprus (map digital-art-dreams-sss-wallpaper
+                                     '("joshua.jpg"
+                                       "PXL_20250326_193029385.MP.jpg")))
+        ('sss-palette-ef-dream (map digital-art-dreams-sss-wallpaper
+                                    '("miyabi.jpg" "1362745.png" "inazuma.jpg"
+                                      "ei-chiyo.jpg" "diluc-tree.jpg")))
+        ('sss-palette-heavy-metal (map digital-art-dreams-sss-wallpaper
+                                       '("heavy-wall3.jpg" "heavy-wall2.jpg"
+                                         "heavy-wall.jpg")))
+        ('sss-palette-solarized-light (map digital-art-dreams-sss-wallpaper
+                                           '("joshua.jpg"
+                                             "PXL_20250326_193029385.MP.jpg")))
+        ('sss-palette-ef-autumn (map digital-art-dreams-sss-wallpaper
+                                     '("0mar2ygf59je1.jpeg"
+                                       "ofcoisp7abfe1.jpeg")))
+        ('sss-palette-ef-bio (map digital-art-dreams-sss-wallpaper
+                                  '("some-forest.jpg" "redwood-forest.jpg")))
+        ('sss-palette-everforest-dark (map digital-art-dreams-sss-wallpaper
+                                           '("some-forest.jpg"
+                                             "redwood-forest.jpg")))
+        ('sss-palette-everforest-light (map digital-art-dreams-sss-wallpaper
+                                            '("joshua.jpg"
+                                              "PXL_20250326_193029385.MP.jpg")))
+        (_ (raise-exception (make-exception-with-message (format #f
+                                                          "exception ocurred! unknown palette selected: ~a"
+                                                          palette)))))))
   (export sss-hypr-wallpapers))
 
 ;; hyprpaper: Hyprpaper is a blazing fast wallpaper utility for Hyprland
