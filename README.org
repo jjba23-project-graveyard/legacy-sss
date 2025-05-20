@@ -26,6 +26,10 @@ This screenshot is from version (v2.0.4):
 
 [[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-11.png]]
 
+Here another, of version v2.3.23:
+
+[[https://jointhefreeworld.org/static-assets/sss/screenshots/7bdfaa50fbc45b63.png]]
+
 -----
 
 I would appreciate if you write your findings when using SSS and if you can, fork the project, and contribute some improvements, or mail me at <jjbigorra@gmail.com>
