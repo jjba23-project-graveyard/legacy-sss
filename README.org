@@ -22,11 +22,7 @@ Refer to the project's code of conduct here: [[https://jointhefreeworld.org/blog
 
 Note: Screenshots below might be outdated and no longer representative of the current, ever-changing state of SSS.
 
-This screenshot is from version (v2.0.4):
-
-[[https://jointhefreeworld.org/static-assets/sss/screenshots/2025-03-11.png]]
-
-Here another, of version v2.3.23:
+This screenshot is from version (v2.3.23):
 
 [[https://jointhefreeworld.org/static-assets/sss/screenshots/7bdfaa50fbc45b63.png]]
 
