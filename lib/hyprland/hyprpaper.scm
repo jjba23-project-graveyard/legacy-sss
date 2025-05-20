@@ -34,37 +34,37 @@
   (define* (sss-hypr-wallpapers #:key clone-dir palette)
     (match palette
       ('sss-palette-ef-cyprus (list (format #f
-                                     "~a/resources/wallpapers/some-forest.jpg"
+                                     "~a/submodules/digital-art-dreams/wallpapers/sss/some-forest.jpg"
                                      clone-dir)))
       ('sss-palette-ef-dream (list (format #f
-                                    "~a/resources/wallpapers/1362745.png"
+                                    "~a/submodules/digital-art-dreams/wallpapers/sss/1362745.png"
                                     clone-dir)
                                    (format #f
-                                    "~a/resources/wallpapers/inazuma.jpg"
+                                    "~a/submodules/digital-art-dreams/wallpapers/sss/inazuma.jpg"
                                     clone-dir)
                                    (format #f
-                                    "~a/resources/wallpapers/ei-chiyo.jpg"
+                                    "~a/submodules/digital-art-dreams/wallpapers/sss/ei-chiyo.jpg"
                                     clone-dir)
                                    (format #f
-                                    "~a/resources/wallpapers/diluc-tree.jpg"
+                                    "~a/submodules/digital-art-dreams/wallpapers/sss/diluc-tree.jpg"
                                     clone-dir)))
       ('sss-palette-heavy-metal (list (format #f
-                                       "~a/resources/wallpapers/heavy-wall3.jpg"
+                                       "~a/submodules/digital-art-dreams/wallpapers/sss/heavy-wall3.jpg"
                                        clone-dir)))
       ('sss-palette-solarized-light (list (format #f
-                                           "~a/resources/wallpapers/PXL_20250326_193029385.MP.jpg"
+                                           "~a/submodules/digital-art-dreams/wallpapers/sss/PXL_20250326_193029385.MP.jpg"
                                            clone-dir)))
       ('sss-palette-ef-autumn (list (format #f
-                                     "~a/resources/wallpapers/0mar2ygf59je1.jpeg"
+                                     "~a/submodules/digital-art-dreams/wallpapers/sss/0mar2ygf59je1.jpeg"
                                      clone-dir)))
       ('sss-palette-ef-bio (list (format #f
-                                  "~a/resources/wallpapers/some-forest.jpg"
+                                  "~a/submodules/digital-art-dreams/wallpapers/sss/some-forest.jpg"
                                   clone-dir)))
       ('sss-palette-everforest-dark (list (format #f
-                                           "~a/resources/wallpapers/redwood-forest.jpg"
+                                           "~a/submodules/digital-art-dreams/wallpapers/sss/redwood-forest.jpg"
                                            clone-dir)))
       ('sss-palette-everforest-dark (list (format #f
-                                           "~a/resources/wallpapers/joshua.jpg"
+                                           "~a/submodules/digital-art-dreams/wallpapers/sss/joshua.jpg"
                                            clone-dir)))
       (_ (raise-exception (make-exception-with-message (format #f
                                                         "exception ocurred! unknown palette selected: ~a"
