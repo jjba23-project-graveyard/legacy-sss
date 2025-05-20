@@ -40,7 +40,7 @@
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
                        "waybar"
-                       "sh ~/.local/bin/sss-hyprpaper-loop.sh"
+                       "herd start sss-hyprpaper"
                        "alacritty --daemon"
                        "emacs --daemon"
                        "transmission-daemon"
@@ -57,7 +57,8 @@
                          cursor-theme-name)
                        "gsettings set org.gnome.desktop.interface cursor-size 24"
                        "gsettings set org.gnome.desktop.interface font-name 'Adwaita Sans'"
-                       "xdg-user-dirs-update"))))
+                       "xdg-user-dirs-update"
+                       "herd trigger sss-random-hyprpaper"))))
     xs))
 
 (define* (hypr-input #:key keyboard-layout caps-to-ctrl)

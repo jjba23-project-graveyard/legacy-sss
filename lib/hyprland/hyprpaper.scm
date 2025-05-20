@@ -108,13 +108,24 @@
       `((".config/hypr/hyprpaper.conf" ,(plain-file "hyprpaper.conf"
                                                     (sss-hyprpaper-config
                                                      #:imgs walls)))
-        (".local/bin/sss-hyprpaper-loop.sh" ,(plain-file
-                                              "sss-hyprpaper-loop.sh"
-                                              "while true; do hyprpaper; sleep 1; done"))
         (".local/bin/sss-hyprpaper-random.sh" ,(plain-file
                                                 "sss-hyprpaper-random.sh"
                                                 random-wall-cmd)))))
   (export sss-hyprpaper-svc))
+
+(begin
+  (define* (sss-hyprpaper-service #:key username)
+    (simple-service 'sss-hyprpaper home-shepherd-service-type
+                    (list (shepherd-service (documentation
+                                             "Run hyprpaper as a daemon")
+                                            (provision '(sss-hyprpaper))
+                                            (requirement '())
+                                            (start #~(make-forkexec-constructor '
+                                                      ("hyprpaper")))
+                                            (stop #~(make-kill-destructor))
+                                            (auto-start? #f)
+                                            (respawn? #t)))))
+  (export sss-hyprpaper-service))
 
 (begin
   (define* (sss-random-hyprpaper-service #:key username)
@@ -123,7 +134,7 @@
                                           #~(cron-string->calendar-event
                                              "*/2 * * * *")
                                           `("sh" ,(format #f
-                                                   "/home/~a/.config/hypr/sss-hyprpaper-random.sh"
+                                                   "/home/~a/.local/bin/sss-hyprpaper-random.sh"
                                                    username))))))
   (export sss-random-hyprpaper-service))
 
