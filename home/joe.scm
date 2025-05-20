@@ -145,7 +145,7 @@
                                                 (+ 1 wall-idx))
                                           (format #f "~a) WALL=\"~a\";;"
                                                   wall-idx w)) walls) " "))))
-    `(job "*/5 * * * *"
+    `(job "*/10 * * * *"
           ,cmd)))
 
 (display "
