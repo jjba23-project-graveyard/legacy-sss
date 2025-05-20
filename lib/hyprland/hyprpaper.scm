@@ -75,14 +75,10 @@
   (define* (sss-hyprpaper-config #:key imgs)
     (let* ((ipc `((ipc . true)))
            (splash `((splash . false)))
-           (random-img (list-ref imgs
-                                 (random (length imgs))))
-           (wallpaper `((wallpaper unquote
-                                   (format #f ",~a" random-img))))
            (config-lines (map (lambda (l)
                                 (serialize-hypr-setting (car l)
                                                         (cdr l)))
-                              (append splash ipc wallpaper))))
+                              (append splash ipc))))
       (string-join (append `("# ====== SSS Hyprpaper configuration ======" "#"
                              "# auto-generated file, DO NOT EDIT!" "")
                            config-lines) "\n")))
@@ -112,20 +108,6 @@
                                                 "sss-hyprpaper-random.sh"
                                                 random-wall-cmd)))))
   (export sss-hyprpaper-svc))
-
-(begin
-  (define* (sss-hyprpaper-service #:key username)
-    (simple-service 'sss-hyprpaper home-shepherd-service-type
-                    (list (shepherd-service (documentation
-                                             "Run hyprpaper as a daemon")
-                                            (provision '(sss-hyprpaper))
-                                            (requirement '())
-                                            (start #~(make-forkexec-constructor '
-                                                      ("hyprpaper")))
-                                            (stop #~(make-kill-destructor))
-                                            (auto-start? #f)
-                                            (respawn? #t)))))
-  (export sss-hyprpaper-service))
 
 (begin
   (define* (sss-random-hyprpaper-service #:key username)

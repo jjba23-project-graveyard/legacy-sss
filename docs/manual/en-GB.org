@@ -756,7 +756,16 @@ Sometimes for the fun I work in Emacs from the TTY for that 60's and 70's comput
 
 If you run traditional X11 sessions, you /could/ choose to do startx instead of a Wayland session, but SSS is more geared to Wayland.
 
------
+-------------
+
+* Important directories
+
+SSS uses the Guix and GNU/Linux conventions as closely as possible, and also tries to adhere to the XDG standards. Apart from that, here are some interesting files and directories that may not be so obvious:
+
+- Guix Shepherd Home Services and Timerslog file: ~$XDG_STATE_HOME/shepherd/shepherd.log~ which is often ~~/.local/state/shepherd/shepherd.log~
+
+
+-----------------
 
 * Nix profile
 
