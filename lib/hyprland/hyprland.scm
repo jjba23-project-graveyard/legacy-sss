@@ -226,9 +226,10 @@
              (exec-bind #:mod "s-S"
                         #:bind "B"
                         #:cmd (format #f "hyprctl hyprpaper reload ,~a"
-                                      (sss-hypr-wallpaper #:clone-dir
-                                                          clone-dir
-                                                          #:palette palette)))
+                                      (car (sss-hypr-wallpapers #:clone-dir
+                                                                clone-dir
+                                                                #:palette
+                                                                palette))))
              (exec-bind #:mod "s"
                         #:bind "T"
                         #:cmd "alacritty msg create-window || alacritty")

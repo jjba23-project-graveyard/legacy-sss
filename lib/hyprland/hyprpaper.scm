@@ -20,30 +20,52 @@
 
 (define-module (sss hyprland hyprpaper)
   #:use-module (gnu)
+  #:use-module (ice-9 match)
+  #:use-module (ice-9 exceptions)
   #:use-module (sss palette)
   #:use-module (sss hyprland hyprlang))
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
-  (define* (sss-hypr-wallpaper #:key clone-dir palette)
-    (cond
-      ((eq? 'sss-palette-ef-cyprus palette)
-       (format #f "~a/resources/wallpapers/some-forest.jpg" clone-dir))
-      ((eq? 'sss-palette-ef-dream palette)
-       (format #f "~a/resources/wallpapers/1362745.png" clone-dir))
-      ((eq? 'sss-palette-heavy-metal palette)
-       (format #f "~a/resources/wallpapers/heavy-wall3.jpg" clone-dir))
-      ((eq? 'sss-palette-solarized-light palette)
-       (format #f "~a/resources/wallpapers/PXL_20250326_193029385.MP.jpg"
-               clone-dir))
-      ((eq? 'sss-palette-ef-autumn palette)
-       (format #f "~a/resources/wallpapers/0mar2ygf59je1.jpeg" clone-dir))
-      ((eq? 'sss-palette-everforest-dark palette)
-       (format #f "~a/resources/wallpapers/redwood-forest.jpg" clone-dir))
-      ((eq? 'sss-palette-everforest-light palette)
-       (format #f "~a/resources/wallpapers/joshua.jpg" clone-dir))
-      (else (format #f "~a/resources/wallpapers/some-forest.jpg" clone-dir))))
-  (export sss-hypr-wallpaper))
+  (define* (sss-hypr-wallpapers #:key clone-dir palette)
+    (match palette
+      ('sss-palette-ef-cyprus (list (format #f
+                                     "~a/resources/wallpapers/some-forest.jpg"
+                                     clone-dir)))
+      ('sss-palette-ef-dream (list (format #f
+                                    "~a/resources/wallpapers/1362745.png"
+                                    clone-dir)
+                                   (format #f
+                                    "~a/resources/wallpapers/inazuma.jpg"
+                                    clone-dir)
+                                   (format #f
+                                    "~a/resources/wallpapers/ei-chiyo.jpg"
+                                    clone-dir)
+                                   (format #f
+                                    "~a/resources/wallpapers/diluc-tree.jpg"
+                                    clone-dir)))
+      ('sss-palette-heavy-metal (list (format #f
+                                       "~a/resources/wallpapers/heavy-wall3.jpg"
+                                       clone-dir)))
+      ('sss-palette-solarized-light (list (format #f
+                                           "~a/resources/wallpapers/PXL_20250326_193029385.MP.jpg"
+                                           clone-dir)))
+      ('sss-palette-ef-autumn (list (format #f
+                                     "~a/resources/wallpapers/0mar2ygf59je1.jpeg"
+                                     clone-dir)))
+      ('sss-palette-ef-bio (list (format #f
+                                  "~a/resources/wallpapers/some-forest.jpg"
+                                  clone-dir)))
+      ('sss-palette-everforest-dark (list (format #f
+                                           "~a/resources/wallpapers/redwood-forest.jpg"
+                                           clone-dir)))
+      ('sss-palette-everforest-dark (list (format #f
+                                           "~a/resources/wallpapers/joshua.jpg"
+                                           clone-dir)))
+      (_ (raise-exception (make-exception-with-message (format #f
+                                                        "exception ocurred! unknown palette selected: ~a"
+                                                        palette))))))
+  (export sss-hypr-wallpapers))
 
 ;; hyprpaper: Hyprpaper is a blazing fast wallpaper utility for Hyprland
 ;; with the ability to dynamically change wallpapers through sockets.
@@ -51,14 +73,18 @@
 ;;
 ;; https://github.com/hyprwm/hyprpaper
 (begin
-  (define* (sss-hyprpaper-config #:key img)
-    (let* ((config-lines (map (lambda (l)
+  (define* (sss-hyprpaper-config #:key imgs)
+    (let* ((preloads (map (lambda (i)
+                            `(preload unquote i)) imgs))
+           (splash `((splash . false)))
+           (current-img (list-ref imgs
+                                  (random (length imgs))))
+           (wallpaper `((wallpaper unquote
+                                   (format #f ",~a" current-img))))
+           (config-lines (map (lambda (l)
                                 (serialize-hypr-setting (car l)
                                                         (cdr l)))
-                              `((preload unquote img)
-                                (splash . false)
-                                (wallpaper unquote
-                                           (format #f ",~a" img))))))
+                              (append splash preloads wallpaper))))
       (string-join (append `("# ====== SSS Hyprpaper configuration ======" "#"
                              "# auto-generated file, DO NOT EDIT!" "")
                            config-lines) "\n")))
@@ -67,9 +93,11 @@
 (begin
   (define* (sss-hyprpaper-svc #:key clone-dir palette)
     `((".config/hypr/hyprpaper.conf" ,(plain-file "hyprpaper.conf"
-                                                  (sss-hyprpaper-config #:img (sss-hypr-wallpaper
-                                                                               #:clone-dir
-                                                                               clone-dir
-                                                                               #:palette
-                                                                               palette))))))
+                                                  (sss-hyprpaper-config #:imgs
+                                                                        (sss-hypr-wallpapers
+                                                                         #:clone-dir
+                                                                         clone-dir
+                                                                         #:palette
+                                                                         palette))))))
   (export sss-hyprpaper-svc))
+
