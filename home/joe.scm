@@ -138,8 +138,8 @@
                       (string-append "SSS_WALLS=(~a) SSS_WALLS_LEN=~a "
                        "SSS_WALLS_RANDOM_I=$(( RANDOM % SSS_WALLS_LEN )) "
                        "SSS_CURRENT_WALL=\"${SSS_WALLS[$SSS_WALLS_RANDOM_I]}\" "
-                       "echo $SSS_CURRENT_WALL && "
-                       "hyprctl hyprpaper reload \"$SSS_CURRENT_WALL\"")
+                       "echo \"$SSS_CURRENT_WALL\" && "
+                       "hyprctl hyprpaper reload \",$SSS_CURRENT_WALL\"")
                       (string-join (map (lambda (w)
                                           (format #f "\"~a\"" w)) walls) " ")
                       (length walls))))
