@@ -700,7 +700,7 @@ You can do this with ~guix shell make git icecat~. Icecat is a 100% libre versio
 
 Then proceed to clone SSS with ~git clone --recursive https://codeberg.org/jjba23/sss.git~ to your favourite location. This location will need to be added to ~per-host.scm~. You can skip the ~--recursive~ option if you are not interested in the wallpapers and other art.
 
-If ~digital-art-dreams~ (the wallpapers and so on) didn't get properly cloned to your destination, you can always ~cd~ into the SSS clone path, and then do a ~git submodule add https://codeberg.org/jjba23/digital-art-dreams.git submodules/digital-art-dreams~ and then a  ~git submodule update --init --recursive~.
+If ~digital-art-dreams~ (the wallpapers and so on) didn't get properly cloned to your destination, you can always ~cd~ into the SSS clone path, and then do a ~git submodule add https://codeberg.org/jjba23/digital-art-dreams.git submodules/digital-art-dreams~ and then a  ~git submodule update --init --recursive~. Also from time to time, handy to keep the submodules updated with ~git submodule update --recursive --remote~.
 
 See more about Git submodules here:
 
@@ -738,6 +738,8 @@ You can then reboot and you should be greeted by a simple TTY.
 ** Keeping SSS updated
 
 You should every now and then update the SSS repo with ~git pull~. You also should regularly do a ~guix pull~ from your regular user, and then rebuild this system with the root user (~make sr~).
+
+It's important to also keep the SSS modules updated, and thus from time to time run ~git submodule update --recursive --remote~.
 
 Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
 
