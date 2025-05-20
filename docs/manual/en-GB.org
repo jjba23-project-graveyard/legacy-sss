@@ -5,31 +5,52 @@
 #+options: num:nil html-style:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://jointhefreeworld.org/static/css/jointhefreeworld.css" />
 
-[[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/scheme-guile.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/gnu-guix.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/license-gpl3+.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/gnu-emacs.svg]]  [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/shell-fish.svg]]  [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/shell-eshell.svg]]
+[[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/scheme-guile.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/gnu-guix.svg]]  [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/gnu-emacs.svg]] [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/shell-eshell.svg]]  [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/shell-fish.svg]] 
+[[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/gnu-make.svg]] 
+[[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/license-gpl3+.svg]]    [[https://codeberg.org/jjba23/ggg/raw/branch/trunk/dist/license-fdl13+.svg]]
+
+
+SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me help you achieve /GNUrvana/.
+
+-------------
 
 You are reading the manual for the Supreme Sexp System (SSS).
 
 This manual documents the SSS/GNU system and its functionalities.
 
-SSS is a Lisp machine adventure, where the hacking culture is celebrated. Let me help you achieve /GNUrvana/.
-
 If you like my work, please support me by [[https://bmc.link/jjbigorra][buying me a cup of coffee]] so I can continue with a lot of motivation.
 
 You can follow the project here on Codeberg, or on the fediverse at Mastodon: https://mastodon.social/@sss_project
 
-This custom GNU + Linux setup lets you customize everything endlessly, inspires creativity and problem-solving, and gives you a great user experience. This is partly thanks to the REPL (Read Eval Print Loop) and Lisp programming languages.
+-----------------------------
+
+
+SSS is a custom GNU + Linux setup lets you customize everything endlessly, inspires creativity and problem-solving, and gives you a great user experience. This is partly thanks to the REPL (Read Eval Print Loop) and Lisp programming languages.
 
 SSS strives to have all things configured via Lisp dialects when possible and convenient, staying accessible to all kinds of users, and allowing for magical things to happen 🪄.
 
 ⚠️ Installing and managing SSS is not meant for people new to GNU/Linux systems. You should already have some experience with software development. Knowing Lisp dialects, or functional programming techniques is also a big help and is something you will learn further.
 
-Refer to the project's code of conduct here: [[https://jointhefreeworld.org/blog/articles/personal/jointhefreeworld-code-of-conduct/index.html][jointhefreeworld code of conduct]]
 
 [[https://jointhefreeworld.org/static-assets/sss/dall-e-3-thumb.png]]
 
 I would appreciate if you write your findings when using SSS and if you can, fork the project, and contribute some improvements, or mail me at <jjbigorra@gmail.com>
 
 It is recommended to use tagged releases of SSS, as those are considered as stable by the developers.
+
+------------------------  
+  
+* Licensing
+
+sss and all of its source code are free software, licensed under the GNU General Public License v3 (or newer at your convenience).
+
+https://www.gnu.org/licenses/gpl-3.0.nl.html
+
+The documentation and examples, including this manual, which are provided with sss, are all licensed under the GNU Free Documentation License v1.3 (or newer at your convenience).
+
+https://www.gnu.org/licenses/fdl-1.3.html
+
+---------
 
 
 * What lies here?
