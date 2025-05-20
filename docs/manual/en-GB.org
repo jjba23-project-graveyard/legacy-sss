@@ -405,7 +405,62 @@ Some of the tweaks and improvements you get:
 
 Ultra smooth scrolling (yes also on touchpad/trackpad), super fast startup, pretty modeline, nice welcome screen, transparency in Emacs, good use of monospace and sans-serif fonts, no-config and no-headache language server integrations with many languages, opinionated and good-practice settings for language servers, pretty and fast Org mode buffers, etc.
 
-I split the Emacs configuration into several modules that you can optionally include/exclude, see ~lib/emacs/modules~.
+I split the Emacs configuration into several modules that you can optionally include/exclude, see ~lib/emacs/modules~. Here follow some explanations of each module:
+
+*** common-lisp.el
+This module configures the sly package, transforming Emacs into a robust Common Lisp development environment. It installs sly directly from its GitHub repository and ensures it loads immediately when Emacs starts. The configuration also specifies that sly should connect to SBCL (Steel Bank Common Lisp) as the preferred underlying Lisp interpreter, providing a complete suite of tools for writing, evaluating, and debugging Common Lisp code within Emacs.
+
+*** consult.el
+
+This module significantly upgrades Emacs's search and navigation through the configuration of the ~consult~ package. The primary functionality it provides is a unified and enhanced interface for nearly all interactive searching and jumping within Emacs. This means you get much more powerful ways to:
+
+-  Navigate quickly: Easily switch between open buffers, browse bookmarks, and find recent files, including those part of a specific project. You can also jump precisely to lines, headings, marks, or code symbols within a file.
+
+- Search efficiently: Perform robust searches across files using tools like grep, git grep, and ripgrep, search specifically within the current buffer, and more.
+
+- Manage history and commands: Access and cycle through your command history and kill-ring (yanked text) with greater ease.
+
+The configuration heavily customizes keybindings, mapping a wide array of consult commands to intuitive shortcuts under prefixes like C-c, M-g, and M-s. It also integrates consult with Emacs's default completion system and cross-reference features, providing a seamless and more intelligent user experience across the board.
+
+*** dashboard.el
+
+This module configures a custom "dashboard" or "welcome screen" using the ~welkomscherm~ package, offering quick access to frequently used directories and system actions.
+
+The primary functionality is to provide a personalized, interactive starting point within Emacs. It organizes and presents:
+
+- Custom Bookmarks: Two distinct sets of bookmarks are defined: personal and work. These bookmarks are designed for quick navigation to specific file paths.
+    
+- Action Buttons: A set of interactive buttons allows for one-click execution of common Emacs actions and system commands. This includes switching to essential buffers like *scratch* and *Messages*, re-rendering the welcome screen itself, and/or executing system rebuild commands (sss-sys-reconfigure and sss-joe-reconfigure).
+
+The welkomscherm package itself is installed directly from its Codeberg repository. The configuration binds the welkomscherm command to ~C-c SPC SPC~, making it easily accessible.
+
+*** dev.el
+
+This module transforms Emacs into a comprehensive development environment by configuring various language-specific modes and essential developer utilities.
+
+The configuration provides specialized support for numerous programming languages, ensuring proper syntax highlighting, intelligent indentation, and language-specific features. This includes dedicated modes for Rust, Python (with integrated black auto-formatting on save), Haskell, Scala, Lua, TypeScript, Nix, TOML, YAML and more.
+
+For Lisp-based languages such as Emacs Lisp and Scheme, the setup enables aggressive-indent for consistent automatic indentation. Additionally, it configures geiser and geiser-guile to provide a robust interactive development environment for Scheme (Guile). I actually use Ares/Arei for Guile instead of Geiser by the way, but for other Schemes it can be nice.
+
+Beyond language-specific features, the code integrates several packages designed to streamline common developer workflows. package-lint assists in linting Emacs Lisp packages, while smartparens enhances code editing with intelligent auto-pairing and manipulation of delimiters. direnv integrates with your system's direnv setup, automatically managing environment variables when navigating project directories.
+
+For containerization, it includes support for Docker, with a dedicated mode for Containerfiles/Dockerfiles with podman, and keybindings for container interactions.
+
+Visual enhancements come from fancy-compilation, which improves the appearance of compilation output, and diff-hl, which provides visual indicators in the margin for changes in version-controlled files, seamlessly integrating with magit and dired.
+
+For document editing, markdown-mode is set up for better readability with adjusted line wrapping and font settings, as well as more alignment with Org mode.
+
+Finally, request provides general HTTP client capabilities, and flymake-collection enables on-the-fly syntax checking and error highlighting.
+
+*** dired.el
+
+This module significantly upgrades the dired file manager, turning it into a more powerful and visually intuitive tool for file and directory navigation. The primary functionality centers on improving the user's interaction with dired.
+
+It enables subtree navigation through the dired-subtree package, letting you expand and collapse directories right within the dired buffer for a convenient tree-like view of your file system (use TAB).
+
+This setup also customizes the display, ensuring a cleaner look. Additionally, dired-open-with is included to allow opening files in dired using external applications, similar to a graphical file manager's "Open With" feature. Finally, nerd-icons-dired integrates visually appealing icons next to files and directories in dired listings, making file types more quickly identifiable and enhancing the overall aesthetic.
+
+Together, these packages combine to make dired a more user-friendly, visually rich, and efficient file management solution within Emacs.
 
 -----------
 
