@@ -134,15 +134,17 @@
 (define* (sss-random-wallpaper-job #:key palette clone-dir)
   (let* ((walls (sss-hypr-wallpapers #:clone-dir clone-dir
                                      #:palette palette))
+         (wall-idx -1)
          (cmd (format #f
-                      (string-append "SSS_WALLS=(~a) SSS_WALLS_LEN=~a "
-                       "SSS_WALLS_RANDOM_I=$(( RANDOM % SSS_WALLS_LEN )) "
-                       "SSS_CURRENT_WALL=\"${SSS_WALLS[$SSS_WALLS_RANDOM_I]}\" "
-                       "echo \"$SSS_CURRENT_WALL\" && "
-                       "hyprctl hyprpaper reload \",$SSS_CURRENT_WALL\"")
+                      (string-append
+                       "case $(( $(date +%s) % ~a )) in ~a esac; "
+                       "echo \"$WALL\" && hyprctl hyprpaper reload \",$WALL\"")
+                      (length walls)
                       (string-join (map (lambda (w)
-                                          (format #f "\"~a\"" w)) walls) " ")
-                      (length walls))))
+                                          (set! wall-idx
+                                                (+ 1 wall-idx))
+                                          (format #f "~a) WALL=\"~a\";;"
+                                                  wall-idx w)) walls) " "))))
     `(job "*/5 * * * *"
           ,cmd)))
 
