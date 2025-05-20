@@ -403,7 +403,11 @@ Thanks to using modern standards and a modular approach, SSS has a very flexible
 
 Package management is done with Elpaca in an asynchronous and non-blocking way, ensuring that Emacs starts up blazingly fast (faster than certain Vim setups) and making sure that packages are loaded properly and with good practices.
 
-I split the Emacs configuration into several modules that you can optionally include/exclude, here follows an explanation of them:
+Some of the tweaks and improvements you get:
+
+Ultra smooth scrolling (yes also on touchpad/trackpad), super fast startup, pretty modeline, nice welcome screen, transparency in Emacs, good use of monospace and sans-serif fonts, no-config and no-headache language server integrations with many languages, opinionated and good-practice settings for language servers, pretty and fast Org mode buffers, etc.
+
+I split the Emacs configuration into several modules that you can optionally include/exclude, see ~lib/emacs/modules~.
 
 -----------
 
