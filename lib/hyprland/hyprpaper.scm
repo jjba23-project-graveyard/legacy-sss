@@ -23,7 +23,11 @@
   #:use-module (ice-9 match)
   #:use-module (ice-9 exceptions)
   #:use-module (sss palette)
+  #:use-module (gnu home services shepherd)
+  #:use-module (shepherd service timer)
   #:use-module (sss hyprland hyprlang))
+
+(use-service-modules shepherd)
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
@@ -100,4 +104,26 @@
                                                                          #:palette
                                                                          palette))))))
   (export sss-hyprpaper-svc))
+
+(begin
+  (define* (sss-random-hyprpaper-service #:key palette clone-dir)
+    (let* ((walls (sss-hypr-wallpapers #:clone-dir clone-dir
+                                       #:palette palette))
+           (wall-idx -1)
+           (cmd (format #f
+                        (string-append
+                         "case $(( $(date +%s) % ~a )) in ~a esac; "
+                         "echo \"$WALL\" && hyprctl hyprpaper reload \",$WALL\"")
+                        (length walls)
+                        (string-join (map (lambda (w)
+                                            (set! wall-idx
+                                                  (+ 1 wall-idx))
+                                            (format #f "~a) WALL=\"~a\";;"
+                                                    wall-idx w)) walls) " "))))
+      (simple-service 'sss-random-hyprpaper home-shepherd-service-type
+                      (list (shepherd-timer '(sss-random-hyprpaper)
+                                            #~(cron-string->calendar-event
+                                               "*/5 * * * *")
+                                            (list cmd))))))
+  (export sss-random-hyprpaper-service))
 

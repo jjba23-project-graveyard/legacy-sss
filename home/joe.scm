@@ -131,23 +131,6 @@
                    (sss-portals-svc)
                    (sss-enchant-svc))))
 
-(define* (sss-random-wallpaper-job #:key palette clone-dir)
-  (let* ((walls (sss-hypr-wallpapers #:clone-dir clone-dir
-                                     #:palette palette))
-         (wall-idx -1)
-         (cmd (format #f
-                      (string-append
-                       "case $(( $(date +%s) % ~a )) in ~a esac; "
-                       "echo \"$WALL\" && hyprctl hyprpaper reload \",$WALL\"")
-                      (length walls)
-                      (string-join (map (lambda (w)
-                                          (set! wall-idx
-                                                (+ 1 wall-idx))
-                                          (format #f "~a) WALL=\"~a\";;"
-                                                  wall-idx w)) walls) " "))))
-    `(job "*/10 * * * *"
-          ,cmd)))
-
 (display "
 >>= configuring Joe's home environment...
 ")
@@ -163,9 +146,9 @@
                  sss-openpgp-conf
                  (simple-service 'sss-home-cron-service
                                  home-mcron-service-type
-                                 (list (sss-random-wallpaper-job #:palette
-                                        sss-palette
-                                        #:clone-dir sss-clone-dir)))
+                                 '())
+                 (sss-random-hyprpaper-service #:palette sss-palette
+                                               #:clone-dir sss-clone-dir)
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
                  sss-fontconfig-service-type
