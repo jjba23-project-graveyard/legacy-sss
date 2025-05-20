@@ -40,7 +40,7 @@
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
                        "waybar"
-                       "hyprpaper"
+                       "sh ~/.local/bin/sss-hyprpaper-loop.sh"
                        "alacritty --daemon"
                        "emacs --daemon"
                        "transmission-daemon"

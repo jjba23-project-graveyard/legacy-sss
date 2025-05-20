@@ -73,23 +73,22 @@
 ;; https://github.com/hyprwm/hyprpaper
 (begin
   (define* (sss-hyprpaper-config #:key imgs)
-    (let* ((preloads (map (lambda (i)
-                            `(preload unquote i)) imgs))
+    (let* ((ipc `((ipc . true)))
            (splash `((splash . false)))
-           (current-img (list-ref imgs
-                                  (random (length imgs))))
+           (random-img (list-ref imgs
+                                 (random (length imgs))))
            (wallpaper `((wallpaper unquote
-                                   (format #f ",~a" current-img))))
+                                   (format #f ",~a" random-img))))
            (config-lines (map (lambda (l)
                                 (serialize-hypr-setting (car l)
                                                         (cdr l)))
-                              (append splash preloads wallpaper))))
+                              (append splash ipc wallpaper))))
       (string-join (append `("# ====== SSS Hyprpaper configuration ======" "#"
                              "# auto-generated file, DO NOT EDIT!" "")
                            config-lines) "\n")))
   (export sss-hyprpaper-config))
 
-(define (mk-random-cmd walls)
+(define (mk-random-wall-cmd walls)
   (let* ((wall-idx -1))
     (format #f
             (string-append "case $(( $(date +%s) % ~a )) in ~a esac; "
@@ -105,13 +104,16 @@
   (define* (sss-hyprpaper-svc #:key clone-dir palette)
     (let* ((walls (sss-hypr-wallpapers #:clone-dir clone-dir
                                        #:palette palette))
-           (random-cmd (mk-random-cmd walls)))
+           (random-wall-cmd (mk-random-wall-cmd walls)))
       `((".config/hypr/hyprpaper.conf" ,(plain-file "hyprpaper.conf"
                                                     (sss-hyprpaper-config
                                                      #:imgs walls)))
-        (".config/hypr/sss-random-hyprpaper.sh" ,(plain-file
-                                                  "sss-random-hyprpaper.sh"
-                                                  random-cmd)))))
+        (".local/bin/sss-hyprpaper-loop.sh" ,(plain-file
+                                              "sss-hyprpaper-loop.sh"
+                                              "while true; do hyprpaper; sleep 1; done"))
+        (".local/bin/sss-hyprpaper-random.sh" ,(plain-file
+                                                "sss-hyprpaper-random.sh"
+                                                random-wall-cmd)))))
   (export sss-hyprpaper-svc))
 
 (begin
@@ -119,9 +121,9 @@
     (simple-service 'sss-random-hyprpaper home-shepherd-service-type
                     (list (shepherd-timer '(sss-random-hyprpaper)
                                           #~(cron-string->calendar-event
-                                             "*/10 * * * *")
+                                             "*/2 * * * *")
                                           `("sh" ,(format #f
-                                                   "/home/~a/.config/hypr/sss-random-hyprpaper.sh"
+                                                   "/home/~a/.config/hypr/sss-hyprpaper-random.sh"
                                                    username))))))
   (export sss-random-hyprpaper-service))
 
