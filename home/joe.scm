@@ -44,6 +44,7 @@
              (gnu packages admin)
              (gnu home services)
              (gnu home services shells)
+             (gnu home services mcron)
              (gnu home services ssh)
              (gnu home services gnupg)
              (gnu home services shepherd)
@@ -130,6 +131,21 @@
                    (sss-portals-svc)
                    (sss-enchant-svc))))
 
+(define* (sss-random-wallpaper-job #:key palette clone-dir)
+  (let* ((walls (sss-hypr-wallpapers #:clone-dir clone-dir
+                                     #:palette palette))
+         (cmd (format #f
+                      (string-append "SSS_WALLS=(~a) SSS_WALLS_LEN=~a "
+                       "SSS_WALLS_RANDOM_I=$(( RANDOM % SSS_WALLS_LEN )) "
+                       "SSS_CURRENT_WALL=\"${SSS_WALLS[$SSS_WALLS_RANDOM_I]}\" "
+                       "echo $SSS_CURRENT_WALL && "
+                       "hyprctl hyprpaper reload \"$SSS_CURRENT_WALL\"")
+                      (string-join (map (lambda (w)
+                                          (format #f "\"~a\"" w)) walls) " ")
+                      (length walls))))
+    `(job "*/5 * * * *"
+          ,cmd)))
+
 (display "
 >>= configuring Joe's home environment...
 ")
@@ -143,6 +159,11 @@
                                         #:lang sss-lang)
                  (sss-bash-service #:clone-dir sss-clone-dir)
                  sss-openpgp-conf
+                 (simple-service 'sss-home-cron-service
+                                 home-mcron-service-type
+                                 (list (sss-random-wallpaper-job #:palette
+                                        sss-palette
+                                        #:clone-dir sss-clone-dir)))
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
                  sss-fontconfig-service-type
