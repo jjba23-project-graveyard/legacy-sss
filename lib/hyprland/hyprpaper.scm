@@ -41,7 +41,7 @@
                                      '("joshua.jpg"
                                        "PXL_20250326_193029385.MP.jpg")))
         ('sss-palette-ef-dream (map digital-art-dreams-sss-wallpaper
-                                    '("miyabi.jpg" "1362745.png" "inazuma.jpg"
+                                    '("miyabi.jpeg" "1362745.png" "inazuma.jpg"
                                       "ei-chiyo.jpg" "diluc-tree.jpg")))
         ('sss-palette-heavy-metal (map digital-art-dreams-sss-wallpaper
                                        '("heavy-wall3.jpg" "heavy-wall2.jpg"
