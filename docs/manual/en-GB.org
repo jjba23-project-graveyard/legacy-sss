@@ -1424,3 +1424,4 @@ GNU Emacs, GNU Guix, Arch Linux, Void Linux, Nix, NixOS, Hyprland, ...
 - Derek Taylor (DT) for his great videos on free software and the GNU/Linux ecosystem
 - Mu Lei (NalaGinrut) for his great work on GNU Artanis and Scheme, and inspiring me to pursue my projects and power them with a Lispy flavor
 
+
