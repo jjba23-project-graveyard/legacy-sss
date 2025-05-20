@@ -103,12 +103,10 @@
   `((enabled . true) (first_launch_animation . true)))
 
 (define hypr-misc
-  `((disable_hypr_logo . true) (disable_hyprland_logo . true)
-    (force_default_wallpaper . 0)
+  `((disable_hyprland_logo . true) (force_default_wallpaper . 0)
     (disable_splash_rendering . true)
     (font_family . "Adwaita Sans")))
 
-;;
 
 (define hypr-media-binds
   (map (lambda (kb)
@@ -344,6 +342,8 @@
                                                        #:settings (hypr-general
                                                                    #:palette
                                                                    palette)))
+           (serialized-misc (serialize-hypr-section #:section 'misc
+                                                    #:settings hypr-misc))
            (serialized-decoration (serialize-hypr-section #:section 'decoration
                                                           #:settings (hypr-decoration
                                                                       #:with-blur
@@ -379,6 +379,8 @@
                                  `(""
                                    "# ====== Decoration configuration ======"
                                    ,serialized-decoration)
+                                 `("" "# ====== Misc configuration ======"
+                                   ,serialized-misc)
                                  `(""
                                    "# ====== Animations configuration ======"
                                    ,serialized-animations)
