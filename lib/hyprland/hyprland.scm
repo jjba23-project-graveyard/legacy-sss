@@ -18,7 +18,6 @@
 (load "../palette.scm")
 (load "./hyprlang.scm")
 
-
 (define-module (sss hyprland hyprland)
   #:use-module (gnu)
   #:use-module (sss palette)
@@ -46,14 +45,14 @@
                        "podman system service --time=0 unix:///tmp/podman.sock"
                        "gsettings set org.gnome.desktop.interface gtk-key-theme \"Emacs\""
                        ,(format #f
-                                "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
-                                gtk-theme-name)
+                         "gsettings set org.gnome.desktop.interface gtk-theme '~a'"
+                         gtk-theme-name)
                        ,(format #f
-                                "gsettings set org.gnome.desktop.interface icon-theme '~a'"
-                                icon-theme-name)
+                         "gsettings set org.gnome.desktop.interface icon-theme '~a'"
+                         icon-theme-name)
                        ,(format #f
-                                "gsettings set org.gnome.desktop.interface cursor-theme '~a'"
-                                cursor-theme-name)
+                         "gsettings set org.gnome.desktop.interface cursor-theme '~a'"
+                         cursor-theme-name)
                        "gsettings set org.gnome.desktop.interface cursor-size 24"
                        "gsettings set org.gnome.desktop.interface font-name 'Adwaita Sans'"
                        "xdg-user-dirs-update"))))

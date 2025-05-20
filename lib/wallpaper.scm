@@ -15,7 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "../palette.scm")
+(load "palette.scm")
 
 (define-module (sss wallpaper)
   #:use-module (gnu)
@@ -31,7 +31,7 @@
 (begin
   (define* (sss-wallpapers #:key clone-dir palette)
     (let* ((wall-path (string-append clone-dir
-                                     "/submodules/digital-art-dreams/wallpapers/sss"))
+                       "/submodules/digital-art-dreams/wallpapers/sss"))
            (digital-art-dreams-sss-wallpaper (lambda (w)
                                                (format #f "~a/~a" wall-path w))))
       (match palette
@@ -60,16 +60,17 @@
                                             '("joshua.jpg"
                                               "PXL_20250326_193029385.MP.jpg")))
         (_ (raise-exception (make-exception-with-message (format #f
-                                                                 "exception ocurred! unknown palette selected: ~a"
-                                                                 palette)))))))
+                                                          "exception ocurred! unknown palette selected: ~a"
+                                                          palette)))))))
   (export sss-wallpapers))
-
 
 (define (mk-random-wall-cmd walls)
   (let* ((wall-idx -1))
     (format #f
             (string-append "case $(( $(date +%s) % ~a )) in ~a esac; "
-                           "pkill swaybg && echo \"$WALL\" && swaybg -i \"$WALL\"")
+                           "pkill swaybg || true "
+                           " && echo \"setting current wallpaper: $WALL\" "
+                           "&& WAYLAND_DISPLAY=wayland-1 swaybg -i \"$WALL\"")
             (length walls)
             (string-join (map (lambda (w)
                                 (set! wall-idx
@@ -94,7 +95,7 @@
                                           #~(cron-string->calendar-event
                                              "*/2 * * * *")
                                           `("sh" ,(format #f
-                                                          "/home/~a/.local/bin/sss-wallpaper-random.sh"
-                                                          username))))))
+                                                   "/home/~a/.local/bin/sss-wallpaper-random.sh"
+                                                   username))))))
   (export sss-random-wallpaper-service))
 
