@@ -698,7 +698,9 @@ Once you have followed all those above steps, you can enter a temporary Guix she
 
 You can do this with ~guix shell make git icecat~. Icecat is a 100% libre version of Firefox, and it will be temporarily used for you to browse temporarily to Codeberg and download and install SSS.
 
-Then proceed to clone SSS with ~git clone https://codeberg.org/jjba23/sss.git~ to your favourite location. This location will need to be added to ~per-host.scm~.
+Then proceed to clone SSS with ~git clone --recursive https://codeberg.org/jjba23/sss.git~ to your favourite location. This location will need to be added to ~per-host.scm~. You can skip the ~--recursive~ option if you are not interested in the wallpapers and other art.
+
+If ~digital-art-dreams~ (the wallpapers and so on) didn't get properly cloned to your destination, you can always ~cd~ into the SSS clone path, and then do a ~git submodule add https://codeberg.org/jjba23/digital-art-dreams.git submodules/digital-art-dreams~ and then a  ~git submodule update --init --recursive~.
 
 You should have by now written an appropriate ~per-host.scm~ for your setup. See the above section on this topic.
 
