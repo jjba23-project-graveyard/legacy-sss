@@ -148,6 +148,7 @@
                                  home-mcron-service-type
                                  '())
                  (sss-random-hyprpaper-service #:username "joe")
+                 (sss-hyprpaper-service)
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
                  sss-fontconfig-service-type
