@@ -94,36 +94,37 @@
                            config-lines) "\n")))
   (export sss-hyprpaper-config))
 
+(define (mk-random-cmd walls)
+  (let* ((wall-idx -1))
+    (format #f
+            (string-append "case $(( $(date +%s) % ~a )) in ~a esac; "
+             "echo \"$WALL\" && hyprctl hyprpaper reload \",$WALL\"")
+            (length walls)
+            (string-join (map (lambda (w)
+                                (set! wall-idx
+                                      (+ 1 wall-idx))
+                                (format #f "~a) WALL=\"~a\";;" wall-idx w))
+                              walls) " "))))
+
 (begin
   (define* (sss-hyprpaper-svc #:key clone-dir palette)
-    `((".config/hypr/hyprpaper.conf" ,(plain-file "hyprpaper.conf"
-                                                  (sss-hyprpaper-config #:imgs
-                                                                        (sss-hypr-wallpapers
-                                                                         #:clone-dir
-                                                                         clone-dir
-                                                                         #:palette
-                                                                         palette))))))
+    (let* ((walls (sss-hypr-wallpapers #:clone-dir clone-dir
+                                       #:palette palette))
+           (random-cmd (mk-random-cmd walls)))
+      `((".config/hypr/hyprpaper.conf" ,(plain-file "hyprpaper.conf"
+                                                    (sss-hyprpaper-config
+                                                     #:imgs walls)))
+        (".config/hypr/sss-random-hyprpaper.sh" ,(plain-file
+                                                  "sss-random-hyprpaper.sh"
+                                                  random-cmd)))))
   (export sss-hyprpaper-svc))
 
 (begin
-  (define* (sss-random-hyprpaper-service #:key palette clone-dir)
-    (let* ((walls (sss-hypr-wallpapers #:clone-dir clone-dir
-                                       #:palette palette))
-           (wall-idx -1)
-           (cmd (format #f
-                        (string-append
-                         "case $(( $(date +%s) % ~a )) in ~a esac; "
-                         "echo \"$WALL\" && hyprctl hyprpaper reload \",$WALL\"")
-                        (length walls)
-                        (string-join (map (lambda (w)
-                                            (set! wall-idx
-                                                  (+ 1 wall-idx))
-                                            (format #f "~a) WALL=\"~a\";;"
-                                                    wall-idx w)) walls) " "))))
-      (simple-service 'sss-random-hyprpaper home-shepherd-service-type
-                      (list (shepherd-timer '(sss-random-hyprpaper)
-                                            #~(cron-string->calendar-event
-                                               "*/5 * * * *")
-                                            (list cmd))))))
+  (define* sss-random-hyprpaper-service
+    (simple-service 'sss-random-hyprpaper home-shepherd-service-type
+                    (list (shepherd-timer '(sss-random-hyprpaper)
+                                          #~(cron-string->calendar-event
+                                             "*/5 * * * *")
+                                          '("sh $HOME/.config/hypr/sss-random-hyprpaper.sh")))))
   (export sss-random-hyprpaper-service))
 

@@ -147,8 +147,7 @@
                  (simple-service 'sss-home-cron-service
                                  home-mcron-service-type
                                  '())
-                 (sss-random-hyprpaper-service #:palette sss-palette
-                                               #:clone-dir sss-clone-dir)
+                 sss-random-hyprpaper-service
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
                  sss-fontconfig-service-type
