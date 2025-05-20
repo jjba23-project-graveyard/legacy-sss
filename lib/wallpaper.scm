@@ -93,7 +93,7 @@
     (simple-service 'sss-random-wallpaper home-shepherd-service-type
                     (list (shepherd-timer '(sss-random-wallpaper)
                                           #~(cron-string->calendar-event
-                                             "*/2 * * * *")
+                                             "*/10 * * * *")
                                           `("sh" ,(format #f
                                                    "/home/~a/.local/bin/sss-wallpaper-random.sh"
                                                    username))))))
