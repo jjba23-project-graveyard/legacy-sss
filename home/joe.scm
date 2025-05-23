@@ -135,9 +135,9 @@
   (services
    (append (list sss-home-files-service
                  (sss-ssh-service)
-                 (sss-home-vars-service #:palette sss-palette
+                 (sss-home-vars-service #:palette (get-setting 'palette)
                                         #:clone-dir (get-setting 'clone-dir)
-                                        #:lang sss-lang)
+                                        #:lang (get-setting 'lang))
                  (sss-bash-service #:clone-dir (get-setting 'clone-dir))
                  sss-openpgp-conf
                  (simple-service 'sss-home-cron-service
