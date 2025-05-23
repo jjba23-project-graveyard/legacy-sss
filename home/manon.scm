@@ -101,7 +101,7 @@
    (append (list sss-home-files-service
                  (sss-home-vars-service #:palette (get-setting 'palette)
                                         #:clone-dir (get-setting 'clone-dir)
-                                        #:lang sss-lang)
+                                        #:lang (get-setting 'lang))
                  (sss-bash-service #:clone-dir (get-setting 'clone-dir))
                  sss-openpgp-conf
                  (service home-dbus-service-type)

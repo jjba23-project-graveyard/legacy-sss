@@ -165,34 +165,29 @@
   (identifier-syntax (sss-desktop-services-for-system)))
 
 (operating-system
-  (host-name sss-hostname)
-  (timezone sss-timezone)
-  (locale (format #f "~a.utf8" sss-lang))
-  (keyboard-layout (keyboard-layout sss-keyboard-layout))
-  (bootloader sss-bootloader-configuration)
+  (host-name (get-setting 'hostname))
+  (timezone (get-setting 'timezone))
+  (locale (format #f "~a.utf8"
+                  (get-setting 'lang)))
+  (keyboard-layout (keyboard-layout (get-setting 'keyboard-layout)))
+  (bootloader (get-setting 'bootloader-configuration))
   (kernel linux)
   (initrd microcode-initrd)
   (firmware (list linux-firmware))
   (sudoers-file (plain-file "sudoers"
                             (sss-sudoers)))
-  (mapped-devices sss-mapped-devices)
-  (file-systems (append sss-filesystems %base-file-systems))
-  (users sss-users)
-  (packages (append (sss-system-packages #:per-host-packages
-                                         sss-per-host-packages) %base-packages))
+  (mapped-devices (get-setting 'mapped-devices))
+  (file-systems (append (get-setting 'filesystems) %base-file-systems))
+  (users (get-setting 'users))
+  (packages (append (sss-system-packages #:per-host-packages (get-setting 'extra-packages))
+                    %base-packages))
   (services
    (cons* (service nix-service-type)
           (service power-profiles-daemon-service-type)
           sss-iptables-service
           (service rootless-podman-service-type
-                   (rootless-podman-configuration (subgids (list (subid-range (name
-                                                                               "joe"))
-                                                                 (subid-range (name
-                                                                               "manon"))))
-                                                  (subuids (list (subid-range (name
-                                                                               "joe"))
-                                                                 (subid-range (name
-                                                                               "manon"))))))
+                   (rootless-podman-configuration (subgids (get-setting 'subgids))
+                                                  (subuids (get-setting 'subuids))))
           (service screen-locker-service-type
                    (screen-locker-configuration (name "hyprlock")
                                                 (program (file-append hyprlock

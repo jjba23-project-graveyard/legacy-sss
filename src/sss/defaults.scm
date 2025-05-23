@@ -21,30 +21,57 @@
   #:use-module (gnu)
   #:use-module (gnu bootloader)
   #:use-module (gnu system file-systems)
-  #:export (sss-default-lang sss-default-timezone
-                             sss-default-keyboard-layout
-                             sss-default-caps-to-ctrl?
-                             sss-default-hostname
-                             sss-default-mapped-devices
-                             sss-default-bootloader-configuration
-                             sss-default-clone-dir
-                             sss-default-extra-packages
-                             sss-default-palette
-                             sss-default-sans-font
-                             sss-default-mono-font
-                             sss-default-nixpkgs
-                             sss-default-flatpak-user-remotes
-                             sss-default-flatpak-pkgs
-                             sss-default-hyprland-extra-startups
-                             sss-default-hyprland-monitors
-                             sss-default-labwc-extra-startups))
+  #:export (sss-default-bootloader-configuration sss-default-caps-to-ctrl?
+            sss-default-clone-dir
+            sss-default-extra-packages
+            sss-default-filesystems
+            sss-default-flatpak-pkgs
+            sss-default-flatpak-user-remotes
+            sss-default-hostname
+            sss-default-hyprland-extra-startups
+            sss-default-hyprland-monitors
+            sss-default-keyboard-layout
+            sss-default-labwc-extra-startups
+            sss-default-lang
+            sss-default-mapped-devices
+            sss-default-mono-font
+            sss-default-nixpkgs
+            sss-default-palette
+            sss-default-sans-font
+            sss-default-timezone
+            sss-default-subgids
+            sss-default-subuids
+            sss-default-sudoers
+            sss-default-users))
 
-;;;
-;;; SSS defaults section
-;;;
+(define sss-override-sudoers
+  (let ((no-passwd-cmd (string-join '("/run/current-system/profile/sbin/halt"
+                                      "/run/current-system/profile/bin/chvt"
+                                      "/run/current-system/profile/sbin/reboot"
+                                      "/run/current-system/profile/bin/loginctl")
+                                    ",")))
+    (string-join `("root ALL=(ALL) NOPASSWD:ALL" "%wheel ALL=(ALL) ALL"
+                   ,(format #f "sss ALL=(ALL) NOPASSWD:~a" no-passwd-cmd))
+                 "\n")))
 
-;; set default values for optional `per-host.scm' values
-;; which can be overriden on a host-per-host basis
+;; subgids and subuids for containers (Podman)
+(define sss-default-subgids
+  '())
+(define sss-default-subuids
+  '())
+
+(define sss-default-users
+  (list (user-account
+          (name "sss")
+          (group "users")
+          (supplementary-groups '("wheel" "netdev"
+                                  "audio"
+                                  "video"
+                                  "input"
+                                  "libvirt"
+                                  "cgroup"))
+          (comment "default sss account")
+          (home-directory "/home/sss"))))
 
 ;; system language
 (define sss-default-lang
@@ -66,9 +93,13 @@
 (define sss-default-hostname
   "gnu-system")
 
-;; mapped devices (file systems)
+;; mapped devices (encrypted file systems)
 (define sss-default-mapped-devices
   '())
+
+;; file systems (partitions)
+(define sss-default-filesystems
+  #f)
 
 ;; bootloader configuration
 (define sss-default-bootloader-configuration

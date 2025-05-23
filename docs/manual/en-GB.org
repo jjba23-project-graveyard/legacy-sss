@@ -262,7 +262,9 @@ You will NEED a file at ~per-host/sss/overrides.scm~ with at least:
 (define-module (sss overrides))
 #+end_src
 
-Find here an examplef configuration of a SSS overrides file for one of my machines.
+Although you will likely want to add your filesystems, to get a working Guix system.
+
+Find here an example configuration of a SSS overrides file for one of my machines, this one with BTRFS and LUKS encryption.
 
 #+begin_src  scheme
 (define-module (sss overrides)
@@ -272,10 +274,29 @@ Find here an examplef configuration of a SSS overrides file for one of my machin
                               sss-override-keyboard-layout
                               sss-override-hostname
                               sss-override-filesystems
+                              sss-override-mapped-devices
                               sss-override-extra-packages
                               sss-override-hyprland-extra-startups
                               sss-override-hyprland-monitors
-                              sss-override-palette))
+                              sss-override-palette
+                              sss-override-users))
+
+;; User account for Josep Bigorra
+(define sss-joe-user-account
+  (user-account
+    (name "joe")
+    (group "users")
+    (supplementary-groups '("wheel" "netdev"
+                            "audio"
+                            "video"
+                            "input"
+                            "libvirt"
+                            "cgroup"))
+    (comment "Josep Bigorra's account")
+    (home-directory "/home/joe")))
+
+(define-public sss-override-users
+  (list sss-joe-user-account))
 
 ;; system language
 (define sss-override-lang
@@ -291,31 +312,38 @@ Find here an examplef configuration of a SSS overrides file for one of my machin
 
 ;; system hostname
 (define sss-override-hostname
-  "gnu-north")
+  "gnu-framework")
 
 (define sss-override-extra-packages
-  (list "amd-microcode" "amdgpu-firmware" "prismlauncher" "steam"))
+  '("amd-microcode" "amdgpu-firmware" "prismlauncher"))
 
 (define sss-override-hyprland-extra-startups
   '("sudo warp-svc" "sudo mkdir -p /usr/share/warp/images"
     "sleep 1 && warp-taskbar"))
 
-(define sss-override-hyprland-monitors
-  '("monitor = , preferred, auto, 1.25"))
-
 (define-public sss-override-palette
   'sss-palette-ef-dream)
 
+(define sss-override-mapped-devices
+  (list (mapped-device
+          (source (uuid "e84af212-b13b-4163-9165-57bd6f1b787d"))
+          (target "rootfs")
+          (type luks-device-mapping))))
+
 (define sss-override-filesystems
   (list (file-system
-          (device "/dev/nvme0n1p3")
           (mount-point "/")
-          (type "ext4"))
+          (device "/dev/mapper/rootfs")
+          (type "btrfs")
+          (dependencies sss-override-mapped-devices))
         (file-system
-          (device "/dev/nvme0n1p1")
           (mount-point "/boot/efi")
+          (device (uuid "FC82-5EC0"
+                        'fat32))
           (type "vfat"))))
 
+(define sss-override-hyprland-monitors
+  '("monitor = , preferred, auto, 1.33333"))
 #+end_src
 
 

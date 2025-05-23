@@ -61,9 +61,7 @@
              (sss rofi)
              (sss ssh)
              (sss firefox)
-             (sss emacs)
-             (sss defaults)
-             (sss overrides))
+             (sss emacs))
 
 ;; show active SSS per-host settings
 (log-exprs (get-setting 'lang)

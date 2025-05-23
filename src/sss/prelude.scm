@@ -35,11 +35,11 @@
                                           user-override-var-name))))
     ;; (display (format #f "\nsss-default: ~a: ~a\n" sss-default-var-name sss-default))
     ;; (display (format #f "\nuser-override: ~a: ~a\n" user-override-var-name
-    ;;                  user-override))
+    ;; user-override))
     (catch #t
-      (lambda ()
-        (if (equal? #f user-override)
-            (variable-ref sss-default)
-            (variable-ref user-override)))
-      (lambda (key . args)
-        (variable-ref sss-default)))))
+           (lambda ()
+             (if (equal? #f user-override)
+                 (variable-ref sss-default)
+                 (variable-ref user-override)))
+           (lambda (key . args)
+             (variable-ref sss-default)))))
