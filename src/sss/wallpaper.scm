@@ -20,11 +20,7 @@
   #:use-module (gnu)
   #:use-module (ice-9 match)
   #:use-module (ice-9 exceptions)
-  #:use-module (sss palette)
-  #:use-module (gnu home services shepherd)
-  #:use-module (shepherd service timer))
-
-(use-service-modules shepherd)
+  #:use-module (sss palette))
 
 ;; Define diverse wallpapers based on the active color scheme. 
 (begin
@@ -85,15 +81,4 @@
                                                 "sss-wallpaper-random.sh"
                                                 random-wall-cmd)))))
   (export sss-wallpaper-svc))
-
-(begin
-  (define* (sss-random-wallpaper-service #:key username)
-    (simple-service 'sss-random-wallpaper home-shepherd-service-type
-                    (list (shepherd-timer '(sss-random-wallpaper)
-                                          #~(cron-string->calendar-event
-                                             "*/10 * * * *")
-                                          `("sh" ,(format #f
-                                                   "/home/~a/.local/bin/sss-wallpaper-random.sh"
-                                                   username))))))
-  (export sss-random-wallpaper-service))
 

@@ -32,6 +32,7 @@
              (gnu home services shepherd)
              (gnu home services sound)
              (gnu home services desktop)
+             (shepherd service timer)
              (sss prelude)
              (sss process)
              (sss foot)
@@ -143,7 +144,13 @@
                  (simple-service 'sss-home-cron-service
                                  home-mcron-service-type
                                  '())
-                 (sss-random-wallpaper-service #:username "joe")
+                 (simple-service 'sss-random-wallpaper
+                                 home-shepherd-service-type
+                                 (list (shepherd-timer '(sss-random-wallpaper)
+                                                       #~(cron-string->calendar-event
+                                                          "*/10 * * * *")
+                                                       `("sh" ,(format #f
+                                                                "/home/joe/.local/bin/sss-wallpaper-random.sh")))))
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
                  sss-fontconfig-service-type
