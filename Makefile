@@ -104,7 +104,7 @@ full-rebuild: format
 
 # nix-profile-upgrade: Upgrades Nix packages using a custom Guile script.
 nix-profile-upgrade:
-	guile -L ./per-host -L ./src system/scripts/update-nix-packages.scm
+	guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/update-nix-packages.scm
 
 # format: Formats Scheme and Emacs Lisp files in the project.
 format:
@@ -134,17 +134,17 @@ shepherd-logs:
 # clone-user-repos: Clones user repositories using a custom script.
 clone-user-repos:
 	$(call sss-log-info,"Cloning user Git repositories for SSS")
-	guile -L ./per-host -L ./src system/scripts/clone-user-repos.scm
+	guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/clone-user-repos.scm
 
 # install-nix-packages: Installs Nix packages using a custom script.
 install-nix-packages:
 	$(call sss-log-info,"Installing Nix packages for SSS")
-	guile -L ./per-host -L ./src system/scripts/install-nix-packages.scm
+	guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/install-nix-packages.scm
 
 # install-flatpak-packages: Installs Flatpak packages using a custom script.
 install-flatpak-packages:
 	$(call sss-log-info,"Installing Flatpak packages for SSS")
-	guile -L ./per-host -L ./src system/scripts/install-flatpak-packages.scm
+	guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/install-flatpak-packages.scm
 
 # update-flatpak-packages: Updates the system's Flatpak packages
 update-flatpak-packages:
@@ -187,7 +187,7 @@ deploy:
 
 # repl: Start a Guile Scheme development REPL
 repl:
-	guix shell -m manifest.scm -- guile  \
+	guix shell -m manifest.scm -- guile --fresh-auto-compile \
 		-L ./per-host \
 		-L ./src \
 		-c '((@ (ares server) run-nrepl-server))'
@@ -195,8 +195,9 @@ repl:
 # Unit tests
 test:
 	$(call sss-log-starting,"test")
-	guix shell -m manifest.scm -- \
-		guile -L ./src \
+	guix shell -m manifest.scm -- guile  --fresh-auto-compile \
+		-L ./per-host \
+		-L ./src \
 		-L ./test \
 		-c "((@ (sss test-runners) run-project-tests))"
 	$(call sss-log-complete,"test")

@@ -26,18 +26,26 @@
             'exp exp) ...))
 
 (define (get-setting setting)
-  (let* ((sss-default (module-variable (resolve-module '(sss defaults))
-                                       (string->symbol (format #f
-                                                        "sss-default-~a"
-                                                        setting))))
+  (let* ((sss-default-var-name (format #f "sss-default-~a" setting))
+         (sss-default (module-variable (resolve-module '(sss defaults))
+                                       (string->symbol sss-default-var-name)))
+         (user-override-var-name (format #f "sss-override-~a" setting))
          (user-override (module-variable (resolve-module '(sss overrides))
-                                         (string->symbol (format #f
-                                                          "sss-override-~a"
-                                                          setting)))))
+                                         (string->symbol
+                                          user-override-var-name))))
+    (display (format #f "sss-default: ~a: ~a" sss-default-var-name sss-default))
+    (newline)
+    (display (format #f "user-override: ~a: ~a" user-override-var-name
+                     user-override))
+    (newline)
     (catch #t
            (lambda ()
-             (if (not user-override)
+             (if (equal? #f user-override)
                  (variable-ref sss-default)
                  (variable-ref user-override)))
            (lambda (key . args)
              (variable-ref sss-default)))))
+
+(get-setting 'lang)
+(get-setting 'hyprland-extra-startups)
+(get-setting 'hostname)
