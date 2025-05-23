@@ -73,8 +73,7 @@ system-reconfigure: format test
 # User reconfigure function
 define sss-user-reconfigure
 	$(call sss-log-starting,"$(1)-reconfigure")
-	@guix home reconfigure -l system/sss-defaults.scm \
-		-l per-host.scm -L ./src ./home/$(1).scm --fallback
+	@guix home reconfigure -L ./src -L ./per-host ./home/$(1).scm --fallback
 	$(call sss-log-complete,"$(1)-reconfigure")
 	$(call sss-notify-success,"SSS $(1)-reconfigure complete","task was completed successfully!")
 	@-fc-cache -frv &

@@ -38,7 +38,6 @@
              kracht
              lucidplan
              modusregel
-             neppegesprek
              orgwebalchemy
              pop-server
              pop-test

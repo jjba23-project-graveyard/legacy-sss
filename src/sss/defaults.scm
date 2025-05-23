@@ -17,9 +17,28 @@
 
 ;; Code:
 
-(use-modules (gnu)
-             (gnu bootloader)
-             (gnu system file-systems))
+(define-module (sss defaults)
+  #:use-module (gnu)
+  #:use-module (gnu bootloader)
+  #:use-module (gnu system file-systems)
+  #:export (sss-default-lang
+            sss-default-timezone
+            sss-default-keyboard-layout
+            sss-default-caps-to-ctrl?
+            sss-default-hostname
+            sss-default-mapped-devices
+            sss-default-bootloader-configuration
+            sss-default-clone-dir
+            sss-default-extra-packages
+            sss-default-palette
+            sss-default-sans-font
+            sss-default-mono-font
+            sss-default-nixpkgs
+            sss-default-flatpak-user-remotes
+            sss-default-flatpak-pkgs
+            sss-default-hyprland-extra-startups
+            sss-default-hyprland-monitors
+            sss-default-labwc-extra-startups))
 
 ;;;
 ;;; SSS defaults section
@@ -29,44 +48,44 @@
 ;; which can be overriden on a host-per-host basis
 
 ;; system language
-(define sss-lang
+(define sss-default-lang
   "en_US")
 
 ;; system timezone
-(define sss-timezone
+(define sss-default-timezone
   "Europe/Amsterdam")
 
 ;; system keyboard layout
-(define sss-keyboard-layout
+(define sss-default-keyboard-layout
   "us")
 
 ;; caps to control enabled
-(define sss-caps-to-ctrl
+(define sss-default-caps-to-ctrl?
   #t)
 
 ;; system hostname
-(define sss-hostname
-  "gnusystem")
+(define sss-default-hostname
+  "gnu-system")
 
 ;; mapped devices (file systems)
-(define sss-mapped-devices
+(define sss-default-mapped-devices
   '())
 
 ;; bootloader configuration
-(define sss-bootloader-configuration
+(define sss-default-bootloader-configuration
   (bootloader-configuration
-    (bootloader grub-efi-bootloader)
-    (targets '("/boot/efi"))))
+   (bootloader grub-efi-bootloader)
+   (targets '("/boot/efi"))))
 
 ;; location where you cloned SSS Git repository
-(define sss-clone-dir
+(define sss-default-clone-dir
   "$HOME/hacking/sss")
 
 ;; packages that should only be installed in the current host
-(define sss-per-host-packages
+(define sss-default-extra-packages
   '())
 
-;; color palette (overridden by per-host)
+;; color palette
 ;;   - sss-palette-ef-bio
 ;;   - sss-palette-ef-cyprus
 ;;   - sss-palette-ef-dream
@@ -75,17 +94,17 @@
 ;;   - sss-palette-ef-autumn
 ;;   - sss-palette-everforest-dark
 ;;   - sss-palette-everforest-light
-(define sss-palette
+(define sss-default-palette
   'sss-palette-ef-dream)
 
-(define sss-sans-font
+(define sss-default-sans-font
   "Adwaita Sans")
 
-(define sss-mono-font
+(define sss-default-mono-font
   "Adwaita Mono")
 
 ;; Nix packages to install
-(define sss-nixpkgs
+(define sss-default-nixpkgs
   '("yaml-language-server" "bash-language-server"
     "discord"
     "typescript-language-server"
@@ -117,20 +136,20 @@
     "awscli"))
 
 ;; Flatpak remotes to add to a user
-(define sss-flatpak-user-remotes
+(define sss-default-flatpak-user-remotes
   '((flathub . "https://dl.flathub.org/repo/flathub.flatpakrepo")))
 
 ;; Flatpak packages to install to the user
-(define sss-flatpak-pkgs
+(define sss-default-flatpak-pkgs
   '("app.drey.Warp" "com.usebottles.bottles" "com.ktechpit.whatsie"
     "com.anydesk.Anydesk" "app.zen_browser.zen"))
 
 ;; Additional Hyprland startup commands on per-host basis
-(define sss-hyprland-extra-startups
+(define sss-default-hyprland-extra-startups
   '())
 
 ;; Additional Labwc startup commands on per-host basis
-(define sss-labwc-extra-startups
+(define sss-default-labwc-extra-startups
   '())
 
 ;; Hyprland monitor configurations as a list of strings (lines)
@@ -139,10 +158,6 @@
 ;; or more detailed config like "monitor=DP-1,1920x1080@144,0x0,1"
 ;; see https://wiki.hyprland.org/hyprland-wiki/pages/Configuring/Monitors/
 ;;
-(define sss-hyprland-monitors
+(define sss-default-hyprland-monitors
   '("monitor = , preferred, auto, 1"))
-
-;;;
-;;; end SSS defaults section
-;;;
 
