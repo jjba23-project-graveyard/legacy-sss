@@ -16,9 +16,22 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss prelude)
-  #:export (log-exprs sss-show-settings))
+  #:use-module (sss defaults)
+  #:use-module (sss overrides)
+  #:export (log-exprs setting-from-registry))
 
 (define-syntax-rule (log-exprs exp ...)
   (begin
     (format #t "~a: ~S\n"
             'exp exp) ...))
+
+(define (setting-from-registry setting)
+  (catch #t
+         (lambda ()
+           (module-variable (resolve-module '(sss overrides))
+                            (string->symbol (format #f "sss-override-~a"
+                                                    setting))))
+         (lambda (key . args)
+           (module-variable (resolve-module '(sss defaults))
+                            (string->symbol (format #f "sss-default-~a"
+                                                    setting))))))

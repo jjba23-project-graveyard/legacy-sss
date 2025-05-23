@@ -64,8 +64,8 @@ update:
 # system-reconfigure: Reconfigures the system using the provided configuration file.
 system-reconfigure: format test
 	$(call sss-log-starting,"system-reconfigure")
-	@sudo guix system reconfigure -l system/sss-defaults.scm \
-		-l per-host.scm -L ./src ./system/config.scm --fallback
+	@sudo guix system reconfigure \
+		-L ./per-host -L ./src ./system/config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")
 	$(call sss-notify-success,"SSS system-reconfigure complete","task was completed successfully!")
 	@-sudo fc-cache -frv
@@ -73,7 +73,7 @@ system-reconfigure: format test
 # User reconfigure function
 define sss-user-reconfigure
 	$(call sss-log-starting,"$(1)-reconfigure")
-	@guix home reconfigure -L ./src -L ./per-host ./home/$(1).scm --fallback
+	@guix home reconfigure -L ./per-host -L ./src ./home/$(1).scm --fallback
 	$(call sss-log-complete,"$(1)-reconfigure")
 	$(call sss-notify-success,"SSS $(1)-reconfigure complete","task was completed successfully!")
 	@-fc-cache -frv &
@@ -104,8 +104,7 @@ full-rebuild: format
 
 # nix-profile-upgrade: Upgrades Nix packages using a custom Guile script.
 nix-profile-upgrade:
-	guile -l system/sss-defaults.scm \
-		-l per-host.scm -L ./src system/scripts/update-nix-packages.scm
+	guile -L ./per-host -L ./src system/scripts/update-nix-packages.scm
 
 # format: Formats Scheme and Emacs Lisp files in the project.
 format:
@@ -135,20 +134,17 @@ shepherd-logs:
 # clone-user-repos: Clones user repositories using a custom script.
 clone-user-repos:
 	$(call sss-log-info,"Cloning user Git repositories for SSS")
-	guile -l system/sss-defaults.scm \
-		-l per-host.scm -L ./src system/scripts/clone-user-repos.scm
+	guile -L ./per-host -L ./src system/scripts/clone-user-repos.scm
 
 # install-nix-packages: Installs Nix packages using a custom script.
 install-nix-packages:
 	$(call sss-log-info,"Installing Nix packages for SSS")
-	guile -l system/sss-defaults.scm \
-		-l per-host.scm -L ./src system/scripts/install-nix-packages.scm
+	guile -L ./per-host -L ./src system/scripts/install-nix-packages.scm
 
 # install-flatpak-packages: Installs Flatpak packages using a custom script.
 install-flatpak-packages:
 	$(call sss-log-info,"Installing Flatpak packages for SSS")
-	guile -l system/sss-defaults.scm \
-		-l per-host.scm -L ./src system/scripts/install-flatpak-packages.scm
+	guile -L ./per-host -L ./src system/scripts/install-flatpak-packages.scm
 
 # update-flatpak-packages: Updates the system's Flatpak packages
 update-flatpak-packages:
@@ -192,6 +188,7 @@ deploy:
 # repl: Start a Guile Scheme development REPL
 repl:
 	guix shell -m manifest.scm -- guile  \
+		-L ./per-host \
 		-L ./src \
 		-c '((@ (ares server) run-nrepl-server))'
 

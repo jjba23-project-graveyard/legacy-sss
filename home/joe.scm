@@ -64,35 +64,35 @@
              (sss emacs))
 
 ;; show active SSS per-host settings
-(log-exprs sss-lang
-           sss-timezone
-           sss-keyboard-layout
-           sss-caps-to-ctrl
-           sss-hostname
-           sss-clone-dir
-           sss-palette
-           sss-hyprland-monitors
-           sss-hyprland-extra-startups
-           sss-labwc-extra-startups
-           sss-flatpak-user-remotes
-           (length sss-flatpak-pkgs)
-           (length sss-per-host-packages)
-           (length sss-nixpkgs))
+(log-exprs (setting-from-registry 'lang)
+           (setting-from-registry 'timezone)
+           (setting-from-registry 'keyboard-layout)
+           (setting-from-registry 'caps-to-ctrl?)
+           (setting-from-registry 'hostname)
+           (setting-from-registry 'clone-dir)
+           (setting-from-registry 'palette)
+           (setting-from-registry 'hyprland-monitors)
+           (setting-from-registry 'hyprland-extra-startups)
+           (setting-from-registry 'labwc-extra-startups)
+           (setting-from-registry 'flatpak-user-remotes)
+           (length (setting-from-registry 'flatpak-pkgs))
+           (length (setting-from-registry 'extra-packages))
+           (length (setting-from-registry 'nixpkgs)))
 
 (define sss-home-files-service
   (service home-files-service-type
-           (append (sss-gtk3-svc #:palette sss-palette)
-                   (sss-gtk4-svc #:palette sss-palette)
+           (append (sss-gtk3-svc #:palette (setting-from-registry 'palette))
+                   (sss-gtk4-svc #:palette (setting-from-registry 'palette))
                    (sss-git-svc)
-                   (sss-waybar-svc #:palette sss-palette
-                                   #:sans-font sss-sans-font
+                   (sss-waybar-svc #:palette (setting-from-registry 'palette)
+                                   #:sans-font (setting-from-registry 'sans-font)
                                    #:with-memory #t
                                    #:hyprland-session #t)
-                   (sss-rofi-svc #:palette sss-palette)
-                   (sss-alacritty-svc #:palette sss-palette
+                   (sss-rofi-svc #:palette (setting-from-registry 'palette))
+                   (sss-alacritty-svc #:palette (setting-from-registry 'palette)
                                       #:mono-font sss-mono-font)
-                   (sss-foot-svc #:palette sss-palette)
-                   (sss-hyprland-svc #:palette sss-palette
+                   (sss-foot-svc #:palette (setting-from-registry 'palette))
+                   (sss-hyprland-svc #:palette (setting-from-registry 'palette)
                                      #:clone-dir sss-clone-dir
                                      #:keyboard-layout sss-keyboard-layout
                                      #:caps-to-ctrl sss-caps-to-ctrl
@@ -103,16 +103,16 @@
                                      #:with-shadow #t)
                    (sss-hyprlock-svc #:clone-dir sss-clone-dir)
                    (sss-wallpaper-svc #:clone-dir sss-clone-dir
-                                      #:palette sss-palette)
+                                      #:palette (setting-from-registry 'palette))
                    (sss-mime-svc)
                    (sss-dirs-svc)
-                   (sss-firefox-svc #:palette sss-palette)
+                   (sss-firefox-svc #:palette (setting-from-registry 'palette))
                    (sss-fastfetch-svc #:clone-dir sss-clone-dir)
                    (sss-fish-svc #:clone-dir sss-clone-dir
-                                 #:palette sss-palette)
-                   (sss-mako-svc #:palette sss-palette
-                                 #:sans-font sss-sans-font)
-                   (sss-emacs-svc #:palette sss-palette
+                                 #:palette (setting-from-registry 'palette))
+                   (sss-mako-svc #:palette (setting-from-registry 'palette)
+                                 #:sans-font (setting-from-registry 'sans-font))
+                   (sss-emacs-svc #:palette (setting-from-registry 'palette)
                                   #:user-name "Joe"
                                   #:user-full-name "Josep Bigorra"
                                   #:user-initials "JJBA"
@@ -120,10 +120,10 @@
                                   #:clone-dir sss-clone-dir
                                   #:notes-roam-dir
                                   "$HOME/hacking/private-notes/roam"
-                                  #:sans-font sss-sans-font
+                                  #:sans-font (setting-from-registry 'sans-font)
                                   #:mono-font sss-mono-font)
                    (sss-nix-svc)
-                   (sss-qt6-svc #:palette sss-palette)
+                   (sss-qt6-svc #:palette (setting-from-registry 'palette))
                    (sss-containers-svc)
                    (sss-portals-svc)
                    (sss-enchant-svc))))
