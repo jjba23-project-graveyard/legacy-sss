@@ -426,7 +426,7 @@ Some of the tweaks and improvements you get:
 
 Ultra smooth scrolling (yes also on touchpad/trackpad), super fast startup, pretty modeline, nice welcome screen, transparency in Emacs, good use of monospace and sans-serif fonts, no-config and no-headache language server integrations with many languages, opinionated and good-practice settings for language servers, pretty and fast Org mode buffers, etc.
 
-I split the Emacs configuration into several modules that you can optionally include/exclude, see ~lib/emacs/modules~. Here follow some explanations of each module:
+I split the Emacs configuration into several modules that you can optionally include/exclude, see ~src/sss/emacs/modules~. Here follow some explanations of each module:
 
 *** common-lisp.el
 This module configures the sly package, transforming Emacs into a robust Common Lisp development environment. It installs sly directly from its GitHub repository and ensures it loads immediately when Emacs starts. The configuration also specifies that sly should connect to SBCL (Steel Bank Common Lisp) as the preferred underlying Lisp interpreter, providing a complete suite of tools for writing, evaluating, and debugging Common Lisp code within Emacs.
@@ -665,7 +665,7 @@ To improve navigation, ultra-scroll is enabled, refining Emacs's scrolling behav
 
 SSS works by programatically define users via code.
 
-You should create users by tweaking the Scheme code (more specifically ~system/users.scm~ and ~lib/sudoers.scm~ ) and you should also create a Guix home file (~home/<user>.scm~) if you want to use the home services SSS provides.
+You should create users by tweaking the Scheme code (more specifically ~system/users.scm~ and ~src/sss/sudoers.scm~ ) and you should also create a Guix home file (~home/<user>.scm~) if you want to use the home services SSS provides.
 
 When everything is in place, if it's a new user, you can add a password to the user with ~sudo passwd <user>~. If this user was created by the Guix install then this will already be done for you.
 
@@ -863,7 +863,7 @@ I like to declaratively customize and configure my software, and my web browsers
 
 With Firefox (from nonguix) I like to configure it in Lisp (Guile Scheme) code, generating ~user.js~ , ~userChrome.css~ and more, from Lisp code, to customize, harden and optimize it, all declaratively.
 
-See ~lib/firefox.scm~ for more.
+See ~src/sss/firefox.scm~ for more.
 
 As for manual work needed for achieving Firefox Zen, we document several tips below:
 
@@ -941,7 +941,7 @@ You are then ready to start the Nyxt browser, all configuration should work well
 * Git
 **** TODO: make this more configurable.
 
-Joe's account is automatically configured with a multi-user Git setup. See ~lib/git.scm~.
+Joe's account is automatically configured with a multi-user Git setup. See ~src/sss/git.scm~.
 Currently this works on a per-directory basis, and is configured by default to my preferred settings.
 
 
@@ -1009,7 +1009,7 @@ In this case, the next best option is to use a virtual bridge with static routin
 
 SSS supports specifying default applications to use for certain files, and also xdg-open, and customize allowed options, all in comfortable Scheme code.
 
-Refer to the ~sss mime~ module at ~lib/~ and the ~sss-mimeapps-list-file~ function to understand more how it works.
+Refer to the ~sss mime~ module at ~src/sss/~ and the ~sss-mimeapps-list-file~ function to understand more how it works.
 
 #+begin_src scheme
   (define-public sss-mime-default-applications

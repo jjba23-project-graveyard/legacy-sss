@@ -115,7 +115,7 @@
                   ui))
   (define* (serialize-sss-emacs-module #:key clone-dir mod)
     `(,(format #f ".emacs.d/modules/~a.el" mod) ,(local-file (format #f
-                                                              "~a/lib/emacs/modules/~a.el"
+                                                              "~a/src/sss/emacs/modules/~a.el"
                                                               (string-replace-substring
                                                                clone-dir
                                                                "$HOME"

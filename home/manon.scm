@@ -21,21 +21,12 @@
              (gnu bootloader)
              (gnu system file-systems))
 
-;; load SSS defaults
-(load "../system/sss-defaults.scm")
 
 ;; load user preferences per-host
 (load "../per-host.scm")
 
-;; show input settings
-(load "../system/show-settings.scm")
+;; show active SSS per-host settings
 (sss-show-settings)
-
-(load "../lib/path.scm")
-
-;; Autoload all Scheme modules in lib and subdirectories
-;; All modules should have the `.scm' extension
-(load-lib-modules)
 
 ;; Load Guile modules
 (use-modules (gnu home)

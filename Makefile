@@ -110,7 +110,7 @@ format:
 	$(call sss-log-starting,"format")
 	@-find ~+ -maxdepth 8 -name "*.scm" -type f -exec guix style -f {} \;
 	@-find ~+ -maxdepth 8 -name "*.el" -type f -exec emacs -Q --batch {} \
-		-l $(shell realpath ./lib/emacs/batch-indent.el) -f indent-file \;
+		-l $(shell realpath ./src/sss/emacs/batch-indent.el) -f indent-file \;
 	$(call sss-log-complete,"format")
 
 

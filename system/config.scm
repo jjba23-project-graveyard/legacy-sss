@@ -25,9 +25,6 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
-;; load SSS defaults
-;; (load "./sss-defaults.scm")
-
 ;; load user preferences per-host
 (load "../per-host.scm")
 
