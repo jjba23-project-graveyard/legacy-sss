@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss fastfetch)
+  #:declarative? #t
   #:use-module (gnu)
   #:use-module (json)
   #:use-module (ice-9 string-fun)

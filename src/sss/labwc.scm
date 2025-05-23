@@ -17,6 +17,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss labwc)
+  #:declarative? #t
   #:use-module (gnu)
   #:use-module (sxml simple)
   #:use-module (sss palette))

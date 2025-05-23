@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss vars)
+  #:declarative? #t
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services shells)

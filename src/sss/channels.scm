@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss channels)
+  #:declarative? #t
   #:use-module (gnu)
   #:use-module (gnu home services)
   #:use-module (gnu home services guix)

@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss openpgp)
+  #:declarative? #t
   #:use-module (gnu)
   #:use-module (gnu packages gnupg)
   #:use-module (gnu home services gnupg))

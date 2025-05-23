@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss hyprland hyprland)
+  #:declarative? #t
   #:use-module (gnu)
   #:use-module (sss palette)
   #:use-module (sss hyprland hyprlang))

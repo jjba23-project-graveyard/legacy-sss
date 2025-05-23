@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss mime)
+  #:declarative? #t
   #:use-module (gnu))
 
 ;; SSS implementation of the XDG mimeapps standard

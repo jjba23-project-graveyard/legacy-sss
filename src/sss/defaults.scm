@@ -15,9 +15,8 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-;; Code:
-
 (define-module (sss defaults)
+  #:declarative? #t
   #:use-module (gnu)
   #:use-module (gnu packages)
   #:use-module (gnu bootloader)

@@ -16,7 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss hyprland hyprlang)
-  )
+  #:declarative? #t)
 
 (begin
   (define* (serialize-hypr-setting type setting

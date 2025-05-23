@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss fish)
+  #:declarative? #t
   #:use-module (gnu))
 
 (define (serialize-fish-abbreviation a)

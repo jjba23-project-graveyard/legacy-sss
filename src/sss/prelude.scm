@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss prelude)
+  #:declarative? #t
   #:use-module (sss defaults)
   #:use-module (sss overrides)
   #:export (log-exprs get-setting))

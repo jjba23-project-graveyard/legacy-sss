@@ -285,6 +285,7 @@ Find here an example configuration of a SSS overrides file for one of my machine
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss overrides)
+  #:declarative? #t
   #:use-module (gnu)
   #:use-module (gnu packages)
   #:use-module (gnu bootloader)

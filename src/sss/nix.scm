@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss nix)
+  #:declarative? #t
   #:use-module (gnu)
   #:use-module (sss process))
 

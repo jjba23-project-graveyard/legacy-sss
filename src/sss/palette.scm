@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss palette)
+  #:declarative? #t
   #:use-module (gnu)
   #:use-module (ice-9 match)
   #:use-module (ice-9 exceptions))
