@@ -287,6 +287,9 @@ Find here an example configuration of a SSS overrides file for one of my machine
 (define-module (sss overrides)
   #:use-module (gnu)
   #:use-module (gnu packages)
+  #:use-module (gnu bootloader)
+  #:use-module (gnu system file-systems)
+  #:use-module (gnu system accounts)
   #:export (sss-override-extra-packages sss-override-filesystems
                                         sss-override-hostname
                                         sss-override-hyprland-extra-startups
@@ -662,9 +665,9 @@ To improve navigation, ultra-scroll is enabled, refining Emacs's scrolling behav
 
 * User Management
 
-SSS works by programatically define users via code.
+SSS works by programatically define users via code. By default there will be a user ~sss~ that is in the ~wheel~ group.
 
-You should create users by tweaking the Scheme code (more specifically ~system/users.scm~ and ~src/sss/sudoers.scm~ ) and you should also create a Guix home file (~home/<user>.scm~) if you want to use the home services SSS provides.
+You should create users by tweaking the Scheme code in the per-host overrides and you should also create a Guix home file (~home/<user>.scm~) if you want to use the home services SSS provides.
 
 When everything is in place, if it's a new user, you can add a password to the user with ~sudo passwd <user>~. If this user was created by the Guix install then this will already be done for you.
 

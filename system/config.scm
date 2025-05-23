@@ -23,7 +23,6 @@
              (guix packages)
              (sss packages)
              (sss iptables)
-             (sss sudoers)
              (sss prelude)
              (nongnu packages linux)
              (nongnu system linux-initrd))
@@ -175,7 +174,7 @@
   (initrd microcode-initrd)
   (firmware (list linux-firmware))
   (sudoers-file (plain-file "sudoers"
-                            (sss-sudoers)))
+                            (get-setting 'sudoers)))
   (mapped-devices (get-setting 'mapped-devices))
   (file-systems (append (get-setting 'filesystems) %base-file-systems))
   (users (get-setting 'users))

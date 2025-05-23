@@ -19,8 +19,10 @@
 
 (define-module (sss defaults)
   #:use-module (gnu)
+  #:use-module (gnu packages)
   #:use-module (gnu bootloader)
   #:use-module (gnu system file-systems)
+  #:use-module (gnu system accounts)
   #:export (sss-default-bootloader-configuration sss-default-caps-to-ctrl?
             sss-default-clone-dir
             sss-default-extra-packages
