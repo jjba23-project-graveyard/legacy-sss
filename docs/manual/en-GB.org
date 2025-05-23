@@ -293,16 +293,6 @@ Find here an examplef configuration of a SSS overrides file for one of my machin
 (define sss-override-hostname
   "gnu-north")
 
-(define sss-override-filesystems
-  (list (file-system
-          (device "/dev/nvme0n1p3")
-          (mount-point "/")
-          (type "ext4"))
-        (file-system
-          (device "/dev/nvme0n1p1")
-          (mount-point "/boot/efi")
-          (type "vfat"))))
-
 (define sss-override-extra-packages
   (list "amd-microcode" "amdgpu-firmware" "prismlauncher" "steam"))
 
@@ -315,6 +305,16 @@ Find here an examplef configuration of a SSS overrides file for one of my machin
 
 (define-public sss-override-palette
   'sss-palette-ef-dream)
+
+(define sss-override-filesystems
+  (list (file-system
+          (device "/dev/nvme0n1p3")
+          (mount-point "/")
+          (type "ext4"))
+        (file-system
+          (device "/dev/nvme0n1p1")
+          (mount-point "/boot/efi")
+          (type "vfat"))))
 
 #+end_src
 
