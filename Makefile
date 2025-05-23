@@ -192,10 +192,12 @@ repl:
 
 # Unit tests
 test:
+	$(call sss-log-starting,"test")
 	guix shell -m manifest.scm -- \
 		guile -L ./src \
 		-L ./test \
 		-c "((@ (sss test-runners) run-project-tests))"
+	$(call sss-log-complete,"test")
 
 
 full-reset-emacs:
