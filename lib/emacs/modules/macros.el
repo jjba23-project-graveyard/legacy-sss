@@ -39,7 +39,9 @@
 Useful for libraries where you want to allow users to redefine values."
   (interactive)
   (kill-region 2350 2361 'region)
-  (insert "(make-parameter ") (yank nil))
+  (insert "(make-parameter ")
+  (yank nil)
+  (insert ")"))
 
 
 (provide 'sss/macros)
