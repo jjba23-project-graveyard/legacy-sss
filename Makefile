@@ -185,14 +185,18 @@ deploy:
 	mv -v docs/manual/en-GB.html $(DEPLOY_WWW)/manuals/sss/index.html
 
 # repl: Start a Guile Scheme development REPL
-# Development REPL
 repl:
-	guix shell -m manifest.scm -- guile --fresh-auto-compile -c '((@ (ares server) run-nrepl-server))'
+	guix shell -m manifest.scm -- guile  \
+		-L ./src \
+		-c '((@ (ares server) run-nrepl-server))'
 
 # Unit tests
 test:
-	guix shell -m manifest.scm -- guile --fresh-auto-compile test/run-tests.scm | \
-		guile --fresh-auto-compile test/colorize-tests.scm
+	guix shell -m manifest.scm -- \
+		guile -L ./src \
+		-L ./test \
+		-c "((@ (sss test-runners) run-project-tests))"
+
 
 full-reset-emacs:
 	-pkill emacs

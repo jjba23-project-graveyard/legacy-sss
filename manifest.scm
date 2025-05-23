@@ -21,4 +21,4 @@
              (gnu packages emacs)
              (gnu packages guile-xyz))
 
-(packages->manifest (list guile-next guile-ares-rs emacs-next coreutils))
+(packages->manifest (list guile-next guile-ares-rs emacs-next (specification->package "make") coreutils))

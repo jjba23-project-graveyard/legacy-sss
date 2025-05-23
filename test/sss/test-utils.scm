@@ -15,11 +15,12 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(use-modules (srfi srfi-64)
-             (ice-9 rdelim))
+(define-module (sss test-utils)
+  #:export (define-test))
 
-(define xs
-  '("../lib/palette.scm" "../lib/emacs.scm" "../lib/hyprland/hyprlang.scm"))
-
-(for-each (lambda (x)
-            (load x)) xs)
+(define-syntax define-test
+  (syntax-rules ()
+    ((_ test-name e ...)
+     (begin
+       (define-public (test-name) e ...)
+       (set-procedure-property! test-name 'srfi-64-test? #t)))))
