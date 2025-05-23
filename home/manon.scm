@@ -90,7 +90,7 @@
                    (sss-containers-svc)
                    (sss-wallpaper-svc #:clone-dir (get-setting 'clone-dir)
                                       #:palette (get-setting 'palette))
-                   (sss-labwc-svc #:extra-startups sss-labwc-extra-startups))))
+                   (sss-labwc-svc #:extra-startups (get-setting 'labwc-extra-startups)))))
 
 (display "
 >>= configuring Manon's home environment...
