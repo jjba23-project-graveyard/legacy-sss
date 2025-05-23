@@ -21,7 +21,19 @@
   #:use-module (gnu home services)
   #:use-module (sss palette)
   #:use-module (sss process)
-  #:use-module (ice-9 string-fun))
+  #:use-module (ice-9 string-fun)
+  #:export (sss-alacritty-general sss-alacritty-window
+                                  sss-alacritty-scrolling
+                                  sss-alacritty-font
+                                  sss-alacritty-colors-primary
+                                  sss-alacritty-terminal
+                                  serialize-alacritty-setting
+                                  translate-alacritty-mods
+                                  serialize-alacritty-binding
+                                  sss-alacritty-bindings
+                                  sss-alacritty-config
+                                  serialize-alacritty-config
+                                  sss-alacritty-svc))
 
 (define sss-alacritty-general
   `((live_config_reload . true) (ipc_socket . true)))
@@ -72,7 +84,7 @@
     (format #f "~a = ~a"
             (car s) val)))
 
-(define-public (translate-mods mods)
+(define (translate-alacritty-mods mods)
   (let* ((with-p (string-replace-substring mods "-" "|"))
          (with-c (string-replace-substring with-p "C" "Control"))
          (with-m (string-replace-substring with-c "M" "Alt"))
@@ -80,11 +92,9 @@
          (translated (string-replace-substring with-s "s" "Super")))
     translated))
 
-(begin
-  (define* (serialize-alacritty-binding #:key k mods action)
-    (format #f "{ key = \"~a\", mods = \"~a\", action = \"~a\"}" k
-            (translate-mods mods) action))
-  (export serialize-alacritty-binding))
+(define* (serialize-alacritty-binding #:key k mods action)
+  (format #f "{ key = \"~a\", mods = \"~a\", action = \"~a\"}" k
+          (translate-alacritty-mods mods) action))
 
 (define sss-alacritty-bindings
   (list (serialize-alacritty-binding #:mods "C"
@@ -154,18 +164,14 @@
                 "]"
                 "")))
 
-(begin
-  (define* (serialize-alacritty-config #:key config)
-    (string-join config "\n"))
-  (export serialize-alacritty-config))
+(define* (serialize-alacritty-config #:key config)
+  (string-join config "\n"))
 
-(begin
-  (define* (sss-alacritty-svc #:key palette mono-font)
-    `((".config/alacritty/alacritty.toml" ,(plain-file "alacritty.toml"
-                                                       (serialize-alacritty-config
-                                                        #:config (sss-alacritty-config
-                                                                  #:palette
-                                                                  palette
-                                                                  #:mono-font
-                                                                  mono-font))))))
-  (export sss-alacritty-svc))
+(define* (sss-alacritty-svc #:key palette mono-font)
+  `((".config/alacritty/alacritty.toml" ,(plain-file "alacritty.toml"
+                                                     (serialize-alacritty-config
+                                                      #:config (sss-alacritty-config
+                                                                #:palette
+                                                                palette
+                                                                #:mono-font
+                                                                mono-font))))))

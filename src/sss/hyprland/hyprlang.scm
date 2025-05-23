@@ -16,102 +16,92 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss hyprland hyprlang)
-  #:declarative? #t)
+  #:declarative? #t
+  #:export (serialize-hypr-setting serialize-hypr-section
+                                   hypr-translate-mod
+                                   hypr-translate-bind
+                                   hypr-bind
+                                   exec-bind
+                                   special-bind
+                                   hypr-window-rule))
 
-(begin
-  (define* (serialize-hypr-setting type setting
-                                   #:key (indent "")
-                                   (nested #f))
-    (if nested
-        (format #f
-                "~a~a~a = ~a"
-                indent
-                indent
-                type
-                setting)
-        (format #f "~a~a = ~a" indent type setting)))
-  (export serialize-hypr-setting))
-
-(begin
-  (define* (serialize-hypr-section #:key section settings
-                                   (indent "")
-                                   (nested #f))
-    (let ((xs (string-join (map (lambda (x)
-                                  (cond
-                                    ((list? (cdr x))
-                                     (serialize-hypr-section #:section (car x)
-                                                             #:settings (cdr x)
-                                                             #:indent "  "
-                                                             #:nested #t))
-                                    (else (serialize-hypr-setting (car x)
-                                                                  (cdr x)
-                                                                  #:indent
-                                                                  "  "
-                                                                  #:nested
-                                                                  nested))))
-                                settings) "\n")))
+(define* (serialize-hypr-setting type setting
+                                 #:key (indent "")
+                                 (nested #f))
+  (if nested
       (format #f
-              "~a~a {\n~a\n~a}"
+              "~a~a~a = ~a"
               indent
-              section
-              xs
-              indent)))
-  (export serialize-hypr-section))
+              indent
+              type
+              setting)
+      (format #f "~a~a = ~a" indent type setting)))
 
-(begin
-  (define (hypr-translate-mod mod)
-    (cond
-      ((equal? "s" mod)
-       "SUPER")
-      ((equal? "s-S" mod)
-       "SUPER_SHIFT")
-      ((equal? "M" mod)
-       "ALT")
-      (else mod)))
-  (export hypr-translate-mod))
-
-(begin
-  (define (hypr-translate-bind bind)
-    (cond
-      ((equal? "mouse-left" bind)
-       "mouse:272")
-      ((equal? "mouse-right" bind)
-       "mouse:273")
-      (else bind)))
-  (export hypr-translate-bind))
-
-(begin
-  (define* (hypr-bind #:key bind dispatch
-                      (cmd "")
-                      (mod ""))
+(define* (serialize-hypr-section #:key section settings
+                                 (indent "")
+                                 (nested #f))
+  (let ((xs (string-join (map (lambda (x)
+                                (cond
+                                  ((list? (cdr x))
+                                   (serialize-hypr-section #:section (car x)
+                                                           #:settings (cdr x)
+                                                           #:indent "  "
+                                                           #:nested #t))
+                                  (else (serialize-hypr-setting (car x)
+                                                                (cdr x)
+                                                                #:indent "  "
+                                                                #:nested
+                                                                nested))))
+                              settings) "\n")))
     (format #f
-            "~a, ~a, ~a, ~a"
-            (hypr-translate-mod mod)
-            (hypr-translate-bind bind)
-            dispatch
-            cmd))
-  (export hypr-bind))
+            "~a~a {\n~a\n~a}"
+            indent
+            section
+            xs
+            indent)))
 
-(begin
-  (define* (exec-bind #:key bind
-                      (cmd "")
-                      (mod ""))
-    (hypr-bind #:bind bind
-               #:dispatch 'exec
-               #:cmd cmd
-               #:mod mod))
-  (export exec-bind))
+(define (hypr-translate-mod mod)
+  (cond
+    ((equal? "s" mod)
+     "SUPER")
+    ((equal? "s-S" mod)
+     "SUPER_SHIFT")
+    ((equal? "M" mod)
+     "ALT")
+    (else mod)))
 
-(begin
-  (define* (special-bind #:key bind dispatch
-                         (mod ""))
-    (format #f "~a, ~a, ~a"
-            (hypr-translate-mod mod)
-            (hypr-translate-bind bind) dispatch))
-  (export special-bind))
+(define (hypr-translate-bind bind)
+  (cond
+    ((equal? "mouse-left" bind)
+     "mouse:272")
+    ((equal? "mouse-right" bind)
+     "mouse:273")
+    (else bind)))
 
-(begin
-  (define* (hypr-window-rule #:key action class)
-    (format #f "~a, class:~a" action class))
-  (export hypr-window-rule))
+(define* (hypr-bind #:key bind dispatch
+                    (cmd "")
+                    (mod ""))
+  (format #f
+          "~a, ~a, ~a, ~a"
+          (hypr-translate-mod mod)
+          (hypr-translate-bind bind)
+          dispatch
+          cmd))
+
+(define* (exec-bind #:key bind
+                    (cmd "")
+                    (mod ""))
+  (hypr-bind #:bind bind
+             #:dispatch 'exec
+             #:cmd cmd
+             #:mod mod))
+
+(define* (special-bind #:key bind dispatch
+                       (mod ""))
+  (format #f "~a, ~a, ~a"
+          (hypr-translate-mod mod)
+          (hypr-translate-bind bind) dispatch))
+
+(define* (hypr-window-rule #:key action class)
+  (format #f "~a, class:~a" action class))
 

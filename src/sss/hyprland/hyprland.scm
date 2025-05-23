@@ -19,7 +19,24 @@
   #:declarative? #t
   #:use-module (gnu)
   #:use-module (sss palette)
-  #:use-module (sss hyprland hyprlang))
+  #:use-module (sss hyprland hyprlang)
+  #:export (notify-cmd hypr-startup-programs
+                       hypr-input
+                       hypr-general
+                       hypr-gestures
+                       hypr-decoration
+                       hypr-animations
+                       hypr-misc
+                       hypr-media-binds
+                       hypr-workspace-binds
+                       hypr-movetoworkspace-binds
+                       hypr-mouse-binds
+                       hypr-swap-binds
+                       hypr-focus-binds
+                       hypr-common-exec-binds
+                       hypr-binds
+                       sss-hyprland-config
+                       sss-hyprland-svc))
 
 (define* (notify-cmd #:key title subtitle)
   (format #f
@@ -310,107 +327,100 @@
 ;; easy IPC, much more QoL stuff than other compositors and more... 
 ;;
 ;; https://github.com/hyprwm/Hyprland
-(begin
-  (define* (sss-hyprland-config #:key clone-dir
-                                keyboard-layout
-                                caps-to-ctrl
-                                palette
-                                monitors
-                                (extra-startups '())
-                                (with-blur #f)
-                                (with-shadow #f)
-                                (startup-programs (hypr-startup-programs
-                                                   #:palette palette
-                                                   #:extra-startups
-                                                   extra-startups))
-                                (window-rules (list (hypr-window-rule #:action 'float
-                                                     #:class "pavucontrol"))))
-    (let* ((serialized-startup-programs (map (lambda (startup-item)
-                                               (serialize-hypr-setting 'exec-once
-                                                startup-item))
-                                             startup-programs))
-           (serialized-input (serialize-hypr-section #:section 'input
-                                                     #:settings (hypr-input
-                                                                 #:keyboard-layout
-                                                                 keyboard-layout
-                                                                 #:caps-to-ctrl
-                                                                 caps-to-ctrl)))
-           (serialized-general (serialize-hypr-section #:section 'general
-                                                       #:settings (hypr-general
-                                                                   #:palette
-                                                                   palette)))
-           (serialized-misc (serialize-hypr-section #:section 'misc
-                                                    #:settings hypr-misc))
-           (serialized-decoration (serialize-hypr-section #:section 'decoration
-                                                          #:settings (hypr-decoration
-                                                                      #:with-blur
-                                                                      with-blur
-                                                                      #:with-shadow
-                                                                      with-shadow)))
-           (serialized-animations (serialize-hypr-section #:section 'animations
-                                                          #:settings
-                                                          hypr-animations))
-           (serialized-key-bindings (string-join (hypr-binds #:clone-dir
-                                                             clone-dir
-                                                             #:palette palette)
-                                                 "\n"))
-           (serialized-window-rules (string-join (map (lambda (r)
-                                                        (serialize-hypr-setting 'windowrulev2
-                                                         r)) window-rules)
-                                                 "\n"))
-           (config-lines (append `("# ====== SSS Hyprland configuration ======"
-                                   "#"
-                                   "# auto-generated file, DO NOT EDIT!"
-                                   ""
-                                   "# ====== Monitors ======"
-                                   ,(string-join monitors "\n")
-                                   ""
-                                   "# ====== Startup programs ======")
-                                 serialized-startup-programs
-                                 `("" "# ====== General configuration ======"
-                                   ,serialized-general
-                                   ;; "debug:disable_logs = false"
-                                   )
-                                 `("" "# ====== Input configuration ======"
-                                   ,serialized-input)
-                                 `(""
-                                   "# ====== Decoration configuration ======"
-                                   ,serialized-decoration)
-                                 `("" "# ====== Misc configuration ======"
-                                   ,serialized-misc)
-                                 `(""
-                                   "# ====== Animations configuration ======"
-                                   ,serialized-animations)
-                                 `("" "# ====== Key bindings ======"
-                                   ,serialized-key-bindings)
-                                 `("" "# ====== Window rules ======"
-                                   ,serialized-window-rules)
-                                 `(""
-                                   "# ====== End of SSS Hyprland configuration ======"
-                                   ""))))
-      
-      (string-join config-lines "\n")))
-  (export sss-hyprland-config))
+(define* (sss-hyprland-config #:key clone-dir
+                              keyboard-layout
+                              caps-to-ctrl
+                              palette
+                              monitors
+                              (extra-startups '())
+                              (with-blur #f)
+                              (with-shadow #f)
+                              (startup-programs (hypr-startup-programs
+                                                 #:palette palette
+                                                 #:extra-startups
+                                                 extra-startups))
+                              (window-rules (list (hypr-window-rule #:action 'float
+                                                   #:class "pavucontrol"))))
+  (let* ((serialized-startup-programs (map (lambda (startup-item)
+                                             (serialize-hypr-setting 'exec-once
+                                              startup-item)) startup-programs))
+         (serialized-input (serialize-hypr-section #:section 'input
+                                                   #:settings (hypr-input
+                                                               #:keyboard-layout
+                                                               keyboard-layout
+                                                               #:caps-to-ctrl
+                                                               caps-to-ctrl)))
+         (serialized-general (serialize-hypr-section #:section 'general
+                                                     #:settings (hypr-general
+                                                                 #:palette
+                                                                 palette)))
+         (serialized-misc (serialize-hypr-section #:section 'misc
+                                                  #:settings hypr-misc))
+         (serialized-decoration (serialize-hypr-section #:section 'decoration
+                                                        #:settings (hypr-decoration
+                                                                    #:with-blur
+                                                                    with-blur
+                                                                    #:with-shadow
+                                                                    with-shadow)))
+         (serialized-animations (serialize-hypr-section #:section 'animations
+                                                        #:settings
+                                                        hypr-animations))
+         (serialized-key-bindings (string-join (hypr-binds #:clone-dir
+                                                           clone-dir
+                                                           #:palette palette)
+                                               "\n"))
+         (serialized-window-rules (string-join (map (lambda (r)
+                                                      (serialize-hypr-setting 'windowrulev2
+                                                       r)) window-rules) "\n"))
+         (config-lines (append `("# ====== SSS Hyprland configuration ======"
+                                 "#"
+                                 "# auto-generated file, DO NOT EDIT!"
+                                 ""
+                                 "# ====== Monitors ======"
+                                 ,(string-join monitors "\n")
+                                 ""
+                                 "# ====== Startup programs ======")
+                               serialized-startup-programs
+                               `("" "# ====== General configuration ======"
+                                 ,serialized-general
+                                 ;; "debug:disable_logs = false"
+                                 )
+                               `("" "# ====== Input configuration ======"
+                                 ,serialized-input)
+                               `("" "# ====== Decoration configuration ======"
+                                 ,serialized-decoration)
+                               `("" "# ====== Misc configuration ======"
+                                 ,serialized-misc)
+                               `("" "# ====== Animations configuration ======"
+                                 ,serialized-animations)
+                               `("" "# ====== Key bindings ======"
+                                 ,serialized-key-bindings)
+                               `("" "# ====== Window rules ======"
+                                 ,serialized-window-rules)
+                               `(""
+                                 "# ====== End of SSS Hyprland configuration ======"
+                                 ""))))
+    
+    (string-join config-lines "\n")))
 
-(begin
-  (define* (sss-hyprland-svc #:key palette
-                             clone-dir
-                             keyboard-layout
-                             caps-to-ctrl
-                             monitors
-                             extra-startups
-                             with-blur
-                             with-shadow)
-    `((".config/hypr/hyprland.conf" ,(plain-file "hyprland.conf"
-                                                 (sss-hyprland-config
-                                                  #:clone-dir clone-dir
-                                                  #:keyboard-layout
-                                                  keyboard-layout
-                                                  #:caps-to-ctrl caps-to-ctrl
-                                                  #:palette palette
-                                                  #:monitors monitors
-                                                  #:extra-startups
-                                                  extra-startups
-                                                  #:with-blur with-blur
-                                                  #:with-shadow with-shadow)))))
-  (export sss-hyprland-svc))
+(define* (sss-hyprland-svc #:key palette
+                           clone-dir
+                           keyboard-layout
+                           caps-to-ctrl
+                           monitors
+                           extra-startups
+                           with-blur
+                           with-shadow)
+  `((".config/hypr/hyprland.conf" ,(plain-file "hyprland.conf"
+                                               (sss-hyprland-config
+                                                #:clone-dir clone-dir
+                                                #:keyboard-layout
+                                                keyboard-layout
+                                                #:caps-to-ctrl caps-to-ctrl
+                                                #:palette palette
+                                                #:monitors monitors
+                                                #:extra-startups
+                                                extra-startups
+                                                #:with-blur with-blur
+                                                #:with-shadow with-shadow)))))
+
