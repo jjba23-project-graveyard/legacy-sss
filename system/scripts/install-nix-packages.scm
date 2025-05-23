@@ -19,8 +19,6 @@
              (ice-9 textual-ports)
              (ice-9 readline))
 
-(load "../../per-host.scm")
-
 (define (syscall cmd)
   (let* ((process (open-input-pipe cmd))
          (process-output (get-string-all process)))

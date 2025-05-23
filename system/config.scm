@@ -20,18 +20,15 @@
              (gnu system privilege)
              (gnu services)
              (gnu system accounts)
-             (guix packages))
-
-(use-modules (nongnu packages linux)
+             (guix packages)
+             (sss packages)
+             (sss iptables)
+             (sss sudoers)
+             (sss prelude)
+             (nongnu packages linux)
              (nongnu system linux-initrd))
 
-;; load SSS defaults
-(load "../system/sss-defaults.scm")
-;; load user preferences per-host
-(load "../per-host.scm")
-
 ;; show active SSS per-host settings
-(use-modules (sss prelude))
 (log-exprs sss-lang
            sss-timezone
            sss-keyboard-layout
@@ -46,13 +43,6 @@
            (length sss-flatpak-pkgs)
            (length sss-per-host-packages)
            (length sss-nixpkgs))
-
-;; load system users
-(load "./users.scm")
-
-(use-modules (sss packages)
-             (sss iptables)
-             (sss sudoers))
 
 (use-service-modules networking
                      desktop

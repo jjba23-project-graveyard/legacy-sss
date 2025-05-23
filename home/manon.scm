@@ -19,32 +19,8 @@
 
 (use-modules (gnu)
              (gnu bootloader)
-             (gnu system file-systems))
-
-;; load SSS defaults
-(load "../system/sss-defaults.scm")
-;; load user preferences per-host
-(load "../per-host.scm")
-
-;; show active SSS per-host settings
-(use-modules (sss prelude))
-(log-exprs sss-lang
-           sss-timezone
-           sss-keyboard-layout
-           sss-caps-to-ctrl
-           sss-hostname
-           sss-clone-dir
-           sss-palette
-           sss-hyprland-monitors
-           sss-hyprland-extra-startups
-           sss-labwc-extra-startups
-           sss-flatpak-user-remotes
-           (length sss-flatpak-pkgs)
-           (length sss-per-host-packages)
-           (length sss-nixpkgs))
-
-;; Load Guile modules
-(use-modules (gnu home)
+             (gnu system file-systems)
+             (gnu home)
              (gnu services)
              (guix gexp)
              (gnu packages admin)
@@ -56,10 +32,9 @@
              (gnu home services sound)
              (gnu home services desktop)
              (json)
-             (sxml simple))
-
-;; Load SSS modules
-(use-modules (sss process)
+             (sxml simple)
+             (sss prelude)
+             (sss process)
              (sss foot)
              (sss git)
              (sss vars)
@@ -80,6 +55,22 @@
              (sss rofi)
              (sss ssh)
              (sss labwc))
+
+;; show active SSS per-host settings
+(log-exprs sss-lang
+           sss-timezone
+           sss-keyboard-layout
+           sss-caps-to-ctrl
+           sss-hostname
+           sss-clone-dir
+           sss-palette
+           sss-hyprland-monitors
+           sss-hyprland-extra-startups
+           sss-labwc-extra-startups
+           sss-flatpak-user-remotes
+           (length sss-flatpak-pkgs)
+           (length sss-per-host-packages)
+           (length sss-nixpkgs))
 
 (define sss-home-files-service
   (service home-files-service-type

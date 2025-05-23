@@ -147,8 +147,6 @@
                      xfce
                      xorg)
 
-(load "../../per-host.scm")
-
 (define sss-font-packages
   (list font-adwaita
         font-awesome
