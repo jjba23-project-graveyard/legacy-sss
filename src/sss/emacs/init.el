@@ -120,7 +120,7 @@
 (mapc (lambda(f) (load-user-file (format "modules/%s.el" f))) sss-emacs-modules)
 
 
-(use-package magit :ensure t :after (transient))
+(use-package magit :ensure t :after (transient compat))
 
 (use-package tempel
   :ensure (:host github :repo "minad/tempel" :branch "main")

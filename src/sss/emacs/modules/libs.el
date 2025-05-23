@@ -37,6 +37,11 @@
   :config
   (elmacro-mode +1))
 
+(use-package compat
+  ;; 30.1
+  :ensure (:host github :repo "emacs-compat/compat" :commit "7179960b7c82a7cca6bac60d79dd7fe09ae390a0")
+  :demand t)
+
 (provide 'sss/libs)
 
 ;;; libs.el ends here
