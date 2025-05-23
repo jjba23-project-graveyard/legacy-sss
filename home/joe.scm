@@ -90,25 +90,24 @@
                                    #:hyprland-session #t)
                    (sss-rofi-svc #:palette (setting-from-registry 'palette))
                    (sss-alacritty-svc #:palette (setting-from-registry 'palette)
-                                      #:mono-font sss-mono-font)
+                                      #:mono-font (setting-from-registry 'mono-font))
                    (sss-foot-svc #:palette (setting-from-registry 'palette))
                    (sss-hyprland-svc #:palette (setting-from-registry 'palette)
-                                     #:clone-dir sss-clone-dir
-                                     #:keyboard-layout sss-keyboard-layout
-                                     #:caps-to-ctrl sss-caps-to-ctrl
-                                     #:monitors sss-hyprland-monitors
-                                     #:extra-startups
-                                     sss-hyprland-extra-startups
+                                     #:clone-dir (setting-from-registry 'clone-dir)
+                                     #:keyboard-layout (setting-from-registry 'keyboard-layout)
+                                     #:caps-to-ctrl (setting-from-registry 'caps-to-ctrl?)
+                                     #:monitors (setting-from-registry 'hyprland-monitors)
+                                     #:extra-startups (setting-from-registry 'hyprland-extra-startups)
                                      #:with-blur #t
                                      #:with-shadow #t)
-                   (sss-hyprlock-svc #:clone-dir sss-clone-dir)
-                   (sss-wallpaper-svc #:clone-dir sss-clone-dir
+                   (sss-hyprlock-svc #:clone-dir (setting-from-registry 'clone-dir))
+                   (sss-wallpaper-svc #:clone-dir (setting-from-registry 'clone-dir)
                                       #:palette (setting-from-registry 'palette))
                    (sss-mime-svc)
                    (sss-dirs-svc)
                    (sss-firefox-svc #:palette (setting-from-registry 'palette))
-                   (sss-fastfetch-svc #:clone-dir sss-clone-dir)
-                   (sss-fish-svc #:clone-dir sss-clone-dir
+                   (sss-fastfetch-svc #:clone-dir (setting-from-registry 'clone-dir))
+                   (sss-fish-svc #:clone-dir (setting-from-registry 'clone-dir)
                                  #:palette (setting-from-registry 'palette))
                    (sss-mako-svc #:palette (setting-from-registry 'palette)
                                  #:sans-font (setting-from-registry 'sans-font))
@@ -117,11 +116,11 @@
                                   #:user-full-name "Josep Bigorra"
                                   #:user-initials "JJBA"
                                   #:user-email "jjbigorra@gmail.com"
-                                  #:clone-dir sss-clone-dir
+                                  #:clone-dir (setting-from-registry 'clone-dir)
                                   #:notes-roam-dir
                                   "$HOME/hacking/private-notes/roam"
                                   #:sans-font (setting-from-registry 'sans-font)
-                                  #:mono-font sss-mono-font)
+                                  #:mono-font (setting-from-registry 'mono-font))
                    (sss-nix-svc)
                    (sss-qt6-svc #:palette (setting-from-registry 'palette))
                    (sss-containers-svc)
@@ -137,9 +136,9 @@
    (append (list sss-home-files-service
                  (sss-ssh-service)
                  (sss-home-vars-service #:palette sss-palette
-                                        #:clone-dir sss-clone-dir
+                                        #:clone-dir (setting-from-registry 'clone-dir)
                                         #:lang sss-lang)
-                 (sss-bash-service #:clone-dir sss-clone-dir)
+                 (sss-bash-service #:clone-dir (setting-from-registry 'clone-dir))
                  sss-openpgp-conf
                  (simple-service 'sss-home-cron-service
                                  home-mcron-service-type

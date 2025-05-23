@@ -21,24 +21,23 @@
   #:use-module (gnu)
   #:use-module (gnu bootloader)
   #:use-module (gnu system file-systems)
-  #:export (sss-default-lang
-            sss-default-timezone
-            sss-default-keyboard-layout
-            sss-default-caps-to-ctrl?
-            sss-default-hostname
-            sss-default-mapped-devices
-            sss-default-bootloader-configuration
-            sss-default-clone-dir
-            sss-default-extra-packages
-            sss-default-palette
-            sss-default-sans-font
-            sss-default-mono-font
-            sss-default-nixpkgs
-            sss-default-flatpak-user-remotes
-            sss-default-flatpak-pkgs
-            sss-default-hyprland-extra-startups
-            sss-default-hyprland-monitors
-            sss-default-labwc-extra-startups))
+  #:export (sss-default-lang sss-default-timezone
+                             sss-default-keyboard-layout
+                             sss-default-caps-to-ctrl?
+                             sss-default-hostname
+                             sss-default-mapped-devices
+                             sss-default-bootloader-configuration
+                             sss-default-clone-dir
+                             sss-default-extra-packages
+                             sss-default-palette
+                             sss-default-sans-font
+                             sss-default-mono-font
+                             sss-default-nixpkgs
+                             sss-default-flatpak-user-remotes
+                             sss-default-flatpak-pkgs
+                             sss-default-hyprland-extra-startups
+                             sss-default-hyprland-monitors
+                             sss-default-labwc-extra-startups))
 
 ;;;
 ;;; SSS defaults section
@@ -74,8 +73,8 @@
 ;; bootloader configuration
 (define sss-default-bootloader-configuration
   (bootloader-configuration
-   (bootloader grub-efi-bootloader)
-   (targets '("/boot/efi"))))
+    (bootloader grub-efi-bootloader)
+    (targets '("/boot/efi"))))
 
 ;; location where you cloned SSS Git repository
 (define sss-default-clone-dir

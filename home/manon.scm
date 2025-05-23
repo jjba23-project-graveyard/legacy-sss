@@ -97,15 +97,15 @@
 ")
 
 (home-environment
- (services
-  (append (list sss-home-files-service
-                (sss-home-vars-service #:palette (setting-from-registry 'palette)
-                                       #:clone-dir (setting-from-registry 'clone-dir)
-                                       #:lang sss-lang)
-                (sss-bash-service #:clone-dir (setting-from-registry 'clone-dir))
-                sss-openpgp-conf
-                (service home-dbus-service-type)
-                (service home-pipewire-service-type)
-                sss-fontconfig-service-type
-                sss-channels-service) %base-home-services)))
+  (services
+   (append (list sss-home-files-service
+                 (sss-home-vars-service #:palette (setting-from-registry 'palette)
+                                        #:clone-dir (setting-from-registry 'clone-dir)
+                                        #:lang sss-lang)
+                 (sss-bash-service #:clone-dir (setting-from-registry 'clone-dir))
+                 sss-openpgp-conf
+                 (service home-dbus-service-type)
+                 (service home-pipewire-service-type)
+                 sss-fontconfig-service-type
+                 sss-channels-service) %base-home-services)))
 
