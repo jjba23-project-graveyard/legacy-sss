@@ -57,39 +57,39 @@
              (sss labwc))
 
 ;; show active SSS per-host settings
-(log-exprs (setting-from-registry 'lang)
-           (setting-from-registry 'timezone)
-           (setting-from-registry 'keyboard-layout)
-           (setting-from-registry 'caps-to-ctrl?)
-           (setting-from-registry 'hostname)
-           (setting-from-registry 'clone-dir)
-           (setting-from-registry 'palette)
-           (setting-from-registry 'hyprland-monitors)
-           (setting-from-registry 'hyprland-extra-startups)
-           (setting-from-registry 'labwc-extra-startups)
-           (setting-from-registry 'flatpak-user-remotes)
-           (length (setting-from-registry 'flatpak-pkgs))
-           (length (setting-from-registry 'extra-packages))
-           (length (setting-from-registry 'nixpkgs)))
+(log-exprs (get-setting 'lang)
+           (get-setting 'timezone)
+           (get-setting 'keyboard-layout)
+           (get-setting 'caps-to-ctrl?)
+           (get-setting 'hostname)
+           (get-setting 'clone-dir)
+           (get-setting 'palette)
+           (get-setting 'hyprland-monitors)
+           (get-setting 'hyprland-extra-startups)
+           (get-setting 'labwc-extra-startups)
+           (get-setting 'flatpak-user-remotes)
+           (length (get-setting 'flatpak-pkgs))
+           (length (get-setting 'extra-packages))
+           (length (get-setting 'nixpkgs)))
 
 (define sss-home-files-service
   (service home-files-service-type
-           (append (sss-gtk3-svc #:palette (setting-from-registry 'palette))
-                   (sss-gtk4-svc #:palette (setting-from-registry 'palette))
+           (append (sss-gtk3-svc #:palette (get-setting 'palette))
+                   (sss-gtk4-svc #:palette (get-setting 'palette))
                    (sss-nix-svc)
-                   (sss-rofi-svc #:palette (setting-from-registry 'palette))
+                   (sss-rofi-svc #:palette (get-setting 'palette))
                    (sss-mime-svc)
-                   (sss-waybar-svc #:palette (setting-from-registry 'palette)
-                                   #:sans-font (setting-from-registry 'sans-font)
+                   (sss-waybar-svc #:palette (get-setting 'palette)
+                                   #:sans-font (get-setting 'sans-font)
                                    #:with-memory #f
                                    #:labwc-session #t
-                                   #:sans-font (setting-from-registry 'sans-font))
+                                   #:sans-font (get-setting 'sans-font))
                    (sss-portals-svc)
-                   (sss-mako-svc #:palette (setting-from-registry 'palette)
-                                 #:sans-font (setting-from-registry 'sans-font))
+                   (sss-mako-svc #:palette (get-setting 'palette)
+                                 #:sans-font (get-setting 'sans-font))
                    (sss-containers-svc)
-                   (sss-wallpaper-svc #:clone-dir (setting-from-registry 'clone-dir)
-                                      #:palette (setting-from-registry 'palette))
+                   (sss-wallpaper-svc #:clone-dir (get-setting 'clone-dir)
+                                      #:palette (get-setting 'palette))
                    (sss-labwc-svc #:extra-startups sss-labwc-extra-startups))))
 
 (display "
@@ -99,10 +99,10 @@
 (home-environment
   (services
    (append (list sss-home-files-service
-                 (sss-home-vars-service #:palette (setting-from-registry 'palette)
-                                        #:clone-dir (setting-from-registry 'clone-dir)
+                 (sss-home-vars-service #:palette (get-setting 'palette)
+                                        #:clone-dir (get-setting 'clone-dir)
                                         #:lang sss-lang)
-                 (sss-bash-service #:clone-dir (setting-from-registry 'clone-dir))
+                 (sss-bash-service #:clone-dir (get-setting 'clone-dir))
                  sss-openpgp-conf
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)

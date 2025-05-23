@@ -256,6 +256,12 @@ The idea is that by default, we will use the settings that come from ~src/sss/de
 
 For example if you want to set your own system language, and thus not use ~sss-default-lang~, you need to define and export a ~sss-override-lang~ with a compatible value. This logic applies to all settings in ~src/sss/defaults.scm~.
 
+You will NEED a file at ~per-host/sss/overrides.scm~ with at least:
+
+#+begin_src scheme
+(define-module (sss overrides))
+#+end_src
+
 Find here an examplef configuration of a SSS overrides file for one of my machines.
 
 #+begin_src  scheme

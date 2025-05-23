@@ -18,14 +18,14 @@
 (define-module (sss prelude)
   #:use-module (sss defaults)
   #:use-module (sss overrides)
-  #:export (log-exprs setting-from-registry))
+  #:export (log-exprs get-setting))
 
 (define-syntax-rule (log-exprs exp ...)
   (begin
     (format #t "~a: ~S\n"
             'exp exp) ...))
 
-(define (setting-from-registry setting)
+(define (get-setting setting)
   (let* ((def (module-variable (resolve-module '(sss defaults))
                                (string->symbol (format #f "sss-default-~a"
                                                        setting))))

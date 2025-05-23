@@ -29,20 +29,20 @@
              (nongnu system linux-initrd))
 
 ;; show active SSS per-host settings
-(log-exprs sss-lang
-           sss-timezone
-           sss-keyboard-layout
-           sss-caps-to-ctrl
-           sss-hostname
-           sss-clone-dir
-           sss-palette
-           sss-hyprland-monitors
-           sss-hyprland-extra-startups
-           sss-labwc-extra-startups
-           sss-flatpak-user-remotes
-           (length sss-flatpak-pkgs)
-           (length sss-per-host-packages)
-           (length sss-nixpkgs))
+(log-exprs (get-setting 'lang)
+           (get-setting 'timezone)
+           (get-setting 'keyboard-layout)
+           (get-setting 'caps-to-ctrl?)
+           (get-setting 'hostname)
+           (get-setting 'clone-dir)
+           (get-setting 'palette)
+           (get-setting 'hyprland-monitors)
+           (get-setting 'hyprland-extra-startups)
+           (get-setting 'labwc-extra-startups)
+           (get-setting 'flatpak-user-remotes)
+           (length (get-setting 'flatpak-pkgs))
+           (length (get-setting 'extra-packages))
+           (length (get-setting 'nixpkgs)))
 
 (use-service-modules networking
                      desktop
