@@ -62,7 +62,7 @@ update:
 	@guix pull
 
 # system-reconfigure: Reconfigures the system using the provided configuration file.
-system-reconfigure: format
+system-reconfigure: format test
 	$(call sss-log-starting,"system-reconfigure")
 	@sudo guix system reconfigure -L ./src ./system/config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")
@@ -79,14 +79,14 @@ define sss-user-reconfigure
 endef
 
 
-joe-reconfigure: format
+joe-reconfigure: format test
 	$(call sss-user-reconfigure,"joe")
 	-hyprctl reload
 
 jr:
 	make joe-reconfigure
 
-manon-reconfigure: format
+manon-reconfigure: format test
 	$(call sss-user-reconfigure,"manon")
 mr:
 	make manon-reconfigure

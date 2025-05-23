@@ -25,18 +25,34 @@
 (use-modules (nongnu packages linux)
              (nongnu system linux-initrd))
 
+;; load SSS defaults
+(load "../system/sss-defaults.scm")
 ;; load user preferences per-host
 (load "../per-host.scm")
 
 ;; show active SSS per-host settings
 (use-modules (sss prelude))
-(sss-show-settings)
+(log-exprs sss-lang
+           sss-timezone
+           sss-keyboard-layout
+           sss-caps-to-ctrl
+           sss-hostname
+           sss-clone-dir
+           sss-palette
+           sss-hyprland-monitors
+           sss-hyprland-extra-startups
+           sss-labwc-extra-startups
+           sss-flatpak-user-remotes
+           (length sss-flatpak-pkgs)
+           (length sss-per-host-packages)
+           (length sss-nixpkgs))
 
 ;; load system users
 (load "./users.scm")
 
 (use-modules (sss packages)
-             (sss iptables))
+             (sss iptables)
+             (sss sudoers))
 
 (use-service-modules networking
                      desktop

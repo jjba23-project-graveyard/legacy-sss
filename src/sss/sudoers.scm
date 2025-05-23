@@ -15,6 +15,9 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(define-module (sss sudoers)
+  #:export (sss-sudoers))
+
 (define-public (sss-sudoers)
   (let ((no-passwd-cmd (string-join '("/run/current-system/profile/sbin/halt"
                                       "/run/current-system/profile/bin/chvt"
