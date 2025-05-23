@@ -29,6 +29,7 @@
 (load "../per-host.scm")
 
 ;; show active SSS per-host settings
+(use-modules (sss prelude))
 (sss-show-settings)
 
 ;; load system users

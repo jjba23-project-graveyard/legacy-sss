@@ -21,13 +21,12 @@
              (gnu bootloader)
              (gnu system file-systems))
 
-
 ;; load user preferences per-host
 (load "../per-host.scm")
 
 ;; show active SSS per-host settings
+(use-modules (sss prelude))
 (sss-show-settings)
-
 
 ;; Load Guile modules
 (use-modules (gnu home)
