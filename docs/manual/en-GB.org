@@ -351,7 +351,7 @@ Find here an example configuration of a SSS overrides file for one of my machine
     (comment "Manon van den Bout's account")
     (home-directory "/home/manon")))
 
-(define-public sss-override-users
+(define sss-override-users
   (list sss-joe-user-account sss-manon-user-account))
 
 ;; system language
@@ -377,7 +377,7 @@ Find here an example configuration of a SSS overrides file for one of my machine
   '("sudo warp-svc" "sudo mkdir -p /usr/share/warp/images"
     "sleep 1 && warp-taskbar"))
 
-(define-public sss-override-palette
+(define sss-override-palette
   'sss-palette-ef-dream)
 
 (define sss-override-mapped-devices
@@ -1013,7 +1013,7 @@ SSS supports specifying default applications to use for certain files, and also 
 Refer to the ~sss mime~ module at ~src/sss/~ and the ~sss-mimeapps-list-file~ function to understand more how it works.
 
 #+begin_src scheme
-  (define-public sss-mime-default-applications
+  (define sss-mime-default-applications
     '((application/pdf org.gnome.Evince firefox)
       (text/html firefox emacsclient)))
 #+end_src
