@@ -15,9 +15,6 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "./palette.scm")
-(load "./process.scm")
-
 (define-module (sss rofi)
   #:use-module (gnu)
   #:use-module (sss palette)

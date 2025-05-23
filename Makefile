@@ -64,7 +64,7 @@ update:
 # system-reconfigure: Reconfigures the system using the provided configuration file.
 system-reconfigure: format
 	$(call sss-log-starting,"system-reconfigure")
-	@sudo guix system reconfigure ./system/config.scm --fallback
+	@sudo guix system reconfigure -L ./src ./system/config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")
 	$(call sss-notify-success,"SSS system-reconfigure complete","task was completed successfully!")
 	@-sudo fc-cache -frv
@@ -72,7 +72,7 @@ system-reconfigure: format
 # User reconfigure function
 define sss-user-reconfigure
 	$(call sss-log-starting,"$(1)-reconfigure")
-	@guix home reconfigure ./home/$(1).scm --fallback
+	@guix home reconfigure -L ./src ./home/$(1).scm --fallback
 	$(call sss-log-complete,"$(1)-reconfigure")
 	$(call sss-notify-success,"SSS $(1)-reconfigure complete","task was completed successfully!")
 	@-fc-cache -frv &

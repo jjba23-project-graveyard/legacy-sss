@@ -15,8 +15,6 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "./process.scm")
-
 (define-module (sss fastfetch)
   #:use-module (gnu)
   #:use-module (json)

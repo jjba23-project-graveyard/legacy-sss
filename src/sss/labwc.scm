@@ -16,8 +16,6 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "./palette.scm")
-
 (define-module (sss labwc)
   #:use-module (gnu)
   #:use-module (sxml simple)

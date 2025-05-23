@@ -26,21 +26,13 @@
              (nongnu system linux-initrd))
 
 ;; load SSS defaults
-(load "./sss-defaults.scm")
+;; (load "./sss-defaults.scm")
 
 ;; load user preferences per-host
 (load "../per-host.scm")
 
-;; show input settings
-(load "../system/show-settings.scm")
+;; show active SSS per-host settings
 (sss-show-settings)
-
-(load "../lib/process.scm")
-(load "../lib/sudoers.scm")
-(load "../lib/iptables.scm")
-
-;; load system packages and definitions
-(load "./packages/sss-packages.scm")
 
 ;; load system users
 (load "./users.scm")

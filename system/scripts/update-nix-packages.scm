@@ -19,7 +19,6 @@
              (ice-9 textual-ports)
              (ice-9 readline))
 
-(load "../../system/sss-defaults.scm")
 (load "../../per-host.scm")
 
 (define (syscall cmd)
