@@ -33,19 +33,13 @@
          (user-override (module-variable (resolve-module '(sss overrides))
                                          (string->symbol
                                           user-override-var-name))))
-    (display (format #f "sss-default: ~a: ~a" sss-default-var-name sss-default))
-    (newline)
-    (display (format #f "user-override: ~a: ~a" user-override-var-name
-                     user-override))
-    (newline)
+    ;; (display (format #f "\nsss-default: ~a: ~a\n" sss-default-var-name sss-default))
+    ;; (display (format #f "\nuser-override: ~a: ~a\n" user-override-var-name
+    ;;                  user-override))
     (catch #t
-           (lambda ()
-             (if (equal? #f user-override)
-                 (variable-ref sss-default)
-                 (variable-ref user-override)))
-           (lambda (key . args)
-             (variable-ref sss-default)))))
-
-(get-setting 'lang)
-(get-setting 'hyprland-extra-startups)
-(get-setting 'hostname)
+      (lambda ()
+        (if (equal? #f user-override)
+            (variable-ref sss-default)
+            (variable-ref user-override)))
+      (lambda (key . args)
+        (variable-ref sss-default)))))
