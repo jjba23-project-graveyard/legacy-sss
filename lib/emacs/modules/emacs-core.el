@@ -73,7 +73,8 @@
          ("C-c w t" . sss-project-start-test)
          ("C-c w d" . sss-project-start-dev)
          ("C-c t a" . sort-lines)
-         ("C-c t h" . replace-css-class-hygguile-abstraction))
+         ("C-c t p" . kbd-scheme-make-parameter)
+         ("C-c t h" . kbd-scheme-hygguile-abstraction))
   :hook ((text-mode . visual-line-mode))
   :config  
   (setq-default line-spacing 6
@@ -86,18 +87,18 @@
   (setq compilation-always-kill t)
   
   (setq treesit-font-lock-level 4
-	      ring-bell-function #'ignore
-	      frame-resize-pixelwise t
+	ring-bell-function #'ignore
+	frame-resize-pixelwise t
         completion-cycle-threshold 3
-	      tab-always-indent 'complete
-	      text-mode-ispell-word-completion nil
+	tab-always-indent 'complete
+	text-mode-ispell-word-completion nil
         vc-follow-symlinks t
         read-file-name-completion-ignore-case t
         read-buffer-completion-ignore-case t
         completion-ignore-case t
         use-dialog-box nil
-	      delete-by-moving-to-trash t
-	      tab-width 2)
+	delete-by-moving-to-trash t
+	tab-width 2)
   
   (savehist-mode 1)
   (save-place-mode 1)
