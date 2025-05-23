@@ -26,15 +26,18 @@
             'exp exp) ...))
 
 (define (get-setting setting)
-  (let* ((def (module-variable (resolve-module '(sss defaults))
-                               (string->symbol (format #f "sss-default-~a"
-                                                       setting))))
-         (cus (module-variable (resolve-module '(sss overrides))
-                               (string->symbol (format #f "sss-override-~a"
-                                                       setting)))))
-    )
-  (catch #t
-         (lambda ()
-           (if (not cus) def cus))
-         (lambda (key . args)
-           def)))
+  (let* ((sss-default (module-variable (resolve-module '(sss defaults))
+                                       (string->symbol (format #f
+                                                        "sss-default-~a"
+                                                        setting))))
+         (user-override (module-variable (resolve-module '(sss overrides))
+                                         (string->symbol (format #f
+                                                          "sss-override-~a"
+                                                          setting)))))
+    (catch #t
+           (lambda ()
+             (if (not user-override)
+                 (variable-ref sss-default)
+                 (variable-ref user-override)))
+           (lambda (key . args)
+             (variable-ref sss-default)))))
