@@ -17,7 +17,8 @@
 
 (use-modules (ice-9 popen)
              (ice-9 textual-ports)
-             (ice-9 readline))
+             (ice-9 readline)
+             (sss prelude))
 
 (define (syscall cmd)
   (let* ((process (open-input-pipe cmd))
@@ -33,4 +34,5 @@
                    x x)))
 
 (for-each (lambda (x)
-            (nix-profile-install x)) sss-nixpkgs)
+            (nix-profile-install x))
+          (get-setting 'nixpkgs))

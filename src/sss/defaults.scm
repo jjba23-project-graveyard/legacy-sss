@@ -46,6 +46,7 @@
             sss-default-sudoers
             sss-default-users))
 
+;; root privileges per user (sudo)
 (define sss-override-sudoers
   (let ((no-passwd-cmd (string-join '("/run/current-system/profile/sbin/halt"
                                       "/run/current-system/profile/bin/chvt"
@@ -62,6 +63,7 @@
 (define sss-default-subuids
   '())
 
+;; user accounts
 (define sss-default-users
   (list (user-account
           (name "sss")

@@ -17,7 +17,8 @@
 
 (use-modules (ice-9 popen)
              (ice-9 textual-ports)
-             (ice-9 readline))
+             (ice-9 readline)
+             (sss prelude))
 
 (define (syscall cmd)
   (let* ((process (open-input-pipe cmd))
@@ -35,6 +36,8 @@
                    (car x)
                    (cdr x))))
 
-(for-each flatpak-remote-install sss-flatpak-user-remotes)
+(for-each flatpak-remote-install
+          (get-setting 'flatpak-user-remotes))
 
-(for-each flatpak-profile-install sss-flatpak-pkgs)
+(for-each flatpak-profile-install
+          (get-setting 'flatpak-pkgs))
