@@ -23,19 +23,25 @@
 
 ;; load SSS defaults
 (load "../system/sss-defaults.scm")
-
 ;; load user preferences per-host
 (load "../per-host.scm")
 
-;; show input settings
-(load "../system/show-settings.scm")
-(sss-show-settings)
-
-(load "../lib/path.scm")
-
-;; Autoload all Scheme modules in lib and subdirectories
-;; All modules should have the `.scm' extension
-(load-lib-modules)
+;; show active SSS per-host settings
+(use-modules (sss prelude))
+(log-exprs sss-lang
+           sss-timezone
+           sss-keyboard-layout
+           sss-caps-to-ctrl
+           sss-hostname
+           sss-clone-dir
+           sss-palette
+           sss-hyprland-monitors
+           sss-hyprland-extra-startups
+           sss-labwc-extra-startups
+           sss-flatpak-user-remotes
+           (length sss-flatpak-pkgs)
+           (length sss-per-host-packages)
+           (length sss-nixpkgs))
 
 ;; Load Guile modules
 (use-modules (gnu home)

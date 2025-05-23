@@ -15,8 +15,6 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "./palette.scm")
-
 (define-module (sss emacs)
   #:use-module (gnu)
   #:use-module (ice-9 string-fun)
@@ -117,7 +115,7 @@
                   ui))
   (define* (serialize-sss-emacs-module #:key clone-dir mod)
     `(,(format #f ".emacs.d/modules/~a.el" mod) ,(local-file (format #f
-                                                              "~a/lib/emacs/modules/~a.el"
+                                                              "~a/src/sss/emacs/modules/~a.el"
                                                               (string-replace-substring
                                                                clone-dir
                                                                "$HOME"

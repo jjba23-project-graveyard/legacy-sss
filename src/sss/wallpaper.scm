@@ -15,8 +15,6 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
-(load "palette.scm")
-
 (define-module (sss wallpaper)
   #:use-module (gnu)
   #:use-module (ice-9 match)

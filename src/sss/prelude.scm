@@ -15,23 +15,10 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(define-module (sss prelude)
+  #:export (log-exprs sss-show-settings))
+
 (define-syntax-rule (log-exprs exp ...)
   (begin
     (format #t "~a: ~S\n"
             'exp exp) ...))
-
-(define (sss-show-settings)
-  (log-exprs sss-lang
-             sss-timezone
-             sss-keyboard-layout
-             sss-caps-to-ctrl
-             sss-hostname
-             sss-clone-dir
-             sss-palette
-             sss-hyprland-monitors
-             sss-hyprland-extra-startups
-             sss-labwc-extra-startups
-             sss-flatpak-user-remotes
-             (length sss-flatpak-pkgs)
-             (length sss-per-host-packages)
-             (length sss-nixpkgs)))

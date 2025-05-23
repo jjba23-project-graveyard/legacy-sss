@@ -62,9 +62,9 @@ update:
 	@guix pull
 
 # system-reconfigure: Reconfigures the system using the provided configuration file.
-system-reconfigure: format
+system-reconfigure: format test
 	$(call sss-log-starting,"system-reconfigure")
-	@sudo guix system reconfigure ./system/config.scm --fallback
+	@sudo guix system reconfigure -L ./src ./system/config.scm --fallback
 	$(call sss-log-complete,"system-reconfigure")
 	$(call sss-notify-success,"SSS system-reconfigure complete","task was completed successfully!")
 	@-sudo fc-cache -frv
@@ -72,21 +72,21 @@ system-reconfigure: format
 # User reconfigure function
 define sss-user-reconfigure
 	$(call sss-log-starting,"$(1)-reconfigure")
-	@guix home reconfigure ./home/$(1).scm --fallback
+	@guix home reconfigure -L ./src ./home/$(1).scm --fallback
 	$(call sss-log-complete,"$(1)-reconfigure")
 	$(call sss-notify-success,"SSS $(1)-reconfigure complete","task was completed successfully!")
 	@-fc-cache -frv &
 endef
 
 
-joe-reconfigure: format
+joe-reconfigure: format test
 	$(call sss-user-reconfigure,"joe")
 	-hyprctl reload
 
 jr:
 	make joe-reconfigure
 
-manon-reconfigure: format
+manon-reconfigure: format test
 	$(call sss-user-reconfigure,"manon")
 mr:
 	make manon-reconfigure
@@ -110,7 +110,7 @@ format:
 	$(call sss-log-starting,"format")
 	@-find ~+ -maxdepth 8 -name "*.scm" -type f -exec guix style -f {} \;
 	@-find ~+ -maxdepth 8 -name "*.el" -type f -exec emacs -Q --batch {} \
-		-l $(shell realpath ./lib/emacs/batch-indent.el) -f indent-file \;
+		-l $(shell realpath ./src/sss/emacs/batch-indent.el) -f indent-file \;
 	$(call sss-log-complete,"format")
 
 
@@ -185,14 +185,20 @@ deploy:
 	mv -v docs/manual/en-GB.html $(DEPLOY_WWW)/manuals/sss/index.html
 
 # repl: Start a Guile Scheme development REPL
-# Development REPL
 repl:
-	guix shell -m manifest.scm -- guile --fresh-auto-compile -c '((@ (ares server) run-nrepl-server))'
+	guix shell -m manifest.scm -- guile  \
+		-L ./src \
+		-c '((@ (ares server) run-nrepl-server))'
 
 # Unit tests
 test:
-	guix shell -m manifest.scm -- guile --fresh-auto-compile test/run-tests.scm | \
-		guile --fresh-auto-compile test/colorize-tests.scm
+	$(call sss-log-starting,"test")
+	guix shell -m manifest.scm -- \
+		guile -L ./src \
+		-L ./test \
+		-c "((@ (sss test-runners) run-project-tests))"
+	$(call sss-log-complete,"test")
+
 
 full-reset-emacs:
 	-pkill emacs
