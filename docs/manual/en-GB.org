@@ -141,6 +141,8 @@ This means, among other things that SSS:
 - includes the OG Linux kernel (with proprietary blobs) so as to be more compatible with modern hardware
 - includes non-guix software channel by default, so as to allow installation of convenient software to which few/no libre alternatives exist.
 
+With this being said, SSS strives to provide the four freedoms, and will help you and steer you towards free choices that respect your freedom, rights and privacy.  
+
 * About this manual
 
 This manual is written by hand with care and attention for detail.
@@ -403,6 +405,27 @@ Find here an example configuration of a SSS overrides file for one of my machine
 
 #+end_src
 
+
+When doing a system or home reconfigure, SSS will try to give you as much information as possible about the current settings you chose for. Here follows an example:
+
+#+begin_example
+[INFO] 2025-05-27 18:35:06+02:00 - begin working on target: joe-reconfigure...
+
+(get-setting 'lang): "nl_NL"
+(get-setting 'timezone): "Europe/Amsterdam"
+(get-setting 'keyboard-layout): "us"
+(get-setting 'caps-to-ctrl?): #t
+(get-setting 'hostname): "gnu-framework"
+(get-setting 'clone-dir): "$HOME/hacking/sss"
+(get-setting 'palette): sss-palette-ef-dream
+(get-setting 'hyprland-monitors): ("monitor = , preferred, auto, 1.33333")
+(get-setting 'hyprland-extra-startups): ("sudo warp-svc" "sudo mkdir -p /usr/share/warp/images" "sleep 1 && warp-taskbar")
+(get-setting 'labwc-extra-startups): ()
+(get-setting 'flatpak-user-remotes): ((flathub . "https://dl.flathub.org/repo/flathub.flatpakrepo"))
+(length (get-setting 'flatpak-pkgs)): 5
+(length (get-setting 'extra-packages)): 3
+(length (get-setting 'nixpkgs)): 30
+#+end_example
 
 -----
 

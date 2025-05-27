@@ -30,7 +30,7 @@
                           serialize-bash-export
                           serialize-bash-function
                           sss-bash-config
-                          sss-bash-service))
+                          bash-capability))
 
 (define sss-bash-vars
   (make-parameter `((green . "'\\[\\033[01;32m\\]'")
@@ -43,7 +43,7 @@
 (define sss-bash-exports
   (make-parameter `((PS1 . "${grn}\"\\u@\\h \\w${GUIX_ENVIRONMENT:+ [env]} λ\"${clr}\"  \""))))
 
-(define* (sss-bash-aliases #:key clone-dir)
+(define* (sss-bash-aliases #:key clone-dir gui-cmd)
   `((".." . "cd ..;pwd") ("..." . "cd ../..;pwd")
     ("...." . "cd ../../..;pwd")
     (c . "clear")
@@ -79,7 +79,7 @@
     (docker . "podman")
     (docker-compose . "podman-compose")
     (podman-unix-socket . "podman system service --time=0 unix:///tmp/podman.sock")
-    (gui . "hyprland")
+    (gui unquote gui-cmd)
     (find-largest-files . "du -h -x -s -- * | sort -r -h | head -20")))
 
 (define sss-bash-functions
@@ -117,7 +117,7 @@
              (string-join (cdr f) "\n\t"))
             (else (cdr f)))))
 
-(define* (sss-bash-config #:key clone-dir)
+(define* (sss-bash-config #:key clone-dir gui-cmd)
   (append '("# ====== SSS Bash configuration ======" "#"
             "# auto-generated file, DO NOT EDIT!")
           (map serialize-bash-var
@@ -127,17 +127,20 @@
           (map serialize-bash-function
                (sss-bash-functions))
           (map serialize-bash-alias
-               (sss-bash-aliases #:clone-dir clone-dir))
+               (sss-bash-aliases #:clone-dir clone-dir
+                                 #:gui-cmd gui-cmd))
           (map serialize-bash-path-append
                (sss-bash-path-appends))
           sss-bash-postlude))
 
-(define* (sss-bash-service #:key clone-dir)
-  (simple-service 'sss-fancy-bash home-bash-service-type
+(define* (bash-capability #:key clone-dir gui-cmd)
+  (simple-service 'bash-capability home-bash-service-type
                   (home-bash-extension (environment-variables '())
                                        (bashrc `(,(plain-file "bashrc.sh"
                                                               (string-join (sss-bash-config
                                                                             #:clone-dir
-                                                                            clone-dir)
+                                                                            clone-dir
+                                                                            #:gui-cmd
+                                                                            gui-cmd)
                                                                            "\n")))))))
 

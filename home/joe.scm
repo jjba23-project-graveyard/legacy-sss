@@ -90,8 +90,8 @@
                                           #:with-memory #t
                                           #:hyprland-session #t)
                    (sss-rofi-config #:palette (get-setting 'palette))
-                   (sss-alacritty-capability #:palette (get-setting 'palette)
-                                             #:mono-font (get-setting 'mono-font))
+                   (alacritty-capability #:palette (get-setting 'palette)
+                                         #:mono-font (get-setting 'mono-font))
                    (sss-foot-capability #:palette (get-setting 'palette))
                    (sss-hyprland-capability #:palette (get-setting 'palette)
                                             #:clone-dir (get-setting 'clone-dir)
@@ -139,7 +139,8 @@
                  (sss-home-vars-service #:palette (get-setting 'palette)
                                         #:clone-dir (get-setting 'clone-dir)
                                         #:lang (get-setting 'lang))
-                 (sss-bash-service #:clone-dir (get-setting 'clone-dir))
+                 (bash-capability #:clone-dir (get-setting 'clone-dir)
+                                  #:gui-cmd "hyprland")
                  sss-openpgp-conf
                  (simple-service 'sss-home-cron-service
                                  home-mcron-service-type
@@ -154,5 +155,5 @@
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
                  sss-fontconfig-service-type
-                 sss-channels-service) %base-home-services)))
+                 channels-capability) %base-home-services)))
 

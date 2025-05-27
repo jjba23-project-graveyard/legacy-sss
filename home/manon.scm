@@ -102,10 +102,11 @@
                  (sss-home-vars-service #:palette (get-setting 'palette)
                                         #:clone-dir (get-setting 'clone-dir)
                                         #:lang (get-setting 'lang))
-                 (sss-bash-service #:clone-dir (get-setting 'clone-dir))
+                 (bash-capability #:clone-dir (get-setting 'clone-dir)
+                                  #:gui-cmd "labwc")
                  sss-openpgp-conf
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
                  sss-fontconfig-service-type
-                 sss-channels-service) %base-home-services)))
+                 channels-capability) %base-home-services)))
 
