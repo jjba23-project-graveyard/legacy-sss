@@ -256,7 +256,7 @@ It is *REQUIRED* to include a ~per-host/sss/overrides.scm~ in the root of this p
 
 The idea is that by default, we will use the settings that come from ~src/sss/defaults.scm~, unless there exists an override with a matching name at ~per-host/sss/overrides.scm~.
 
-For example if you want to set your own system language, and thus not use ~sss-default-lang~, you need to define and export a ~sss-override-lang~ with a compatible value. This logic applies to all settings in ~src/sss/defaults.scm~.
+For example if you want to set your own system language, and thus not use ~default-lang~, you need to define and export a ~override-lang~ with a compatible value. This logic applies to all settings in ~src/sss/defaults.scm~.
 
 You will NEED a file at ~per-host/sss/overrides.scm~ with at least:
 
@@ -293,21 +293,21 @@ Find here an example configuration of a SSS overrides file for one of my machine
   #:use-module (gnu bootloader)
   #:use-module (gnu system file-systems)
   #:use-module (gnu system accounts)
-  #:export (sss-override-extra-packages sss-override-filesystems
-                                        sss-override-hostname
-                                        sss-override-hyprland-extra-startups
-                                        sss-override-hyprland-monitors
-                                        sss-override-keyboard-layout
-                                        sss-override-lang
-                                        sss-override-mapped-devices
-                                        sss-override-palette
-                                        sss-override-subgids
-                                        sss-override-subuids
-                                        sss-override-sudoers
-                                        sss-override-users
-                                        sss-override-timezone))
+  #:export (override-extra-packages override-filesystems
+                                    override-hostname
+                                    override-hyprland-extra-startups
+                                    override-hyprland-monitors
+                                    override-keyboard-layout
+                                    override-lang
+                                    override-mapped-devices
+                                    override-palette
+                                    override-subgids
+                                    override-subuids
+                                    override-sudoers
+                                    override-users
+                                    override-timezone))
 
-(define sss-override-sudoers
+(define override-sudoers
   (let ((no-passwd-cmd (string-join '("/run/current-system/profile/sbin/halt"
                                       "/run/current-system/profile/bin/chvt"
                                       "/run/current-system/profile/sbin/reboot"
@@ -319,15 +319,15 @@ Find here an example configuration of a SSS overrides file for one of my machine
                    ,(format #f "claudio ALL=(ALL) NOPASSWD:~a" no-passwd-cmd))
                  "\n")))
 
-(define sss-override-subgids
+(define override-subgids
   (list (subid-range (name "joe"))
         (subid-range (name "manon"))))
 
-(define sss-override-subuids
+(define override-subuids
   (list (subid-range (name "joe"))
         (subid-range (name "manon"))))
 
-(define sss-joe-user-account
+(define joe-user-account
   (user-account
     (name "joe")
     (group "users")
@@ -340,7 +340,7 @@ Find here an example configuration of a SSS overrides file for one of my machine
     (comment "Josep Bigorra's account")
     (home-directory "/home/joe")))
 
-(define sss-manon-user-account
+(define manon-user-account
   (user-account
     (name "manon")
     (group "users")
@@ -353,56 +353,55 @@ Find here an example configuration of a SSS overrides file for one of my machine
     (comment "Manon van den Bout's account")
     (home-directory "/home/manon")))
 
-(define sss-override-users
-  (list sss-joe-user-account sss-manon-user-account))
+(define override-users
+  (list joe-user-account manon-user-account))
 
 ;; system language
-(define sss-override-lang
+(define override-lang
   "nl_NL")
 
 ;; system timezone
-(define sss-override-timezone
+(define override-timezone
   "Europe/Amsterdam")
 
 ;; system keyboard layout
-(define sss-override-keyboard-layout
+(define override-keyboard-layout
   "us")
 
 ;; system hostname
-(define sss-override-hostname
+(define override-hostname
   "gnu-framework")
 
-(define sss-override-extra-packages
+(define override-extra-packages
   '("amd-microcode" "amdgpu-firmware" "prismlauncher"))
 
-(define sss-override-hyprland-extra-startups
+(define override-hyprland-extra-startups
   '("sudo warp-svc" "sudo mkdir -p /usr/share/warp/images"
     "sleep 1 && warp-taskbar"))
 
-(define sss-override-palette
+(define override-palette
   'ef-dream)
 
-(define sss-override-mapped-devices
+(define override-mapped-devices
   (list (mapped-device
           (source (uuid "e84af212-b13b-4163-9165-57bd6f1b787d"))
           (target "rootfs")
           (type luks-device-mapping))))
 
-(define sss-override-filesystems
+(define override-filesystems
   (list (file-system
           (mount-point "/")
           (device "/dev/mapper/rootfs")
           (type "btrfs")
-          (dependencies sss-override-mapped-devices))
+          (dependencies override-mapped-devices))
         (file-system
           (mount-point "/boot/efi")
           (device (uuid "FC82-5EC0"
                         'fat32))
           (type "vfat"))))
 
-(define sss-override-hyprland-monitors
+(define override-hyprland-monitors
   '("monitor = , preferred, auto, 1.33333"))
-
 #+end_src
 
 

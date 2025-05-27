@@ -124,7 +124,7 @@
                                          #:mono-font (get-setting 'mono-font))
                    (sss-nix-capability)
                    (sss-qt6-capability #:palette (get-setting 'palette))
-                   (sss-containers-capability)
+                   (containers-capability)
                    (sss-portals-capability)
                    (sss-enchant-capability))))
 

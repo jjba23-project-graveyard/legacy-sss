@@ -31,20 +31,20 @@
                                                    (write 'exp)))) exp) ...))
 
 (define (get-setting setting)
-  (let* ((sss-default-var-name (format #f "sss-default-~a" setting))
-         (sss-default (module-variable (resolve-module '(sss defaults))
-                                       (string->symbol sss-default-var-name)))
-         (user-override-var-name (format #f "sss-override-~a" setting))
+  (let* ((default-var-name (format #f "default-~a" setting))
+         (default (module-variable (resolve-module '(sss defaults))
+                                   (string->symbol default-var-name)))
+         (user-override-var-name (format #f "override-~a" setting))
          (user-override (module-variable (resolve-module '(sss overrides))
                                          (string->symbol
                                           user-override-var-name))))
     (catch #t
            (lambda ()
              (if (equal? #f user-override)
-                 (variable-ref sss-default)
+                 (variable-ref default)
                  (variable-ref user-override)))
            (lambda (key . args)
-             (variable-ref sss-default)))))
+             (variable-ref default)))))
 
 (define (string-drop-first-last-n s n)
   (if (> (string-length s) 2)

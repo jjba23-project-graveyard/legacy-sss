@@ -87,7 +87,7 @@
                    (sss-portals-capability)
                    (sss-mako-capability #:palette (get-setting 'palette)
                                         #:sans-font (get-setting 'sans-font))
-                   (sss-containers-capability)
+                   (containers-capability)
                    (sss-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
                                              #:palette (get-setting 'palette))
                    (sss-labwc-capability #:extra-startups (get-setting 'labwc-extra-startups)))))
