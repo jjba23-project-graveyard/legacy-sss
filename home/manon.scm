@@ -35,7 +35,6 @@
              (sxml simple)
              (sss prelude)
              (sss process)
-             (sss foot)
              (sss git)
              (sss vars)
              (sss mako)
@@ -75,19 +74,19 @@
 
 (define sss-home-files-service
   (service home-files-service-type
-           (append (sss-gtk3-capability #:palette (get-setting 'palette))
-                   (sss-gtk4-capability #:palette (get-setting 'palette))
+           (append (gtk3-capability #:palette (get-setting 'palette))
+                   (gtk4-capability #:palette (get-setting 'palette))
                    (sss-nix-capability)
-                   (sss-rofi-config #:palette (get-setting 'palette))
+                   (rofi-capability #:palette (get-setting 'palette))
                    (sss-mime-capability)
                    (sss-waybar-capability #:palette (get-setting 'palette)
                                           #:sans-font (get-setting 'sans-font)
                                           #:with-memory #f
                                           #:labwc-session #t
                                           #:sans-font (get-setting 'sans-font))
-                   (sss-portals-capability)
-                   (sss-mako-capability #:palette (get-setting 'palette)
-                                        #:sans-font (get-setting 'sans-font))
+                   (portals-capability)
+                   (mako-capability #:palette (get-setting 'palette)
+                                    #:sans-font (get-setting 'sans-font))
                    (containers-capability)
                    (dirs-capability)
                    (sss-wallpaper-capability #:clone-dir (get-setting 'clone-dir)

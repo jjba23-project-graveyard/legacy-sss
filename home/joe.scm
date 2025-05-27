@@ -35,7 +35,6 @@
              (shepherd service timer)
              (sss prelude)
              (sss process)
-             (sss foot)
              (sss git)
              (sss vars)
              (sss mako)
@@ -82,17 +81,16 @@
 
 (define sss-home-files-service
   (service home-files-service-type
-           (append (sss-gtk3-capability #:palette (get-setting 'palette))
-                   (sss-gtk4-capability #:palette (get-setting 'palette))
+           (append (gtk3-capability #:palette (get-setting 'palette))
+                   (gtk4-capability #:palette (get-setting 'palette))
                    (sss-git-capability)
                    (sss-waybar-capability #:palette (get-setting 'palette)
                                           #:sans-font (get-setting 'sans-font)
                                           #:with-memory #t
                                           #:hyprland-session #t)
-                   (sss-rofi-config #:palette (get-setting 'palette))
+                   (rofi-capability #:palette (get-setting 'palette))
                    (alacritty-capability #:palette (get-setting 'palette)
                                          #:mono-font (get-setting 'mono-font))
-                   (sss-foot-capability #:palette (get-setting 'palette))
                    (sss-hyprland-capability #:palette (get-setting 'palette)
                                             #:clone-dir (get-setting 'clone-dir)
                                             #:keyboard-layout (get-setting 'keyboard-layout)
@@ -110,8 +108,8 @@
                    (sss-fastfetch-capability #:clone-dir (get-setting 'clone-dir))
                    (sss-fish-capability #:clone-dir (get-setting 'clone-dir)
                                         #:palette (get-setting 'palette))
-                   (sss-mako-capability #:palette (get-setting 'palette)
-                                        #:sans-font (get-setting 'sans-font))
+                   (mako-capability #:palette (get-setting 'palette)
+                                    #:sans-font (get-setting 'sans-font))
                    (emacs-capability #:palette (get-setting 'palette)
                                      #:user-name "Joe"
                                      #:user-full-name "Josep Bigorra"
@@ -125,8 +123,8 @@
                    (sss-nix-capability)
                    (sss-qt6-capability #:palette (get-setting 'palette))
                    (containers-capability)
-                   (sss-portals-capability)
-                   (sss-enchant-capability))))
+                   (portals-capability)
+                   (enchant-capability))))
 
 (display "
 >>= configuring Joe's home environment...
@@ -135,7 +133,7 @@
 (home-environment
   (services
    (append (list sss-home-files-service
-                 (sss-ssh-service)
+                 (ssh-capability)
                  (sss-home-vars-service #:palette (get-setting 'palette)
                                         #:clone-dir (get-setting 'clone-dir)
                                         #:lang (get-setting 'lang))

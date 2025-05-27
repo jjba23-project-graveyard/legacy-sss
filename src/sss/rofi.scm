@@ -20,16 +20,16 @@
   #:use-module (gnu)
   #:use-module (sss palette)
   #:use-module (sss process)
-  #:export (sss-rofi-config sss-rofi-theme sss-rofi-font sss-rofi-icon-theme
-                            sss-rofi-configuration))
+  #:export (rofi-capability rofi-theme rofi-font rofi-icon-theme
+                            rofi-configuration))
 
-(define sss-rofi-font
+(define rofi-font
   "Adwaita Sans")
 
-(define sss-rofi-icon-theme
+(define rofi-icon-theme
   "Papirus")
 
-(define sss-rofi-configuration
+(define rofi-configuration
   (format #f "configuration {
     font: \"~a 14\";
     show-icons: true;
@@ -41,9 +41,9 @@
     sidebar-mode: false;
 }
 
-@theme \"./sss-theme.rasi\"" sss-rofi-font sss-rofi-icon-theme))
+@theme \"./sss-theme.rasi\"" rofi-font rofi-icon-theme))
 
-(define* (sss-rofi-theme #:key palette)
+(define* (rofi-theme #:key palette)
   `(("*" (foreground unquote
                      (get-color palette
                                 'text))
@@ -54,7 +54,7 @@
      (background-color . "transparent")
      (highlight . "underline bold #ffffff")
      (font unquote
-           (format #f "\"~a 14\"" sss-rofi-font)))
+           (format #f "\"~a 14\"" rofi-font)))
     ("window" (location . "center")
      (anchor . "center")
      (transparency . "\"real\"")
@@ -66,7 +66,7 @@
      (orientation . "horizontal")
      (children . "[ mainbox ]"))
     ("message" (font unquote
-                     (format #f "\"~a 14\"" sss-rofi-font))
+                     (format #f "\"~a 14\"" rofi-font))
      (border . "0px 2px 2px 2px")
      (color unquote
             (get-color palette
@@ -117,12 +117,11 @@
                                                'background-l)
                                     #:alpha 0.9)))))
 
-(define* (sss-rofi-config #:key palette)
-  `((".config/rofi/config.rasi" ,(plain-file "config.rasi"
-                                             sss-rofi-configuration))
+(define* (rofi-capability #:key palette)
+  `((".config/rofi/config.rasi" ,(plain-file "config.rasi" rofi-configuration))
     
     (".config/rofi/sss-theme.rasi" ,(plain-file "sss-theme.rasi"
-                                                (mk-css-conf-lines (sss-rofi-theme
+                                                (mk-css-conf-lines (rofi-theme
                                                                     #:palette
                                                                     palette))))))
 
