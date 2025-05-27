@@ -227,7 +227,7 @@
 (define sss-coreutils
   (list htop
         btop
-        emacs-next-pgtk
+        emacs-pgtk
         vim
         git
         openssh
