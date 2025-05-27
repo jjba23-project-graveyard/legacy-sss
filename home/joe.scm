@@ -89,7 +89,7 @@
                                    #:sans-font (get-setting 'sans-font)
                                    #:with-memory #t
                                    #:hyprland-session #t)
-                   (sss-rofi-svc #:palette (get-setting 'palette))
+                   (sss-rofi-config #:palette (get-setting 'palette))
                    (sss-alacritty-svc #:palette (get-setting 'palette)
                                       #:mono-font (get-setting 'mono-font))
                    (sss-foot-svc #:palette (get-setting 'palette))

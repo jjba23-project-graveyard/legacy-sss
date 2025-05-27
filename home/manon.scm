@@ -77,7 +77,7 @@
            (append (sss-gtk3-svc #:palette (get-setting 'palette))
                    (sss-gtk4-svc #:palette (get-setting 'palette))
                    (sss-nix-svc)
-                   (sss-rofi-svc #:palette (get-setting 'palette))
+                   (sss-rofi-config #:palette (get-setting 'palette))
                    (sss-mime-svc)
                    (sss-waybar-svc #:palette (get-setting 'palette)
                                    #:sans-font (get-setting 'sans-font)
