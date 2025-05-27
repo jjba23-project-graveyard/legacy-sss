@@ -176,12 +176,12 @@
   (export sss-fish-config))
 
 (begin
-  (define* (sss-fish-svc #:key clone-dir palette)
+  (define* (sss-fish-capability #:key clone-dir palette)
     `((".config/fish/config.fish" ,(plain-file "config.fish"
                                                (string-join (sss-fish-config
                                                              #:clone-dir
                                                              clone-dir
                                                              #:palette palette)
                                                             "\n")))))
-  (export sss-fish-svc))
+  (export sss-fish-capability))
 

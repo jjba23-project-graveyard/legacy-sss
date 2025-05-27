@@ -21,13 +21,13 @@
   #:use-module (sss process))
 
 (begin
-  (define* (sss-portals-svc #:key (portals '((default . hyprland)
-                                             (org.freedesktop.impl.portal.Screenshot . hyprland)
-                                             (org.freedesktop.impl.portal.ScreenCast . hyprland)
-                                             (org.freedesktop.impl.portal.FileChooser . gtk))))
+  (define* (sss-portals-capability #:key (portals '((default . hyprland)
+                                                    (org.freedesktop.impl.portal.Screenshot . hyprland)
+                                                    (org.freedesktop.impl.portal.ScreenCast . hyprland)
+                                                    (org.freedesktop.impl.portal.FileChooser . gtk))))
     `((".config/xdg-desktop-portal/portals.conf" ,(plain-file "portals.conf"
                                                               (string-append
                                                                "[preferred]\n"
                                                                (mk-kv-conf-lines
                                                                 portals))))))
-  (export sss-portals-svc))
+  (export sss-portals-capability))

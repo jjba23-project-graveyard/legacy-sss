@@ -21,7 +21,7 @@
   #:use-module (ice-9 string-fun)
   #:use-module (sss palette)
   #:use-module (srfi srfi-64)
-  #:export (sss-bridge-emacs sss-emacs-svc serialize-sss-emacs-module
+  #:export (sss-bridge-emacs sss-emacs-capability serialize-sss-emacs-module
                              sss-emacs-modules))
 
 (define* (sss-bridge-emacs #:key palette
@@ -122,15 +122,15 @@
                                                              (getenv "HOME"))
                                                             mod))))
 
-(define* (sss-emacs-svc #:key palette
-                        user-name
-                        user-full-name
-                        user-email
-                        user-initials
-                        clone-dir
-                        notes-roam-dir
-                        sans-font
-                        mono-font)
+(define* (sss-emacs-capability #:key palette
+                               user-name
+                               user-full-name
+                               user-email
+                               user-initials
+                               clone-dir
+                               notes-roam-dir
+                               sans-font
+                               mono-font)
   (append `((".emacs.d/init.el" ,(local-file "./emacs/init.el"))
             
             (".emacs.d/sss-bridge.el" ,(plain-file "sss-bridge.el"

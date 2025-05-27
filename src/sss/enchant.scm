@@ -19,10 +19,10 @@
   #:declarative? #t
   #:use-module (gnu)
   #:use-module (sss process)
-  #:export (sss-enchant-svc sss-enchant-ordering sss-enchant-dict-en))
+  #:export (sss-enchant-capability sss-enchant-ordering sss-enchant-dict-en))
 
-(define* (sss-enchant-svc #:key (ordering sss-enchant-ordering)
-                          (en-dict sss-enchant-dict-en))
+(define* (sss-enchant-capability #:key (ordering sss-enchant-ordering)
+                                 (en-dict sss-enchant-dict-en))
   `((".enchant" ,(plain-file "enchant"
                              (mk-lines ordering)))
     (".config/enchant/en_US.dic" ,(plain-file "en_US.dic"

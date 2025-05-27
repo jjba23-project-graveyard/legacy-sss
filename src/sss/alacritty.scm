@@ -33,7 +33,7 @@
                                   sss-alacritty-bindings
                                   sss-alacritty-config
                                   serialize-alacritty-config
-                                  sss-alacritty-svc))
+                                  sss-alacritty-capability))
 
 (define sss-alacritty-general
   `((live_config_reload . true) (ipc_socket . true)))
@@ -167,7 +167,7 @@
 (define* (serialize-alacritty-config #:key config)
   (string-join config "\n"))
 
-(define* (sss-alacritty-svc #:key palette mono-font)
+(define* (sss-alacritty-capability #:key palette mono-font)
   `((".config/alacritty/alacritty.toml" ,(plain-file "alacritty.toml"
                                                      (serialize-alacritty-config
                                                       #:config (sss-alacritty-config

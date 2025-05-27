@@ -48,10 +48,10 @@
   (export sss-mako-config))
 
 (begin
-  (define* (sss-mako-svc #:key palette sans-font)
+  (define* (sss-mako-capability #:key palette sans-font)
     `((".config/mako/config" ,(plain-file "config"
                                           (mk-kv-conf-lines (sss-mako-config
                                                              #:palette palette
                                                              #:sans-font
                                                              sans-font))))))
-  (export sss-mako-svc))
+  (export sss-mako-capability))

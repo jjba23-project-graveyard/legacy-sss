@@ -48,9 +48,9 @@
   (export sss-foot-config))
 
 (begin
-  (define* (sss-foot-svc #:key palette)
+  (define* (sss-foot-capability #:key palette)
     `((".config/foot/foot.ini" ,(plain-file "foot.ini"
                                             (mk-rec-kv-conf-lines (sss-foot-config
                                                                    #:palette
                                                                    palette))))))
-  (export sss-foot-svc))
+  (export sss-foot-capability))

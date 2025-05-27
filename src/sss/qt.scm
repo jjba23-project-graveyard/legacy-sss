@@ -49,8 +49,8 @@
   (export sss-qt6ct-config))
 
 (begin
-  (define* (sss-qt6-svc #:key palette)
+  (define* (sss-qt6-capability #:key palette)
     `((".config/qt6ct/qt6ct.conf" ,(plain-file "qt6ct.conf"
                                                (sss-qt6ct-config #:palette
                                                                  palette)))))
-  (export sss-qt6-svc))
+  (export sss-qt6-capability))

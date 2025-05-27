@@ -73,12 +73,12 @@
                               walls) " "))))
 
 (begin
-  (define* (sss-wallpaper-svc #:key clone-dir palette)
+  (define* (sss-wallpaper-capability #:key clone-dir palette)
     (let* ((walls (sss-wallpapers #:clone-dir clone-dir
                                   #:palette palette))
            (random-wall-cmd (mk-random-wall-cmd walls)))
       `((".local/bin/sss-wallpaper-random.sh" ,(plain-file
                                                 "sss-wallpaper-random.sh"
                                                 random-wall-cmd)))))
-  (export sss-wallpaper-svc))
+  (export sss-wallpaper-capability))
 

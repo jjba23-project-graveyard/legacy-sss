@@ -82,51 +82,51 @@
 
 (define sss-home-files-service
   (service home-files-service-type
-           (append (sss-gtk3-svc #:palette (get-setting 'palette))
-                   (sss-gtk4-svc #:palette (get-setting 'palette))
-                   (sss-git-svc)
-                   (sss-waybar-svc #:palette (get-setting 'palette)
-                                   #:sans-font (get-setting 'sans-font)
-                                   #:with-memory #t
-                                   #:hyprland-session #t)
+           (append (sss-gtk3-capability #:palette (get-setting 'palette))
+                   (sss-gtk4-capability #:palette (get-setting 'palette))
+                   (sss-git-capability)
+                   (sss-waybar-capability #:palette (get-setting 'palette)
+                                          #:sans-font (get-setting 'sans-font)
+                                          #:with-memory #t
+                                          #:hyprland-session #t)
                    (sss-rofi-config #:palette (get-setting 'palette))
-                   (sss-alacritty-svc #:palette (get-setting 'palette)
-                                      #:mono-font (get-setting 'mono-font))
-                   (sss-foot-svc #:palette (get-setting 'palette))
-                   (sss-hyprland-svc #:palette (get-setting 'palette)
-                                     #:clone-dir (get-setting 'clone-dir)
-                                     #:keyboard-layout (get-setting 'keyboard-layout)
-                                     #:caps-to-ctrl (get-setting 'caps-to-ctrl?)
-                                     #:monitors (get-setting 'hyprland-monitors)
-                                     #:extra-startups (get-setting 'hyprland-extra-startups)
-                                     #:with-blur #t
-                                     #:with-shadow #t)
-                   (sss-hyprlock-svc #:clone-dir (get-setting 'clone-dir))
-                   (sss-wallpaper-svc #:clone-dir (get-setting 'clone-dir)
-                                      #:palette (get-setting 'palette))
-                   (sss-mime-svc)
-                   (sss-dirs-svc)
-                   (sss-firefox-svc #:palette (get-setting 'palette))
-                   (sss-fastfetch-svc #:clone-dir (get-setting 'clone-dir))
-                   (sss-fish-svc #:clone-dir (get-setting 'clone-dir)
-                                 #:palette (get-setting 'palette))
-                   (sss-mako-svc #:palette (get-setting 'palette)
-                                 #:sans-font (get-setting 'sans-font))
-                   (sss-emacs-svc #:palette (get-setting 'palette)
-                                  #:user-name "Joe"
-                                  #:user-full-name "Josep Bigorra"
-                                  #:user-initials "JJBA"
-                                  #:user-email "jjbigorra@gmail.com"
-                                  #:clone-dir (get-setting 'clone-dir)
-                                  #:notes-roam-dir
-                                  "$HOME/hacking/private-notes/roam"
-                                  #:sans-font (get-setting 'sans-font)
-                                  #:mono-font (get-setting 'mono-font))
-                   (sss-nix-svc)
-                   (sss-qt6-svc #:palette (get-setting 'palette))
-                   (sss-containers-svc)
-                   (sss-portals-svc)
-                   (sss-enchant-svc))))
+                   (sss-alacritty-capability #:palette (get-setting 'palette)
+                                             #:mono-font (get-setting 'mono-font))
+                   (sss-foot-capability #:palette (get-setting 'palette))
+                   (sss-hyprland-capability #:palette (get-setting 'palette)
+                                            #:clone-dir (get-setting 'clone-dir)
+                                            #:keyboard-layout (get-setting 'keyboard-layout)
+                                            #:caps-to-ctrl (get-setting 'caps-to-ctrl?)
+                                            #:monitors (get-setting 'hyprland-monitors)
+                                            #:extra-startups (get-setting 'hyprland-extra-startups)
+                                            #:with-blur #t
+                                            #:with-shadow #t)
+                   (sss-hyprlock-capability #:clone-dir (get-setting 'clone-dir))
+                   (sss-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
+                                             #:palette (get-setting 'palette))
+                   (sss-mime-capability)
+                   (sss-dirs-capability)
+                   (sss-firefox-capability #:palette (get-setting 'palette))
+                   (sss-fastfetch-capability #:clone-dir (get-setting 'clone-dir))
+                   (sss-fish-capability #:clone-dir (get-setting 'clone-dir)
+                                        #:palette (get-setting 'palette))
+                   (sss-mako-capability #:palette (get-setting 'palette)
+                                        #:sans-font (get-setting 'sans-font))
+                   (sss-emacs-capability #:palette (get-setting 'palette)
+                                         #:user-name "Joe"
+                                         #:user-full-name "Josep Bigorra"
+                                         #:user-initials "JJBA"
+                                         #:user-email "jjbigorra@gmail.com"
+                                         #:clone-dir (get-setting 'clone-dir)
+                                         #:notes-roam-dir
+                                         "$HOME/hacking/private-notes/roam"
+                                         #:sans-font (get-setting 'sans-font)
+                                         #:mono-font (get-setting 'mono-font))
+                   (sss-nix-capability)
+                   (sss-qt6-capability #:palette (get-setting 'palette))
+                   (sss-containers-capability)
+                   (sss-portals-capability)
+                   (sss-enchant-capability))))
 
 (display "
 >>= configuring Joe's home environment...

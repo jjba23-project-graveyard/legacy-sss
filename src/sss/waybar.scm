@@ -298,11 +298,11 @@
   (export sss-waybar-css))
 
 (begin
-  (define* (sss-waybar-svc #:key palette
-                           with-memory
-                           labwc-session
-                           hyprland-session
-                           sans-font)
+  (define* (sss-waybar-capability #:key palette
+                                  with-memory
+                                  labwc-session
+                                  hyprland-session
+                                  sans-font)
     `( ;Waybar configuration (for status bar)
        (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
                                                    (scm->json-string (sss-waybar-conf
@@ -330,4 +330,4 @@
                                                                              
                                                                              (sxml->xml
                                                                               sss-waybar-power-menu)))))))
-  (export sss-waybar-svc))
+  (export sss-waybar-capability))

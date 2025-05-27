@@ -74,23 +74,23 @@
 
 (define sss-home-files-service
   (service home-files-service-type
-           (append (sss-gtk3-svc #:palette (get-setting 'palette))
-                   (sss-gtk4-svc #:palette (get-setting 'palette))
-                   (sss-nix-svc)
+           (append (sss-gtk3-capability #:palette (get-setting 'palette))
+                   (sss-gtk4-capability #:palette (get-setting 'palette))
+                   (sss-nix-capability)
                    (sss-rofi-config #:palette (get-setting 'palette))
-                   (sss-mime-svc)
-                   (sss-waybar-svc #:palette (get-setting 'palette)
-                                   #:sans-font (get-setting 'sans-font)
-                                   #:with-memory #f
-                                   #:labwc-session #t
-                                   #:sans-font (get-setting 'sans-font))
-                   (sss-portals-svc)
-                   (sss-mako-svc #:palette (get-setting 'palette)
-                                 #:sans-font (get-setting 'sans-font))
-                   (sss-containers-svc)
-                   (sss-wallpaper-svc #:clone-dir (get-setting 'clone-dir)
-                                      #:palette (get-setting 'palette))
-                   (sss-labwc-svc #:extra-startups (get-setting 'labwc-extra-startups)))))
+                   (sss-mime-capability)
+                   (sss-waybar-capability #:palette (get-setting 'palette)
+                                          #:sans-font (get-setting 'sans-font)
+                                          #:with-memory #f
+                                          #:labwc-session #t
+                                          #:sans-font (get-setting 'sans-font))
+                   (sss-portals-capability)
+                   (sss-mako-capability #:palette (get-setting 'palette)
+                                        #:sans-font (get-setting 'sans-font))
+                   (sss-containers-capability)
+                   (sss-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
+                                             #:palette (get-setting 'palette))
+                   (sss-labwc-capability #:extra-startups (get-setting 'labwc-extra-startups)))))
 
 (display "
 >>= configuring Manon's home environment...

@@ -56,21 +56,21 @@
   (export sss-gtk4-config))
 
 (begin
-  (define* (sss-gtk3-svc #:key palette)
+  (define* (sss-gtk3-capability #:key palette)
     `((".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
                                                    (string-append
                                                     "[Settings]\n"
                                                     (mk-kv-conf-lines (sss-gtk3-config
                                                                        #:palette
                                                                        palette)))))))
-  (export sss-gtk3-svc))
+  (export sss-gtk3-capability))
 
 (begin
-  (define* (sss-gtk4-svc #:key palette)
+  (define* (sss-gtk4-capability #:key palette)
     `((".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
                                                    (string-append
                                                     "[Settings]\n"
                                                     (mk-kv-conf-lines (sss-gtk4-config
                                                                        #:palette
                                                                        palette)))))))
-  (export sss-gtk4-svc))
+  (export sss-gtk4-capability))

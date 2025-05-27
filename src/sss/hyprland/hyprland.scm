@@ -36,7 +36,7 @@
                        hypr-common-exec-binds
                        hypr-binds
                        sss-hyprland-config
-                       sss-hyprland-svc))
+                       sss-hyprland-capability))
 
 (define* (notify-cmd #:key title subtitle)
   (format #f
@@ -403,14 +403,14 @@
     
     (string-join config-lines "\n")))
 
-(define* (sss-hyprland-svc #:key palette
-                           clone-dir
-                           keyboard-layout
-                           caps-to-ctrl
-                           monitors
-                           extra-startups
-                           with-blur
-                           with-shadow)
+(define* (sss-hyprland-capability #:key palette
+                                  clone-dir
+                                  keyboard-layout
+                                  caps-to-ctrl
+                                  monitors
+                                  extra-startups
+                                  with-blur
+                                  with-shadow)
   `((".config/hypr/hyprland.conf" ,(plain-file "hyprland.conf"
                                                (sss-hyprland-config
                                                 #:clone-dir clone-dir
