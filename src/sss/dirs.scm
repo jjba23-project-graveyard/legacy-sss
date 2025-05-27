@@ -19,16 +19,16 @@
   #:declarative? #t
   #:use-module (gnu)
   #:use-module (sss process)
-  #:export (sss-dirs-capability))
+  #:export (dirs-capability))
 
-(define* (sss-dirs-capability #:key (desktop-dir "$HOME/desktop")
-                              (documents-dir "$HOME/documents")
-                              (downloads-dir "$HOME/downloads")
-                              (music-dir "$HOME/music")
-                              (pictures-dir "$HOME/pictures")
-                              (public-dir "$HOME/public")
-                              (templates-dir "$HOME/templates")
-                              (videos-dir "$HOME/videos"))
+(define* (dirs-capability #:key (desktop-dir "$HOME/desktop")
+                          (documents-dir "$HOME/documents")
+                          (downloads-dir "$HOME/downloads")
+                          (music-dir "$HOME/music")
+                          (pictures-dir "$HOME/pictures")
+                          (public-dir "$HOME/public")
+                          (templates-dir "$HOME/templates")
+                          (videos-dir "$HOME/videos"))
   `((".config/user-dirs.dirs" ,(plain-file "nix.conf"
                                            (mk-rec-kv-conf-lines `((XDG_DESKTOP_DIR
                                                                     unquote

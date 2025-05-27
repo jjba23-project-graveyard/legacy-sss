@@ -105,23 +105,23 @@
                    (sss-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
                                              #:palette (get-setting 'palette))
                    (sss-mime-capability)
-                   (sss-dirs-capability)
+                   (dirs-capability)
                    (sss-firefox-capability #:palette (get-setting 'palette))
                    (sss-fastfetch-capability #:clone-dir (get-setting 'clone-dir))
                    (sss-fish-capability #:clone-dir (get-setting 'clone-dir)
                                         #:palette (get-setting 'palette))
                    (sss-mako-capability #:palette (get-setting 'palette)
                                         #:sans-font (get-setting 'sans-font))
-                   (sss-emacs-capability #:palette (get-setting 'palette)
-                                         #:user-name "Joe"
-                                         #:user-full-name "Josep Bigorra"
-                                         #:user-initials "JJBA"
-                                         #:user-email "jjbigorra@gmail.com"
-                                         #:clone-dir (get-setting 'clone-dir)
-                                         #:notes-roam-dir
-                                         "$HOME/hacking/private-notes/roam"
-                                         #:sans-font (get-setting 'sans-font)
-                                         #:mono-font (get-setting 'mono-font))
+                   (emacs-capability #:palette (get-setting 'palette)
+                                     #:user-name "Joe"
+                                     #:user-full-name "Josep Bigorra"
+                                     #:user-initials "JJBA"
+                                     #:user-email "jjbigorra@gmail.com"
+                                     #:clone-dir (get-setting 'clone-dir)
+                                     #:notes-roam-dir
+                                     "$HOME/hacking/private-notes/roam"
+                                     #:sans-font (get-setting 'sans-font)
+                                     #:mono-font (get-setting 'mono-font))
                    (sss-nix-capability)
                    (sss-qt6-capability #:palette (get-setting 'palette))
                    (containers-capability)
