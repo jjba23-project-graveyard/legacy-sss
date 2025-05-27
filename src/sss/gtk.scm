@@ -24,9 +24,9 @@
 (begin
   (define* (sss-gtk3-config #:key palette)
     `((gtk-icon-theme-name unquote
-                           (sss-get-icon-theme palette))
+                           (get-icon-theme palette))
       (gtk-theme-name unquote
-                      (sss-get-gtk-theme palette))
+                      (get-gtk-theme palette))
       (gtk-font-name . "Adwaita Sans 11")
       (gtk-key-theme-name . Emacs)
       (gtk-enable-event-sounds . 0)
@@ -35,15 +35,15 @@
       (gtk-cursor-theme-size . 24)
       (gtk-enable-input-feedback-sounds . 0)
       (gtk-application-prefer-dark-theme unquote
-                                         (if (sss-is-dark-palette palette) 1 0))))
+                                         (if (is-dark-palette palette) 1 0))))
   (export sss-gtk3-config))
 
 (begin
   (define* (sss-gtk4-config #:key palette)
     `((gtk-icon-theme-name unquote
-                           (sss-get-icon-theme palette))
+                           (get-icon-theme palette))
       (gtk-theme-name unquote
-                      (sss-get-gtk-theme palette))
+                      (get-gtk-theme palette))
       (gtk-font-name . "Adwaita Sans 11")
       (gtk-key-theme-name . Emacs)
       (gtk-enable-event-sounds . 0)
@@ -52,7 +52,7 @@
       (gtk-cursor-theme-size . 24)
       (gtk-enable-input-feedback-sounds . 0)
       (gtk-application-prefer-dark-theme unquote
-                                         (if (sss-is-dark-palette palette) 1 0))))
+                                         (if (is-dark-palette palette) 1 0))))
   (export sss-gtk4-config))
 
 (begin

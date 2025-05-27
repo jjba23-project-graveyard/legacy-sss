@@ -45,12 +45,12 @@
 
 (define* (sss-rofi-theme #:key palette)
   `(("*" (foreground unquote
-                     (sss-get-color palette
-                                    'text))
+                     (get-color palette
+                                'text))
      (backlight unquote
-                (sss-hex-to-rgba (sss-get-color palette
-                                                'background)
-                                 #:alpha 0.8))
+                (hex-to-rgba (get-color palette
+                                        'background)
+                             #:alpha 0.8))
      (background-color . "transparent")
      (highlight . "underline bold #ffffff")
      (font unquote
@@ -69,8 +69,8 @@
                      (format #f "\"~a 14\"" sss-rofi-font))
      (border . "0px 2px 2px 2px")
      (color unquote
-            (sss-get-color palette
-                           'text))
+            (get-color palette
+                       'text))
      (padding . "5px"))
     ("mainbox" (spacing . "0")
      (children . "[ inputbar, message, listview ]"))
@@ -82,40 +82,40 @@
      (border-radius . "2px")
      (background-color . "transparent")
      (text-color unquote
-                 (sss-get-color palette
-                                'text))
+                 (get-color palette
+                            'text))
      (font . "inherit"))
     ("listview" (padding . "8px")
      (border-radius . "16px")
      (background-color unquote
-                       (sss-hex-to-rgba (sss-get-color palette
-                                                       'background)
-                                        #:alpha 0.8))
+                       (hex-to-rgba (get-color palette
+                                               'background)
+                                    #:alpha 0.8))
      (dynamic . "false")
      (lines . "20"))
     ("element-text" (text-color unquote
-                                (sss-get-color palette
-                                               'text)))
+                                (get-color palette
+                                           'text)))
     ("element selected" (highlight . none)
      (text-color unquote
-                 (sss-get-color palette
-                                'background))
+                 (get-color palette
+                            'background))
      (background-color unquote
-                       (sss-hex-to-rgba (sss-get-color palette
-                                                       'primary)
-                                        #:alpha 0.5))
+                       (hex-to-rgba (get-color palette
+                                               'primary)
+                                    #:alpha 0.5))
      (border-radius . "4px"))
     ("element-icon" (size . "1.1em"))
     ("inputbar" (color unquote
-                       (sss-get-color palette
-                                      'text))
+                       (get-color palette
+                                  'text))
      (padding . "11px")
      (margin-bottom . "6px")
      (border-radius . "16px")
      (background-color unquote
-                       (sss-hex-to-rgba (sss-get-color palette
-                                                       'background-l)
-                                        #:alpha 0.9)))))
+                       (hex-to-rgba (get-color palette
+                                               'background-l)
+                                    #:alpha 0.9)))))
 
 (define* (sss-rofi-config #:key palette)
   `((".config/rofi/config.rasi" ,(plain-file "config.rasi"

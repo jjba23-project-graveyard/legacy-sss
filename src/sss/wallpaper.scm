@@ -30,29 +30,24 @@
            (digital-art-dreams-sss-wallpaper (lambda (w)
                                                (format #f "~a/~a" wall-path w))))
       (match palette
-        ('sss-palette-ef-cyprus (map digital-art-dreams-sss-wallpaper
-                                     '("joshua.jpg"
-                                       "PXL_20250326_193029385.MP.jpg")))
-        ('sss-palette-ef-dream (map digital-art-dreams-sss-wallpaper
-                                    '("miyabi.jpeg" "1362745.png"
-                                      "inazuma.jpg" "diluc-tree.jpg")))
-        ('sss-palette-heavy-metal (map digital-art-dreams-sss-wallpaper
-                                       '("heavy-wall3.jpg" "heavy-wall2.jpg"
-                                         "heavy-wall.jpg")))
-        ('sss-palette-solarized-light (map digital-art-dreams-sss-wallpaper
-                                           '("joshua.jpg"
-                                             "PXL_20250326_193029385.MP.jpg")))
-        ('sss-palette-ef-autumn (map digital-art-dreams-sss-wallpaper
-                                     '("0mar2ygf59je1.jpeg"
-                                       "ofcoisp7abfe1.jpeg")))
-        ('sss-palette-ef-bio (map digital-art-dreams-sss-wallpaper
-                                  '("some-forest.jpg" "redwood-forest.jpg")))
-        ('sss-palette-everforest-dark (map digital-art-dreams-sss-wallpaper
-                                           '("some-forest.jpg"
-                                             "redwood-forest.jpg")))
-        ('sss-palette-everforest-light (map digital-art-dreams-sss-wallpaper
-                                            '("joshua.jpg"
-                                              "PXL_20250326_193029385.MP.jpg")))
+        ('ef-cyprus (map digital-art-dreams-sss-wallpaper
+                         '("joshua.jpg" "PXL_20250326_193029385.MP.jpg")))
+        ('ef-dream (map digital-art-dreams-sss-wallpaper
+                        '("miyabi.jpeg" "1362745.png" "inazuma.jpg"
+                          "diluc-tree.jpg")))
+        ('heavy-metal (map digital-art-dreams-sss-wallpaper
+                           '("heavy-wall3.jpg" "heavy-wall2.jpg"
+                             "heavy-wall.jpg")))
+        ('solarized-light (map digital-art-dreams-sss-wallpaper
+                               '("joshua.jpg" "PXL_20250326_193029385.MP.jpg")))
+        ('ef-autumn (map digital-art-dreams-sss-wallpaper
+                         '("0mar2ygf59je1.jpeg" "ofcoisp7abfe1.jpeg")))
+        ('ef-bio (map digital-art-dreams-sss-wallpaper
+                      '("some-forest.jpg" "redwood-forest.jpg")))
+        ('everforest-dark (map digital-art-dreams-sss-wallpaper
+                               '("some-forest.jpg" "redwood-forest.jpg")))
+        ('everforest-light (map digital-art-dreams-sss-wallpaper
+                                '("joshua.jpg" "PXL_20250326_193029385.MP.jpg")))
         (_ (raise-exception (make-exception-with-message (format #f
                                                           "exception ocurred! unknown palette selected: ~a"
                                                           palette)))))))

@@ -67,7 +67,7 @@
                      (type . string)
                      (description . "My preferred sans-serif font family."))
       (sss-emacs-theme (value unquote
-                              (sss-get-emacs-theme palette))
+                              (get-emacs-theme palette))
                        (type . string)
                        (description . "My preferred Emacs theme."))))
 

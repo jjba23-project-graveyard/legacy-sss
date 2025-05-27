@@ -27,7 +27,7 @@
                    (mk-kv-conf-lines `((color_scheme_path . "/run/current-system/profile/share/qt6ct/colors/airy.conf")
                                        (custom_palette . false)
                                        (icon_theme unquote
-                                                   (sss-get-icon-theme palette))
+                                                   (get-icon-theme palette))
                                        (standard_dialogs . default)))
                    "\n[Fonts]\n"
                    (mk-kv-conf-lines `((fixed . "\"Adwaita Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"")

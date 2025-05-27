@@ -380,7 +380,7 @@ Find here an example configuration of a SSS overrides file for one of my machine
     "sleep 1 && warp-taskbar"))
 
 (define sss-override-palette
-  'sss-palette-ef-dream)
+  'ef-dream)
 
 (define sss-override-mapped-devices
   (list (mapped-device
@@ -417,7 +417,7 @@ When doing a system or home reconfigure, SSS will try to give you as much inform
 (get-setting 'caps-to-ctrl?): #t
 (get-setting 'hostname): "gnu-framework"
 (get-setting 'clone-dir): "$HOME/hacking/sss"
-(get-setting 'palette): sss-palette-ef-dream
+(get-setting 'palette): ef-dream
 (get-setting 'hyprland-monitors): ("monitor = , preferred, auto, 1.33333")
 (get-setting 'hyprland-extra-startups): ("sudo warp-svc" "sudo mkdir -p /usr/share/warp/images" "sleep 1 && warp-taskbar")
 (get-setting 'labwc-extra-startups): ()

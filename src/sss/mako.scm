@@ -28,16 +28,16 @@
       (on-button-right . invoke-default-action)
       (background-color unquote
                         (string-upcase (format #f "~abb"
-                                               (sss-get-color palette
-                                                              'background))))
+                                               (get-color palette
+                                                          'background))))
       (border-color unquote
                     (string-upcase (format #f "~abb"
-                                           (sss-get-color palette
-                                                          'primary))))
+                                           (get-color palette
+                                                      'primary))))
       (text-color unquote
                   (string-upcase (format #f "~abb"
-                                         (sss-get-color palette
-                                                        'text))))
+                                         (get-color palette
+                                                    'text))))
       (font unquote
             (format #f "~a 11" sans-font))
       (width . 420)

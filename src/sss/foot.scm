@@ -31,11 +31,11 @@
       (scrollback (lines . "1000000"))
       (colors (alpha . "0.9")
               (background unquote
-                          (string-drop (sss-get-color palette
-                                                      'background) 1))
+                          (string-drop (get-color palette
+                                                  'background) 1))
               (foreground unquote
-                          (string-drop (sss-get-color palette
-                                                      'text) 1)))
+                          (string-drop (get-color palette
+                                                  'text) 1)))
       (search-bindings (cancel . "Control+g Control+Shift+c Escape"))
       (url-bindings (cancel . "Control+g Control+Shift+c Escape"))
       (key-bindings (scrollback-up-page . "Mod1+v")

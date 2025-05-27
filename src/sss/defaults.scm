@@ -119,16 +119,16 @@
   '())
 
 ;; color palette
-;;   - sss-palette-ef-bio
-;;   - sss-palette-ef-cyprus
-;;   - sss-palette-ef-dream
-;;   - sss-palette-heavy-metal
-;;   - sss-palette-solarized-light
-;;   - sss-palette-ef-autumn
-;;   - sss-palette-everforest-dark
-;;   - sss-palette-everforest-light
+;;   - ef-bio
+;;   - ef-cyprus
+;;   - ef-dream
+;;   - ef-autumn
+;;   - heavy-metal
+;;   - solarized-light
+;;   - everforest-dark
+;;   - everforest-light
 (define sss-default-palette
-  'sss-palette-ef-dream)
+  'ef-dream)
 
 (define sss-default-sans-font
   "Adwaita Sans")
