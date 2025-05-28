@@ -51,7 +51,7 @@
                                 music-packages
                                 latex-packages
                                 theme-packages
-                                coreutils
+                                coreutils-packages
                                 dev-packages
                                 terminal-emulator-packages
                                 treesitter-packages
@@ -244,7 +244,7 @@
         (specification->package "node@22")
         (specification->package "python@3.10") cl-asdf sbcl))
 
-(define coreutils
+(define coreutils-packages
   (list htop
         btop
         emacs-pgtk
@@ -294,7 +294,7 @@
 (define qt-packages
   (list qtwayland qt6ct qtsvg))
 
-(define* (other-system-packages #:key architecture)
+(define* other-system-packages
   (list android-file-transfer
         autoconf
         automake
@@ -431,21 +431,19 @@
         xdotool
         zlib))
 
-(define* (sss-system-packages #:key (per-host-packages '())
-                              (architecture (or (%current-target-system)
-                                                (%current-system))))
+(define* (sss-system-packages #:key (per-host-packages '()))
   "SYSTEM PACKAGES
 Add packages here to install them system wide"
   (append (map (lambda (x)
                  (specification->package x)) per-host-packages)
-          (other-system-packages #:architecture architecture)
+          other-system-packages
           wm-packages
           normie-packages
           font-packages
           dev-packages
           container-packages
           treesitter-packages
-          coreutils
+          coreutils-packages
           hypr-packages
           terminal-emulator-packages
           browser-packages
