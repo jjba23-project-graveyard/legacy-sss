@@ -33,8 +33,7 @@
       ('ef-cyprus (map digital-art-dreams-sss-wallpaper
                        '("joshua.jpg" "PXL_20250326_193029385.MP.jpg")))
       ('ef-dream (map digital-art-dreams-sss-wallpaper
-                      '("miyabi.jpeg" "1362745.png" "inazuma.jpg"
-                        "diluc-tree.jpg")))
+                      '("1362745.png" "inazuma.jpg" "diluc-tree.jpg")))
       ('heavy-metal (map digital-art-dreams-sss-wallpaper
                          '("heavy-wall3.jpg" "heavy-wall2.jpg"
                            "heavy-wall.jpg")))
@@ -56,9 +55,11 @@
   (let* ((wall-idx -1))
     (format #f
             (string-append "case $(( $(date +%s) % ~a )) in ~a esac; "
-                           "pkill swaybg || true "
-                           " && echo \"setting current wallpaper: $WALL\" "
-                           "&& WAYLAND_DISPLAY=wayland-1 swaybg -i \"$WALL\"")
+             "pkill swaybg || true "
+             " && echo \"setting current wallpaper: $WALL\" "
+             "&& WAYLAND_DISPLAY=wayland-0 swaybg -i \"$WALL\" || true "
+             "&& WAYLAND_DISPLAY=wayland-1 swaybg -i \"$WALL\" || true "
+             "&& WAYLAND_DISPLAY=wayland-2 swaybg -i \"$WALL\" || true ")
             (length walls)
             (string-join (map (lambda (w)
                                 (set! wall-idx

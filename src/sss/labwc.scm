@@ -91,6 +91,9 @@
                                      "dbus-update-activation-environment --all >/dev/null 2>&1 &"
                                      "transmission-daemon >/dev/null 2>&1 &"
                                      "waybar >/dev/null 2>&1 &"
+                                     "herd trigger set-random-wallpaper >/dev/null 2>&1 &"
+                                     "transmission-daemon >/dev/null 2>&1 &"
+                                     "podman system service --time=0 unix:///tmp/podman.sock >/dev/null 2>&1 &"
                                      "xdg-user-dirs-update 2>&1 &")) "\n")))
 
 (define* (labwc-capability #:key extra-startups)
