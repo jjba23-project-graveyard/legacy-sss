@@ -27,6 +27,8 @@
                                             get-emacs-theme
                                             get-fish-color
                                             get-cursor-theme
+                                            ansi-color-escapes
+                                            get-ansi-color
                                             hex-to-decimal
                                             hex-to-rgba
                                             everforest-light
@@ -45,7 +47,7 @@
                                                  "exception ocurred! unknown palette selected: ~a"
                                                  palette))))
 
-(define (get-color palette sym)
+(define-syntax-rule (get-color palette sym)
   (match palette
     ('ef-bio (cdr (assoc sym ef-bio)))
     ('ef-dream (cdr (assoc sym ef-dream)))
@@ -59,7 +61,7 @@
     ('gruvbox-dark (cdr (assoc sym gruvbox-dark)))
     (_ (raise-unknown-palette-exception palette))))
 
-(define (get-gtk-theme palette)
+(define-syntax-rule (get-gtk-theme palette)
   (match palette
     ('ef-bio "Yaru-sage-dark")
     ('ef-dream "Yaru-magenta-dark")
@@ -73,7 +75,7 @@
     ('gruvbox-dark "Yaru-dark")
     (_ (raise-unknown-palette-exception palette))))
 
-(define (is-dark-palette palette)
+(define-syntax-rule (is-dark-palette palette)
   (match palette
     ('ef-bio #t)
     ('ef-dream #t)
@@ -87,7 +89,7 @@
     ('gruvbox-dark #t)
     (_ (raise-unknown-palette-exception palette))))
 
-(define (get-icon-theme palette)
+(define-syntax-rule (get-icon-theme palette)
   (match palette
     ('ef-bio "Yaru-sage-dark")
     ('ef-dream "Yaru-magenta-dark")
@@ -101,7 +103,7 @@
     ('gruvbox-dark "Yaru-dark")
     (_ (raise-unknown-palette-exception palette))))
 
-(define (get-emacs-theme palette)
+(define-syntax-rule (get-emacs-theme palette)
   (match palette
     ('ef-bio "'ef-bio")
     ('ef-dream "'ef-dream")
@@ -115,7 +117,7 @@
     ('gruvbox-dark "'gruvbox-dark-hard")
     (_ (raise-unknown-palette-exception palette))))
 
-(define (get-fish-color palette)
+(define-syntax-rule (get-fish-color palette)
   (match palette
     ('ef-bio 'green)
     ('ef-dream 'magenta)
@@ -129,7 +131,7 @@
     ('gruvbox-dark 'orange)
     (_ (raise-unknown-palette-exception palette))))
 
-(define (get-cursor-theme palette)
+(define-syntax-rule (get-cursor-theme palette)
   (match palette
     ('ef-bio "Yaru")
     ('ef-dream "Yaru")
@@ -143,8 +145,33 @@
     ('gruvbox-dark "Yaru")
     (_ (raise-unknown-palette-exception palette))))
 
-(define (hex-to-decimal n)
+(define-syntax-rule (get-ansi-color palette)
+  (match palette
+    ('ef-bio (assoc-ref ansi-color-escapes
+                        'green))
+    ('ef-dream (assoc-ref ansi-color-escapes
+                          'magenta))
+    ('heavy-metal (assoc-ref ansi-color-escapes
+                             'red))
+    ('ef-cyprus (assoc-ref ansi-color-escapes
+                           'green))
+    ('ef-autumn (assoc-ref ansi-color-escapes
+                           'yellow))
+    ('solarized-light (assoc-ref ansi-color-escapes
+                                 'default))
+    ('everforest-light (assoc-ref ansi-color-escapes
+                                  'default))
+    ('everforest-dark (assoc-ref ansi-color-escapes
+                                 'green))
+    ('gruvbox-light (assoc-ref ansi-color-escapes
+                               'default))
+    ('gruvbox-dark (assoc-ref ansi-color-escapes
+                              'yellow))
+    (_ (raise-unknown-palette-exception palette))))
+
+(define-syntax-rule (hex-to-decimal n)
   (string->number (string-append "#x" n)))
+
 (define* (hex-to-rgba hex
                       #:key (alpha 1))
   (let* ((digits (string-drop hex 1))
@@ -157,6 +184,15 @@
             green
             blue
             alpha)))
+
+(define ansi-color-escapes
+  `((yellow . "\x1b[0;33m") (magenta . "\x1b[0;35m")
+    (green . "\x1b[0;32m")
+    (default . "\x1b[0;39m")
+    (red . "\x1b[0;31m")
+    (blue . "\x1b[0;34m")
+    (cyan . "\x1b[0;36m")
+    (reset . "\x1b[0m")))
 
 (define ef-dream
   `((primary . "#675072") (primary-l . "#b0a0cf")

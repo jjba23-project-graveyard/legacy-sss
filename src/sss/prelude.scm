@@ -18,6 +18,7 @@
 (define-module (sss prelude)
   #:declarative? #t
   #:use-module (sss defaults)
+  #:use-module (sss palette)
   #:use-module (sss overrides)
   #:use-module (ice-9 string-fun)
   #:use-module (ice-9 regex)
@@ -44,26 +45,25 @@
                       nix-profile-install
                       mk-css-conf-lines))
 
-(define ansi-color-yellow-escape
-  "\x1b[0;33m")
-(define ansi-color-magenta-escape
-  "\x1b[0;35m")
-(define ansi-color-reset-escape
-  "\x1b[0m")
-
 (define-syntax-rule (log-exprs exp ...)
+  "Log a variadic number of expressions, and the result of their evaluation."
   (begin
     (format #t
             "~a~a:~a ~a~S~a\n"
-            ansi-color-magenta-escape
+            (assoc-ref ansi-color-escapes
+                       'green)
             (pretty-quote (with-output-to-string (lambda ()
                                                    (write 'exp))))
-            ansi-color-reset-escape
-            ansi-color-yellow-escape
+            (assoc-ref ansi-color-escapes
+                       'reset)
+            (assoc-ref ansi-color-escapes
+                       'default)
             exp
-            ansi-color-reset-escape) ...))
+            (assoc-ref ansi-color-escapes
+                       'reset)) ...))
 
-(define (get-setting setting)
+(define-syntax-rule (get-setting setting)
+  "Get a setting for SSS, either from override or from default values."
   (let* ((default-var-name (format #f "default-~a" setting))
          (default (module-variable (resolve-module '(sss defaults))
                                    (string->symbol default-var-name)))
@@ -79,14 +79,14 @@
            (lambda (key . args)
              (variable-ref default)))))
 
-(define (string-drop-first-last-n s n)
-  (if (> (string-length s) 2)
+(define-syntax-rule (string-drop-first-last-n s n)
+  (let* ((len (string-length s))
+         (start-idx n)
+         (end-idx (- len n)))
+    (if (>= start-idx end-idx) s
+        (substring s start-idx end-idx))))
 
-      (string-take (string-drop s n)
-                   (- (string-length s)
-                      (+ 1 n))) s))
-
-(define (pretty-quote str)
+(define-syntax-rule (pretty-quote str)
   (regexp-substitute/global #f
                             "\\((quote [^)]*)\\)*"
                             str
@@ -98,12 +98,10 @@
                                 (string-replace-substring mm "quote " "'")))
                             'post))
 
-;;; Code:
-
-;; Executes a system command and returns its output as a string.
-;;
-;; Be cautious with input: Passing untrusted or unsanitized strings can lead to security vulnerabilities (e.g. shell injection attacks).
 (define (syscall cmd)
+  "Executes a system command and returns its output as a string.
+ Be cautious with input: Passing untrusted or unsanitized strings can lead to
+security vulnerabilities (e.g. shell injection attacks)."
   (let* ((process (open-input-pipe cmd))
          (process-output (get-string-all process)))
     (close-pipe process)
@@ -114,8 +112,8 @@
                            (for-each (lambda (x)
                                        (display (format #f "~a\n" x))) items))))
 
-;; Create a CSS configuration from PAIRS, a selector to values alist.
 (define* (mk-css-conf-lines pairs)
+  "Create a CSS configuration from PAIRS, a selector to values alist."
   (with-output-to-string (lambda ()
                            (for-each (lambda (x)
                                        (display (format #f "~a {\n"
