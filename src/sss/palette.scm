@@ -35,7 +35,9 @@
                                             ef-autumn
                                             ef-cyprus
                                             ef-bio
-                                            ef-dream))
+                                            ef-dream
+                                            gruvbox-dark
+                                            gruvbox-light))
 
 (define (raise-unknown-palette-exception palette)
   (raise-exception (make-exception-with-message (format #f
@@ -52,6 +54,8 @@
     ('solarized-light (cdr (assoc sym solarized-light)))
     ('everforest-light (cdr (assoc sym everforest-light)))
     ('everforest-dark (cdr (assoc sym everforest-dark)))
+    ('gruvbox-light (cdr (assoc sym gruvbox-light)))
+    ('gruvbox-dark (cdr (assoc sym gruvbox-dark)))
     (_ (raise-unknown-palette-exception palette))))
 
 (define (get-gtk-theme palette)
@@ -64,6 +68,8 @@
     ('solarized-light "Yaru")
     ('everforest-light "Yaru-sage")
     ('everforest-dark "Yaru-sage-dark")
+    ('gruvbox-light "Yaru")
+    ('gruvbox-dark "Yaru-dark")
     (_ (raise-unknown-palette-exception palette))))
 
 (define (is-dark-palette palette)
@@ -76,6 +82,8 @@
     ('solarized-light #f)
     ('everforest-light #f)
     ('everforest-dark #t)
+    ('gruvbox-light #f)
+    ('gruvbox-dark #t)
     (_ (raise-unknown-palette-exception palette))))
 
 (define (get-icon-theme palette)
@@ -88,6 +96,8 @@
     ('solarized-light "Yaru")
     ('everforest-light "Yaru-sage")
     ('everforest-dark "Yaru-sage-dark")
+    ('gruvbox-light "Yaru")
+    ('gruvbox-dark "Yaru-dark")
     (_ (raise-unknown-palette-exception palette))))
 
 (define (get-emacs-theme palette)
@@ -100,6 +110,8 @@
     ('solarized-light "'solarized-light")
     ('everforest-light "'everforest-hard-light")
     ('everforest-dark "'everforest-hard-dark")
+    ('gruvbox-light "'gruvbox-hard-light")
+    ('gruvbox-dark "'gruvbox-hard-dark")
     (_ (raise-unknown-palette-exception palette))))
 
 (define (get-cursor-theme palette)
@@ -112,6 +124,8 @@
     ('solarized-light "Yaru")
     ('everforest-light "Yaru")
     ('everforest-dark "Yaru")
+    ('gruvbox-light "Yaru")
+    ('gruvbox-dark "Yaru")
     (_ (raise-unknown-palette-exception palette))))
 
 (define (hex-to-decimal n)
@@ -185,3 +199,16 @@
     (background . "#fffbef")
     (background-l . "#eeeade")))
 
+(define gruvbox-dark
+  `((primary . "#fe8019") (primary-l . "#d65d0e")
+    (text . "#ebdbb2")
+    (text-l . "#fbf1c7")
+    (background . "#1d2021")
+    (background-l . "#282828")))
+
+(define gruvbox-light
+  `((primary . "#d65d0e") (primary-l . "#fe8019")
+    (text . "#1d2021")
+    (text-l . "#282828")
+    (background . "#ebdbb2")
+    (background-l . "#fbf1c7")))

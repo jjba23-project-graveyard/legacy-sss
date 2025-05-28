@@ -47,6 +47,10 @@
                              '("some-forest.jpg" "redwood-forest.jpg")))
       ('everforest-light (map digital-art-dreams-sss-wallpaper
                               '("joshua.jpg" "PXL_20250326_193029385.MP.jpg")))
+      ('gruvbox-dark (map digital-art-dreams-sss-wallpaper
+                          '("some-forest.jpg" "redwood-forest.jpg")))
+      ('gruvbox-light (map digital-art-dreams-sss-wallpaper
+                           '("joshua.jpg" "PXL_20250326_193029385.MP.jpg")))
       (_ (raise-exception (make-exception-with-message (format #f
                                                         "exception ocurred! unknown palette selected: ~a"
                                                         palette)))))))
