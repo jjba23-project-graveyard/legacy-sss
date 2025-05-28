@@ -18,7 +18,7 @@
 (define-module (sss nix)
   #:declarative? #t
   #:use-module (gnu)
-  #:use-module (sss process)
+  #:use-module (sss prelude)
   #:export (sss-nix-capability))
 
 (define* (sss-nix-capability)

@@ -20,7 +20,7 @@
   #:use-module (gnu)
   #:use-module (sxml simple)
   #:use-module (json)
-  #:use-module (sss process))
+  #:use-module (sss prelude))
 
 (define (serialize-firefox-ini-setting s)
   (format #f "~a=~a"

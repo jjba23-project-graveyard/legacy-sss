@@ -21,8 +21,28 @@
   #:use-module (sss overrides)
   #:use-module (ice-9 string-fun)
   #:use-module (ice-9 regex)
-
-  #:export (log-exprs get-setting pretty-quote))
+  #:use-module (ice-9 popen)
+  #:use-module (ice-9 time)
+  #:use-module (ice-9 format)
+  #:use-module (ice-9 iconv)
+  #:use-module (ice-9 threads)
+  #:use-module (ice-9 rdelim)
+  #:use-module (ice-9 binary-ports)
+  #:use-module (ice-9 textual-ports)
+  #:use-module (gnu services configuration)
+  #:export (log-exprs get-setting
+                      pretty-quote
+                      string-drop-first-last-n
+                      syscall
+                      mk-lines
+                      mk-kv-conf-lines
+                      serialize-rec-conf-item
+                      mk-rec-kv-conf-lines
+                      spaced-equal-conf-pair
+                      equal-conf-pair
+                      equal-conf-quote-value-pair
+                      nix-profile-install
+                      mk-css-conf-lines))
 
 (define-syntax-rule (log-exprs exp ...)
   (begin
@@ -64,3 +84,73 @@
                                                                     m) 1)))
                                 (string-replace-substring mm "quote " "'")))
                             'post))
+
+;;; Code:
+
+;; Executes a system command and returns its output as a string.
+;;
+;; Be cautious with input: Passing untrusted or unsanitized strings can lead to security vulnerabilities (e.g. shell injection attacks).
+(define (syscall cmd)
+  (let* ((process (open-input-pipe cmd))
+         (process-output (get-string-all process)))
+    (close-pipe process)
+    (display process-output) process-output))
+
+(define (mk-lines items)
+  (with-output-to-string (lambda ()
+                           (for-each (lambda (x)
+                                       (display (format #f "~a\n" x))) items))))
+
+;; Create a CSS configuration from PAIRS, a selector to values alist.
+(define* (mk-css-conf-lines pairs)
+  (with-output-to-string (lambda ()
+                           (for-each (lambda (x)
+                                       (display (format #f "~a {\n"
+                                                        (car x)))
+                                       (display (mk-kv-conf-lines (cdr x)
+                                                                  #:template
+                                                                  "  ~a: ~a;\n"))
+                                       (display "}\n\n")) pairs))))
+
+(define* (mk-kv-conf-lines pairs
+                           #:key (template "~a=~a\n"))
+  (with-output-to-string (lambda ()
+                           (for-each (lambda (x)
+                                       (display (format #f template
+                                                        (car x)
+                                                        (cdr x)))) pairs))))
+
+(define (serialize-rec-conf-item template item)
+  (cond
+    ((alist? (cdr item))
+     (cond
+       ((string? (car item))
+        (display (string-append "\n["
+                                (car item) "]\n")))
+       (else (display (string-append "\n["
+                                     (symbol->string (car item)) "]\n"))))
+     (display (mk-rec-kv-conf-lines (cdr item)
+                                    #:template template)))
+    (else (display (format #f template
+                           (car item)
+                           (cdr item))))))
+
+(define* (mk-rec-kv-conf-lines pairs
+                               #:key (template "~a=~a\n"))
+  (with-output-to-string (lambda ()
+                           (for-each (lambda (item)
+                                       (serialize-rec-conf-item template item))
+                                     pairs))))
+
+(define spaced-equal-conf-pair
+  "~a = ~a\n")
+
+(define equal-conf-pair
+  "~a=~a\n")
+
+(define equal-conf-quote-value-pair
+  "~a=\"~a\"\n")
+
+(define (nix-profile-install x)
+  (syscall (format #f "nix -L profile install --impure nixpkgs#~a" x)))
+

@@ -34,7 +34,7 @@
              (json)
              (sxml simple)
              (sss prelude)
-             (sss process)
+             (sss prelude)
              (sss git)
              (sss vars)
              (sss mako)
@@ -79,18 +79,18 @@
                    (sss-nix-capability)
                    (rofi-capability #:palette (get-setting 'palette))
                    (sss-mime-capability)
-                   (sss-waybar-capability #:palette (get-setting 'palette)
-                                          #:sans-font (get-setting 'sans-font)
-                                          #:with-memory #f
-                                          #:labwc-session #t
-                                          #:sans-font (get-setting 'sans-font))
+                   (waybar-capability #:palette (get-setting 'palette)
+                                      #:sans-font (get-setting 'sans-font)
+                                      #:with-memory #f
+                                      #:labwc-session #t
+                                      #:sans-font (get-setting 'sans-font))
                    (portals-capability)
                    (mako-capability #:palette (get-setting 'palette)
                                     #:sans-font (get-setting 'sans-font))
                    (containers-capability)
                    (dirs-capability)
-                   (sss-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
-                                             #:palette (get-setting 'palette))
+                   (random-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
+                                                #:palette (get-setting 'palette))
                    (sss-labwc-capability #:extra-startups (get-setting 'labwc-extra-startups)))))
 
 (display "
@@ -100,9 +100,9 @@
 (home-environment
   (services
    (append (list sss-home-files-service
-                 (sss-home-vars-service #:palette (get-setting 'palette)
-                                        #:clone-dir (get-setting 'clone-dir)
-                                        #:lang (get-setting 'lang))
+                 (env-variables-capability #:palette (get-setting 'palette)
+                                           #:clone-dir (get-setting 'clone-dir)
+                                           #:lang (get-setting 'lang))
                  (bash-capability #:clone-dir (get-setting 'clone-dir)
                                   #:gui-cmd "labwc")
                  sss-openpgp-conf

@@ -34,7 +34,7 @@
              (gnu home services desktop)
              (shepherd service timer)
              (sss prelude)
-             (sss process)
+             (sss prelude)
              (sss git)
              (sss vars)
              (sss mako)
@@ -84,10 +84,10 @@
            (append (gtk3-capability #:palette (get-setting 'palette))
                    (gtk4-capability #:palette (get-setting 'palette))
                    (sss-git-capability)
-                   (sss-waybar-capability #:palette (get-setting 'palette)
-                                          #:sans-font (get-setting 'sans-font)
-                                          #:with-memory #t
-                                          #:hyprland-session #t)
+                   (waybar-capability #:palette (get-setting 'palette)
+                                      #:sans-font (get-setting 'sans-font)
+                                      #:with-memory #t
+                                      #:hyprland-session #t)
                    (rofi-capability #:palette (get-setting 'palette))
                    (alacritty-capability #:palette (get-setting 'palette)
                                          #:mono-font (get-setting 'mono-font))
@@ -100,8 +100,8 @@
                                             #:with-blur #t
                                             #:with-shadow #t)
                    (sss-hyprlock-capability #:clone-dir (get-setting 'clone-dir))
-                   (sss-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
-                                             #:palette (get-setting 'palette))
+                   (random-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
+                                                #:palette (get-setting 'palette))
                    (sss-mime-capability)
                    (dirs-capability)
                    (sss-firefox-capability #:palette (get-setting 'palette))
@@ -121,7 +121,7 @@
                                      #:sans-font (get-setting 'sans-font)
                                      #:mono-font (get-setting 'mono-font))
                    (sss-nix-capability)
-                   (sss-qt6-capability #:palette (get-setting 'palette))
+                   (qt6-capability #:palette (get-setting 'palette))
                    (containers-capability)
                    (portals-capability)
                    (enchant-capability))))
@@ -134,9 +134,9 @@
   (services
    (append (list sss-home-files-service
                  (ssh-capability)
-                 (sss-home-vars-service #:palette (get-setting 'palette)
-                                        #:clone-dir (get-setting 'clone-dir)
-                                        #:lang (get-setting 'lang))
+                 (env-variables-capability #:palette (get-setting 'palette)
+                                           #:clone-dir (get-setting 'clone-dir)
+                                           #:lang (get-setting 'lang))
                  (bash-capability #:clone-dir (get-setting 'clone-dir)
                                   #:gui-cmd "hyprland")
                  sss-openpgp-conf

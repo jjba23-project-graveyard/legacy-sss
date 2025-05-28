@@ -20,7 +20,7 @@
   #:use-module (gnu)
   #:use-module (json)
   #:use-module (ice-9 string-fun)
-  #:use-module (sss process)
+  #:use-module (sss prelude)
   #:export (sss-fastfetch-conf sss-fastfetch-capability))
 
 (define* (sss-fastfetch-conf #:key clone-dir)

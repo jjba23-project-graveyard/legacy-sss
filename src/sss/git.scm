@@ -18,7 +18,7 @@
 (define-module (sss git)
   #:declarative? #t
   #:use-module (gnu)
-  #:use-module (sss process))
+  #:use-module (sss prelude))
 
 ;; I enjoy having a default commit message, and I overwrite it
 ;; sometimes when the commit is meaningful, otherwise I use it

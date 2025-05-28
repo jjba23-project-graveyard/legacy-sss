@@ -19,7 +19,7 @@
   #:declarative? #t
   #:use-module (gnu)
   #:use-module (sss palette)
-  #:use-module (sss process)
+  #:use-module (sss prelude)
   #:export (gtk3-config gtk4-config gtk3-capability gtk4-capability))
 
 (define* (gtk3-config #:key palette)
