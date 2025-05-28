@@ -110,8 +110,8 @@
     ('solarized-light "'solarized-light")
     ('everforest-light "'everforest-hard-light")
     ('everforest-dark "'everforest-hard-dark")
-    ('gruvbox-light "'gruvbox-hard-light")
-    ('gruvbox-dark "'gruvbox-hard-dark")
+    ('gruvbox-light "'gruvbox-light-hard")
+    ('gruvbox-dark "'gruvbox-dark-hard")
     (_ (raise-unknown-palette-exception palette))))
 
 (define (get-cursor-theme palette)
