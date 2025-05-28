@@ -385,7 +385,7 @@
         xf86-video-fbdev
         xxd
         xz
-        youtube-dl))
+        yt-dlp))
 
 (define container-packages
   (list podman-compose passt))
