@@ -25,6 +25,7 @@
                                             is-dark-palette
                                             get-icon-theme
                                             get-emacs-theme
+                                            get-fish-color
                                             get-cursor-theme
                                             hex-to-decimal
                                             hex-to-rgba
@@ -112,6 +113,20 @@
     ('everforest-dark "'everforest-hard-dark")
     ('gruvbox-light "'gruvbox-light-hard")
     ('gruvbox-dark "'gruvbox-dark-hard")
+    (_ (raise-unknown-palette-exception palette))))
+
+(define (get-fish-color palette)
+  (match palette
+    ('ef-bio 'green)
+    ('ef-dream 'magenta)
+    ('heavy-metal 'red)
+    ('ef-cyprus 'green)
+    ('ef-autumn 'yellow)
+    ('solarized-light 'black)
+    ('everforest-light 'black)
+    ('everforest-dark 'green)
+    ('gruvbox-light 'black)
+    ('gruvbox-dark 'orange)
     (_ (raise-unknown-palette-exception palette))))
 
 (define (get-cursor-theme palette)

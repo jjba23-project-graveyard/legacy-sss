@@ -127,8 +127,8 @@
 ;;   - solarized-light
 ;;   - everforest-dark
 ;;   - everforest-light
-;;   - gruvbox-dark
-;;   - gruvbox-light
+;;   - gruvbox-dark (WIP)
+;;   - gruvbox-light (WIP)
 (define default-palette
   'ef-dream)
 

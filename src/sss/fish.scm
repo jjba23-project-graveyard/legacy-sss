@@ -18,8 +18,8 @@
 (define-module (sss fish)
   #:declarative? #t
   #:use-module (gnu)
+  #:use-module (sss palette)
   #:export (serialize-fish-abbreviation fish-abbreviations
-                                        fish-color-for-palette
                                         fish-greeting
                                         serialize-fish-greeting
                                         fish-prompt
@@ -71,29 +71,9 @@
     (gui . "hyprland")
     (find-largest-files . "du -h -x -s -- * | sort -r -h | head -20")))
 
-(define (fish-color-for-palette palette)
-  (cond
-    ((eq? 'ef-dream palette)
-     'magenta)
-    ((eq? 'ef-bio palette)
-     'green)
-    ((eq? 'heavy-metal palette)
-     'red)
-    ((eq? 'ef-cyprus palette)
-     'green)
-    ((eq? 'ef-autumn palette)
-     'yellow)
-    ((eq? 'solarized-light palette)
-     'yellow)
-    ((eq? 'everforest-dark palette)
-     'green)
-    ((eq? 'everforest-light palette)
-     'green)
-    (else 'magenta)))
-
 (define* (fish-greeting #:key palette)
   `(,(format #f "set_color -o ~a"
-             (fish-color-for-palette palette))
+             (get-fish-color palette))
     "echo \"Welcome to SSS/GNU - the Supreme Sexp System\"" "echo \"\""
     "set_color normal"))
 
@@ -105,7 +85,7 @@
   `("set -l last_status $status"
 
     ,(format #f "set_color -o ~a"
-             (fish-color-for-palette palette))
+             (get-fish-color palette))
     "echo -n \"$USER@\"(hostname)"
     "set_color normal"
 
