@@ -53,7 +53,7 @@
                      `("lxsession" "mako"
                        "dbus-update-activation-environment --all"
                        "waybar"
-                       "herd trigger sss-random-wallpaper"
+                       "herd trigger set-random-wallpaper"
                        "alacritty --daemon"
                        "emacs --daemon"
                        "transmission-daemon"
@@ -237,7 +237,7 @@
                         #:cmd "hyprlock")
              (exec-bind #:mod "s-S"
                         #:bind "B"
-                        #:cmd "herd trigger sss-random-wallpaper")
+                        #:cmd "herd trigger set-random-wallpaper")
              (exec-bind #:mod "s"
                         #:bind "T"
                         #:cmd "alacritty msg create-window || alacritty")

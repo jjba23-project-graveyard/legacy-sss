@@ -105,10 +105,10 @@
                                                 #:palette (get-setting 'palette))
                    (mime-capability)
                    (dirs-capability)
-                   (sss-firefox-capability #:palette (get-setting 'palette))
-                   (sss-fastfetch-capability #:clone-dir (get-setting 'clone-dir))
-                   (sss-fish-capability #:clone-dir (get-setting 'clone-dir)
-                                        #:palette (get-setting 'palette))
+                   (firefox-capability #:palette (get-setting 'palette))
+                   (fastfetch-capability #:clone-dir (get-setting 'clone-dir))
+                   (fish-capability #:clone-dir (get-setting 'clone-dir)
+                                    #:palette (get-setting 'palette))
                    (mako-capability #:palette (get-setting 'palette)
                                     #:sans-font (get-setting 'sans-font))
                    (emacs-capability #:palette (get-setting 'palette)
@@ -145,15 +145,15 @@
                  (simple-service 'sss-home-cron-service
                                  home-mcron-service-type
                                  '())
-                 (simple-service 'sss-random-wallpaper
+                 (simple-service 'set-random-wallpaper
                                  home-shepherd-service-type
-                                 (list (shepherd-timer '(sss-random-wallpaper)
+                                 (list (shepherd-timer '(set-random-wallpaper)
                                                        #~(cron-string->calendar-event
                                                           "*/10 * * * *")
                                                        `("sh" ,(format #f
-                                                                "/home/joe/.local/bin/sss-wallpaper-random.sh")))))
+                                                                "/home/joe/.local/bin/set-random-wallpaper.sh")))))
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
-                 sss-fontconfig-service-type
+                 fontconfig-capability
                  channels-capability) %base-home-services)))
 

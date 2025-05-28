@@ -109,6 +109,6 @@
                  openpgp-capability
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
-                 sss-fontconfig-service-type
+                 fontconfig-capability
                  channels-capability) %base-home-services)))
 

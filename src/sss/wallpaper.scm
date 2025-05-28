@@ -70,7 +70,7 @@
   (let* ((walls (wallpapers #:clone-dir clone-dir
                             #:palette palette))
          (random-wall-cmd (mk-random-wall-cmd walls)))
-    `((".local/bin/sss-wallpaper-random.sh" ,(plain-file
-                                              "sss-wallpaper-random.sh"
+    `((".local/bin/set-random-wallpaper.sh" ,(plain-file
+                                              "set-random-wallpaper.sh"
                                               random-wall-cmd)))))
 

@@ -17,14 +17,22 @@
 
 (define-module (sss fish)
   #:declarative? #t
-  #:use-module (gnu))
+  #:use-module (gnu)
+  #:export (serialize-fish-abbreviation fish-abbreviations
+                                        fish-color-for-palette
+                                        fish-greeting
+                                        serialize-fish-greeting
+                                        fish-prompt
+                                        serialize-fish-prompt
+                                        fish-config
+                                        fish-capability))
 
 (define (serialize-fish-abbreviation a)
   (format #f "abbr -a ~a \"~a\""
           (car a)
           (cdr a)))
 
-(define* (sss-fish-abbreviations #:key clone-dir)
+(define* (fish-abbreviations #:key clone-dir)
   `((c . "clear") (h . "history")
     (tree . "tree --dirsfirst -F")
     (mkdir . "mkdir -p -v")
@@ -83,7 +91,7 @@
      'green)
     (else 'magenta)))
 
-(define* (shell-greeting #:key palette)
+(define* (fish-greeting #:key palette)
   `(,(format #f "set_color -o ~a"
              (fish-color-for-palette palette))
     "echo \"Welcome to SSS/GNU - the Supreme Sexp System\"" "echo \"\""
@@ -91,9 +99,9 @@
 
 (define* (serialize-fish-greeting #:key palette)
   (format #f "function fish_greeting\n    ~a\nend"
-          (string-join (shell-greeting #:palette palette) "\n    ")))
+          (string-join (fish-greeting #:palette palette) "\n    ")))
 
-(define* (shell-prompt #:key palette)
+(define* (fish-prompt #:key palette)
   `("set -l last_status $status"
 
     ,(format #f "set_color -o ~a"
@@ -157,31 +165,27 @@
   (format #f "function fish_prompt\n    ~a\nend"
           (string-join prompt "\n    ")))
 
-(begin
-  (define* (sss-fish-config #:key clone-dir palette)
-    (append `("# ====== SSS Fish configuration ======
+(define* (fish-config #:key clone-dir palette)
+  (append `("# ====== SSS Fish configuration ======
 #
 # auto-generated file, DO NOT EDIT!
 #
 "
-              ;; turn on the Emacs-style keybindings for the shell
-              "fish_default_key_bindings" "")
-            ;; abbreviations (a much better approach than aliases)
-            (map serialize-fish-abbreviation
-                 (sss-fish-abbreviations #:clone-dir clone-dir))
-            `("")
-            (list (serialize-fish-greeting #:palette palette))
-            `("")
-            (list (serialize-fish-prompt (shell-prompt #:palette palette)))))
-  (export sss-fish-config))
+            ;; turn on the Emacs-style keybindings for the shell
+            "fish_default_key_bindings" "")
+          ;; abbreviations (a much better approach than aliases)
+          (map serialize-fish-abbreviation
+               (fish-abbreviations #:clone-dir clone-dir))
+          `("")
+          (list (serialize-fish-greeting #:palette palette))
+          `("")
+          (list (serialize-fish-prompt (fish-prompt #:palette palette)))))
 
-(begin
-  (define* (sss-fish-capability #:key clone-dir palette)
-    `((".config/fish/config.fish" ,(plain-file "config.fish"
-                                               (string-join (sss-fish-config
-                                                             #:clone-dir
-                                                             clone-dir
-                                                             #:palette palette)
-                                                            "\n")))))
-  (export sss-fish-capability))
+(define* (fish-capability #:key clone-dir palette)
+  `((".config/fish/config.fish" ,(plain-file "config.fish"
+                                             (string-join (fish-config
+                                                           #:clone-dir
+                                                           clone-dir
+                                                           #:palette palette)
+                                                          "\n")))))
 
