@@ -31,7 +31,7 @@
     (gtk-key-theme-name . Emacs)
     (gtk-enable-event-sounds . 0)
     (gtk-cursor-theme-name unquote
-                           (sss-get-cursor-theme palette))
+                           (get-cursor-theme palette))
     (gtk-cursor-theme-size . 24)
     (gtk-enable-input-feedback-sounds . 0)
     (gtk-application-prefer-dark-theme unquote
@@ -46,7 +46,7 @@
     (gtk-key-theme-name . Emacs)
     (gtk-enable-event-sounds . 0)
     (gtk-cursor-theme-name unquote
-                           (sss-get-cursor-theme palette))
+                           (get-cursor-theme palette))
     (gtk-cursor-theme-size . 24)
     (gtk-enable-input-feedback-sounds . 0)
     (gtk-application-prefer-dark-theme unquote

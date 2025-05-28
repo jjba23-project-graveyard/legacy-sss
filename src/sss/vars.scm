@@ -57,7 +57,7 @@
                   ("HISTFILESIZE" . "200000")
                   ("XCURSOR_SIZE" . "24")
                   ("XCURSOR_THEME" unquote
-                   (sss-get-cursor-theme palette))
+                   (get-cursor-theme palette))
                   ("CC" . "/run/current-system/profile/bin/gcc")
                   ("SDL_VIDEODRIVER" . "wayland")
                   ("_JAVA_AWT_WM_NONREPARENTING" . "1")

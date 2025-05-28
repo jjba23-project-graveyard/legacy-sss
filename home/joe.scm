@@ -59,6 +59,7 @@
              (sss dirs)
              (sss waybar)
              (sss rofi)
+             (sss labwc)
              (sss ssh)
              (sss firefox)
              (sss emacs))
@@ -83,7 +84,7 @@
   (service home-files-service-type
            (append (gtk3-capability #:palette (get-setting 'palette))
                    (gtk4-capability #:palette (get-setting 'palette))
-                   (sss-git-capability)
+                   (git-capability)
                    (waybar-capability #:palette (get-setting 'palette)
                                       #:sans-font (get-setting 'sans-font)
                                       #:with-memory #t
@@ -91,18 +92,18 @@
                    (rofi-capability #:palette (get-setting 'palette))
                    (alacritty-capability #:palette (get-setting 'palette)
                                          #:mono-font (get-setting 'mono-font))
-                   (sss-hyprland-capability #:palette (get-setting 'palette)
-                                            #:clone-dir (get-setting 'clone-dir)
-                                            #:keyboard-layout (get-setting 'keyboard-layout)
-                                            #:caps-to-ctrl (get-setting 'caps-to-ctrl?)
-                                            #:monitors (get-setting 'hyprland-monitors)
-                                            #:extra-startups (get-setting 'hyprland-extra-startups)
-                                            #:with-blur #t
-                                            #:with-shadow #t)
-                   (sss-hyprlock-capability #:clone-dir (get-setting 'clone-dir))
+                   (hyprland-capability #:palette (get-setting 'palette)
+                                        #:clone-dir (get-setting 'clone-dir)
+                                        #:keyboard-layout (get-setting 'keyboard-layout)
+                                        #:caps-to-ctrl (get-setting 'caps-to-ctrl?)
+                                        #:monitors (get-setting 'hyprland-monitors)
+                                        #:extra-startups (get-setting 'hyprland-extra-startups)
+                                        #:with-blur #t
+                                        #:with-shadow #t)
+                   (hyprlock-capability #:clone-dir (get-setting 'clone-dir))
                    (random-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
                                                 #:palette (get-setting 'palette))
-                   (sss-mime-capability)
+                   (mime-capability)
                    (dirs-capability)
                    (sss-firefox-capability #:palette (get-setting 'palette))
                    (sss-fastfetch-capability #:clone-dir (get-setting 'clone-dir))
@@ -120,11 +121,12 @@
                                      "$HOME/hacking/private-notes/roam"
                                      #:sans-font (get-setting 'sans-font)
                                      #:mono-font (get-setting 'mono-font))
-                   (sss-nix-capability)
+                   (nix-capability)
                    (qt6-capability #:palette (get-setting 'palette))
                    (containers-capability)
                    (portals-capability)
-                   (enchant-capability))))
+                   (enchant-capability)
+                   (labwc-capability #:extra-startups (get-setting 'labwc-extra-startups)))))
 
 (display "
 >>= configuring Joe's home environment...
@@ -139,7 +141,7 @@
                                            #:lang (get-setting 'lang))
                  (bash-capability #:clone-dir (get-setting 'clone-dir)
                                   #:gui-cmd "hyprland")
-                 sss-openpgp-conf
+                 openpgp-capability
                  (simple-service 'sss-home-cron-service
                                  home-mcron-service-type
                                  '())

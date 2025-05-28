@@ -76,9 +76,9 @@
   (service home-files-service-type
            (append (gtk3-capability #:palette (get-setting 'palette))
                    (gtk4-capability #:palette (get-setting 'palette))
-                   (sss-nix-capability)
+                   (nix-capability)
                    (rofi-capability #:palette (get-setting 'palette))
-                   (sss-mime-capability)
+                   (mime-capability)
                    (waybar-capability #:palette (get-setting 'palette)
                                       #:sans-font (get-setting 'sans-font)
                                       #:with-memory #f
@@ -88,10 +88,11 @@
                    (mako-capability #:palette (get-setting 'palette)
                                     #:sans-font (get-setting 'sans-font))
                    (containers-capability)
+                   (hyprlock-capability #:clone-dir (get-setting 'clone-dir))
                    (dirs-capability)
                    (random-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
                                                 #:palette (get-setting 'palette))
-                   (sss-labwc-capability #:extra-startups (get-setting 'labwc-extra-startups)))))
+                   (labwc-capability #:extra-startups (get-setting 'labwc-extra-startups)))))
 
 (display "
 >>= configuring Manon's home environment...
@@ -105,7 +106,7 @@
                                            #:lang (get-setting 'lang))
                  (bash-capability #:clone-dir (get-setting 'clone-dir)
                                   #:gui-cmd "labwc")
-                 sss-openpgp-conf
+                 openpgp-capability
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
                  sss-fontconfig-service-type

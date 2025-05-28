@@ -178,7 +178,7 @@
   (mapped-devices (get-setting 'mapped-devices))
   (file-systems (append (get-setting 'filesystems) %base-file-systems))
   (users (get-setting 'users))
-  (packages (append (sss-system-packages #:per-host-packages (get-setting 'extra-packages))
+  (packages (append (system-packages #:per-host-packages (get-setting 'extra-packages))
                     %base-packages))
   (services
    (cons* (service nix-service-type)

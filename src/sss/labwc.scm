@@ -20,9 +20,10 @@
   #:declarative? #t
   #:use-module (gnu)
   #:use-module (sxml simple)
-  #:use-module (sss palette))
+  #:use-module (sss palette)
+  #:export (labwc-menu labwc-rc labwc-autostart labwc-capability))
 
-(define-public labwc-menu
+(define labwc-menu
   `(*TOP* (*PI* xml "version=\"1.0\" encoding=\"UTF-8\"")
           (openbox_menu (menu (@ (id client-menu))
                               (item (@ (label "Minimize"))
@@ -79,28 +80,25 @@
                                     (action (@ (name Execute)
                                                (command "loginctl poweroff"))))))))
 
-(define-public labwc-rc
+(define labwc-rc
   (local-file "./labwc/rc.xml"))
 
-(begin
-  (define* (labwc-autostart #:key (extra-startups '()))
-    (plain-file "autostart"
-                (string-join (append extra-startups
-                                     '("lxsession >/dev/null 2>&1 &"
-                                       "mako >/dev/null 2>&1 &"
-                                       "dbus-update-activation-environment --all >/dev/null 2>&1 &"
-                                       "transmission-daemon >/dev/null 2>&1 &"
-                                       "waybar >/dev/null 2>&1 &"
-                                       "xdg-user-dirs-update 2>&1 &")) "\n")))
-  (export labwc-autostart))
+(define* (labwc-autostart #:key (extra-startups '()))
+  (plain-file "autostart"
+              (string-join (append extra-startups
+                                   '("lxsession >/dev/null 2>&1 &"
+                                     "mako >/dev/null 2>&1 &"
+                                     "dbus-update-activation-environment --all >/dev/null 2>&1 &"
+                                     "transmission-daemon >/dev/null 2>&1 &"
+                                     "waybar >/dev/null 2>&1 &"
+                                     "xdg-user-dirs-update 2>&1 &")) "\n")))
 
-(begin
-  (define* (sss-labwc-capability #:key extra-startups)
-    `((".config/labwc/rc.xml" ,labwc-rc)
-      (".config/labwc/menu.xml" ,(plain-file "menu.xml"
-                                             (with-output-to-string (lambda ()
-                                                                      (sxml->xml
-                                                                       labwc-menu)))))
-      (".config/labwc/autostart" ,(labwc-autostart #:extra-startups
-                                                   extra-startups))))
-  (export sss-labwc-capability))
+(define* (labwc-capability #:key extra-startups)
+  `((".config/labwc/rc.xml" ,labwc-rc)
+    (".config/labwc/menu.xml" ,(plain-file "menu.xml"
+                                           (with-output-to-string (lambda ()
+                                                                    (sxml->xml
+                                                                     labwc-menu)))))
+    (".config/labwc/autostart" ,(labwc-autostart #:extra-startups
+                                                 extra-startups))))
+
