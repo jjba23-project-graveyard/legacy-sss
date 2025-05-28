@@ -38,26 +38,26 @@
   #:use-module (guix build-system gnu)
   #:use-module ((guix licenses)
                 #:prefix license:)
-  #:export (system-packages libs-packages
-                            hypr-packages
-                            emacs-packages
-                            shell-packages
-                            dict-packages
-                            net-packages
-                            container-packages
-                            other-system-packages
-                            qt-packages
-                            browser-packages
-                            music-packages
-                            latex-packages
-                            theme-packages
-                            coreutils
-                            dev-packages
-                            terminal-emulator-packages
-                            treesitter-packages
-                            wm-packages
-                            normie-packages
-                            font-packages))
+  #:export (sss-system-packages libs-packages
+                                hypr-packages
+                                emacs-packages
+                                shell-packages
+                                dict-packages
+                                net-packages
+                                container-packages
+                                other-system-packages
+                                qt-packages
+                                browser-packages
+                                music-packages
+                                latex-packages
+                                theme-packages
+                                coreutils
+                                dev-packages
+                                terminal-emulator-packages
+                                treesitter-packages
+                                wm-packages
+                                normie-packages
+                                font-packages))
 
 (use-package-modules admin
                      android
@@ -431,9 +431,9 @@
         xdotool
         zlib))
 
-(define* (system-packages #:key (per-host-packages '())
-                          (architecture (or (%current-target-system)
-                                            (%current-system))))
+(define* (sss-system-packages #:key (per-host-packages '())
+                              (architecture (or (%current-target-system)
+                                                (%current-system))))
   "SYSTEM PACKAGES
 Add packages here to install them system wide"
   (append (map (lambda (x)
