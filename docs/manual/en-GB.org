@@ -206,7 +206,7 @@ recommended minimums:
 - *RAM:* 4GB of RAM is the absolute minimum. 8GB or more is highly
   recommended for a comfortable experience, especially if you plan to
   run memory-intensive applications or virtual machines.
-- *Disk Space:* 30GB of disk space is a good starting point. Consider
+- *Disk Space:* 90GB of disk space is a good starting point. Consider
   more if you plan to install a large number of packages, store many
   files, or use virtual machines extensively. SSDs are strongly
   recommended for optimal performance.
