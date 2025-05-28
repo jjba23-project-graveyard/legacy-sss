@@ -44,11 +44,24 @@
                       nix-profile-install
                       mk-css-conf-lines))
 
+(define ansi-color-yellow-escape
+  "\x1b[0;33m")
+(define ansi-color-magenta-escape
+  "\x1b[0;35m")
+(define ansi-color-reset-escape
+  "\x1b[0m")
+
 (define-syntax-rule (log-exprs exp ...)
   (begin
-    (format #t "~a: ~S\n"
+    (format #t
+            "~a~a:~a ~a~S~a\n"
+            ansi-color-magenta-escape
             (pretty-quote (with-output-to-string (lambda ()
-                                                   (write 'exp)))) exp) ...))
+                                                   (write 'exp))))
+            ansi-color-reset-escape
+            ansi-color-yellow-escape
+            exp
+            ansi-color-reset-escape) ...))
 
 (define (get-setting setting)
   (let* ((default-var-name (format #f "default-~a" setting))
