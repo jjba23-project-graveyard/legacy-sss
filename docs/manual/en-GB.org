@@ -161,14 +161,6 @@ When keybindings (shortcurts) are defined or mentioned, the following legend app
 
 
 
-* Customizing SSS
-
-SSS supports several user customizations via the ~per-host.scm~ file and others.
-
-I took inspiration from many sources, including several color palettes, inspired by the great `ef-themes` by Protesilaos Stavrou  (https://github.com/protesilaos/ef-themes).
-
-There are more palettes though, see per-host section for more.
-
 -----
 
 * Showcase
