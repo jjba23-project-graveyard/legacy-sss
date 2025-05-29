@@ -23,6 +23,8 @@
   #:use-module (nongnu packages k8s)
   #:use-module (nongnu packages chrome)
   #:use-module (nongnu packages music)
+  #:use-module (sss packages tree-sitter)
+  #:use-module (sss packages container)
   #:use-module (gnu services nix)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
@@ -44,7 +46,6 @@
                                 shell-packages
                                 dict-packages
                                 net-packages
-                                container-packages
                                 other-system-packages
                                 qt-packages
                                 browser-packages
@@ -54,7 +55,6 @@
                                 coreutils-packages
                                 dev-packages
                                 terminal-emulator-packages
-                                treesitter-packages
                                 wm-packages
                                 normie-packages
                                 font-packages))
@@ -73,7 +73,6 @@
                      cmake
                      commencement
                      compression
-                     containers
                      cpp
                      cups
                      curl
@@ -155,7 +154,6 @@
                      texlive
                      text-editors
                      tls
-                     tree-sitter
                      version-control
                      video
                      vim
@@ -220,22 +218,6 @@
         xdg-dbus-proxy
         shared-mime-info
         (list glib "bin")))
-
-(define treesitter-packages
-  (list tree-sitter
-        tree-sitter-bash
-        tree-sitter-dockerfile
-        tree-sitter-lua
-        tree-sitter-haskell
-        tree-sitter-css
-        tree-sitter-html
-        tree-sitter-nix
-        tree-sitter-scala
-        tree-sitter-markdown
-        tree-sitter-typescript
-        tree-sitter-scheme
-        tree-sitter-java
-        tree-sitter-javascript))
 
 (define terminal-emulator-packages
   (list alacritty xfce4-terminal))
@@ -394,9 +376,6 @@
         xz
         yt-dlp))
 
-(define container-packages
-  (list podman-compose passt))
-
 (define net-packages
   (list openvpn
         (specification->package "darkhttpd")
@@ -449,7 +428,7 @@ Add packages here to install them system wide"
           font-packages
           dev-packages
           container-packages
-          treesitter-packages
+          tree-sitter-packages
           coreutils-packages
           hypr-packages
           terminal-emulator-packages
