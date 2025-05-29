@@ -96,6 +96,7 @@
                      gimp
                      gl
                      glib
+                     ghostscript
                      gnome
                      gnome-xyz
                      gnupg
@@ -107,7 +108,6 @@
                      guile
                      guile-xyz
                      haskell-apps
-                     image
                      image
                      image-viewers
                      imagemagick
@@ -144,6 +144,7 @@
                      python-xyz
                      qt
                      rust-apps
+                     scanner
                      screen
                      shells
                      shellutils
@@ -380,6 +381,12 @@
         virt-manager
         watchexec
         xarchiver
+        cups
+        cups-filters
+        ghostscript
+        ;; ghostscript-with-cups
+        xsane
+        ;; libjpeg
         xdg-user-dirs
         xf86-input-libinput
         xf86-video-fbdev
