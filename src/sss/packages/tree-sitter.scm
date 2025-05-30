@@ -21,17 +21,17 @@
   #:export (tree-sitter-packages))
 
 (define tree-sitter-packages
-  (list tree-sitter
-        tree-sitter-bash
-        tree-sitter-dockerfile
-        tree-sitter-lua
-        tree-sitter-haskell
-        tree-sitter-css
-        tree-sitter-html
-        tree-sitter-nix
-        tree-sitter-scala
-        tree-sitter-markdown
-        tree-sitter-typescript
-        tree-sitter-scheme
-        tree-sitter-java
-        tree-sitter-javascript))
+  (make-parameter (list tree-sitter
+                        tree-sitter-bash
+                        tree-sitter-dockerfile
+                        tree-sitter-lua
+                        tree-sitter-haskell
+                        tree-sitter-css
+                        tree-sitter-html
+                        tree-sitter-nix
+                        tree-sitter-scala
+                        tree-sitter-markdown
+                        tree-sitter-typescript
+                        tree-sitter-scheme
+                        tree-sitter-java
+                        tree-sitter-javascript)))

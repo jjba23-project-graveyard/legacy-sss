@@ -22,10 +22,10 @@
   #:export (dict-packages))
 
 (define dict-packages
-  (list aspell
-        aspell-dict-ca
-        aspell-dict-en
-        aspell-dict-es
-        aspell-dict-nl
-        aspell-dict-pt-pt
-        enchant))
+  (make-parameter (list aspell
+                        aspell-dict-ca
+                        aspell-dict-en
+                        aspell-dict-es
+                        aspell-dict-nl
+                        aspell-dict-pt-pt
+                        enchant)))

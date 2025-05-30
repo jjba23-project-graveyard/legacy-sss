@@ -24,8 +24,11 @@
   #:use-module (nongnu packages chrome)
   #:use-module (nongnu packages music)
   #:use-module (sss packages tree-sitter)
+  #:use-module (sss packages universal-session)
   #:use-module (sss packages dict)
+  #:use-module (sss packages shell)
   #:use-module (sss packages container)
+  #:use-module (sss packages theme)
   #:use-module (gnu services nix)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
@@ -44,19 +47,16 @@
   #:export (sss-system-packages libs-packages
                                 hypr-packages
                                 emacs-packages
-                                shell-packages
                                 net-packages
                                 other-system-packages
                                 qt-packages
                                 browser-packages
                                 music-packages
                                 latex-packages
-                                theme-packages
                                 coreutils-packages
                                 dev-packages
                                 terminal-emulator-packages
                                 wm-packages
-                                normie-packages
                                 font-packages))
 
 (use-package-modules admin
@@ -179,9 +179,6 @@
         font-microsoft-web-core-fonts
         fontconfig))
 
-(define normie-packages
-  (list labwc))
-
 (define wm-packages
   (list rofi-wayland
         fzf
@@ -259,10 +256,6 @@
         pango
         cairo
         xorg-server))
-
-(define theme-packages
-  (list adwaita-icon-theme gnome-themes-standard numix-gtk-theme
-        papirus-icon-theme yaru-theme))
 
 (define latex-packages
   (list texinfo texlive))
@@ -384,9 +377,6 @@
         wireshark
         network-manager-openvpn))
 
-(define shell-packages
-  (list fish))
-
 (define emacs-packages
   (list emacs-jinx))
 
@@ -415,19 +405,19 @@ Add packages here to install them system wide"
                  (specification->package x)) per-host-packages)
           other-system-packages
           wm-packages
-          normie-packages
+          (universal-session-packages)
           font-packages
           dev-packages
-          container-packages
-          tree-sitter-packages
+          (container-packages)
+          (tree-sitter-packages)
           coreutils-packages
           hypr-packages
           terminal-emulator-packages
           browser-packages
           latex-packages
-          shell-packages
+          (shell-packages)
           libs-packages
-          dict-packages
+          (dict-packages)
           net-packages
-          theme-packages))
+          (theme-packages)))
 

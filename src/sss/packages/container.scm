@@ -21,4 +21,4 @@
   #:export (container-packages))
 
 (define container-packages
-  (list podman-compose passt))
+  (make-parameter (list podman-compose passt)))

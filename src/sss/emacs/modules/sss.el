@@ -284,14 +284,11 @@ DATA: A string containing JSON data."
   (switch-to-buffer buffer-name)
   (scroll-down 10000))
 
-(defun guix-package-location (id-or-name)
-  "Return location of a package with ID-OR-NAME.
-For the meaning of location, see `guix-find-location'."
-  (guix-eval-read (guix-make-guile-expression
-                   'package-location-string id-or-name)))
 
 (defun guix-package-location-on-mark ()
   (interactive)
+  (require 'guix)
+  (require 'guix-package)
   (let* ((target-package (buffer-substring (mark) (point)))
          (loc (guix-package-location target-package))
          (clean-loc (if (not loc)
@@ -302,4 +299,4 @@ For the meaning of location, see `guix-find-location'."
 (provide 'sss/sss)
 
 ;;; sss.el ends here
-
+labwc
