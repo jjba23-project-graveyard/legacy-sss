@@ -20,6 +20,7 @@
   #:use-module (gnu)
   #:use-module (sss packages font)
   #:use-module (sss packages net)
+  #:use-module (sss packages core)
   #:use-module (sss packages music)
   #:use-module (sss packages qt)
   #:use-module (sss packages hypr)
@@ -32,14 +33,11 @@
   #:use-module (sss packages theme)
   #:use-module (sss packages latex)
   #:use-module (sss packages libs)
+  #:use-module (sss packages browser)
   #:use-module (sss packages wm)
   #:use-module (sss packages terminal-emulator)
-
-  #:use-module (nongnu packages fonts)
   #:use-module (nongnu packages messaging)
   #:use-module (nongnu packages k8s)
-  #:use-module (nongnu packages chrome)
-  #:use-module (nongnu packages music)
   #:use-module (gnu services nix)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
@@ -55,8 +53,7 @@
   #:use-module (guix build-system gnu)
   #:use-module ((guix licenses)
                 #:prefix license:)
-  #:export (sss-system-packages emacs-packages other-system-packages
-                                browser-packages coreutils-packages))
+  #:export (sss-system-packages other-system-packages))
 
 (use-package-modules admin
                      android
@@ -67,7 +64,6 @@
                      base
                      bash
                      bittorrent
-                     chromium
                      cinnamon
                      cmake
                      commencement
@@ -77,18 +73,13 @@
                      curl
                      databases
                      disk
-                     display-managers
                      emacs
-                     emacs-xyz
-                     enchant
                      engineering
-                     file-systems
                      firmware
                      fonts
                      fontutils
                      freedesktop
                      games
-                     gcc
                      gdb
                      gettext
                      gimp
@@ -129,7 +120,6 @@
                      music
                      ncurses
                      networking
-                     node
                      nss
                      package-management
                      parallel
@@ -143,14 +133,10 @@
                      qt
                      rust-apps
                      scanner
-                     screen
                      shells
                      shellutils
                      sqlite
                      ssh
-                     terminals
-                     texinfo
-                     texlive
                      text-editors
                      tls
                      version-control
@@ -158,7 +144,6 @@
                      vim
                      virtualization
                      vnc
-                     vpn
                      web
                      web-browsers
                      wm
@@ -166,61 +151,20 @@
                      xfce
                      xorg)
 
-(define coreutils-packages
-  (list htop
-        btop
-        emacs-pgtk
-        vim
-        git
-        openssh
-        openssl
-        clang
-        dbus
-        ncurses
-        screen
-        tar
-        zip
-        unzip
-        gmp
-        gcc
-        gcc-toolchain
-        curl
-        ripgrep
-        net-tools
-        dstat
-        dconf-editor
-        (specification->package "make")
-        nix
-        coreutils
-        seatd
-        libseat
-        elogind
-        pango
-        cairo
-        xorg-server))
-
-(define browser-packages
-  (list (specification->package "firefox")
-        (specification->package "google-chrome-beta")))
-
 (define* other-system-packages
   (list android-file-transfer
         autoconf
         automake
-        binutils
+        ncurses
         blender
         blueman
         bluez
         bsd-games
         cheese
         cmatrix
-        desktop-file-utils
-        direnv
         drill
         emacs-pinentry
         evince
-        exfat-utils
-        exfatprogs
         fastfetch
         feh
         (specification->package "ffmpegthumbs")
@@ -229,8 +173,6 @@
         freecad
         fuse-exfat
         fyi
-        fyi
-        gdb
         geany
         (specification->package "gettext")
         ghcid
@@ -301,24 +243,21 @@
         xz
         yt-dlp))
 
-(define emacs-packages
-  (list emacs-jinx))
-
 (define* (sss-system-packages #:key (per-host-packages '()))
   "System package collection for SSS. Add packages here to install them system wide"
   (append (map (lambda (x)
                  (specification->package x)) per-host-packages)
           other-system-packages
+          (core-packages)
           (wm-packages)
           (universal-session-packages)
           (font-packages)
           (dev-packages)
           (container-packages)
           (tree-sitter-packages)
-          coreutils-packages
           (hypr-packages)
           (terminal-emulator-packages)
-          browser-packages
+          (browser-packages)
           (latex-packages)
           (shell-packages)
           (libs-packages)
