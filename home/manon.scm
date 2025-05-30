@@ -74,10 +74,13 @@
 
 (define sss-home-files-service
   (service home-files-service-type
-           (append (gtk3-capability #:palette (get-setting 'palette))
-                   (gtk4-capability #:palette (get-setting 'palette))
+           (append (gtk3-capability #:palette (get-setting 'palette)
+                                    #:sans-font (get-setting 'sans-font))
+                   (gtk4-capability #:palette (get-setting 'palette)
+                                    #:sans-font (get-setting 'sans-font))
                    (nix-capability)
-                   (rofi-capability #:palette (get-setting 'palette))
+                   (rofi-capability #:palette (get-setting 'palette)
+                                    #:sans-font (get-setting 'sans-font))
                    (mime-capability)
                    (waybar-capability #:palette (get-setting 'palette)
                                       #:sans-font (get-setting 'sans-font)
