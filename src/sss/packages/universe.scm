@@ -23,9 +23,15 @@
   #:use-module (nongnu packages k8s)
   #:use-module (nongnu packages chrome)
   #:use-module (nongnu packages music)
+  #:use-module (sss packages font)
+  #:use-module (sss packages net)
+  #:use-module (sss packages music)
+  #:use-module (sss packages qt)
+  #:use-module (sss packages hypr)
   #:use-module (sss packages tree-sitter)
   #:use-module (sss packages universal-session)
   #:use-module (sss packages dict)
+  #:use-module (sss packages dev)
   #:use-module (sss packages shell)
   #:use-module (sss packages container)
   #:use-module (sss packages theme)
@@ -47,17 +53,11 @@
   #:use-module ((guix licenses)
                 #:prefix license:)
   #:export (sss-system-packages libs-packages
-                                hypr-packages
                                 emacs-packages
-                                net-packages
                                 other-system-packages
-                                qt-packages
                                 browser-packages
-                                music-packages
                                 coreutils-packages
-                                dev-packages
-                                wm-packages
-                                font-packages))
+                                wm-packages))
 
 (use-package-modules admin
                      android
@@ -167,18 +167,6 @@
                      xfce
                      xorg)
 
-(define font-packages
-  (list font-adwaita
-        font-awesome
-        font-dejavu
-        font-fira-code
-        font-google-noto
-        font-google-noto-emoji
-        font-google-roboto
-        font-liberation
-        font-microsoft-web-core-fonts
-        fontconfig))
-
 (define wm-packages
   (list rofi-wayland
         fzf
@@ -216,11 +204,6 @@
         shared-mime-info
         (list glib "bin")))
 
-(define dev-packages
-  (list (specification->package "openjdk@21")
-        (specification->package "node@22")
-        (specification->package "python@3.10") cl-asdf sbcl))
-
 (define coreutils-packages
   (list htop
         btop
@@ -254,15 +237,9 @@
         cairo
         xorg-server))
 
-(define music-packages
-  (list spotifyd lilypond ardour))
-
 (define browser-packages
   (list (specification->package "firefox")
         (specification->package "google-chrome-beta")))
-
-(define qt-packages
-  (list qtwayland qt6ct qtsvg))
 
 (define* other-system-packages
   (list android-file-transfer
@@ -358,22 +335,12 @@
         xf86-input-libinput
         xf86-video-fbdev
         xxd
+        grimblast
         xz
         yt-dlp))
 
-(define net-packages
-  (list openvpn
-        (specification->package "darkhttpd")
-        network-manager-applet
-        network-manager-openconnect
-        wireshark
-        network-manager-openvpn))
-
 (define emacs-packages
   (list emacs-jinx))
-
-(define hypr-packages
-  (list grimblast hyprland hypridle hyprcursor hyprlock))
 
 (define libs-packages
   (list aria2
@@ -391,25 +358,26 @@
         zlib))
 
 (define* (sss-system-packages #:key (per-host-packages '()))
-  "SYSTEM PACKAGES
-Add packages here to install them system wide"
+  "System package collection for SSS. Add packages here to install them system wide"
   (append (map (lambda (x)
                  (specification->package x)) per-host-packages)
           other-system-packages
           wm-packages
           (universal-session-packages)
-          font-packages
-          dev-packages
+          (font-packages)
+          (dev-packages)
           (container-packages)
           (tree-sitter-packages)
           coreutils-packages
-          hypr-packages
+          (hypr-packages)
           (terminal-emulator-packages)
           browser-packages
           (latex-packages)
           (shell-packages)
           libs-packages
           (dict-packages)
-          net-packages
+          (net-packages)
+          (music-packages)
+          (qt-packages)
           (theme-packages)))
 
