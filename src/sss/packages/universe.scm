@@ -43,6 +43,7 @@
   #:use-module (guix build-system guile)
   #:use-module (guix build-system qt)
   #:use-module (guix packages)
+  #:use-module (nongnu packages music)
   #:use-module (nongnu packages messaging)
   #:use-module (nongnu packages k8s)
   #:use-module (guix utils)
