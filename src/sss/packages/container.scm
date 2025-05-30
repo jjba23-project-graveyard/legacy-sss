@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss packages container)
+  #:declarative? #t
   #:use-module (gnu packages containers)
   #:export (container-packages))
 

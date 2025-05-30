@@ -16,6 +16,7 @@
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (sss packages tree-sitter)
+  #:declarative? #t
   #:use-module (gnu packages tree-sitter)
   #:export (tree-sitter-packages))
 

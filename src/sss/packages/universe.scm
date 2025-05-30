@@ -24,6 +24,7 @@
   #:use-module (nongnu packages chrome)
   #:use-module (nongnu packages music)
   #:use-module (sss packages tree-sitter)
+  #:use-module (sss packages dict)
   #:use-module (sss packages container)
   #:use-module (gnu services nix)
   #:use-module (guix git-download)
@@ -44,7 +45,6 @@
                                 hypr-packages
                                 emacs-packages
                                 shell-packages
-                                dict-packages
                                 net-packages
                                 other-system-packages
                                 qt-packages
@@ -383,15 +383,6 @@
         network-manager-openconnect
         wireshark
         network-manager-openvpn))
-
-(define dict-packages
-  (list aspell
-        aspell-dict-ca
-        aspell-dict-en
-        aspell-dict-es
-        aspell-dict-nl
-        aspell-dict-pt-pt
-        enchant))
 
 (define shell-packages
   (list fish))
