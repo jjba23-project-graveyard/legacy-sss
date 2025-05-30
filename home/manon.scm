@@ -109,6 +109,6 @@
                  openpgp-capability
                  (service home-dbus-service-type)
                  (service home-pipewire-service-type)
-                 fontconfig-capability
+                 (fontconfig-capability #:mono-font (get-setting 'mono-font))
                  channels-capability) %base-home-services)))
 
