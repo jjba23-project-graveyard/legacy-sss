@@ -29,6 +29,8 @@
   #:use-module (sss packages shell)
   #:use-module (sss packages container)
   #:use-module (sss packages theme)
+  #:use-module (sss packages latex)
+  #:use-module (sss packages terminal-emulator)
   #:use-module (gnu services nix)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
@@ -52,10 +54,8 @@
                                 qt-packages
                                 browser-packages
                                 music-packages
-                                latex-packages
                                 coreutils-packages
                                 dev-packages
-                                terminal-emulator-packages
                                 wm-packages
                                 font-packages))
 
@@ -216,9 +216,6 @@
         shared-mime-info
         (list glib "bin")))
 
-(define terminal-emulator-packages
-  (list alacritty xfce4-terminal))
-
 (define dev-packages
   (list (specification->package "openjdk@21")
         (specification->package "node@22")
@@ -256,9 +253,6 @@
         pango
         cairo
         xorg-server))
-
-(define latex-packages
-  (list texinfo texlive))
 
 (define music-packages
   (list spotifyd lilypond ardour))
@@ -359,9 +353,7 @@
         cups
         cups-filters
         ghostscript
-        ;; ghostscript-with-cups
         xsane
-        ;; libjpeg
         xdg-user-dirs
         xf86-input-libinput
         xf86-video-fbdev
@@ -412,9 +404,9 @@ Add packages here to install them system wide"
           (tree-sitter-packages)
           coreutils-packages
           hypr-packages
-          terminal-emulator-packages
+          (terminal-emulator-packages)
           browser-packages
-          latex-packages
+          (latex-packages)
           (shell-packages)
           libs-packages
           (dict-packages)
