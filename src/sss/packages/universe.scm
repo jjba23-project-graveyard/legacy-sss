@@ -36,8 +36,6 @@
   #:use-module (sss packages browser)
   #:use-module (sss packages wm)
   #:use-module (sss packages terminal-emulator)
-  #:use-module (nongnu packages messaging)
-  #:use-module (nongnu packages k8s)
   #:use-module (gnu services nix)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
@@ -45,6 +43,8 @@
   #:use-module (guix build-system guile)
   #:use-module (guix build-system qt)
   #:use-module (guix packages)
+  #:use-module (nongnu packages messaging)
+  #:use-module (nongnu packages k8s)
   #:use-module (guix utils)
   #:use-module (guix build-system go)
   #:use-module (guix build-system cmake)
@@ -163,7 +163,6 @@
         cheese
         cmatrix
         drill
-        emacs-pinentry
         evince
         fastfetch
         feh
