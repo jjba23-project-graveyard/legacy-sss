@@ -18,11 +18,6 @@
 (define-module (sss packages universe)
   #:declarative? #t
   #:use-module (gnu)
-  #:use-module (nongnu packages fonts)
-  #:use-module (nongnu packages messaging)
-  #:use-module (nongnu packages k8s)
-  #:use-module (nongnu packages chrome)
-  #:use-module (nongnu packages music)
   #:use-module (sss packages font)
   #:use-module (sss packages net)
   #:use-module (sss packages music)
@@ -36,7 +31,15 @@
   #:use-module (sss packages container)
   #:use-module (sss packages theme)
   #:use-module (sss packages latex)
+  #:use-module (sss packages libs)
+  #:use-module (sss packages wm)
   #:use-module (sss packages terminal-emulator)
+
+  #:use-module (nongnu packages fonts)
+  #:use-module (nongnu packages messaging)
+  #:use-module (nongnu packages k8s)
+  #:use-module (nongnu packages chrome)
+  #:use-module (nongnu packages music)
   #:use-module (gnu services nix)
   #:use-module (guix git-download)
   #:use-module (guix build-system font)
@@ -52,12 +55,8 @@
   #:use-module (guix build-system gnu)
   #:use-module ((guix licenses)
                 #:prefix license:)
-  #:export (sss-system-packages libs-packages
-                                emacs-packages
-                                other-system-packages
-                                browser-packages
-                                coreutils-packages
-                                wm-packages))
+  #:export (sss-system-packages emacs-packages other-system-packages
+                                browser-packages coreutils-packages))
 
 (use-package-modules admin
                      android
@@ -166,43 +165,6 @@
                      xdisorg
                      xfce
                      xorg)
-
-(define wm-packages
-  (list rofi-wayland
-        fzf
-
-        slurp
-
-        waybar-experimental
-        wmenu
-        swaybg
-
-        mako
-        wev
-        grimshot
-        wl-color-picker
-        qpwgraph
-        wireplumber
-        pipewire
-
-        wl-clipboard
-
-        ;; Wayland portals
-        xdg-desktop-portal
-        xdg-desktop-portal-hyprland
-        xdg-desktop-portal-gtk
-
-        ;; Compatibility for older Xorg applications
-        xorg-server-xwayland
-
-        polkit-gnome
-
-        ;; Flatpak and XDG utilities
-        flatpak-xdg-utils
-        xdg-utils
-        xdg-dbus-proxy
-        shared-mime-info
-        (list glib "bin")))
 
 (define coreutils-packages
   (list htop
@@ -342,27 +304,12 @@
 (define emacs-packages
   (list emacs-jinx))
 
-(define libs-packages
-  (list aria2
-        libevdev
-        libinput
-        libltdl
-        libtool
-        libwebp
-        libxkbcommon
-        libxkbfile
-        mit-krb5
-        nss
-        wmctrl
-        xdotool
-        zlib))
-
 (define* (sss-system-packages #:key (per-host-packages '()))
   "System package collection for SSS. Add packages here to install them system wide"
   (append (map (lambda (x)
                  (specification->package x)) per-host-packages)
           other-system-packages
-          wm-packages
+          (wm-packages)
           (universal-session-packages)
           (font-packages)
           (dev-packages)
@@ -374,7 +321,7 @@
           browser-packages
           (latex-packages)
           (shell-packages)
-          libs-packages
+          (libs-packages)
           (dict-packages)
           (net-packages)
           (music-packages)

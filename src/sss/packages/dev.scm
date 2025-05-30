@@ -19,10 +19,9 @@
   #:declarative? #t
   #:use-module (gnu)
   #:use-module (gnu packages lisp)
-  #:use-module (gnu packages node)  
+  #:use-module (gnu packages node)
   #:export (dev-packages))
 
 (define dev-packages
-  (make-parameter (list (specification->package "openjdk@21")
-                        node
+  (make-parameter (list (specification->package "openjdk@21") node
                         (specification->package "python@3.10") cl-asdf sbcl)))
