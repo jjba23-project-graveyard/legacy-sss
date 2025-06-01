@@ -21,7 +21,16 @@
   #:use-module (gnu)
   #:use-module (sxml simple)
   #:use-module (sss palette)
-  #:export (labwc-menu labwc-rc labwc-autostart labwc-config labwc-capability))
+  #:export (labwc-keybind labwc-menu labwc-rc labwc-autostart labwc-config
+                          labwc-capability))
+
+(define* (labwc-keybind #:key bind name
+                        (command #f))
+  `((keybind (@ (key ,bind))
+             ,(if (not command)
+                  `((action (@ (name ,name))))
+                  `((action (@ (name ,name)
+                               (command ,command))))))))
 
 (define* (labwc-theme-config #:key sans-font)
   `((theme (name Numix)
@@ -62,39 +71,39 @@
               (repeatRate 25)
               (repeatDelay 600)
               ,(labwc-keybind #:bind "A-Tab"
-                              #:name NextWindow)
+                              #:name 'NextWindow)
               ,(labwc-keybind #:bind "A-S-Tab"
-                              #:name PreviousWindow)
+                              #:name 'PreviousWindow)
               ,(labwc-keybind #:bind "W-Return"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "xfce4-terminal")
               ,(labwc-keybind #:bind "W-t"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "xfce4-terminal")
               ,(labwc-keybind #:bind "W-/"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "rofi -show drun")
               ,(labwc-keybind #:bind "W-r"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "rofi -show run")
               ,(labwc-keybind #:bind "A-F3"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "rofi -show drun")
               ,(labwc-keybind #:bind "A-F4"
-                              #:name Close)
+                              #:name 'Close)
               ,(labwc-keybind #:bind "W-l"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "hyprlock")
               ,(labwc-keybind #:bind "W-i"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "firefox")
               ,(labwc-keybind #:bind "W-b"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "nemo")
               ,(labwc-keybind #:bind "W-k"
-                              #:name Close)
+                              #:name 'Close)
               ,(labwc-keybind #:bind "W-a"
-                              #:name ToggleMaximize)
+                              #:name 'ToggleMaximize)
               (keybind (@ (key "A-Left"))
                        (action (@ (name MoveToEdge)
                                   (direction left))))
@@ -124,22 +133,185 @@
                                   (menu client-menu)
                                   (atCursor no))))
               ,(labwc-keybind #:bind "XF86_AudioLowerVolume"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "amixer sset Master 5%-")
               ,(labwc-keybind #:bind "XF86_AudioRaiseVolume"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "amixer sset Master 5%+")
               ,(labwc-keybind #:bind "XF86_AudioMute"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "amixer sset Master toggle")
               ,(labwc-keybind #:bind "XF86_MonBrightnessUp"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "brightnessctl set 10%+")
               ,(labwc-keybind #:bind "XF86_MonBrightnessDown"
-                              #:name Execute
+                              #:name 'Execute
                               #:command "brightnessctl set 10%-"))))
 
-;; Work-in-progress: converting rc.xml to SXML
+(define labwc-mouse-config
+  `((mouse (doubleClickTime 500)
+           (context (@ (name Frame))
+                    (mousebind (@ (button "A-Left")
+                                  (action Press))
+                               (action (@ (name Focus)))
+                               (action (@ (name Raise))))
+                    (mousebind (@ (button "A-Left")
+                                  (action Drag))
+                               (action (@ (name Move))))
+                    (mousebind (@ (button "A-Right")
+                                  (action Press))
+                               (action (@ (name Focus)))
+                               (action (@ (name Raise))))
+                    (mousebind (@ (button "A-Right")
+                                  (action Drag))
+                               (action (@ (name Resize)))))
+           (context (@ (name Top))
+                    (mousebind (@ (button Left)
+                                  (action Drag))
+                               (action (@ (name Resize)))))
+           (context (@ (name Left))
+                    (mousebind (@ (button Left)
+                                  (action Drag))
+                               (action (@ (name Resize)))))
+           (context (@ (name Right))
+                    (mousebind (@ (button Left)
+                                  (action Drag))
+                               (action (@ (name Resize)))))
+           (context (@ (name Bottom))
+                    (mousebind (@ (button Left)
+                                  (action Drag))
+                               (action (@ (name Resize)))))
+           (context (@ (name TRCorner))
+                    (mousebind (@ (button Left)
+                                  (action Drag))
+                               (action (@ (name Resize)))))
+           (context (@ (name BRCorner))
+                    (mousebind (@ (button Left)
+                                  (action Drag))
+                               (action (@ (name Resize)))))
+           (context (@ (name TLCorner))
+                    (mousebind (@ (button Left)
+                                  (action Drag))
+                               (action (@ (name Resize)))))
+           (context (@ (name BLCorner))
+                    (mousebind (@ (button Left)
+                                  (action Drag))
+                               (action (@ (name Resize)))))
+           (context (@ (name TitleBar))
+                    (mousebind (@ (button Left)
+                                  (action Press))
+                               (action (@ (name Focus)))
+                               (action (@ (name Raise))))
+                    (mousebind (@ (button Right)
+                                  (action Click))
+                               (action (@ (name Focus)))
+                               (action (@ (name Raise))))
+                    (mousebind (@ (direction Up)
+                                  (action Scroll))
+                               (action (@ (name Unshade)))
+                               (action (@ (name Focus))))
+                    (mousebind (@ (direction Down)
+                                  (action Scroll))
+                               (action (@ (name Unfocus)))
+                               (action (@ (name Shade)))))
+           (context (@ (name Title))
+                    (mousebind (@ (button Left)
+                                  (action Drag))
+                               (action (@ (name Move))))
+                    (mousebind (@ (button Left)
+                                  (action DoubleClick))
+                               (action (@ (name ToggleMaximize))))
+                    (mousebind (@ (button Right)
+                                  (action Click))
+                               (action (@ (name ShowMenu)
+                                          (menu client-menu)))))
+           (context (@ (name Maximize))
+                    (mousebind (@ (button Left)
+                                  (action Click))
+                               (action (@ (name ToggleMaximize))))
+                    (mousebind (@ (button Right)
+                                  (action Click))
+                               (action (@ (name ToggleMaximize)
+                                          (direction horizontal))))
+                    (mousebind (@ (button Middle)
+                                  (action Click))
+                               (action (@ (name ToggleMaximize)
+                                          (direction vertical)))))
+           (context (@ (name WindowMenu))
+                    (mousebind (@ (button Left)
+                                  (action Click))
+                               (action (@ (name ShowMenu)
+                                          (menu client-menu)
+                                          (atCursor no))))
+                    (mousebind (@ (button Right)
+                                  (action Click))
+                               (action (@ (name ShowMenu)
+                                          (menu client-menu)
+                                          (atCursor no)))))
+           (context (@ (name Icon))
+                    (mousebind (@ (button Left)
+                                  (action Click))
+                               (action (@ (name ShowMenu)
+                                          (menu client-menu)
+                                          (atCursor no))))
+                    (mousebind (@ (button Right)
+                                  (action Click))
+                               (action (@ (name ShowMenu)
+                                          (menu client-menu)
+                                          (atCursor no)))))
+           (context (@ (name Shade))
+                    (mousebind (@ (button Left)
+                                  (action Click))
+                               (action (@ (name ToggleShade)))))
+           (context (@ (name AllDesktops))
+                    (mousebind (@ (button Left)
+                                  (action Click))
+                               (action (@ (name ToggleOmnipresent)))))
+           (context (@ (name Iconify))
+                    (mousebind (@ (button Left)
+                                  (action Click))
+                               (action (@ (name Iconify)))))
+           (context (@ (name Close))
+                    (mousebind (@ (button Left)
+                                  (action Click))
+                               (action (@ (name Close)))))
+           (context (@ (name Client))
+                    (mousebind (@ (button Left)
+                                  (action Press))
+                               (action (@ (name Focus)))
+                               (action (@ (name Raise))))
+                    (mousebind (@ (button Middle)
+                                  (action Press))
+                               (action (@ (name Focus)))
+                               (action (@ (name Raise))))
+                    (mousebind (@ (button Right)
+                                  (action Press))
+                               (action (@ (name Focus)))
+                               (action (@ (name Raise)))))
+           (context (@ (name Root))
+                    (mousebind (@ (button Left)
+                                  (action Press))
+                               (action (@ (name ShowMenu)
+                                          (menu root-menu))))
+                    (mousebind (@ (button Right)
+                                  (action Press))
+                               (action (@ (name ShowMenu)
+                                          (menu root-menu))))
+                    (mousebind (@ (button Middle)
+                                  (action Press))
+                               (action (@ (name ShowMenu)
+                                          (menu root-menu))))
+                    (mousebind (@ (direction Up)
+                                  (action Scroll))
+                               (action (@ (name GoToDesktop)
+                                          (to left)
+                                          (wrap yes))))
+                    (mousebind (@ (direction Down)
+                                  (action Scroll))
+                               (action (@ (name GoToDesktop)
+                                          (to right)
+                                          (wrap yes))))))))
+
 (define* (labwc-config #:key sans-font)
   `(*TOP* (*PI* xml "version=\"1.0\" encoding=\"UTF-8\"")
           (labwc_config (core (decoration server)
@@ -179,28 +351,31 @@
                                   (notifyClient always))
                         (desktops (popupTime 1000)
                                   (names (name Default)))
-                        ,labwc-keyboard-config)))
-
-(define* (labwc-keybind #:key bind name
-                        (command #f))
-  `((keybind (@ (key ,bind))
-             ,(if (not command)
-                  `((action (@ (name ,name))))
-                  `((action (@ (name ,name)
-                               (command ,command))))))))
+                        ,labwc-keyboard-config
+                        ,labwc-mouse-config
+                        (libinput (device (@ (category default))
+                                          (naturalScroll no)
+                                          (tap yes)
+                                          (scrollFactor 1.0)))
+                        (menu (ignoreButtonReleasePeriod 250))
+                        (magnifier (width 400)
+                                   (height 400)
+                                   (initScale 2.0)
+                                   (increment 0.2)
+                                   (useFilter true)))))
 
 (define labwc-menu
   `(*TOP* (*PI* xml "version=\"1.0\" encoding=\"UTF-8\"")
           (openbox_menu (menu (@ (id client-menu))
-                              (item (@ (label "Minimize"))
+                              (item (@ (label Minimize))
                                     (action (@ (name Iconify))))
-                              (item (@ (label "Maximize"))
+                              (item (@ (label Maximize))
                                     (action (@ (name ToggleMaximize))))
-                              (item (@ (label "Fullscreen"))
+                              (item (@ (label Fullscreen))
                                     (action (@ (name ToggleFullscreen))))
                               (item (@ (label "Roll Up/Down"))
                                     (action (@ (name ToggleShade))))
-                              (item (@ (label "Decorations"))
+                              (item (@ (label Decorations))
                                     (action (@ (name ToggleDecorations))))
                               (item (@ (label "Always on Top"))
                                     (action (@ (name ToggleAlwaysOnTop))))
@@ -217,7 +392,7 @@
                                     (item (@ (label
                                               "Always on Visible Workspace"))
                                           (action (@ (name ToggleOmnipresent)))))
-                              (item (@ (label "Close"))
+                              (item (@ (label Close))
                                     (action (@ (name Close)))))
                         (menu (@ (id root-menu))
                               (item (@ (label "Web - Chrome"))
