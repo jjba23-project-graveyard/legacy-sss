@@ -95,7 +95,8 @@
                    (dirs-capability)
                    (random-wallpaper-capability #:clone-dir (get-setting 'clone-dir)
                                                 #:palette (get-setting 'palette))
-                   (labwc-capability #:extra-startups (get-setting 'labwc-extra-startups)))))
+                   (labwc-capability #:sans-font (get-setting 'sans-font)
+                                     #:extra-startups (get-setting 'labwc-extra-startups)))))
 
 (display "
 >>= configuring Manon's home environment...

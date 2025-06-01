@@ -130,7 +130,8 @@
                    (containers-capability)
                    (portals-capability)
                    (enchant-capability)
-                   (labwc-capability #:extra-startups (get-setting 'labwc-extra-startups)))))
+                   (labwc-capability #:sans-font (get-setting 'sans-font)
+                                     #:extra-startups (get-setting 'labwc-extra-startups)))))
 
 (display "
 >>= configuring Joe's home environment...

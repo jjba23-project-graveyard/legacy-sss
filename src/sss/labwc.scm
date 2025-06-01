@@ -23,6 +23,122 @@
   #:use-module (sss palette)
   #:export (labwc-menu labwc-rc labwc-autostart labwc-config labwc-capability))
 
+(define* (labwc-theme-config #:key sans-font)
+  `((theme (name Numix)
+           (icon Yaru)
+           (titlebar (layout "icon:iconify,max,close")
+                     (showTitle yes))
+           (cornerRadius 8)
+           (keepBorder yes)
+           (dropShadows yes)
+           (font (@ (place ActiveWindow))
+                 (name ,sans-font)
+                 (size 13)
+                 (slant normal)
+                 (weight normal))
+           (font (@ (place InactiveWindow))
+                 (name ,sans-font)
+                 (size 13)
+                 (slant normal)
+                 (weight normal))
+           (font (@ (place MenuHeader))
+                 (name ,sans-font)
+                 (size 13)
+                 (slant normal)
+                 (weight normal))
+           (font (@ (place MenuItem))
+                 (name ,sans-font)
+                 (size 13)
+                 (slant normal)
+                 (weight normal))
+           (font (@ (place OnScreenDisplay))
+                 (name ,sans-font)
+                 (size 13)
+                 (slant normal)
+                 (weight normal)))))
+
+(define labwc-keyboard-config
+  `((keyboard (layoutScope global)
+              (repeatRate 25)
+              (repeatDelay 600)
+              ,(labwc-keybind #:bind "A-Tab"
+                              #:name NextWindow)
+              ,(labwc-keybind #:bind "A-S-Tab"
+                              #:name PreviousWindow)
+              ,(labwc-keybind #:bind "W-Return"
+                              #:name Execute
+                              #:command "xfce4-terminal")
+              ,(labwc-keybind #:bind "W-t"
+                              #:name Execute
+                              #:command "xfce4-terminal")
+              ,(labwc-keybind #:bind "W-/"
+                              #:name Execute
+                              #:command "rofi -show drun")
+              ,(labwc-keybind #:bind "W-r"
+                              #:name Execute
+                              #:command "rofi -show run")
+              ,(labwc-keybind #:bind "A-F3"
+                              #:name Execute
+                              #:command "rofi -show drun")
+              ,(labwc-keybind #:bind "A-F4"
+                              #:name Close)
+              ,(labwc-keybind #:bind "W-l"
+                              #:name Execute
+                              #:command "hyprlock")
+              ,(labwc-keybind #:bind "W-i"
+                              #:name Execute
+                              #:command "firefox")
+              ,(labwc-keybind #:bind "W-b"
+                              #:name Execute
+                              #:command "nemo")
+              ,(labwc-keybind #:bind "W-k"
+                              #:name Close)
+              ,(labwc-keybind #:bind "W-a"
+                              #:name ToggleMaximize)
+              (keybind (@ (key "A-Left"))
+                       (action (@ (name MoveToEdge)
+                                  (direction left))))
+              (keybind (@ (key "A-Right"))
+                       (action (@ (name MoveToEdge)
+                                  (direction right))))
+              (keybind (@ (key "A-Up"))
+                       (action (@ (name MoveToEdge)
+                                  (direction up))))
+              (keybind (@ (key "A-Down"))
+                       (action (@ (name MoveToEdge)
+                                  (direction down))))
+              (keybind (@ (key "W-Left"))
+                       (action (@ (name SnapToEdge)
+                                  (direction left))))
+              (keybind (@ (key "W-Right"))
+                       (action (@ (name SnapToEdge)
+                                  (direction right))))
+              (keybind (@ (key "W-Up"))
+                       (action (@ (name SnapToEdge)
+                                  (direction up))))
+              (keybind (@ (key "W-Down"))
+                       (action (@ (name SnapToEdge)
+                                  (direction down))))
+              (keybind (@ (key "A-Space"))
+                       (action (@ (name ShowMenu)
+                                  (menu client-menu)
+                                  (atCursor no))))
+              ,(labwc-keybind #:bind "XF86_AudioLowerVolume"
+                              #:name Execute
+                              #:command "amixer sset Master 5%-")
+              ,(labwc-keybind #:bind "XF86_AudioRaiseVolume"
+                              #:name Execute
+                              #:command "amixer sset Master 5%+")
+              ,(labwc-keybind #:bind "XF86_AudioMute"
+                              #:name Execute
+                              #:command "amixer sset Master toggle")
+              ,(labwc-keybind #:bind "XF86_MonBrightnessUp"
+                              #:name Execute
+                              #:command "brightnessctl set 10%+")
+              ,(labwc-keybind #:bind "XF86_MonBrightnessDown"
+                              #:name Execute
+                              #:command "brightnessctl set 10%-"))))
+
 ;; Work-in-progress: converting rc.xml to SXML
 (define* (labwc-config #:key sans-font)
   `(*TOP* (*PI* xml "version=\"1.0\" encoding=\"UTF-8\"")
@@ -34,38 +150,7 @@
                               (reuseOutputMode no)
                               (xwaylandPersistence yes))
                         (placement (policy cascade))
-                        (theme (name "Numix")
-                               (icon "Delft")
-                               (titlebar (layout "icon:iconify,max,close")
-                                         (showTitle yes))
-                               (cornerRadius 8)
-                               (keepBorder yes)
-                               (dropShadows yes)
-                               (font (@ (place ActiveWindow))
-                                     (name ,sans-font)
-                                     (size 12)
-                                     (slant normal)
-                                     (weight normal))
-                               (font (@ (place InactiveWindow))
-                                     (name ,sans-font)
-                                     (size 12)
-                                     (slant normal)
-                                     (weight normal))
-                               (font (@ (place MenuHeader))
-                                     (name ,sans-font)
-                                     (size 12)
-                                     (slant normal)
-                                     (weight normal))
-                               (font (@ (place MenuItem))
-                                     (name ,sans-font)
-                                     (size 12)
-                                     (slant normal)
-                                     (weight normal))
-                               (font (@ (place OnScreenDisplay))
-                                     (name ,sans-font)
-                                     (size 12)
-                                     (slant normal)
-                                     (weight normal)))
+                        ,(labwc-theme-config #:sans-font sans-font)
                         (windowSwitcher (@ (show yes)
                                            (preview yes)
                                            (outlines yes)
@@ -91,7 +176,18 @@
                                            (delay (@ (inner 500)
                                                      (outer 500))))
                                   (topMaximize yes)
-                                  (notifyClient always)))))
+                                  (notifyClient always))
+                        (desktops (popupTime 1000)
+                                  (names (name Default)))
+                        ,labwc-keyboard-config)))
+
+(define* (labwc-keybind #:key bind name
+                        (command #f))
+  `((keybind (@ (key ,bind))
+             ,(if (not command)
+                  `((action (@ (name ,name))))
+                  `((action (@ (name ,name)
+                               (command ,command))))))))
 
 (define labwc-menu
   `(*TOP* (*PI* xml "version=\"1.0\" encoding=\"UTF-8\"")
@@ -153,21 +249,28 @@
 (define labwc-rc
   (local-file "./labwc/rc.xml"))
 
+(define (mk-labwc-autostart cmd)
+  (format #f "~a >/dev/null 2>&1 &" cmd))
+
 (define* (labwc-autostart #:key (extra-startups '()))
   (plain-file "autostart"
               (string-join (append extra-startups
-                                   '("lxsession >/dev/null 2>&1 &"
-                                     "mako >/dev/null 2>&1 &"
-                                     "dbus-update-activation-environment --all >/dev/null 2>&1 &"
-                                     "transmission-daemon >/dev/null 2>&1 &"
-                                     "waybar >/dev/null 2>&1 &"
-                                     "herd trigger set-random-wallpaper >/dev/null 2>&1 &"
-                                     "transmission-daemon >/dev/null 2>&1 &"
-                                     "podman system service --time=0 unix:///tmp/podman.sock >/dev/null 2>&1 &"
-                                     "xdg-user-dirs-update 2>&1 &")) "\n")))
+                                   (map mk-labwc-autostart
+                                        '("lxsession" "mako"
+                                          "dbus-update-activation-environment --all"
+                                          "transmission-daemon"
+                                          "waybar"
+                                          "herd trigger set-random-wallpaper"
+                                          "transmission-daemon"
+                                          "podman system service --time=0 unix:///tmp/podman.sock"
+                                          "xdg-user-dirs-update"))) "\n")))
 
-(define* (labwc-capability #:key extra-startups)
-  `((".config/labwc/rc.xml" ,labwc-rc)
+(define* (labwc-capability #:key extra-startups sans-font)
+  `((".config/labwc/rc.xml" ,(plain-file "rc.xml"
+                                         (with-output-to-string (lambda ()
+                                                                  (sxml->xml (labwc-config
+                                                                              #:sans-font
+                                                                              sans-font))))))
     (".config/labwc/menu.xml" ,(plain-file "menu.xml"
                                            (with-output-to-string (lambda ()
                                                                     (sxml->xml
