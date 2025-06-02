@@ -27,6 +27,7 @@
              (nongnu packages linux)
              (nongnu system linux-initrd))
 
+(setup-i18n)
 (log-active-sss-settings)
 
 (use-service-modules networking

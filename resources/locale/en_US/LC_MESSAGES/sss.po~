@@ -18,33 +18,56 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: system/scripts/clone-user-repos.scm:58
-msgid "cloning user's Git repositories"
+msgid "Cloning user's Git repositories"
 msgstr ""
 
 #: system/scripts/install-flatpak-packages.scm:26
 #, scheme-format
-msgid "installing Flatpak package: ~a"
+msgid "Installing Flatpak package: ~a"
 msgstr ""
 
 #: system/scripts/install-flatpak-packages.scm:30
 #, scheme-format
-msgid "installing Flatpak remote: ~a"
+msgid "Installing Flatpak remote: ~a"
 msgstr ""
 
 #: system/scripts/install-nix-packages.scm:26
 #: system/scripts/install-nix-packages.scm:32
 #, scheme-format
-msgid "installing Nix package: ~a"
+msgid "Installing Nix package: ~a"
 msgstr ""
 
 #: system/scripts/update-nix-packages.scm:25
-msgid "updating Nix packages in user profile"
+msgid "Updating Nix packages in user profile"
 msgstr ""
 
 #: Makefile:44
-msgid "completed work on Make target:"
+msgid "Completed work on Make target:"
 msgstr ""
 
 #: Makefile:52
-msgid "begin working on Make target:"
+msgid "Begin working on Make target:"
 msgstr ""
+
+#: Makefile:84
+msgid "Task was completed successfully!"
+msgstr ""
+
+msgid "Updating i18n template from source code"
+msgstr ""
+
+msgid "Creating new i18n template from source code"
+msgstr ""
+
+msgid "Compiling translation files"
+msgstr ""
+
+msgid "Updating Flatpak packages for SSS"
+msgstr ""
+
+msgid "Installing Nix packages for SSS"
+msgstr ""
+
+msgid "Cloning user Git repositories for SSS"
+msgstr ""
+
