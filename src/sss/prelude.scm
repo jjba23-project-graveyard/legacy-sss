@@ -19,7 +19,6 @@
   #:declarative? #t
   #:use-module (sss defaults)
   #:use-module (sss palette)
-  #:use-module (sss overrides)
   #:use-module (ice-9 string-fun)
   #:use-module (ice-9 regex)
   #:use-module (ice-9 popen)
@@ -111,6 +110,12 @@
   (let* ((default-var-name (format #f "default-~a" setting))
          (default (module-variable (resolve-module '(sss defaults))
                                    (string->symbol default-var-name)))
+         (_ (catch #t
+                   (lambda ()
+                     (use-modules (sss overrides)))
+                   (lambda (key . args)
+                     (display (format #f
+                               "couldn't load SSS overrides, using defaults")))))
          (user-override-var-name (format #f "override-~a" setting))
          (user-override (module-variable (resolve-module '(sss overrides))
                                          (string->symbol
