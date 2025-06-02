@@ -27,4 +27,5 @@
 ;;
 ;; this file only exists to make the compiler happy and to allow
 ;; people to use the SSS code as a library properly as well as a channel
+;; without needing to define their own overrides
 ;; ================================================================================
