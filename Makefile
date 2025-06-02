@@ -33,8 +33,8 @@ DEPLOY_WWW="/srv/http/jointhefreeworld.org"
 COPYRIGHT_HOLDERS="Josep Bigorra"
 I18N_LOCATION="resources/locale"
 
-CURRENT_TIME_STR := $(shell date --rfc-3339=seconds)
-LOG_START="\n\033[1m[INFO][$(CURRENT_TIME_STR)] "
+LOG_MSG_PREFIX = "\n\033[1m[INFO]["
+LOG_MSG_SUFFIX_PRE_MSG = "]"
 LOG_END="\033[0m\n"
 
 # G_: translate messages using gettext (i18n)
@@ -42,23 +42,27 @@ define G_
 	$(shell TEXTDOMAINDIR=./resources/locale TEXTDOMAIN=sss gettext $(1))
 endef
 
+define get-date-string
+	$(shell date --rfc-3339=seconds)
+endef
+
 # sss-log-complete: Logs when a target has finished executing.
 define sss-log-complete
-	@-echo -e $(LOG_START) \
+	@-echo -e $(LOG_MSG_PREFIX)$(strip $(call get-date-string))$(LOG_MSG_SUFFIX_PRE_MSG) \
 		$(strip $(call G_,"Completed work on Make target:")) "$(1)" \
 		$(LOG_END)
 endef
 
 # sss-log-starting: Logs when a target starts execution.
 define sss-log-starting
-	@-echo -e $(LOG_START) \
+	@-echo -e $(LOG_MSG_PREFIX)$(strip $(call get-date-string))$(LOG_MSG_SUFFIX_PRE_MSG) \
 		$(strip $(call G_,"Begin working on Make target:")) "$(1)" \
 		$(LOG_END)
 endef
 
 # sss-log-info: Logs informational messages in custom format with highlight.
 define sss-log-info
-	@-echo -e $(LOG_START) \
+	@-echo -e $(LOG_MSG_PREFIX)$(strip $(call get-date-string))$(LOG_MSG_SUFFIX_PRE_MSG) \
 		$(strip $(call G_,$(1))) \
 		$(LOG_END)
 endef
@@ -81,7 +85,7 @@ system-reconfigure: format test
 		-L ./per-host -L ./src ./system/config.scm --fallback --on-error=backtrace
 	$(call sss-log-complete,"system-reconfigure")
 	$(call sss-notify-success,"SSS system-reconfigure",$(call G_,"Task was completed successfully!"))
-	@-sudo fc-cache -frv
+	@-sudo fc-cache -frv > /dev/null &
 
 # User reconfigure function
 define sss-user-reconfigure
@@ -89,7 +93,7 @@ define sss-user-reconfigure
 	@guix home reconfigure -L ./per-host -L ./src ./home/$(1).scm --fallback
 	$(call sss-log-complete,"$(1)-reconfigure")
 	$(call sss-notify-success,"SSS $(1)-reconfigure",$(call G_,"Task was completed successfully!"))
-	@-fc-cache -frv &
+	@-fc-cache -frv > /dev/null &
 endef
 
 
@@ -117,7 +121,7 @@ full-rebuild: format
 
 # nix-profile-upgrade: Upgrades Nix packages using a custom Guile script.
 nix-profile-upgrade:
-	guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/update-nix-packages.scm
+	@guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/update-nix-packages.scm
 
 # format: Formats Scheme and Emacs Lisp files in the project.
 format:
@@ -147,23 +151,23 @@ shepherd-logs:
 # clone-user-repos: Clones user repositories using a custom script.
 clone-user-repos:
 	$(call sss-log-info,"Cloning user Git repositories for SSS")
-	guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/clone-user-repos.scm
+	@guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/clone-user-repos.scm
 
 # install-nix-packages: Installs Nix packages using a custom script.
 install-nix-packages:
 	$(call sss-log-info,"Installing Nix packages for SSS")
-	guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/install-nix-packages.scm
+	@guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/install-nix-packages.scm
 
 # install-flatpak-packages: Installs Flatpak packages using a custom script.
 install-flatpak-packages:
 	$(call sss-log-starting,"install-flatpak-packages")
-	guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/install-flatpak-packages.scm
+	@guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/install-flatpak-packages.scm
 	$(call sss-log-complete,"install-flatpak-packages")
 
 # update-flatpak-packages: Updates the system's Flatpak packages
 update-flatpak-packages:
 	$(call sss-log-info,"Updating Flatpak packages for SSS")
-	flatpak update --user -y
+	@flatpak update --user -y
 
 # Aliases for common tasks
 
