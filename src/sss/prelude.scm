@@ -57,9 +57,13 @@
   (gettext msg))
 
 (define (setup-i18n)
-  (setlocale LC_MESSAGES "")
-  (bindtextdomain "sss" "./resources/locale")
-  (textdomain "sss"))
+  (catch #t
+         (lambda ()
+           (setlocale LC_MESSAGES "")
+           (bindtextdomain "sss" "./resources/locale")
+           (textdomain "sss"))
+         (lambda (key . args)
+           (display (format #f "error setting i18n up: ~a: ~a" key args)))))
 
 (define (log-message msg)
   (display (format #f "\n\x1b[1m~a\x1b[0m\n" msg)))

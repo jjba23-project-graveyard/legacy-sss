@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-02 08:33+0200\n"
+"POT-Creation-Date: 2025-06-02 08:51+0200\n"
 "PO-Revision-Date: 2025-06-02 08:23+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: system/scripts/install-flatpak-packages.scm:26
+msgid "installing Flatpak package: ~a"
+msgstr "installing Flatpak package: ~a"
+
+#: system/scripts/install-flatpak-packages.scm:30
+msgid "installing Flatpak remote: ~a"
+msgstr "installing Flatpak remote: ~a"
 
 #: system/scripts/install-nix-packages.scm:26
 #: system/scripts/install-nix-packages.scm:32
