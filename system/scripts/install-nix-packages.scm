@@ -22,12 +22,6 @@
 
 (setup-i18n)
 
-(define (syscall cmd)
-  (let* ((process (open-input-pipe cmd))
-         (process-output (get-string-all process)))
-    (close-pipe process)
-    (display process-output) process-output))
-
 (define (nix-profile-install x)
   (log-info (G_ "installing Nix package: ~a") x)
   (syscall (format #f

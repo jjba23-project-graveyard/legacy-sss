@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-02 08:23+0200\n"
+"POT-Creation-Date: 2025-06-02 08:33+0200\n"
 "PO-Revision-Date: 2025-06-02 08:23+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,7 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: system/scripts/install-nix-packages.scm:26
 #: system/scripts/install-nix-packages.scm:32
 #, scheme-format
 msgid "installing Nix package: ~a"
 msgstr "installing Nix package: ~a"
+
+#: system/scripts/update-nix-packages.scm:25
+msgid "updating Nix packages in user profile"
+msgstr ""
