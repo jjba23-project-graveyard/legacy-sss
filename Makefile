@@ -85,7 +85,7 @@ system-reconfigure: format test
 		-L ./per-host -L ./src ./system/config.scm --fallback --on-error=backtrace
 	$(call sss-log-complete,"system-reconfigure")
 	$(call sss-notify-success,"SSS system-reconfigure",$(call G_,"Task was completed successfully!"))
-	@-sudo fc-cache -frv > /dev/null &
+	@-sudo fc-cache -frv >/dev/null 2>&1 &
 
 # User reconfigure function
 define sss-user-reconfigure
@@ -93,7 +93,7 @@ define sss-user-reconfigure
 	@guix home reconfigure -L ./per-host -L ./src ./home/$(1).scm --fallback
 	$(call sss-log-complete,"$(1)-reconfigure")
 	$(call sss-notify-success,"SSS $(1)-reconfigure",$(call G_,"Task was completed successfully!"))
-	@-fc-cache -frv > /dev/null &
+	@-fc-cache -frv >/dev/null 2>&1 &
 endef
 
 

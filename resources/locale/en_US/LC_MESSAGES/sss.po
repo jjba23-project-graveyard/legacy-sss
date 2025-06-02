@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sss\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-02 10:43+0200\n"
+"POT-Creation-Date: 2025-06-02 11:55+0200\n"
 "PO-Revision-Date: 2025-06-02 08:23+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -47,9 +47,30 @@ msgstr ""
 msgid "Task was completed successfully!"
 msgstr ""
 
-#: home/joe.scm:122
+#: home/joe.scm:122 home/joe.scm:123 home/manon.scm:88
 #, scheme-format
 msgid "Configuring home environment for user: ~a"
+msgstr ""
+
+#: src/sss/hyprland/hyprland.scm:79
+msgid "Welcome to the SSS/GNU power user session"
+msgstr ""
+
+#: src/sss/hyprland/hyprland.scm:81
+msgid ""
+"Enter and explore, for the cosmos of computation is yours to command. As the "
+"veil thins and the echoes of the aether draw you near, you stand at the "
+"precipice of boundless creation."
+msgstr ""
+
+#: src/sss/labwc.scm:445
+msgid "Welcome to the SSS/GNU universal session"
+msgstr ""
+
+#: src/sss/labwc.scm:447
+msgid ""
+"Enter and explore, for the cosmos of computation is yours to command. This "
+"session's keybindings should be familiar to Windows/CUA users."
 msgstr ""
 
 #: system/scripts/clone-user-repos.scm:58
