@@ -193,7 +193,7 @@ https://youtu.be/wZUes_10US8
 
 * SSS as a channel
 
-If you know what you are doing, and want to use certain code from SSS as a library, feel free to do so, and import it as a Guix channel. Bear in mind SSS requires usage of nongnu as well.
+If you know what you are doing, and want to use certain code from SSS as a library, feel free to do so, and import it as a Guix channel.
 
 #+begin_src scheme
 (cons*
@@ -202,7 +202,7 @@ If you know what you are doing, and want to use certain code from SSS as a libra
  (url "https://codeberg.org/jjba23/sss.git")
  (branch "trunk")
  (introduction
-  (make-channel-introduction "98860395439b5002b300d9bc5681dfd280612501"
+  (make-channel-introduction "914dc7ff51fd7c66f1ecc574b40ad1481731b936"
                              (openpgp-fingerprint
                               "83BC 6E1C 8726 B8C2 97F8 D16E 24F4 6738 CE11 4AF6"))))
  %default-channels)
