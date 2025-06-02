@@ -82,7 +82,7 @@ update:
 system-reconfigure: format test
 	$(call sss-log-starting,"system-reconfigure")
 	@sudo guix system reconfigure \
-		-L ./per-host -L ./src ./system/config.scm --fallback --on-error=backtrace
+		-L ./per-host -L ./system/packages -L ./src ./system/config.scm --fallback --on-error=backtrace
 	$(call sss-log-complete,"system-reconfigure")
 	$(call sss-notify-success,"SSS system-reconfigure",$(call G_,"Task was completed successfully!"))
 	@-sudo fc-cache -frv >/dev/null 2>&1 &
@@ -207,6 +207,7 @@ deploy:
 repl:
 	guix shell -m manifest.scm -- guile --fresh-auto-compile \
 		-L ./per-host \
+		-L ./system/packages \
 		-L ./src \
 		-c '((@ (ares server) run-nrepl-server))'
 

@@ -22,7 +22,7 @@
              (gnu system accounts)
              (guix packages)
              (sss prelude)
-             (sss packages universe)
+             (sss-packages universe)
              (sss iptables)
              (nongnu packages linux)
              (nongnu system linux-initrd))
