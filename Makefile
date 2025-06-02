@@ -31,7 +31,9 @@
 
 # Constants
 
-DEPLOY_WWW=/srv/http/jointhefreeworld.org
+DEPLOY_WWW="/srv/http/jointhefreeworld.org"
+COPYRIGHT_HOLDERS="Josep Bigorra"
+I18N_LOCATION="resources/locale"
 
 # Logging and notification helper functions
 
@@ -214,3 +216,84 @@ full-reset-emacs:
 	-rm -rf ~/.emacs.d/tramp
 	-rm -rf ~/.emacs.d/recentf
 	-emacs --daemon
+
+# i18n helpers
+
+# Define a function for compiling the translation file (.po) into a machine-readable (.mo) format
+# Arguments: $(1) represents the language code (e.g., "en_US", "nl_NL", etc.)
+# Use msgfmt to compile the .po file into a .mo file for the specified language
+# The output .mo file will be placed in the LC_MESSAGES directory under the language's folder
+define sss-msgfmt
+	msgfmt -v -o $(I18N_LOCATION)/$(1)/LC_MESSAGES/sss.mo \
+		$(I18N_LOCATION)/$(1)/LC_MESSAGES/sss.po
+endef
+
+# Define a function to initialize a new translation file from a template (.pot) for a specific language
+# Arguments: $(1) represents the language code (e.g., "en_US", "nl_NL", etc.)
+# Use msginit to generate a .po file from the .pot template for the specified language
+# The -l option sets the language, and --no-translator means no translator is pre-filled in the .po file
+# The generated .po file is placed in the LC_MESSAGES directory for the given language
+define sss-msginit
+	mkdir -p $(I18N_LOCATION)/$(1)/LC_MESSAGES
+	msginit -l $(1).UTF8 -o $(I18N_LOCATION)/$(1)/LC_MESSAGES/sss.po \
+		-i $(I18N_LOCATION)/sss.pot --no-translator
+endef
+
+# Define a function to merge translation updates from the template (.pot) into an existing .po file
+# Arguments: $(1) represents the language code (e.g., "en_US", "nl_NL", etc.)
+# Use msgmerge to update the specified language's .po file with new translations from the template (.pot)
+# The -U flag updates the .po file in place
+# This ensures the .po file stays up-to-date with the latest changes in the template
+define sss-merge
+	msgmerge -U $(I18N_LOCATION)/$(1)/LC_MESSAGES/sss.po \
+		$(I18N_LOCATION)/sss.pot 
+endef
+
+# Define a function to extract translatable strings from Scheme source files using xgettext
+# Arguments: $(1) should be either "--join-existing" for updating template
+#   or "" to start from scratch.
+# Run xgettext to extract strings marked for translation from Scheme source files
+define sss-xgettext
+	xgettext --default-domain=sss \
+		--output=$(I18N_LOCATION)/sss.pot \
+		--language=Scheme \
+		--keyword=G_ \
+		--sort-by-file $(1) \
+		--copyright-holder=$(COPYRIGHT_HOLDERS) \
+		--package-name="sss" \
+		system/scripts/*.scm \
+		system/*.scm \
+		src/sss/*.scm \
+		src/sss/hyprland/*.scm \
+		src/sss/packages/*.scm \
+		home/*.scm \
+		--from-code UTF-8
+endef
+
+# Compile translation files to .mo files
+compile-i18n:
+	$(call sss-log-info,"compiling translation files")
+	$(call sss-msgfmt,"en_US")
+	$(call sss-msgfmt,"nl_NL")
+
+# Create new i18n template from source code
+new-i18n:
+	$(call sss-log-info,"creating new i18n template from source code")
+	$(call sss-xgettext)
+
+# Update i18n template from source code
+join-i18n:
+	$(call sss-log-info,"updating i18n template from source code")
+	$(call sss-xgettext,"--join-existing")
+
+# en_US - English language targets
+init-i18n-en:
+	$(call sss-msginit,"en_US")
+merge-i18n-en:
+	$(call sss-merge,"en_US")
+
+# nl_NL - Dutch language targets
+init-i18n-nl:
+	$(call sss-msginit,"nl_NL")
+merge-i18n-nl:
+	$(call sss-merge,"nl_NL")
