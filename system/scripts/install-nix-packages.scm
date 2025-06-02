@@ -23,7 +23,7 @@
 (setup-i18n)
 
 (define (nix-profile-install x)
-  (log-info (G_ "installing Nix package: ~a") x)
+  (log-info (G_ "Installing Nix package: ~a") x)
   (syscall (format #f
                    (string-append "nix profile list | grep ~a ||"
                     " NIXPGS_ALLOW_UNFREE=1 nix -L profile install --impure nixpkgs#~a")

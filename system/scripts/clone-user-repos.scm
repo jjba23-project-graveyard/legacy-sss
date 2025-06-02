@@ -57,7 +57,7 @@
 (define remote-url
   (make-parameter "git@codeberg.org:jjba23"))
 
-(log-info (G_ "cloning user's Git repositories"))
+(log-info (G_ "Cloning user's Git repositories"))
 
 (for-each (lambda (x)
             (syscall (format #f

@@ -29,31 +29,38 @@
         test gc store-gc full-gc shepherd-logs npu \
         clone-user-repos install-nix-packages npi deploy install-flatpak-packages
 
-# Constants
-
 DEPLOY_WWW="/srv/http/jointhefreeworld.org"
 COPYRIGHT_HOLDERS="Josep Bigorra"
 I18N_LOCATION="resources/locale"
 
 CURRENT_TIME_STR := $(shell date --rfc-3339=seconds)
+LOG_START="\n\033[1m[INFO][$(CURRENT_TIME_STR)] "
+LOG_END="\033[0m\n"
 
+# G_: translate messages using gettext (i18n)
 define G_
 	$(shell TEXTDOMAINDIR=./resources/locale TEXTDOMAIN=sss gettext $(1))
 endef
 
 # sss-log-complete: Logs when a target has finished executing.
 define sss-log-complete
-	@echo -e "\n\033[1m[INFO] $(CURRENT_TIME_STR) - $(strip $(call G_,\"completed work on Make target:\")) $(strip $(call G_,$(1)))\033[0m\n"
+	@-echo -e $(LOG_START) \
+		$(strip $(call G_,"Completed work on Make target:")) "$(1)" \
+		$(LOG_END)
 endef
 
 # sss-log-starting: Logs when a target starts execution.
 define sss-log-starting
-	@echo -e "\n\033[1m[INFO] $(CURRENT_TIME_STR) - $(strip $(call G_,\"begin working on Make target:\")) $(strip $(call G_,$(1)))\033[0m\n"
+	@-echo -e $(LOG_START) \
+		$(strip $(call G_,"Begin working on Make target:")) "$(1)" \
+		$(LOG_END)
 endef
 
 # sss-log-info: Logs informational messages in custom format with highlight.
 define sss-log-info
-	@echo -e "\n\033[1m[INFO] $(CURRENT_TIME_STR) - $(strip $(call G_,$(1)))\033[0m\n"
+	@-echo -e $(LOG_START) \
+		$(strip $(call G_,$(1))) \
+		$(LOG_END)
 endef
 
 # sss-notify: Sends success desktop notifications (if available).
@@ -73,7 +80,7 @@ system-reconfigure: format test
 	@sudo guix system reconfigure \
 		-L ./per-host -L ./src ./system/config.scm --fallback --on-error=backtrace
 	$(call sss-log-complete,"system-reconfigure")
-	$(call sss-notify-success,"SSS system-reconfigure complete","task was completed successfully!")
+	$(call sss-notify-success,"SSS system-reconfigure",$(call G_,"Task was completed successfully!"))
 	@-sudo fc-cache -frv
 
 # User reconfigure function
@@ -81,7 +88,7 @@ define sss-user-reconfigure
 	$(call sss-log-starting,"$(1)-reconfigure")
 	@guix home reconfigure -L ./per-host -L ./src ./home/$(1).scm --fallback
 	$(call sss-log-complete,"$(1)-reconfigure")
-	$(call sss-notify-success,"SSS $(1)-reconfigure complete","task was completed successfully!")
+	$(call sss-notify-success,"SSS $(1)-reconfigure",$(call G_,"Task was completed successfully!"))
 	@-fc-cache -frv &
 endef
 
@@ -149,8 +156,9 @@ install-nix-packages:
 
 # install-flatpak-packages: Installs Flatpak packages using a custom script.
 install-flatpak-packages:
-	$(call sss-log-info,"Installing Flatpak packages for SSS")
+	$(call sss-log-starting,"install-flatpak-packages")
 	guile --fresh-auto-compile -L ./per-host -L ./src system/scripts/install-flatpak-packages.scm
+	$(call sss-log-complete,"install-flatpak-packages")
 
 # update-flatpak-packages: Updates the system's Flatpak packages
 update-flatpak-packages:
@@ -276,18 +284,19 @@ endef
 
 # Compile translation files to .mo files
 compile-i18n:
-	$(call sss-log-info,"compiling translation files")
+	$(call sss-log-info,"Compiling translation files")
 	$(call sss-msgfmt,"en_US")
 	$(call sss-msgfmt,"nl_NL")
+	$(call sss-log-complete,"compile-i18n")
 
 # Create new i18n template from source code
 new-i18n:
-	$(call sss-log-info,"creating new i18n template from source code")
+	$(call sss-log-info,"Creating new i18n template from source code")
 	$(call sss-xgettext)
 
 # Update i18n template from source code
 join-i18n:
-	$(call sss-log-info,"updating i18n template from source code")
+	$(call sss-log-info,"Updating i18n template from source code")
 	$(call sss-xgettext,"--join-existing")
 
 # en_US - English language targets
@@ -301,6 +310,3 @@ init-i18n-nl:
 	$(call sss-msginit,"nl_NL")
 merge-i18n-nl:
 	$(call sss-merge,"nl_NL")
-
-ii:
-	$(call sss-log-info,"cloning user's Git repositories")

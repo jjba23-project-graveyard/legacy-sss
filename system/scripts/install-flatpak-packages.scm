@@ -23,11 +23,11 @@
 (setup-i18n)
 
 (define (flatpak-profile-install x)
-  (log-info (G_ "installing Flatpak package: ~a") x)
+  (log-info (G_ "Installing Flatpak package: ~a") x)
   (syscall (format #f "flatpak --user install -y ~a" x)))
 
 (define (flatpak-remote-install x)
-  (log-info (G_ "installing Flatpak remote: ~a") x)
+  (log-info (G_ "Installing Flatpak remote: ~a") x)
   (syscall (format #f "flatpak --user remote-add --if-not-exists ~a ~a"
                    (car x)
                    (cdr x))))
