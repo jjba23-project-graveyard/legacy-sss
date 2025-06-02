@@ -40,3 +40,11 @@ msgstr ""
 #: system/scripts/update-nix-packages.scm:25
 msgid "updating Nix packages in user profile"
 msgstr ""
+
+#: Makefile:44
+msgid "completed work on Make target:"
+msgstr ""
+
+#: Makefile:52
+msgid "begin working on Make target:"
+msgstr ""

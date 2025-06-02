@@ -35,21 +35,25 @@ DEPLOY_WWW="/srv/http/jointhefreeworld.org"
 COPYRIGHT_HOLDERS="Josep Bigorra"
 I18N_LOCATION="resources/locale"
 
-# Logging and notification helper functions
+CURRENT_TIME_STR := $(shell date --rfc-3339=seconds)
+
+define G_
+	$(shell TEXTDOMAINDIR=./resources/locale TEXTDOMAIN=sss gettext $(1))
+endef
 
 # sss-log-complete: Logs when a target has finished executing.
 define sss-log-complete
-	@printf "\n\033[1m[INFO] $(shell date --rfc-3339=seconds) - completed work on target %s\033[0m\n" $(1)
+	@echo -e "\n\033[1m[INFO] $(CURRENT_TIME_STR) - $(strip $(call G_,\"completed work on Make target:\")) $(strip $(call G_,$(1)))\033[0m\n"
 endef
 
 # sss-log-starting: Logs when a target starts execution.
 define sss-log-starting
-	@printf "\n\033[1m[INFO] $(shell date --rfc-3339=seconds) - begin working on target: %s...\033[0m\n" $(1)
+	@echo -e "\n\033[1m[INFO] $(CURRENT_TIME_STR) - $(strip $(call G_,\"begin working on Make target:\")) $(strip $(call G_,$(1)))\033[0m\n"
 endef
 
 # sss-log-info: Logs informational messages in custom format with highlight.
 define sss-log-info
-	@printf "\n\033[1m[INFO] $(shell date --rfc-3339=seconds) - %s\033[0m\n" $(1)
+	@echo -e "\n\033[1m[INFO] $(CURRENT_TIME_STR) - $(strip $(call G_,$(1)))\033[0m\n"
 endef
 
 # sss-notify: Sends success desktop notifications (if available).
@@ -297,3 +301,6 @@ init-i18n-nl:
 	$(call sss-msginit,"nl_NL")
 merge-i18n-nl:
 	$(call sss-merge,"nl_NL")
+
+ii:
+	$(call sss-log-info,"cloning user's Git repositories")
