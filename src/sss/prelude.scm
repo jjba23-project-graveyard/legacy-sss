@@ -65,6 +65,9 @@
          (lambda (key . args)
            (display (format #f "error setting i18n up: ~a: ~a" key args)))))
 
+(define preferred-strftime-format
+  (make-parameter "%Y-%m-%d %H:%M:%S%z"))
+
 (define (log-message msg)
   (display (format #f "\n\x1b[1m~a\x1b[0m\n" msg)))
 
@@ -73,12 +76,16 @@
                       (append (list #f msg) args))))
 
 (define (log-info msg . args)
-  (log-message (format #f "[INFO] ~a"
+  (log-message (format #f "[INFO] ~a ~a"
+                       (strftime (preferred-strftime-format)
+                                 (localtime (current-time)))
                        (apply format
                               (append (list #f msg) args)))))
 
 (define (log-error msg . args)
-  (log-message (format #f "[ERROR] ~a"
+  (log-message (format #f "[ERROR] ~a ~a"
+                       (strftime (preferred-strftime-format)
+                                 (localtime (current-time)))
                        (apply format
                               (append (list #f msg) args)))))
 
