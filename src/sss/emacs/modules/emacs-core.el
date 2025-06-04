@@ -101,7 +101,7 @@
 	tab-width 2)
 
   (setq safe-local-variable-directories
-        (list (string-replace "$HOME" (getenv "HOME") "$HOME/fork/guix")))
+        (list (string-replace "$HOME" (getenv "HOME") "$HOME/fork/guix/")))
   
   (savehist-mode 1)
   (save-place-mode 1)
