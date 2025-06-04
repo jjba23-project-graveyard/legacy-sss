@@ -219,5 +219,5 @@
 ;; see https://wiki.hyprland.org/hyprland-wiki/pages/Configuring/Monitors/
 ;;
 (define default-hyprland-monitors
-  '("monitor = , preferred, auto, 1.33333333"))
+  '("monitor = , preferred, auto, 1"))
 
