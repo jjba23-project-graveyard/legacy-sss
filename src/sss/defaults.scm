@@ -137,24 +137,29 @@
 ;; some good choices:
 ;; - Liberation Sans
 ;; - Adwaita Sans
+;; - IBM Plex Sans
+;;
 (define default-sans-font
-  "Liberation Sans")
+  "IBM Plex Sans")
 
 ;; Serif font choice for the system
 ;;
 ;; some good choices:
 ;; - Liberation Serif
 ;; - Noto Serif
+;; - IBM Plex Serif
+;;
 (define default-serif-font
-  "Liberation Serif")
+  "IBM Plex Serif")
 
 ;; Monospaced font choice for the system
 ;;
 ;; some good choices:
 ;; - Liberation Mono
 ;; - Adwaita Mono
+;; - IBM Plex Mono
 (define default-mono-font
-  "Liberation Mono")
+  "IBM Plex Mono")
 
 ;; Nix packages to install
 (define default-nixpkgs
@@ -214,5 +219,5 @@
 ;; see https://wiki.hyprland.org/hyprland-wiki/pages/Configuring/Monitors/
 ;;
 (define default-hyprland-monitors
-  '("monitor = , preferred, auto, 1"))
+  '("monitor = , preferred, auto, 1.33333333"))
 
