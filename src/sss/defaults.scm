@@ -160,6 +160,7 @@
 (define default-nixpkgs
   '("yaml-language-server" "bash-language-server"
     "discord"
+    "azure-cli"
     "typescript-language-server"
     "spotify"
     "jdt-language-server"
