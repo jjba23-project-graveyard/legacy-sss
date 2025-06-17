@@ -123,6 +123,7 @@
 ;;   - ef-cyprus
 ;;   - ef-dream
 ;;   - ef-autumn
+;;   - ef-melissa-light
 ;;   - heavy-metal
 ;;   - solarized-light
 ;;   - everforest-dark
