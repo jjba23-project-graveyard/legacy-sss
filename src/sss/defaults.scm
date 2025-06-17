@@ -203,7 +203,7 @@
 ;; Flatpak packages to install to the user
 (define default-flatpak-pkgs
   '("app.drey.Warp" "com.usebottles.bottles" "com.ktechpit.whatsie"
-    "com.anydesk.Anydesk" "app.zen_browser.zen"))
+    "com.anydesk.Anydesk" "app.zen_browser.zen" "engineer.atlas.Nyxt"))
 
 ;; Additional Hyprland startup commands on per-host basis
 (define default-hyprland-extra-startups
