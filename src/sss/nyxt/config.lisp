@@ -29,43 +29,74 @@
 
 (defvar *my-search-engines*
   (list
-   '("google" "https://www.google.com/search?q=~a" "https://www.google.com/")
-   '("wiki" "https://en.wikipedia.org/w/index.php?search=~a" "https://en.wikipedia.org/")))
+   (make-instance 'search-engine :name "Wikipedia" :shortcut "wiki" :search-url
+                  "https://en.wikipedia.org/w/index.php?search=~a"
+                  :fallback-url (quri.uri:uri "https://en.wikipedia.org/"))
+   (make-instance 'search-engine :name "Google" :shortcut "goo" :search-url
+                  "https://google.com/?search=~a" :fallback-url
+                  (quri.uri:uri "https://google.com/"))
+   (make-instance 'search-engine :name "DuckDuckGo" :shortcut "ddg" :search-url
+                  "https://duckduckgo.com/?q=~a" :fallback-url
+                  (quri.uri:uri "https://duckduckgo.com/"))))
 
 (defmethod files:resolve ((profile nyxt:nyxt-profile) (file nyxt/mode/bookmark:bookmarks-file))
-           "Reroute the bookmarks to the config directory."
-           #p"~/.config/nyxt/bookmarks.lisp")
+  "Reroute the bookmarks to the config directory."
+  #p"~/.config/nyxt/bookmarks.lisp")
 
 (unless nyxt::*run-from-repl-p*
   (define-configuration :browser
-                        "Enable Nyxt-internal debugging, but only in binary mode and after startup if done.
+    "Enable Nyxt-internal debugging, but only in binary mode and after startup if done.
 There are conditions raised at startup, and I don't want to catch
 those, hanging my Nyxt)."
-                        ((after-startup-hook (hooks:add-hook %slot-value% #'toggle-debug-on-error)))))
+    ((after-startup-hook (hooks:add-hook %slot-value% #'toggle-debug-on-error)))))
 
 (define-configuration buffer
-                      ((search-engines (append (mapcar (lambda (engine) (apply 'make-search-engine engine))
-                                                       *my-search-engines*)
-                                               %slot-default%))))
+    ((search-engines (append %slot-default%
+                             *my-search-engines*))))
 
 (define-configuration (:modable-buffer :prompt-buffer :editor-buffer)
-                      "Set up Emacs keybindings everywhere possible."
-                      ((default-modes `(:emacs-mode ,@%slot-value%))))
+  "Set up Emacs keybindings everywhere possible."
+  ((default-modes `(:emacs-mode ,@%slot-value%))))
 
 (define-configuration :web-buffer
-                      "Basic modes setup for web-buffer."
-                      ((default-modes `(:emacs-mode
-                                        :blocker-mode :force-https-mode
-                                        :reduce-tracking-mode
-                                        :user-script-mode :bookmarklets-mode
-                                        nyxt/mode/blocker:blocker-mode
-                                        nyxt/mode/reduce-tracking:reduce-tracking-mode
-                                        ,@%slot-value%))))
+  "Basic modes setup for web-buffer."
+  ((default-modes `(:emacs-mode
+                    :blocker-mode :force-https-mode
+                    :reduce-tracking-mode
+                    :certificate-exception-mode                    
+                    :user-script-mode :bookmarklets-mode
+                    nyxt/mode/blocker:blocker-mode
+                    nyxt/mode/reduce-tracking:reduce-tracking-mode
+                    ,@%slot-value%))))
 
 (define-configuration :browser
-                      "Set new buffer URL (a.k.a. start page, new tab page)."
-                      ((default-new-buffer-url (quri:uri "nyxt:nyxt/mode/repl:repl"))
-                       (remote-execution-p t)
-                       (external-editor-program
-                        (list "emacsclient" "-cn" "-a" "" "-F"
-                              "((font . \"IBM Plex Mono-17\") (vertical-scroll-bars) (tool-bar-lines) (menu-bar-lines))"))))
+  "Set new buffer URL (a.k.a. start page, new tab page)."
+  ((default-new-buffer-url (quri:uri "nyxt:nyxt/mode/repl:repl"))
+   (remote-execution-p t)
+   (external-editor-program
+    (list "emacsclient" "-cn" "-a" "" "-F"
+          "((vertical-scroll-bars) (tool-bar-lines) (menu-bar-lines))"))))
+
+(define-configuration :status-buffer
+  "Display modes as short glyphs."
+  ((glyph-mode-presentation-p t)))
+
+(define-configuration :force-https-mode ((glyph "ϕ")))
+(define-configuration :user-script-mode ((glyph "u")))
+(define-configuration :blocker-mode ((glyph "β")))
+(define-configuration :proxy-mode ((glyph "π")))
+(define-configuration :reduce-tracking-mode ((glyph "τ")))
+(define-configuration :certificate-exception-mode ((glyph "χ")))
+(define-configuration :style-mode ((glyph "ϕ")))
+(define-configuration :cruise-control-mode ((glyph "σ")))
+
+(defmethod format-status-load-status ((status status-buffer))
+  "A fancier load status."
+  (spinneret:with-html-string
+      (:span (if (and (current-buffer)
+                      (web-buffer-p (current-buffer)))
+                 (case (slot-value (current-buffer) 'nyxt::status)
+                   (:unloaded "∅")
+                   (:loading "∞")
+                   (:finished ""))
+                 ""))))
