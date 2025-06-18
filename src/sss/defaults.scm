@@ -206,6 +206,7 @@
     "com.anydesk.Anydesk"
     "app.zen_browser.zen"
     "engineer.atlas.Nyxt"
+    "com.github.tchx84.Flatseal"
     "io.beekeeperstudio.Studio"))
 
 ;; Additional Hyprland startup commands on per-host basis

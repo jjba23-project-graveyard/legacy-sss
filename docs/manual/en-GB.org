@@ -883,6 +883,8 @@ You can find these scripts and the list file at ~system/scripts~ in this repo an
 
 Installing all wanted Flatpak packages can be done with ~make fpi~ for example and updating them with ~make fpu~.
 
+Bear in mind you might need to use ~Flatseal~ in order to grant additional permissions to some of your Flatpak packages.
+
 
 -----
 * System audio
