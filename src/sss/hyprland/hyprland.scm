@@ -46,6 +46,8 @@
            " /run/current-system/profile/share/icons/Yaru/32x32/actions/dialog-yes.png"
            " \"~a\" \"~a\"" " >/dev/null 2>&1") title subtitle))
 
+
+
 (define* (hypr-startup-programs #:key palette sans-font mono-font
                                 (extra-startups '()))
   (let* ((gtk-theme-name (get-gtk-theme palette))
@@ -66,10 +68,7 @@
                                  "Welcome to the SSS/GNU power user session")
                                 (G_
                                  "Enter and explore, for the cosmos of computation is yours to command.")))
-                     (map (lambda (x)
-                            (format #f "dconf write \"~a\" \"~a\""
-                                    (car x)
-                                    (cdr x)))
+                     (map mk-dconf-writer-commands
                           (gtk-dconf-settings #:palette palette
                                               #:sans-font sans-font
                                               #:mono-font mono-font)))))
