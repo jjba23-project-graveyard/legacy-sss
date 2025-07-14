@@ -23,5 +23,9 @@
   #:export (theme-packages))
 
 (define theme-packages
-  (make-parameter (list adwaita-icon-theme gnome-themes-standard
-                        numix-gtk-theme papirus-icon-theme yaru-theme)))
+  (make-parameter (list adwaita-icon-theme
+                        gnome-themes-standard
+                        hicolor-icon-theme
+                        numix-gtk-theme
+                        papirus-icon-theme
+                        yaru-theme)))
