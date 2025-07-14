@@ -20,7 +20,8 @@
   #:use-module (gnu)
   #:use-module (sss palette)
   #:use-module (sss prelude)
-  #:export (gtk3-config gtk4-config gtk3-capability gtk4-capability))
+  #:export (gtk3-config gtk4-config gtk3-capability gtk4-capability
+                        gtk4-adwstylemanager-config))
 
 (define* (gtk3-config #:key palette sans-font)
   `((gtk-icon-theme-name unquote
@@ -36,8 +37,10 @@
     (gtk-cursor-theme-size . 24)
     (gtk-enable-input-feedback-sounds . 0)
     (gtk-application-prefer-dark-theme unquote
-                                       (if (is-dark-palette palette) "true"
-                                           "false"))))
+                                       (if (is-dark-palette palette)
+                                           'true
+                                           'false))
+    (gtk-enable-animations . true)))
 
 (define* (gtk4-config #:key palette sans-font)
   `((gtk-icon-theme-name unquote
@@ -50,7 +53,22 @@
     (gtk-cursor-theme-name unquote
                            (get-cursor-theme palette))
     (gtk-cursor-theme-size . 24)
-    (gtk-enable-input-feedback-sounds . 0)))
+    (gtk-enable-input-feedback-sounds . 0)
+    (gtk-application-prefer-dark-theme unquote
+                                       (if (is-dark-palette palette)
+                                           'true
+                                           'false))
+    (gtk-enable-animations . true)))
+
+(define* (gtk4-adwstylemanager-config #:key palette sans-font mono-font)
+  `((color-scheme unquote
+                  (if (is-dark-palette palette)
+                      'ADW_COLOR_SCHEME_PREFER_DARK
+                      'ADW_COLOR_SCHEME_PREFER_LIGHT))
+    (document-font-name unquote
+                        (format #f "~a 11" sans-font))
+    (monospace-font-name unquote
+                         (format #f "~a 11" mono-font))))
 
 (define* (gtk3-capability #:key palette sans-font)
   `((".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
@@ -62,13 +80,19 @@
                                                                   #:sans-font
                                                                   sans-font)))))))
 
-(define* (gtk4-capability #:key palette sans-font)
+(define* (gtk4-capability #:key palette sans-font mono-font)
   `((".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
                                                  (string-append "[Settings]\n"
-                                                                (mk-kv-conf-lines
-                                                                 (gtk4-config
-                                                                  #:palette
-                                                                  palette
-                                                                  #:sans-font
-                                                                  sans-font)))))))
-
+                                                  (mk-kv-conf-lines (gtk4-config
+                                                                     #:palette
+                                                                     palette
+                                                                     #:sans-font
+                                                                     sans-font))
+                                                  "\n\n[AdwStyleManager]\n"
+                                                  (mk-kv-conf-lines (gtk4-adwstylemanager-config
+                                                                     #:palette
+                                                                     palette
+                                                                     #:sans-font
+                                                                     sans-font
+                                                                     #:mono-font
+                                                                     mono-font)))))))

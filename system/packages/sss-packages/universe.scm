@@ -197,6 +197,7 @@
         gnome-clocks
         gnome-font-viewer
         gnome-system-monitor
+        gnome-themes-extra
         gparted
         gthumb
         gtk
