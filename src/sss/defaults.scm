@@ -203,13 +203,32 @@
 
 ;; Flatpak packages to install to the user
 (define default-flatpak-pkgs
-  '("app.drey.Warp" "com.usebottles.bottles"
-    "com.ktechpit.whatsie"
-    "com.anydesk.Anydesk"
-    "app.zen_browser.zen"
-    "engineer.atlas.Nyxt"
-    "com.github.tchx84.Flatseal"
-    "io.beekeeperstudio.Studio"))
+  '(app.drey.Dialect app.drey.Warp
+                     app.zen_browser.zen
+                     com.anydesk.Anydesk
+                     com.belmoussaoui.Decoder
+                     com.github.hugolabe.Wike
+                     com.github.tchx84.Flatseal
+                     com.ktechpit.whatsie
+                     com.mardojai.ForgeSparks
+                     com.rafaelmardojai.Blanket
+                     com.usebottles.bottles
+                     de.haeckerfelix.Fragments
+                     dev.Cogitri.Health
+                     dev.bragefuglseth.Fretboard
+                     dev.geopjr.Collision
+                     engineer.atlas.Nyxt
+                     io.bassi.Amberol
+                     io.beekeeperstudio.Studio
+                     io.github.fizzyizzy05.binary
+                     io.github.idevecore.Valuta
+                     io.github.revisto.drum-machine
+                     io.github.seadve.Mousai
+                     io.gitlab.adhami3310.Converter
+                     org.gaphor.Gaphor
+                     org.gnome.design.Emblem
+                     org.gnome.design.Lorem
+                     se.sjoerd.Graphs))
 
 ;; Additional Hyprland startup commands on per-host basis
 (define default-hyprland-extra-startups
