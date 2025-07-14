@@ -21,6 +21,7 @@
   #:use-module (sss palette)
   #:use-module (sss gtk)
   #:use-module (sss prelude)
+  #:use-module (sss dconf)
   #:use-module (sss hyprland hyprlang)
   #:export (notify-cmd hypr-startup-programs
                        hypr-input
