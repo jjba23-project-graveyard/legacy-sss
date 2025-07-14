@@ -58,9 +58,6 @@
     ("/org/gnome/desktop/interface/icon-theme" unquote
      (format #f "'~a'"
              (get-icon-theme palette)))
-    ("/org/gnome/desktop/interface/cursor-theme" unquote
-     (format #f "'~a'"
-             (get-cursor-theme palette)))
     ("/org/gnome/desktop/interface/color-scheme" unquote
      (if (is-dark-palette palette) "'prefer-dark'" "'prefer-light'"))
     ("/org/gnome/desktop/interface/cursor-size" . "24")

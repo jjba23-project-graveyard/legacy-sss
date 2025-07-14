@@ -36,7 +36,8 @@
     (gtk-cursor-theme-size . 24)
     (gtk-enable-input-feedback-sounds . 0)
     (gtk-application-prefer-dark-theme unquote
-                                       (if (is-dark-palette palette) 1 0))))
+                                       (if (is-dark-palette palette) "true"
+                                           "false"))))
 
 (define* (gtk4-config #:key palette sans-font)
   `((gtk-icon-theme-name unquote
