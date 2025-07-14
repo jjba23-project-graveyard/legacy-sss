@@ -188,6 +188,7 @@
         gnome-console
         gnome-disk-utility
         gnome-contacts
+        gnome-online-accounts
         gnome-autoar
         gnome-terminal
         gnome-sudoku
