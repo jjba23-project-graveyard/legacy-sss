@@ -164,38 +164,39 @@
 
 ;; Nix packages to install
 (define default-nixpkgs
-  '("yaml-language-server" "bash-language-server"
-    "discord"
-    "azure-cli"
-    "stylelint"
-    "stylelint-lsp"
-    "typescript-language-server"
-    "spotify"
-    "jdt-language-server"
-    "nil"
-    "black"
-    "pyright"
-    "marksman"
-    "_1password-gui"
-    "_1password-cli"
-    "gh"
-    "stack"
-    "sbt"
-    "scala_2_13"
-    "scala-cli"
-    "onefetch"
-    "postman"
-    "vscode-langservers-extracted"
-    "nwg-look"
-    "krew"
-    "cloudflare-warp"
-    "mermaid-cli"
-    "jetbrains.idea-community"
-    "nixfmt"
-    "rustfmt"
-    "way-displays"
-    "deadnix"
-    "awscli"))
+  '(_1password-cli _1password-gui
+                   awscli
+                   azure-cli
+                   bash-language-server
+                   black
+                   cloudflare-warp
+                   deadnix
+                   discord
+                   gh
+                   ibm-plex
+                   jdt-language-server
+                   jetbrains.idea-community
+                   krew
+                   marksman
+                   mermaid-cli
+                   nil
+                   nixfmt
+                   nwg-look
+                   onefetch
+                   postman
+                   pyright
+                   rustfmt
+                   sbt
+                   scala-cli
+                   scala_2_13
+                   spotify
+                   stack
+                   stylelint
+                   stylelint-lsp
+                   typescript-language-server
+                   vscode-langservers-extracted
+                   way-displays
+                   yaml-language-server))
 
 ;; Flatpak remotes to add to a user
 (define default-flatpak-user-remotes
