@@ -44,10 +44,8 @@
 (define* (notify-cmd #:key title subtitle)
   (format #f
           (string-append "fyi -i"
-           " /run/current-system/profile/share/icons/Yaru/32x32/actions/dialog-yes.png"
+           " /run/current-system/profile/share/icons/Adwaita/16x16/mimetypes/application-x-sharedlib.png"
            " \"~a\" \"~a\"" " >/dev/null 2>&1") title subtitle))
-
-
 
 (define* (hypr-startup-programs #:key palette sans-font mono-font
                                 (extra-startups '()))
