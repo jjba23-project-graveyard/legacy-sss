@@ -23,6 +23,7 @@
   #:export (raise-unknown-palette-exception get-color
                                             get-gtk-theme
                                             is-dark-palette
+                                            get-gtk-accent-color
                                             get-icon-theme
                                             get-emacs-theme
                                             get-fish-color
@@ -112,6 +113,21 @@
     ('everforest-dark "b8d191")
     ('gruvbox-light "d75f00")
     ('gruvbox-dark "d65d0e")
+    (_ (raise-unknown-palette-exception palette))))
+
+(define-syntax-rule (get-gtk-accent-color palette)
+  (match palette
+    ('ef-melissa-light "'yellow'")
+    ('ef-bio "'green'")
+    ('ef-dream "'purple'")
+    ('heavy-metal "'red'")
+    ('ef-cyprus "'green'")
+    ('ef-autumn "'orange'")
+    ('solarized-light "'pink'")
+    ('everforest-light "'green'")
+    ('everforest-dark "'green'")
+    ('gruvbox-light "'orange'")
+    ('gruvbox-dark "'orange'")
     (_ (raise-unknown-palette-exception palette))))
 
 (define-syntax-rule (get-cursor-theme palette)

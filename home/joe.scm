@@ -89,6 +89,7 @@
                                         #:keyboard-layout (get-setting 'keyboard-layout)
                                         #:caps-to-ctrl (get-setting 'caps-to-ctrl?)
                                         #:sans-font (get-setting 'sans-font)
+                                        #:mono-font (get-setting 'mono-font)
                                         #:monitors (get-setting 'hyprland-monitors)
                                         #:extra-startups (get-setting 'hyprland-extra-startups)
                                         #:with-blur #t

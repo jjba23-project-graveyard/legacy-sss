@@ -21,54 +21,27 @@
   #:use-module (sss palette)
   #:use-module (sss prelude)
   #:export (gtk3-config gtk4-config gtk3-capability gtk4-capability
-                        gtk4-adwstylemanager-config))
+                        gtk4-adwstylemanager-config gtk-dconf-settings))
 
 (define* (gtk3-config #:key palette sans-font)
-  `((gtk-icon-theme-name unquote
-                         (get-icon-theme palette))
-    (gtk-theme-name unquote
-                    (get-gtk-theme palette))
-    (gtk-font-name unquote
-                   (format #f "~a 11" sans-font))
-    (gtk-key-theme-name . Emacs)
-    (gtk-enable-event-sounds . 0)
+  `((gtk-enable-event-sounds . 0) (gtk-enable-input-feedback-sounds . 0)
     (gtk-cursor-theme-name unquote
                            (get-cursor-theme palette))
     (gtk-cursor-theme-size . 24)
-    (gtk-enable-input-feedback-sounds . 0)
     (gtk-application-prefer-dark-theme unquote
                                        (if (is-dark-palette palette)
                                            'true
-                                           'false))
-    (gtk-enable-animations . true)))
+                                           'false))))
 
 (define* (gtk4-config #:key palette sans-font)
-  `((gtk-icon-theme-name unquote
-                         (get-icon-theme palette))
-    (gtk-theme-name unquote
-                    (get-gtk-theme palette))
-    (gtk-font-name unquote
-                   (format #f "~a 11" sans-font))
-    (gtk-enable-event-sounds . 0)
+  `((gtk-enable-event-sounds . 0) (gtk-enable-input-feedback-sounds . 0)
     (gtk-cursor-theme-name unquote
                            (get-cursor-theme palette))
     (gtk-cursor-theme-size . 24)
-    (gtk-enable-input-feedback-sounds . 0)
     (gtk-application-prefer-dark-theme unquote
                                        (if (is-dark-palette palette)
                                            'true
-                                           'false))
-    (gtk-enable-animations . true)))
-
-(define* (gtk4-adwstylemanager-config #:key palette sans-font mono-font)
-  `((color-scheme unquote
-                  (if (is-dark-palette palette)
-                      'ADW_COLOR_SCHEME_PREFER_DARK
-                      'ADW_COLOR_SCHEME_PREFER_LIGHT))
-    (document-font-name unquote
-                        (format #f "~a 11" sans-font))
-    (monospace-font-name unquote
-                         (format #f "~a 11" mono-font))))
+                                           'false))))
 
 (define* (gtk3-capability #:key palette sans-font)
   `((".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
@@ -83,16 +56,47 @@
 (define* (gtk4-capability #:key palette sans-font mono-font)
   `((".config/gtk-4.0/settings.ini" ,(plain-file "settings.ini"
                                                  (string-append "[Settings]\n"
-                                                  (mk-kv-conf-lines (gtk4-config
-                                                                     #:palette
-                                                                     palette
-                                                                     #:sans-font
-                                                                     sans-font))
-                                                  "\n\n[AdwStyleManager]\n"
-                                                  (mk-kv-conf-lines (gtk4-adwstylemanager-config
-                                                                     #:palette
-                                                                     palette
-                                                                     #:sans-font
-                                                                     sans-font
-                                                                     #:mono-font
-                                                                     mono-font)))))))
+                                                                (mk-kv-conf-lines
+                                                                 (gtk4-config
+                                                                  #:palette
+                                                                  palette
+                                                                  #:sans-font
+                                                                  sans-font)))))))
+
+(define* (gtk-dconf-settings #:key palette sans-font mono-font)
+  `( ;Basename of the default keybinding theme used by gtk+.
+     ("/org/gnome/desktop/interface/gtk-key-theme" . "'Emacs'")
+    ;; Size of the cursor used as cursor theme.
+    ("/org/gnome/desktop/interface/cursor-size" . 24)
+    ;; Cursor theme name. Used only by Xservers that support the Xcursor extension.
+    ("/org/gnome/desktop/interface/cursor-theme" unquote
+     (format #f "'~a'"
+             (get-cursor-theme palette)))
+    ;; Basename of the default theme used by gtk+.
+    ("/org/gnome/desktop/interface/gtk-theme" unquote
+     (format #f "'~a'"
+             (get-gtk-theme palette)))
+    ;; Icon theme to use for the panel, nautilus etc.
+    ("/org/gnome/desktop/interface/icon-theme" unquote
+     (format #f "'~a'"
+             (get-icon-theme palette)))
+    ;; Whether animations should be displayed. Note: This is a global key,
+    ;; it changes the behaviour of the window manager, the panel etc.
+    ("/org/gnome/desktop/interface/enable-animations" . true)
+    ;; The preferred accent color for the user interface. Valid values are
+    ;; "blue", "teal", "green", "yellow", "orange", "red", "pink", "purple", "slate".
+    ("/org/gnome/desktop/interface/accent-color" unquote
+     (get-gtk-accent-color palette))
+    ;; The preferred color scheme for the user interface. Valid values are “default”, “prefer-dark”, “prefer-light”.
+    ("/org/gnome/desktop/interface/color-scheme" unquote
+     (if (is-dark-palette palette) "'prefer-dark'" "'prefer-light'"))
+    ;; Name of the default font used by gtk+.
+    ("/org/gnome/desktop/interface/font-name" unquote
+     (format #f "'~a 11'" sans-font))
+    ;; Name of the default font used for reading documents.
+    ("/org/gnome/desktop/interface/document-font-name" unquote
+     (format #f "'~a 11'" sans-font))
+    ;; Name of a monospaced (fixed-width) font for use in locations like
+    ;; terminals.
+    ("/org/gnome/desktop/interface/monospace-font-name" unquote
+     (format #f "'~a 11'" mono-font))))
