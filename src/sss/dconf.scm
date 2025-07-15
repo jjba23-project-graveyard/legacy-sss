@@ -33,10 +33,10 @@
 (define (flatten-dconf-settings xs)
   (map (lambda (p)
          (append (map (lambda (pp)
-                        `(,(format #f "~a/~a"
-                                   (car p)
-                                   (car pp)) unquote
-                          (cdr pp)))
+                        (cons (format #f "~a/~a"
+                                      (car p)
+                                      (car pp))
+                              (cdr pp)))
                       (cdr p)))) xs))
 
 (define (mk-nested-dconf-writer-commands xs)
