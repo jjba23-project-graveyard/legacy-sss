@@ -77,7 +77,7 @@
 ;; Integrates direnv with Emacs, allowing automatic loading and unloading
 ;; of environment variables based on directory.
 (use-package direnv
-  :ensure t 
+  :ensure t
   :bind (("C-c d d" . direnv-mode)
          ("C-c d a" . direnv-allow)))
 
@@ -166,8 +166,8 @@
 
 ;; Configures Emacs for Markdown file editing, enabling specific display
 ;; modes and custom functions for Markdown files.
-(use-package markdown-mode 
-  :ensure t 
+(use-package markdown-mode
+  :ensure t
   :mode "\\.md\\'"
   :hook ((markdown-mode . sss-markdown-mode))
   :config
@@ -183,9 +183,9 @@
 
 ;; Sets up a collection of Flymake backends for various languages,
 ;; enabling on-the-fly syntax checking and linting.
-(use-package flymake-collection 
-  :ensure t 
-  :hook ((after-init . flymake-collection-hook-setup) 
+(use-package flymake-collection
+  :ensure t
+  :hook ((after-init . flymake-collection-hook-setup)
          (emacs-lisp-mode . flymake-mode)))
 
 ;; Configures Emacs for editing JSON files, providing
@@ -201,4 +201,3 @@
 (provide 'sss/dev)
 
 ;;; dev.el ends here
-
