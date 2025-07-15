@@ -42,8 +42,8 @@
 (defun new-frame-setup (frame)
   (if (display-graphic-p frame)
       (progn
-	(message "window system")
-	(if sss-emacs-is-first-frame
+	      (message "window system")
+	      (if sss-emacs-is-first-frame
             (progn
               (message "initializing SSS UI scaling for first frame")
               (tekengrootte-set-scale-small)
@@ -75,33 +75,36 @@
          ("C-c t a" . sort-lines)
          ("C-c t p" . kbd-scheme-make-parameter)
          ("C-c t h" . kbd-scheme-hygguile-abstraction))
-  :hook ((text-mode . visual-line-mode))
+  :hook ((text-mode . visual-line-mode)
+         (prog-mode . display-fill-column-indicator-mode))
   :config  
   (setq-default line-spacing 6
                 pgtk-wait-for-event-timeout 0
                 electric-indent-inhibit t)
 
-  (setq read-extended-command-predicate #'command-completion-default-include-p
-        backward-delete-char-untabify-method 'hungry)
+  (setopt read-extended-command-predicate #'command-completion-default-include-p
+          backward-delete-char-untabify-method 'hungry)
 
-  (setq compilation-always-kill t)
+  (setopt compilation-always-kill t)
   
-  (setq treesit-font-lock-level 4
-	ring-bell-function #'ignore
-	frame-resize-pixelwise t
-        completion-cycle-threshold 3
-	tab-always-indent 'complete
-	text-mode-ispell-word-completion nil
-        vc-follow-symlinks t
-        read-file-name-completion-ignore-case t
-        read-buffer-completion-ignore-case t
-        completion-ignore-case t
-        use-dialog-box nil
-	delete-by-moving-to-trash t
-	tab-width 2)
+  (setopt treesit-font-lock-level 4
+          ring-bell-function #'ignore
+          frame-resize-pixelwise t
+          completion-cycle-threshold 3
+          tab-always-indent 'complete
+          text-mode-ispell-word-completion nil
+          vc-follow-symlinks t
+          read-file-name-completion-ignore-case t
+          read-buffer-completion-ignore-case t
+          completion-ignore-case t
+          use-dialog-box nil
+          delete-by-moving-to-trash t
+          tab-width 2
+          fill-column 78
+          sentence-end-double-space t)
 
-  (setq safe-local-variable-directories
-        (list (string-replace "$HOME" (getenv "HOME") "$HOME/fork/guix/")))
+  (setopt safe-local-variable-directories
+          (list (string-replace "$HOME" (getenv "HOME") "$HOME/fork/guix/")))
   
   (savehist-mode 1)
   (save-place-mode 1)
@@ -114,21 +117,25 @@
   
   (when (fboundp 'windmove-default-keybindings) 
     (windmove-default-keybindings))
+  
   (defalias 'yes-or-no-p 'y-or-n-p)
-  (setq dired-listing-switches "-lAh --group-directories-first" dired-kill-when-opening-new-dired-buffer t)
+  
+  (setopt dired-listing-switches "-lAh --group-directories-first"
+          dired-kill-when-opening-new-dired-buffer t)
+  
   (add-hook 'dired-mode-hook
             (lambda () (dired-hide-details-mode 1)))
   (setq-default indent-tabs-mode nil)
   (global-prettify-symbols-mode +1)
 
-  (setq initial-buffer-choice
-        (lambda () (ignore-errors
-                (welkomscherm)
-                (get-buffer welkomscherm/buffer-name))))
+  (setopt initial-buffer-choice
+          (lambda () (ignore-errors
+                  (welkomscherm)
+                  (get-buffer welkomscherm/buffer-name))))
   
   (recentf-mode 1)
-  (setq recentf-max-menu-items 100
-        recentf-max-saved-items 100)
+  (setopt recentf-max-menu-items 100
+          recentf-max-saved-items 100)
 
   (global-hl-line-mode +1)
   (setq-default cursor-type 'bar)
