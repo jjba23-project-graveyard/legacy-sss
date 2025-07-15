@@ -303,6 +303,31 @@ According to size, color and font family"
   :config
   (ultra-scroll-mode 1))
 
+(use-package embark
+  :ensure (:host github :repo "oantolin/embark" :branch "master")
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  ;; Add Embark to the mouse context menu. Also enable `context-menu-mode'.
+  (context-menu-mode 1)
+  (add-hook 'context-menu-functions #'embark-context-menu 100)
+  :config
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+(use-package embark-consult
+  :ensure (:host github :repo "oantolin/embark" :branch "master")
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
 (provide 'sss/ui)
 
 ;;; ui.el ends here
