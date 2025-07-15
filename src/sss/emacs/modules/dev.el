@@ -144,6 +144,12 @@
   :hook ((after-init . flymake-collection-hook-setup) 
          (emacs-lisp-mode . flymake-mode)))
 
+(use-package json-mode
+  :ensure (:host github :repo "json-emacs/json-mode"))
+
+(use-package swagg
+  :ensure (:host github :repo "isamert/swagg.el"))
+
 (provide 'sss/dev)
 
 ;;; dev.el ends here
