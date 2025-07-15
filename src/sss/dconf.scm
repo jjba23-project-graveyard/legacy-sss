@@ -19,9 +19,25 @@
   #:declarative? #t
   #:use-module (gnu)
   #:use-module (sss prelude)
-  #:export (mk-dconf-writer-commands))
+  #:export (mk-dconf-writer-commands flatten-dconf-settings
+                                     mk-nested-dconf-writer-commands))
 
 (define (mk-dconf-writer-commands x)
   (format #f "dconf write \"~a\" \"~a\""
           (car x)
           (cdr x)))
+
+(define (flatten-dconf-settings xs)
+  (map (lambda (p)
+         (append (map (lambda (pp)
+                        `(,(format #f "~a/~a"
+                                   (car p)
+                                   (car pp)) unquote
+                          (cdr pp)))
+                      (cdr p)))) xs))
+
+(define (mk-nested-dconf-writer-commands xs)
+  (map mk-dconf-writer-commands
+       (apply append
+              (flatten-dconf-settings xs))))
+

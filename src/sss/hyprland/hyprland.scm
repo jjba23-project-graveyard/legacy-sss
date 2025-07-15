@@ -21,7 +21,6 @@
   #:use-module (sss palette)
   #:use-module (sss gtk)
   #:use-module (sss prelude)
-  #:use-module (sss dconf)
   #:use-module (sss hyprland hyprlang)
   #:export (notify-cmd hypr-startup-programs
                        hypr-input
@@ -66,11 +65,8 @@
                                 (G_
                                  "Welcome to the SSS/GNU power user session")
                                 (G_
-                                 "Enter and explore, for the cosmos of computation is yours to command.")))
-                     (map mk-dconf-writer-commands
-                          (gtk-dconf-settings #:palette palette
-                                              #:sans-font sans-font
-                                              #:mono-font mono-font)))))
+                                 "Enter and explore, for the cosmos of computation is yours to command."))
+                       "sh ~/.local/bin/write-gtk-dconf-settings.sh"))))
     xs))
 
 (define* (hypr-input #:key keyboard-layout caps-to-ctrl)
