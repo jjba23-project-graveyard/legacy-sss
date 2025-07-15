@@ -105,6 +105,8 @@
                                                 "write-gtk-dconf-settings.sh"
                                                 (string-join (append `("#!/usr/bin/env sh"
                                                                        ""
+                                                                       "# ====== SSS dconf GTK writer ======"
+                                                                       "#"
                                                                        "# auto-generated file, DO NOT EDIT!"
                                                                        "")
                                                                      (mk-nested-dconf-writer-commands
