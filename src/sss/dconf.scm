@@ -23,7 +23,10 @@
                                      mk-nested-dconf-writer-commands))
 
 (define (mk-dconf-writer-commands x)
-  (format #f "dconf write \"~a\" \"~a\""
+  (format #f
+          "echo \"~a --> ~a\" && dconf write \"~a\" \"~a\""
+          (car x)
+          (cdr x)
           (car x)
           (cdr x)))
 

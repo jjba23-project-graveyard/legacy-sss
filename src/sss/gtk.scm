@@ -45,50 +45,44 @@
                                            'false))))
 
 (define* (gtk-dconf-settings #:key palette sans-font mono-font)
-  `(("/org/gnome/desktop/interface" ( ;Basename of the default keybinding theme used by gtk+.
-                                      (gtk-key-theme . "'Emacs'")
-                                     ;; Size of the cursor used as cursor theme.
-                                     (cursor-size . 24)
-                                     ;; Cursor theme name. Used only by Xservers that support the Xcursor extension.
-                                     (cursor-theme unquote
-                                                   (format #f "'~a'"
-                                                           (get-cursor-theme
-                                                            palette)))
-                                     ;; Basename of the default theme used by gtk+.
-                                     (gtk-theme unquote
-                                                (format #f "'~a'"
-                                                        (get-gtk-theme palette)))
-                                     ;; Icon theme to use for the panel, nautilus etc.
-                                     (icon-theme unquote
-                                                 (format #f "'~a'"
-                                                         (get-icon-theme
-                                                          palette)))
-                                     ;; Whether animations should be displayed. Note: This is a global key,
-                                     ;; it changes the behaviour of the window manager, the panel etc.
-                                     (enable-animations . true)
-                                     ;; The preferred accent color for the user interface. Valid values are
-                                     ;; "blue", "teal", "green", "yellow", "orange", "red", "pink", "purple", "slate".
-                                     (accent-color unquote
-                                                   (get-gtk-accent-color
-                                                    palette))
-                                     ;; The preferred color scheme for the user interface. Valid values are “default”, “prefer-dark”, “prefer-light”.
-                                     (color-scheme unquote
-                                                   (if (is-dark-palette
-                                                        palette)
-                                                       "'prefer-dark'"
-                                                       "'prefer-light'"))
-                                     ;; Name of the default font used by gtk+.
-                                     (font-name unquote
-                                                (format #f "'~a 11'" sans-font))
-                                     ;; Name of the default font used for reading documents.
-                                     (document-font-name unquote
-                                                         (format #f "'~a 11'"
-                                                                 sans-font))
-                                     ;; Name of a monospaced (fixed-width) font for use in locations like
-                                     ;; terminals.
-                                     (monospace-font-name unquote
-                                                          (format #f "'~a 11'"
-                                                                  mono-font))))))
+  `(("/org/gnome/desktop/interface"
+     ;; Basename of the default keybinding theme used by gtk+.
+     (gtk-key-theme . "'Emacs'")
+     ;; Size of the cursor used as cursor theme.
+     (cursor-size . 24)
+     ;; Cursor theme name. Used only by Xservers that support the Xcursor extension.
+     (cursor-theme unquote
+                   (format #f "'~a'"
+                           (get-cursor-theme palette)))
+     ;; Basename of the default theme used by gtk+.
+     (gtk-theme unquote
+                (format #f "'~a'"
+                        (get-gtk-theme palette)))
+     ;; Icon theme to use for the panel, nautilus etc.
+     (icon-theme unquote
+                 (format #f "'~a'"
+                         (get-icon-theme palette)))
+     ;; Whether animations should be displayed. Note: This is a global key,
+     ;; it changes the behaviour of the window manager, the panel etc.
+     (enable-animations . true)
+     ;; The preferred accent color for the user interface. Valid values are
+     ;; "blue", "teal", "green", "yellow", "orange", "red", "pink", "purple", "slate".
+     (accent-color unquote
+                   (get-gtk-accent-color palette))
+     ;; The preferred color scheme for the user interface. Valid values are “default”, “prefer-dark”, “prefer-light”.
+     (color-scheme unquote
+                   (if (is-dark-palette palette) "'prefer-dark'"
+                       "'prefer-light'"))
+     ;; Name of the default font used by gtk+.
+     (font-name unquote
+                (format #f "'~a 11'" sans-font))
+     ;; Name of the default font used for reading documents.
+     (document-font-name unquote
+                         (format #f "'~a 11'" sans-font))
+     ;; Name of a monospaced (fixed-width) font for use in locations like
+     ;; terminals.
+     (monospace-font-name unquote
+                          (format #f "'~a 11'" mono-font)))))
 
 (define* (gtk3-capability #:key palette sans-font)
   `((".config/gtk-3.0/settings.ini" ,(plain-file "settings.ini"
