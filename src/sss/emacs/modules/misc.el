@@ -24,7 +24,7 @@
 (use-package prodigy
   :ensure t)
 
-(use-package git-riddance 
+(use-package git-riddance
   :ensure (:host codeberg :repo "jjba23/git-riddance.el" :branch "trunk"))
 
 (use-package dagboek
@@ -71,4 +71,3 @@
 (provide 'sss/misc)
 
 ;;; misc.el ends here
-

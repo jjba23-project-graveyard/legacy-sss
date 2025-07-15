@@ -33,7 +33,7 @@
   :config
   (setq which-key-sort-order 'which-key-key-order-alpha
 	which-key-max-description-length 35)
-  (setq-default which-key-idle-delay 0.4) 
+  (setq-default which-key-idle-delay 0.4)
   (which-key-setup-minibuffer)
   (which-key-mode))
 
@@ -55,10 +55,10 @@
       (sss-set-base-faces))
     ))
 
-(use-package emacs 
-  :ensure nil 
-  :bind (("C-x C-b" . ibuffer) 
-         ("C-c a h" . highlight-compare-buffers) 
+(use-package emacs
+  :ensure nil
+  :bind (("C-x C-b" . ibuffer)
+         ("C-c a h" . highlight-compare-buffers)
          ("C-c l d" . toggle-debug-on-error)
          ("C-c l e" . eval-buffer)
          ("C-c C-m C-s" . gnus-group-read-ephemeral-group)
@@ -77,7 +77,7 @@
          ("C-c t h" . kbd-scheme-hygguile-abstraction))
   :hook ((text-mode . visual-line-mode)
          (prog-mode . display-fill-column-indicator-mode))
-  :config  
+  :config
   (setq-default line-spacing 6
                 pgtk-wait-for-event-timeout 0
                 electric-indent-inhibit t)
@@ -86,7 +86,7 @@
           backward-delete-char-untabify-method 'hungry)
 
   (setopt compilation-always-kill t)
-  
+
   (setopt treesit-font-lock-level 4
           ring-bell-function #'ignore
           frame-resize-pixelwise t
@@ -105,24 +105,24 @@
 
   (setopt safe-local-variable-directories
           (list (string-replace "$HOME" (getenv "HOME") "$HOME/fork/guix/")))
-  
+
   (savehist-mode 1)
   (save-place-mode 1)
   (global-auto-revert-mode 1)
   (delete-selection-mode +1)
 
   (ignore-errors
-    (set-frame-parameter nil 'alpha-background 90) 
+    (set-frame-parameter nil 'alpha-background 90)
     (add-to-list 'default-frame-alist '(alpha-background . 90)))
-  
-  (when (fboundp 'windmove-default-keybindings) 
+
+  (when (fboundp 'windmove-default-keybindings)
     (windmove-default-keybindings))
-  
+
   (defalias 'yes-or-no-p 'y-or-n-p)
-  
+
   (setopt dired-listing-switches "-lAh --group-directories-first"
           dired-kill-when-opening-new-dired-buffer t)
-  
+
   (add-hook 'dired-mode-hook
             (lambda () (dired-hide-details-mode 1)))
   (setq-default indent-tabs-mode nil)
@@ -130,9 +130,9 @@
 
   (setopt initial-buffer-choice
           (lambda () (ignore-errors
-                  (welkomscherm)
-                  (get-buffer welkomscherm/buffer-name))))
-  
+                       (welkomscherm)
+                       (get-buffer welkomscherm/buffer-name))))
+
   (recentf-mode 1)
   (setopt recentf-max-menu-items 100
           recentf-max-saved-items 100)
