@@ -294,7 +294,7 @@
                         #:cmd "google-chrome-beta")
              (exec-bind #:mod "s"
                         #:bind "B"
-                        #:cmd "nautilus")
+                        #:cmd "nautilus -w")
              (hypr-bind #:mod "s-S"
                         #:bind "space"
                         #:dispatch "togglefloating"
