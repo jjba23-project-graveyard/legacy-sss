@@ -75,6 +75,7 @@
                      databases
                      disk
                      emacs
+                     emacs-xyz
                      engineering
                      firmware
                      fonts
@@ -165,6 +166,7 @@
         cmatrix
         drill
         evince
+        emacs-jinx
         fastfetch
         feh
         (specification->package "ffmpegthumbs")
@@ -231,6 +233,7 @@
         pinentry-tty
         pipewire
         pkg-config
+        pkgconf
         power-profiles-daemon
         powertop
         qemu
