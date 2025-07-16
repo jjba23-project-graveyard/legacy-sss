@@ -66,7 +66,8 @@
                                  "Welcome to the SSS/GNU power user session")
                                 (G_
                                  "Enter and explore, for the cosmos of computation is yours to command."))
-                       "sh ~/.local/bin/write-gtk-dconf-settings.sh"))))
+                       "sh ~/.local/bin/write-gtk-dconf-settings.sh"
+                       "hypridle"))))
     xs))
 
 (define* (hypr-input #:key keyboard-layout caps-to-ctrl)
