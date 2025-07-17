@@ -28,19 +28,20 @@
 (log-info (G_ "Documenting keybindings in JSON format"))
 
 (define keybindings-json
-  (with-output-to-file "tmp.json"
+  (with-output-to-file "power-user-tmp.json"
     (lambda ()
-      (scm->json sss-keybindings-docs))))
+      (scm->json power-user-sss-keybindings-docs))))
 
 (define encoded-k-docs
-  (syscall "cat tmp.json | xxd -plain | tr -d '\\n'"
+  (syscall "cat power-user-tmp.json | xxd -plain | tr -d '\\n'"
            #:silent? #t))
 
-(log-info (G_ "Writing keybindings to dconf"))
+(log-info (G_ "Writing power-user keybindings to dconf"))
 
 (define cmd
-  (format #f "dconf write '/sss/keybindings-docs' \"'~a'\" && rm tmp.json"
-          encoded-k-docs))
+  (format #f
+   "dconf write '/sss/power-user-keybindings-docs' \"'~a'\" && rm power-user-tmp.json"
+   encoded-k-docs))
 
 (syscall cmd
          #:silent? #t)

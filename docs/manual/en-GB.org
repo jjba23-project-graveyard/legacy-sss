@@ -1180,6 +1180,7 @@ Good luck!
 * SSS keybindings
 
 Please refer to the ~keybindings-docs.scm~ file located in the ~src/sss/~ directory of this project for a comprehensive listing of keybindings in SSS, for the window manager, text editor and more.
+When configuring a user via SSS, the Makefile contains a target to write the keybinding reference in JSON format and base16 encoding to dconf, in order to be read easily by other software at ~/sss/power-user-keybindings-docs~ and (WIP) ~/sss/universal-session-keybindings-docs~.
 In a nutshell, the power user session leverages Emacs-like keybindings, and the universal session leverages CUA-like keybindings.
 
 ----------

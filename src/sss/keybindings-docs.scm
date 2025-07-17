@@ -26,9 +26,9 @@
 (define-module (sss keybindings-docs)
   #:declarative? #t
   #:use-module (gnu)
-  #:export (sss-keybindings-docs))
+  #:export (power-user-sss-keybindings-docs))
 
-(define general-window-manager-keybindings
+(define power-user-general-window-manager-keybindings
   '(("s-k" . "Kill/Close a window or application") ("s-l" . "Lock screen")
     ("s-1..9" . "Move focus to workspace 1..9")
     ("s-S-1..9" . "Move window to workspace 1..9")
@@ -39,7 +39,7 @@
     ("s-S-b" . "Set wallpaper to theme's default")
     ("s-S-SPC" . "Toggle floating/tiling mode for window")))
 
-(define application-window-manager-keybindings
+(define power-user-application-window-manager-keybindings
   '(("s-/" . "Launch application fuzzy finder menu (Rofi)")
     ("s-i" . "Open a Web Browser (Firefox)")
     ("s-S-i" . "Open a bloated Web Browser (Chrome)")
@@ -48,14 +48,14 @@
     ("s-S-t" . "Open a new Emacs client frame with EShell")
     ("s-b" . "Open file manager (Nautilus)")))
 
-(define sss-specific-emacs-keybindings
+(define power-user-sss-specific-emacs-keybindings
   '(("M-s r" . "consult-ripgrep: which greps through the project with results in your minibuffer")
     ("M-s o" . "consult-occur: which finds occurences in file")
     ("C-c # s" . "sss-sys-reconfigure: which performs a SSS Guix system rebuild")
     ("C-c # j" . "sss-joe-reconfigure: which performs a SSS Guix Home rebuild for Joe")
     ("C-c # f" . "sss-full-reconfigure: which performs a SSS Guix system + Home (Joe) rebuild")))
 
-(define more-emacs-keybindings
+(define power-user-more-emacs-keybindings
   '(("C-x C-f" . "find-file: Open a file.")
     ("C-x C-s" . "save-buffer: Save the current buffer.")
     ("C-x C-w" . "write-file: Save the current buffer to a different file.")
@@ -109,9 +109,10 @@
     ("C-v" . "scroll-down: Scroll down in the buffer")
     ("M-v" . "scroll-up: Scroll up in the buffer")))
 
-(define sss-keybindings-docs
-  `((window-manager (general unquote general-window-manager-keybindings)
+(define power-user-sss-keybindings-docs
+  `((window-manager (general unquote
+                             power-user-general-window-manager-keybindings)
                     (application unquote
-                                 application-window-manager-keybindings))
-    (emacs (sss-specific unquote sss-specific-emacs-keybindings)
-           (more unquote more-emacs-keybindings))))
+                     power-user-application-window-manager-keybindings))
+    (emacs (sss-specific unquote power-user-sss-specific-emacs-keybindings)
+           (more unquote power-user-more-emacs-keybindings))))
