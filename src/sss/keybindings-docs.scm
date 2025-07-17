@@ -116,7 +116,7 @@
     ("M-v" . "scroll-up: Scroll up in the buffer")))
 
 (define universal-session-general-window-manager-keybindings
-  '(("M-F4" . "Close window")))
+  '(("ALT-F4" . "Close window") ("WIN-Up" . "Maximize")))
 
 (define power-user-sss-keybindings-docs
   `((window-manager (general unquote
