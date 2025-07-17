@@ -25,23 +25,38 @@
 
 (setup-i18n)
 
-(log-info (G_ "Documenting keybindings in JSON format"))
+;; document power-user keybindings
+(log-info (G_ "Documenting power-user keybindings in JSON format"))
 
-(define keybindings-json
-  (with-output-to-file "power-user-tmp.json"
-    (lambda ()
-      (scm->json power-user-sss-keybindings-docs))))
-
-(define encoded-k-docs
-  (syscall "cat power-user-tmp.json | xxd -plain | tr -d '\\n'"
-           #:silent? #t))
+(with-output-to-file "power-user-tmp.json"
+  (lambda ()
+    (scm->json power-user-sss-keybindings-docs)))
 
 (log-info (G_ "Writing power-user keybindings to dconf"))
 
-(define cmd
+(define power-user-cmd
   (format #f
    "dconf write '/sss/power-user-keybindings-docs' \"'~a'\" && rm power-user-tmp.json"
-   encoded-k-docs))
+   (syscall "cat power-user-tmp.json | xxd -plain | tr -d '\\n'"
+            #:silent? #t)))
 
-(syscall cmd
+(syscall power-user-cmd
+         #:silent? #t)
+
+;; document universal session keybindings
+(log-info (G_ "Documenting universal-session keybindings in JSON format"))
+
+(with-output-to-file "universal-session-tmp.json"
+  (lambda ()
+    (scm->json universal-session-sss-keybindings-docs)))
+
+(log-info (G_ "Writing universal-session keybindings to dconf"))
+
+(define universal-session-cmd
+  (format #f
+   "dconf write '/sss/universal-session-keybindings-docs' \"'~a'\" && rm universal-session-tmp.json"
+   (syscall "cat universal-session-tmp.json | xxd -plain | tr -d '\\n'"
+            #:silent? #t)))
+
+(syscall universal-session-cmd
          #:silent? #t)

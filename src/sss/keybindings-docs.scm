@@ -26,7 +26,13 @@
 (define-module (sss keybindings-docs)
   #:declarative? #t
   #:use-module (gnu)
-  #:export (power-user-sss-keybindings-docs))
+  #:export (power-user-general-window-manager-keybindings
+            power-user-application-window-manager-keybindings
+            power-user-sss-specific-emacs-keybindings
+            power-user-more-emacs-keybindings
+            power-user-sss-keybindings-docs
+            universal-session-general-window-manager-keybindings
+            universal-session-sss-keybindings-docs))
 
 (define power-user-general-window-manager-keybindings
   '(("s-k" . "Kill/Close a window or application") ("s-l" . "Lock screen")
@@ -109,6 +115,9 @@
     ("C-v" . "scroll-down: Scroll down in the buffer")
     ("M-v" . "scroll-up: Scroll up in the buffer")))
 
+(define universal-session-general-window-manager-keybindings
+  '(("M-F4" . "Close window")))
+
 (define power-user-sss-keybindings-docs
   `((window-manager (general unquote
                              power-user-general-window-manager-keybindings)
@@ -116,3 +125,7 @@
                      power-user-application-window-manager-keybindings))
     (emacs (sss-specific unquote power-user-sss-specific-emacs-keybindings)
            (more unquote power-user-more-emacs-keybindings))))
+
+(define universal-session-sss-keybindings-docs
+  `((window-manager (general unquote
+                     universal-session-general-window-manager-keybindings))))
