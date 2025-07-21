@@ -18,15 +18,17 @@
 (use-modules (guix)
              (guix packages)
              (guix git-download)
-             (guix build-system guile)             
+             (guix build-system guile)
              (gnu packages guile)
              (gnu packages emacs)
-             (gnu packages guile-xyz))
+             (gnu packages guile-xyz)
+             ((guix licenses)
+              #:prefix license:))
 
 (define-public guile-veritas
   (package
     (name "guile-veritas")
-    (version "0.0.15")
+    (version "0.0.18")
     (source
      (origin
        (method git-fetch)
@@ -35,7 +37,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0g508aajkyi513wbhm1rhs03ilnb701lwlrvppkmc0vynydlk9ws"))))
+        (base32 "0f8maqgg1fahw9cfcvcrlff3hv9bw9d8z769va3az0bd7rkx14hb"))))
     (build-system guile-build-system)
     (native-inputs (list guile-3.0 guile-fibers))
     (arguments
