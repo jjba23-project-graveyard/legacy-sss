@@ -221,17 +221,6 @@ repl:
 		-L ./src \
 		-c '((@ (ares server) run-nrepl-server))'
 
-# # Unit tests
-# test:
-# 	$(call sss-log-starting,"test")
-# 	guix shell -m manifest.scm -- guile  --fresh-auto-compile \
-# 		-L ./per-host \
-# 		-L ./src \
-# 		-L ./test \
-# 		-c "((@ (sss test-runners) run-project-tests))"
-# 	$(call sss-log-complete,"test")
-
-
 # Unit tests
 test: fmt
 	$(call sss-log-starting,"test")
