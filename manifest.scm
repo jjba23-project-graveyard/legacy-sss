@@ -28,7 +28,7 @@
 (define-public guile-veritas
   (package
     (name "guile-veritas")
-    (version "0.0.18")
+    (version "0.0.26")
     (source
      (origin
        (method git-fetch)
@@ -37,7 +37,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0f8maqgg1fahw9cfcvcrlff3hv9bw9d8z769va3az0bd7rkx14hb"))))
+        (base32 "1djnhwdv51impps2xiwy00qiv9dj9ydk5h922mrdlkrzlqay2dkc"))))
     (build-system guile-build-system)
     (native-inputs (list guile-3.0 guile-fibers))
     (arguments
@@ -45,13 +45,17 @@
       #:source-directory "src"))
     (home-page "https://codeberg.org/jjba23/veritas")
     (synopsis
-     "Unit, Integration and Black Box testing framework powered by Lisp (Guile Scheme)")
+     "Unit, Integration and Black Box testing framework for Guile Scheme")
     (description
-     "veritas aims to be a simple and lightweight testing framework written in Scheme. Its main purpose is to help developers verify that their code behaves as expected. It achieves this by providing a clear structure for writing tests and producing easy-to-read feedback in various formats.
+     "Expressive @acronym{EDSL, embedded domain specific language} and test
+runner that allows Guile hackers to test software speedily and reliably.
 
-The framework is built around the concepts of \"suites\" which group related \"tests\" and \"assertions\" which perform the actual checks. I'd encourage you to peruse the ~test/~ folder of this project to see real examples of how to use veritas.
+Emphasis is put on test legibility and maintainability.  Several reporters
+are provided so as to fit several test use-cases, formats and environments.
 
-The power of ~veritas~ lies in its simplicity, expressive embedded domain-specific language (EDSL), and some clever features that promote robust testing practices and correctness, like order randomization and concurrent testing.")
+The framework is built around the concepts of assertions, tests and suites.
+Veritas aims to promote robust testing practices and correctness,
+and as such provides features like order randomization and concurrency.")
     (license license:lgpl3+)))
 
 (packages->manifest (list guile-next
