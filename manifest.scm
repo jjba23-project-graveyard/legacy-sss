@@ -28,7 +28,7 @@
 (define-public guile-veritas
   (package
     (name "guile-veritas")
-    (version "0.0.27")
+    (version "0.0.28")
     (source
      (origin
        (method git-fetch)
@@ -37,22 +37,20 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0vmmgmv9l6gfibdz28fpl3s9xy2x5yrjqr8fcsap13vrvpz2w6wl"))))
+        (base32 "068yhsaiz2l4wim6iagfjl059fdsfnmkxnhwp64dri556viijjdj"))))
     (build-system guile-build-system)
-    (native-inputs (list guile-3.0 guile-fibers))
     (arguments
      (list
       #:source-directory "src"))
+    (native-inputs (list guile-3.0))
+    (propagated-inputs (list guile-fibers))
     (home-page "https://codeberg.org/jjba23/veritas")
     (synopsis "Testing framework for Guile")
     (description
-     "Expressive @acronym{EDSL, embedded domain specific language} and test
-runner that allows Guile hackers to test software reliably.  Emphasis is put
-on legibility and maintainability of tests.
-
-The framework is built around the concepts of assertions, tests and suites,
-and it aims to promote robust testing practices and correctness,
-thus providing features like test order randomization and concurrency.")
+     "Veritas is a testing framework for Guile with an @acronym{EDSL,
+embedded domain specific language} to define test suites.  Emphasis is placed
+on legibility and maintainability of tests.  Veritas shuffles tests and
+runs them concurrently by default to ensure robust testing practices.")
     (license license:lgpl3+)))
 
 (packages->manifest (list guile-next
