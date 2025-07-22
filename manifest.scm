@@ -44,18 +44,15 @@
      (list
       #:source-directory "src"))
     (home-page "https://codeberg.org/jjba23/veritas")
-    (synopsis
-     "Unit, Integration and Black Box testing framework for Guile Scheme")
+    (synopsis "Testing framework for Guile")
     (description
      "Expressive @acronym{EDSL, embedded domain specific language} and test
-runner that allows Guile hackers to test software speedily and reliably.
+runner that allows Guile hackers to test software reliably.  Emphasis is put
+on legibility and maintainability of tests.
 
-Emphasis is put on test legibility and maintainability.  Several reporters
-are provided so as to fit several test use-cases, formats and environments.
-
-The framework is built around the concepts of assertions, tests and suites.
-Veritas aims to promote robust testing practices and correctness,
-and as such provides features like order randomization and concurrency.")
+The framework is built around the concepts of assertions, tests and suites,
+and it aims to promote robust testing practices and correctness,
+thus providing features like test order randomization and concurrency.")
     (license license:lgpl3+)))
 
 (packages->manifest (list guile-next
