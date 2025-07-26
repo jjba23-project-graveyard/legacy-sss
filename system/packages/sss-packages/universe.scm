@@ -158,7 +158,7 @@
         autoconf
         automake
         ncurses
-        blender
+        ;; blender
         blueman
         bluez
         bsd-games
