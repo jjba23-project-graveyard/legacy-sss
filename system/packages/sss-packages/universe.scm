@@ -158,6 +158,7 @@
         autoconf
         automake
         ncurses
+        ;; TODO enable blender (after opencolorio is fixed)
         ;; blender
         blueman
         bluez
