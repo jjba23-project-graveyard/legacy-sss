@@ -203,6 +203,7 @@
         gnome-keyring
         evolution-data-server
         gnome-themes-extra
+        glibc-locales
         gparted
         gthumb
         gtk
@@ -257,7 +258,7 @@
         cups
         cups-filters
         ghostscript
-        xsane
+        ;; xsane
         xdg-user-dirs
         xf86-input-libinput
         xf86-video-fbdev
