@@ -238,7 +238,6 @@
         power-profiles-daemon
         powertop
         qemu
-        ;; reaper
         remmina
         stellarium
         stress
@@ -258,7 +257,7 @@
         cups
         cups-filters
         ghostscript
-        ;; xsane
+        simple-scan
         xdg-user-dirs
         xf86-input-libinput
         xf86-video-fbdev
