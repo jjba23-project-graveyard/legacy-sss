@@ -237,7 +237,7 @@
         power-profiles-daemon
         powertop
         qemu
-        reaper
+        ;; reaper
         remmina
         stellarium
         stress
