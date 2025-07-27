@@ -15,23 +15,23 @@
 
 text-mode :when (bound-and-true-p git-commit-mode)
 
-(feature-commit "# Introduce a new feature" n "#" n
+(feature-commit "# Introduce a new feature." n "#" n
          "✨ feature: " p n n p n n
           "Keywords: " p)
 
-(bug-commit "# Fix a bug" n "#" n
+(bug-commit "# Fix a bug." n "#" n
      "🐛 bug: " p n n p n n
       "Keywords: " p)
 
-(docs-commit "# Update documentation" n "#" n
+(docs-commit "# Update documentation." n "#" n
       "📝 docs: " p n n p n n
        "Keywords: " p)
 
-(style-commit "# Code and formatting style changes" n "#" n
+(style-commit "# Style changes to code or appearance." n "#" n
        "🎨 style: " p n n p n n
        "Keywords: " p)
 
-(refactor-commit "# Code refactor" n "#" n
+(refactor-commit "# Refactor and improve code and algorithms." n "#" n
                  "♻️ refactor: " p n n p n n
                  "Keywords: " p)
 
@@ -39,14 +39,39 @@ text-mode :when (bound-and-true-p git-commit-mode)
                     "🚀 performance: " p n n p n n
                     "Keywords: " p)
 
+(test-commit "# Test or work on exiting tests." n "#" n
+             "🧪 test: " p n n p n n
+             "Keywords: " p)
 
+(chore-commit "# Tweak the project, and other general maintenance." n "#" n
+             "🛠️ chore: " p n n p n n
+             "Keywords: " p)
 
-;; ✅ :white_check_mark: test: (Tests) Adding missing tests or correcting existing tests.
-;; 🔧 :wrench: chore: (Chore) Other changes that don't modify src or test files (e.g., build process, auxiliary tools, libraries).
-;; ⏪️ :rewind: revert: (Revert) Reverts a previous commit.
-;; ➕ :heavy_plus_sign: dep_add: (Dependency Add) Adds a dependency.
-;; ➖ :heavy_minus_sign: dep_rm: (Dependency Remove) Removes a dependency.
-;; ⬆️ :arrow_up: dep_up: (Dependency Update) Updates a dependency.
-;; 🗑️ :wastebasket: rm: (Remove) Deletes code or files.
-;; 🚧 :construction: wip: (Work In Progress) Commit that is still in development (use sparingly).
-;; 📦 :package: build: (Build) Changes that affect the build system or external dependencies.
+(revert-commit "# Revert changes from a previous commit or decision." n "#" n
+             "⏪️ revert: " p n n p n n
+             "Keywords: " p)
+
+(add-dependency-commit "# Introduce a new dependency." n "#" n
+             "➕ add-dependency: " p n n p n n
+             "Keywords: " p)
+
+(remove-dependency-commit "# Remove a dependency." n "#" n
+             "➖ remove-dependency: " p n n p n n
+             "Keywords: " p)
+
+(dependency-commit "# Update the project or a dependency." n "#" n
+             "⬆️ update: " p n n p n n
+             "Keywords: " p)
+
+(delete-commit "# Delete code or files." n "#" n
+             "🗑️ delete: " p n n p n n
+             "Keywords: " p)
+
+(wip-commit "# " n "# Work in progress, still in development (use carefully)" n
+             "🚧 work-in-progress: " p n n p n n
+             "Keywords: " p)
+
+(package-commit "# Change the build system, dependencies or packaging" n "#" n
+             "📦 package: " p n n p n n
+             "Keywords: " p)
+
