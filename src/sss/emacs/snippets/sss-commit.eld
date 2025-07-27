@@ -15,16 +15,32 @@
 
 text-mode :when (bound-and-true-p git-commit-mode)
 
-(feature\ "✨ feature: " p n n p n n "Keywords: " p)
+(feature-commit "# Introduce a new feature" n "#" n
+         "✨ feature: " p n n p n n
+          "Keywords: " p)
 
-(bug\ "🐛 bug: " p n n p n n "Keywords: " p)
+(bug-commit "# Fix a bug" n "#" n
+     "🐛 bug: " p n n p n n
+      "Keywords: " p)
 
-;; ✨ :sparkles: feat: (Feature) Introduces a new feature.
-;; 🐛 :bug: fix: (Bug Fix) Fixes a bug.
-;; 📝 :memo: docs: (Documentation) Changes to documentation.
-;; 🎨 :art: style: (Style) Code style changes (formatting, missing semicolons, etc.; no code change).
-;; ♻️ :recycle: refactor: (Refactor) A code change that neither fixes a bug nor adds a feature.
-;; 🚀 :rocket: perf: (Performance) A code change that improves performance.
+(docs-commit "# Update documentation" n "#" n
+      "📝 docs: " p n n p n n
+       "Keywords: " p)
+
+(style-commit "# Code and formatting style changes" n "#" n
+       "🎨 style: " p n n p n n
+       "Keywords: " p)
+
+(refactor-commit "# Code refactor" n "#" n
+                 "♻️ refactor: " p n n p n n
+                 "Keywords: " p)
+
+(performance-commit "# Improve performance" n "#" n
+                    "🚀 performance: " p n n p n n
+                    "Keywords: " p)
+
+
+
 ;; ✅ :white_check_mark: test: (Tests) Adding missing tests or correcting existing tests.
 ;; 🔧 :wrench: chore: (Chore) Other changes that don't modify src or test files (e.g., build process, auxiliary tools, libraries).
 ;; ⏪️ :rewind: revert: (Revert) Reverts a previous commit.
