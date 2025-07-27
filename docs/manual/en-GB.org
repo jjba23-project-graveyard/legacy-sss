@@ -997,8 +997,8 @@ Currently this works on a per-directory basis, and is configured by default to m
 
 
 My settings are:
-- ~$HOME/hacking~ is where I keep my personal development projects. These are uploaded to Codeberg, and use their own gitconfig, email address, default git message, GPG key, and SSH keys.
-- ~$HOME/work~ is where I keep my work projects. These are uploaded to Github, and use their own gitconfig, email address, default git message, GPG key, and SSH keys.
+- ~$HOME/hacking~ is where I keep my personal development projects. These are uploaded to Codeberg, and use their own gitconfig, email address, GPG key, and SSH keys.
+- ~$HOME/work~ is where I keep my work projects. These are uploaded to Github, and use their own gitconfig, email address, GPG key, and SSH keys.
 
 
 ------
