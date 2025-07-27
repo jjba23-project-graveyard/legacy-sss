@@ -17,6 +17,8 @@ text-mode :when (bound-and-true-p git-commit-mode)
 
 (feature\ "✨ feature: " p n n p n n "Keywords: " p)
 
+(bug\ "🐛 bug: " p n n p n n "Keywords: " p)
+
 ;; ✨ :sparkles: feat: (Feature) Introduces a new feature.
 ;; 🐛 :bug: fix: (Bug Fix) Fixes a bug.
 ;; 📝 :memo: docs: (Documentation) Changes to documentation.
