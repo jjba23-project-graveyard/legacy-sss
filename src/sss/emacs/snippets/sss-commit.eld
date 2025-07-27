@@ -59,7 +59,7 @@ text-mode :when (bound-and-true-p git-commit-mode)
              "➖ remove-dependency: " p n n p n n
              "Keywords: " p)
 
-(dependency-commit "# Update the project or a dependency." n "#" n
+(update-commit "# Update the project or a dependency." n "#" n
              "⬆️ update: " p n n p n n
              "Keywords: " p)
 
