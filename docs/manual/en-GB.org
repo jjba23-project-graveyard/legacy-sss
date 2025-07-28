@@ -66,7 +66,7 @@ https://www.gnu.org/licenses/fdl-1.3.html
 - A custom [[https://codeberg.org/jjba23/sss-help-center-gtk][tailor made help assistant for SSS - sss-help-center-gtk]]   
 - Hyprland configuration (power user session)
 - Labwc configuration (universal session)
-- Fish shell configuration
+- Bash and Fish shell configuration
 - Alacritty terminal emulator
 - Nyxt web browser (configured in Common Lisp)  
 - Firefox custom declarative configuration inspired on BetterFox

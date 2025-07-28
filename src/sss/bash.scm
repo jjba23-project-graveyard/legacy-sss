@@ -36,7 +36,21 @@
 (define bash-prelude
   (list (string-append "[[ $- == *i* ]] && "
          "source -- /run/current-system/profile/share/blesh/ble.sh --attach=none "
-         "|| true")))
+         "|| true")
+        ;; Perform file completion in a case insensitive fashion
+        "bind \"set completion-ignore-case on\""
+        ;; Treat hyphens and underscores as equivalent
+        "bind \"set completion-map-case on\""
+        ;; Display matches for ambiguous patterns at first tab press
+        "bind \"set show-all-if-ambiguous on\""
+        ;; Immediately add a trailing slash when auto-completing symlinks to directories
+        "bind \"set mark-symlinked-directories on\""
+        ;; Prepend cd to directory names automatically
+        "shopt -s autocd 2> /dev/null"
+        ;; Correct spelling errors during tab-completion
+        "shopt -s dirspell 2> /dev/null"
+        ;; Correct spelling errors in arguments supplied to cd
+        "shopt -s cdspell 2> /dev/null"))
 
 (define bash-vars
   (make-parameter `((GREEN_TEXT . "$(tput setaf 2)")
@@ -44,6 +58,17 @@
                     (RED_TEXT . "$(tput setaf 1)")
                     (RESET_TEXT . "$(tput sgr0)")
                     (BOLD_TEXT . "$(tput bold)")
+                    ;; Directory where cd looks for targets
+                    (CDPATH . ".")
+                    ;; Increase history size
+                    (HISTSIZE . 500000)
+                    (HISTFILESIZE . 100000)
+                    ;; Use standard ISO 8601 timestamp for history
+                    (HISTTIMEFORMAT . "%F %T  | ")
+                    ;; Avoid duplicate history entries
+                    (HISTCONTROL . "ignoreboth:erasedups")
+                    ;; Record each line as it gets issued
+                    (PROMPT_COMMAND . "history -a")
                     ;; Automatically trim long paths in the prompt
                     (PROMPT_DIRTRIM . "2"))))
 
@@ -54,7 +79,7 @@
 (define bash-exports
   (make-parameter (list (cons 'PS1
                               (string-append
-                               "${BOLD_TEXT}\\u@\\h${RESET_TEXT} "
+                               "${BOLD_TEXT}\\u@\\h${RESET_TEXT}: "
                                "\\w${GUIX_ENVIRONMENT:+ [env]}\\n"
                                "${BOLD_TEXT}λ${RESET_TEXT} "))
                         (cons 'HISTIGNORE "&:[ ]*:exit:ls:bg:fg:history:clear"))))
@@ -106,7 +131,10 @@
                     (flameshot-bash . "flameshot full -r>\"$1\""))))
 
 (define bash-postlude
-  (list "shopt -s histappend"
+  (list
+   ;; Append to history file, don't overwrite it
+   "shopt -s histappend"
+   ;; Save multi-line commands as one command
    "shopt -s cmdhist"
    ;; Prevent file overwrite on stdout redirection
    ;; Use `>|` to force redirection to an existing file
