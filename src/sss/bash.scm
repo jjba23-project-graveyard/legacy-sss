@@ -130,8 +130,9 @@
                     (hgrep . "history | grep \"$1\"")
                     (include . "[[ -f \"$1\" ]] && source \"$1\"")
                     (shell-greeting unquote
-                                    (string-join '("${PURPLE_TEXT}Welcome to SSS/GNU - the Supreme Sexp System${RESET_TEXT}"
-                                                   "") "\n")))))
+                                    (string-join '("echo \"\""
+                                                   "echo \"${PURPLE_TEXT}Welcome to SSS/GNU - the Supreme Sexp System${RESET_TEXT}\""
+                                                   "echo \"\"") "\n")))))
 
 (define bash-postlude
   (list
@@ -142,10 +143,12 @@
    ;; Prevent file overwrite on stdout redirection
    ;; Use `>|` to force redirection to an existing file
    "set -o noclobber"
+   ;; Use Emacs keybdindings
+   "set -o emacs"
    ;; Update window size after every command
    "shopt -s checkwinsize"
    ;; Load fzf
-   "eval \"$(fzf --bash)\""
+   "eval \"$(fzf --bash)\" || true"
    ;; Load Nix profile
    "include /run/current-system/profile/etc/profile.d/nix.sh"
    ;; Load bash_completion
@@ -197,13 +200,12 @@
           (list (string-join bash-postlude "\n\n"))))
 
 (define* (bash-capability #:key clone-dir gui-cmd)
-  (simple-service 'bash-capability home-bash-service-type
-                  (home-bash-extension (environment-variables '())
-                                       (bashrc `(,(plain-file "bashrc.sh"
-                                                              (string-join (bash-config
-                                                                            #:clone-dir
-                                                                            clone-dir
-                                                                            #:gui-cmd
-                                                                            gui-cmd)
-                                                                           "\n")))))))
+  (let* ((sss-bashrc (plain-file "bashrc.bash"
+                                 (string-join (bash-config #:clone-dir
+                                                           clone-dir
+                                                           #:gui-cmd gui-cmd)
+                                              "\n"))))
+    (simple-service 'bash-capability home-bash-service-type
+                    (home-bash-extension (environment-variables '())
+                                         (bashrc (list sss-bashrc))))))
 
