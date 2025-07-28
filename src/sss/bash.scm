@@ -53,7 +53,10 @@
     (ll . "ls -lAh --group-directories-first")
     (l . "ls -lAh --group-directories-first")
     (e . "emacsclient -t")
+    (k . "pkill")
+    (fetch . "fastfetch")
     (vanilla-emacs . "emacs -Q")
+    (restart-emacs . "pkill emacs && emacs --daemon")    
     (fr unquote
         (format #f "cd ~a && make fr" clone-dir))
     (sr unquote
