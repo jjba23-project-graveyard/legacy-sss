@@ -33,15 +33,22 @@
                       bash-capability))
 
 (define bash-vars
-  (make-parameter `((green . "'\\[\\033[01;32m\\]'")
-                    (reset . "'\\[\\033[00m\\]'"))))
+  (make-parameter `((GREEN_TEXT . "$(tput setaf 2)")
+                    (BLUE_TEXT . "$(tput setaf 4)")
+                    (RED_TEXT . "$(tput setaf 1)")
+                    (RESET_TEXT . "$(tput sgr0)")
+                    (BOLD_TEXT . "$(tput bold)"))))
 
 (define bash-path-appends
   (make-parameter `("${KREW_ROOT:-$HOME/.krew}/bin" "$HOME/.local/bin"
                     "$HOME/.guix-profile/bin")))
 
 (define bash-exports
-  (make-parameter `((PS1 . "${grn}\"\\u@\\h \\w${GUIX_ENVIRONMENT:+ [env]} λ\"${clr}\"  \""))))
+  (make-parameter (list (cons 'PS1
+                              (string-append
+                               "${BOLD_TEXT}\\u@\\h${RESET_TEXT} "
+                               "\\w${GUIX_ENVIRONMENT:+ [env]}\\n"
+                               "${BOLD_TEXT}λ${RESET_TEXT} ")))))
 
 (define* (bash-aliases #:key clone-dir gui-cmd)
   `((".." . "cd ..;pwd") ("..." . "cd ../..;pwd")
@@ -56,7 +63,7 @@
     (k . "pkill")
     (fetch . "fastfetch")
     (vanilla-emacs . "emacs -Q")
-    (restart-emacs . "pkill emacs && emacs --daemon")    
+    (restart-emacs . "pkill emacs && emacs --daemon")
     (fr unquote
         (format #f "cd ~a && make fr" clone-dir))
     (sr unquote
@@ -89,8 +96,15 @@
                     (flameshot-bash . "flameshot full -r>\"$1\""))))
 
 (define-public bash-postlude
-  `("shopt -s histappend" "eval \"$(fzf --bash)\""
-    "source /run/current-system/profile/etc/profile.d/nix.sh"))
+  (list "shopt -s histappend"
+        ""
+        "eval \"$(fzf --bash)\""
+        ""
+        "source /run/current-system/profile/etc/profile.d/nix.sh"
+        ""
+        (string-append
+         "[[ $PS1 && -f /run/current-system/profile/share/bash-completion/bash_completion ]] && "
+         ". /run/current-system/profile/share/bash-completion/bash_completion")))
 
 (define (serialize-bash-alias a)
   (format #f "\nalias ~a=\"~a\""
@@ -98,7 +112,7 @@
           (cdr a)))
 
 (define (serialize-bash-var v)
-  (format #f "\n~a=~a"
+  (format #f "\n~a=\"~a\""
           (car v)
           (cdr v)))
 
@@ -106,12 +120,12 @@
   (format #f "\nexport PATH=\"~a:$PATH\"" a))
 
 (define (serialize-bash-export e)
-  (format #f "\nexport ~a=~a"
+  (format #f "\nexport ~a=\"~a\""
           (car e)
           (cdr e)))
 
 (define (serialize-bash-function f)
-  (format #f "\nfunction ~a () {\n\t~a\n}\n\n"
+  (format #f "\n~a () {\n\t~a\n}\n"
           (car f)
           (cond
             ((list? (cdr f))
@@ -119,7 +133,7 @@
             (else (cdr f)))))
 
 (define* (bash-config #:key clone-dir gui-cmd)
-  (append '("# ====== SSS Bash configuration ======" "#"
+  (append '("" "# ====== SSS Bash configuration ======"
             "# auto-generated file, DO NOT EDIT!")
           (map serialize-bash-var
                (bash-vars))
