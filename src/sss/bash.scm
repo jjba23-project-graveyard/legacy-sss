@@ -24,6 +24,7 @@
                       bash-aliases
                       bash-functions
                       bash-postlude
+                      bash-prelude
                       serialize-bash-alias
                       serialize-bash-var
                       serialize-bash-path-append
@@ -32,12 +33,19 @@
                       bash-config
                       bash-capability))
 
+(define bash-prelude
+  (list (string-append "[[ $- == *i* ]] && "
+         "source -- /run/current-system/profile/share/blesh/ble.sh --attach=none "
+         "|| true")))
+
 (define bash-vars
   (make-parameter `((GREEN_TEXT . "$(tput setaf 2)")
                     (BLUE_TEXT . "$(tput setaf 4)")
                     (RED_TEXT . "$(tput setaf 1)")
                     (RESET_TEXT . "$(tput sgr0)")
-                    (BOLD_TEXT . "$(tput bold)"))))
+                    (BOLD_TEXT . "$(tput bold)")
+                    ;; Automatically trim long paths in the prompt
+                    (PROMPT_DIRTRIM . "2"))))
 
 (define bash-path-appends
   (make-parameter `("${KREW_ROOT:-$HOME/.krew}/bin" "$HOME/.local/bin"
@@ -48,7 +56,8 @@
                               (string-append
                                "${BOLD_TEXT}\\u@\\h${RESET_TEXT} "
                                "\\w${GUIX_ENVIRONMENT:+ [env]}\\n"
-                               "${BOLD_TEXT}λ${RESET_TEXT} ")))))
+                               "${BOLD_TEXT}λ${RESET_TEXT} "))
+                        (cons 'HISTIGNORE "&:[ ]*:exit:ls:bg:fg:history:clear"))))
 
 (define* (bash-aliases #:key clone-dir gui-cmd)
   `((".." . "cd ..;pwd") ("..." . "cd ../..;pwd")
@@ -93,18 +102,24 @@
 (define bash-functions
   (make-parameter `((glog . "sudo gzip -d \"$1.gz\" && cat \"$1\"")
                     (hgrep . "history | grep \"$1\"")
+                    (include . "[[ -f \"$1\" ]] && source \"$1\"")
                     (flameshot-bash . "flameshot full -r>\"$1\""))))
 
-(define-public bash-postlude
+(define bash-postlude
   (list "shopt -s histappend"
-        ""
-        "eval \"$(fzf --bash)\""
-        ""
-        "source /run/current-system/profile/etc/profile.d/nix.sh"
-        ""
-        (string-append
-         "[[ $PS1 && -f /run/current-system/profile/share/bash-completion/bash_completion ]] && "
-         ". /run/current-system/profile/share/bash-completion/bash_completion")))
+   "shopt -s cmdhist"
+   ;; Prevent file overwrite on stdout redirection
+   ;; Use `>|` to force redirection to an existing file
+   "set -o noclobber"
+   ;; Update window size after every command
+   "shopt -s checkwinsize"
+   ;; Load fzf
+   "eval \"$(fzf --bash)\""
+   ;; Load Nix profile
+   "include /run/current-system/profile/etc/profile.d/nix.sh"
+   ;; Load bash_completion
+   "include /run/current-system/profile/share/bash-completion/bash_completion"
+   "[[ ! ${BLE_VERSION-} ]] || ble-attach"))
 
 (define (serialize-bash-alias a)
   (format #f "\nalias ~a=\"~a\""
@@ -135,6 +150,7 @@
 (define* (bash-config #:key clone-dir gui-cmd)
   (append '("" "# ====== SSS Bash configuration ======"
             "# auto-generated file, DO NOT EDIT!")
+          (list (string-join bash-prelude "\n\n"))
           (map serialize-bash-var
                (bash-vars))
           (map serialize-bash-export
@@ -146,7 +162,7 @@
                              #:gui-cmd gui-cmd))
           (map serialize-bash-path-append
                (bash-path-appends))
-          bash-postlude))
+          (list (string-join bash-postlude "\n\n"))))
 
 (define* (bash-capability #:key clone-dir gui-cmd)
   (simple-service 'bash-capability home-bash-service-type
