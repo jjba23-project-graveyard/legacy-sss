@@ -55,6 +55,7 @@
 (define bash-vars
   (make-parameter `((GREEN_TEXT . "$(tput setaf 2)")
                     (BLUE_TEXT . "$(tput setaf 4)")
+                    (PURPLE_TEXT . "$(tput setaf 5)")
                     (RED_TEXT . "$(tput setaf 1)")
                     (RESET_TEXT . "$(tput sgr0)")
                     (BOLD_TEXT . "$(tput bold)")
@@ -128,7 +129,9 @@
   (make-parameter `((glog . "sudo gzip -d \"$1.gz\" && cat \"$1\"")
                     (hgrep . "history | grep \"$1\"")
                     (include . "[[ -f \"$1\" ]] && source \"$1\"")
-                    (flameshot-bash . "flameshot full -r>\"$1\""))))
+                    (shell-greeting unquote
+                                    (string-join '("${PURPLE_TEXT}Welcome to SSS/GNU - the Supreme Sexp System${RESET_TEXT}"
+                                                   "") "\n")))))
 
 (define bash-postlude
   (list
@@ -147,7 +150,8 @@
    "include /run/current-system/profile/etc/profile.d/nix.sh"
    ;; Load bash_completion
    "include /run/current-system/profile/share/bash-completion/bash_completion"
-   "[[ ! ${BLE_VERSION-} ]] || ble-attach"))
+   "[[ ! ${BLE_VERSION-} ]] || ble-attach"
+   "shell-greeting"))
 
 (define (serialize-bash-alias a)
   (format #f "\nalias ~a=\"~a\""
