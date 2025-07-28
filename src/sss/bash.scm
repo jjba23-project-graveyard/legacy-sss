@@ -132,7 +132,8 @@
                     (shell-greeting unquote
                                     (string-join '("echo \"\""
                                                    "echo \"${PURPLE_TEXT}Welcome to SSS/GNU - the Supreme Sexp System${RESET_TEXT}\""
-                                                   "echo \"\"") "\n")))))
+                                                   "echo \"\"" "echo \"\"")
+                                                 "\n")))))
 
 (define bash-postlude
   (list
