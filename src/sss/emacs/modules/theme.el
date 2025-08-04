@@ -65,6 +65,13 @@
   (cond ((equal sss-emacs-theme 'gruvbox-dark-hard) (load-theme sss-emacs-theme t))
         ((equal sss-emacs-theme 'gruvbox-light-hard) (load-theme sss-emacs-theme t))))
 
+(use-package dracula-theme
+  :ensure t
+  :config
+  (cond ((equal sss-emacs-theme 'dracula)
+         (load-theme sss-emacs-theme t))
+        ))
+
 
 (provide 'sss/theme)
 
