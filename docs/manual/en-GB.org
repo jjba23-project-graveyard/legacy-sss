@@ -63,7 +63,7 @@ https://www.gnu.org/licenses/fdl-1.3.html
 - Advanced Emacs configurations and integration possibilities with Guix  + Elpaca  
 - Guix channel so you can cherry-pick parts of SSS to your liking
 
-Some features:  
+Some of the features:  
 - 🎨 Many theme palettes that affect the entire system
 - Hyprland configuration (power user session)
 - Labwc configuration (universal session)
