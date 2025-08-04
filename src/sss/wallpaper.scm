@@ -53,6 +53,8 @@
                           '("some-forest.jpg" "redwood-forest.jpg")))
       ('gruvbox-light (map digital-art-dreams-sss-wallpaper
                            '("joshua.jpg" "PXL_20250326_193029385.MP.jpg")))
+      ('dracula (map digital-art-dreams-sss-wallpaper
+                     '("1362745.png" "inazuma.jpg" "diluc-tree.jpg")))
       (_ (raise-exception (make-exception-with-message (format #f
                                                         "exception ocurred! unknown palette selected, could not choose wallpaper for: ~a"
                                                         palette)))))))

@@ -101,7 +101,7 @@
     ('everforest-dark "'everforest-hard-dark")
     ('gruvbox-light "'gruvbox-light-hard")
     ('gruvbox-dark "'gruvbox-dark-hard")
-    ('dracula "'dracula'")
+    ('dracula "'dracula")
     (_ (raise-unknown-palette-exception palette))))
 
 (define-syntax-rule (get-fish-color palette)
@@ -272,6 +272,6 @@
 (define dracula
   `((primary . "#bd93f9") (primary-l . "#ff79c6")
     (text . "#f8f8f2")
-    (text-l . "#6272a4")
+    (text-l . "#e7e8e1")
     (background . "#282a36")
     (background-l . "#44475a")))
