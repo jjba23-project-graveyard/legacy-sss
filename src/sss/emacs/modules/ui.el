@@ -198,6 +198,10 @@ According to size, color and font family"
       (ignore-errors
         (set-face-attribute 'font-lock-comment-face nil
                             :italic t)
+        (set-face-attribute 'font-lock-variable-use-face nil
+                            :bold nil)
+        (set-face-attribute 'font-lock-variable-name-face nil
+                            :bold nil)
         (set-face-attribute 'window-divider nil
                             :background "#6272a4"
                             :foreground "#6272a4")))
