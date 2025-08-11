@@ -238,7 +238,18 @@ According to size, color and font family"
                                    :inherit '(font-lock-string-face))))))
     )
 
-  (sss-set-base-faces))
+  (setq sss-emacs-is-first-frame t)
+
+  (defun new-frame-setup ()
+    (progn
+	    (when sss-emacs-is-first-frame
+        (progn
+          (message "initializing SSS UI scaling for first frame")
+          (tekengrootte-set-scale-small)
+          (setq sss-emacs-is-first-frame nil)))
+      (sss-set-base-faces)))
+  
+  (add-hook 'server-after-make-frame-hook 'new-frame-setup))
 
 (use-package nerd-icons :ensure t)
 
