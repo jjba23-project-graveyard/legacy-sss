@@ -21,12 +21,16 @@
 
 ;;; Code:
 
+(use-package project
+  :init
+  (setq project-vc-extra-root-markers '(".envrc")))
+
 (use-package flymake
   :ensure nil
   :bind(("C-c ! b" . flymake-show-buffer-diagnostics)
-	("C-c ! n" . flymake-goto-next-error)
-	("C-c ! p" . flymake-show-project-diagnostics)
-	("C-c ! f" . flymake-mode)))
+	      ("C-c ! n" . flymake-goto-next-error)
+	      ("C-c ! p" . flymake-show-project-diagnostics)
+	      ("C-c ! f" . flymake-mode)))
 
 (use-package which-key
   :ensure (:host github :repo "justbur/emacs-which-key")
