@@ -113,6 +113,7 @@
          (format #f "cd ~a && make fpi" clone-dir))
     (fpu unquote
          (format #f "cd ~a && make fpu" clone-dir))
+    (direnv-mode . "direnv export bash")
     (scala-dev unquote
                (format #f "nix develop ~a/resources/flakes/scala-dev/"
                        clone-dir))
@@ -163,10 +164,10 @@
    "[[ ! ${BLE_VERSION-} ]] || ble-attach"
    "ble-import -d /run/current-system/profile/share/blesh/contrib/integration/fzf-completion"
    "ble-import -d /run/current-system/profile/share/blesh/contrib/integration/fzf-key-bindings"
-   ;; Load direnv
-   "eval \"$(direnv hook bash)\" || true"
    ;; Greet user
-   "shell-greeting"))
+   "shell-greeting"
+   ;; Load direnv
+   "eval \"$(direnv hook bash)\""))
 
 (define (serialize-bash-alias a)
   (format #f "\nalias ~a=\"~a\""
