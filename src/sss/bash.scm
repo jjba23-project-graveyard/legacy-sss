@@ -163,6 +163,8 @@
    "[[ ! ${BLE_VERSION-} ]] || ble-attach"
    "ble-import -d /run/current-system/profile/share/blesh/contrib/integration/fzf-completion"
    "ble-import -d /run/current-system/profile/share/blesh/contrib/integration/fzf-key-bindings"
+   ;; Load direnv
+   "eval \"$(direnv hook bash)\" || true"
    ;; Greet user
    "shell-greeting"))
 
