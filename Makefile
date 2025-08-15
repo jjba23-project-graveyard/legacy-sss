@@ -37,7 +37,7 @@ LOG_MSG_PREFIX:="\n\033[1m[INFO]["
 LOG_MSG_SUFFIX_PRE_MSG:="]"
 LOG_END:="\033[0m\n"
 
-ELISP_MANUAL_CMD:='(progn (find-file "$(shell realpath ./docs/manual/en-GB.org)")(org-html-export-to-html)(message "finished publishing SSS manual"))'
+ELISP_MANUAL_CMD:='(progn (find-file "$(shell realpath ./docs/manual/en.org)")(org-html-export-to-html)(message "finished publishing SSS manual"))'
 API_DOCS_CSS_URL:="https://jointhefreeworld.org/static-assets/api-docs/css/style.css"
 
 
