@@ -77,10 +77,6 @@ I strive to provide proper and extensive documentation on the Supreme Sexp Syste
 - Org format [[file:docs/manual/en.org]]
 - Online HTML at jointhefreeworld: [[https://jointhefreeworld.org/manuals/sss/index.html]] 
 
-You can find the technical Guile Scheme API documentation for SSS here:
-
-https://jointhefreeworld.org/api-docs/sss/API.html
-
 ------------------------  
   
 * Licensing

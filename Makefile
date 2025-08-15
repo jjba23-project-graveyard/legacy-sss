@@ -209,25 +209,14 @@ fpi:  # Installs Flatpak packages
 fpu:  # Updates Flatpak packages
 	@make update-flatpak-packages
 
-# docs: Generate technical API documentation
-docs:
-	rm -rfv doc
-	guix shell -m manifest.scm -- documenta api ./src/sss
-	guix shell -m manifest.scm -- texi2any -v --html \
-		--css-ref=$(API_DOCS_CSS_URL) ./doc/api/index.texi
-	mv ./index ./doc/api-dist
 
 # deploy: Deploys the documentation to a web server directory.
-deploy: docs
+deploy:
 	guix shell -m manifest.scm -- emacs -Q --batch \
 		--eval $(ELISP_MANUAL_CMD)
 	mkdir -pv $(DEPLOY_WWW)/manuals/sss
 	rm -rfv $(DEPLOY_WWW)/manuals/sss/index.html
 	mv -v docs/manual/en.html $(DEPLOY_WWW)/manuals/sss/index.html
-	rm -rfv $(DEPLOY_WWW)/api-docs/sss
-	mkdir -p $(DEPLOY_WWW)/api-docs/sss
-	mv doc/api-dist/* $(DEPLOY_WWW)/api-docs/sss/
-	rm -rfv doc
 
 # repl: Start a Guile Scheme development REPL
 repl:
