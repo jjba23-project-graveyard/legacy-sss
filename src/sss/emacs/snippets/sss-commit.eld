@@ -43,10 +43,10 @@ text-mode :when (bound-and-true-p git-commit-mode)
              "🔧 fix: " p n n p n)
 
 (revert-commit "# Revert changes from a previous commit or decision." n "#" n
-             "⏪️ revert: " p n n p n
+             "⏪️ revert: " p n n p n)
 
 (add-dependency-commit "# Introduce a new dependency." n "#" n
-             "➕ add-dependency: " p n n p n
+             "➕ add-dependency: " p n n p n)
 
 (remove-dependency-commit "# Remove a dependency." n "#" n
              "➖ remove-dependency: " p n n p n)
