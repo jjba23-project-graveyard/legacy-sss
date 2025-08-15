@@ -218,7 +218,7 @@ docs:
 	mv ./index ./doc/api-dist
 
 # deploy: Deploys the documentation to a web server directory.
-deploy:
+deploy: docs
 	guix shell -m manifest.scm -- emacs -Q --batch \
 		--eval $(ELISP_MANUAL_CMD)
 	mkdir -pv $(DEPLOY_WWW)/manuals/sss
