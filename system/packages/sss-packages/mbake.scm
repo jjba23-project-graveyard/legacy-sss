@@ -26,7 +26,6 @@
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages python-build)
   #:use-module (gnu packages python-check)
-  #:use-module (gnu packages version-control)
   #:use-module (gnu packages check)
   #:use-module (gnu packages python)
   #:export (mbake))
