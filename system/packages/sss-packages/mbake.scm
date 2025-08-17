@@ -46,7 +46,6 @@
     (native-inputs (list python-black
                          python-hatchling
                          python-mypy
-                         python-pre-commit
                          python-pytest
                          python-pytest-cov
                          ;; TODO enable when Ruff is upstreamed
