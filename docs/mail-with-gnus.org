@@ -2,7 +2,7 @@
 
 I have recently taken on the mission of fixing and organizing my insanely cluttered and disorganized mail inboxes in several accounts.
 
-In contrast to my computer, and software that I write, which are organized, structured and neat, my e-mail looks more like Azathoth's wrath was unleashed upon it.
+In contrast to my computer, and software that I write, which are organized, structured and neat, my e-mail (more specifically GMail) looks more like Azathoth's or Kraken's wrath was unleashed upon it.
 
 Check the extensive GNUS manual for more information: [[https://www.gnu.org/software/emacs/manual/html_node/gnus/Don_0027t-Panic.html][here]].
 
@@ -25,7 +25,7 @@ Then configure GNUS to use Gmail (tweak ~~/.gnus.el~):
 
 (setq gnus-select-method
       '(nnimap "gmail"
-	       (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
+	       (nnimap-address "imap.gmail.com") 
 	       (nnimap-server-port "imaps")
 	       (nnimap-stream ssl)))
 
@@ -66,6 +66,61 @@ Here is my guide on that 5%.
 - =Group buffer= is the buffer listing folders
 - =Summary buffer= is the buffer listing mails
 - =~= means HOME directory. The full path of =~= is setup in the environment variable =HOME=. For example, =~/.gnus.el= means a file named =.gnus.el= is placed in HOME directory. *Only* on windows, you must setup HOME environment variable manually. If you are a windows user, please setup HOME right now!
+
+** Basic keys
+
+Keybindings in Gnus
+
+Gnus uses a multi-layered approach to keybindings, depending on which "buffer" you are in. The three main buffers are:
+
+    Group Buffer: Displays a list of your email folders (called "groups").
+
+    Summary Buffer: Displays a list of messages within a selected group.
+
+    Article Buffer: Displays the content of a single message.
+
+Here are some of the most common keybindings for each buffer:
+
+Group Buffer (gnus-group-mode)
+
+| Keybinding |	Action |
+| B |	Browse foreign servers (helpful for initially listing all your Gmail folders) |
+| g |	Get new articles (check for new mail). |
+| RET | or SPC	Enter the selected group and view the summary of messages. |
+| u |	Unsubscribe/subscribe to a group. |
+| q |	Quit Gnus. |
+
+Summary Buffer (gnus-summary-mode)
+
+| Keybinding |	Action |
+| g |	Get new articles (updates the list of messages). |
+| n | or SPC	Go to the next unread article. |
+| p |	Go to the previous unread article. |
+| m |	Compose a new email. |
+| r |	Reply to the sender of the current article. |
+| S | f	Forward the current article. |
+| q |	Quit the summary buffer and return to the group buffer. |
+| d |	Mark the current article as deleted. |
+| E  | Mark as expired (allow to delete automatic in ~ one week) |
+| C-k  |	Kill the article (moves it to the trash folder).  |
+| j |	Mark the article as read. |
+| C-c C-e  |	Send a new email. |
+
+Article Buffer (gnus-article-mode)
+
+| Keybinding |	Action |
+| n |	View the next unread article. |
+| p |	View the previous unread article. |
+| r |	Reply to the sender. |
+| S | w	Reply to all recipients. |
+| m |	Compose a new email. |
+| C -c C-a |	Attach a file. |
+| q |	Quit the article buffer and return to the summary buffer. |
+| C-s or C-r  |	Search within the article. |
+
+
+** Setup
+  
 *** Sample setup
 =M-x gnus= will load =~/.gnus.el=. Usually we place all setup code in =~/.gnus.el= so third party libraries used only by Gnus is not loaded during Emacs startup.
 
@@ -102,12 +157,14 @@ Now it's simple. Press =RET= to see the mail. Press =q= to quit "Summary Buffer"
 In short, "Group Buffer" lists mail folders. "Summary Buffer" lists mails in one folder.
 
 That's all you need to know. You could go to section "My Gnus configuration (for Gmail)" to use Gnus now without reading remaining sections.
+
 ** Essential 5%
 Don't memorize all key bindings. Only pick up what you actually use.
 
 At the end of this article, I provides *my [[https://github.com/abo-abo/hydra][Hydra]] setup* so you don't need remembering key binding any more.
 
 Please check section "Use Hydra to avoid remembering key bindings" for more details.
+
 *** Search mails
 Press =G G= or =M-x gnus-group-make-nnir-group= to search mails at *server side* in "Group Buffer".
 
@@ -134,6 +191,7 @@ People who dislike "friendly" RFC3501 could use [[https://support.google.com/mai
 ;; You can press `G G` instead `C-u G G` instead.
 (setq nnir-imap-default-search-key "gmail")
 #+end_src
+
 *** Filter mails locally
 Press =/ /= to limit the mails by subject at "Summary Buffer". "Limiting" means *filtering mails locally*.
 
@@ -166,6 +224,7 @@ You can also subscribe groups programmatically. Insert below code into =~/.gnus.
   (gnus-subscribe-hierarchically "nnimap+hotmail:Inbox")
   (setq gnus-subscribe-groups-done t))
 #+end_src
+
 *** Reply email
 Press =R= or =M-x gnus-summary-reply-with-original= to reply WITH quoted text. Press =r= or =M-x gnus-summary-reply= to reply WITHOUT quoted text.
 
@@ -219,8 +278,10 @@ application/vnd.ms-powerpoint; soffice '%s'
 
 *** Send email
 Press =C-c C-c= or =M-x message-send-and-exit=.
+
 *** Refresh "Summary Buffer" (check new mails)
 Press =/ N= or =M-x gnus-summary-insert-new-articles=.
+
 *** Make all mails visible (IMPORTANT)
 Press =C-u RET= on the selected group in "Group Buffer", or =C-u M-g= in "Summary Buffer".
 
@@ -235,6 +296,7 @@ You can mark multiple mails to forward (hotkey is "#") and forward them in one m
 After the forwarded email is created, you may copy the body of that email without sending it. The copied content could be inserted into new mail.
 *** Mark mails as read
 Press =c= either in "Summary Buffer" or "Group Buffer". This is *my favorite used command* which it's more efficient than average mail client.
+
 *** Tree view of mail folders
 [[http://www.gnu.org/software/emacs/manual/html_node/gnus/Group-Topics.html][Group Topics]] is used to re-organize the mail folder into tree view.
 
@@ -281,17 +343,7 @@ Instead of remembering extra commands, editing above snippet is more straightfor
 
 The flag =gnus-message-archive-group= defines *local* archive folder of sent mails. By default new folder is created *monthly*. My setup creates the folder *yearly*.
 ** Advanced tips
-*** Windows setup
-It's *100% usable* if you install [[https://www.cygwin.com/][Cygwin]] at first.
-
-Gnus from Cygwin version of Emacs works out of the box.
-
-Native [[https://ftp.gnu.org/gnu/emacs/windows/][Emacs for Windows]] need a little setup:
-- Right-click "My Computer" and go to "Properties -> Advanced -> Environmental Variables"
-- Setup *user variables* which does not require Administrator right
-- Set the variable "HOME" to the parent directory of your ".emacs.d" directory
-- Set the variable "PATH" to the "C:\cygwin64\bin". I suppose Cygwin is installed at driver C.
-- Install GnuTLS and OpenSSH through Cygwin package manager
+  
 *** Microsoft Outlook
 If your Exchange Server is not using standard protocol like IMAP or you can't access IMAP port behind firewall, you can use [[http://davmail.sourceforge.net/][DavMail]]. DavMail is a "POP/IMAP/SMTP/CalDAV/CardDAV/LDAP exchange gateway".
 
@@ -312,6 +364,7 @@ Here is a sample setup for Davmail:
                (nnimap-stream plain)
                (nnir-search-engine imap)))
 #+end_src
+
 *** Auto-complete mail address
 Install [[http://bbdb.sourceforge.net/][BBDB]]  through [[http://melpa.milkbox.net/#/bbdb][melpa]]. It is a email address database written in Emacs Lisp.
 
@@ -323,6 +376,7 @@ But there are other better plugins based on BBDB (so you still need install BBDB
 - [[https://github.com/tumashu/bbdb-handy][bbdb-handy]]
 
 You only need one of above packages.
+
 *** Synchronize from Gmail contacts
 Please,
 - Go to [[https://www.google.com/contacts/]]
@@ -330,6 +384,7 @@ Please,
 - Install [[https://github.com/redguardtoo/gmail2bbdb]] (developed by me) and press =M-x gmail2bbdb-import-file=. The contacts will be output into =~/.bbdb= which is automatically detected by Emacs
 
 Other plugins are strict on versions of BBDB. Mine doesn't have such issue.
+
 *** Customize "From" field
 Easiest solution is to switch the FROM field dynamically by =M-x toggle-mail-from-field=:
 #+begin_src elisp
@@ -402,6 +457,7 @@ I prefer =w3m= because it has powerful APIs and available on all operating syste
 Some people prefer =shr= because it can display HTML colors. The =libxml= is required if you used =shr=. On windows, =libxml= need be installed manually.
 
 If you use =Cygwin= on Windows (as I said before, you have to install Cygwin because that's the easiest way to install  GnuTLS and OpenSSH), you can install =w3m= through =Cygwin=.
+
 *** Read mail offline
 Go to "Summary Buffer".
 
@@ -418,6 +474,8 @@ You also need insert below code into ~/.emacs,
 Above code uses the cache to the full extent by "wasting" *tens of megabytes* of disk space.
 
 The disk cache is located at "~/News/cache/". You can back it up with GitHub private repository.
+
+
 *** Multiple accounts
 You only need copy the code containing "gnus-secondary-select-methods" from my setup.
 
@@ -438,10 +496,15 @@ Here is a sample setup,
 =gnus-secondary-select-methods= is the list of your email accounts.
 
 The information of multiple accounts is stored at ~/.authinfo.gpg.
+
+
 *** Why Gnus displays more mails than Gmail
 Gnus counts by individual mail. Gmail counts by mail thread.
+
+
 *** Subscribe "[Gmail]/Sent Mail" folder
 You can see your *sent mails* in Gnus.
+
 *** Reconnect mail server
 Press =M-x gnus-group-enter-server-mode= to go into server list.
 
