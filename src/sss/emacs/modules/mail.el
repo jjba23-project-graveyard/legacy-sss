@@ -50,6 +50,13 @@
         '(gnus-thread-sort-by-most-recent-date
           (not gnus-thread-sort-by-number))))
 
+(use-package smtpmail
+  :ensure nil
+  :config
+  (setq send-mail-function 'smtpmail-send-it
+        smtpmail-debug-info t
+        smtpmail-debug-verb t))
+
 (provide 'sss/mail)
 
 ;;; mail.el ends here
