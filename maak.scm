@@ -76,6 +76,7 @@
 ;; ====== Maak file tasks ======
 
 (define (update-submodules)
+  "Update all the SSS submodules."
   ($ '("git submodule update --recursive --remote")))
 
 (define (update)
@@ -110,7 +111,7 @@
   (run-system-script 'install-nix-packages))
 
 (define (npi)
-  "`nix-packages-install' alias."
+  "Alias to nix-packages-install."
   (nix-packages-install))
 
 (define (nix-packages-update)
@@ -126,7 +127,7 @@
   (run-system-script 'install-flatpak-packages))
 
 (define (fpi)
-  "`flatpak-packages-install' alias."
+  "Alias to flatpak-packages-install."
   (flatpak-packages-install))
 
 (define (flatpak-packages-update)
@@ -134,7 +135,7 @@
   ($ '("flatpak update --user -y")))
 
 (define (fpu)
-  "`flatpak-packages-update' alias."
+  "Alias to flatpak-packages-update."
   (flatpak-packages-update))
 
 (define (default)
@@ -165,7 +166,7 @@
   ($ '("hyprctl reload || true")))
 
 (define (jr)
-  "`joe-reconfigure' alias."
+  "Alias to joe-reconfigure."
   (joe-reconfigure))
 
 (define (manon-reconfigure)
@@ -173,7 +174,7 @@
   (user-reconfigure 'manon))
 
 (define (mr)
-  "`manon-reconfigure' alias."
+  "Alias to manon-reconfigure."
   (manon-reconfigure))
 
 (define (system-reconfigure)
@@ -189,7 +190,7 @@
           (G_ "Task was completed successfully!")))
 
 (define (sr)
-  "`system-reconfigure' alias."
+  "Alias to system-reconfigure."
   (system-reconfigure))
 
 (define (store-gc)
