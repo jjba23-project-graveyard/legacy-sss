@@ -1,0 +1,67 @@
+;;; SSS - Supreme Sexp System
+
+;; Copyright © Josep Bigorra <jjbigorra@gmail.com>
+
+;; sss is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; sss is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
+
+;; ====== Maak file constants ======
+
+;; The absolute path to the directory where the main project files will be deployed.
+(define deploy-dir
+  "/srv/http/jointhefreeworld.org")
+
+;; The main copyright holders of the project.
+(define copyright-holders
+  '("Josep Bigorra"))
+
+;; The path to the directory where the i18n resources are located.
+(define i18n-dir
+  "./resources/locale")
+
+;; The text domain for the i18n translations.
+(define i18n-textdomain
+  "sss")
+
+;; The Emacs Lisp script to run for publishing the manual. 
+(define emacs-lisp-manual-publish-cmd
+  '(progn (find-file "./docs/manual/en.org")
+          (org-html-export-to-html)
+          (message "finished publishing SSS manual")))
+
+(define emacs-lisp-indent-cmd
+  '(progn (indent-region (point-min)
+                         (point-max) nil)
+          (untabify (point-min)
+                    (point-max))
+          (delete-trailing-whitespace)
+          (save-buffer)))
+
+;; ====== Maak file prelude ======
+
+;; Specify the directory where the MO file is located
+(bindtextdomain i18n-textdomain i18n-dir)
+(bind-textdomain-codeset i18n-textdomain "UTF-8")
+;; Specify the domain of the MO file
+(textdomain i18n-textdomain)
+
+;; ====== Maak file tasks ======
+
+(define (fmt)
+  "Format Scheme source code files according to the Guix style guide."
+  ($ '("find . -maxdepth 8 -name '*.scm'" "-type f -exec guix style -f {} \\;"))
+  ($ (list "find ~+ -maxdepth 8 -name '*.el'"
+           "-type f -exec emacs -Q --batch {} "
+           (~ "--eval ~a" emacs-lisp-indent-cmd)
+           "\\;"))
+  (log-info (gettext "Task was completed successfully!")))
