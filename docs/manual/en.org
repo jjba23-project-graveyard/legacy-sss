@@ -443,6 +443,10 @@ Gruvbox:
 - gruvbox-light
 - gruvbox-dark
 
+Catppuccin:
+- catppuccin-latte
+- catppuccin-mocha  
+
 Other:
 - dracula
 - heavy-metal
