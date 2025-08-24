@@ -65,7 +65,17 @@
   ($ (list "guile -L ./per-host -L ./src"
            (~ "system/scripts/~a.scm" file))))
 
+(define (notify title message)
+  ($ (list (~ "fyi ~a ~a >/dev/null 2>&1" title message))))
+
 ;; ====== Maak file tasks ======
+
+(define (update)
+  "Update the system and channels."
+  ($ '("git pull" "git submodule update --recursive --remote")
+     #:join " && ")
+  ($ '("guix pull")))
+
 
 (define (fmt)
   "Format project source code files."
