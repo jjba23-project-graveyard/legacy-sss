@@ -15,6 +15,10 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with sss.  If not, see <https://www.gnu.org/licenses/>.
 
+(define-module (maak)
+  #:declarative? #t
+  #:use-module (maak maak))
+
 ;; ====== Maak file constants ======
 
 ;; The absolute path to the directory where the main project files will be deployed.
@@ -58,10 +62,9 @@
 ;; ====== Maak file tasks ======
 
 (define (fmt)
-  "Format Scheme source code files according to the Guix style guide."
+  "Format project source code files."
   ($ '("find . -maxdepth 8 -name '*.scm'" "-type f -exec guix style -f {} \\;"))
   ($ (list "find ~+ -maxdepth 8 -name '*.el'"
            "-type f -exec emacs -Q --batch {} "
-           (~ "--eval ~a" emacs-lisp-indent-cmd)
-           "\\;"))
+           (~ "--eval '~a'" emacs-lisp-indent-cmd) "\\;"))
   (log-info (gettext "Task was completed successfully!")))
