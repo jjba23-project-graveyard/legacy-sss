@@ -58,6 +58,8 @@
 (bind-textdomain-codeset i18n-textdomain "UTF-8")
 ;; Specify the domain of the MO file
 (textdomain i18n-textdomain)
+(define G_
+  gettext)
 
 ;; ====== Maak file abstractions ======
 
@@ -65,17 +67,22 @@
   ($ (list "guile -L ./per-host -L ./src"
            (~ "system/scripts/~a.scm" file))))
 
+(define (run-installed-script file)
+  ($ (list (~ "sh ~/.local/bin/~a.sh" file))))
+
 (define (notify title message)
-  ($ (list (~ "fyi ~a ~a >/dev/null 2>&1" title message))))
+  ($ (list (~ "fyi \"~a\" \"~a\" >/dev/null 2>&1" title message))))
 
 ;; ====== Maak file tasks ======
 
+(define (update-submodules)
+  ($ '("git submodule update --recursive --remote")))
+
 (define (update)
   "Update the system and channels."
-  ($ '("git pull" "git submodule update --recursive --remote")
-     #:join " && ")
+  ($ '("git pull"))
+  (update-submodules)
   ($ '("guix pull")))
-
 
 (define (fmt)
   "Format project source code files."
@@ -85,7 +92,8 @@
            "-type f -exec emacs -Q --batch {} "
            (~ "--eval '~a'" emacs-lisp-indent-cmd) "\\;")
      #:verbose? #t)
-  (log-info (gettext "Task was completed successfully!")))
+  ($ (list "mbake format --config .mbake.toml Makefile")
+     #:verbose? #t))
 
 (define (repl)
   "Development REPL."
@@ -98,18 +106,96 @@
                     "-c '((@ (veritas runner) run-tests))'")))
 
 (define (nix-packages-install)
+  "Install Nix packages for SSS."
   (run-system-script 'install-nix-packages))
 
 (define (npi)
+  "`nix-packages-install' alias."
   (nix-packages-install))
 
-(define (nix-profile-upgrade)
+(define (nix-packages-update)
+  "Update all Nix packages for SSS."
   (run-system-script 'update-nix-packages))
 
 (define (npu)
-  (nix-profile-upgrade))
+  "`nix-packages-update' alias."
+  (nix-packages-update))
+
+(define (flatpak-packages-install)
+  "Install Flatpak packages for SSS."
+  (run-system-script 'install-flatpak-packages))
+
+(define (fpi)
+  "`flatpak-packages-install' alias."
+  (flatpak-packages-install))
+
+(define (flatpak-packages-update)
+  "Update all Flatpak packages for SSS."
+  ($ '("flatpak update --user -y")))
+
+(define (fpu)
+  "`flatpak-packages-update' alias."
+  (flatpak-packages-update))
 
 (define (default)
   "Default task to be run, list available tasks."
   ($ '("maak --list")))
 
+(define (document-keybindings-dconf)
+  "Write SSS keybinding documentation to dconf."
+  (run-system-script 'document-keybindings-dconf))
+
+(define (user-reconfigure user)
+  (fmt)
+  (test)
+  ($ (list "guix home reconfigure " "-L ./per-host -L ./src"
+           (~ "./home/~a.scm" user) "--fallback"))
+  ($ '("fc-cache -frv >/dev/null 2>&1 &"))
+  (run-installed-script 'write-gtk-dconf-settings)
+  (run-installed-script 'write-sss-dconf-settings)
+  ($ '("herd trigger set-random-wallpaper"))
+  (document-keybindings-dconf)
+  (log-info (G_ "Task was completed successfully!"))
+  (notify (G_ "SSS user-reconfigure")
+          (G_ "Task was completed successfully!")))
+
+(define (joe-reconfigure)
+  "Re-configure Joe's Guix Home."
+  (user-reconfigure 'joe)
+  ($ '("hyprctl reload || true")))
+
+(define (jr)
+  "`joe-reconfigure' alias."
+  (joe-reconfigure))
+
+(define (manon-reconfigure)
+  "Re-configure Manon's Guix Home."
+  (user-reconfigure 'manon))
+
+(define (mr)
+  "`manon-reconfigure' alias."
+  (manon-reconfigure))
+
+(define (system-reconfigure)
+  "Re-configure the Guix system."
+  (fmt)
+  (test)
+  ($ '("sudo guix system reconfigure"
+       "-L ./per-host -L ./system/packages -L ./src" "./system/config.scm"
+       "--fallback --on-error=backtrace"))
+  ($ '("sudo fc-cache -frv >/dev/null 2>&1 &"))
+  (log-info (G_ "Task was completed successfully!"))
+  (notify (G_ "SSS system-reconfigure")
+          (G_ "Task was completed successfully!")))
+
+(define (sr)
+  "`system-reconfigure' alias."
+  (system-reconfigure))
+
+(define (store-gc)
+  "Clean up unused objects in the Guix store."
+  ($ '("sudo guix gc")))
+
+(define (clone-user-repos)
+  "Clones user's desired Git repositories."
+  (run-system-script 'clone-user-repos))
