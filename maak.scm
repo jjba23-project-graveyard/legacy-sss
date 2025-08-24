@@ -59,6 +59,12 @@
 ;; Specify the domain of the MO file
 (textdomain i18n-textdomain)
 
+;; ====== Maak file abstractions ======
+
+(define (run-system-script file)
+  ($ (list "guile -L ./per-host -L ./src"
+           (~ "system/scripts/~a.scm" file))))
+
 ;; ====== Maak file tasks ======
 
 (define (fmt)
@@ -70,3 +76,26 @@
            (~ "--eval '~a'" emacs-lisp-indent-cmd) "\\;")
      #:verbose? #t)
   (log-info (gettext "Task was completed successfully!")))
+
+(define (repl)
+  "Development REPL."
+  (manifest-shell '("guile -L ./src -L ./per-host -L ./system/packages/"
+                    "-c '((@ (ares server) run-nrepl-server))'")))
+
+(define (test)
+  "Unit tests."
+  (manifest-shell '("guile -L ./src -L ./per-host -L ./test"
+                    "-c '((@ (veritas runner) run-tests))'")))
+
+(define (nix-packages-install)
+  (run-system-script 'install-nix-packages))
+
+(define (npi)
+  (nix-packages-install))
+
+(define (nix-profile-upgrade)
+  (run-system-script 'update-nix-packages))
+
+(define (npu)
+  (nix-profile-upgrade))
+
