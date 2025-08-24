@@ -37,6 +37,9 @@
 (define i18n-textdomain
   "sss")
 
+(define i18n-locales
+  '(en_US nl_NL))
+
 ;; The Emacs Lisp script to run for publishing the manual. 
 (define emacs-lisp-manual-publish-cmd
   '(progn (find-file "./docs/manual/en.org")
@@ -62,6 +65,9 @@
   gettext)
 
 ;; ====== Maak file abstractions ======
+
+(define (log-done)
+  (log-info (G_ "Task was completed successfully!")))
 
 (define (run-system-script file)
   ($ (list "guile -L ./per-host -L ./src"
@@ -156,7 +162,7 @@
   (run-installed-script 'write-sss-dconf-settings)
   ($ '("herd trigger set-random-wallpaper"))
   (document-keybindings-dconf)
-  (log-info (G_ "Task was completed successfully!"))
+  (log-done)
   (notify (G_ "SSS user-reconfigure")
           (G_ "Task was completed successfully!")))
 
@@ -185,7 +191,7 @@
        "-L ./per-host -L ./system/packages -L ./src" "./system/config.scm"
        "--fallback --on-error=backtrace"))
   ($ '("sudo fc-cache -frv >/dev/null 2>&1 &"))
-  (log-info (G_ "Task was completed successfully!"))
+  (log-done)
   (notify (G_ "SSS system-reconfigure")
           (G_ "Task was completed successfully!")))
 
@@ -200,3 +206,56 @@
 (define (clone-user-repos)
   "Clones user's desired Git repositories."
   (run-system-script 'clone-user-repos))
+
+(define (i18n-compile* lang)
+  "Compile the translation file (.po) into a machine-readable (.mo) format
+
+Args: lang represents the language code (e.g., en_US, nl_NL, etc.)
+
+Use msgfmt to compile the .po file into a .mo file for the specified language
+The output .mo file will be placed in the LC_MESSAGES directory under the language's folder."
+  ($ (list (~ "msgfmt -v -o ~a/~a/LC_MESSAGES/~a.mo" i18n-dir lang
+              i18n-textdomain)
+           (~ "~a/~a/LC_MESSAGES/~a.po" i18n-dir lang i18n-textdomain))))
+
+(define (i18n-compile)
+  "Compile the translation files for all locales."
+  (for-each i18n-compile* i18n-locales))
+
+(define (i18n-init* lang)
+  "Initialize a new translation file from a template (.pot) for a specific language.
+
+Args: lang represents the language code (e.g., en_US, nl_NL, etc.)
+
+Use msginit to generate a .po file from the .pot template for the specified language
+The -l option sets the language, and --no-translator means no translator is pre-filled in the .po file
+The generated .po file is placed in the LC_MESSAGES directory for the given language"
+  (mkdir-p (~ "~a/~a/LC_MESSAGES" i18n-dir lang))
+  ($ (list (~ "msginit -l ~a.UTF8 -o" lang)
+           (~ "~a/~a/LC_MESSAGES/~a.po" i18n-dir lang i18n-textdomain)
+           (~ "-i ~a/~a.pot --no-translator" i18n-dir i18n-textdomain))
+     #:verbose? #t))
+
+(define (i18n-init-en)
+  "Initialize a new translation file for en_US."
+  (i18n-init* 'en_US))
+
+(define (i18n-init-nl)
+  "Initialize a new translation file for nl_NL."
+  (i18n-init* 'nl_NL))
+
+(define (i18n-merge* lang)
+  "Merge translation updates from the template (.pot) into an existing .po file.
+
+Args: $(1) represents the language code (e.g., en_US, nl_NL, etc.)
+
+Use msgmerge to update the specified language's .po file with new translations from the template (.pot)
+The -U flag updates the .po file in place
+This ensures the .po file stays up-to-date with the latest changes in the template"
+  ($ (list "msgmerge -U"
+           (~ "~a/~a/LC_MESSAGES/~a.po" i18n-dir lang i18n-textdomain)
+           (~ "~a/~a.pot" i18n-dir i18n-textdomain))))
+
+(define (i18n-merge)
+  "Merge translation updates for all locales."
+  (for-each i18n-merge* i18n-locales))
