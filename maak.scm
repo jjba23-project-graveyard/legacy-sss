@@ -46,6 +46,7 @@
           (org-html-export-to-html)
           (message "finished publishing SSS manual")))
 
+;; The Emacs Lisp script to run for indenting ELisp files.
 (define emacs-lisp-indent-cmd
   '(progn (indent-region (point-min)
                          (point-max) nil)
@@ -237,6 +238,21 @@ Args: update? represents whether we should update a template or create a new one
 (define (clone-user-repos)
   "Clones user's desired Git repositories."
   (run-system-script 'clone-user-repos))
+
+(define (build-manual)
+  "Render the project's manual."
+  (manifest-shell (list (~ "emacs -Q --batch --eval '~a'"
+                           emacs-lisp-manual-publish-cmd))))
+
+(define (deploy)
+  "Deploy the project's documentation."
+  (build-manual)
+  (mkdir-p (~ "~a/manuals/sss" deploy-dir))
+  (delete-file-recursively (~ "~a/manuals/sss/index.html" deploy-dir))
+  (mv "docs/manual/en.html"
+      (~ "~a/manuals/sss/index.html" deploy-dir)))
+
+;; ====== Maak i18n tasks ======
 
 (define (i18n-compile)
   "Compile the translation files for all locales."
