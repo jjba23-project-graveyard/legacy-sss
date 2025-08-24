@@ -247,7 +247,7 @@ The generated .po file is placed in the LC_MESSAGES directory for the given lang
 (define (i18n-merge* lang)
   "Merge translation updates from the template (.pot) into an existing .po file.
 
-Args: $(1) represents the language code (e.g., en_US, nl_NL, etc.)
+Args: lang represents the language code (e.g., en_US, nl_NL, etc.)
 
 Use msgmerge to update the specified language's .po file with new translations from the template (.pot)
 The -U flag updates the .po file in place
@@ -259,3 +259,31 @@ This ensures the .po file stays up-to-date with the latest changes in the templa
 (define (i18n-merge)
   "Merge translation updates for all locales."
   (for-each i18n-merge* i18n-locales))
+
+(define* (i18n-extract* #:key (update? #t))
+  "Extract translatable strings from Scheme source files using xgettext.
+Args: update? represents whether we should update a template or create a new one."
+  ($ (list (~ "xgettext --default-domain=~a" i18n-textdomain)
+           (~ "--output=~a/~a.pot" i18n-dir i18n-textdomain)
+           "--language=Scheme --keyword=G_"
+           "--sort-by-file"
+           (if update? "--join-existing" "")
+           (~ "--copyright-holder=\"~a\""
+              (string-join copyright-holders ","))
+           (~ "--package-name=~a" i18n-textdomain)
+           "system/scripts/*.scm"
+           "system/*.scm"
+           "src/sss/*.scm"
+           "src/sss/hyprland/*.scm"
+           "system/packages/sss-packages/*.scm"
+           "home/*.scm"
+           "--from-code UTF-8")
+     #:verbose? #t))
+
+(define (i18n-new-template)
+  "Create a new i18n template based on strings extracted from source code."
+  (i18n-extract* #:update? #f))
+
+(define (i18n-update-template)
+  "Update the i18n template based on strings extracted from source code."
+  (i18n-extract* #:update? #t))
