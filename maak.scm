@@ -99,3 +99,7 @@
 (define (npu)
   (nix-profile-upgrade))
 
+(define (default)
+  "Default task to be run, list available tasks."
+  ($ '("maak --list")))
+
