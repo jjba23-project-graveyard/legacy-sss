@@ -63,8 +63,10 @@
 
 (define (fmt)
   "Format project source code files."
-  ($ '("find . -maxdepth 8 -name '*.scm'" "-type f -exec guix style -f {} \\;"))
+  ($ '("find . -maxdepth 8 -name '*.scm'" "-type f -exec guix style -f {} \\;")
+     #:verbose? #t)
   ($ (list "find ~+ -maxdepth 8 -name '*.el'"
            "-type f -exec emacs -Q --batch {} "
-           (~ "--eval '~a'" emacs-lisp-indent-cmd) "\\;"))
+           (~ "--eval '~a'" emacs-lisp-indent-cmd) "\\;")
+     #:verbose? #t)
   (log-info (gettext "Task was completed successfully!")))
