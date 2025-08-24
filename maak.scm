@@ -171,7 +171,7 @@ Args: update? represents whether we should update a template or create a new one
      #:verbose? #t)
   ($ (list "find ~+ -maxdepth 8 -name '*.el'"
            "-type f -exec emacs -Q --batch {} "
-           (~ "--eval '~a'" emacs-lisp-indent-cmd) "\\;")
+           (~ "--eval '~s'" emacs-lisp-indent-cmd) "\\;")
      #:verbose? #t)
   ($ (list "mbake format --config .mbake.toml Makefile")
      #:verbose? #t))
@@ -241,8 +241,9 @@ Args: update? represents whether we should update a template or create a new one
 
 (define (build-manual)
   "Render the project's manual."
-  (manifest-shell (list (~ "emacs -Q --batch --eval '~a'"
-                           emacs-lisp-manual-publish-cmd))))
+  (manifest-shell (list (~ "emacs -Q --batch --eval '~s'"
+                           emacs-lisp-manual-publish-cmd))
+                  #:verbose? #t))
 
 (define (deploy)
   "Deploy the project's documentation."
