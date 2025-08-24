@@ -19,7 +19,7 @@
   #:declarative? #t
   #:use-module (maak maak))
 
-;; ====== Maak file constants ======
+;; ====== Maak constants ======
 
 ;; The absolute path to the directory where the main project files will be deployed.
 (define deploy-dir
@@ -54,7 +54,7 @@
           (delete-trailing-whitespace)
           (save-buffer)))
 
-;; ====== Maak file prelude ======
+;; ====== Maak prelude ======
 
 ;; Specify the directory where the MO file is located
 (bindtextdomain i18n-textdomain i18n-dir)
@@ -64,7 +64,7 @@
 (define G_
   gettext)
 
-;; ====== Maak file abstractions ======
+;; ====== Maak abstractions ======
 
 (define (log-done)
   (log-info (G_ "Task was completed successfully!")))
@@ -79,7 +79,80 @@
 (define (notify title message)
   ($ (list (~ "fyi \"~a\" \"~a\" >/dev/null 2>&1" title message))))
 
-;; ====== Maak file tasks ======
+(define (user-reconfigure user)
+  (fmt)
+  (test)
+  ($ (list "guix home reconfigure " "-L ./per-host -L ./src"
+           (~ "./home/~a.scm" user) "--fallback"))
+  ($ '("fc-cache -frv >/dev/null 2>&1 &"))
+  (run-installed-script 'write-gtk-dconf-settings)
+  (run-installed-script 'write-sss-dconf-settings)
+  ($ '("herd trigger set-random-wallpaper"))
+  (document-keybindings-dconf)
+  (log-done)
+  (notify (G_ "SSS user-reconfigure")
+          (G_ "Task was completed successfully!")))
+
+;; ====== Maak i18n abstractions ======
+
+(define (i18n-compile* lang)
+  "Compile the translation file (.po) into a machine-readable (.mo) format
+
+Args: lang represents the language code (e.g., en_US, nl_NL, etc.)
+
+Use msgfmt to compile the .po file into a .mo file for the specified language
+The output .mo file will be placed in the LC_MESSAGES directory under the language's folder."
+  ($ (list (~ "msgfmt -v -o ~a/~a/LC_MESSAGES/~a.mo" i18n-dir lang
+              i18n-textdomain)
+           (~ "~a/~a/LC_MESSAGES/~a.po" i18n-dir lang i18n-textdomain))))
+
+(define (i18n-init* lang)
+  "Initialize a new translation file from a template (.pot) for a specific language.
+
+Args: lang represents the language code (e.g., en_US, nl_NL, etc.)
+
+Use msginit to generate a .po file from the .pot template for the specified language
+The -l option sets the language, and --no-translator means no translator is pre-filled in the .po file
+The generated .po file is placed in the LC_MESSAGES directory for the given language"
+  (mkdir-p (~ "~a/~a/LC_MESSAGES" i18n-dir lang))
+  ($ (list (~ "msginit -l ~a.UTF8 -o" lang)
+           (~ "~a/~a/LC_MESSAGES/~a.po" i18n-dir lang i18n-textdomain)
+           (~ "-i ~a/~a.pot --no-translator" i18n-dir i18n-textdomain))
+     #:verbose? #t))
+
+(define (i18n-merge* lang)
+  "Merge translation updates from the template (.pot) into an existing .po file.
+
+Args: lang represents the language code (e.g., en_US, nl_NL, etc.)
+
+Use msgmerge to update the specified language's .po file with new translations from the template (.pot)
+The -U flag updates the .po file in place
+This ensures the .po file stays up-to-date with the latest changes in the template"
+  ($ (list "msgmerge -U"
+           (~ "~a/~a/LC_MESSAGES/~a.po" i18n-dir lang i18n-textdomain)
+           (~ "~a/~a.pot" i18n-dir i18n-textdomain))))
+
+(define* (i18n-extract* #:key (update? #t))
+  "Extract translatable strings from Scheme source files using xgettext.
+Args: update? represents whether we should update a template or create a new one."
+  ($ (list (~ "xgettext --default-domain=~a" i18n-textdomain)
+           (~ "--output=~a/~a.pot" i18n-dir i18n-textdomain)
+           "--language=Scheme --keyword=G_"
+           "--sort-by-file"
+           (if update? "--join-existing" "")
+           (~ "--copyright-holder=\"~a\""
+              (string-join copyright-holders ","))
+           (~ "--package-name=~a" i18n-textdomain)
+           "system/scripts/*.scm"
+           "system/*.scm"
+           "src/sss/*.scm"
+           "src/sss/hyprland/*.scm"
+           "system/packages/sss-packages/*.scm"
+           "home/*.scm"
+           "--from-code UTF-8")
+     #:verbose? #t))
+
+;; ====== Maak tasks ======
 
 (define (update-submodules)
   "Update all the SSS submodules."
@@ -116,33 +189,17 @@
   "Install Nix packages for SSS."
   (run-system-script 'install-nix-packages))
 
-(define (npi)
-  "Alias to nix-packages-install."
-  (nix-packages-install))
-
 (define (nix-packages-update)
   "Update all Nix packages for SSS."
   (run-system-script 'update-nix-packages))
-
-(define (npu)
-  "`nix-packages-update' alias."
-  (nix-packages-update))
 
 (define (flatpak-packages-install)
   "Install Flatpak packages for SSS."
   (run-system-script 'install-flatpak-packages))
 
-(define (fpi)
-  "Alias to flatpak-packages-install."
-  (flatpak-packages-install))
-
 (define (flatpak-packages-update)
   "Update all Flatpak packages for SSS."
   ($ '("flatpak update --user -y")))
-
-(define (fpu)
-  "Alias to flatpak-packages-update."
-  (flatpak-packages-update))
 
 (define (default)
   "Default task to be run, list available tasks."
@@ -152,36 +209,14 @@
   "Write SSS keybinding documentation to dconf."
   (run-system-script 'document-keybindings-dconf))
 
-(define (user-reconfigure user)
-  (fmt)
-  (test)
-  ($ (list "guix home reconfigure " "-L ./per-host -L ./src"
-           (~ "./home/~a.scm" user) "--fallback"))
-  ($ '("fc-cache -frv >/dev/null 2>&1 &"))
-  (run-installed-script 'write-gtk-dconf-settings)
-  (run-installed-script 'write-sss-dconf-settings)
-  ($ '("herd trigger set-random-wallpaper"))
-  (document-keybindings-dconf)
-  (log-done)
-  (notify (G_ "SSS user-reconfigure")
-          (G_ "Task was completed successfully!")))
-
 (define (joe-reconfigure)
   "Re-configure Joe's Guix Home."
   (user-reconfigure 'joe)
   ($ '("hyprctl reload || true")))
 
-(define (jr)
-  "Alias to joe-reconfigure."
-  (joe-reconfigure))
-
 (define (manon-reconfigure)
   "Re-configure Manon's Guix Home."
   (user-reconfigure 'manon))
-
-(define (mr)
-  "Alias to manon-reconfigure."
-  (manon-reconfigure))
 
 (define (system-reconfigure)
   "Re-configure the Guix system."
@@ -195,10 +230,6 @@
   (notify (G_ "SSS system-reconfigure")
           (G_ "Task was completed successfully!")))
 
-(define (sr)
-  "Alias to system-reconfigure."
-  (system-reconfigure))
-
 (define (store-gc)
   "Clean up unused objects in the Guix store."
   ($ '("sudo guix gc")))
@@ -207,34 +238,9 @@
   "Clones user's desired Git repositories."
   (run-system-script 'clone-user-repos))
 
-(define (i18n-compile* lang)
-  "Compile the translation file (.po) into a machine-readable (.mo) format
-
-Args: lang represents the language code (e.g., en_US, nl_NL, etc.)
-
-Use msgfmt to compile the .po file into a .mo file for the specified language
-The output .mo file will be placed in the LC_MESSAGES directory under the language's folder."
-  ($ (list (~ "msgfmt -v -o ~a/~a/LC_MESSAGES/~a.mo" i18n-dir lang
-              i18n-textdomain)
-           (~ "~a/~a/LC_MESSAGES/~a.po" i18n-dir lang i18n-textdomain))))
-
 (define (i18n-compile)
   "Compile the translation files for all locales."
   (for-each i18n-compile* i18n-locales))
-
-(define (i18n-init* lang)
-  "Initialize a new translation file from a template (.pot) for a specific language.
-
-Args: lang represents the language code (e.g., en_US, nl_NL, etc.)
-
-Use msginit to generate a .po file from the .pot template for the specified language
-The -l option sets the language, and --no-translator means no translator is pre-filled in the .po file
-The generated .po file is placed in the LC_MESSAGES directory for the given language"
-  (mkdir-p (~ "~a/~a/LC_MESSAGES" i18n-dir lang))
-  ($ (list (~ "msginit -l ~a.UTF8 -o" lang)
-           (~ "~a/~a/LC_MESSAGES/~a.po" i18n-dir lang i18n-textdomain)
-           (~ "-i ~a/~a.pot --no-translator" i18n-dir i18n-textdomain))
-     #:verbose? #t))
 
 (define (i18n-init-en)
   "Initialize a new translation file for en_US."
@@ -244,41 +250,9 @@ The generated .po file is placed in the LC_MESSAGES directory for the given lang
   "Initialize a new translation file for nl_NL."
   (i18n-init* 'nl_NL))
 
-(define (i18n-merge* lang)
-  "Merge translation updates from the template (.pot) into an existing .po file.
-
-Args: lang represents the language code (e.g., en_US, nl_NL, etc.)
-
-Use msgmerge to update the specified language's .po file with new translations from the template (.pot)
-The -U flag updates the .po file in place
-This ensures the .po file stays up-to-date with the latest changes in the template"
-  ($ (list "msgmerge -U"
-           (~ "~a/~a/LC_MESSAGES/~a.po" i18n-dir lang i18n-textdomain)
-           (~ "~a/~a.pot" i18n-dir i18n-textdomain))))
-
 (define (i18n-merge)
   "Merge translation updates for all locales."
   (for-each i18n-merge* i18n-locales))
-
-(define* (i18n-extract* #:key (update? #t))
-  "Extract translatable strings from Scheme source files using xgettext.
-Args: update? represents whether we should update a template or create a new one."
-  ($ (list (~ "xgettext --default-domain=~a" i18n-textdomain)
-           (~ "--output=~a/~a.pot" i18n-dir i18n-textdomain)
-           "--language=Scheme --keyword=G_"
-           "--sort-by-file"
-           (if update? "--join-existing" "")
-           (~ "--copyright-holder=\"~a\""
-              (string-join copyright-holders ","))
-           (~ "--package-name=~a" i18n-textdomain)
-           "system/scripts/*.scm"
-           "system/*.scm"
-           "src/sss/*.scm"
-           "src/sss/hyprland/*.scm"
-           "system/packages/sss-packages/*.scm"
-           "home/*.scm"
-           "--from-code UTF-8")
-     #:verbose? #t))
 
 (define (i18n-new-template)
   "Create a new i18n template based on strings extracted from source code."
@@ -287,3 +261,33 @@ Args: update? represents whether we should update a template or create a new one
 (define (i18n-update-template)
   "Update the i18n template based on strings extracted from source code."
   (i18n-extract* #:update? #t))
+
+;; ====== Maak aliases ======
+
+(define (npi)
+  "Alias to nix-packages-install."
+  (nix-packages-install))
+
+(define (npu)
+  "Alias to nix-packages-update."
+  (nix-packages-update))
+
+(define (fpi)
+  "Alias to flatpak-packages-install."
+  (flatpak-packages-install))
+
+(define (fpu)
+  "Alias to flatpak-packages-update."
+  (flatpak-packages-update))
+
+(define (sr)
+  "Alias to system-reconfigure."
+  (system-reconfigure))
+
+(define (jr)
+  "Alias to joe-reconfigure."
+  (joe-reconfigure))
+
+(define (mr)
+  "Alias to manon-reconfigure."
+  (manon-reconfigure))
