@@ -45,6 +45,9 @@
     (auto-fill-mode 0)
     (org-restart-font-lock)
     (olivetti-mode)
+    (font-lock-add-keywords
+     nil
+     '(("^-\\{5,\\}"  0 '(:foreground "gray" :weight light))))
     (ignore-errors (sss-set-base-faces))))
 
 (use-package org-roam-ui
