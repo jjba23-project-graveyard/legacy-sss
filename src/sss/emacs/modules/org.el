@@ -47,7 +47,7 @@
     (olivetti-mode)
     (font-lock-add-keywords
      nil
-     '(("^-\\{5,\\}"  0 '(:foreground "gray" :weight light))))
+     '(("^-\\{5,\\}"  0 '(:inherit font-lock-comment-face))))
     (ignore-errors (sss-set-base-faces))))
 
 (use-package org-roam-ui
