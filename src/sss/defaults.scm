@@ -207,6 +207,7 @@
   '(app.drey.Dialect app.drey.Warp
                      app.zen_browser.zen
                      com.anydesk.Anydesk
+                     com.usebruno.Bruno
                      com.belmoussaoui.Decoder
                      com.github.hugolabe.Wike
                      com.github.tchx84.Flatseal
