@@ -215,13 +215,14 @@
         gtk
         graphviz
         hplip
-        httpie
+        ;; httpie
         icedove
         imagemagick
         inkscape
         jq
         kubectl
         libreoffice
+        libavif
         light
         lm-sensors
         lxsession

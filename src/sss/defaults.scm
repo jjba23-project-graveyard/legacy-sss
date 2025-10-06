@@ -226,6 +226,7 @@
                      io.github.revisto.drum-machine
                      io.github.seadve.Mousai
                      io.gitlab.adhami3310.Converter
+                     org.prismlauncher.PrismLauncher
                      org.gaphor.Gaphor
                      org.gnome.design.Emblem
                      org.gnome.design.Lorem
