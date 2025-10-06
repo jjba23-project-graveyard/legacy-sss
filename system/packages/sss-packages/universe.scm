@@ -220,6 +220,7 @@
         imagemagick
         inkscape
         jq
+        just
         kubectl
         libreoffice
         libavif
