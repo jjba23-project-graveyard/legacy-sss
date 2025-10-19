@@ -60,9 +60,21 @@
                       keyboard-layout
                       caps-to-ctrl?)
   (list (rul 'input
-             (list (rul 'keyboard
-                        (list (rul 'xkb
-                                   (list (dec 'layout keyboard-layout)))))))))
+             (rul 'keyboard
+                  (rul 'xkb
+                       (dec 'layout keyboard-layout)
+                       (dec 'options
+                            (if caps-to-ctrl? "ctrl:nocaps" "")))
+                  (dec 'numlock #t))
+             (rul 'touchpad
+                  (dec 'tap #t)))
+        (rul 'layout
+             (dec 'gaps 16)
+             (dec 'center-focused-column "never")
+             (rul 'preset-column-widths
+                  (dec 'proportion 0.333333)
+                  (dec 'proportion 0.5)
+                  (dec 'proportion 0.666666)))))
 
 (define* (niri-capability #:key palette
                           sans-font
@@ -109,7 +121,8 @@
                                         (else (format #f "~a" xx)))
 
                                       )
-                                    (rule-declarations xs)) " "))
+                                    (rule-declarations xs))
+                               (format #f "\n~a" indent)))
                  (else (begin
                          (serialize-declaration (rule-declarations xs)))))
                indent))
@@ -118,9 +131,16 @@
       (else (format #f "~a" xs)))))
 
 (define (serialize-declaration xs)
-  (format #f "~a:~a;"
+  (format #f "~a ~a"
           (declaration-property xs)
-          (declaration-value xs)))
+          (cond
+            ((eq? #t
+                  (declaration-value xs))
+             "")
+            ((string? (declaration-value xs))
+             (format #f "\"~a\""
+                     (declaration-value xs)))
+            (else (declaration-value xs)))))
 
 (define niri-cfg
   (niri-config #:palette 'dracula
