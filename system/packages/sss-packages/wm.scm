@@ -30,7 +30,8 @@
   #:export (wm-packages))
 
 (define wm-packages
-  (make-parameter (list rofi-wayland
+  (make-parameter (list niri
+                        rofi-wayland
                         fzf
                         slurp
                         waybar-experimental

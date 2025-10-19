@@ -74,7 +74,9 @@
              (rul 'preset-column-widths
                   (dec 'proportion 0.333333)
                   (dec 'proportion 0.5)
-                  (dec 'proportion 0.666666)))))
+                  (dec 'proportion 0.666666))
+             (rul 'default-column-width
+                  (dec 'proportion 0.5)))))
 
 (define* (niri-capability #:key palette
                           sans-font
@@ -82,16 +84,18 @@
                           keyboard-layout
                           caps-to-ctrl?)
   `((".config/niri/config.kdl" ,(plain-file "config.kdl"
-                                            (serialize-kdl (niri-config
-                                                            #:palette palette
-                                                            #:sans-font
-                                                            sans-font
-                                                            #:mono-font
-                                                            mono-font
-                                                            #:keyboard-layout
-                                                            keyboard-layout
-                                                            #:caps-to-ctrl?
-                                                            caps-to-ctrl?))))))
+                                            (string-join (serialize-kdl (niri-config
+                                                                         #:palette
+                                                                         palette
+                                                                         #:sans-font
+                                                                         sans-font
+                                                                         #:mono-font
+                                                                         mono-font
+                                                                         #:keyboard-layout
+                                                                         keyboard-layout
+                                                                         #:caps-to-ctrl?
+                                                                         caps-to-ctrl?))
+                                                         "\n")))))
 
 (define* (serialize-kdl xs
                         #:key (indent ""))
@@ -142,12 +146,12 @@
                      (declaration-value xs)))
             (else (declaration-value xs)))))
 
-(define niri-cfg
-  (niri-config #:palette 'dracula
-               #:sans-font "IBM Plex Sans"
-               #:mono-font "IBM Plex Mono"
-               #:keyboard-layout "us"
-               #:caps-to-ctrl? #t))
+;; (define niri-cfg
+;;   (niri-config #:palette 'dracula
+;;                #:sans-font "IBM Plex Sans"
+;;                #:mono-font "IBM Plex Mono"
+;;                #:keyboard-layout "us"
+;;                #:caps-to-ctrl? #t))
 
-(display (string-join (serialize-kdl niri-cfg) "\n"))
+;; (display (string-join (serialize-kdl niri-cfg) "\n"))
 
