@@ -42,6 +42,7 @@
                       pretty-quote
                       string-drop-first-last-n
                       syscall
+                      flatten-list
                       mk-lines
                       mk-kv-conf-lines
                       serialize-rec-conf-item
@@ -247,3 +248,11 @@ security vulnerabilities (e.g. shell injection attacks)."
 (define (nix-profile-install x)
   (syscall (format #f "nix -L profile install --impure nixpkgs#~a" x)))
 
+(define (flatten-list xs)
+  (cond
+    ((null? xs)
+     '())
+    ((pair? xs)
+     (append (flatten-list (car xs))
+             (flatten-list (cdr xs))))
+    (else (list xs))))
