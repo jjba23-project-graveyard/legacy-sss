@@ -390,7 +390,7 @@
          (xs (append extra-startups
                      `("mako"
                        ;; "lxsession"
-                       ;; "dbus-update-activation-environment --all"
+                       "dbus-update-activation-environment --all"
                        "waybar"
                        "herd trigger set-random-wallpaper"
                        "alacritty --daemon"
