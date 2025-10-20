@@ -109,10 +109,10 @@
                          (y 5))))
             (dec 'color "#0007"))
        (rul 'struts
-            (dec 'left 12)
-            (dec 'right 12)
-            (dec 'top 12)
-            (dec 'bottom 12))))
+            (dec 'left 6)
+            (dec 'right 6)
+            (dec 'top 6)
+            (dec 'bottom 6))))
 
 (define (niri-intro)
   "// ====== SSS Niri configuration ======
@@ -169,7 +169,8 @@
         (bnd #:mod "C-M"
              #:bind "DEL"
              #:cmd "quit")
-
+        ;;
+        
         ;;
         (bnd #:mod "s"
              #:bind "T"
@@ -240,6 +241,45 @@
         (bnd #:mod "s-S"
              #:bind "Right"
              #:cmd "move-column-right")
+        ;;
+        (bnd #:mod "C-M"
+             #:bind "Left"
+             #:cmd "focus-monitor-left")
+        (bnd #:mod "C-M"
+             #:bind "Down"
+             #:cmd "focus-monitor-down")
+        (bnd #:mod "C-M"
+             #:bind "Up"
+             #:cmd "focus-monitor-up")
+        (bnd #:mod "C-M"
+             #:bind "Right"
+             #:cmd "focus-monitor-right")
+        (bnd #:mod "C-M-S"
+             #:bind "Left"
+             #:cmd "move-column-to-monitor-left")
+        (bnd #:mod "C-M-S"
+             #:bind "Down"
+             #:cmd "move-column-to-monitor-down")
+        (bnd #:mod "C-M-S"
+             #:bind "Up"
+             #:cmd "move-column-to-monitor-up")
+        (bnd #:mod "C-M-S"
+             #:bind "Right"
+             #:cmd "move-column-to-monitor-right")
+        (bnd #:mod "s"
+             #:bind "Page_Down"
+             #:cmd "focus-workspace-down")
+        (bnd #:mod "s"
+             #:bind "Page_Up"
+             #:cmd "focus-workspace-up")
+        (bnd #:mod "s-S"
+             #:bind "Page_Down"
+             #:cmd "move-column-to-workspace-down")
+        (bnd #:mod "s-S"
+             #:bind "Page_Up"
+             #:cmd "move-column-to-workspace-up")
+
+        ;;
         (bnd #:mod "s"
              #:bind "-"
              #:cmd "set-column-width \"-10%\"")
@@ -278,6 +318,8 @@
      "Ctrl+Alt")
     ((equal? "M" mod)
      "Alt")
+    ((equal? "C-M-S" mod)
+     "Ctrl+Alt+Shift")
     (else mod)))
 
 (define (niri-translate-bind bind)
