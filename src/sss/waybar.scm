@@ -192,18 +192,14 @@
            (hex-to-rgba (get-color palette
                                    'text-l)
                         #:alpha 1))
-    (padding . "9px")
     (font-family unquote
                  (format #f "FontAwesome, ~a" sans-font))
 
     (margin-top . "5px")
     (margin-bottom . "5px")
-    (margin-left . "5px")
-    (margin-right . "5px")
-    (font-size . "12pt")
-    (padding-left . "10px")
-    (padding-right . "10px")
-    (border-radius . "16px")))
+    (margin-left . "14px")
+    (margin-right . "14px")
+    (font-size . "12pt")))
 
 (define* (waybar-section-css)
   `((font-weight . 500)))
