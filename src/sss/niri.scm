@@ -243,7 +243,25 @@
         (bnd #:mod "s"
              #:bind "="
              #:cmd "set-column-width \"+10%\"")
-
+        (bnd #:mod "s-S"
+             #:bind "-"
+             #:cmd "set-window-height \"-10%\"")
+        (bnd #:mod "s-S"
+             #:bind "="
+             #:cmd "set-window-height \"+10%\"")
+        (bnd #:mod "s"
+             #:bind "F"
+             #:cmd "maximize-column")
+        (bnd #:mod "s-S"
+             #:bind "F"
+             #:cmd "fullscreen-window")
+        (bnd #:mod "s"
+             #:bind "C"
+             #:cmd "center-column")
+        (bnd #:mod "s"
+             #:bind "ESC"
+             #:cmd "toggle-keyboard-shortcuts-inhibit"
+             #:allow-inhibiting? #f)
         ;;
         ))
 
@@ -281,12 +299,14 @@
      "Equal")
     ((equal? "/" bind)
      "slash")
+    ((equal? "ESC" bind)
+     "Escape")
     (else bind)))
 
 (define (serialize-bindings xs)
   (string-join (map (lambda (b)
                       (format #f
-                              "~a~a~a{ ~a; }"
+                              "~a~a~a~a{ ~a; }"
                               (niri-translate-mod (assoc-ref b
                                                              'mod))
                               (if (not (assoc-ref b
@@ -297,15 +317,22 @@
                               (if (assoc-ref b
                                              'allow-when-locked?)
                                   " allow-when-locked=true " " ")
+                              (if (not (assoc-ref b
+                                                  'allow-inhibiting?))
+                                  " allow-inhibiting=false " " ")
                               (assoc-ref b
                                          'cmd))) xs) "\n  "))
 
-(define* (bnd #:key mod bind cmd
-              (allow-when-locked? #f))
+(define* (bnd #:key mod
+              bind
+              cmd
+              (allow-when-locked? #f)
+              (allow-inhibiting? #t))
   `((mod unquote mod)
     (bind unquote bind)
     (cmd unquote cmd)
-    (allow-when-locked? unquote allow-when-locked?)))
+    (allow-when-locked? unquote allow-when-locked?)
+    (allow-inhibiting? unquote allow-inhibiting?)))
 
 (define* (niri-startup-programs #:key palette sans-font mono-font
                                 (extra-startups '()))
@@ -339,6 +366,7 @@
                                            #:mono-font mono-font
                                            #:extra-startups extra-startups))
                "\n"))
+
 (define* (niri-config #:key palette
                       sans-font
                       mono-font
