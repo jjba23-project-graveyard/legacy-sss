@@ -193,13 +193,13 @@
              #:cmd (spawn-sh "emacsclient -c"))
         (bnd #:mod "s-S"
              #:bind "E"
-             #:cmd (spawn-sh "alacritty \\\"emacsclient -c\\\""))
+             #:cmd (spawn-sh "alacritty -e emacsclient -t"))
         (bnd #:mod "s"
              #:bind "I"
-             #:cmd (spawn-sh "google-chrome-beta"))
+             #:cmd (spawn-sh "flatpak run com.brave.Browser"))
         (bnd #:mod "s-S"
              #:bind "I"
-             #:cmd (spawn-sh "flatpak run engineer.atlas.Nyxt"))
+             #:cmd (spawn-sh "firefox"))
         (bnd #:mod "s"
              #:bind "B"
              #:cmd (spawn-sh "nautilus -w"))

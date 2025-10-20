@@ -212,7 +212,7 @@
   '(app.drey.Dialect app.drey.Warp
                      app.zen_browser.zen
                      com.anydesk.Anydesk
-                     ;; com.usebruno.Bruno ;; better via Nix
+                     com.brave.Browser
                      com.belmoussaoui.Decoder
                      com.github.hugolabe.Wike
                      com.github.tchx84.Flatseal
