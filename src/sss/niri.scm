@@ -104,16 +104,31 @@
             (dec 'offset
                  (prop '((x 0)
                          (y 5))))
-            (dec 'color "#0007"))))
+            (dec 'color "#0007"))
+       (rul 'struts
+            (dec 'left 12)
+            (dec 'right 12)
+            (dec 'top 12)
+            (dec 'bottom 12))))
+
+(define (niri-intro)
+  "// ====== SSS Niri configuration ======
+//
+// auto-generated file, DO NOT EDIT!")
 
 (define* (niri-config #:key palette
                       sans-font
                       mono-font
                       keyboard-layout
                       caps-to-ctrl?)
-  (list (niri-input-config #:caps-to-ctrl? caps-to-ctrl?
+  (list (niri-intro)
+        (niri-input-config #:caps-to-ctrl? caps-to-ctrl?
                            #:keyboard-layout keyboard-layout)
-        (niri-layout-config #:palette palette)))
+        (niri-layout-config #:palette palette)
+        (rul 'hotkey-overlay
+             (dec 'skip-at-startup #t))
+        (rul 'animations
+             (dec 'slowdown 0.7))))
 
 (define* (niri-capability #:key palette
                           sans-font
