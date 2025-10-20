@@ -435,7 +435,7 @@
         (rul 'binds
              (serialize-bindings (niri-bindings)))
         (rul 'window-rule
-             (dec 'geometry-corner-radius 8)
+             (dec 'geometry-corner-radius 10)
              (dec 'clip-to-geometry
                   'true))
         (serialized-startups #:palette palette

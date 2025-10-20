@@ -24,6 +24,7 @@
              (gnu packages guile-xyz)
              (gnu packages texinfo)
              (gnu packages rust-apps)
+             (gnu packages build-tools)
              ((guix licenses)
               #:prefix license:))
 
