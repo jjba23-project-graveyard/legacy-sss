@@ -438,7 +438,9 @@
         (rul 'window-rule
              (dec 'geometry-corner-radius 10)
              (dec 'clip-to-geometry
-                  'true))
+                  'true)
+             (rul 'default-column-width
+                  (dec 'proportion 0.6666666)))
         (serialized-startups #:palette palette
                              #:sans-font sans-font
                              #:mono-font mono-font
