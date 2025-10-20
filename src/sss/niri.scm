@@ -193,6 +193,9 @@
         (bnd #:mod "s"
              #:bind "I"
              #:cmd (spawn-sh "google-chrome-beta"))
+        (bnd #:mod "s-S"
+             #:bind "I"
+             #:cmd (spawn-sh "flatpak run engineer.atlas.Nyxt"))
         (bnd #:mod "s"
              #:bind "B"
              #:cmd (spawn-sh "nautilus -w"))
