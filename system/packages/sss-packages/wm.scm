@@ -26,6 +26,7 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages xdisorg)
+  #:use-module (gnu packages xorg)
   #:use-module (gnu packages terminals)
   #:use-module (gnu packages image)
   #:export (wm-packages))
@@ -59,6 +60,7 @@
                         xorg-server-xwayland
                         polkit-gnome
                         wvkbd
+                        xwayland-satellite
                         ;; Flatpak and XDG utilities
                         flatpak-xdg-utils
                         xdg-utils
