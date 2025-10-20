@@ -60,7 +60,7 @@ runs them concurrently by default to ensure robust testing practices.")
                           emacs
                           guile-veritas
                           (specification->package "gettext")
-                          (specification->package "make")
+                          maak
                           coreutils
                           guile-documenta
                           watchexec

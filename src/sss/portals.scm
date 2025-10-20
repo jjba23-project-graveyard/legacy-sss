@@ -21,9 +21,9 @@
   #:use-module (sss prelude)
   #:export (portals-capability))
 
-(define* (portals-capability #:key (portals '((default . "hyprland;gtk")
-                                              (org.freedesktop.impl.portal.Screenshot . hyprland)
-                                              (org.freedesktop.impl.portal.ScreenCast . hyprland)
+(define* (portals-capability #:key (portals '((default . "gtk;gnome")
+                                              (org.freedesktop.impl.portal.Screenshot . gtk)
+                                              (org.freedesktop.impl.portal.ScreenCast . gnome)
                                               (org.freedesktop.impl.portal.FileChooser . gtk))))
   `((".config/xdg-desktop-portal/portals.conf" ,(plain-file "portals.conf"
                                                             (string-append

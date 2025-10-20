@@ -175,8 +175,6 @@ Args: update? represents whether we should update a template or create a new one
   ($ (list "find ~+ -maxdepth 8 -name '*.el'"
            "-type f -exec emacs -Q --batch {} "
            (~ "--eval '~s'" emacs-lisp-indent-cmd) "\\;")
-     #:verbose? #t)
-  ($ (list "mbake format --config .mbake.toml Makefile")
      #:verbose? #t))
 
 (define (repl)
@@ -238,6 +236,14 @@ Args: update? represents whether we should update a template or create a new one
 (define (store-gc)
   "Clean up unused objects in the Guix store."
   ($ '("sudo guix gc")))
+
+(define (full-gc)
+  "Performs a full garbage collection across Guix and Nix stores"
+  ($ '("guix home delete-generations 1d"))
+  ($ '("sudo guix system delete-generations 1d"))
+  ($ '("sudo guix gc"))
+  ($ '("nix-store --gc"))
+  ($ '("nix-store --gc --print-roots | egrep -v \"^(/nix/var|/run/\\w+-system|\\{memory|/proc)\"")))
 
 (define (clone-user-repos)
   "Clones user's desired Git repositories."
@@ -319,6 +325,11 @@ Args: update? represents whether we should update a template or create a new one
 
 (define (jr)
   "Alias to joe-reconfigure."
+  (joe-reconfigure))
+
+(define (fr)
+  "Alias to system-reconfigure and then joe-reconfigure."
+  (system-reconfigure)
   (joe-reconfigure))
 
 (define (mr)

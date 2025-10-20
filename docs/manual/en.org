@@ -7,7 +7,6 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" />
 
 [[https://jointhefreeworld.org/ggg/dist/scheme-guile.svg]] [[https://jointhefreeworld.org/ggg/dist/gnu-guix.svg]]  [[https://jointhefreeworld.org/ggg/dist/gnu-emacs.svg]] [[https://jointhefreeworld.org/ggg/dist/shell-eshell.svg]]  [[https://jointhefreeworld.org/ggg/dist/shell-bash.svg]] 
-[[https://jointhefreeworld.org/ggg/dist/gnu-make.svg]] 
 [[https://jointhefreeworld.org/ggg/dist/license-gpl3+.svg]]    [[https://jointhefreeworld.org/ggg/dist/license-fdl13+.svg]] [[https://jointhefreeworld.org/ggg/dist/i18n-gnu-gettext.svg]] [[https://jointhefreeworld.org/ggg/dist/jointhefreeworld-org.svg]] 
 
 
@@ -530,7 +529,7 @@ After adding the channel, perform a ~guix pull~ from your user account (*no sudo
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
 
-You can do this with ~guix shell make git icecat~. Icecat is a 100% libre version of Firefox, and it will be temporarily used for you to browse temporarily to Codeberg and download and install SSS.
+You can do this with ~guix shell maak git icecat~. Icecat is a 100% libre version of Firefox, and it will be temporarily used for you to browse temporarily to Codeberg and download and install SSS.
 
 Then proceed to clone SSS with ~git clone --recursive https://codeberg.org/jjba23/sss.git~ to your favourite location. This location will need to be added to your ~per-host/sss/overrides.scm~. You can skip the ~--recursive~ option if you are not interested in the wallpapers and other art.
 
@@ -544,13 +543,13 @@ https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
 You should have by now written an appropriate ~per-host/sss/overrides.scm~ for your setup. See the above section on this topic.
 
-Enter the directory of SSS: ~cd sss~ and do a ~make sr~.
+Enter the directory of SSS: ~cd sss~ and do a ~maak sr~.
 
-Note: ~make sr~ translates to ~sudo guix system reconfigure~ with some extra settings.
+Note: ~maak sr~ translates to ~sudo guix system reconfigure~ with some extra settings.
 
 While unlikely, it's possible that some packages fail to install/build for your setup. I would encourage to temporarily comment those out of the configuration (likely at ~src/sss/packages/~) and try again. After a working SSS setup, you can uncomment them and try again.
 
-For more commands take a look at the ~maak.scm~ or ~Makefile~.
+For more commands take a look at the ~maak.scm~ or maak file.
 
 The ~--fallback~ option is optional, and simply helps when upstream substitute (cache) servers are less available.
 
@@ -569,7 +568,7 @@ You can then reboot and you should be greeted by a simple TTY.
 
 ** Keeping SSS updated
 
-You should every now and then update the SSS repo with ~git pull~. You also should regularly do a ~guix pull~ from your regular user, and then rebuild this system with the root user (~make sr~).
+You should every now and then update the SSS repo with ~git pull~. You also should regularly do a ~guix pull~ from your regular user, and then rebuild this system with the root user (~maak sr~).
 
 It's important to also keep the SSS modules updated, and thus from time to time run ~git submodule update --recursive --remote~.
 
@@ -899,9 +898,9 @@ The installed software will be available, for example at: ~$HOME/.nix-profile/bi
 
 SSS provides some scripts that allow you to maintain your Nix configuration and installed packages programatically with Lisp.
 
-You can find these scripts and the list file at ~system/scripts~ in this repo and in the ~maak.scm~ and ~Makefile~.
+You can find these scripts and the list file at ~system/scripts~ in this repo and in the ~maak.scm~.
 
-Installing all wanted Nix packages can be done with ~make npi~ for example and updating them with ~make npu~.
+Installing all wanted Nix packages can be done with ~maak npi~ for example and updating them with ~maak npu~.
 
 -----
 
@@ -909,9 +908,9 @@ Installing all wanted Nix packages can be done with ~make npi~ for example and u
 
 SSS takes care of flatpak origins and installing and maintaining your flatpaks up to date, all programatically and with Lisp.
 
-You can find these scripts and the list file at ~system/scripts~ in this repo and in the Makefile.
+You can find these scripts and the list file at ~system/scripts~ in this repo and in the maak file.
 
-Installing all wanted Flatpak packages can be done with ~make fpi~ for example and updating them with ~make fpu~.
+Installing all wanted Flatpak packages can be done with ~maak fpi~ for example and updating them with ~maak fpu~.
 
 Bear in mind you might need to use ~Flatseal~ in order to grant additional permissions to some of your Flatpak packages.
 
@@ -1134,13 +1133,13 @@ text/html=firefox.desktop;emacsclient.desktop
 
 Q: I ran out of disk space, and have too much garbage in the system!
 
-A: Check the ~maak.scm~ or ~Makefile~ of SSS and run a ~full-gc~ followed by a ~sr~
+A: Check the ~maak.scm~ or maak file of SSS and run a ~full-gc~ followed by a ~sr~
 
 -----
 
 Q: Grub install fails due to missing disk space / input-output error!
 
-A: It's recommended to delete some old generations of the system (perhaps also a ~make full-gc~) and to clean the dump file at: ~/sys/firmware/efi/efivars/dump*~
+A: It's recommended to delete some old generations of the system (perhaps also a ~maak full-gc~) and to clean the dump file at: ~/sys/firmware/efi/efivars/dump*~
 
 -----
 
@@ -1150,9 +1149,9 @@ Q: I have a strange error, where ~guix system reconfigure~ or ~guix home reconfi
 A: Sorry, your guix store is partially corrupted. There is some things you can do luckily. First of all backup your important data. Then try to identify the culprit, i.e. the file in the store which is being read and not successfully parsed.
 
 You could first try to do a ~sudo guix gc --verify=repair,contents~, but that may not help. If it does then great you are done!
-Otherwise try to find a way to disable the dependency on this in your config if possible. Proceed to delete all Guix home generations (except current), after which you should delete all system generations (except current) and do an intensive garbage collection (~make full-gc~).
+Otherwise try to find a way to disable the dependency on this in your config if possible. Proceed to delete all Guix home generations (except current), after which you should delete all system generations (except current) and do an intensive garbage collection (~maak full-gc~).
 
-You can optionally do a ~guix pull~ now to see if maybe a new version of things comes along and helps. In any case try to ~reconfigure~ (~make jr~ / ~make sr~) again and it should work, after which you can turn the "offender" back on.
+You can optionally do a ~guix pull~ now to see if maybe a new version of things comes along and helps. In any case try to ~reconfigure~ (~maak jr~ / ~maak sr~) again and it should work, after which you can turn the "offender" back on.
 
 -----
 
@@ -1211,7 +1210,7 @@ Good luck!
 * SSS keybindings
 
 Please refer to the ~keybindings-docs.scm~ file located in the ~src/sss/~ directory of this project for a comprehensive listing of keybindings in SSS, for the window manager, text editor and more.
-When configuring a user via SSS, the ~maak.scm~ and ~Makefile~ contain targets to write the keybinding reference in JSON format and base16 encoding to dconf, in order to be read easily by other software at ~/sss/power-user-keybindings-docs~ and (WIP) ~/sss/universal-session-keybindings-docs~.
+When configuring a user via SSS, the ~maak.scm~ contain targets to write the keybinding reference in JSON format and base16 encoding to dconf, in order to be read easily by other software at ~/sss/power-user-keybindings-docs~ and (WIP) ~/sss/universal-session-keybindings-docs~.
 In a nutshell, the power user session leverages Emacs-like keybindings, and the universal session leverages CUA-like keybindings.
 
 ----------
