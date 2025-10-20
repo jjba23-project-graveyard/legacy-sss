@@ -116,6 +116,88 @@
 //
 // auto-generated file, DO NOT EDIT!")
 
+(define (niri-bindings)
+  (list (bnd #:mod "s"
+             #:bind "K"
+             #:cmd "close-window")
+        (bnd #:mod "s"
+             #:bind "O"
+             #:cmd "toggle-overview")
+        (bnd #:mod "s"
+             #:bind "?"
+             #:cmd "show-hotkey-overlay")
+        (bnd #:mod "XF86AudioRaiseVolume"
+             #:cmd "spawn-sh \"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+\""
+             #:allow-when-locked? #t)
+        (bnd #:mod "XF86AudioLowerVolume"
+             #:cmd "spawn-sh \"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-\""
+             #:allow-when-locked? #t)
+        (bnd #:mod "XF86AudioMute"
+             #:cmd "spawn-sh \"wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle\""
+             #:allow-when-locked? #t)
+        (bnd #:mod "XF86AudioPlay"
+             #:cmd "spawn-sh \"playerctl play-pause\""
+             #:allow-when-locked? #t)
+        (bnd #:mod "XF86AudioStop"
+             #:cmd "spawn-sh \"playerctl stop\""
+             #:allow-when-locked? #t)
+        (bnd #:mod "XF86AudioPrev"
+             #:cmd "spawn-sh \"playerctl previous\""
+             #:allow-when-locked? #t)
+        (bnd #:mod "XF86AudioNext"
+             #:cmd "spawn-sh \"playerctl next\""
+             #:allow-when-locked? #t)
+        (bnd #:mod "XF86MonBrightnessUp"
+             #:cmd "spawn-sh \"sudo light -A 5\""
+             #:allow-when-locked? #t)
+        (bnd #:mod "XF86MonBrightnessDown"
+             #:cmd "spawn-sh \"sudo light -U 5\""
+             #:allow-when-locked? #t)
+
+        ))
+
+(define (niri-translate-mod mod)
+  (cond
+    ((equal? "s" mod)
+     "Mod")
+    ((equal? "s-S" mod)
+     "Mod+Shift")
+    ((equal? "M" mod)
+     "Alt")
+    (else mod)))
+
+(define (niri-translate-bind bind)
+  (cond
+    ((equal? "mouse-left" bind)
+     "mouse:272")
+    ((equal? "mouse-right" bind)
+     "mouse:273")
+    (else bind)))
+
+(define (serialize-bindings xs)
+  (string-join (map (lambda (b)
+                      (format #f
+                              "~a~a~a{ ~a; }"
+                              (niri-translate-mod (assoc-ref b
+                                                             'mod))
+                              (if (not (assoc-ref b
+                                                  'bind)) ""
+                                  (format #f "+~a"
+                                          (assoc-ref b
+                                                     'bind)))
+                              (if (assoc-ref b
+                                             'allow-when-locked?)
+                                  " allow-when-locked=true " " ")
+                              (assoc-ref b
+                                         'cmd))) xs) "\n  "))
+
+(define* (bnd #:key mod bind cmd
+              (allow-when-locked? #f))
+  `((mod unquote mod)
+    (bind unquote bind)
+    (cmd unquote cmd)
+    (allow-when-locked? unquote allow-when-locked?)))
+
 (define* (niri-config #:key palette
                       sans-font
                       mono-font
@@ -128,7 +210,9 @@
         (rul 'hotkey-overlay
              (dec 'skip-at-startup #t))
         (rul 'animations
-             (dec 'slowdown 0.7))))
+             (dec 'slowdown 0.7))
+        (rul 'binds
+             (serialize-bindings (niri-bindings)))))
 
 (define* (niri-capability #:key palette
                           sans-font
