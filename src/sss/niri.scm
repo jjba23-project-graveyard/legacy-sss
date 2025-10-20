@@ -78,7 +78,10 @@
             (dec 'numlock #t))
        (rul 'touchpad
             (dec 'tap #t))
-       (dec 'warp-mouse-to-focus #t)))
+       (dec 'warp-mouse-to-focus #t)
+       (dec 'focus-follows-mouse
+            (prop '((max-scroll-amount "\"0%\""))))
+       (dec 'workspace-auto-back-and-forth #t)))
 
 (define* (niri-layout-config #:key palette)
   (rul 'layout
@@ -91,7 +94,7 @@
        (rul 'default-column-width
             (dec 'proportion 0.5))
        (rul 'focus-ring
-            (dec 'width 4)
+            (dec 'width 3)
             (dec 'active-color
                  (get-color palette
                             'primary))
@@ -431,6 +434,10 @@
              (dec 'slowdown 0.7))
         (rul 'binds
              (serialize-bindings (niri-bindings)))
+        (rul 'window-rule
+             (dec 'geometry-corner-radius 8)
+             (dec 'clip-to-geometry
+                  'true))
         (serialized-startups #:palette palette
                              #:sans-font sans-font
                              #:mono-font mono-font
