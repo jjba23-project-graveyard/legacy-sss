@@ -150,7 +150,6 @@ Args: update? represents whether we should update a template or create a new one
            "system/scripts/*.scm"
            "system/*.scm"
            "src/sss/*.scm"
-           "src/sss/hyprland/*.scm"
            "system/packages/sss-packages/*.scm"
            "home/*.scm"
            "--from-code UTF-8")
@@ -213,8 +212,7 @@ Args: update? represents whether we should update a template or create a new one
 
 (define (joe-reconfigure)
   "Re-configure Joe's Guix Home."
-  (user-reconfigure 'joe)
-  ($ '("hyprctl reload || true")))
+  (user-reconfigure 'joe))
 
 (define (manon-reconfigure)
   "Re-configure Manon's Guix Home."

@@ -44,7 +44,7 @@ It is recommended to use tagged releases of SSS, as those are considered as stab
 
 Some of the features:  
 - 🎨 Many theme palettes that affect the entire system 
-- Hyprland configuration (power user session)
+- Niri configuration (power user session)
 - Labwc configuration (universal session)
 - Bash and Fish shell configuration
 - Alacritty terminal emulator

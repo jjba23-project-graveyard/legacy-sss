@@ -45,12 +45,13 @@
                         qpwgraph
                         wireplumber
                         pipewire
+                        swaylock
+                        swayidle
 
                         wl-clipboard
 
                         ;; Wayland portals
                         xdg-desktop-portal
-                        xdg-desktop-portal-hyprland
                         xdg-desktop-portal-gtk
                         xdg-desktop-portal-gnome
 
