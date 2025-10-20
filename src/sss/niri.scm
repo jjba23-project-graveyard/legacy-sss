@@ -122,6 +122,9 @@
 (define (spawn-sh cmd)
   (format #f "spawn-sh \"~a\"" cmd))
 
+(define (spawn-sh-at-startup cmd)
+  (format #f "spawn-sh-at-startup \"~a\"" cmd))
+
 (define (niri-bindings)
   (list (bnd #:mod "s"
              #:bind "K"
@@ -194,6 +197,9 @@
              #:bind "B"
              #:cmd (spawn-sh "nautilus -w"))
         (bnd #:mod "s"
+             #:bind "/"
+             #:cmd (spawn-sh "rofi -show drun"))
+        (bnd #:mod "s"
              #:bind "space"
              #:cmd "toggle-window-floating")
         ;;
@@ -206,6 +212,38 @@
         (bnd #:mod "C-M"
              #:bind "."
              #:cmd "screenshot-window")
+        ;;
+        (bnd #:mod "s"
+             #:bind "Left"
+             #:cmd "focus-column-left")
+        (bnd #:mod "s"
+             #:bind "Down"
+             #:cmd "focus-window-down")
+        (bnd #:mod "s"
+             #:bind "Up"
+             #:cmd "focus-window-up")
+        (bnd #:mod "s"
+             #:bind "Right"
+             #:cmd "focus-column-right")
+        (bnd #:mod "s-S"
+             #:bind "Left"
+             #:cmd "move-column-left")
+        (bnd #:mod "s-S"
+             #:bind "Down"
+             #:cmd "move-window-down")
+        (bnd #:mod "s-S"
+             #:bind "Up"
+             #:cmd "move-window-up")
+        (bnd #:mod "s-S"
+             #:bind "Right"
+             #:cmd "move-column-right")
+        (bnd #:mod "s"
+             #:bind "-"
+             #:cmd "set-column-width \"-10%\"")
+        (bnd #:mod "s"
+             #:bind "="
+             #:cmd "set-column-width \"+10%\"")
+
         ;;
         ))
 
@@ -237,6 +275,12 @@
      "comma")
     ((equal? "?" bind)
      "question")
+    ((equal? "-" bind)
+     "Minus")
+    ((equal? "=" bind)
+     "Equal")
+    ((equal? "/" bind)
+     "slash")
     (else bind)))
 
 (define (serialize-bindings xs)
@@ -263,27 +307,68 @@
     (cmd unquote cmd)
     (allow-when-locked? unquote allow-when-locked?)))
 
+(define* (niri-startup-programs #:key palette sans-font mono-font
+                                (extra-startups '()))
+  (let* ((gtk-theme-name (get-gtk-theme palette))
+         (icon-theme-name (get-icon-theme palette))
+         (cursor-theme-name (get-cursor-theme palette))
+         (xs (append extra-startups
+                     `("lxsession" "mako"
+                       "dbus-update-activation-environment --all"
+                       "waybar"
+                       "herd trigger set-random-wallpaper"
+                       "alacritty --daemon"
+                       "emacs --daemon"
+                       "transmission-daemon"
+                       "podman system service --time=0 unix:///tmp/podman.sock"
+                       "xdg-user-dirs-update"
+                       ,(format #f "fyi \\\"~a\\\" \\\"~a\\\""
+                                (G_
+                                 "Welcome to the SSS/GNU power user session")
+                                (G_
+                                 "Enter and explore, for the cosmos of computation is yours to command."))
+                       "sh ~/.local/bin/write-gtk-dconf-settings.sh"
+                       "sh ~/.local/bin/write-sss-dconf-settings.sh"))))
+    xs))
+
+(define* (serialized-startups #:key palette sans-font mono-font
+                              (extra-startups '()))
+  (string-join (map spawn-sh-at-startup
+                    (niri-startup-programs #:palette palette
+                                           #:sans-font sans-font
+                                           #:mono-font mono-font
+                                           #:extra-startups extra-startups))
+               "\n"))
 (define* (niri-config #:key palette
                       sans-font
                       mono-font
                       keyboard-layout
-                      caps-to-ctrl?)
+                      caps-to-ctrl?
+                      (extra-startups '()))
   (list (niri-intro)
         (niri-input-config #:caps-to-ctrl? caps-to-ctrl?
                            #:keyboard-layout keyboard-layout)
         (niri-layout-config #:palette palette)
         (rul 'hotkey-overlay
              (dec 'skip-at-startup #t))
+        (dec 'prefer-no-csd #t)
+        (dec 'screenshot-path
+             "~/pictures/screenshots/screen-%Y-%m-%d-%H-%M-%S.png")
         (rul 'animations
              (dec 'slowdown 0.7))
         (rul 'binds
-             (serialize-bindings (niri-bindings)))))
+             (serialize-bindings (niri-bindings)))
+        (serialized-startups #:palette palette
+                             #:sans-font sans-font
+                             #:mono-font mono-font
+                             #:extra-startups extra-startups)))
 
 (define* (niri-capability #:key palette
                           sans-font
                           mono-font
                           keyboard-layout
-                          caps-to-ctrl?)
+                          caps-to-ctrl?
+                          (extra-startups '()))
   `((".config/niri/config.kdl" ,(plain-file "config.kdl"
                                             (string-join (serialize-kdl (niri-config
                                                                          #:palette
@@ -295,7 +380,9 @@
                                                                          #:keyboard-layout
                                                                          keyboard-layout
                                                                          #:caps-to-ctrl?
-                                                                         caps-to-ctrl?))
+                                                                         caps-to-ctrl?
+                                                                         #:extra-startups
+                                                                         extra-startups))
                                                          "\n")))))
 
 (define* (serialize-kdl xs
