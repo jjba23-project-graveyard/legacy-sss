@@ -106,7 +106,6 @@
                      image-viewers
                      imagemagick
                      inkscape
-                     kde
                      kde-frameworks
                      kde-plasma
                      kde-systemtools

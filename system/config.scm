@@ -67,7 +67,6 @@
                      kde-plasma
                      kde-frameworks
                      wm
-                     kde
                      gnome
                      freedesktop
                      cups

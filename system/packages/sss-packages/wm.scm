@@ -24,6 +24,7 @@
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages audio)
   #:use-module (gnu packages linux)
+  #:use-module (gnu packages gnome)
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages terminals)
   #:use-module (gnu packages image)
