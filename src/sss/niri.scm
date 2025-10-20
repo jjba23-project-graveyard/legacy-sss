@@ -116,6 +116,9 @@
 //
 // auto-generated file, DO NOT EDIT!")
 
+(define (spawn-sh cmd)
+  (format #f "spawn-sh \"~a\"" cmd))
+
 (define (niri-bindings)
   (list (bnd #:mod "s"
              #:bind "K"
@@ -127,32 +130,39 @@
              #:bind "?"
              #:cmd "show-hotkey-overlay")
         (bnd #:mod "XF86AudioRaiseVolume"
-             #:cmd "spawn-sh \"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+\""
+             #:cmd (spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")
              #:allow-when-locked? #t)
         (bnd #:mod "XF86AudioLowerVolume"
-             #:cmd "spawn-sh \"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-\""
+             #:cmd (spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
              #:allow-when-locked? #t)
         (bnd #:mod "XF86AudioMute"
-             #:cmd "spawn-sh \"wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle\""
+             #:cmd (spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
              #:allow-when-locked? #t)
         (bnd #:mod "XF86AudioPlay"
-             #:cmd "spawn-sh \"playerctl play-pause\""
+             #:cmd (spawn-sh "playerctl play-pause")
              #:allow-when-locked? #t)
         (bnd #:mod "XF86AudioStop"
-             #:cmd "spawn-sh \"playerctl stop\""
+             #:cmd (spawn-sh "playerctl stop")
              #:allow-when-locked? #t)
         (bnd #:mod "XF86AudioPrev"
-             #:cmd "spawn-sh \"playerctl previous\""
+             #:cmd (spawn-sh "playerctl previous")
              #:allow-when-locked? #t)
         (bnd #:mod "XF86AudioNext"
-             #:cmd "spawn-sh \"playerctl next\""
+             #:cmd (spawn-sh "playerctl next")
              #:allow-when-locked? #t)
         (bnd #:mod "XF86MonBrightnessUp"
-             #:cmd "spawn-sh \"sudo light -A 5\""
+             #:cmd (spawn-sh "sudo light -A 5")
              #:allow-when-locked? #t)
         (bnd #:mod "XF86MonBrightnessDown"
-             #:cmd "spawn-sh \"sudo light -U 5\""
+             #:cmd (spawn-sh "sudo light -U 5")
              #:allow-when-locked? #t)
+        ;;
+        (bnd #:mod "s-S"
+             #:bind "Q"
+             #:cmd "quit")
+        (bnd #:mod "C-M"
+             #:bind "DEL"
+             #:cmd "quit")
 
         ))
 
@@ -162,6 +172,8 @@
      "Mod")
     ((equal? "s-S" mod)
      "Mod+Shift")
+    ((equal? "C-M" mod)
+     "Ctrl+Alt")
     ((equal? "M" mod)
      "Alt")
     (else mod)))
@@ -172,6 +184,8 @@
      "mouse:272")
     ((equal? "mouse-right" bind)
      "mouse:273")
+    ((equal? "DEL" bind)
+     "Delete")
     (else bind)))
 
 (define (serialize-bindings xs)
@@ -183,8 +197,8 @@
                               (if (not (assoc-ref b
                                                   'bind)) ""
                                   (format #f "+~a"
-                                          (assoc-ref b
-                                                     'bind)))
+                                          (niri-translate-bind (assoc-ref b
+                                                                          'bind))))
                               (if (assoc-ref b
                                              'allow-when-locked?)
                                   " allow-when-locked=true " " ")
