@@ -77,7 +77,7 @@
 
 (define* (waybar-start-button #:key (content "λ  SSS/GNU"))
   `(custom/waybar-start-button (format unquote content)
-                               (on-click . "rofi -show drun")))
+                               (on-click . "pkill rofi || true && rofi -show drun")))
 
 (define waybar-audio-icon
   `(pulseaudio (format . "{volume}% {icon} {format_source}")
@@ -206,7 +206,7 @@
     (border-radius . "16px")))
 
 (define* (waybar-section-css)
-  `((font-weight . 600)))
+  `((font-weight . 500)))
 
 ;; Defines a CSS configuration for SSS Waybar using Scheme.
 ;; This configuration customizes various UI elements, such as background color,
@@ -237,6 +237,8 @@
      (waybar-section-css))
     ("#memory" unquote
      (waybar-section-css))
+    ("window" (margin-left . "4px")
+     (margin-right . "4px"))
     ("window#waybar" unquote
      (waybar-bar-bg #:palette palette
                     #:sans-font sans-font))))
