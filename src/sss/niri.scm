@@ -23,6 +23,9 @@
   #:use-module (srfi srfi-9)
   #:use-module (srfi srfi-13)
   #:export (niri-config niri-capability
+                        serialize-kdl
+                        serialize-bindings
+                        serialize-declaration
                         rule
                         make-rule
                         rule?
@@ -164,6 +167,46 @@
              #:bind "DEL"
              #:cmd "quit")
 
+        ;;
+        (bnd #:mod "s"
+             #:bind "T"
+             #:cmd (spawn-sh "alacritty msg create-window || alacritty"))
+        (bnd #:mod "s"
+             #:bind "RET"
+             #:cmd (spawn-sh "alacritty msg create-window || alacritty"))
+        (bnd #:mod "s-S"
+             #:bind "B"
+             #:cmd (spawn-sh "herd trigger set-random-wallpaper"))
+        (bnd #:mod "s-S"
+             #:bind "T"
+             #:cmd (spawn-sh
+                    "emacsclient -ce '(eshell \\\"new\\\")(rename-buffer (concat \\\"*eshell: \\\" (float-time) \\\"*\\\"))'"))
+        (bnd #:mod "s"
+             #:bind "E"
+             #:cmd (spawn-sh "emacsclient -c"))
+        (bnd #:mod "s-S"
+             #:bind "E"
+             #:cmd (spawn-sh "alacritty \\\"emacsclient -c\\\""))
+        (bnd #:mod "s"
+             #:bind "I"
+             #:cmd (spawn-sh "google-chrome-beta"))
+        (bnd #:mod "s"
+             #:bind "B"
+             #:cmd (spawn-sh "nautilus -w"))
+        (bnd #:mod "s"
+             #:bind "space"
+             #:cmd "toggle-window-floating")
+        ;;
+        (bnd #:mod "s"
+             #:bind "."
+             #:cmd "screenshot")
+        (bnd #:mod "s-S"
+             #:bind "."
+             #:cmd "screenshot-screen")
+        (bnd #:mod "C-M"
+             #:bind "."
+             #:cmd "screenshot-window")
+        ;;
         ))
 
 (define (niri-translate-mod mod)
@@ -186,6 +229,8 @@
      "mouse:273")
     ((equal? "DEL" bind)
      "Delete")
+    ((equal? "RET" bind)
+     "Enter")
     (else bind)))
 
 (define (serialize-bindings xs)
@@ -303,12 +348,5 @@
                      (declaration-value xs)))
             (else (declaration-value xs)))))
 
-(define niri-cfg
-  (niri-config #:palette 'dracula
-               #:sans-font "IBM Plex Sans"
-               #:mono-font "IBM Plex Mono"
-               #:keyboard-layout "us"
-               #:caps-to-ctrl? #t))
 
-(display (string-join (serialize-kdl niri-cfg) "\n"))
 
