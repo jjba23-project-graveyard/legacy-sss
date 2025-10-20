@@ -31,7 +31,7 @@
                               waybar-power-profiles
                               waybar-battery-2
                               waybar-battery
-                              waybar-hyprland-workspaces
+                              waybar-niri-workspaces
                               waybar-clock
                               waybar-taskbar
                               waybar-backlight
@@ -118,22 +118,20 @@
             (format-alt . "{time} {icon}")
             (format-icons . #("\uf244" "\uf243" "\uf242" "\uf241" "\uf240"))))
 
-(define waybar-hyprland-workspaces
-  `(hyprland/workspaces (disable-scroll . #t)
-                        (all-outputs . #t)
-                        (warp-on-scroll . #f)
-                        (format . "{icon}")
-                        (format-icons ("1" . "1")
-                                      ("2" . "2")
-                                      ("3" . "3")
-                                      ("4" . "4")
-                                      ("5" . "5")
-                                      ("6" . "6")
-                                      ("7" . "7")
-                                      ("8" . "8")
-                                      ("9" . "9")
-                                      ("10" . "10")
-                                      ("default" . "\uf111"))))
+(define waybar-niri-workspaces
+  `(niri/workspaces (all-outputs . #t)
+                    (format . "{icon}")
+                    (format-icons ("1" . "1")
+                                  ("2" . "2")
+                                  ("3" . "3")
+                                  ("4" . "4")
+                                  ("5" . "5")
+                                  ("6" . "6")
+                                  ("7" . "7")
+                                  ("8" . "8")
+                                  ("9" . "9")
+                                  ("10" . "10")
+                                  ("default" . "\uf111"))))
 
 (define waybar-clock
   `(clock (on-click . "gnome-calendar")
@@ -156,14 +154,14 @@
 
 ;; My WayBar configurations, defined in Guile Scheme, a status bar with a detailed, modular setup.
 (define* (waybar-conf #:key palette
-                      (hyprland-session #f)
+                      (niri-session #f)
                       (labwc-session #f)
                       (with-memory #f)
                       (with-numlock #f)
                       (with-capslock #f))
   (let ((modules-left (if labwc-session
                           #(custom/waybar-start-button clock wlr/taskbar)
-                          #(custom/waybar-start-button clock hyprland/workspaces custom/media)))
+                          #(custom/waybar-start-button clock niri/workspaces custom/media)))
         (modules-right (if labwc-session
                            #(pulseaudio power-profiles-daemon custom/vkbd cpu memory backlight keyboard-state battery custom/power tray)
                            #(pulseaudio power-profiles-daemon custom/vkbd cpu memory backlight keyboard-state battery custom/power tray))))
@@ -173,14 +171,14 @@
       (modules-right unquote modules-right)
       ,(waybar-start-button)
       ,(cond
-         (hyprland-session waybar-hyprland-workspaces)
-         (else `(hyprland/workspaces . null)))
+         (niri-session waybar-niri-workspaces)
+         (else `(niri/workspaces . null)))
       (keyboard-state (numlock unquote with-numlock)
                       (capslock unquote with-capslock)
                       (format . "{name} {icon} ")
                       (format-icons (locked . "\uf023")
                                     (unlocked . "\uf09c")))
-      (hyprland/mode (format . "<span style=\"italic\">{}</span>"))
+      (niri/mode (format . "<span style=\"italic\">{}</span>"))
       (tray (spacing . 12))
       ,waybar-clock
       (cpu (format . "\uf2db cpu: {usage}%")
@@ -316,7 +314,7 @@
 (define* (waybar-capability #:key palette
                             with-memory
                             labwc-session
-                            hyprland-session
+                            niri-session
                             sans-font)
   `( ;Waybar configuration (for status bar)
      (".config/waybar/config.jsonc" ,(plain-file "config.jsonc"
@@ -325,8 +323,8 @@
                                                                     palette
                                                                     #:labwc-session
                                                                     labwc-session
-                                                                    #:hyprland-session
-                                                                    hyprland-session
+                                                                    #:niri-session
+                                                                    niri-session
                                                                     #:with-memory
                                                                     with-memory)
                                                                    #:pretty #t)))

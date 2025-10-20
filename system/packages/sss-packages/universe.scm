@@ -285,7 +285,7 @@
           (font-packages)
           (dev-packages)
           (container-packages)
-          (tree-sitter-packages)          
+          (tree-sitter-packages)
           (terminal-emulator-packages)
           (browser-packages)
           (latex-packages)

@@ -41,8 +41,7 @@
 
 ;; Custom dictionary for English
 (define enchant-dict-en
-  `("Guix" "Hyprland"
-    "Niri"
+  `("Guix" "Niri"
     "www"
     "Codeberg"
     "rchuidkliniek"
