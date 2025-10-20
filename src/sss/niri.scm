@@ -230,7 +230,13 @@
     ((equal? "DEL" bind)
      "Delete")
     ((equal? "RET" bind)
-     "Enter")
+     "Return")
+    ((equal? "." bind)
+     "period")
+    ((equal? "," bind)
+     "comma")
+    ((equal? "?" bind)
+     "question")
     (else bind)))
 
 (define (serialize-bindings xs)
@@ -347,6 +353,4 @@
              (format #f "\"~a\""
                      (declaration-value xs)))
             (else (declaration-value xs)))))
-
-
 
