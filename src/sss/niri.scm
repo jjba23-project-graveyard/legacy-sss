@@ -388,8 +388,9 @@
          (icon-theme-name (get-icon-theme palette))
          (cursor-theme-name (get-cursor-theme palette))
          (xs (append extra-startups
-                     `("lxsession" "mako"
-                       "dbus-update-activation-environment --all"
+                     `("mako"
+                       ;; "lxsession"
+                       ;; "dbus-update-activation-environment --all"
                        "waybar"
                        "herd trigger set-random-wallpaper"
                        "alacritty --daemon"

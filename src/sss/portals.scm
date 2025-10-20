@@ -22,9 +22,10 @@
   #:export (portals-capability))
 
 (define* (portals-capability #:key (portals '((default . "gtk;gnome")
-                                              (org.freedesktop.impl.portal.Screenshot . gtk)
-                                              (org.freedesktop.impl.portal.ScreenCast . gnome)
-                                              (org.freedesktop.impl.portal.FileChooser . gtk))))
+                                              ;; (org.freedesktop.impl.portal.Screenshot . gtk)
+                                              ;; (org.freedesktop.impl.portal.ScreenCast . gnome)
+                                              ;; (org.freedesktop.impl.portal.FileChooser . gtk)
+                                              )))
   `((".config/xdg-desktop-portal/portals.conf" ,(plain-file "portals.conf"
                                                             (string-append
                                                              "[preferred]\n"
