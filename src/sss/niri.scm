@@ -211,13 +211,13 @@
              #:cmd "toggle-window-floating")
         ;;
         (bnd #:mod "s"
-             #:bind "."
+             #:bind "S"
              #:cmd "screenshot")
         (bnd #:mod "s-S"
-             #:bind "."
+             #:bind "S"
              #:cmd "screenshot-screen")
         (bnd #:mod "C-M"
-             #:bind "."
+             #:bind "S"
              #:cmd "screenshot-window")
         ;;
         (bnd #:mod "s"
@@ -309,7 +309,24 @@
              #:cmd "toggle-keyboard-shortcuts-inhibit"
              #:allow-inhibiting? #f)
         ;;
-        ))
+        (bnd #:mod "s-S"
+             #:bind "/"
+             #:cmd "show-hotkey-overlay")
+        (bnd #:mod "s"
+             #:bind "U"
+             #:cmd "focus-workspace-up")
+        (bnd #:mod "s"
+             #:bind "R"
+             #:cmd "switch-preset-column-width")
+        (bnd #:mod "s"
+             #:bind "D"
+             #:cmd "focus-workspace-down")
+        (bnd #:mod "s"
+             #:bind ","
+             #:cmd "consume-window-into-column")
+        (bnd #:mod "s"
+             #:bind "."
+             #:cmd "expel-window-from-column")))
 
 (define (niri-translate-mod mod)
   (cond
@@ -336,9 +353,9 @@
     ((equal? "RET" bind)
      "Return")
     ((equal? "." bind)
-     "period")
+     "Period")
     ((equal? "," bind)
-     "comma")
+     "Comma")
     ((equal? "?" bind)
      "question")
     ((equal? "-" bind)
