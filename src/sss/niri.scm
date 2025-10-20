@@ -34,6 +34,10 @@
                         declaration?
                         declaration-property
                         declaration-value
+                        prop
+                        make-declaration-prop
+                        declaration-prop
+                        declaration-prop-props
                         rul
                         dec))
 
@@ -54,29 +58,62 @@
 (define dec
   make-declaration)
 
+(define-record-type declaration-prop
+  (make-declaration-prop props) declaration-prop?
+  (props declaration-prop-props))
+
+(define prop
+  make-declaration-prop)
+
+(define* (niri-input-config #:key caps-to-ctrl? keyboard-layout)
+  (rul 'input
+       (rul 'keyboard
+            (rul 'xkb
+                 (dec 'layout keyboard-layout)
+                 (dec 'options
+                      (if caps-to-ctrl? "ctrl:nocaps" "")))
+            (dec 'numlock #t))
+       (rul 'touchpad
+            (dec 'tap #t))
+       (dec 'warp-mouse-to-focus #t)))
+
+(define* (niri-layout-config #:key palette)
+  (rul 'layout
+       (dec 'gaps 16)
+       (dec 'center-focused-column "never")
+       (rul 'preset-column-widths
+            (dec 'proportion 0.333333)
+            (dec 'proportion 0.5)
+            (dec 'proportion 0.666666))
+       (rul 'default-column-width
+            (dec 'proportion 0.5))
+       (rul 'focus-ring
+            (dec 'width 4)
+            (dec 'active-color
+                 (get-color palette
+                            'primary))
+            (dec 'inactive-color
+                 (get-color palette
+                            'background-l)))
+       (rul 'shadow
+            (dec 'on #t)
+            (dec 'draw-behind-window
+                 'true)
+            (dec 'softness 30)
+            (dec 'spread 5)
+            (dec 'offset
+                 (prop '((x 0)
+                         (y 5))))
+            (dec 'color "#0007"))))
+
 (define* (niri-config #:key palette
                       sans-font
                       mono-font
                       keyboard-layout
                       caps-to-ctrl?)
-  (list (rul 'input
-             (rul 'keyboard
-                  (rul 'xkb
-                       (dec 'layout keyboard-layout)
-                       (dec 'options
-                            (if caps-to-ctrl? "ctrl:nocaps" "")))
-                  (dec 'numlock #t))
-             (rul 'touchpad
-                  (dec 'tap #t)))
-        (rul 'layout
-             (dec 'gaps 16)
-             (dec 'center-focused-column "never")
-             (rul 'preset-column-widths
-                  (dec 'proportion 0.333333)
-                  (dec 'proportion 0.5)
-                  (dec 'proportion 0.666666))
-             (rul 'default-column-width
-                  (dec 'proportion 0.5)))))
+  (list (niri-input-config #:caps-to-ctrl? caps-to-ctrl?
+                           #:keyboard-layout keyboard-layout)
+        (niri-layout-config #:palette palette)))
 
 (define* (niri-capability #:key palette
                           sans-font
@@ -129,7 +166,7 @@
                                (format #f "\n~a" indent)))
                  (else (begin
                          (serialize-declaration (rule-declarations xs)))))
-               indent))
+               (string-drop indent 2)))
       ((declaration? xs)
        (serialize-declaration xs))
       (else (format #f "~a" xs)))))
@@ -141,17 +178,24 @@
             ((eq? #t
                   (declaration-value xs))
              "")
+            ((declaration-prop? (declaration-value xs))
+             (string-join (map (lambda (p)
+                                 (format #f "~a=~a"
+                                         (car p)
+                                         (cadr p)))
+                               (declaration-prop-props (declaration-value xs)))
+                          " "))
             ((string? (declaration-value xs))
              (format #f "\"~a\""
                      (declaration-value xs)))
             (else (declaration-value xs)))))
 
-;; (define niri-cfg
-;;   (niri-config #:palette 'dracula
-;;                #:sans-font "IBM Plex Sans"
-;;                #:mono-font "IBM Plex Mono"
-;;                #:keyboard-layout "us"
-;;                #:caps-to-ctrl? #t))
+(define niri-cfg
+  (niri-config #:palette 'dracula
+               #:sans-font "IBM Plex Sans"
+               #:mono-font "IBM Plex Mono"
+               #:keyboard-layout "us"
+               #:caps-to-ctrl? #t))
 
-;; (display (string-join (serialize-kdl niri-cfg) "\n"))
+(display (string-join (serialize-kdl niri-cfg) "\n"))
 
