@@ -327,7 +327,7 @@
         ;;
         (bnd #:mod "s"
              #:bind "L"
-             #:cmd (swaylock-cmd))
+             #:cmd (spawn-sh (swaylock-cmd)))
         ;;
         (bnd #:mod "s-S"
              #:bind "/"
@@ -425,8 +425,7 @@
          (icon-theme-name (get-icon-theme palette))
          (cursor-theme-name (get-cursor-theme palette))
          (xs (append extra-startups
-                     `("mako"
-                       "dbus-update-activation-environment --all"
+                     `("mako" "dbus-update-activation-environment --all"
                        "waybar"
                        "herd trigger set-random-wallpaper"
                        "alacritty --daemon"
@@ -447,8 +446,7 @@
                                       "timeout 600 'niri msg action power-off-monitors'"
                                       "resume 'niri msg action power-on-monitors'"
                                       (format #f "before-sleep '~a'"
-                                              (swaylock-cmd))
-                                      ) " ")))))
+                                              (swaylock-cmd))) " ")))))
     xs))
 
 (define* (serialized-startups #:key palette sans-font mono-font
