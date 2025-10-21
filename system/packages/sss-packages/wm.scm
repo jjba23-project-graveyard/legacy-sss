@@ -46,7 +46,7 @@
                         qpwgraph
                         wireplumber
                         pipewire
-                        swaylock
+                        swaylock-effects
                         swayidle
 
                         wl-clipboard

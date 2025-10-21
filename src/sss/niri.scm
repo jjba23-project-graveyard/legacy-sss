@@ -128,6 +128,22 @@
 (define (spawn-sh-at-startup cmd)
   (format #f "spawn-sh-at-startup \"~a\"" cmd))
 
+(define (swaylock-cmd)
+  (string-join '("swaylock" "--screenshots"
+                 "--clock"
+                 "--indicator"
+                 "--indicator-radius 100"
+                 "--indicator-thickness 7"
+                 "--effect-blur 7x5"
+                 "--effect-vignette 0.5:0.5"
+                 "--ring-color bb00cc"
+                 "--key-hl-color 880033"
+                 "--line-color 00000000"
+                 "--inside-color 00000088"
+                 "--separator-color 00000000"
+                 "--grace 2"
+                 "--fade-in 0.2") " "))
+
 (define (niri-bindings)
   (list (bnd #:mod "s"
              #:bind "K"
@@ -309,6 +325,10 @@
              #:cmd "toggle-keyboard-shortcuts-inhibit"
              #:allow-inhibiting? #f)
         ;;
+        (bnd #:mod "s"
+             #:bind "L"
+             #:cmd (swaylock-cmd))
+        ;;
         (bnd #:mod "s-S"
              #:bind "/"
              #:cmd "show-hotkey-overlay")
@@ -406,7 +426,6 @@
          (cursor-theme-name (get-cursor-theme palette))
          (xs (append extra-startups
                      `("mako"
-                       ;; "lxsession"
                        "dbus-update-activation-environment --all"
                        "waybar"
                        "herd trigger set-random-wallpaper"
@@ -421,7 +440,15 @@
                                 (G_
                                  "Enter and explore, for the cosmos of computation is yours to command."))
                        "sh ~/.local/bin/write-gtk-dconf-settings.sh"
-                       "sh ~/.local/bin/write-sss-dconf-settings.sh"))))
+                       "sh ~/.local/bin/write-sss-dconf-settings.sh"
+                       ,(string-join (list "swayidle -w"
+                                      (format #f "timeout 300 '~a'"
+                                              (swaylock-cmd))
+                                      "timeout 600 'niri msg action power-off-monitors'"
+                                      "resume 'niri msg action power-on-monitors'"
+                                      (format #f "before-sleep '~a'"
+                                              (swaylock-cmd))
+                                      ) " ")))))
     xs))
 
 (define* (serialized-startups #:key palette sans-font mono-font

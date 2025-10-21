@@ -225,6 +225,7 @@
                      dev.bragefuglseth.Fretboard
                      dev.geopjr.Collision
                      engineer.atlas.Nyxt
+                     org.gnome.Fractal
                      io.bassi.Amberol
                      io.beekeeperstudio.Studio
                      io.github.fizzyizzy05.binary

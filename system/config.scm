@@ -177,7 +177,7 @@
                                                   (subuids (get-setting 'subuids))))
           (service screen-locker-service-type
                    (screen-locker-configuration (name "swaylock")
-                                                (program (file-append swaylock
+                                                (program (file-append swaylock-effects
                                                           "/bin/swaylock"))
                                                 (using-pam? #t)
                                                 (using-setuid? #f)))
