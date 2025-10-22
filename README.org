@@ -89,18 +89,6 @@ The documentation and examples, including this document, which are provided with
 
 https://www.gnu.org/licenses/fdl-1.3.html
 
----------
-
-* Changelog
-
-v4.0.0 Niri window manager (dropped Hyprland and Hypr ecosystem support)
-
-v3.0.0 Hyprland window manager (dropped Sway support) - v3.4.16
-
-v2.0.0 Major code refactor (Sway) - v2.3.35
-
-v1.0.0 Move to Wayland
-
 --------
 
 * Code of conduct
@@ -124,4 +112,14 @@ Find here the Backlog and Kanban boards for SSS: https://lucidplan.jointhefreewo
 
 ----------
 
+* Project Changelog
 
+v1.x Initial Sway,  Move to Wayland,  Stumpwm X11 setup
+
+v2.0.0 Major code refactor (Sway) - v2.3.35
+
+v3.0.0 Hyprland window manager (dropped Sway support) - v3.4.16
+
+after v3  (dropped Hyprland and Hypr ecosystem support)
+
+v4.0.0 Niri WM

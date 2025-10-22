@@ -1421,3 +1421,16 @@ GNU Emacs, GNU Guix, Arch Linux, Void Linux, Nix, NixOS, Niri ...
 
 
 
+--------------------------
+
+* Project Changelog
+
+v1.x Initial Sway,  Move to Wayland,  Stumpwm X11 setup
+
+v2.0.0 Major code refactor (Sway) - v2.3.35
+
+v3.0.0 Hyprland window manager (dropped Sway support) - v3.4.16
+
+after v3  (dropped Hyprland and Hypr ecosystem support)
+
+v4.0.0 Niri WM
