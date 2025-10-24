@@ -84,7 +84,7 @@
                    (alacritty-capability #:palette ($$$ 'palette)
                                          #:mono-font ($$$ 'mono-font))
                    (niri-capability #:palette ($$$ 'palette)
-                                    #:keyboard-layout ($$$ 'keyboard-layout)
+                                    #:keyboard-layout ($$$ 'niri-keyboard-layout)
                                     #:caps-to-ctrl? ($$$ 'caps-to-ctrl?)
                                     #:sans-font ($$$ 'sans-font)
                                     #:mono-font ($$$ 'mono-font)
