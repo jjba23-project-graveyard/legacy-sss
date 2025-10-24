@@ -70,7 +70,7 @@ runs them concurrently by default to ensure robust testing practices.")
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0yg9qqwlln6y9ay1yljxq4x35il5bz7fl7j9nz5dygvdfffqs1v0"))))
+        (base32 "12vvbvkfqdrsqyxplgg5skdi1akr3h6pvv67iln8zk1rnqkyhqx6"))))
     (arguments
      (list
       #:source-directory "src"
