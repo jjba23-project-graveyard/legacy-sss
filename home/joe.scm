@@ -97,7 +97,8 @@
                    (fastfetch-capability #:clone-dir ($$$ 'clone-dir))
                    (fish-capability #:clone-dir ($$$ 'clone-dir)
                                     #:palette ($$$ 'palette)
-                                    #:gui-cmd "dbus-run-session niri --session")
+                                    #:gui-cmd
+                                    "dbus-run-session niri --session")
                    (mako-capability #:palette ($$$ 'palette)
                                     #:sans-font ($$$ 'sans-font))
                    (emacs-capability #:palette ($$$ 'palette)
