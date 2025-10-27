@@ -272,7 +272,6 @@
         xxd
         localed
         grimblast
-        uv
         xz
         yt-dlp))
 
