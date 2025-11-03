@@ -142,12 +142,12 @@
                                                                             ($$$ 'palette))))
                    (user-timer-script #:name 'remind-back-stretches
                                       #:cmd (format #f
-                                             "zenity --info --text=\"~a\""
+                                             "zenity --info --text=\"~a\" --display=:0.0"
                                              (G_
                                               "It's time to stretch your back! Cobra, Child pose, Cat-cow!")))
                    (user-timer-script #:name 'remind-pushups-squats-situps
                                       #:cmd (format #f
-                                             "zenity --info --text=\"~a\""
+                                             "zenity --info --text=\"~a\" --display=:0.0"
                                              (G_
                                               "It's time to move! Push-ups, squats and sit-ups!"))))))
 
