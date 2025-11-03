@@ -22,13 +22,13 @@
   #:use-module (gnu home services shepherd)
   #:export (user-timer-script user-timer))
 
-(define* (user-timer #:key name gexp)
+(define* (user-timer #:key name user gexp)
   (let ((timer-name (string->symbol (format #f "user-timer-~a" name))))
     (simple-service timer-name home-shepherd-service-type
                     (list (shepherd-timer (list timer-name) gexp
                                           `("bash" ,(format #f
-                                                     "~/.local/bin/~a.bash"
-                                                     timer-name))
+                                                     "/home/~a/.local/bin/~a.bash"
+                                                     user timer-name))
 
                                           )))))
 

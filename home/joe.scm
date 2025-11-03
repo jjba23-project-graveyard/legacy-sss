@@ -152,11 +152,14 @@
                                               "It's time to move! Push-ups, squats and sit-ups!"))))))
 
 (define joe-shepherd-timers
-  (list (user-timer #:name 'set-random-wallpaper
+  (list (user-timer #:user 'joe
+                    #:name 'set-random-wallpaper
                     #:gexp #~(cron-string->calendar-event "*/10 * * * *"))
-        (user-timer #:name 'remind-back-stretches
+        (user-timer #:user 'joe
+                    #:name 'remind-back-stretches
                     #:gexp #~(cron-string->calendar-event "15 9 * * 1-5"))
-        (user-timer #:name 'remind-pushups-squats-situps
+        (user-timer #:user 'joe
+                    #:name 'remind-pushups-squats-situps
                     #:gexp #~(cron-string->calendar-event "45 12 * * 1-5"))))
 
 (log-info (G_ "Configuring home environment for user: ~a") "joe")
