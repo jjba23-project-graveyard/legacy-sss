@@ -62,6 +62,9 @@
                        "tempel-pink-sun.jpg")))
       ('catppuccin-latte (map digital-art-dreams-sss-wallpaper
                               '("joshua.jpg" "PXL_20250326_193029385.MP.jpg")))
+      ('modus-vivendi (map digital-art-dreams-sss-wallpaper
+                           '("modo-vida-1.png" "modo-vida-2.png"
+                             "modo-vida-3.png")))
       ('catppuccin-mocha (map digital-art-dreams-sss-wallpaper
                               '("1362745.png" "inazuma.jpg" "diluc-tree.jpg"
                                 "tempel-pink-sun.jpg")))
