@@ -92,9 +92,9 @@
             (dec 'proportion 0.5)
             (dec 'proportion 0.666666))
        (rul 'default-column-width
-            (dec 'proportion 0.5))
+            (dec 'proportion 0.666666))
        (rul 'focus-ring
-            (dec 'width 3)
+            (dec 'width 2)
             (dec 'active-color
                  (get-color palette
                             'primary))
