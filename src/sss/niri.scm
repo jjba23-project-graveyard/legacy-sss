@@ -112,10 +112,10 @@
                          (y 5))))
             (dec 'color "#0007"))
        (rul 'struts
-            (dec 'left 6)
-            (dec 'right 6)
-            (dec 'top 6)
-            (dec 'bottom 6))))
+            (dec 'left 5)
+            (dec 'right 5)
+            (dec 'top 5)
+            (dec 'bottom 5))))
 
 (define (niri-intro)
   "// ====== SSS Niri configuration ======
@@ -480,13 +480,15 @@
         (dec 'screenshot-path
              "~/pictures/screenshots/screen-%Y-%m-%d-%H-%M-%S.png")
         (rul 'animations
-             (dec 'slowdown 0.7))
+             (dec 'slowdown 1.0))
         (rul 'binds
              (serialize-bindings (niri-bindings)))
         (rul 'window-rule
              (dec 'geometry-corner-radius 10)
              (dec 'clip-to-geometry
                   'true)
+             (dec 'draw-border-with-background
+                  'false)
              (rul 'default-column-width
                   (dec 'proportion 0.6666666)))
         (serialized-startups #:palette palette
