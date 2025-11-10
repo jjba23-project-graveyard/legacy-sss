@@ -188,6 +188,10 @@
         (bnd #:mod "C-M"
              #:bind "DEL"
              #:cmd "quit")
+        (bnd #:mod "s-C"
+             #:bind "E"
+             #:cmd (spawn-sh
+                    "bash ~/.local/bin/user-script-restart-emacs.bash"))
         ;;
         
         ;;
@@ -354,6 +358,8 @@
      "Mod")
     ((equal? "s-S" mod)
      "Mod+Shift")
+    ((equal? "s-C" mod)
+     "Mod+Ctrl")
     ((equal? "C-M" mod)
      "Ctrl+Alt")
     ((equal? "M" mod)
