@@ -43,6 +43,7 @@
   :bind (("C-c t o" . olivetti-mode))
   :config
   (setq olivetti-style 'fancy
+        olivetti-margin-width 100
         olivetti-body-width 94)
   (olivetti-set-width 94))
 
@@ -196,9 +197,7 @@ According to size, color and font family"
       (ignore-errors
         (set-face-attribute 'window-divider nil
                             :foreground (modus-themes-get-color-value 'bg-active t sss-emacs-theme)
-                            :background (modus-themes-get-color-value 'bg-active t sss-emacs-theme))
-        (set-face-attribute 'olivetti-fringe nil
-                            :background (modus-themes-get-color-value 'bg-main t sss-emacs-theme))))
+                            :background (modus-themes-get-color-value 'bg-active t sss-emacs-theme))))
 
     ;; ======= Gruvbox specific tweaks ===========
 
