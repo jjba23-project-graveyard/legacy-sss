@@ -32,6 +32,8 @@
   #:use-module (sss-packages shell)
   #:use-module (sss-packages container)
   #:use-module (sss-packages theme)
+  #:use-module (sss-packages inkaartbrenger)
+  #:use-module (sss-packages sss-help-center-gtk)
   #:use-module (sss-packages latex)
   #:use-module (sss-packages libs)
   #:use-module (sss-packages browser)
@@ -245,6 +247,8 @@
         power-profiles-daemon
         powertop
         qemu
+        sss-help-center-gtk
+        inkaartbrenger
         remmina
         stellarium
         stress
