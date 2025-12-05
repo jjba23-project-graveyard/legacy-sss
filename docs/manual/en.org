@@ -622,7 +622,7 @@ Package management is done with Elpaca in an asynchronous and non-blocking way, 
 
 I split the Emacs configuration into several modules that you can easily optionally include/exclude, see ~src/sss/emacs/modules~. and ~src/sss/emacs.scm~
 
-See  [[file:~/hacking/sss/docs/emacs/sss-emacs.org][the documentation for SSS Emacs]]  where I explain the entire setup.
+See  [[file:../emacs/sss-emacs.org][the documentation for SSS Emacs]]  where I explain the entire setup.
 
 -----------
 
