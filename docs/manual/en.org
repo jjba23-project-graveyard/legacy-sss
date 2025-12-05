@@ -620,9 +620,9 @@ Thanks to using modern standards and a modular approach, SSS has a very flexible
 
 Package management is done with Elpaca in an asynchronous and non-blocking way, ensuring that Emacs starts up blazingly fast (faster than a lot of Vim setups) and ensuring packages are loaded properly, async and with good practices.
 
-I split the Emacs configuration into several modules that you can easily optionally include/exclude, see ~src/sss/emacs/modules~.
+I split the Emacs configuration into several modules that you can easily optionally include/exclude, see ~src/sss/emacs/modules~. and ~src/sss/emacs.scm~
 
-See  [[../emacs/sss-emacs.org][the documentation for SSS Emacs]]  where I explain the entire setup
+See  [[file:~/hacking/sss/docs/emacs/sss-emacs.org][the documentation for SSS Emacs]]  where I explain the entire setup.
 
 -----------
 
