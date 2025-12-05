@@ -9,8 +9,11 @@
 
 [[https://jointhefreeworld.org/ggg/dist/gnu-emacs.svg]]
 
+------------------------------------
 *** common-lisp.el
 This module configures the sly package, transforming Emacs into a robust Common Lisp development environment. It installs sly directly from its GitHub repository and ensures it loads immediately when Emacs starts. The configuration also specifies that sly should connect to SBCL (Steel Bank Common Lisp) as the preferred underlying Lisp interpreter, providing a complete suite of tools for writing, evaluating, and debugging Common Lisp code within Emacs.
+
+------------------------------------
 
 *** consult.el
 
@@ -24,6 +27,8 @@ This module significantly upgrades Emacs's search and navigation through the con
 
 The configuration heavily customizes keybindings, mapping a wide array of consult commands to intuitive shortcuts under prefixes like C-c, M-g, and M-s. It also integrates consult with Emacs's default completion system and cross-reference features, providing a seamless and more intelligent user experience across the board.
 
+------------------------------------
+
 *** dashboard.el
 
 This module configures a custom "dashboard" or "welcome screen" using the ~welkomscherm~ package, offering quick access to frequently used directories and system actions.
@@ -35,6 +40,8 @@ The primary functionality is to provide a personalized, interactive starting poi
 - Action Buttons: A set of interactive buttons allows for one-click execution of common Emacs actions and system commands. This includes switching to essential buffers like *scratch* and *Messages*, re-rendering the welcome screen itself, and/or executing system rebuild commands (sss-sys-reconfigure and sss-joe-reconfigure).
 
 The welkomscherm package itself is installed directly from its Codeberg repository. The configuration binds the welkomscherm command to ~C-c SPC SPC~, making it easily accessible.
+
+------------------------------------
 
 *** dev.el
 
@@ -54,6 +61,8 @@ For document editing, markdown-mode is set up for better readability with adjust
 
 Finally, request provides general HTTP client capabilities, and flymake-collection enables on-the-fly syntax checking and error highlighting.
 
+------------------------------------
+
 *** dired.el
 
 This module significantly upgrades the dired file manager, turning it into a more powerful and visually intuitive tool for file and directory navigation. The primary functionality centers on improving the user's interaction with dired.
@@ -63,6 +72,8 @@ It enables subtree navigation through the dired-subtree package, letting you exp
 This setup also customizes the display, ensuring a cleaner look. Additionally, dired-open-with is included to allow opening files in dired using external applications, similar to a graphical file manager's "Open With" feature. Finally, nerd-icons-dired integrates visually appealing icons next to files and directories in dired listings, making file types more quickly identifiable and enhancing the overall aesthetic.
 
 Together, these packages combine to make dired a more user-friendly, visually rich, and efficient file management solution within Emacs.
+
+------------------------------------
 
 *** eglot.el
 
@@ -76,7 +87,9 @@ Regarding package configuration, eglot itself is the central piece here. The con
 
 Crucially, the configuration customizes which language servers eglot uses for specific modes: for Scala, it explicitly uses the "metals" server; for Nix, it uses "nil" (likely referring to the nil LSP server for Nix); and for Markdown, it uses "marksman".
 
-It also sets language-specific configurations for metals (Scala), haskell (using ormolu for formatting), typescript and javascript (setting formatting rules like indent size and semicolon removal), rust-analyzer (enabling cargo features, build scripts, and proc macros), and yaml (enabling formatting, validation, hover, completion, and schema validation with specific schema URLs). Finally, it integrates eglot's diagnostics with Emacs's eldoc and flymake systems, ensuring that errors and information are displayed prominently, and sets up flake8 as the linter for Python through flymake when eglot is active.
+It also sets language-specific configurations for metals (Scala), haskell (using ormolu for formatting), typescript and javascript (setting formatting rules like indent size and semicolon removal), rust-analyzer (enabling cargo features, build scripts, and proc macros), and yaml (enabling formatting, validation, hover, completion, and schema validation with specific schema URLs). Finally, it integrates eglot's diagnostics with Emacs's eldoc and flymake systems, ensuring that errors and information are displayed prominently, and sets up flake8 as the linter for Python through flymake when eglot is active
+
+------------------------------------.
 
 *** emacs-core.el
 
@@ -92,6 +105,8 @@ Enhancements to the dired file manager include a cleaner listing view and optimi
 
 The setup also includes global line highlighting and a preferred bar cursor (often better for writing and a more intuitive approach than a block cursor like in a terminal).
 
+------------------------------------
+
 *** erc.el
 
 This module configures erc, Emacs's built-in IRC (Internet Relay Chat) client, turning Emacs into a fully functional chat interface.
@@ -100,11 +115,15 @@ This includes connecting to IRC networks, joining channels, and participating in
 
 The setup explicitly enables erc-services-mode and incorporates additional erc modules for notifications and spelling, enhancing the client's utility by providing alerts for messages and assisting with correct grammar.
 
+------------------------------------
+
 *** go.el
 
 This module configures go-mode, providing dedicated support for developing in the Go programming language within Emacs.
 
 This includes proper handling of Go source files, syntax highlighting and intelligent navigation. It integrates with external Go tools by specifying that gofumpt should be used as the code formatter, ensuring consistent code style. When a Go file is opened, it automatically sets the indentation to use tabs with a width of 4 spaces, adhering to common Go style conventions.
+
+------------------------------------
 
 *** libs.el
 
@@ -120,9 +139,13 @@ A queue data structure is introduced through its dedicated package, providing a 
 
 Lastly, elmacro is configured to enhance Emacs's built-in macro capabilities, allowing for more sophisticated recording and playback of command sequences, and is activated globally.
 
+------------------------------------
+
 *** macros.el
 
 This module defines and configures several editor macros, small abstractions that make text editing and other tasks faster and more efficient, by means of automation. You can use ~elmacro~ to record keyboard macro/sequences into clean Emacs Lisp code. You can then also bind these macros to a key for convenient access.
+
+------------------------------------
 
 *** maps.el
 
@@ -130,9 +153,13 @@ This module configures the ~osm~ package, integrating OpenStreetMap functionalit
 
 It also sets up a dedicated prefix key, ~C-c m~, for osm commands, making it convenient to access map-related functions.
 
+------------------------------------
+
 *** misc.el
 
 This module configures additional miscellaneous extensions and tweaks to Emacs. Some of those include ~git-riddance~ to nuke Git repo history (also on remote), ~dagboek~ to easily create and organize your daily diary entries, ~gptel~ for LLM integration inside Emacs, ~guix~ for integration with the amazing Guix package manager, and more.
+
+------------------------------------
 
 *** music.el
 
@@ -145,6 +172,8 @@ It sets up smudge to allow controlling Spotify from within Emacs (note you need 
 Finally, it configures emms (Emacs Multimedia System), turning Emacs into a full-featured music player. It ensures all emms components and default players are loaded, specifically enabling emms-mpris for integration with desktop media players.
 
 The default directory for music files is set to sss-ews-music-directory, and album covers are configured to be displayed asynchronously in the browser.
+
+------------------------------------
 
 *** org.el
 
@@ -164,11 +193,15 @@ org-roam facilitates rapid note creation, linking, and navigation, with custom k
 
 Additional functionalities include org-present for creating presentations directly from Org files, and org-auto-tangle, which automatically extracts source code blocks from Org files, making it ideal for literate programming configurations. Finally, ob-http and ob-mermaid are included, extending Org mode's ability to execute HTTP requests and render Mermaid diagrams directly within Org buffers.
 
+------------------------------------
+
 *** search.el
 
 This module enhances Emacs's searching capabilities by integrating powerful external tools. It sets up ripgrep, a fast, modern grep alternative, to handle efficient text searching across files (considering .gitignore too).
 
-Complementing this, the module also configures deadgrep, which provides a user-friendly interface within Emacs for executing ripgrep searches and navigating their results. A dedicated keybinding, ~C-c z g~, is assigned to deadgrep, making these advanced search functionalities easily accessible. 
+Complementing this, the module also configures deadgrep, which provides a user-friendly interface within Emacs for executing ripgrep searches and navigating their results. A dedicated keybinding, ~C-c z g~, is assigned to deadgrep, making these advanced search functionalities easily accessible.
+
+------------------------------------
 
 *** shell.el
 
@@ -185,6 +218,8 @@ The core of the shell's appearance is customized through the ~sss-eshell-prompt~
 For better workflow, a collection of aliases is defined, mapping common shell commands to their Emacs equivalents or custom functions. This includes g for magit (Git interface), gl for magit-log, d for dired (file manager), and o and oo for opening files in the current or another window. It also includes l and ll for a detailed directory listing.
 
 Overall, this module transforms Eshell into a powerful and user-friendly command-line environment tailored for development and system interaction.
+
+------------------------------------
 
 *** sss.el
 
@@ -204,6 +239,8 @@ Finally, the module provides specialized functions for code formatting and data 
 
 Additionally, ~sss-new-buffer-with-json~ creates a new buffer, inserts JSON data, attempts to format it neatly, and then switches you to that new buffer for easy viewing. This is useful for working with HTTP bodies and responses too.
 
+------------------------------------
+
 *** theme.el
 
 This module manages the visual appearance of Emacs by configuring and applying various color themes.
@@ -213,6 +250,8 @@ Its primary functionality is to provide a flexible system for loading different 
 The module also includes custom palette overrides for certain ef-themes and others, allowing for fine-grained adjustments to their default color schemes.
 
 The module then conditionally loads a specific theme based on the value of the ~sss-emacs-theme~ variable. This ensures that your Emacs instance consistently loads your chosen aesthetic from the defined collection of themes upon startup.
+
+------------------------------------
 
 *** ui.el
 
@@ -239,3 +278,4 @@ modusregel customizes the mode line format, integrating keycast-mode-line to dis
 To improve navigation, ultra-scroll is enabled, refining Emacs's scrolling behavior with advanced settings for smooth, controlled movement.
 
 
+------------------------------------
