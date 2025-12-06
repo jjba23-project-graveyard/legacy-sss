@@ -91,7 +91,6 @@
 
 (define (user-reconfigure user)
   (fmt)
-  (load-current-user-guix)
   (test)
   ($ (list "guix time-machine --channels=channels.scm -- home reconfigure "
            "-L ./per-host -L ./src"
@@ -191,23 +190,22 @@ Args: update? represents whether we should update a template or create a new one
                                  "-c '((@ (ares server) run-nrepl-server))'")
                                #:verbose? #t))
 
+(define (guix-repl)
+  "Development REPL."
+  (time-machine-manifest-shell '("guix repl")
+                               #:verbose? #t))
+
 (define (test)
   "Unit tests."
   (time-machine-manifest-shell '("guile -L ./src -L ./per-host -L ./test"
                                  "-c '((@ (veritas runner) run-tests))'")
                                #:verbose? #t))
 
-(define (load-current-user-guix)
-  "Reload current user's Guix"
-  ($ '(". $HOME/.config/guix/current/etc/profile"))
-  ($ '("hash guix")))
-
 (define (pull)
   "Guix pull using wanted channels"
   ($ '("cp -v channels.scm ~/.config/guix/"))
   ($ '("guix pull" "--channels=channels.scm" "--allow-downgrades")
-     #:verbose? #t)
-  (load-current-user-guix))
+     #:verbose? #t))
 
 (define (nix-packages-install)
   "Install Nix packages for SSS."
@@ -244,9 +242,9 @@ Args: update? represents whether we should update a template or create a new one
 (define (system-reconfigure)
   "Re-configure the Guix system."
   (fmt)
-  (load-current-user-guix)
   (test)
-  ($ '("sudo guix time-machine --channels=channels.scm -- system reconfigure"
+
+  ($ '("sudo -E guix time-machine --channels=channels.scm -- system reconfigure"
        "-L ./per-host -L ./system/packages -L ./src" "./system/config.scm"
        "--fallback --on-error=backtrace"
        "--substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'")
@@ -255,6 +253,13 @@ Args: update? represents whether we should update a template or create a new one
   (log-done)
   (notify (G_ "SSS system-reconfigure")
           (G_ "Task was completed successfully!")))
+
+(define (system-build)
+  ($ '("sudo -E guix time-machine --channels=channels.scm -- system build"
+       "-L ./per-host -L ./system/packages -L ./src" "./system/config.scm"
+       "--fallback --on-error=backtrace"
+       "--substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'")
+     #:verbose? #t))
 
 (define (store-gc)
   "Clean up unused objects in the Guix store."
