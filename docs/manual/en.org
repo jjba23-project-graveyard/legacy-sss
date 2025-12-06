@@ -943,6 +943,22 @@ A: Try with ~gpg --pinentry-mode loopback --full-gen-key~. Otherwise try other o
 
 -----
 
+Q: guix system reconfigure: problem on detecting channels
+
+A: in some cases, users might face issues related to reading custom channels during system reconfigure:
+
+no code for module ~(nongnu packages linux)~.
+we need to check if the channels file is located in ~/.config/guix/channels.scm and it’s accessible by current user (reconfigure needs to be performed by root user).
+
+later in order fix we need to perform following steps:
+login with root user (you also can have root access over ssh using: ssh -p 2222 root@127.0.0.1 command)
+remove guix cache folder located in /root/.cache/guix/
+run guix pull to get a fresh copy of package repositories from server
+run guix system reconfigure ... to reconfigure the based on system configuration file
+
+
+-----
+
 * SSS project
 
 Contributing to free software is a uniquely beautiful act because it embodies principles of generosity, collaboration, and empowerment.
