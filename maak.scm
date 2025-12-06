@@ -244,7 +244,7 @@ Args: update? represents whether we should update a template or create a new one
   (fmt)
   (test)
 
-  ($ '("sudo -E guix time-machine --channels=channels.scm -- system reconfigure"
+  ($ '("sudo guix time-machine --channels=channels.scm -- system reconfigure"
        "-L ./per-host -L ./system/packages -L ./src" "./system/config.scm"
        "--fallback --on-error=backtrace"
        "--substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'")
@@ -255,7 +255,7 @@ Args: update? represents whether we should update a template or create a new one
           (G_ "Task was completed successfully!")))
 
 (define (system-build)
-  ($ '("sudo -E guix time-machine --channels=channels.scm -- system build"
+  ($ '("sudo guix time-machine --channels=channels.scm -- system build"
        "-L ./per-host -L ./system/packages -L ./src" "./system/config.scm"
        "--fallback --on-error=backtrace"
        "--substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'")
