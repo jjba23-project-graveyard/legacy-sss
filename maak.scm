@@ -92,8 +92,10 @@
 (define (user-reconfigure user)
   (fmt)
   (test)
-  ($ (list "guix home reconfigure " "-L ./per-host -L ./src"
-           (~ "./home/~a.scm" user) "--fallback"))
+  ($ (list "guix time-machine --channels=channels.scm -- home reconfigure "
+           "-L ./per-host -L ./src"
+           (~ "./home/~a.scm" user) "--fallback")
+     #:verbose? #t)
   ($ '("fc-cache -frv >/dev/null 2>&1 &"))
   (run-installed-script 'write-gtk-dconf-settings)
   (run-installed-script 'write-sss-dconf-settings)
@@ -185,12 +187,14 @@ Args: update? represents whether we should update a template or create a new one
 (define (repl)
   "Development REPL."
   (time-machine-manifest-shell '("guile -L ./src -L ./per-host -L ./system/packages/"
-                                 "-c '((@ (ares server) run-nrepl-server))'")))
+                                 "-c '((@ (ares server) run-nrepl-server))'")
+                               #:verbose? #t))
 
 (define (test)
   "Unit tests."
   (time-machine-manifest-shell '("guile -L ./src -L ./per-host -L ./test"
-                                 "-c '((@ (veritas runner) run-tests))'")))
+                                 "-c '((@ (veritas runner) run-tests))'")
+                               #:verbose? #t))
 
 (define (pull)
   "Guix pull using wanted channels"
@@ -236,7 +240,8 @@ Args: update? represents whether we should update a template or create a new one
   ($ '("sudo guix time-machine --channels=channels.scm -- system reconfigure"
        "-L ./per-host -L ./system/packages -L ./src" "./system/config.scm"
        "--fallback --on-error=backtrace"
-       "--substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'"))
+       "--substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'")
+     #:verbose? #t)
   ($ '("sudo fc-cache -frv >/dev/null 2>&1 &"))
   (log-done)
   (notify (G_ "SSS system-reconfigure")
