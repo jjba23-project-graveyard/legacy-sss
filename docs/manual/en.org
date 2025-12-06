@@ -547,7 +547,7 @@ guix pull --channels=channels.scm
 
 Once you have followed all those above steps, you can enter a temporary Guix shell, so as to bootstrap SSS.
 
-You can do this with ~guix shell maak git icecat~. Icecat is a 100% libre version of Firefox, and it will be temporarily used for you to browse temporarily to Codeberg and download and install SSS.
+You can do this with ~guix shell git icecat~. Git is the version control system we use, and Icecat is a 100% libre version of Firefox, and it will be temporarily used for you to browse temporarily to Codeberg and download and install SSS.
 
 Then proceed to clone SSS with ~git clone --recursive https://codeberg.org/jjba23/sss.git~ to your favourite location. This location will need to be added to your ~per-host/sss/overrides.scm~. You can skip the ~--recursive~ option if you are not interested in the wallpapers and other art.
 
@@ -559,7 +559,8 @@ https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
 ---------------------
 
-You should have by now written an appropriate ~per-host/sss/overrides.scm~ for your setup. See the above section on this topic.
+Then cd to the cloned directory and do a ~guix pull --channels=channels.scm~
+After that , you should have by now written an appropriate ~per-host/sss/overrides.scm~ for your setup. See the above section on this topic.
 
 Enter the directory of SSS: ~cd sss~ and do a ~maak sr~.
 
