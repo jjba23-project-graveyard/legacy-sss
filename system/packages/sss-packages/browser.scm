@@ -17,8 +17,9 @@
 
 (define-module (sss-packages browser)
   #:declarative? #t
-  #:use-module (nongnu packages mozilla)
+  ;;#:use-module (nongnu packages mozilla) ;
+  #:use-module (gnu packages gnuzilla)
   #:export (browser-packages))
 
 (define browser-packages
-  (make-parameter (list firefox)))
+  (make-parameter (list icecat)))

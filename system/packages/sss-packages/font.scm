@@ -19,7 +19,7 @@
   #:declarative? #t
   #:use-module (gnu packages fonts)
   #:use-module (gnu packages fontutils)
-  #:use-module (nongnu packages fonts)
+  ;; #:use-module (nongnu packages fonts)
   #:export (font-packages))
 
 (define font-packages
@@ -32,5 +32,5 @@
                         font-google-roboto
                         font-liberation
                         font-ibm-plex
-                        font-microsoft-web-core-fonts
+                        ;; font-microsoft-web-core-fonts
                         fontconfig)))
