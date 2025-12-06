@@ -535,6 +535,13 @@ guix pull --channels=channels.scm
 # or: maak pull
 #+end_src
 
+#+begin_src scheme
+(define (pull)
+  "Guix pull using wanted channels"
+  ($ '("guix pull" "--channels=channels.scm" "--allow-downgrades")
+     #:verbose? #t))
+#+end_src
+
 
 * Installation of SSS
 

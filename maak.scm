@@ -91,7 +91,6 @@
 
 (define (user-reconfigure user)
   (fmt)
-  (pull)
   (test)
   ($ (list "guix home reconfigure " "-L ./per-host -L ./src"
            (~ "./home/~a.scm" user) "--fallback"))
@@ -195,7 +194,8 @@ Args: update? represents whether we should update a template or create a new one
 
 (define (pull)
   "Guix pull using wanted channels"
-  ($ '("guix pull" "--channels=channels.scm")))
+  ($ '("guix pull" "--channels=channels.scm" "--allow-downgrades")
+     #:verbose? #t))
 
 (define (nix-packages-install)
   "Install Nix packages for SSS."
@@ -232,9 +232,8 @@ Args: update? represents whether we should update a template or create a new one
 (define (system-reconfigure)
   "Re-configure the Guix system."
   (fmt)
-  (pull)
   (test)
-  ($ '("sudo guix system reconfigure"
+  ($ '("sudo guix time-machine --channels=channels.scm -- system reconfigure"
        "-L ./per-host -L ./system/packages -L ./src" "./system/config.scm"
        "--fallback --on-error=backtrace"
        "--substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'"))
