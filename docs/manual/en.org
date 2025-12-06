@@ -528,7 +528,7 @@ SSS uses guix, nonguix.
 
 warning: always guix pull from your user account (*no sudo or root*) and let all channels get updated
 
-To update and load these onto a system do:
+To update and load these onto a system do (in the root of this repository):
 
 #+begin_src shell
 guix pull --channels=channels.scm
@@ -579,11 +579,15 @@ You can then reboot and you should be greeted by a simple TTY.
 
 ** Keeping SSS updated
 
-You should every now and then update the SSS repo with ~git pull~. You also should regularly do a ~guix pull~ from your regular user, and then rebuild this system with the root user (~maak sr~).
+You should every now and then update the SSS repo with ~git pull~.
+
+You also should regularly do a ~maak pull~ from your regular user, and then rebuild this system with the root user (~maak sr~).
 
 It's important to also keep the SSS modules updated, and thus from time to time run ~git submodule update --recursive --remote~.
 
-Guix is a rolling distribution and you don't need to be always on bleeding edge releases, but it's nice to stay updated.
+Guix is a rolling distribution. SSS keeps up-to-date with Guix, but curates known well-functioning versions, also using the guix time machine.
+
+Therefore, updating SSS (from Git) also means likely (auto) updating Guix commit.
 
 --------
 
