@@ -45,10 +45,10 @@
   '(progn (find-file "./docs/manual/en.org")
           (org-html-export-to-html)
           (message "finished publishing SSS manual")
-          (find-file "./docs/emacs/sss-emacs.org")
+          (find-file "../emacs/sss-emacs.org")
           (org-html-export-to-html)
           (message "finished publishing SSS Emacs documentation")
-          (find-file "./docs/emacs/mail-with-gnus.org")
+          (find-file "../emacs/mail-with-gnus.org")
           (org-html-export-to-html)
           (message "finished publishing Gnus mail documentation")))
 
