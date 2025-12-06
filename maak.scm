@@ -91,6 +91,7 @@
 
 (define (user-reconfigure user)
   (fmt)
+  (load-current-user-guix)
   (test)
   ($ (list "guix time-machine --channels=channels.scm -- home reconfigure "
            "-L ./per-host -L ./src"
@@ -196,10 +197,17 @@ Args: update? represents whether we should update a template or create a new one
                                  "-c '((@ (veritas runner) run-tests))'")
                                #:verbose? #t))
 
+(define (load-current-user-guix)
+  "Reload current user's Guix"
+  ($ '(". $HOME/.config/guix/current/etc/profile"))
+  ($ '("hash guix")))
+
 (define (pull)
   "Guix pull using wanted channels"
+  ($ '("cp -v channels.scm ~/.config/guix/"))
   ($ '("guix pull" "--channels=channels.scm" "--allow-downgrades")
-     #:verbose? #t))
+     #:verbose? #t)
+  (load-current-user-guix))
 
 (define (nix-packages-install)
   "Install Nix packages for SSS."
@@ -236,6 +244,7 @@ Args: update? represents whether we should update a template or create a new one
 (define (system-reconfigure)
   "Re-configure the Guix system."
   (fmt)
+  (load-current-user-guix)
   (test)
   ($ '("sudo guix time-machine --channels=channels.scm -- system reconfigure"
        "-L ./per-host -L ./system/packages -L ./src" "./system/config.scm"
