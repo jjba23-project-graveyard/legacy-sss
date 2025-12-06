@@ -91,6 +91,7 @@
 
 (define (user-reconfigure user)
   (fmt)
+  (pull)
   (test)
   ($ (list "guix home reconfigure " "-L ./per-host -L ./src"
            (~ "./home/~a.scm" user) "--fallback"))
@@ -171,7 +172,7 @@ Args: update? represents whether we should update a template or create a new one
   "Update the system and channels."
   ($ '("git pull"))
   (update-submodules)
-  ($ '("guix pull")))
+  (pull))
 
 (define (fmt)
   "Format project source code files."
@@ -184,13 +185,17 @@ Args: update? represents whether we should update a template or create a new one
 
 (define (repl)
   "Development REPL."
-  (manifest-shell '("guile -L ./src -L ./per-host -L ./system/packages/"
-                    "-c '((@ (ares server) run-nrepl-server))'")))
+  (time-machine-manifest-shell '("guile -L ./src -L ./per-host -L ./system/packages/"
+                                 "-c '((@ (ares server) run-nrepl-server))'")))
 
 (define (test)
   "Unit tests."
-  (manifest-shell '("guile -L ./src -L ./per-host -L ./test"
-                    "-c '((@ (veritas runner) run-tests))'")))
+  (time-machine-manifest-shell '("guile -L ./src -L ./per-host -L ./test"
+                                 "-c '((@ (veritas runner) run-tests))'")))
+
+(define (pull)
+  "Guix pull using wanted channels"
+  ($ '("guix pull" "--channels=channels.scm")))
 
 (define (nix-packages-install)
   "Install Nix packages for SSS."
@@ -227,6 +232,7 @@ Args: update? represents whether we should update a template or create a new one
 (define (system-reconfigure)
   "Re-configure the Guix system."
   (fmt)
+  (pull)
   (test)
   ($ '("sudo guix system reconfigure"
        "-L ./per-host -L ./system/packages -L ./src" "./system/config.scm"
@@ -255,9 +261,9 @@ Args: update? represents whether we should update a template or create a new one
 
 (define (build-manual)
   "Render the project's manual."
-  (manifest-shell (list (~ "emacs -Q --batch --eval '~s'"
-                           emacs-lisp-manual-publish-cmd))
-                  #:verbose? #t))
+  (time-machine-manifest-shell (list (~ "emacs -Q --batch --eval '~s'"
+                                        emacs-lisp-manual-publish-cmd))
+                               #:verbose? #t))
 
 (define (deploy)
   "Deploy the project's documentation."
@@ -269,15 +275,16 @@ Args: update? represents whether we should update a template or create a new one
 
 (define (hot-reload)
   "Hot-reloading developer's setup."
-  (manifest-shell (list "watchexec"
-                        "--clear"
-                        (~ "--exts ~a"
-                           (string-join (map symbol->string
-                                             hot-reload-file-types) ","))
-                        "--on-busy-update=restart"
-                        "--shell bash"
-                        "--watch . --"
-                        "maak test")))
+  (time-machine-manifest-shell (list "watchexec"
+                                     "--clear"
+                                     (~ "--exts ~a"
+                                        (string-join (map symbol->string
+                                                      hot-reload-file-types)
+                                                     ","))
+                                     "--on-busy-update=restart"
+                                     "--shell bash"
+                                     "--watch . --"
+                                     "maak test")))
 
 ;; ====== Maak i18n tasks ======
 

@@ -520,24 +520,21 @@ When everything is in place, if it's a new user, you can add a password to the u
 
 -----
 
-* Adding channels
+* On channels
 
-Add ~nonguix~ in your channels file (=$HOME/.config/guix/channels.scm=). This will later be overwritten by SSS.
+See ~channels.scm~ for the reproducible pinned commits for the various channels being used.
 
-#+begin_src  scheme
-  (cons* (channel
-        (name 'nonguix)
-        (url "https://gitlab.com/nonguix/nonguix")
-        (introduction
-         (make-channel-introduction
-          "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
-          (openpgp-fingerprint
-           "2A39 3FFF 68F4 EF7A 3D29 12AF 6F51 20A0 22FB B2D5"))))
-       %default-channels)
+SSS uses guix, nonguix.
 
+warning: always guix pull from your user account (*no sudo or root*) and let all channels get updated
+
+To update and load these onto a system do:
+
+#+begin_src shell
+guix pull --channels=channels.scm
+# or: maak pull
 #+end_src
 
-After adding the channel, perform a ~guix pull~ from your user account (*no sudo or root*) and let all channels get updated.
 
 * Installation of SSS
 
