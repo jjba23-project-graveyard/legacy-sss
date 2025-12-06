@@ -44,7 +44,13 @@
 (define emacs-lisp-manual-publish-cmd
   '(progn (find-file "./docs/manual/en.org")
           (org-html-export-to-html)
-          (message "finished publishing SSS manual")))
+          (message "finished publishing SSS manual")
+          (find-file "./docs/emacs/sss-emacs.org")
+          (org-html-export-to-html)
+          (message "finished publishing SSS Emacs documentation")
+          (find-file "./docs/emacs/mail-with-gnus.org")
+          (org-html-export-to-html)
+          (message "finished publishing Gnus mail documentation")))
 
 ;; The Emacs Lisp script to run for indenting ELisp files.
 (define emacs-lisp-indent-cmd
