@@ -218,7 +218,7 @@
         inkscape
         jq
         just
-        kubectl
+        ;; kubectl
         libreoffice
         libavif
         light

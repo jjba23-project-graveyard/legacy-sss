@@ -34,6 +34,7 @@
 (use-service-modules networking
                      desktop
                      audio
+                     
                      shepherd
                      dbus
                      base
